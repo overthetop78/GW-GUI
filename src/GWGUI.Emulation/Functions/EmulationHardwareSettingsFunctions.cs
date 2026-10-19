@@ -81,4 +81,12 @@ internal static class EmulationHardwareSettingsFunctions
         new(id, EmulationMachineTab.Audio, block, label, EmulationSettingsEditor.Selection, value, choices,
             ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices,
             ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
+
+    internal static EmulationSettingsField AudioSelection(IReadOnlyDictionary<string, string> options,
+        string id, string block, string resource, int fallback, IReadOnlyList<int> values, string unit,
+        IFormatProvider? labelFormatProvider) =>
+        Select(id, EmulationMachineTab.Audio, block, resource,
+            options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
+            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
+                string.Empty, $"{value.ToString(labelFormatProvider)} {unit}")).ToArray(), null, null);
 }

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7216,
-  "outsideSrcCSharpFiles": 312,
+  "currentCSharpFiles": 7217,
+  "outsideSrcCSharpFiles": 313,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11430,
+  "currentMethodCount": 11420,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5915,6 +5915,49 @@
           "tokens": 31,
           "hash": "394A3B0B9C6D22B25822D3B5FBDB5FF79D3826D86766E282D635DD1CEA4C7351",
           "shape": "5F30E32FE4981B6056C3641E738FE681D09EEE513A50A896B736E7C064A646D6"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
+      "method": "Audio",
+      "tokens": 149,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 76,
+          "tokens": 149,
+          "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 52,
+          "tokens": 149,
+          "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 59,
+          "tokens": 149,
+          "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 72,
+          "tokens": 149,
+          "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
         }
       ],
       "predecessors": [],
@@ -14580,6 +14623,89 @@
     },
     {
       "language": "CSharp",
+      "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+      "method": "Audio",
+      "tokens": 139,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 51,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 44,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 59,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 46,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 53,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 42,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 85,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 117,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Audio",
+          "line": 102,
+          "tokens": 139,
+          "hash": "8D7CB5DBDC8BD21EA22A84422A0A5F03DE1FC21A6DE22F85B5757F4FBF649BF6",
+          "shape": "BB1E865FA03D617456794A1711ED55C9B5CB42AF809BA57FC8AD35DA96986098"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "8E5FBCDDEBAB0FDA3801BC063D583AE187BE005D6955E04E937C13B159EA898E",
       "method": "CapturePerformanceLevel",
       "tokens": 31,
@@ -16568,49 +16694,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
-      "method": "Audio",
-      "tokens": 163,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 59,
-          "tokens": 163,
-          "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
-          "shape": "C2A6DC55E8E670943C4737D695E101A6C80EE6471462D2242933AE7721707538"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 72,
-          "tokens": 163,
-          "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
-          "shape": "C2A6DC55E8E670943C4737D695E101A6C80EE6471462D2242933AE7721707538"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 52,
-          "tokens": 163,
-          "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
-          "shape": "C2A6DC55E8E670943C4737D695E101A6C80EE6471462D2242933AE7721707538"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 76,
-          "tokens": 163,
-          "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
-          "shape": "C2A6DC55E8E670943C4737D695E101A6C80EE6471462D2242933AE7721707538"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
       "method": "ScanFirmwareAsync",
       "tokens": 117,
@@ -17017,7 +17100,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -18476,121 +18559,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-      "method": "AudioSelection",
-      "tokens": 82,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 87,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 141,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 126,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 109,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 100,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 71,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 80,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 104,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 65,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 59,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 54,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 63,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 68,
-          "tokens": 82,
-          "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
-          "shape": "5863C4E9A52FF137B2B5D32BF67A2F968FF4D804A815735C37453897CA3332F0"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "AE617F378CF8D149201960B8309C2655E897CBAD3D159D2EBF1C8EE03CF0FF2D",
       "method": "ToCommon",
       "tokens": 61,
@@ -18788,7 +18756,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SnkEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21406,89 +21374,6 @@
           "tokens": 47,
           "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
           "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-      "method": "Audio",
-      "tokens": 153,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 117,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 102,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 85,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 59,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 53,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 46,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 42,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 51,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Audio",
-          "line": 44,
-          "tokens": 153,
-          "hash": "CCABDCA5C0D1C5457A0258D1599DF62A9F28A2E811CC4099E129E47031B36405",
-          "shape": "C216A4717EB93C025E5444AF051FB7AF307C91D69BBF3A6A1A27D7C19045DF80"
         }
       ],
       "predecessors": [],
@@ -24853,7 +24738,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -30317,29 +30202,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "936C5C22970740AB5985697084854634F87CE0B4891A6F3AB40175571C97E21C",
-      "tokens": 79,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Selection",
-          "line": 42,
-          "tokens": 79,
-          "hash": "63E4EF349441AB4F4135887EFA519770511C53331AE2FE06D6F746ABC24CE703",
-          "shape": "936C5C22970740AB5985697084854634F87CE0B4891A6F3AB40175571C97E21C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "AudioSelection",
-          "line": 36,
-          "tokens": 79,
-          "hash": "04AF8B1A42DA11E1AE8339DBCA469C812FC5110972A8B6502D1D4A91A6E4CA86",
-          "shape": "936C5C22970740AB5985697084854634F87CE0B4891A6F3AB40175571C97E21C"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "9559740C6E405A9A7B476AEE61AA2C5913BB43B8EB7877585EAD2EFBB1CDC280",
       "tokens": 212,
       "current": [
@@ -34314,7 +34176,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 338
+    "occurrences": 338,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

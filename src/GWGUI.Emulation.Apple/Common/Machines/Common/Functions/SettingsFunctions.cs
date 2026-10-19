@@ -22,21 +22,13 @@ internal static partial class SettingsDescriptionFunctions
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) =>
         Block(EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,
-            new EmulationSettingsField(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
-                EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioEnabled,
-                EmulationSettingsEditor.Toggle, configuration.AudioEnabled ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled),
-            new EmulationSettingsField(SettingsConstants.AudioOutput, EmulationMachineTab.Audio,
-                EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioOutput,
-                EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
-                [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
-                ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices),
+            EmulationHardwareSettingsFunctions.Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioEnabled, configuration.AudioEnabled, null, null),
+            EmulationHardwareSettingsFunctions.AudioOutput(SettingsConstants.AudioOutput, EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioOutput, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], null, null),
             AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, EmulationSettingConstants.DefaultAudioLatencyMilliseconds, EmulationSettingConstants.AudioLatencyMillisecondsChoices, "ms"),
             AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, EmulationSettingConstants.DefaultAudioVolumePercent, EmulationSettingConstants.AudioVolumePercentChoices, "%"));
 
     private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit) =>
-        new(id, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), resource,
-            EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
-            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {unit}")).ToArray());
+        EmulationHardwareSettingsFunctions.AudioSelection(configuration.Options, id, EmulationMachineTab.Audio.ToString(), resource, fallback, values, unit, null);
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab)
     {

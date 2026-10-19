@@ -1,22 +1,27 @@
 {
-  "snapshot": "2d9a186e01105d1ee098c89a9a3fa1964ab4a935",
+  "snapshot": "7cf28d7f6c1588c0bb2297a2e739bc1206e721ad",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.Snapshot.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/InputFunctions.Snapshot.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
-    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/ControllerInput/BindingsAndFeedbackScenarios.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7216,
-  "methodBodyCount": 9491,
+  "fileCount": 7217,
+  "methodBodyCount": 9506,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -6527,7 +6532,7 @@
           "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
           "shape": "9FBFCF3F270EE4674FE419408094AB2842212EFF25D86823B31CB84C898AED10",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "EA3B437BD8D30796AA9CD982CBA8ABD94ED695F9823F2A54552644045C51ABAA"
+          "qualificationSourceSha256": "577432F5E4F9D9DA8FF8482825FB27D8CA38420134309D2780FECF743FC9C959"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -6541,7 +6546,7 @@
           "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
           "shape": "9FBFCF3F270EE4674FE419408094AB2842212EFF25D86823B31CB84C898AED10",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "933BB87425ADDB50AA5F321CBC442116F6049FD073797796F0EE916077054C1C"
+          "qualificationSourceSha256": "D782483A4CA99D55B429B20D0EEB4087FA9B11E92882736246930F965B61B1E4"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -6555,7 +6560,7 @@
           "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
           "shape": "9FBFCF3F270EE4674FE419408094AB2842212EFF25D86823B31CB84C898AED10",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "74B707923D381D224475AA7BB2AFC74DA35B74AE246F8DAFFFE6B812F4E5398C"
+          "qualificationSourceSha256": "B8CB0AFAB0370E0B397A797708ADEAFD5674B5D5151E7D3850CBCA8D10416BD3"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -6569,7 +6574,7 @@
           "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
           "shape": "9FBFCF3F270EE4674FE419408094AB2842212EFF25D86823B31CB84C898AED10",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "D58DF09F8769FEC350522677C293295AE90A2283E5CEB38ADD8700F111C1F216"
+          "qualificationSourceSha256": "5F58F7E835DEC5B5C29FA21F09D51F325FEC336320982EDA7961DF86B60D3322"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -6583,7 +6588,7 @@
           "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
           "shape": "9FBFCF3F270EE4674FE419408094AB2842212EFF25D86823B31CB84C898AED10",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "A2E40BB632CAEF0432C315D68ED4209892961457FFEE2E716D6FE022A483B5D2"
+          "qualificationSourceSha256": "636F4BBA8D924D4DCFE634197ED06F9A2E3B593D353CE08B7B121FFAB69C40BC"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -48020,17 +48025,45 @@
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 42,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "A1114325A722EA49944C0D7D404C303F9D3437B29143A4905B8F53F78325A843"
+          "qualificationSourceSha256": "48F005DF986BD6DA29EC34D18B48FCF6800228B124DD806B78EA558DB12AC004"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Block",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 48,
+          "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
+          "tokens": 11,
+          "bodyTokens": "=> new ( resource , tab , resource , fields )",
+          "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
+          "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
+          "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
+          "qualificationSourceSha256": "52815F52F95B1FF13E52B21CDE63A198A0B154AECD9A43D763CDF7A4A8AA9114"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Block",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 53,
+          "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
+          "tokens": 11,
+          "bodyTokens": "=> new ( resource , tab , resource , fields )",
+          "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
+          "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
+          "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
+          "qualificationSourceSha256": "577432F5E4F9D9DA8FF8482825FB27D8CA38420134309D2780FECF743FC9C959"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
@@ -48041,133 +48074,105 @@
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "FC930BA8538948D1DAA0AA294ECCAEB2B57B4990AB4BE2303C5D6AC724005F2C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Block",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 77,
-          "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
-          "tokens": 11,
-          "bodyTokens": "=> new ( resource , tab , resource , fields )",
-          "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
-          "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
-          "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "EA3B437BD8D30796AA9CD982CBA8ABD94ED695F9823F2A54552644045C51ABAA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
-          "name": "Block",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 64,
-          "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
-          "tokens": 11,
-          "bodyTokens": "=> new ( resource , tab , resource , fields )",
-          "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
-          "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
-          "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "C6DFD8526839FA9FC1985CC933AA66910395631EBFE28A412D2BF00D739487C8"
+          "qualificationSourceSha256": "355F3B8E8351DA3F875B3AE9DC828F8CCCCBDA16E8097C1FD1E0FD0E03770866"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 60,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "EB538BAFC58443F48E3EF780BEDC70A328DB518E62982EABAA2685852F540730"
+          "qualificationSourceSha256": "C128371917988F55D72DEF934D21B8EADF2DAA6F4B97307C3850115A849AFFB5"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 58,
+          "line": 51,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "218B2CFA561F9A7BE47370BF711E7DCFABD269196407A3F9F7B9BFCA1C1B0C48"
+          "qualificationSourceSha256": "F75F20369F1B2775AF4164916BCCD53229B5C7747A111DC83390C38C7FA64910"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 69,
+          "line": 62,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "9A3B65B06C322173CC34470EF9FB975890996664E3F9F984CE4E7081EDC88E07"
+          "qualificationSourceSha256": "E9BB963D09465844588C3622EA0CD4835B9766056FBCD9DA3A89ED2612CE9CE1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 68,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "949557BF2BD29D52017139F39074DC00116B7A8BB0CE2ED13C0CE0634A5BA06B"
+          "qualificationSourceSha256": "01870088F5BF6BEECCEB57F5825D15BC80FB49092E836453018CB59CFA39EB7B"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 135,
+          "line": 111,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "0E37575C982D046BEB063CACD915FD393068035C4F2B2875D28801EEC3A1B47F"
+          "qualificationSourceSha256": "2F8823F9746A40A73B23D1A0F11C6D530926D822CDF854B1FD9A8FF3D2A417ED"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 150,
+          "line": 126,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "60EEA3B197EEB451511D1CCB515C527FA40DF735DDC2C8AC7A6D714A6CA7B868"
+          "qualificationSourceSha256": "8C54DDC63573EBF17181E3EB79794B0FA2B4B5B0706E9D7A3FA3BDE04AE7C166"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 118,
+          "line": 94,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "A284607758C5E377C09F7AA9957E65DFFE2A8CB9E36F97B7949157801621BFCB"
+          "qualificationSourceSha256": "A80CEE064AA08AEB07C35BB533FD79F00EDD7E10EFE5E81FB2CB22968CBB137B"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -71341,6 +71346,196 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+      "tokens": 27,
+      "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 52,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "577432F5E4F9D9DA8FF8482825FB27D8CA38420134309D2780FECF743FC9C959"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 53,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "355F3B8E8351DA3F875B3AE9DC828F8CCCCBDA16E8097C1FD1E0FD0E03770866"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 58,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "C128371917988F55D72DEF934D21B8EADF2DAA6F4B97307C3850115A849AFFB5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "F75F20369F1B2775AF4164916BCCD53229B5C7747A111DC83390C38C7FA64910"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 60,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "E9BB963D09465844588C3622EA0CD4835B9766056FBCD9DA3A89ED2612CE9CE1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 88,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "D782483A4CA99D55B429B20D0EEB4087FA9B11E92882736246930F965B61B1E4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 66,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "01870088F5BF6BEECCEB57F5825D15BC80FB49092E836453018CB59CFA39EB7B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 110,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "2F8823F9746A40A73B23D1A0F11C6D530926D822CDF854B1FD9A8FF3D2A417ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 125,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "8C54DDC63573EBF17181E3EB79794B0FA2B4B5B0706E9D7A3FA3BDE04AE7C166"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 93,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "A80CEE064AA08AEB07C35BB533FD79F00EDD7E10EFE5E81FB2CB22968CBB137B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 84,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "B8CB0AFAB0370E0B397A797708ADEAFD5674B5D5151E7D3850CBCA8D10416BD3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 71,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "5F58F7E835DEC5B5C29FA21F09D51F325FEC336320982EDA7961DF86B60D3322"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 64,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 27,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , SettingsConstants . ResourceAudio , resource , fallback , values , unit , CultureInfo . InvariantCulture )",
+          "hash": "F1FE7D9EF43869D2945E104893C53BB8370E73EA4385FB1D5F7C61EFCC37A7EB",
+          "shape": "B75DCC81917B8F658548099A291D877806FD5528A53AE2438EB60495362B80C7",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "636F4BBA8D924D4DCFE634197ED06F9A2E3B593D353CE08B7B121FFAB69C40BC"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
       "hash": "F204C0F282A750F13493E8946A0680FADEE28C0B6BEA9CBFF8C13DCB3989E4D4",
       "tokens": 6,
       "bodyTokens": "=> _writeTab . UpdateCommand ( )",
@@ -82805,28 +83000,28 @@
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 42,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "A1114325A722EA49944C0D7D404C303F9D3437B29143A4905B8F53F78325A843"
+          "qualificationSourceSha256": "48F005DF986BD6DA29EC34D18B48FCF6800228B124DD806B78EA558DB12AC004"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 56,
+          "line": 48,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "FC930BA8538948D1DAA0AA294ECCAEB2B57B4990AB4BE2303C5D6AC724005F2C"
+          "qualificationSourceSha256": "52815F52F95B1FF13E52B21CDE63A198A0B154AECD9A43D763CDF7A4A8AA9114"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
@@ -82847,126 +83042,126 @@
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 77,
+          "line": 53,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "EA3B437BD8D30796AA9CD982CBA8ABD94ED695F9823F2A54552644045C51ABAA"
+          "qualificationSourceSha256": "577432F5E4F9D9DA8FF8482825FB27D8CA38420134309D2780FECF743FC9C959"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 64,
+          "line": 56,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "C6DFD8526839FA9FC1985CC933AA66910395631EBFE28A412D2BF00D739487C8"
+          "qualificationSourceSha256": "355F3B8E8351DA3F875B3AE9DC828F8CCCCBDA16E8097C1FD1E0FD0E03770866"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 60,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "EB538BAFC58443F48E3EF780BEDC70A328DB518E62982EABAA2685852F540730"
+          "qualificationSourceSha256": "C128371917988F55D72DEF934D21B8EADF2DAA6F4B97307C3850115A849AFFB5"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 58,
+          "line": 51,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "218B2CFA561F9A7BE47370BF711E7DCFABD269196407A3F9F7B9BFCA1C1B0C48"
+          "qualificationSourceSha256": "F75F20369F1B2775AF4164916BCCD53229B5C7747A111DC83390C38C7FA64910"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 69,
+          "line": 62,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "9A3B65B06C322173CC34470EF9FB975890996664E3F9F984CE4E7081EDC88E07"
+          "qualificationSourceSha256": "E9BB963D09465844588C3622EA0CD4835B9766056FBCD9DA3A89ED2612CE9CE1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 68,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "949557BF2BD29D52017139F39074DC00116B7A8BB0CE2ED13C0CE0634A5BA06B"
+          "qualificationSourceSha256": "01870088F5BF6BEECCEB57F5825D15BC80FB49092E836453018CB59CFA39EB7B"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 135,
+          "line": 111,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "0E37575C982D046BEB063CACD915FD393068035C4F2B2875D28801EEC3A1B47F"
+          "qualificationSourceSha256": "2F8823F9746A40A73B23D1A0F11C6D530926D822CDF854B1FD9A8FF3D2A417ED"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 150,
+          "line": 126,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "60EEA3B197EEB451511D1CCB515C527FA40DF735DDC2C8AC7A6D714A6CA7B868"
+          "qualificationSourceSha256": "8C54DDC63573EBF17181E3EB79794B0FA2B4B5B0706E9D7A3FA3BDE04AE7C166"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
           "name": "Block",
           "owner": "SettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 118,
+          "line": 94,
           "parameters": "(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields)",
           "tokens": 11,
           "bodyTokens": "=> new ( resource , tab , resource , fields )",
           "hash": "978A29986373F23249B2AEE994FB00761AB839D27C211F104258B00DBF6CEB21",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
           "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
-          "qualificationSourceSha256": "A284607758C5E377C09F7AA9957E65DFFE2A8CB9E36F97B7949157801621BFCB"
+          "qualificationSourceSha256": "A80CEE064AA08AEB07C35BB533FD79F00EDD7E10EFE5E81FB2CB22968CBB137B"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -129180,7 +129375,7 @@
           "hash": "4C5DB844C75C199F36CFE8F1D0375CBD84B83CB18BCFABDA3EE0C14F3F1760C1",
           "shape": "BB272D7360315AF62BFB228A1C58D63F7E6CC0235A717911972555AC2CBED7CB",
           "qualification": "Verified editor-specific constructor of existing SDK settings owner; distinct constructor arguments validated by settingBuildersReuse.verification",
-          "qualificationSourceSha256": "FAEFC6AB620F4E59CCB6B4E841B6FFAABF5A53E59477FAFBAE32E2FA8E249707"
+          "qualificationSourceSha256": "CC30FB1DA8FE0B45612BF162A72B0725CF09766A91A8B771510D1875CC2EF1D8"
         },
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs",
@@ -129194,7 +129389,7 @@
           "hash": "C0745227C39F82F56CFAB89FB94AEF4836D9BEACBFA58B3BF4AA4815E8AC25E7",
           "shape": "BB272D7360315AF62BFB228A1C58D63F7E6CC0235A717911972555AC2CBED7CB",
           "qualification": "Verified editor-specific constructor of existing SDK settings owner; distinct constructor arguments validated by settingBuildersReuse.verification",
-          "qualificationSourceSha256": "FAEFC6AB620F4E59CCB6B4E841B6FFAABF5A53E59477FAFBAE32E2FA8E249707"
+          "qualificationSourceSha256": "CC30FB1DA8FE0B45612BF162A72B0725CF09766A91A8B771510D1875CC2EF1D8"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -140655,6 +140850,41 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "F528F39CFE09D7EA2B6FB17C44C2E9AA1D396F0D81843BE3A8851D8E6D4E349D",
+      "tokens": 29,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "Selection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 36,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int defaultValue, IReadOnlyList<int> values, string unit)",
+          "tokens": 29,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , EmulationMachineTab . Audio . ToString ( ) , resource , defaultValue , values , unit , null )",
+          "hash": "7CCB3D170ECCBBB73D861AF2AC7AF8977ABFCBE9827794597DB60694FBD46FD5",
+          "shape": "F528F39CFE09D7EA2B6FB17C44C2E9AA1D396F0D81843BE3A8851D8E6D4E349D",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "48F005DF986BD6DA29EC34D18B48FCF6800228B124DD806B78EA558DB12AC004"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+          "name": "AudioSelection",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit)",
+          "tokens": 29,
+          "bodyTokens": "=> EmulationHardwareSettingsFunctions . AudioSelection ( configuration . Options , id , EmulationMachineTab . Audio . ToString ( ) , resource , fallback , values , unit , null )",
+          "hash": "4E3E3DEE4CA328075CB4D4717AE7ED16600DEFA38BECDE3063A253256F2D7056",
+          "shape": "F528F39CFE09D7EA2B6FB17C44C2E9AA1D396F0D81843BE3A8851D8E6D4E349D",
+          "qualification": "Verified complete typed audio option projection to original SDK constructor; audioSettingsConstructionReuse. All27 field properties,block,label culture,stored values,defaults,choices and allocation preserved.",
+          "qualificationSourceSha256": "52815F52F95B1FF13E52B21CDE63A198A0B154AECD9A43D763CDF7A4A8AA9114"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
       "shape": "F804E26310A4531EFAF71F8E8EDC908CAB082BB3C06B309D17AD4F5E7FE63099",
       "tokens": 27,
       "current": [
@@ -141721,7 +141951,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 2800
+    "occurrences": 2771,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
