@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Functions;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -166,6 +167,74 @@ public sealed class StatelessEnvironmentCommandTests
             Assert.False(result);
             Assert.Equal(before, Marshal.ReadInt64(data));
         });
+    [Theory]
+    [InlineData(1, EmulationPixelFormat.Xrgb8888)]
+    [InlineData(2, EmulationPixelFormat.Rgb565)]
+    public void StrictAndBroadPixelsShareSupportedFormatsWithoutConstructingErrors(
+        int value, EmulationPixelFormat expected) => WithBuffer(data =>
+    {
+        Marshal.WriteInt32(data, value);
+        var before = Marshal.ReadInt64(data);
+        var actual = EmulationPixelFormat.Rgb1555;
+        Assert.True(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.Equal(expected, actual);
+        Assert.Equal(expected, ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data,
+            _ => throw new InvalidOperationException("must not create an error")));
+        Assert.Equal(before, Marshal.ReadInt64(data));
+    });
+
+    [Fact]
+    public void Rgb1555RemainsAvailableOnlyToTheBroadProfile() => WithBuffer(data =>
+    {
+        Marshal.WriteInt32(data, 0);
+        var actual = EmulationPixelFormat.Rgb565;
+        Assert.True(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.Equal(EmulationPixelFormat.Rgb1555, actual);
+        var error = new NotSupportedException("local profile error");
+        var calls = 0;
+        Assert.Same(error, Assert.Throws<NotSupportedException>(() =>
+            ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data, value =>
+            {
+                Assert.Equal(0, value);
+                calls++;
+                return error;
+            })));
+        Assert.Equal(1, calls);
+    });
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(3)]
+    [InlineData(int.MaxValue)]
+    public void UnsupportedPixelsPreserveStateAndTheOriginalDeferredError(int value) => WithBuffer(data =>
+    {
+        Marshal.WriteInt32(data, value);
+        var before = Marshal.ReadInt64(data);
+        var actual = EmulationPixelFormat.Rgb565;
+        Assert.False(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.Equal(EmulationPixelFormat.Rgb565, actual);
+        var error = new NotSupportedException("local profile error");
+        var calls = 0;
+        Assert.Same(error, Assert.Throws<NotSupportedException>(() =>
+            actual = ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data, unsupported =>
+            {
+                Assert.Equal(value, unsupported);
+                calls++;
+                return error;
+            })));
+        Assert.Equal(1, calls);
+        Assert.Equal(EmulationPixelFormat.Rgb565, actual);
+        Assert.Equal(before, Marshal.ReadInt64(data));
+    });
+
+    [Fact]
+    public void BroadPixelNullRefusalDoesNotModifyTheCurrentFormat()
+    {
+        var actual = EmulationPixelFormat.Rgb565;
+        Assert.False(ExternalCoreEnvironmentFunctions.SetPixelFormat(0, ref actual));
+        Assert.Equal(EmulationPixelFormat.Rgb565, actual);
+    }
+
     private static bool Handle(uint command, nint data, out bool result) =>
         ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data, 7, 11, 0, out result);
 

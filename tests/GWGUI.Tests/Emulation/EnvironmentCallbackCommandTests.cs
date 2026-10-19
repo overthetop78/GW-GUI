@@ -210,6 +210,76 @@ public sealed class EnvironmentCallbackCommandTests
                 ExternalCoreApiConstants.SetVariables, 42, null!, options, out _)));
         Assert.Equal(new[] { ("RegisterLegacyVariables", (nint)42) }, options.Calls);
     }
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
+    public void DirectDiskCapturePreservesBothNullPoliciesAndReplies(uint command)
+    {
+        foreach (var captureNull in new[] { false, true })
+        foreach (var reply in new[] { false, true })
+        foreach (var data in new nint[] { 0, 42 })
+        {
+            var callbacks = new Callbacks { Result = reply };
+            var invoked = captureNull || data != 0;
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+                command, data, callbacks, captureNull, out var result));
+            Assert.Equal(invoked && reply, result);
+            Assert.Equal(invoked ? 1 : 0, callbacks.CallCount);
+            if (invoked) Assert.Equal(data, callbacks.LastData);
+        }
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
+    [InlineData(ExternalCoreApiConstants.SetPixelFormat)]
+    public void DirectCallbackErrorsKeepTheirIdentityAndModuleBoundary(uint command)
+    {
+        var error = new InvalidOperationException("original callback error");
+        var callbacks = new Callbacks { Error = error };
+        Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+                command, 0, callbacks, true, out _)));
+        Assert.Equal(1, callbacks.CallCount);
+        Assert.Equal(nint.Zero, callbacks.LastData);
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetKeyboardCallback)]
+    [InlineData(ExternalCoreApiConstants.GetDiskControlVersion)]
+    [InlineData(ExternalCoreApiConstants.GetSystemDirectory)]
+    public void DiskPolicyDoesNotChangeOtherNullCallbackReplies(uint command)
+    {
+        foreach (var captureNull in new[] { false, true })
+        foreach (var reply in new[] { false, true })
+        {
+            var callbacks = new Callbacks { Result = reply };
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+                command, 0, callbacks, captureNull, out var result));
+            Assert.Equal(reply, result);
+            Assert.Equal(1, callbacks.CallCount);
+            Assert.Equal(nint.Zero, callbacks.LastData);
+        }
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetRotation)]
+    [InlineData(ExternalCoreApiConstants.SetPerformanceLevel)]
+    [InlineData(ExternalCoreApiConstants.GetRumbleInterface)]
+    [InlineData(ExternalCoreApiConstants.GetSensorInterface)]
+    [InlineData(ExternalCoreApiConstants.GetCanDuplicateFrames)]
+    [InlineData(ExternalCoreApiConstants.SetVariables)]
+    [InlineData(uint.MaxValue)]
+    public void DirectSelectionDoesNotClaimBroaderCallbacksOrOtherOwners(uint command)
+    {
+        foreach (var captureNull in new[] { false, true })
+        {
+            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+                command, 0, null!, captureNull, out var result));
+            Assert.False(result);
+        }
+    }
+
     private sealed class Callbacks : IEmulationCoreEnvironmentCommands
     {
         internal bool Result { get; init; }

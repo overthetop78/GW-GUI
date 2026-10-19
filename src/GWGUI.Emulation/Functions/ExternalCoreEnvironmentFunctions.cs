@@ -35,30 +35,10 @@ internal static class ExternalCoreEnvironmentFunctions
     internal static bool TryHandleLegacyCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, IEmulationCoreOptionCommands options, out bool result)
     {
+        if (TryHandleLegacyEnvironmentCommand(command, data, callbacks, false, out result))
+            return true;
         switch (command)
         {
-            case ExternalCoreApiConstants.GetSystemDirectory:
-            case ExternalCoreApiConstants.GetContentDirectory:
-            case ExternalCoreApiConstants.GetSaveDirectory:
-            case ExternalCoreApiConstants.SetMessage:
-            case ExternalCoreApiConstants.SetPixelFormat:
-            case ExternalCoreApiConstants.GetDiskControlVersion:
-            case ExternalCoreApiConstants.SetInputDescriptors:
-            case ExternalCoreApiConstants.SetKeyboardCallback:
-            case ExternalCoreApiConstants.SetDiskControl:
-            case ExternalCoreApiConstants.SetDiskControlExtended:
-            case ExternalCoreApiConstants.SetControllerInfo:
-            case ExternalCoreApiConstants.SetMemoryMaps:
-            case ExternalCoreApiConstants.SetSupportAchievements:
-            case ExternalCoreApiConstants.SetSupportNoGame:
-            case ExternalCoreApiConstants.SetMessageExtended:
-            case ExternalCoreApiConstants.SetGeometry:
-            case ExternalCoreApiConstants.SetSystemAvInfo:
-            case ExternalCoreApiConstants.GetLogInterface:
-            case ExternalCoreApiConstants.GetVfsInterface:
-            case ExternalCoreApiConstants.GetLedInterface:
-                _ = TryHandleCallbackCommand(command, data, callbacks, out result);
-                return true;
             case ExternalCoreApiConstants.SetCoreOptions:
             case ExternalCoreApiConstants.SetCoreOptionsInternational:
             case ExternalCoreApiConstants.SetCoreOptionsV2:
@@ -83,6 +63,10 @@ internal static class ExternalCoreEnvironmentFunctions
     }
     internal static bool TryHandleCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, out bool result)
+        => TryHandleCallbackCommand(command, data, callbacks, false, out result);
+
+    private static bool TryHandleCallbackCommand(uint command, nint data,
+        IEmulationCoreEnvironmentCommands callbacks, bool captureNullDiskControls, out bool result)
     {
         switch (command)
         {
@@ -150,10 +134,10 @@ internal static class ExternalCoreEnvironmentFunctions
                 result = callbacks.SetKeyboardCallback(data);
                 break;
             case ExternalCoreApiConstants.SetDiskControl:
-                result = data != nint.Zero && callbacks.CaptureDiskControl(data);
+                result = (captureNullDiskControls || data != nint.Zero) && callbacks.CaptureDiskControl(data);
                 break;
             case ExternalCoreApiConstants.SetDiskControlExtended:
-                result = data != nint.Zero && callbacks.CaptureExtendedDiskControl(data);
+                result = (captureNullDiskControls || data != nint.Zero) && callbacks.CaptureExtendedDiskControl(data);
                 break;
             case ExternalCoreApiConstants.GetDiskControlVersion:
                 result = callbacks.GetDiskControlVersion(data);
@@ -163,6 +147,38 @@ internal static class ExternalCoreEnvironmentFunctions
                 return false;
         }
         return true;
+    }
+
+    internal static bool TryHandleLegacyEnvironmentCommand(uint command, nint data,
+        IEmulationCoreEnvironmentCommands callbacks, bool captureNullDiskControls, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetSystemDirectory:
+            case ExternalCoreApiConstants.GetContentDirectory:
+            case ExternalCoreApiConstants.GetSaveDirectory:
+            case ExternalCoreApiConstants.SetMessage:
+            case ExternalCoreApiConstants.SetPixelFormat:
+            case ExternalCoreApiConstants.GetDiskControlVersion:
+            case ExternalCoreApiConstants.SetInputDescriptors:
+            case ExternalCoreApiConstants.SetKeyboardCallback:
+            case ExternalCoreApiConstants.SetDiskControl:
+            case ExternalCoreApiConstants.SetDiskControlExtended:
+            case ExternalCoreApiConstants.SetControllerInfo:
+            case ExternalCoreApiConstants.SetMemoryMaps:
+            case ExternalCoreApiConstants.SetSupportAchievements:
+            case ExternalCoreApiConstants.SetSupportNoGame:
+            case ExternalCoreApiConstants.SetMessageExtended:
+            case ExternalCoreApiConstants.SetGeometry:
+            case ExternalCoreApiConstants.SetSystemAvInfo:
+            case ExternalCoreApiConstants.GetLogInterface:
+            case ExternalCoreApiConstants.GetVfsInterface:
+            case ExternalCoreApiConstants.GetLedInterface:
+                return TryHandleCallbackCommand(command, data, callbacks, captureNullDiskControls, out result);
+            default:
+                result = false;
+                return false;
+        }
     }
 
     internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)
@@ -331,18 +347,33 @@ internal static class ExternalCoreEnvironmentFunctions
     internal static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)
     {
         if (data == nint.Zero) return false;
-        switch (Marshal.ReadInt32(data))
+        if (!TryGetPixelFormat(Marshal.ReadInt32(data), true, out var format)) return false;
+        pixelFormat = format;
+        return true;
+    }
+
+    internal static EmulationPixelFormat ReadLegacyPixelFormat(nint data, Func<int, Exception> createUnsupportedError)
+    {
+        var value = Marshal.ReadInt32(data);
+        if (TryGetPixelFormat(value, false, out var format)) return format;
+        throw createUnsupportedError(value);
+    }
+
+    private static bool TryGetPixelFormat(int nativeFormat, bool allowRgb1555, out EmulationPixelFormat format)
+    {
+        switch (nativeFormat)
         {
             case 1:
-                pixelFormat = EmulationPixelFormat.Xrgb8888;
+                format = EmulationPixelFormat.Xrgb8888;
                 return true;
             case 2:
-                pixelFormat = EmulationPixelFormat.Rgb565;
+                format = EmulationPixelFormat.Rgb565;
                 return true;
-            case 0:
-                pixelFormat = EmulationPixelFormat.Rgb1555;
+            case 0 when allowRgb1555:
+                format = EmulationPixelFormat.Rgb1555;
                 return true;
             default:
+                format = default;
                 return false;
         }
     }

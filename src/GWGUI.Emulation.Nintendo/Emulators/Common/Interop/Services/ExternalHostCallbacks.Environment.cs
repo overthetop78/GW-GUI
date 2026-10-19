@@ -65,11 +65,8 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
     {
-        _pixelFormat = Marshal.ReadInt32(data) switch
-        {
-            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,
-            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
-            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};
+        _pixelFormat = ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data,
+    static value => new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value)));
         return true;
     }
 
