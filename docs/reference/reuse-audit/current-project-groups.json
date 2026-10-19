@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7292,
   "outsideSrcCSharpFiles": 308,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11670,
+  "currentMethodCount": 11655,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -566,7 +566,7 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
+          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -576,7 +576,7 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
+          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
@@ -586,12 +586,12 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
+          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2833,7 +2833,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
+          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
@@ -2843,7 +2843,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
+          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
@@ -2853,7 +2853,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
+          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
@@ -2863,7 +2863,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
+          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
@@ -2873,7 +2873,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
+          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
@@ -2883,7 +2883,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
+          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
@@ -2893,7 +2893,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
+          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
@@ -2903,7 +2903,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
+          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
@@ -2913,7 +2913,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
+          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
@@ -2923,7 +2923,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
+          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
@@ -2933,7 +2933,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
+          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
@@ -2943,7 +2943,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
+          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
@@ -2953,12 +2953,12 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
+          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -3591,7 +3591,7 @@
           "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
         }
       ],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -3994,7 +3994,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified module-owned installation adapters; original SDK operations shared and distinct resource scopes preserved"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -5500,7 +5500,7 @@
           "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
         }
       ],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -6404,7 +6404,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -6575,7 +6575,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial stage qualification; original connection waits shared and failure release guarded by finally; remaining instance/resource ownership pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -6884,7 +6884,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified module-owned installation adapters; original SDK operations shared and distinct resource scopes preserved"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -7428,7 +7428,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed parser adapters; original recognition policy shared in MediaRecognitionRegistry"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -7678,7 +7678,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified native-code notification adapters; original loops shared and native state/policies retained"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -8591,7 +8591,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -9764,145 +9764,6 @@
           "tokens": 30,
           "hash": "57EC02181A307142FA1537315C1E806D66D15146E75AAA099BFD5F24511016E2",
           "shape": "079C4116457BEBDE7BEC0E7D698277CE57295A4090FCE217BCFAD6AC34D42892"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-      "method": "ConfigurationPaths",
-      "tokens": 37,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 42,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 42,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 45,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 41,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 41,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 45,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 41,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 45,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 42,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 45,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
-          "name": "ConfigurationPaths",
-          "line": 43,
-          "tokens": 37,
-          "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
-          "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
         }
       ],
       "predecessors": [],
@@ -11795,7 +11656,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -12663,7 +12524,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -12738,7 +12599,7 @@
           "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5"
         }
       ],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -12822,7 +12683,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -13184,7 +13045,7 @@
           "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
         }
       ],
-      "qualification": "Qualified local validation adapters over System.IO.Path.Combine; no duplicate path algorithm"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -14072,7 +13933,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -15385,7 +15246,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified module-owned installation adapters; original SDK operations shared and distinct resource scopes preserved"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -16926,7 +16787,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial stage qualification; original controller projection shared; remaining local typed configuration policy pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -17519,7 +17380,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed installation adapters; original selection shared in SDK"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -19690,7 +19551,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
+          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
@@ -19700,7 +19561,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
+          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
@@ -19710,7 +19571,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
+          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
@@ -19720,7 +19581,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
+          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -19730,7 +19591,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
+          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
@@ -19740,7 +19601,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
+          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
@@ -19750,7 +19611,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
+          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
@@ -19760,7 +19621,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
+          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
@@ -19770,7 +19631,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
+          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
@@ -19780,7 +19641,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
+          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
@@ -19790,7 +19651,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
+          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
@@ -19800,7 +19661,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
+          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
@@ -19810,7 +19671,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
+          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
@@ -19820,7 +19681,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
+          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
@@ -19830,7 +19691,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
+          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
@@ -19840,12 +19701,12 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
+          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -20055,7 +19916,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified module-owned installation adapters; original SDK operations shared and distinct resource scopes preserved"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -20163,12 +20024,12 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial stage qualification; remaining typed writer/projection ownership pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21440,7 +21301,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -21556,7 +21417,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -21837,7 +21698,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -22010,7 +21871,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed adapters; common selection/progress in existing SDK"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -23315,7 +23176,7 @@
           "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
         }
       ],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -26291,7 +26152,7 @@
           "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
         }
       ],
-      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -27508,7 +27369,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -28732,7 +28593,7 @@
           "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "06863E4DEAFAA40E0DDC39714CEA1CFA3B8F4BC2C6BFD61520CA220B7F631A6A",
@@ -29454,7 +29315,7 @@
           "qualification": "module-adapter-to-original-configured-validator"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "183D06E6E876C7CBC3BE254E159C5BDD401D4599B329DB8382797F1E8F3CBB16",
@@ -30038,7 +29899,7 @@
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
         }
       ],
-      "qualification": "Qualified typed installation adapters; original selection shared in SDK"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "2FD81AF945CCEB7AEC0DD21615EDCE7E13B1EE61E7B66939F7063D0F20514043",
@@ -30217,7 +30078,7 @@
           "qualificationSourceSha256": "BE7D1EA0C9924D2689A1D010B4407623780799AC71E6AA35C892F94784936BB2"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
@@ -31023,7 +30884,7 @@
           "qualificationSourceSha256": "DB8618D24548C6907D847B0F73101D2366A04C2D498DE255BD4CF531A03C9B4E"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "48ED5146317BAA7E952B20ACAC97F4B72E53AB06FD9629CC812A86F62DDED8C4",
@@ -33459,7 +33320,7 @@
           "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
         }
       ],
-      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "98BFEA96C98C9ADBBB92A7A5966293BDB69AED7EA138CF83F9AAA5412AEA72D0",
@@ -35989,7 +35850,7 @@
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
         }
       ],
-      "qualification": "Qualified typed installation adapters; original selection shared in SDK"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40",
@@ -37642,7 +37503,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 182
+    "occurrences": 182,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

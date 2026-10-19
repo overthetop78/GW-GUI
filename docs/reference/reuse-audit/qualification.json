@@ -301084,5 +301084,946 @@
     },
     "exitCode": 0,
     "completedAt": "2026-10-19T07:34:17.9181846+02:00"
+  },
+  "configurationEnumerationReuse": {
+    "owner": {
+      "path": "src/GWGUI.Emulation.Amiga/AmigaConfigurationStore.cs",
+      "commit": "178f10977",
+      "expression": "Directory.EnumerateDirectories(_directory)\r\n            .Select(directory => Path.Combine(directory, \"machine.json\"))\r\n            .Concat(Directory.EnumerateFiles(_directory, \"*.json\"))\r\n            .Where(File.Exists)\r\n            .Order(StringComparer.OrdinalIgnoreCase)"
+    },
+    "state": "verified; seventeen directory selectors share original Amiga pipeline; SDK/all23 semantic analysis and 56 retained tests pass; next grouped product build pending",
+    "sdk": {
+      "path": "src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs",
+      "sha256": "67E1C7F4B27322BA3F3B5C358FB85D46D3601126FE71DF44EE64BB89FDCF0799",
+      "before": "using System.Security.Cryptography;\r\nusing System.Text;\r\nusing System.IO;\r\nusing System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\npublic static class ConfigurationFileAccessFunctions\r\n{\r\n    private const int DefaultReplacementRetryCount = 5;\r\n    private const int DefaultReplacementRetryDelayMilliseconds = 25;\r\n\r\n    internal static string? StorePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return path;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(pathBase, fullPath);\r\n        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, '/') : fullPath;\r\n    }\r\n\r\n    internal static string? ResolvePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(pathBase, path.Replace('/', Path.DirectorySeparatorChar)));\r\n    }\r\n\r\n    private static bool IsInsideBase(string relative) =>\r\n        !Path.IsPathFullyQualified(relative)\r\n        && !string.Equals(relative, \"..\", StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.DirectorySeparatorChar, StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);\r\n\r\n    public static void WriteDocumentAtomically<T>(string path, T document,\r\n        JsonSerializerOptions options, string temporarySuffix) =>\r\n        WriteAtomicallyAsync(path, path + temporarySuffix, temporary =>\r\n        {\r\n            File.WriteAllText(temporary, JsonSerializer.Serialize(document, options));\r\n            return Task.CompletedTask;\r\n        }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();\r\n\r\n    internal static async Task WithSaveGateAsync(SemaphoreSlim saveGate, Func<Task> write,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        try\r\n        {\r\n            await write().ConfigureAwait(false);\r\n        }\r\n        finally\r\n        {\r\n            saveGate.Release();\r\n        }\r\n    }\r\n\r\n    internal static async Task WriteDocumentAtomicallyAsync<TConfiguration>(SemaphoreSlim saveGate,\r\n        string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration,\r\n        Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths,\r\n        JsonSerializerOptions options, CancellationToken cancellationToken)\r\n    {\r\n        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = prepareConfiguration(configuration);\r\n            var machineDirectory = Path.Combine(directory, configurationId(configuration).ToString(\"N\"));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, \"machine.json\");\r\n            temporary = target + \".\" + Guid.NewGuid().ToString(\"N\") + \".tmp\";\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))\r\n                await JsonSerializer.SerializeAsync(stream, storePaths(configuration), options, cancellationToken).ConfigureAwait(false);\r\n            ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            saveGate.Release();\r\n        }\r\n    }\r\n\r\n    internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,\r\n        JsonSerializerOptions options, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var temporaryPath = fullPath + \".\" + Guid.NewGuid().ToString(\"N\") + \".tmp\";\r\n        await WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>\r\n        {\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,\r\n                             FileShare.None, 4096, FileOptions.Asynchronous | FileOptions.WriteThrough))\r\n            {\r\n                await JsonSerializer.SerializeAsync(stream, document, options, cancellationToken).ConfigureAwait(false);\r\n                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);\r\n            }\r\n        }).ConfigureAwait(false);\r\n    }\r\n\r\n    internal static async Task WriteAtomicallyAsync(string target, string temporary, Func<string, Task> write,\r\n        Action<string, string>? replace = null)\r\n    {\r\n        Directory.CreateDirectory(Path.GetDirectoryName(target)!);\r\n        try\r\n        {\r\n            await write(temporary).ConfigureAwait(false);\r\n            if (replace is null) ReplaceFile(temporary, target);\r\n            else replace(temporary, target);\r\n        }\r\n        finally { DeleteIfExists(temporary); }\r\n    }\r\n\r\n    internal static void DeleteIfExists(string path)\r\n    {\r\n        if (File.Exists(path)) File.Delete(path);\r\n    }\r\n\r\n    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(\r\n        string configurationDirectory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize,\r\n        Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)\r\n    {\r\n        Directory.CreateDirectory(configurationDirectory);\r\n        var configurations = new List<TConfiguration>();\r\n        foreach (var path in paths())\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            try\r\n            {\r\n                var json = ReadAllText(path);\r\n                using var parsed = JsonDocument.Parse(json);\r\n                var document = deserialize(parsed.RootElement);\r\n                configurations.Add(restore(document));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n            catch (InvalidDataException) { }\r\n            catch (ArgumentException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);\r\n    }\r\n\r\n    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(\r\n        string configurationDirectory, string fileName, Func<string, TConfiguration?> deserialize,\r\n        Func<TConfiguration, bool> isSupported, Func<TConfiguration, TConfiguration> resolve,\r\n        CancellationToken cancellationToken) where TConfiguration : class\r\n    {\r\n        Directory.CreateDirectory(configurationDirectory);\r\n        var configurations = new List<TConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ReadAllText(path);\r\n                var configuration = deserialize(json);\r\n                if (configuration is not null && isSupported(configuration))\r\n                    configurations.Add(resolve(configuration));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);\r\n    }\r\n\r\n    public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));\r\n\r\n    public static void ReplaceFile(string source, string target, int retryCount = DefaultReplacementRetryCount, int retryDelayMilliseconds = DefaultReplacementRetryDelayMilliseconds) =>\r\n        WithFileLock(target, () =>\r\n        {\r\n            for (var attempt = 0; attempt < retryCount; attempt++)\r\n            {\r\n                try\r\n                {\r\n                    File.Move(source, target, true);\r\n                    return;\r\n                }\r\n                catch (Exception error) when (error is IOException or UnauthorizedAccessException)\r\n                {\r\n                    if (attempt + 1 >= retryCount) break;\r\n                    Thread.Sleep(retryDelayMilliseconds * (attempt + 1));\r\n                }\r\n            }\r\n\r\n            File.Copy(source, target, true);\r\n            File.Delete(source);\r\n        });\r\n\r\n    private static T WithFileLock<T>(string path, Func<T> action)\r\n    {\r\n        using var mutex = CreateMutex(path);\r\n        var lockTaken = Wait(mutex);\r\n        try { return action(); }\r\n        finally { if (lockTaken) mutex.ReleaseMutex(); }\r\n    }\r\n\r\n    private static void WithFileLock(string path, Action action) =>\r\n        WithFileLock(path, () =>\r\n        {\r\n            action();\r\n            return true;\r\n        });\r\n\r\n    private static Mutex CreateMutex(string path)\r\n    {\r\n        var normalizedPath = Path.GetFullPath(path).ToUpperInvariant();\r\n        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(normalizedPath));\r\n        return new Mutex(false, @\"Local\\GWGUI.ConfigurationFile.\" + Convert.ToHexString(hash));\r\n    }\r\n\r\n    private static bool Wait(Mutex mutex)\r\n    {\r\n        try { mutex.WaitOne(); }\r\n        catch (AbandonedMutexException) { }\r\n        return true;\r\n    }\r\n}\r\n",
+      "original": "Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+      "addition": "    internal static IEnumerable<string> EnumerateDocumentPaths(string configurationDirectory, string fileName) =>\r\n        Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n\r\n",
+      "after": "using System.Security.Cryptography;\r\nusing System.Text;\r\nusing System.IO;\r\nusing System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\npublic static class ConfigurationFileAccessFunctions\r\n{\r\n    private const int DefaultReplacementRetryCount = 5;\r\n    private const int DefaultReplacementRetryDelayMilliseconds = 25;\r\n\r\n    internal static string? StorePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return path;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(pathBase, fullPath);\r\n        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, '/') : fullPath;\r\n    }\r\n\r\n    internal static string? ResolvePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(pathBase, path.Replace('/', Path.DirectorySeparatorChar)));\r\n    }\r\n\r\n    private static bool IsInsideBase(string relative) =>\r\n        !Path.IsPathFullyQualified(relative)\r\n        && !string.Equals(relative, \"..\", StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.DirectorySeparatorChar, StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);\r\n\r\n    public static void WriteDocumentAtomically<T>(string path, T document,\r\n        JsonSerializerOptions options, string temporarySuffix) =>\r\n        WriteAtomicallyAsync(path, path + temporarySuffix, temporary =>\r\n        {\r\n            File.WriteAllText(temporary, JsonSerializer.Serialize(document, options));\r\n            return Task.CompletedTask;\r\n        }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();\r\n\r\n    internal static async Task WithSaveGateAsync(SemaphoreSlim saveGate, Func<Task> write,\r\n        CancellationToken cancellationToken)\r\n    {\r\n        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        try\r\n        {\r\n            await write().ConfigureAwait(false);\r\n        }\r\n        finally\r\n        {\r\n            saveGate.Release();\r\n        }\r\n    }\r\n\r\n    internal static async Task WriteDocumentAtomicallyAsync<TConfiguration>(SemaphoreSlim saveGate,\r\n        string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration,\r\n        Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths,\r\n        JsonSerializerOptions options, CancellationToken cancellationToken)\r\n    {\r\n        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = prepareConfiguration(configuration);\r\n            var machineDirectory = Path.Combine(directory, configurationId(configuration).ToString(\"N\"));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, \"machine.json\");\r\n            temporary = target + \".\" + Guid.NewGuid().ToString(\"N\") + \".tmp\";\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))\r\n                await JsonSerializer.SerializeAsync(stream, storePaths(configuration), options, cancellationToken).ConfigureAwait(false);\r\n            ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            saveGate.Release();\r\n        }\r\n    }\r\n\r\n    internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,\r\n        JsonSerializerOptions options, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var temporaryPath = fullPath + \".\" + Guid.NewGuid().ToString(\"N\") + \".tmp\";\r\n        await WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>\r\n        {\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,\r\n                             FileShare.None, 4096, FileOptions.Asynchronous | FileOptions.WriteThrough))\r\n            {\r\n                await JsonSerializer.SerializeAsync(stream, document, options, cancellationToken).ConfigureAwait(false);\r\n                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);\r\n            }\r\n        }).ConfigureAwait(false);\r\n    }\r\n\r\n    internal static async Task WriteAtomicallyAsync(string target, string temporary, Func<string, Task> write,\r\n        Action<string, string>? replace = null)\r\n    {\r\n        Directory.CreateDirectory(Path.GetDirectoryName(target)!);\r\n        try\r\n        {\r\n            await write(temporary).ConfigureAwait(false);\r\n            if (replace is null) ReplaceFile(temporary, target);\r\n            else replace(temporary, target);\r\n        }\r\n        finally { DeleteIfExists(temporary); }\r\n    }\r\n\r\n    internal static void DeleteIfExists(string path)\r\n    {\r\n        if (File.Exists(path)) File.Delete(path);\r\n    }\r\n\r\n    internal static IEnumerable<string> EnumerateDocumentPaths(string configurationDirectory, string fileName) =>\r\n        Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n\r\n    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(\r\n        string configurationDirectory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize,\r\n        Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)\r\n    {\r\n        Directory.CreateDirectory(configurationDirectory);\r\n        var configurations = new List<TConfiguration>();\r\n        foreach (var path in paths())\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            try\r\n            {\r\n                var json = ReadAllText(path);\r\n                using var parsed = JsonDocument.Parse(json);\r\n                var document = deserialize(parsed.RootElement);\r\n                configurations.Add(restore(document));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n            catch (InvalidDataException) { }\r\n            catch (ArgumentException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);\r\n    }\r\n\r\n    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(\r\n        string configurationDirectory, string fileName, Func<string, TConfiguration?> deserialize,\r\n        Func<TConfiguration, bool> isSupported, Func<TConfiguration, TConfiguration> resolve,\r\n        CancellationToken cancellationToken) where TConfiguration : class\r\n    {\r\n        Directory.CreateDirectory(configurationDirectory);\r\n        var configurations = new List<TConfiguration>();\r\n        var paths = EnumerateDocumentPaths(configurationDirectory, fileName);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ReadAllText(path);\r\n                var configuration = deserialize(json);\r\n                if (configuration is not null && isSupported(configuration))\r\n                    configurations.Add(resolve(configuration));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);\r\n    }\r\n\r\n    public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));\r\n\r\n    public static void ReplaceFile(string source, string target, int retryCount = DefaultReplacementRetryCount, int retryDelayMilliseconds = DefaultReplacementRetryDelayMilliseconds) =>\r\n        WithFileLock(target, () =>\r\n        {\r\n            for (var attempt = 0; attempt < retryCount; attempt++)\r\n            {\r\n                try\r\n                {\r\n                    File.Move(source, target, true);\r\n                    return;\r\n                }\r\n                catch (Exception error) when (error is IOException or UnauthorizedAccessException)\r\n                {\r\n                    if (attempt + 1 >= retryCount) break;\r\n                    Thread.Sleep(retryDelayMilliseconds * (attempt + 1));\r\n                }\r\n            }\r\n\r\n            File.Copy(source, target, true);\r\n            File.Delete(source);\r\n        });\r\n\r\n    private static T WithFileLock<T>(string path, Func<T> action)\r\n    {\r\n        using var mutex = CreateMutex(path);\r\n        var lockTaken = Wait(mutex);\r\n        try { return action(); }\r\n        finally { if (lockTaken) mutex.ReleaseMutex(); }\r\n    }\r\n\r\n    private static void WithFileLock(string path, Action action) =>\r\n        WithFileLock(path, () =>\r\n        {\r\n            action();\r\n            return true;\r\n        });\r\n\r\n    private static Mutex CreateMutex(string path)\r\n    {\r\n        var normalizedPath = Path.GetFullPath(path).ToUpperInvariant();\r\n        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(normalizedPath));\r\n        return new Mutex(false, @\"Local\\GWGUI.ConfigurationFile.\" + Convert.ToHexString(hash));\r\n    }\r\n\r\n    private static bool Wait(Mutex mutex)\r\n    {\r\n        try { mutex.WaitOne(); }\r\n        catch (AbandonedMutexException) { }\r\n        return true;\r\n    }\r\n}\r\n",
+      "afterSha256": "49DC40BA4A05137DBEFF61A4608693579FEF2F87FD906E44C1E33C0DB118A4D1"
+    },
+    "items": [
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Watara.Common.Constants;\r\nusing GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Watara.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Watara.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "46DC865D010B26EB7D02B9A89CFCC9C63F9AE385C6FBE62F92B5F7380DB9FD92",
+        "module": "Watara",
+        "constantsPath": "src/GWGUI.Emulation.Watara/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Watara.Common.Constants;\r\nusing GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Watara.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Watara.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\n\nnamespace GWGUI.Emulation.Sinclair.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "82995252331E4577C9590066ECAEC1D8A28623AF2A7424ED410FCF7911B6DE77",
+        "module": "Sinclair",
+        "constantsPath": "src/GWGUI.Emulation.Sinclair/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\n\nnamespace GWGUI.Emulation.Sinclair.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\n\nnamespace GWGUI.Emulation.Sharp.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "809FA25AD9C7593565FE6CC32C33746C9EB8F922622F292C73DEB13A174F08A5",
+        "module": "Sharp",
+        "constantsPath": "src/GWGUI.Emulation.Sharp/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\n\nnamespace GWGUI.Emulation.Sharp.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Thomson.Common.Constants;\r\nusing GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Thomson.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "C7F4DAC896D7B3B7D3EAAE972000BE9BB0F3BA7B9C2B364C6647AA63869F81F4",
+        "module": "Thomson",
+        "constantsPath": "src/GWGUI.Emulation.Thomson/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Thomson.Common.Constants;\r\nusing GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Thomson.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\n\nnamespace GWGUI.Emulation.Snk.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "4BFAE69003685C2D5A9B62E70E862E273FACB0DB86E6163D12FC61FDB9FE7836",
+        "module": "Snk",
+        "constantsPath": "src/GWGUI.Emulation.Snk/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\n\nnamespace GWGUI.Emulation.Snk.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Philips.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "733EA87C9BB6BD91D1B9125A3551189B88BCA0625DB7AEFA1D025F1F0A707723",
+        "module": "Philips",
+        "constantsPath": "src/GWGUI.Emulation.Philips/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Philips.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\n",
+        "afterSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Wenquxing.Common.Constants;\r\nusing GWGUI.Emulation.Wenquxing.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Wenquxing.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "A2443782A9A1E8EB71411A9921A81DA4341C89903053D20233D11AE572148087",
+        "module": "Wenquxing",
+        "constantsPath": "src/GWGUI.Emulation.Wenquxing/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Wenquxing.Common.Constants;\r\nusing GWGUI.Emulation.Wenquxing.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Wenquxing.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Panasonic.Common.Constants;\r\nusing GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Panasonic.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "4299B67F5524E2B8FD42E07039BC5F4C0F909E4D2DE1ED115796EADE2ADBB278",
+        "module": "Panasonic",
+        "constantsPath": "src/GWGUI.Emulation.Panasonic/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using GWGUI.Emulation.Functions;\r\nusing GWGUI.Emulation.Panasonic.Common.Constants;\r\nusing GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;\r\nusing System.IO;\n\nnamespace GWGUI.Emulation.Panasonic.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\r\n",
+        "afterSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Mattel.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "1603444BA0F3138CA0710BC906C79A3BC35F41658F00298F4AD3AC3D85F86AE6",
+        "module": "Mattel",
+        "constantsPath": "src/GWGUI.Emulation.Mattel/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Mattel.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\n",
+        "afterSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\nusing GWGUI.Emulation.Functions;\n\nnamespace GWGUI.Emulation.Coleco.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\n    {\n        ArgumentNullException.ThrowIfNull(configuration);\n        ConfigurationFunctions.Validate(configuration);\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\n        {\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\n        }, cancellationToken).ConfigureAwait(false);\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory))\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "A600CD0BD3686347545E06D3CD9C5B4B91AA35D1FF01F40D4FA85DE8B6818B9A",
+        "module": "Coleco",
+        "constantsPath": "src/GWGUI.Emulation.Coleco/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\nusing GWGUI.Emulation.Functions;\n\nnamespace GWGUI.Emulation.Coleco.Common.Services;\n\npublic sealed class ConfigurationStore\n{\n    private readonly string _directory;\n    private readonly string _pathBase;\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\n\n    public ConfigurationStore(string directory, string? pathBase = null)\n    {\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\n    }\n\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\n            static root => ConfigurationStoreFunctions.Deserialize(root),\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\n\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\n    {\n        ArgumentNullException.ThrowIfNull(configuration);\n        ConfigurationFunctions.Validate(configuration);\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\n        {\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\n        }, cancellationToken).ConfigureAwait(false);\n    }\n\n    public void Delete(Guid id)\n    {\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\n        if (Directory.Exists(machineDirectory))\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\n    }\n\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\n}\n",
+        "afterSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Fairchild.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "968592C37CA1BC14D284598ADCBBCA7EF6483982776376765E34D86EBC56D314",
+        "module": "Fairchild",
+        "constantsPath": "src/GWGUI.Emulation.Fairchild/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Fairchild.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\n",
+        "afterSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Epoch.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "3031B58A9449AE33E096B95127D3BFD5AB03FED43AFACC83288569FF5E843F18",
+        "module": "Epoch",
+        "constantsPath": "src/GWGUI.Emulation.Epoch/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Epoch.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\n",
+        "afterSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Bandai.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "B2CC49E90F65DAAE1C46DBF4E161EE43CE8D3E9972D210D144CF29BFEDB05861",
+        "module": "Bandai",
+        "constantsPath": "src/GWGUI.Emulation.Bandai/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Bandai.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        ConfigurationFunctions.Validate(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\n",
+        "afterSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Apple.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "1801EC93AB98531C67B6227A40E21BC023393E2A018BCC5DA69E6CCDC9CC6143",
+        "module": "Apple",
+        "constantsPath": "src/GWGUI.Emulation.Apple/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Apple.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\r\n",
+        "afterSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Acorn.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\r\n\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "103750ADEE832C48753B82930D6B999ED32B49A922BAF0F08A55AA4C8167E683",
+        "module": "Acorn",
+        "constantsPath": "src/GWGUI.Emulation.Acorn/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Acorn.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\r\n\r\n",
+        "afterSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+        "replacement": "private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);",
+        "sha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646",
+        "method": "private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);",
+        "before": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Atari.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n}\r\n",
+        "expression": "Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase)",
+        "constantsSha256": "B5F178FCBC51641A9046D7F9369FE7D453332340DDE3716A1EB53A5C047FFADF",
+        "module": "Atari",
+        "constantsPath": "src/GWGUI.Emulation.Atari/Common/Constants/ConfigurationStoreConstants.cs",
+        "after": "using System.IO;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Atari.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,\r\n            static root => ConfigurationStoreFunctions.Deserialize(root),\r\n            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>\r\n        {\r\n            var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);\r\n        }, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory))\r\n            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);\r\n}\r\n",
+        "afterSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+      }
+    ],
+    "atari": {
+      "path": "src/GWGUI.Emulation.Atari/AtariConfigurationStore.cs",
+      "commit": "9a104458f",
+      "expression": "Directory.EnumerateDirectories(_directory)\r\n        .Select(directory => Path.Combine(directory, AtariConfigurationStoreConstants.MachineFileName))\r\n        .Concat(Directory.EnumerateFiles(_directory, AtariConfigurationStoreConstants.JsonSearchPattern))\r\n        .Where(File.Exists)\r\n        .Order(StringComparer.OrdinalIgnoreCase)"
+    },
+    "decision": "Reuse original Amiga subdirectory selection, File.Exists filter and OrdinalIgnoreCase order inside existing SDK persistence owner. Do not restore removed root JSON migration search. Preserve immediate EnumerateDirectories invocation and lazy Select/Where/Order, including exception timing. Native private wrappers retain module-owned filename constant and existing method-group binding; no new reader contract, flags or eager ToArray.",
+    "verification": {
+      "originalAmigaAndAtariSubdirectoryPipelineIdentical": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "nativeReaderAndSaveMembersUnchanged": true,
+      "historicalReaderOtherOperationsUnchanged": true,
+      "newPersistentStateFlagsOrResourceKinds": 0,
+      "policy": "Expression-bodied helper executes EnumerateDirectories immediately at old call point; retains lazy projection/filter/sort and no iterator/yield/ToArray. Local constants and private method-group reader adapters unchanged.",
+      "sources": [
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9",
+          "filenameConstantUnchanged": true
+        },
+        {
+          "linqAndIoTargetsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "unrelatedMembersUnchanged": true,
+          "orderedExpressionIdentical": true,
+          "sha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31",
+          "filenameConstantUnchanged": true
+        }
+      ],
+      "semanticErrors": 0
+    },
+    "unchangedQualifiedMembers": [
+      {
+        "currentSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31",
+        "groupHash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 84,
+          "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+          "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
+        }
+      },
+      {
+        "currentSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9",
+        "groupHash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 84,
+          "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+          "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
+        }
+      },
+      {
+        "currentSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612",
+        "groupHash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 84,
+          "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
+          "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
+        }
+      },
+      {
+        "currentSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
+        }
+      },
+      {
+        "currentSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
+        }
+      },
+      {
+        "currentSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 26,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
+        }
+      },
+      {
+        "currentSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 26,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
+        }
+      },
+      {
+        "currentSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
+        }
+      },
+      {
+        "currentSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
+        }
+      },
+      {
+        "currentSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 26,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
+        }
+      },
+      {
+        "currentSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
+        }
+      },
+      {
+        "currentSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 26,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
+        }
+      },
+      {
+        "currentSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 23,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
+        }
+      },
+      {
+        "currentSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 22,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
+        }
+      },
+      {
+        "currentSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 22,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
+        }
+      },
+      {
+        "currentSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69",
+        "groupHash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 22,
+          "tokens": 91,
+          "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
+          "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
+          "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
+          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
+        }
+      },
+      {
+        "currentSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
+        }
+      },
+      {
+        "currentSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
+        }
+      },
+      {
+        "currentSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
+        }
+      },
+      {
+        "currentSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
+        }
+      },
+      {
+        "currentSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
+        }
+      },
+      {
+        "currentSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
+        }
+      },
+      {
+        "currentSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
+        }
+      },
+      {
+        "currentSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
+        }
+      },
+      {
+        "currentSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
+        }
+      },
+      {
+        "currentSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
+        }
+      },
+      {
+        "currentSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
+        }
+      },
+      {
+        "currentSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
+        }
+      },
+      {
+        "currentSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
+        }
+      },
+      {
+        "currentSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
+        }
+      },
+      {
+        "currentSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
+        }
+      },
+      {
+        "currentSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555",
+        "groupHash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "kind": "groups",
+        "item": {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
+        }
+      }
+    ],
+    "tests": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 56,
+      "exitCode": 0,
+      "testAssemblySha256": "017E3A5D6851EF410FE07DD131B7D2354FF2124A028031FC745353FB9112633E",
+      "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --disable-build-servers --filter 'FullyQualifiedName~NativeConfigurationSaveGateTests|FullyQualifiedName~LegacyConfigurationSaveTests|FullyQualifiedName~LegacyConfigurationPathTests' --verbosity quiet",
+      "newTests": 0
+    },
+    "inventory": {
+      "unchangedQualifiedOccurrencesRestored": 32,
+      "reports": {
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "methodBodyCount": 9647,
+          "renamedGroups": 375,
+          "fileCount": 7292,
+          "groups": 1,
+          "exactGroups": 804
+        },
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "methodBodyCount": 11655,
+          "renamedGroups": 208,
+          "fileCount": 7292,
+          "groups": 469,
+          "exactGroups": 1
+        }
+      },
+      "nativeSelectorReportOccurrences": 32,
+      "nativeSelectorsQualified": 16
+    }
   }
 }

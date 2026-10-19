@@ -39,6 +39,6 @@ public sealed class ConfigurationStore
             Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
 
-    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
+    private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);
 }
 

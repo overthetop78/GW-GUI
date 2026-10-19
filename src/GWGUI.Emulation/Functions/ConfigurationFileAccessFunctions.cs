@@ -111,6 +111,9 @@ public static class ConfigurationFileAccessFunctions
         if (File.Exists(path)) File.Delete(path);
     }
 
+    internal static IEnumerable<string> EnumerateDocumentPaths(string configurationDirectory, string fileName) =>
+        Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
+
     internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(
         string configurationDirectory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize,
         Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)
@@ -142,7 +145,7 @@ public static class ConfigurationFileAccessFunctions
     {
         Directory.CreateDirectory(configurationDirectory);
         var configurations = new List<TConfiguration>();
-        var paths = Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
+        var paths = EnumerateDocumentPaths(configurationDirectory, fileName);
         foreach (var path in paths)
         {
             try

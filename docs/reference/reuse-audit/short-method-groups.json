@@ -1,5 +1,5 @@
 {
-  "snapshot": "59f367dc36da857f763cd1f9311f20aac34bcc25",
+  "snapshot": "ddbef93f7d003704b6ea5ffce04fcd20e7f71497",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -22,7 +22,7 @@
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7292,
-  "methodBodyCount": 9631,
+  "methodBodyCount": 9647,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -568,7 +568,7 @@
           "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "03683D5BD9E434722A73513DB4BDCA8CC0482D2F5B5E5A73B11A590E133CF7BE",
@@ -1544,7 +1544,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "06E920B07B4348B0AD994DB7C254B9EEFFBFBA502A331EC5FC0671A8A528C13D",
@@ -1688,7 +1688,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
@@ -4284,7 +4284,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "1083F0F6D10AA629DC039F8C6DFC9A0CBB09A7372DA2E42E1D6DA76199390E82",
@@ -5950,7 +5950,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "14C91F044D0DB93DCFDDDBC539FCDD3744D880DF9B26537B07367655F0AF6AA6",
@@ -6226,7 +6226,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
@@ -6742,7 +6742,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified typed adapters to existing shared callback routing"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "1A60A39F943BBF5633A5B15EFC1226AF59300F9566972BF6F51B47A22DCE06AE",
@@ -8825,7 +8825,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified typed adapters to existing shared callback routing"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "224232770C7EEB0F380399FB7EC114BC1EE892F0829E0E701BB48374F7147A58",
@@ -9191,7 +9191,7 @@
           "qualificationSourceSha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "229285AB30B98993593D609E30F1F8E5B5278965E1C36FE9CDE66D9B72C7171E",
@@ -13144,7 +13144,7 @@
           "qualification": "empty-void-method-no-algorithm"
         }
       ],
-      "qualification": "Empty method/constructor occurrences qualified only within their recorded scopes; any unannotated member and called implementation remains pending"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
@@ -13376,7 +13376,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "278A8B58A1B62FA1C7DF688FBF523B5835E37B03A2EC48AFA10F3943E5932B5A",
@@ -18524,7 +18524,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "38FB1082D99F64C014CDAAF17EF0DE7EECF0376FCE70425D336A5CCC64603AE0",
@@ -18848,7 +18848,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "3A114C7D190784070F6C088EF5360221969548B339ACF1784698091AB81A979D",
@@ -20355,7 +20355,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified typed adapters to existing shared callback routing"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "3F4B111CD164BCE97A7E43F8C1603F1C1DFA797483C38B7463AAA3039C7971A3",
@@ -20933,7 +20933,7 @@
           "qualificationSourceSha256": "7D05A5426F71B6AEE6150F745A492FFDEC6E9444BBF459183A988BFB12FD21E4"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "41925689DCC71D454D0C767401CD17D1E5F66EFC56A4784564D70C65038478EF",
@@ -21813,7 +21813,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "449400B67E9026AD70A893E2D4D6E89B282A1D0E69D2C4AF408E457102904BE4",
@@ -21943,7 +21943,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified typed adapters to existing shared callback routing"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
@@ -22023,7 +22023,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "44FFC3FEA7ECD2EF7AC2836EDFD62332D655A51DD73A87AACBE563C48543B73D",
@@ -29236,7 +29236,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "5CCFC45C82263B150FC2CDD4546753FC9C4710EC636711BDFAD4727E15B8739F",
@@ -33616,7 +33616,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "6D6898516FDABCFDC2CF0EFEB0E4CC8423E618ED13B8E5350C1F05BAE0EA9FD7",
@@ -36063,7 +36063,7 @@
           "qualification": "Typed shared-SDK interface adapter verified by callbackInterfaceInstallReuse; callback ownership and host flags retained"
         }
       ],
-      "qualification": "Qualified typed adapters to shared SDK interface publication"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "74E48A6B2096DD2C410C5F54C0CB23DF37D54E522B1144483A3103EB1A7B497E",
@@ -36655,7 +36655,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "77866834FA04FF77D3F62912AFAE9A8D9C8A1E872046735E82BB4EF4BB844B0A",
@@ -37290,7 +37290,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified typed adapters to existing shared callback routing"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "799962050A3D1FE225562FDF0A2BB891C3C063ED4AC06474E1CCD40594A26784",
@@ -37510,7 +37510,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "7BA3E1EAAAF15714B6682E9DEC20FC36D65AB6E9544F98C4AD1F37B5C2A9A1CC",
@@ -38686,7 +38686,7 @@
           "qualification": "Typed adapter to shared SDK CopyDiagnostic verified by diagnosticUtf8Reuse; message metadata remains local"
         }
       ],
-      "qualification": "Qualified typed adapters; shared SDK diagnostic copy verified"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "80A76D495794C319294159714CDDE6F1A7C8E431E143904E63ED35CEEFCAB39C",
@@ -41518,7 +41518,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "895A692AA0D6025BD80817154B4041C94C73E6FD1601B62F13934F2AA78DB690",
@@ -42355,6 +42355,238 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+      "tokens": 11,
+      "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "8D7937882DADBDF1872EE61943464FCADDA6ED43A063F6A8CF939AE2D012205C",
@@ -43506,7 +43738,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "913E580F49C280737B899F2C702623C5EABEB7B382870D15AEFDF68A05C16413",
@@ -45050,7 +45282,7 @@
           "qualification": "Typed shared-SDK interface adapter verified by callbackInterfaceInstallReuse; callback ownership and host flags retained"
         }
       ],
-      "qualification": "Qualified typed adapters to shared SDK interface publication"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "9475055C9A437E4AB66FFB14F23B5D0E853551749C37BE4BA7A66A73AB6D3B10",
@@ -48892,7 +49124,7 @@
           "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "9FBC2E6F3FC900326F79D8E671C415292C24F71DAC01C6DB2D854ABBFD3239D1",
@@ -49868,7 +50100,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
@@ -50548,7 +50780,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "A645512BD0097D2B8D8F45E16D06AB9C8FBBF1D566CE7EE6073593C936235A2C",
@@ -51812,7 +52044,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "AB2BDC51409C89983DEDFD4F6B68DD6EF436351C94DD700C176614974A5777CC",
@@ -51948,7 +52180,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "AC89665654395CF28A726E3F1EDB64FABA4C41C38B0AA61C4B1E2506F2A9E56B",
@@ -53152,7 +53384,7 @@
           "qualification": "Typed shared-SDK interface adapter verified by callbackInterfaceInstallReuse; callback ownership and host flags retained"
         }
       ],
-      "qualification": "Qualified typed adapters to shared SDK interface publication"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "B29E5B1F828118F98C43F0A4725D6715D9244BA25AF5C5C1485D6323DF7D5AD7",
@@ -54772,7 +55004,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
@@ -60994,7 +61226,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "D2E366F60445ED8A7089441E47ECA826722915B61B1026B7F3E747B768181E7F",
@@ -62014,7 +62246,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "D552511D3A21B06430968CF2B73618B1E3FD59877AEB772A6897FE48C1271CC6",
@@ -65386,7 +65618,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "E407E6F51460990375EDFBE827537B688597C9DAFBE781D4CD4B17B380DD65A4",
@@ -88086,7 +88318,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "3218F77669570B84B9B31E97023483FDD736B2356B6243F004FDE6DDEFCA7A1D",
@@ -92409,6 +92641,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+        },
+        {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -92530,6 +92776,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+        },
+        {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -92541,6 +92801,20 @@
           "hash": "7FB459EEE636ED9C636D51E85F7E934F0FCA51288080BFF4ECC64D3BCC8BADA9",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed adapter to shared SDK CopyDiagnostic verified by diagnosticUtf8Reuse; message metadata remains local"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 42,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Host.cs",
@@ -92652,6 +92926,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+        },
+        {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -92711,6 +92999,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadLedStates ( reader , CoreHostConstants . HostName )",
           "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -92834,6 +93136,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+        },
+        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -92895,6 +93211,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+        },
+        {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -92954,6 +93284,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadLedStates ( reader , CoreHostConstants . HostName )",
           "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93197,6 +93541,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+        },
+        {
           "path": "src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs",
           "name": "ReadBytes",
           "owner": "CoreHostFunctions",
@@ -93243,6 +93601,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadLedStates ( reader , CoreHostConstants . HostName )",
           "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 43,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93366,6 +93738,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -93427,6 +93813,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "CopyDiagnostic",
           "owner": "ExternalHostCallbacks",
@@ -93486,6 +93886,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadLedStates ( reader , CoreHostConstants . HostName )",
           "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93729,6 +94143,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+        },
+        {
           "path": "src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs",
           "name": "ReadBytes",
           "owner": "CoreHostFunctions",
@@ -93777,6 +94205,20 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+        },
+        {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs",
           "name": "ReadBytes",
           "owner": "CoreHostFunctions",
@@ -93823,6 +94265,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadLedStates ( reader , CoreHostConstants . HostName )",
           "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "ConfigurationPaths",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 45,
+          "parameters": "()",
+          "tokens": 11,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
+          "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
+          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
         },
         {
           "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
@@ -95297,7 +95753,7 @@
           "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "4DC7D37C0CBDF6DE0693458EC2B5FB855250C547F7FEB3361F79175F2B2BAD3A",
@@ -96123,7 +96579,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "50EB8A2DBA20BADB955489672178FECC4A14BD79E8F27103057F543043D80790",
@@ -106217,7 +106673,7 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "58A9234AE3B4464524823E437C34C769B9FDCDD6B5F944262CEAA71A85012A38",
@@ -109519,7 +109975,7 @@
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "5C5826E97DB065B508A2EB55E1050B14BCCE33B0B82A119949EF7B962251CE95",
@@ -114925,7 +115381,7 @@
           "qualificationSourceSha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944"
         }
       ],
-      "qualification": "Qualified explicit typed adapters to existing SDK routers"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "85DEE532EF000C7E8E51AE0D5067F1B32EAD2F40F1CAF463C6BB1444709D80A6",
@@ -137431,7 +137887,7 @@
           "qualification": "Typed native ABI factory; shared InstallInterface owns validation and publication, four expansions verified in callbackInterfaceInstallReuse"
         }
       ],
-      "qualification": "Qualified typed adapters to shared SDK interface publication"
+      "qualification": "All occurrences qualified individually; see member evidence"
     }
   ],
   "qualificationCarryForward": {
