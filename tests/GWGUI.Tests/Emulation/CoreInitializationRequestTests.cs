@@ -80,6 +80,70 @@ public sealed class CoreInitializationRequestTests
         });
     }
 
+    [Theory]
+    [InlineData(null)]
+    [InlineData("sauvegardes")]
+    public void ReadingKeepsCodecOrderNullableSaveAndBorrowedReader(string? saves)
+    {
+        WithWriter((stream, writer) =>
+        {
+            EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 17,
+                "session", saves, new Configuration("Cœur", 3), new(JsonSerializerDefaults.Web));
+            writer.Write("reader still open");
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                var calls = new List<string>();
+                var request = EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                    input => { calls.Add("emulator"); return input.ReadInt32(); },
+                    input => { calls.Add("saves"); return EmulationHostProtocolFunctions.ReadString(input); },
+                    input =>
+                    {
+                        calls.Add("configuration");
+                        return JsonSerializer.Deserialize<Configuration>(input.ReadString(), new JsonSerializerOptions(JsonSerializerDefaults.Web))!;
+                    });
+                Assert.Equal(new[] { "emulator", "saves", "configuration" }, calls);
+                Assert.Equal("core.dll", request.CorePath);
+                Assert.Equal(17, request.Emulator);
+                Assert.Equal(Path.GetFullPath("session"), request.Session);
+                Assert.Equal(saves is null ? null : Path.GetFullPath(saves), request.Saves);
+                Assert.Equal(new Configuration("Cœur", 3), request.Configuration);
+                Assert.Equal("reader still open", reader.ReadString());
+                Assert.Equal(stream.Length, stream.Position);
+            });
+        });
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void FailedCodecStopsAtItsOriginalFieldAndPreservesTheError(bool failOnConfiguration)
+    {
+        WithWriter((stream, writer) =>
+        {
+            EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 17,
+                "session", null, new Configuration("unused", 0), new(JsonSerializerDefaults.Web));
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                var error = new InvalidOperationException("codec failure");
+                var savesCalled = false;
+                var configurationCalled = false;
+                Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
+                    EmulationHostProtocolFunctions.ReadInitializationRequest<int, Configuration>(reader,
+                        input => failOnConfiguration ? input.ReadInt32() : throw error,
+                        input => { savesCalled = true; return EmulationHostProtocolFunctions.ReadString(input); },
+                        _ => { configurationCalled = true; throw error; })));
+                Assert.Equal(failOnConfiguration, savesCalled);
+                Assert.Equal(failOnConfiguration, configurationCalled);
+                if (failOnConfiguration)
+                    Assert.Contains("unused", reader.ReadString());
+                else
+                    Assert.Equal(17, reader.ReadInt32());
+            });
+        });
+    }
+
     private static void WithWriter(Action<MemoryStream, BinaryWriter> verify)
     {
         var stream = new MemoryStream();

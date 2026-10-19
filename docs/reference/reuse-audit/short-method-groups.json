@@ -1,5 +1,5 @@
 {
-  "snapshot": "b15e8d7634721b3545e918c78269fe681facd330",
+  "snapshot": "54d3f812c6c38a4f9bf897c27ac53c47d76dd10f",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
@@ -18,7 +18,8 @@
     "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
     "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
     "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs"
+    "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "tests/GWGUI.Tests/Emulation/CoreInitializationRequestTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7289,

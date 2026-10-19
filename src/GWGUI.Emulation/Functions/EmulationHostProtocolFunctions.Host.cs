@@ -35,6 +35,19 @@ internal static partial class EmulationHostProtocolFunctions
         finally { core = null; }
     }
 
+    internal static (string CorePath, TEmulator Emulator, string Session, string? Saves, TConfiguration Configuration)
+        ReadInitializationRequest<TEmulator, TConfiguration>(BinaryReader reader,
+            Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
+            Func<BinaryReader, TConfiguration> readConfiguration)
+    {
+        var corePath = reader.ReadString();
+        var emulator = readEmulator(reader);
+        var session = reader.ReadString();
+        var saves = readSaves(reader);
+        var configuration = readConfiguration(reader);
+        return (corePath, emulator, session, saves, configuration);
+    }
+
     internal static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
         string corePath, int emulator, string sessionDirectory, string? saveDirectory,
         TConfiguration configuration, JsonSerializerOptions jsonOptions)

@@ -69,11 +69,11 @@ public static class CoreHost
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
         EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
-        var corePath = reader.ReadString();
-        var emulator = (Emulator)reader.ReadInt32();
-        var session = reader.ReadString();
-        var saves = CoreHostFunctions.ReadString(reader);
-        var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+        var (corePath, emulator, session, saves, configuration) =
+            EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                static requestReader => (Emulator)requestReader.ReadInt32(),
+                CoreHostFunctions.ReadString,
+                static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration));
         core = createCore(corePath, emulator);
         core.Initialize(configuration, session, saves);
         EmulationHostProtocolFunctions.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
