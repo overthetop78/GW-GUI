@@ -93,6 +93,123 @@ public sealed class EnvironmentCallbackCommandTests
         }
     }
 
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetSystemDirectory, "WriteSystemDirectory")]
+    [InlineData(ExternalCoreApiConstants.SetMessage, "ReadMessage")]
+    [InlineData(ExternalCoreApiConstants.GetVfsInterface, "ProvideVfs")]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl, "CaptureDiskControl")]
+    [InlineData(ExternalCoreApiConstants.SetSystemAvInfo, "SetSystemAvInfo")]
+    public void LegacySelectionPreservesTheCallbackReply(uint command, string expected)
+    {
+        foreach (var reply in new[] { false, true })
+        {
+            var callbacks = new Callbacks { Result = reply };
+            var options = new OptionEnvironmentCommandTests.OptionCommands
+                { Failure = new InvalidOperationException("must not call options") };
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                command, 42, callbacks, options, out var result));
+            Assert.Equal(reply, result);
+            Assert.Equal(expected, callbacks.LastMethod);
+            Assert.Equal((nint)42, callbacks.LastData);
+            Assert.Equal(1, callbacks.CallCount);
+            Assert.Empty(options.Calls);
+        }
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetVariables, "RegisterLegacyVariables")]
+    [InlineData(ExternalCoreApiConstants.SetCoreOptionsV2International, "RegisterVersionTwoInternational")]
+    public void LegacyRegistrationAcknowledgesTheOriginalNullAndNonNullPayloads(uint command, string expected)
+    {
+        foreach (var data in new nint[] { 0, 42 })
+        {
+            var options = new OptionEnvironmentCommandTests.OptionCommands();
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                command, data, null!, options, out var result));
+            Assert.True(result);
+            Assert.Equal(new[] { (expected, data) }, options.Calls);
+        }
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetVariable, "ReturnValue")]
+    [InlineData(ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback, "CaptureDisplayUpdate")]
+    public void LegacyOptionQueriesKeepBothBooleanResults(uint command, string expected)
+    {
+        foreach (var reply in new[] { false, true })
+        {
+            var options = new OptionEnvironmentCommandTests.OptionCommands { BooleanResult = reply };
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                command, 42, null!, options, out var result));
+            Assert.Equal(reply, result);
+            Assert.Equal(new[] { (expected, (nint)42) }, options.Calls);
+        }
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
+    public void LegacyDiskCaptureKeepsTheExistingNullRefusal(uint command)
+    {
+        var callbacks = new Callbacks { Error = new InvalidOperationException("must not capture") };
+        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            command, nint.Zero, callbacks, null!, out var result));
+        Assert.False(result);
+        Assert.Equal(0, callbacks.CallCount);
+    }
+
+    [Fact]
+    public void LegacySelectionLeavesBroaderCallbacksQueriesAndCustomCommandsWithTheModule()
+    {
+        uint[] commands =
+        [
+            ExternalCoreApiConstants.SetRotation, ExternalCoreApiConstants.SetPerformanceLevel,
+            ExternalCoreApiConstants.GetRumbleInterface, ExternalCoreApiConstants.GetSensorInterface,
+            ExternalCoreApiConstants.GetCanDuplicateFrames, ExternalCoreApiConstants.GetInputBitmasks,
+            ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.GetMessageInterfaceVersion,
+            ExternalCoreApiConstants.SetVariable, ExternalCoreApiConstants.SetContentInfoOverride,
+            ExternalCoreApiConstants.SetHardwareRender, ExternalCoreApiConstants.GetPreferredHardwareRender,
+            ExternalCoreApiConstants.GetLanguage, ExternalCoreApiConstants.GetInputDeviceCapabilities,
+            ExternalCoreApiConstants.GetPerformanceInterface, ExternalCoreApiConstants.GetMidiInterface,
+            uint.MaxValue
+        ];
+        foreach (var command in commands)
+        {
+            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                command, nint.Zero, null!, null!, out var result));
+            Assert.False(result);
+        }
+    }
+
+    [Fact]
+    public void LegacyFastForwardOverrideIsRecognizedAsAQuietRefusal()
+    {
+        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            ExternalCoreApiConstants.SetFastForwardingOverride, nint.Zero, null!, null!, out var result));
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void LegacyCallbackFailureReachesTheOriginalModuleBoundary()
+    {
+        var error = new InvalidOperationException("callback failed");
+        var callbacks = new Callbacks { Error = error };
+        Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                ExternalCoreApiConstants.GetSystemDirectory, 42, callbacks, null!, out _)));
+        Assert.Equal(1, callbacks.CallCount);
+    }
+
+    [Fact]
+    public void LegacyOptionFailureReachesTheOriginalModuleBoundary()
+    {
+        var error = new InvalidOperationException("options failed");
+        var options = new OptionEnvironmentCommandTests.OptionCommands { Failure = error };
+        Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+                ExternalCoreApiConstants.SetVariables, 42, null!, options, out _)));
+        Assert.Equal(new[] { ("RegisterLegacyVariables", (nint)42) }, options.Calls);
+    }
     private sealed class Callbacks : IEmulationCoreEnvironmentCommands
     {
         internal bool Result { get; init; }

@@ -32,6 +32,55 @@ internal static class ExternalCoreEnvironmentFunctions
         return text;
     }
 
+    internal static bool TryHandleLegacyCallbackCommand(uint command, nint data,
+        IEmulationCoreEnvironmentCommands callbacks, IEmulationCoreOptionCommands options, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetSystemDirectory:
+            case ExternalCoreApiConstants.GetContentDirectory:
+            case ExternalCoreApiConstants.GetSaveDirectory:
+            case ExternalCoreApiConstants.SetMessage:
+            case ExternalCoreApiConstants.SetPixelFormat:
+            case ExternalCoreApiConstants.GetDiskControlVersion:
+            case ExternalCoreApiConstants.SetInputDescriptors:
+            case ExternalCoreApiConstants.SetKeyboardCallback:
+            case ExternalCoreApiConstants.SetDiskControl:
+            case ExternalCoreApiConstants.SetDiskControlExtended:
+            case ExternalCoreApiConstants.SetControllerInfo:
+            case ExternalCoreApiConstants.SetMemoryMaps:
+            case ExternalCoreApiConstants.SetSupportAchievements:
+            case ExternalCoreApiConstants.SetSupportNoGame:
+            case ExternalCoreApiConstants.SetMessageExtended:
+            case ExternalCoreApiConstants.SetGeometry:
+            case ExternalCoreApiConstants.SetSystemAvInfo:
+            case ExternalCoreApiConstants.GetLogInterface:
+            case ExternalCoreApiConstants.GetVfsInterface:
+            case ExternalCoreApiConstants.GetLedInterface:
+                _ = TryHandleCallbackCommand(command, data, callbacks, out result);
+                return true;
+            case ExternalCoreApiConstants.SetCoreOptions:
+            case ExternalCoreApiConstants.SetCoreOptionsInternational:
+            case ExternalCoreApiConstants.SetCoreOptionsV2:
+            case ExternalCoreApiConstants.SetCoreOptionsV2International:
+            case ExternalCoreApiConstants.SetVariables:
+                _ = TryHandleOptionCommand(command, data, options, out _);
+                result = true;
+                return true;
+            case ExternalCoreApiConstants.GetVariable:
+            case ExternalCoreApiConstants.GetVariableUpdate:
+            case ExternalCoreApiConstants.SetCoreOptionsDisplay:
+            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
+                _ = TryHandleOptionCommand(command, data, options, out result);
+                return true;
+            case ExternalCoreApiConstants.SetFastForwardingOverride:
+                result = false;
+                return true;
+            default:
+                result = false;
+                return false;
+        }
+    }
     internal static bool TryHandleCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, out bool result)
     {

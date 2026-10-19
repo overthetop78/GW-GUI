@@ -19,6 +19,9 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
             if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
                     2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))
                 return legacyQueryResult;
+            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(command, data,
+                    this, this, out var legacyCallbackResult))
+                return legacyCallbackResult;
             switch (command)
             {
                 case SetContentInfoOverride:
@@ -29,43 +32,6 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                     return ConfigureHardwareRender(data);
                 case HardwareRenderConstants.GetPreferredHardwareRender:
                     return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
-                case ExternalCoreApiConstants.GetSystemDirectory:
-                case ExternalCoreApiConstants.GetContentDirectory:
-                case ExternalCoreApiConstants.GetSaveDirectory:
-                case ExternalCoreApiConstants.SetMessage:
-                case ExternalCoreApiConstants.SetPixelFormat:
-                case ExternalCoreApiConstants.GetDiskControlVersion:
-                case ExternalCoreApiConstants.SetInputDescriptors:
-                case ExternalCoreApiConstants.SetKeyboardCallback:
-                case ExternalCoreApiConstants.SetDiskControl:
-                case ExternalCoreApiConstants.SetDiskControlExtended:
-                case ExternalCoreApiConstants.SetControllerInfo:
-                case ExternalCoreApiConstants.SetMemoryMaps:
-                case ExternalCoreApiConstants.SetSupportAchievements:
-                case ExternalCoreApiConstants.SetSupportNoGame:
-                case ExternalCoreApiConstants.SetMessageExtended:
-                case ExternalCoreApiConstants.SetGeometry:
-                case ExternalCoreApiConstants.SetSystemAvInfo:
-                case ExternalCoreApiConstants.GetLogInterface:
-                case ExternalCoreApiConstants.GetVfsInterface:
-                case ExternalCoreApiConstants.GetLedInterface:
-                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);
-                    return callbackResult;
-                case ExternalCoreApiConstants.SetCoreOptions:
-                case ExternalCoreApiConstants.SetCoreOptionsInternational:
-                case ExternalCoreApiConstants.SetCoreOptionsV2:
-                case ExternalCoreApiConstants.SetCoreOptionsV2International:
-                case ExternalCoreApiConstants.SetVariables:
-                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);
-                    return true;
-                case ExternalCoreApiConstants.GetVariable:
-                case ExternalCoreApiConstants.GetVariableUpdate:
-                case ExternalCoreApiConstants.SetCoreOptionsDisplay:
-                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
-                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);
-                    return optionResult;
-                case ExternalCoreApiConstants.SetFastForwardingOverride:
-                    return false;
                 default:
                     if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($"Unsupported environment command: {command}");
                     return false;

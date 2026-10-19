@@ -157,7 +157,7 @@ public sealed class OptionEnvironmentCommandTests
         Assert.Empty(unknown);
         Assert.Empty(diagnostics);
     }
-    private sealed class OptionCommands : IEmulationCoreOptionCommands
+    internal sealed class OptionCommands : IEmulationCoreOptionCommands
     {
         internal bool BooleanResult { get; init; }
         internal Exception? Failure { get; init; }

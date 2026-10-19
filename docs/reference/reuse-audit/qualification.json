@@ -318520,5 +318520,678 @@
         }
       ]
     }
+  },
+  "legacyEnvironmentCallbackReuse": {
+    "items": [
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "interfaces": [
+          "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands",
+          "System.IDisposable"
+        ],
+        "method": "private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }",
+        "catchSource": "catch\r\n        {\r\n            return false;\r\n        }",
+        "queryGuard": "if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;",
+        "sections": [
+          {
+            "labels": [
+              {
+                "expression": "SetContentInfoOverride",
+                "value": 65
+              }
+            ],
+            "selected": false,
+            "source": "case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);",
+            "index": 0
+          },
+          {
+            "labels": [
+              {
+                "expression": "GetGameInfoExtended",
+                "value": 66
+              }
+            ],
+            "selected": false,
+            "source": "case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);",
+            "index": 1
+          },
+          {
+            "labels": [
+              {
+                "expression": "HardwareRenderConstants.SetHardwareRender",
+                "value": 14
+              }
+            ],
+            "selected": false,
+            "source": "case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);",
+            "index": 2
+          },
+          {
+            "labels": [
+              {
+                "expression": "HardwareRenderConstants.GetPreferredHardwareRender",
+                "value": 65592
+              }
+            ],
+            "selected": false,
+            "source": "case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+            "index": 3
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.GetSystemDirectory",
+                "value": 9
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetContentDirectory",
+                "value": 30
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetSaveDirectory",
+                "value": 31
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMessage",
+                "value": 6
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetPixelFormat",
+                "value": 10
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetDiskControlVersion",
+                "value": 57
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetInputDescriptors",
+                "value": 11
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetKeyboardCallback",
+                "value": 12
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetDiskControl",
+                "value": 13
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetDiskControlExtended",
+                "value": 58
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetControllerInfo",
+                "value": 35
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMemoryMaps",
+                "value": 65572
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSupportAchievements",
+                "value": 65578
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSupportNoGame",
+                "value": 18
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMessageExtended",
+                "value": 60
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetGeometry",
+                "value": 37
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSystemAvInfo",
+                "value": 32
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetLogInterface",
+                "value": 27
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetVfsInterface",
+                "value": 65581
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetLedInterface",
+                "value": 65582
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;",
+            "index": 4
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptions",
+                "value": 53
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsInternational",
+                "value": 54
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsV2",
+                "value": 67
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsV2International",
+                "value": 68
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetVariables",
+                "value": 16
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;",
+            "index": 5
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.GetVariable",
+                "value": 15
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetVariableUpdate",
+                "value": 17
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsDisplay",
+                "value": 55
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback",
+                "value": 69
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;",
+            "index": 6
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.SetFastForwardingOverride",
+                "value": 64
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;",
+            "index": 7
+          },
+          {
+            "labels": [
+              {
+                "expression": "default",
+                "value": null
+              }
+            ],
+            "selected": false,
+            "source": "default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;",
+            "index": 8
+          }
+        ],
+        "family": "Nintendo",
+        "sha256": "9DE0B0A1DE71BC9D53348BCFFC94BD1DDFB73DF29AC0D81A0CB0509E3DAC925E",
+        "originSource": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                    return CaptureMessage(data, extended: false);\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                    _pixelFormat = Marshal.ReadInt32(data) switch\r\n                    {\r\n                        ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n                        ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n                    var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))\r\n                    };\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteByte(data,\r\n                            Interlocked.Exchange(ref _optionsUpdated,\r\n                                ExternalCoreInteropConstants.InactiveState)\r\n                            != ExternalCoreInteropConstants.InactiveState\r\n                                ? ExternalCoreInteropConstants.NativeBooleanTrue\r\n                                : ExternalCoreInteropConstants.NativeBooleanFalse);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                    if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                    var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                    DiskControl.Capture(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                    DiskControl.CaptureExtended(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                    return CaptureControllerInfo(data);\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                    SupportsNoGame = data != nint.Zero\r\n                        && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                    return CaptureMessage(data, extended: true);\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                    return ApplyGeometry(data);\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                    return ApplySystemAvInfo(data);\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                    return false;\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    if (data == 0) return false;\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\r\n                    {\r\n                        SetLedState = Marshal.GetFunctionPointerForDelegate(Led)\r\n                    }, data, false);\r\n                    return true;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private void RegisterLegacyOptions(nint data)\r\n    {\r\n        var size = Marshal.SizeOf<ExternalCoreApi.Variable>();\r\n        var catalog = new List<CoreOption>();\r\n        for (var current = data; current != 0; current += size)\r\n        {\r\n            var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(current);\r\n            if (variable.Key == 0) break;\r\n            var key = Marshal.PtrToStringUTF8(variable.Key)!;\r\n            var definition = Marshal.PtrToStringUTF8(variable.Value);\r\n            var parts = definition?.Split(';', 2) ?? [];\r\n            var name = parts.ElementAtOrDefault(0)?.Trim() ?? key;\r\n            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)\r\n                .Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];\r\n            var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n        }\r\n        OptionCatalog = catalog.Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n    }\r\n\r\n    private void RegisterVersionOneOptions(nint definitions)\r\n    {\r\n        if (definitions == nint.Zero) return;\r\n        var valuesOffset = CoreOptionV1PointerFieldsBeforeValues * IntPtr.Size;\r\n        var defaultOffset = valuesOffset + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;\r\n        var definitionSize = defaultOffset + IntPtr.Size;\r\n        var catalog = new List<CoreOption>();\r\n        for (var index = 0; index < MaximumCoreOptionDefinitions; index++)\r\n        {\r\n            var definition = definitions + index * definitionSize;\r\n            var key = StringAt(definition, BufferConstants.FirstBufferIndex);\r\n            if (key is null) break;\r\n            var values = new List<CoreOptionValue>();\r\n            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)\r\n            {\r\n                var offset = valuesOffset + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;\r\n                var value = StringAt(definition, offset);\r\n                if (value is null) break;\r\n                values.Add(new(value, StringAt(definition, offset + IntPtr.Size) ?? value));\r\n            }\r\n            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;\r\n            catalog.Add(new(key, StringAt(definition, IntPtr.Size) ?? key,\r\n                StringAt(definition, CoreOptionV1DescriptionPointerIndex * IntPtr.Size), null,\r\n                defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n        }\r\n        OptionCatalog = catalog.Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint options)\r\n    {\r\n        if (options == 0) return;\r\n        var definitions = Marshal.ReadIntPtr(options, IntPtr.Size);\r\n        var definitionSize = (CoreOptionPointerFieldsBeforeValues\r\n            + MaximumCoreOptionValues * CoreOptionValueFieldCount\r\n            + CoreOptionTerminatorFieldCount) * IntPtr.Size;\r\n        var valuesOffset = CoreOptionPointerFieldsBeforeValues * IntPtr.Size;\r\n        var defaultOffset = valuesOffset\r\n            + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;\r\n        var catalog = new List<CoreOption>();\r\n\r\n        for (var optionIndex = 0; optionIndex < MaximumCoreOptionDefinitions; optionIndex++)\r\n        {\r\n            var definition = definitions + optionIndex * definitionSize;\r\n            var keyPointer = Marshal.ReadIntPtr(definition);\r\n            if (keyPointer == 0) break;\r\n            var key = Marshal.PtrToStringUTF8(keyPointer)!;\r\n            var name = StringAt(definition, IntPtr.Size) ?? key;\r\n            var description = StringAt(\r\n                definition, CoreOptionDescriptionPointerIndex * IntPtr.Size);\r\n            var category = StringAt(\r\n                definition, CoreOptionCategoryPointerIndex * IntPtr.Size);\r\n            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;\r\n            var values = new List<CoreOptionValue>();\r\n            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)\r\n            {\r\n                var valueOffset = valuesOffset\r\n                    + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;\r\n                var value = StringAt(definition, valueOffset);\r\n                if (value is null) break;\r\n                values.Add(new CoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));\r\n            }\r\n            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n        }\r\n        OptionCatalog = catalog.Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        var display = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionDisplay>(data);\r\n        var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);\r\n        if (string.IsNullOrWhiteSpace(key)) return false;\r\n        _optionVisibility[key] = display.Visible;\r\n        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)\r\n            ? option with { IsVisible = display.Visible }\r\n            : option).ToArray();\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        var callback = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;\r\n        _updateOptionsDisplay = callback == 0\r\n            ? null\r\n            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);\r\n        return true;\r\n    }\r\n\r\n    private static string? StringAt(nint structure, int offset)\r\n    {\r\n        var pointer = Marshal.ReadIntPtr(structure, offset);\r\n        return pointer == 0 ? null : Marshal.PtrToStringUTF8(pointer);\r\n    }\r\n\r\n    private bool ReturnOption(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);\r\n        var key = Marshal.PtrToStringUTF8(variable.Key);\r\n        if (key is not null && _options.TryGetValue(key, out var value))\r\n        {\r\n            variable.Value = NativeString(value);\r\n            Marshal.StructureToPtr(variable, data, false);\r\n            return true;\r\n        }\r\n\r\n        if (data != 0)\r\n        {\r\n            variable.Value = 0;\r\n            Marshal.StructureToPtr(variable, data, false);\r\n        }\r\n        return false;\r\n    }\r\n\r\n    internal void ValidateConfiguredOptions()\r\n    {\r\n        foreach (var key in _configuredOptionKeys)\r\n        {\r\n            var configuredValue = _options[key];\r\n            var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));\r\n            if (option is null || option.Values.Count == 0) continue;\r\n            if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))\r\n                throw new InvalidDataException(CoreExceptions.InvalidOptionValue(configuredValue, key));\r\n        }\r\n    }\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);\r\n        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\");\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\r\n        if (data == 0)\r\n        {\r\n            ControllerPorts = [];\r\n            return true;\r\n        }\r\n        var ports = new List<IReadOnlyList<ControllerDevice>>();\r\n        var infoSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();\r\n        var descriptionSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();\r\n        for (var port = 0; port < 16; port++)\r\n        {\r\n            var info = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + port * infoSize);\r\n            if (info.Types == 0 || info.Count == 0) break;\r\n            if (info.Count > 64) return false;\r\n            var devices = new List<ControllerDevice>(checked((int)info.Count));\r\n            for (var index = 0; index < info.Count; index++)\r\n            {\r\n                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(\r\n                    info.Types + checked((int)index) * descriptionSize);\r\n                var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);\r\n                if (!string.IsNullOrWhiteSpace(name)) devices.Add(new ControllerDevice(name, description.Id));\r\n            }\r\n            ports.Add(devices);\r\n        }\r\n        ControllerPorts = ports;\r\n        return true;\r\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\r\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing;\r\n        var pointer = Marshal.StringToCoTaskMemUTF8(value);\r\n        _nativeStrings.Add(value, pointer);\r\n        return pointer;\r\n    }\r\n\r\n}\r\n\r\n",
+        "source": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)\r\n    {\r\n        RegisterVersionOneOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)\r\n    {\r\n        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)\r\n    {\r\n        RegisterLegacyOptions(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ReturnValue(nint data)\r\n    {\r\n        return ReturnOption(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)\r\n    {\r\n        _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)\r\n    {\r\n        return ApplyOptionVisibility(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)\r\n    {\r\n        return CaptureOptionsDisplayCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible))\n        .Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "origin": "9af3b8e2e:src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "interfaces": [
+          "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands",
+          "System.IDisposable"
+        ],
+        "method": "private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }",
+        "catchSource": "catch\r\n        {\r\n            return false;\r\n        }",
+        "queryGuard": "if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;",
+        "sections": [
+          {
+            "labels": [
+              {
+                "expression": "SetContentInfoOverride",
+                "value": 65
+              }
+            ],
+            "selected": false,
+            "source": "case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);",
+            "index": 0
+          },
+          {
+            "labels": [
+              {
+                "expression": "GetGameInfoExtended",
+                "value": 66
+              }
+            ],
+            "selected": false,
+            "source": "case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);",
+            "index": 1
+          },
+          {
+            "labels": [
+              {
+                "expression": "HardwareRenderConstants.SetHardwareRender",
+                "value": 14
+              }
+            ],
+            "selected": false,
+            "source": "case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);",
+            "index": 2
+          },
+          {
+            "labels": [
+              {
+                "expression": "HardwareRenderConstants.GetPreferredHardwareRender",
+                "value": 65592
+              }
+            ],
+            "selected": false,
+            "source": "case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+            "index": 3
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.GetSystemDirectory",
+                "value": 9
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetContentDirectory",
+                "value": 30
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetSaveDirectory",
+                "value": 31
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMessage",
+                "value": 6
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetPixelFormat",
+                "value": 10
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetDiskControlVersion",
+                "value": 57
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetInputDescriptors",
+                "value": 11
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetKeyboardCallback",
+                "value": 12
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetDiskControl",
+                "value": 13
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetDiskControlExtended",
+                "value": 58
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetControllerInfo",
+                "value": 35
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMemoryMaps",
+                "value": 65572
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSupportAchievements",
+                "value": 65578
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSupportNoGame",
+                "value": 18
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetMessageExtended",
+                "value": 60
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetGeometry",
+                "value": 37
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetSystemAvInfo",
+                "value": 32
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetLogInterface",
+                "value": 27
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetVfsInterface",
+                "value": 65581
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetLedInterface",
+                "value": 65582
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;",
+            "index": 4
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptions",
+                "value": 53
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsInternational",
+                "value": 54
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsV2",
+                "value": 67
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsV2International",
+                "value": 68
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetVariables",
+                "value": 16
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;",
+            "index": 5
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.GetVariable",
+                "value": 15
+              },
+              {
+                "expression": "ExternalCoreApiConstants.GetVariableUpdate",
+                "value": 17
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsDisplay",
+                "value": 55
+              },
+              {
+                "expression": "ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback",
+                "value": 69
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;",
+            "index": 6
+          },
+          {
+            "labels": [
+              {
+                "expression": "ExternalCoreApiConstants.SetFastForwardingOverride",
+                "value": 64
+              }
+            ],
+            "selected": true,
+            "source": "case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;",
+            "index": 7
+          },
+          {
+            "labels": [
+              {
+                "expression": "default",
+                "value": null
+              }
+            ],
+            "selected": false,
+            "source": "default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;",
+            "index": 8
+          }
+        ],
+        "family": "Sega",
+        "sha256": "0AE59FFF0DF2069E72CE76596BEAC3D95824499509D8667F922AD78382546552",
+        "originSource": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                    Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                    return CaptureMessage(data, extended: false);\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                    _pixelFormat = Marshal.ReadInt32(data) switch\r\n                    {\r\n                        ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n                        ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n                    var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))\r\n                    };\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteByte(data,\r\n                            Interlocked.Exchange(ref _optionsUpdated,\r\n                                ExternalCoreInteropConstants.InactiveState)\r\n                            != ExternalCoreInteropConstants.InactiveState\r\n                                ? ExternalCoreInteropConstants.NativeBooleanTrue\r\n                                : ExternalCoreInteropConstants.NativeBooleanFalse);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                    if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                    var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                    DiskControl.Capture(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                    DiskControl.CaptureExtended(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                    return CaptureControllerInfo(data);\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                    SupportsNoGame = data != nint.Zero\r\n                        && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                    return CaptureMessage(data, extended: true);\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                    return ApplyGeometry(data);\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                    return ApplySystemAvInfo(data);\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                    return false;\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    if (data == 0) return false;\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\r\n                    {\r\n                        SetLedState = Marshal.GetFunctionPointerForDelegate(Led)\r\n                    }, data, false);\r\n                    return true;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private void RegisterLegacyOptions(nint data)\r\n    {\r\n        var size = Marshal.SizeOf<ExternalCoreApi.Variable>();\r\n        var catalog = new List<CoreOption>();\r\n        for (var current = data; current != 0; current += size)\r\n        {\r\n            var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(current);\r\n            if (variable.Key == 0) break;\r\n            var key = Marshal.PtrToStringUTF8(variable.Key)!;\r\n            var definition = Marshal.PtrToStringUTF8(variable.Value);\r\n            var parts = definition?.Split(';', 2) ?? [];\r\n            var name = parts.ElementAtOrDefault(0)?.Trim() ?? key;\r\n            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)\r\n                .Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];\r\n            var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n        }\r\n        OptionCatalog = catalog.ToArray();\r\n    }\r\n\r\n    private void RegisterVersionOneOptions(nint definitions)\r\n    {\r\n        if (definitions == nint.Zero) return;\r\n        var valuesOffset = CoreOptionV1PointerFieldsBeforeValues * IntPtr.Size;\r\n        var defaultOffset = valuesOffset + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;\r\n        var definitionSize = defaultOffset + IntPtr.Size;\r\n        var catalog = new List<CoreOption>();\r\n        for (var index = 0; index < MaximumCoreOptionDefinitions; index++)\r\n        {\r\n            var definition = definitions + index * definitionSize;\r\n            var key = StringAt(definition, BufferConstants.FirstBufferIndex);\r\n            if (key is null) break;\r\n            var values = new List<CoreOptionValue>();\r\n            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)\r\n            {\r\n                var offset = valuesOffset + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;\r\n                var value = StringAt(definition, offset);\r\n                if (value is null) break;\r\n                values.Add(new(value, StringAt(definition, offset + IntPtr.Size) ?? value));\r\n            }\r\n            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;\r\n            catalog.Add(new(key, StringAt(definition, IntPtr.Size) ?? key,\r\n                StringAt(definition, CoreOptionV1DescriptionPointerIndex * IntPtr.Size), null,\r\n                defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n        }\r\n        OptionCatalog = catalog.ToArray();\r\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint options)\r\n    {\r\n        if (options == 0) return;\r\n        var definitions = Marshal.ReadIntPtr(options, IntPtr.Size);\r\n        var definitionSize = (CoreOptionPointerFieldsBeforeValues\r\n            + MaximumCoreOptionValues * CoreOptionValueFieldCount\r\n            + CoreOptionTerminatorFieldCount) * IntPtr.Size;\r\n        var valuesOffset = CoreOptionPointerFieldsBeforeValues * IntPtr.Size;\r\n        var defaultOffset = valuesOffset\r\n            + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;\r\n        var catalog = new List<CoreOption>();\r\n\r\n        for (var optionIndex = 0; optionIndex < MaximumCoreOptionDefinitions; optionIndex++)\r\n        {\r\n            var definition = definitions + optionIndex * definitionSize;\r\n            var keyPointer = Marshal.ReadIntPtr(definition);\r\n            if (keyPointer == 0) break;\r\n            var key = Marshal.PtrToStringUTF8(keyPointer)!;\r\n            var name = StringAt(definition, IntPtr.Size) ?? key;\r\n            var description = StringAt(\r\n                definition, CoreOptionDescriptionPointerIndex * IntPtr.Size);\r\n            var category = StringAt(\r\n                definition, CoreOptionCategoryPointerIndex * IntPtr.Size);\r\n            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;\r\n            var values = new List<CoreOptionValue>();\r\n            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)\r\n            {\r\n                var valueOffset = valuesOffset\r\n                    + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;\r\n                var value = StringAt(definition, valueOffset);\r\n                if (value is null) break;\r\n                values.Add(new CoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));\r\n            }\r\n            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values,\r\n                !_optionVisibility.TryGetValue(key, out var visible) || visible));\r\n            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;\r\n        }\r\n        OptionCatalog = catalog.ToArray();\r\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        var display = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionDisplay>(data);\r\n        var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);\r\n        if (string.IsNullOrWhiteSpace(key)) return false;\r\n        _optionVisibility[key] = display.Visible;\r\n        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)\r\n            ? option with { IsVisible = display.Visible }\r\n            : option).ToArray();\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        var callback = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;\r\n        _updateOptionsDisplay = callback == 0\r\n            ? null\r\n            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);\r\n        return true;\r\n    }\r\n\r\n    private static string? StringAt(nint structure, int offset)\r\n    {\r\n        var pointer = Marshal.ReadIntPtr(structure, offset);\r\n        return pointer == 0 ? null : Marshal.PtrToStringUTF8(pointer);\r\n    }\r\n\r\n    private bool ReturnOption(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);\r\n        var key = Marshal.PtrToStringUTF8(variable.Key);\r\n        if (key is not null && _options.TryGetValue(key, out var value))\r\n        {\r\n            variable.Value = NativeString(value);\r\n            Marshal.StructureToPtr(variable, data, false);\r\n            return true;\r\n        }\r\n\r\n        if (data != 0)\r\n        {\r\n            variable.Value = 0;\r\n            Marshal.StructureToPtr(variable, data, false);\r\n        }\r\n        return false;\r\n    }\r\n\r\n    internal void ValidateConfiguredOptions()\r\n    {\r\n        foreach (var key in _configuredOptionKeys)\r\n        {\r\n            var configuredValue = _options[key];\r\n            var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));\r\n            if (option is null || option.Values.Count == 0) continue;\r\n            if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))\r\n                throw new InvalidDataException(CoreExceptions.InvalidOptionValue(configuredValue, key));\r\n        }\r\n    }\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);\r\n        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\");\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\r\n        if (data == 0)\r\n        {\r\n            ControllerPorts = [];\r\n            return true;\r\n        }\r\n        var ports = new List<IReadOnlyList<ControllerDevice>>();\r\n        var infoSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();\r\n        var descriptionSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();\r\n        for (var port = 0; port < 16; port++)\r\n        {\r\n            var info = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + port * infoSize);\r\n            if (info.Types == 0 || info.Count == 0) break;\r\n            if (info.Count > 64) return false;\r\n            var devices = new List<ControllerDevice>(checked((int)info.Count));\r\n            for (var index = 0; index < info.Count; index++)\r\n            {\r\n                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(\r\n                    info.Types + checked((int)index) * descriptionSize);\r\n                var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);\r\n                if (!string.IsNullOrWhiteSpace(name)) devices.Add(new ControllerDevice(name, description.Id));\r\n            }\r\n            ports.Add(devices);\r\n        }\r\n        ControllerPorts = ports;\r\n        return true;\r\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\r\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing;\r\n        var pointer = Marshal.StringToCoTaskMemUTF8(value);\r\n        _nativeStrings.Add(value, pointer);\r\n        return pointer;\r\n    }\r\n\r\n}\r\n\r\n",
+        "source": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,\r\n                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))\r\n                return legacyQueryResult;\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)\r\n    {\r\n        RegisterVersionOneOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)\r\n    {\r\n        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)\r\n    {\r\n        RegisterLegacyOptions(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ReturnValue(nint data)\r\n    {\r\n        return ReturnOption(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)\r\n    {\r\n        _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)\r\n    {\r\n        return ApplyOptionVisibility(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)\r\n    {\r\n        return CaptureOptionsDisplayCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "origin": "948c0e509:src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      }
+    ],
+    "sdk": {
+      "beforeSha256": "9E81C4F45574A39F5BBA91AA900222F34CEE622F8E922D56E87DBECEF8F9B20C",
+      "before": "using System.Text;\r\nusing System.Globalization;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation.Interop;\r\nusing GWGUI.Emulation.Constants;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\ninternal static class ExternalCoreEnvironmentFunctions\r\n{\r\n    internal static void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info,\r\n        Action<ExternalCoreApi.Geometry> applyGeometry, Action<double> setFramesPerSecond, Action<int> setSampleRate)\r\n    {\r\n        applyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            setFramesPerSecond(info.Timing.FramesPerSecond);\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            setSampleRate(checked((int)Math.Round(info.Timing.SampleRate)));\r\n    }\r\n\r\n    internal static bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct\r\n    {\r\n        if (data == 0) return false;\r\n        apply(Marshal.PtrToStructure<T>(data));\r\n        return true;\r\n    }\r\n\r\n    internal static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)\r\n    {\r\n        var text = textPointer == nint.Zero ? null : Marshal.PtrToStringUTF8(textPointer);\r\n        if (allowWhitespace ? string.IsNullOrEmpty(text) : string.IsNullOrWhiteSpace(text)) return null;\r\n        publish(text);\r\n        return text;\r\n    }\r\n\r\n    internal static bool TryHandleCallbackCommand(uint command, nint data,\r\n        IEmulationCoreEnvironmentCommands callbacks, out bool result)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.SetRotation:\r\n                result = callbacks.SetRotation(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetPerformanceLevel:\r\n                result = callbacks.CapturePerformanceLevel(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetPixelFormat:\r\n                result = callbacks.SetPixelFormat(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                result = callbacks.SetSystemAvInfo(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetGeometry:\r\n                result = callbacks.SetGeometry(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMessage:\r\n                result = callbacks.ReadMessage(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMessageExtended:\r\n                result = callbacks.ReadExtendedMessage(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLogInterface:\r\n                result = callbacks.SetLogInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLedInterface:\r\n                result = callbacks.SetLedInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetRumbleInterface:\r\n                result = callbacks.SetRumbleInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSensorInterface:\r\n                result = callbacks.SetSensorInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSystemDirectory:\r\n                result = callbacks.WriteSystemDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetContentDirectory:\r\n                result = callbacks.WriteContentDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSaveDirectory:\r\n                result = callbacks.WriteSaveDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSupportNoGame:\r\n                result = callbacks.SetSupportNoGame(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetInputDescriptors:\r\n                result = callbacks.CaptureInputDescriptors(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetControllerInfo:\r\n                result = callbacks.CaptureControllerInfo(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMemoryMaps:\r\n                result = callbacks.CaptureMemoryMaps(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSupportAchievements:\r\n                result = callbacks.SetSupportAchievements(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetVfsInterface:\r\n                result = callbacks.ProvideVfs(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                result = callbacks.SetKeyboardCallback(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetDiskControl:\r\n                result = data != nint.Zero && callbacks.CaptureDiskControl(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                result = data != nint.Zero && callbacks.CaptureExtendedDiskControl(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                result = callbacks.GetDiskControlVersion(data);\r\n                break;\r\n            default:\r\n                result = false;\r\n                return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)\n    {\n        exports.SetEnvironment(callbacks.Environment);\n        exports.SetVideo(callbacks.Video);\n        exports.SetAudioSample(callbacks.AudioSample);\n        exports.SetAudioBatch(callbacks.AudioBatch);\n        exports.SetInputPoll(callbacks.InputPoll);\n        exports.SetInputState(callbacks.InputState);\n    }\n\n\r\n    internal static bool TryHandleLegacyQuery(uint command, nint data, uint coreOptionsVersion,\r\n        uint messageInterfaceVersion, out bool result)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n            case ExternalCoreApiConstants.GetInputBitmasks:\r\n            case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                _ = TryHandleStatelessCommand(command, data, coreOptionsVersion, messageInterfaceVersion, 0, out _);\r\n                result = true;\r\n                return true;\r\n            case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                _ = TryHandleStatelessCommand(command, data, coreOptionsVersion, messageInterfaceVersion, 0, out result);\r\n                return true;\r\n            default:\r\n                result = false;\r\n                return false;\r\n        }\r\n    }\r\n    internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,\r\n        uint messageInterfaceVersion, ulong inputCapabilities, out bool result)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetOverscan:\r\n            case ExternalCoreApiConstants.GetFastForwarding:\r\n                result = WriteBoolean(data, false);\r\n                break;\r\n            case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n            case ExternalCoreApiConstants.GetInputBitmasks:\r\n                result = WriteBoolean(data, true);\r\n                break;\r\n            case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                result = WriteInteger(data, coreOptionsVersion);\r\n                break;\r\n            case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                result = WriteInteger(data, messageInterfaceVersion);\r\n                break;\r\n            case ExternalCoreApiConstants.GetPerformanceInterface:\r\n                result = false;\r\n                break;\r\n            case ExternalCoreApiConstants.GetInputDeviceCapabilities:\r\n                result = WriteUnsignedLong(data, inputCapabilities);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLanguage:\r\n                result = WriteInteger(data, CurrentLanguage());\r\n                break;\r\n            default:\r\n                result = false;\r\n                return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n\n    internal static bool HandleRemainingCommand(uint command, nint data,\r\n        IEmulationCoreOptionCommands options, ISet<uint> unknownCommands,\r\n        ICollection<string> diagnostics, Func<uint, string> createUnknownDiagnostic)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (TryHandleOptionCommand(command, data, options, out var optionResult))\r\n                    return optionResult;\r\n                if (unknownCommands.Add(command))\r\n                    diagnostics.Add(createUnknownDiagnostic(command));\r\n                return false;\r\n        }\r\n    }\r\n    internal static bool TryHandleOptionCommand(uint command, nint data,\n        IEmulationCoreOptionCommands options, out bool result)\n    {\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetVariable:\n                result = options.ReturnValue(data);\n                break;\n            case ExternalCoreApiConstants.SetVariables:\n                options.RegisterLegacyVariables(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.GetVariableUpdate:\n                result = options.GetAndClearUpdated(data);\n                break;\n            case ExternalCoreApiConstants.SetCoreOptions:\n                options.RegisterVersionOne(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsInternational:\n                options.RegisterVersionOneInternational(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsV2:\n                options.RegisterVersionTwo(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsV2International:\n                options.RegisterVersionTwoInternational(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsDisplay:\n                result = options.ApplyVisibility(data);\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\n                result = options.CaptureDisplayUpdate(data);\n                break;\n            case ExternalCoreApiConstants.SetVariable:\n                result = options.SetNativeValue(data);\n                break;\n            default:\n                result = false;\n                return false;\n        }\n        return true;\n    }\n\n    internal static bool WritePointer(nint destination, nint value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteIntPtr(destination, value);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteBoolean(nint destination, bool value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteByte(destination, value ? (byte)1 : (byte)0);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteInteger(nint destination, int value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteInt32(destination, value);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));\r\n\r\n    internal static bool WriteUnsignedLong(nint destination, ulong value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteInt64(destination, unchecked((long)value));\r\n        return true;\r\n    }\r\n\r\n    internal static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        switch (Marshal.ReadInt32(data))\r\n        {\r\n            case 1:\r\n                pixelFormat = EmulationPixelFormat.Xrgb8888;\r\n                return true;\r\n            case 2:\r\n                pixelFormat = EmulationPixelFormat.Rgb565;\r\n                return true;\r\n            case 0:\r\n                pixelFormat = EmulationPixelFormat.Rgb1555;\r\n                return true;\r\n            default:\r\n                return false;\r\n        }\r\n    }\r\n\r\n    internal static T? OptionalDelegate<T>(nint pointer) where T : Delegate\r\n        => OptionalDelegate<T, nint>(pointer, static value => value);\r\n\r\n    // Garder deux lectures distinctes pour une source qui peut changer entre les lectures.\r\n    internal static T? OptionalDelegate<T, TSource>(TSource source, Func<TSource, nint> readPointer) where T : Delegate\r\n        => readPointer(source) == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(readPointer(source));\r\n\r\n    internal static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate\r\n    {\r\n        if (pointer == 0) throw createError();\r\n        return Marshal.GetDelegateForFunctionPointer<T>(pointer);\r\n    }\r\n\r\n    internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)\r\n        => SetLogInterface<ExternalCoreApi.LogCallback>(data, log);\r\n\r\n    internal static bool SetLogInterface<TLog>(nint data, TLog log) where TLog : Delegate\r\n        => InstallInterface(data, () => new ExternalCoreApi.LogInterface\r\n        {\r\n            Log = Marshal.GetFunctionPointerForDelegate(log)\r\n        });\r\n\r\n    internal static bool SetLedInterface(nint data, ExternalCoreApi.SetLedState setState)\r\n        => InstallInterface(data, () => new ExternalCoreApi.LedInterface\r\n        {\r\n            SetLedState = Marshal.GetFunctionPointerForDelegate(setState)\r\n        });\r\n\r\n    internal static bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState)\r\n        => InstallInterface(data, () => new ExternalCoreApi.RumbleInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(setState)\r\n        });\r\n\r\n    internal static bool SetSensorInterface(nint data, ExternalCoreApi.SetSensorState setState, ExternalCoreApi.GetSensorInput getInput)\r\n        => InstallInterface(data, () => new ExternalCoreApi.SensorInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(setState),\r\n            GetInput = Marshal.GetFunctionPointerForDelegate(getInput)\r\n        });\r\n\r\n    private static bool InstallInterface<T>(nint data, Func<T> create) where T : struct\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(create(), data, false);\r\n        return true;\r\n    }\r\n\r\n    internal static IReadOnlyList<T> CopyInputDescriptors<T>(nint data, int maximumCount, Func<uint, uint, uint, uint, string, T> create)\r\n    {\r\n        if (data == nint.Zero)\r\n            return[];\r\n        var result = new List<T>();\r\n        var nativeSize = Marshal.SizeOf<ExternalCoreApi.InputDescriptor>();\r\n        for (var index = 0; index < maximumCount; index++)\r\n        {\r\n            var native = Marshal.PtrToStructure<ExternalCoreApi.InputDescriptor>(data + index * nativeSize);\r\n            if (native.Description == nint.Zero)\r\n                return result;\r\n            result.Add(create(native.Port, native.Device, native.Index, native.Id, Marshal.PtrToStringUTF8(native.Description) ?? string.Empty));\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n    internal static IReadOnlyList<TPort> CopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices, Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort)\r\n    {\r\n        TryCopyControllerPorts(data, maximumPorts, maximumDevices, createDevice, createPort,\r\n            rejectOverflow: false, skipEmptyNames: false, out var ports);\r\n        return ports;\r\n    }\r\n\r\n    internal static bool TryCopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices,\r\n        Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort,\r\n        bool rejectOverflow, bool skipEmptyNames, out IReadOnlyList<TPort> result)\r\n    {\r\n        result = [];\r\n        if (data == nint.Zero)\r\n            return true;\r\n        var ports = new List<TPort>();\r\n        result = ports;\r\n        var portSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();\r\n        var deviceSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();\r\n        for (var portIndex = 0; portIndex < maximumPorts; portIndex++)\r\n        {\r\n            var port = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + portIndex * portSize);\r\n            if (port.Types == nint.Zero || port.Count == 0)\r\n                return true;\r\n            if (rejectOverflow && port.Count > maximumDevices)\r\n                return false;\r\n            var devices = new List<TDevice>();\r\n            var count = Math.Min(port.Count, (uint)maximumDevices);\r\n            for (var deviceIndex = 0; deviceIndex < count; deviceIndex++)\r\n            {\r\n                var device = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(port.Types + checked((int)deviceIndex) * deviceSize);\r\n                var name = Marshal.PtrToStringUTF8(device.Description) ?? string.Empty;\r\n                if (!skipEmptyNames || !string.IsNullOrWhiteSpace(name))\r\n                    devices.Add(createDevice(name, device.Id));\r\n            }\r\n\r\n            ports.Add(createPort(devices));\r\n        }\r\n\r\n        return true;\r\n    }\r\n\r\n    internal static IReadOnlyList<T> CopyMemoryMap<T>(nint data, int maximumCount, Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, T> create)\r\n    {\r\n        if (data == nint.Zero)\r\n            return[];\r\n        var map = Marshal.PtrToStructure<ExternalCoreApi.MemoryMap>(data);\r\n        if (map.Descriptors == nint.Zero || map.Count == 0)\r\n            return[];\r\n        var result = new List<T>();\r\n        var count = Math.Min(map.Count, (uint)maximumCount);\r\n        var size = Marshal.SizeOf<ExternalCoreApi.MemoryDescriptor>();\r\n        for (var index = 0; index < count; index++)\r\n        {\r\n            var item = Marshal.PtrToStructure<ExternalCoreApi.MemoryDescriptor>(map.Descriptors + checked((int)index) * size);\r\n            result.Add(create(item.Flags, item.Pointer, item.Offset, item.Start, item.Select, item.Disconnect, item.Length, Marshal.PtrToStringUTF8(item.AddressSpace)));\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n    internal static uint CurrentLanguage() => (uint)(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch\r\n    {\r\n        \"ja\" => Language.Japanese,\r\n        \"fr\" => Language.French,\r\n        \"es\" => Language.Spanish,\r\n        \"de\" => Language.German,\r\n        \"it\" => Language.Italian,\r\n        \"nl\" => Language.Dutch,\r\n        \"pt\" when string.Equals(CultureInfo.CurrentUICulture.Name, \"pt-BR\", StringComparison.OrdinalIgnoreCase) => Language.PortugueseBrazil,\r\n        \"pt\" => Language.PortuguesePortugal,\r\n        \"ru\" => Language.Russian,\r\n        \"ko\" => Language.Korean,\r\n        \"zh\" when CultureInfo.CurrentUICulture.Name.Contains(\"Hant\", StringComparison.OrdinalIgnoreCase) => Language.ChineseTraditional,\r\n        \"zh\" => Language.ChineseSimplified,\r\n        \"pl\" => Language.Polish,\r\n        \"vi\" => Language.Vietnamese,\r\n        \"ar\" => Language.Arabic,\r\n        \"el\" => Language.Greek,\r\n        \"tr\" => Language.Turkish,\r\n        \"he\" => Language.Hebrew,\r\n        \"fi\" => Language.Finnish,\r\n        \"id\" => Language.Indonesian,\r\n        \"sv\" => Language.Swedish,\r\n        \"uk\" => Language.Ukrainian,\r\n        \"cs\" => Language.Czech,\r\n        \"hu\" => Language.Hungarian,\r\n        \"nb\" => Language.Norwegian,\r\n        \"th\" => Language.Thai,\r\n        _ => Language.English\r\n    });\r\n    private enum Language : uint\r\n    {\r\n        English = 0,\r\n        Japanese = 1,\r\n        French = 2,\r\n        Spanish = 3,\r\n        German = 4,\r\n        Italian = 5,\r\n        Dutch = 6,\r\n        PortugueseBrazil = 7,\r\n        PortuguesePortugal = 8,\r\n        Russian = 9,\r\n        Korean = 10,\r\n        ChineseTraditional = 11,\r\n        ChineseSimplified = 12,\r\n        Polish = 14,\r\n        Vietnamese = 15,\r\n        Arabic = 16,\r\n        Greek = 17,\r\n        Turkish = 18,\r\n        Hebrew = 21,\r\n        Finnish = 23,\r\n        Indonesian = 24,\r\n        Swedish = 25,\r\n        Ukrainian = 26,\r\n        Czech = 27,\r\n        Hungarian = 31,\r\n        Norwegian = 34,\r\n        Thai = 36\r\n    }\r\n\r\n    internal static string CopyNativeLogTemplate(nint format, string argumentMarker, string conversionCharacters)\r\n    {\r\n        var source = Marshal.PtrToStringUTF8(format)?.Trim();\r\n        if (string.IsNullOrEmpty(source))\r\n            return string.Empty;\r\n        var result = new StringBuilder(source.Length);\r\n        for (var index = 0; index < source.Length; index++)\r\n        {\r\n            var character = source[index];\r\n            if (character != '%')\r\n            {\r\n                result.Append(character);\r\n                continue;\r\n            }\r\n\r\n            if (index + 1 < source.Length && source[index + 1] == '%')\r\n            {\r\n                result.Append('%');\r\n                index++;\r\n                continue;\r\n            }\r\n\r\n            result.Append(argumentMarker);\r\n            while (index + 1 < source.Length)\r\n            {\r\n                index++;\r\n                if (conversionCharacters.Contains(source[index], StringComparison.Ordinal))\r\n                    break;\r\n            }\r\n        }\r\n\r\n        return result.ToString();\r\n    }\r\n\r\n\n    internal static void SelectDisk(int index, Func<uint> getImageIndex, Func<bool> getEjectState,\n        Func<bool, bool> setEjectState, Func<uint, bool> setImageIndex,\n        Func<Exception> ejectError, Func<Exception> selectError, Func<Exception> insertError)\n    {\n        var previousIndex = getImageIndex();\n        var wasEjected = getEjectState();\n        if (!wasEjected && !setEjectState(true)) throw ejectError();\n        try\n        {\n            if (!setImageIndex((uint)index)) throw selectError();\n            if (!setEjectState(false)) throw insertError();\n        }\n        catch\n        {\n            if (previousIndex != uint.MaxValue) setImageIndex(previousIndex);\n            if (!wasEjected) setEjectState(false);\n            throw;\n        }\n    }\n\n    internal static string? ReadDiskText<T>(T? getter, int index, int bufferSize)\r\n        where T : Delegate\r\n    {\r\n        if (getter is null || index < 0)\r\n            return null;\r\n        var buffer = Marshal.AllocHGlobal(bufferSize);\r\n        try\r\n        {\r\n            var success = getter switch\r\n            {\r\n                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, checked((nuint)bufferSize)),\r\n                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, checked((nuint)bufferSize)),\r\n                _ => false\r\n            };\r\n            return success ? Marshal.PtrToStringUTF8(buffer) : null;\r\n        }\r\n        finally\r\n        {\r\n            Marshal.FreeHGlobal(buffer);\r\n        }\r\n    }\r\n}\r\n",
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "afterSha256": "C71A0282A78A286E5DE65711B54F4F06C6C07B2917AAE7E8C24DDBD404A8C85B"
+    },
+    "origin": "9af3b8e2e:src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+    "findings": [
+      "Original Nintendo owner precedes Sega duplicate; shared command selection now gates20 callback commands, five acknowledged option registrations, four option results and quiet fast-forward refusal",
+      "Existing SDK callback/option owners retained; no new contract, DTO or wrapper object needed",
+      "Preserve current callback implementations and later intentional capabilities, not obsolete initial raw writes",
+      "Four content/render cases, local diagnostics, catch boundary and prior Amiga query guard stay module-owned and unchanged",
+      "Broader native callback commands rotation/performance/rumble/sensor and SetVariable remain unclaimed here, preserving the historical policy",
+      "Reuse original test OptionCommands fake by internal visibility rather than copying ten fake methods"
+    ],
+    "otherLegacyProfiles": [
+      {
+        "sha256": "7AFDA92530D865CD5D3319DFC1C179C55A88624D6E156C2AAEFEA44DC7B8012A",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "D0AFD5092998C0ADEBF70254A5D8BF5D58871EEF785179AB455C27BB0FCA3646",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "A7CF3866D921F756271837BE46FBC54F7EE6F86922F8BEEAFD3F18801D31A7EA",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "5CA787AD4154F73A16C49780DC28E857D4B53BB7699563CB6C971F878B2B7BB1",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "8EDCA9BDD7F19B9F4EE9171F0B285CD6716D95E4BCF5FCB73E91A91C2476C06C",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "D6D66347E9B470A207BC4A754F6BE07E6CFFD15EB7A35EEC9DD0D0911336574B",
+        "reason": "Different direct callback/option policies; not converted to Nintendo/Sega callback selector",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      }
+    ],
+    "state": "Original Nintendo selector reused by two complete module adapters; SDK/all23 compile and176 targeted tests pass; existing test fakes reused; prior query fragments preserved through unchanged-guard proof; next grouped product build and other legacy/project groups pending",
+    "verification": {
+      "borrowedCallbacksNotDisposed": true,
+      "returnPoliciesVerified": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "newInterfacesOrDto": 0,
+      "semanticErrors": 0,
+      "sources": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalSectionsReconstructed": true,
+          "otherFileMethodsUnchanged": true,
+          "sharedSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, out bool)",
+          "customBranchesDiagnosticsCatchUnchanged": true,
+          "queryGuardUnchanged": true,
+          "sha256": "789A12BB350EA99E2701789063F38E019C4644E98E9A0263EECCB5759016D6E1",
+          "borrowedCallbackIdentitiesPreserved": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalSectionsReconstructed": true,
+          "otherFileMethodsUnchanged": true,
+          "sharedSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, out bool)",
+          "customBranchesDiagnosticsCatchUnchanged": true,
+          "queryGuardUnchanged": true,
+          "sha256": "F0D5664543BBCF42672DE54EC9CD875F7E63631B0E4202C5B7D3F63D93171E28",
+          "borrowedCallbackIdentitiesPreserved": true
+        }
+      ],
+      "otherSdkMembersUnchanged": true,
+      "otherLegacyProfilesUnchanged": 6,
+      "ownedResourcesMoved": 0,
+      "groups": [
+        {
+          "index": 0,
+          "values": [
+            9,
+            30,
+            31,
+            6,
+            10,
+            57,
+            11,
+            12,
+            13,
+            58,
+            35,
+            65572,
+            65578,
+            18,
+            60,
+            37,
+            32,
+            27,
+            65581,
+            65582
+          ]
+        },
+        {
+          "index": 1,
+          "values": [
+            53,
+            54,
+            67,
+            68,
+            16
+          ]
+        },
+        {
+          "index": 2,
+          "values": [
+            15,
+            17,
+            55,
+            69
+          ]
+        },
+        {
+          "index": 3,
+          "values": [
+            64
+          ]
+        },
+        {
+          "index": 4,
+          "values": []
+        }
+      ]
+    },
+    "tests": {
+      "newFakeImplementations": 0,
+      "originalCallbackFakeUnchanged": true,
+      "failed": 0,
+      "sha256": [
+        "F0E62A12A93E58A387D67E5FAAF2F97CB2FC8FA6ED3D9ECF0695F015A548D8C6",
+        "1F0F22E7BDC62683F2DB1BB5D351E93C42972D7F06D882FE39B987D47F2715F0"
+      ],
+      "usesExternalFilesApplicationsOrDlls": false,
+      "paths": [
+        "tests/GWGUI.Tests/Emulation/OptionEnvironmentCommandTests.cs",
+        "tests/GWGUI.Tests/Emulation/EnvironmentCallbackCommandTests.cs"
+      ],
+      "passed": 176,
+      "originalOptionFakeOnlyVisibilityChanged": true,
+      "addedCases": 15,
+      "coverage": [
+        "selected callbacks preserve true/false and input identity",
+        "original registration acknowledgements on null/non-null payloads",
+        "option boolean results",
+        "null disk refusal before capture",
+        "17 broader/query/custom commands unclaimed without callback/option access",
+        "quiet fast-forward refusal",
+        "same callback/option exception objects reach module boundary"
+      ]
+    },
+    "inventory": {
+      "otherMethodsNewlyQualified": 0,
+      "reports": {
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "exactGroups": 0,
+          "groups": 467,
+          "renamedIdentifierGroups": 210,
+          "fileCount": 7295,
+          "methodBodyCount": 11681
+        },
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "exactGroups": 807,
+          "groups": 0,
+          "renamedIdentifierGroups": 376,
+          "fileCount": 7295,
+          "methodBodyCount": 9667
+        }
+      },
+      "queryFragmentSourceHashesUpdatedWithUnchangedGuardProof": 2,
+      "additionalUnchangedFullMembersRetained": 97,
+      "wholeHandlersNewlyQualified": 2,
+      "qualifiedAdapterOccurrences": [
+        {
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "name": "HandleEnvironment",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "kind": "groups",
+          "sha256": "F0D5664543BBCF42672DE54EC9CD875F7E63631B0E4202C5B7D3F63D93171E28"
+        },
+        {
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "name": "HandleEnvironment",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "kind": "groups",
+          "sha256": "789A12BB350EA99E2701789063F38E019C4644E98E9A0263EECCB5759016D6E1"
+        }
+      ],
+      "oldPartialMembers": 69,
+      "partialMembersRestored": 69
+    }
   }
 }
