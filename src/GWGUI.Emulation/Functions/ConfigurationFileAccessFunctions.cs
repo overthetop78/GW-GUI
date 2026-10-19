@@ -38,6 +38,31 @@ public static class ConfigurationFileAccessFunctions
             return Task.CompletedTask;
         }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();
 
+    internal static async Task WriteDocumentAtomicallyAsync<TConfiguration>(SemaphoreSlim saveGate,
+        string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration,
+        Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths,
+        JsonSerializerOptions options, CancellationToken cancellationToken)
+    {
+        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
+        string? temporary = null;
+        try
+        {
+            configuration = prepareConfiguration(configuration);
+            var machineDirectory = Path.Combine(directory, configurationId(configuration).ToString("N"));
+            Directory.CreateDirectory(machineDirectory);
+            var target = Path.Combine(machineDirectory, "machine.json");
+            temporary = target + "." + Guid.NewGuid().ToString("N") + ".tmp";
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+                await JsonSerializer.SerializeAsync(stream, storePaths(configuration), options, cancellationToken).ConfigureAwait(false);
+            ReplaceFile(temporary, target);
+        }
+        finally
+        {
+            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);
+            saveGate.Release();
+        }
+    }
+
     internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,
         JsonSerializerOptions options, CancellationToken cancellationToken)
     {
@@ -70,6 +95,30 @@ public static class ConfigurationFileAccessFunctions
     internal static void DeleteIfExists(string path)
     {
         if (File.Exists(path)) File.Delete(path);
+    }
+
+    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(
+        string configurationDirectory, string fileName, Func<string, TConfiguration?> deserialize,
+        Func<TConfiguration, bool> isSupported, Func<TConfiguration, TConfiguration> resolve,
+        CancellationToken cancellationToken) where TConfiguration : class
+    {
+        Directory.CreateDirectory(configurationDirectory);
+        var configurations = new List<TConfiguration>();
+        var paths = Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
+        foreach (var path in paths)
+        {
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var json = ReadAllText(path);
+                var configuration = deserialize(json);
+                if (configuration is not null && isSupported(configuration))
+                    configurations.Add(resolve(configuration));
+            }
+            catch (JsonException) { }
+            catch (IOException) { }
+        }
+        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);
     }
 
     public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));

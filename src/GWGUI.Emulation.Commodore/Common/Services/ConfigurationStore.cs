@@ -22,51 +22,15 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-    {
-        Directory.CreateDirectory(_directory);
-        var configurations = new List<MachineConfiguration>();
-        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
-        foreach (var path in paths)
-        {
-            try
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                var json = ConfigurationFileAccessFunctions.ReadAllText(path);
-                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);
-                if (configuration is not null
-                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)
-                    configurations.Add(ResolvePaths(configuration.EnsureId()));
-            }
-            catch (JsonException) { }
-            catch (IOException) { }
-        }
-        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
-    }
+        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName,
+            static json => JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions),
+            static value => value.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion,
+            value => ResolvePaths(value.EnsureId()), cancellationToken);
 
-    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
-        string? temporary = null;
-        try
-        {
-            configuration = configuration.EnsureId() with
-            {
-                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion
-            };
-            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-            Directory.CreateDirectory(machineDirectory);
-            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);
-            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
-            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))
-                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);
-            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);
-        }
-        finally
-        {
-            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);
-            SaveGate.Release();
-        }
-    }
+    public Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
+        => ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(SaveGate, _directory, configuration,
+            static value => value.EnsureId() with { SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion },
+            static value => value.Id, StorePaths, JsonOptions, cancellationToken);
 
     public void Delete(Guid id)
     {

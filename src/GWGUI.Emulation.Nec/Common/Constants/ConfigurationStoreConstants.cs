@@ -5,14 +5,10 @@ internal static class ConfigurationStoreConstants
 {
     internal const string MemoryDirectoryName = "Memory";
     internal const string MachineFileName = "machine.json";
-    internal const string TemporaryFileSuffix = ".tmp";
     internal const string MachineIdentifierFormat = "N";
-    internal const int WriteBufferSize = 4096;
     internal const int CurrentSchemaVersion = 1;
-    internal const string TemporaryNameSeparator = ".";
     internal const int InitialWriterCount = 1;
     internal const int MaximumWriterCount = 1;
     internal const bool WriteIndentedJson = true;
-    internal const bool UseAsyncFileAccess = true;
     internal const bool RecursiveDirectoryDelete = true;
 }

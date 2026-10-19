@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7290,
-  "outsideSrcCSharpFiles": 306,
+  "currentCSharpFiles": 7291,
+  "outsideSrcCSharpFiles": 307,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11655,
+  "currentMethodCount": 11661,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -847,7 +847,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 70,
+          "line": 34,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -855,7 +855,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 70,
+          "line": 34,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -863,7 +863,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 72,
+          "line": 36,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -871,7 +871,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 70,
+          "line": 34,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -879,7 +879,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 70,
+          "line": 34,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -887,7 +887,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 70,
+          "line": 34,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -895,7 +895,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 71,
+          "line": 35,
           "tokens": 41,
           "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
           "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
@@ -1444,73 +1444,6 @@
           "tokens": 103,
           "hash": "0C0E476CA2568F3D679C330AF126D6371523DE944CBA887FA4AF717BF183B80A",
           "shape": "DF69A3D842592F5DD6A4E6DAD215D8400A711743968FD4B4AD7A3EA4BBEDBF91"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-      "method": "LoadAllAsync",
-      "tokens": 158,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 23,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 23,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 25,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 23,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 23,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 23,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 24,
-          "tokens": 158,
-          "hash": "0CC65C22CB4CFEC3D85926654F6C3E1EEC4FD3C5B758BE2CA76571F246D870C8",
-          "shape": "1293AFCC8D9FC8A028A2E02A890B2AEA541C120C15B2E9806DEF08CDE6D803F7"
         }
       ],
       "predecessors": [],
@@ -2586,7 +2519,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2594,7 +2527,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2602,7 +2535,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2610,7 +2543,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20244,7 +20177,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20252,7 +20185,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20260,7 +20193,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20268,7 +20201,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -21342,6 +21275,87 @@
     },
     {
       "language": "CSharp",
+      "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+      "method": "SaveAsync",
+      "tokens": 41,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 29,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 31,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 29,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 29,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 29,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 30,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "SaveAsync",
+          "line": 29,
+          "tokens": 41,
+          "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
+          "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
+          "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
+          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
       "method": "UseFirmware",
       "tokens": 93,
@@ -21369,6 +21383,87 @@
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+      "method": "LoadAllAsync",
+      "tokens": 50,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 23,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 25,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 24,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 23,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 23,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 23,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 23,
+          "tokens": 50,
+          "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
+          "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
+          "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
+          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
         }
       ],
       "predecessors": [],
@@ -22053,73 +22148,6 @@
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-      "method": "SaveAsync",
-      "tokens": 200,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 45,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 45,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 47,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 45,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 45,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 45,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "SaveAsync",
-          "line": 46,
-          "tokens": 200,
-          "hash": "C4943E830C96AB09E2D096A993DC5A5BE2E8D5583F8A94A0FBE6445922490596",
-          "shape": "0ED9402C81B0318EB11FF34C9C54805A6ED607DAE42DDC29037115CAE0036BAC"
         }
       ],
       "predecessors": [],
@@ -34135,7 +34163,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 78,
+          "line": 42,
           "tokens": 103,
           "hash": "AC565DFED9B4D2C63CD17D5D02860C5BF64C0AFD6D22DC7EFE4A6E710E31234E",
           "shape": "AF192544EDB149BEF565DC41AC25C89B360230C022802B09A31655FDE6E2D891"
@@ -34143,7 +34171,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 86,
+          "line": 50,
           "tokens": 103,
           "hash": "CB1873959BEB651298CD1990FDCC4DC81A6DBAE378565B2DC644C4C7FE21914B",
           "shape": "AF192544EDB149BEF565DC41AC25C89B360230C022802B09A31655FDE6E2D891"
@@ -34644,7 +34672,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 64,
           "hash": "396F7EFC5EAA02E5676DF64C4AE82B51922CA0495818213D61D9C1F1279A4791",
           "shape": "B8B73A6474C2C7A94596B1E3CFF6E8F8C46876C6CBAB61A8BB4E14ED23B3795B"
@@ -34652,7 +34680,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 83,
+          "line": 47,
           "tokens": 64,
           "hash": "7FE9B5D2D4882C58E41D951A90F3E32A68254AFF09C36F2C9E4D680622630CFC",
           "shape": "B8B73A6474C2C7A94596B1E3CFF6E8F8C46876C6CBAB61A8BB4E14ED23B3795B"
@@ -34941,7 +34969,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 79,
+          "line": 43,
           "tokens": 73,
           "hash": "AB42B24703FEDEDFE2D217747166A7F5026EEF7827A510175E1A553ADA63E0CE",
           "shape": "BC2CFA6AA360E4245E641002E8247BDE86DB61F12A8ABE0F64AE19DE22276659"
@@ -34949,7 +34977,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 86,
+          "line": 50,
           "tokens": 73,
           "hash": "4D92695DE48AE2BB061F8AC99006DA7124D763DC8AEC4B4BA8A160FE58FF4B60",
           "shape": "BC2CFA6AA360E4245E641002E8247BDE86DB61F12A8ABE0F64AE19DE22276659"
@@ -37125,7 +37153,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37133,7 +37161,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37141,7 +37169,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37149,7 +37177,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37157,7 +37185,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37165,7 +37193,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37173,7 +37201,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 77,
+          "line": 41,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37181,7 +37209,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 82,
+          "line": 46,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
