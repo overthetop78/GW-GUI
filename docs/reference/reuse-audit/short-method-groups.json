@@ -1,20 +1,27 @@
 {
-  "snapshot": "ddbef93f7d003704b6ea5ffce04fcd20e7f71497",
+  "snapshot": "0e7caa0a5f68c656e24b8f6d2c974ee628cecf2c",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
@@ -22,7 +29,7 @@
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7292,
-  "methodBodyCount": 9647,
+  "methodBodyCount": 9655,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -474,59 +481,17 @@
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 46,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 58,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 51,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
@@ -537,35 +502,77 @@
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 46,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 52,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 48,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 46,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 46,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -16261,6 +16268,112 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+      "tokens": 25,
+      "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 36,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(Guid id)",
+          "tokens": 25,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . DeleteDirectoryIfExists ( Path . Combine ( _directory , id . ToString ( ConfigurationStoreConstants . MachineIdentifierFormat ) ) , ConfigurationStoreConstants . RecursiveDirectoryDelete )",
+          "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
+          "shape": "F2040488FCE476160285A6915377C3A0785566E77924D6F3A47C033475CC3D6C",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "2FFC41CA8A899037E3325481C8BE41CD42D96932DDE941CCE58EC39131373987",
@@ -42366,224 +42479,224 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+          "qualificationSourceSha256": "22B5694B5EA181CE484A739E3187ACE9CC92BFA8EFF7A49BC48F913B308B5F9C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+          "qualificationSourceSha256": "3897995AA2F7367DF3EBDD64C5307C2D5034FF3808FE7C5168836987C83A22AC"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+          "qualificationSourceSha256": "4B8F6548C96A205E4A28A3CCA0F242AA448E3FFD32FF011929AC02D31441E5A8"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+          "qualificationSourceSha256": "1A2510B3A53D25D5BB52A6AF3DB633BCFC09DEC0B627C70D0025EB686E08105D"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+          "qualificationSourceSha256": "ACBD65FE4908321FF8244F03A5197C57B982E2A33DFA92DE846F21E23D1B6087"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+          "qualificationSourceSha256": "BC14FB379EFCBE9C252E749CF87AB30FE7943FE442333AD7FE3320FCCDD3FE01"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+          "qualificationSourceSha256": "FC029793363267D0ACACC98F989199FE11D792890FA5C9F066EB0E294B781A7E"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+          "qualificationSourceSha256": "9E5CAF87E05A4037BB86766ADAA1F4CD9FF7208796B7F7FB4570FAE314080897"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+          "qualificationSourceSha256": "583EC9F284A06BF427A1081DD09EA430333229DF6EDD09C8C78C5DDF7F632B83"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+          "qualificationSourceSha256": "D52B896E6B5AE83D9A46755661A44C2FF12144008731B4DA0B3925639F2B6029"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+          "qualificationSourceSha256": "E744B027EE42F8D5514BE88F7194DD637CA7DF949BE9552D725234549D66FFCC"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+          "qualificationSourceSha256": "6D74879013460E668D9E7E13DB9D96684D3E0D370D472D69D212B812CAF4236E"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+          "qualificationSourceSha256": "F2FA56E58461698A50245DA9E60F8696919525C084AF92389687D61716492C18"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+          "qualificationSourceSha256": "1EB7133E934DFB69AA4A7988B553344F839B7ECCF8BBD2B9B9C6B97A15595471"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+          "qualificationSourceSha256": "3458330700C8CB9240A84A028B8B24B3E7FDBD6CB37FECF73892A33F73561740"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+          "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -49030,59 +49143,17 @@
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 49,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 61,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 60,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
@@ -49093,35 +49164,77 @@
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 55,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 51,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 49,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 49,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -92645,14 +92758,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+          "qualificationSourceSha256": "22B5694B5EA181CE484A739E3187ACE9CC92BFA8EFF7A49BC48F913B308B5F9C"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -92780,14 +92893,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+          "qualificationSourceSha256": "3897995AA2F7367DF3EBDD64C5307C2D5034FF3808FE7C5168836987C83A22AC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -92807,14 +92920,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 42,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+          "qualificationSourceSha256": "4B8F6548C96A205E4A28A3CCA0F242AA448E3FFD32FF011929AC02D31441E5A8"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Host.cs",
@@ -92930,14 +93043,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+          "qualificationSourceSha256": "1A2510B3A53D25D5BB52A6AF3DB633BCFC09DEC0B627C70D0025EB686E08105D"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93005,14 +93118,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+          "qualificationSourceSha256": "ACBD65FE4908321FF8244F03A5197C57B982E2A33DFA92DE846F21E23D1B6087"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93140,14 +93253,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+          "qualificationSourceSha256": "BC14FB379EFCBE9C252E749CF87AB30FE7943FE442333AD7FE3320FCCDD3FE01"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93215,14 +93328,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+          "qualificationSourceSha256": "FC029793363267D0ACACC98F989199FE11D792890FA5C9F066EB0E294B781A7E"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93290,14 +93403,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+          "qualificationSourceSha256": "9E5CAF87E05A4037BB86766ADAA1F4CD9FF7208796B7F7FB4570FAE314080897"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93545,14 +93658,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+          "qualificationSourceSha256": "583EC9F284A06BF427A1081DD09EA430333229DF6EDD09C8C78C5DDF7F632B83"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs",
@@ -93607,14 +93720,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 43,
+          "line": 41,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+          "qualificationSourceSha256": "D52B896E6B5AE83D9A46755661A44C2FF12144008731B4DA0B3925639F2B6029"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93742,14 +93855,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+          "qualificationSourceSha256": "E744B027EE42F8D5514BE88F7194DD637CA7DF949BE9552D725234549D66FFCC"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93817,14 +93930,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+          "qualificationSourceSha256": "6D74879013460E668D9E7E13DB9D96684D3E0D370D472D69D212B812CAF4236E"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -93892,14 +94005,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 41,
+          "line": 40,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+          "qualificationSourceSha256": "F2FA56E58461698A50245DA9E60F8696919525C084AF92389687D61716492C18"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
@@ -94147,14 +94260,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+          "qualificationSourceSha256": "1EB7133E934DFB69AA4A7988B553344F839B7ECCF8BBD2B9B9C6B97A15595471"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs",
@@ -94209,14 +94322,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+          "qualificationSourceSha256": "3458330700C8CB9240A84A028B8B24B3E7FDBD6CB37FECF73892A33F73561740"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs",
@@ -94271,14 +94384,14 @@
           "name": "ConfigurationPaths",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 44,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . EnumerateDocumentPaths ( _directory , ConfigurationStoreConstants . MachineFileName )",
           "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
           "qualification": "Typed module filename adapter to original Amiga directory selector; identical expansion, timing and bindings verified in configurationEnumerationReuse",
-          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+          "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
         },
         {
           "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
@@ -95561,115 +95674,31 @@
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 46,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 49,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 58,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 61,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 51,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "owner": "ConfigurationStore",
-          "kind": "MethodDeclaration",
-          "line": 60,
-          "parameters": "(string? path)",
-          "tokens": 18,
-          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
-          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
-          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
-          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
@@ -95680,10 +95709,10 @@
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
         },
         {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
@@ -95694,63 +95723,147 @@
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
         },
         {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 46,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
         },
         {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 49,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "StorePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 51,
+          "line": 52,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePath",
           "owner": "ConfigurationStore",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 55,
           "parameters": "(string? path)",
           "tokens": 18,
           "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
           "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
           "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
           "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 48,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 51,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 46,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "name": "StorePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 46,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . StorePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "name": "ResolvePath",
+          "owner": "ConfigurationStore",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(string? path)",
+          "tokens": 18,
+          "bodyTokens": "=> ConfigurationFileAccessFunctions . ResolvePath ( string . IsNullOrWhiteSpace ( path ) ? null : path , _pathBase )",
+          "hash": "9F7D87ECED7EB8CEDC62F8858B441ECBC5F281AE2FEB8EF12CFFC3259A13B266",
+          "shape": "4D4F85EFC2B87D3A0C9953010122A043BFAD12352D1550E50653A44345BE608E",
+          "qualification": "Historical blank-to-null projection over original Atari SDK path functions; verified in legacyConfigurationPathReuse",
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -137891,7 +138004,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 538,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 510
   }
 }

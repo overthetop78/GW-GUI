@@ -106,6 +106,11 @@ public static class ConfigurationFileAccessFunctions
         finally { DeleteIfExists(temporary); }
     }
 
+    internal static void DeleteDirectoryIfExists(string path, bool recursive)
+    {
+        if (Directory.Exists(path)) Directory.Delete(path, recursive);
+    }
+
     internal static void DeleteIfExists(string path)
     {
         if (File.Exists(path)) File.Delete(path);

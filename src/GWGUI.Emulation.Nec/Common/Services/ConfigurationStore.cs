@@ -33,12 +33,7 @@ public sealed class ConfigurationStore
             static value => value.EnsureId() with { SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion },
             static value => value.Id, StorePaths, JsonOptions, cancellationToken);
 
-    public void Delete(Guid id)
-    {
-        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-        if (Directory.Exists(target))
-            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);
-    }
+    public void Delete(Guid id) => ConfigurationFileAccessFunctions.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with
     {

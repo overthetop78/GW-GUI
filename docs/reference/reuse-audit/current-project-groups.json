@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7292,
   "outsideSrcCSharpFiles": 308,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11655,
+  "currentMethodCount": 11648,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -566,7 +566,7 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+          "qualificationSourceSha256": "4B8F6548C96A205E4A28A3CCA0F242AA448E3FFD32FF011929AC02D31441E5A8"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -576,7 +576,7 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+          "qualificationSourceSha256": "22B5694B5EA181CE484A739E3187ACE9CC92BFA8EFF7A49BC48F913B308B5F9C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
@@ -586,7 +586,7 @@
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+          "qualificationSourceSha256": "3897995AA2F7367DF3EBDD64C5307C2D5034FF3808FE7C5168836987C83A22AC"
         }
       ],
       "predecessors": [],
@@ -873,73 +873,6 @@
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
           "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-      "method": "Delete",
-      "tokens": 41,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 36,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 41,
-          "hash": "071ECF2E96E2D4A49936961DBEABFABF4130CC636CAFE43EF9E30C17B4F925E7",
-          "shape": "F2965E312609A584CACBAB8F8703AEFCBF36DF2F8DB7D4B8911A7B944A2DCDEC"
         }
       ],
       "predecessors": [],
@@ -1265,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2308,6 +2241,177 @@
     },
     {
       "language": "CSharp",
+      "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+      "method": "Delete",
+      "tokens": 45,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 38,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "583EC9F284A06BF427A1081DD09EA430333229DF6EDD09C8C78C5DDF7F632B83"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 38,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "3897995AA2F7367DF3EBDD64C5307C2D5034FF3808FE7C5168836987C83A22AC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "FC029793363267D0ACACC98F989199FE11D792890FA5C9F066EB0E294B781A7E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "F2FA56E58461698A50245DA9E60F8696919525C084AF92389687D61716492C18"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 38,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "3458330700C8CB9240A84A028B8B24B3E7FDBD6CB37FECF73892A33F73561740"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "D52B896E6B5AE83D9A46755661A44C2FF12144008731B4DA0B3925639F2B6029"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "BC14FB379EFCBE9C252E749CF87AB30FE7943FE442333AD7FE3320FCCDD3FE01"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 38,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "1EB7133E934DFB69AA4A7988B553344F839B7ECCF8BBD2B9B9C6B97A15595471"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "6D74879013460E668D9E7E13DB9D96684D3E0D370D472D69D212B812CAF4236E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "22B5694B5EA181CE484A739E3187ACE9CC92BFA8EFF7A49BC48F913B308B5F9C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "E744B027EE42F8D5514BE88F7194DD637CA7DF949BE9552D725234549D66FFCC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "9E5CAF87E05A4037BB86766ADAA1F4CD9FF7208796B7F7FB4570FAE314080897"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "ACBD65FE4908321FF8244F03A5197C57B982E2A33DFA92DE846F21E23D1B6087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 34,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "4B8F6548C96A205E4A28A3CCA0F242AA448E3FFD32FF011929AC02D31441E5A8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "Delete",
+          "line": 35,
+          "tokens": 45,
+          "hash": "15A239EB421ACD3AB7CF71DFD0515DC79978763B5753E1290DD5E2CEE5FDE629",
+          "shape": "C2279BDBB0553896F252B994255D103E653EF8E5DAC33A1990043E733A09C07E",
+          "qualification": "Typed configuration deletion adapter to original Amiga existence/delete control; native guards, path projection, recursion and bindings verified in configurationDeletionReuse",
+          "qualificationSourceSha256": "1A2510B3A53D25D5BB52A6AF3DB633BCFC09DEC0B627C70D0025EB686E08105D"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
+      "language": "CSharp",
       "hash": "160D5B488248ABC78A924C933BF8DB30CA6408944DB7107D962CC37FE17D8710",
       "method": "HandleLog",
       "tokens": 46,
@@ -2560,7 +2664,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2568,7 +2672,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2576,7 +2680,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2584,7 +2688,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -2833,7 +2937,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+          "qualificationSourceSha256": "1A2510B3A53D25D5BB52A6AF3DB633BCFC09DEC0B627C70D0025EB686E08105D"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
@@ -2843,7 +2947,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+          "qualificationSourceSha256": "BC14FB379EFCBE9C252E749CF87AB30FE7943FE442333AD7FE3320FCCDD3FE01"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
@@ -2853,7 +2957,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+          "qualificationSourceSha256": "1EB7133E934DFB69AA4A7988B553344F839B7ECCF8BBD2B9B9C6B97A15595471"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
@@ -2863,7 +2967,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+          "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
@@ -2873,7 +2977,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+          "qualificationSourceSha256": "D52B896E6B5AE83D9A46755661A44C2FF12144008731B4DA0B3925639F2B6029"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
@@ -2883,7 +2987,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+          "qualificationSourceSha256": "ACBD65FE4908321FF8244F03A5197C57B982E2A33DFA92DE846F21E23D1B6087"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
@@ -2893,7 +2997,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+          "qualificationSourceSha256": "583EC9F284A06BF427A1081DD09EA430333229DF6EDD09C8C78C5DDF7F632B83"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
@@ -2903,7 +3007,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+          "qualificationSourceSha256": "9E5CAF87E05A4037BB86766ADAA1F4CD9FF7208796B7F7FB4570FAE314080897"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
@@ -2913,7 +3017,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+          "qualificationSourceSha256": "3458330700C8CB9240A84A028B8B24B3E7FDBD6CB37FECF73892A33F73561740"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
@@ -2923,7 +3027,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+          "qualificationSourceSha256": "FC029793363267D0ACACC98F989199FE11D792890FA5C9F066EB0E294B781A7E"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
@@ -2933,7 +3037,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+          "qualificationSourceSha256": "F2FA56E58461698A50245DA9E60F8696919525C084AF92389687D61716492C18"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
@@ -2943,7 +3047,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+          "qualificationSourceSha256": "6D74879013460E668D9E7E13DB9D96684D3E0D370D472D69D212B812CAF4236E"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
@@ -2953,7 +3057,7 @@
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+          "qualificationSourceSha256": "E744B027EE42F8D5514BE88F7194DD637CA7DF949BE9552D725234549D66FFCC"
         }
       ],
       "predecessors": [],
@@ -14801,145 +14905,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-      "method": "Delete",
-      "tokens": 59,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 38,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 38,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 38,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 34,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 38,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
-          "name": "Delete",
-          "line": 35,
-          "tokens": 59,
-          "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
-          "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "88125B95F3EE8CF9D8AFB5D4001889C256CB4192E30F16E85EAF7288647902CC",
       "method": "SaveInputSettingsAsync",
       "tokens": 32,
@@ -18438,7 +18403,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -19551,7 +19516,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "73BE3F1E1ED3BC2F27040F0319BAB0F8B8AB7D51230B7100F1201E7E7DDBED7F"
+          "qualificationSourceSha256": "583EC9F284A06BF427A1081DD09EA430333229DF6EDD09C8C78C5DDF7F632B83"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
@@ -19561,7 +19526,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "EAF75FB90DC82B7811D984D0425D193388CFF442A5ACE45D3EBA30C9A5E385D7"
+          "qualificationSourceSha256": "6D74879013460E668D9E7E13DB9D96684D3E0D370D472D69D212B812CAF4236E"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
@@ -19571,7 +19536,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "D96E7F72208FAA4893FBD6CEAC4FD7230C41FC3A466C30C19706BDE77307E214"
+          "qualificationSourceSha256": "3458330700C8CB9240A84A028B8B24B3E7FDBD6CB37FECF73892A33F73561740"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
@@ -19581,7 +19546,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "B64F63B2724EA554415D8DCF0D9609DEBFF0B2D827279EA6D880D1F363D18EFE"
+          "qualificationSourceSha256": "ACBD65FE4908321FF8244F03A5197C57B982E2A33DFA92DE846F21E23D1B6087"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -19591,7 +19556,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "E7F488C3BDC4F50D89D40042B5E0F5FEF084D1B63F1702CC9BC1B6B363E498D9"
+          "qualificationSourceSha256": "22B5694B5EA181CE484A739E3187ACE9CC92BFA8EFF7A49BC48F913B308B5F9C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
@@ -19601,7 +19566,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "05FD631B8F45114BE739C7E3DFD3EFA2E9EFE5BCB260D11470EE72E85AB88612"
+          "qualificationSourceSha256": "3897995AA2F7367DF3EBDD64C5307C2D5034FF3808FE7C5168836987C83A22AC"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
@@ -19611,7 +19576,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "26B18C4970080954F03B0C7457478550A8B45FE071607B0A91C707A454631D31"
+          "qualificationSourceSha256": "4B8F6548C96A205E4A28A3CCA0F242AA448E3FFD32FF011929AC02D31441E5A8"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
@@ -19621,7 +19586,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "D9D0D16C24C221D740E5C0A1488DFEAD1F081B381BEDE0BEAB5FA3F3557CAC39"
+          "qualificationSourceSha256": "1EB7133E934DFB69AA4A7988B553344F839B7ECCF8BBD2B9B9C6B97A15595471"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
@@ -19631,7 +19596,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "158B5059046D8BC8388B2A9E534A9F2460AE6C284ACAF7F62DD812EB7C820E69"
+          "qualificationSourceSha256": "E744B027EE42F8D5514BE88F7194DD637CA7DF949BE9552D725234549D66FFCC"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
@@ -19641,7 +19606,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "F2A48BE6F15409F02B8EE5C54751C5392EA57788D850D8374A0CD05A88EEF82C"
+          "qualificationSourceSha256": "1A2510B3A53D25D5BB52A6AF3DB633BCFC09DEC0B627C70D0025EB686E08105D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
@@ -19651,7 +19616,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "75FBC92B3C86E2AC74E3D11CCE1BE661EDEFFBFF2AD038176348F6AB05B94B7D"
+          "qualificationSourceSha256": "9E5CAF87E05A4037BB86766ADAA1F4CD9FF7208796B7F7FB4570FAE314080897"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
@@ -19661,7 +19626,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "9E8A988B769FF89CAE90C36AFACCFEF9D955269E26B475445B723F357DDECC27"
+          "qualificationSourceSha256": "FC029793363267D0ACACC98F989199FE11D792890FA5C9F066EB0E294B781A7E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
@@ -19671,7 +19636,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "D009EC4CD629E7BC6205797D81441BBB8FF03728C5C1CF390DCF353DAC9B6550"
+          "qualificationSourceSha256": "D52B896E6B5AE83D9A46755661A44C2FF12144008731B4DA0B3925639F2B6029"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
@@ -19681,7 +19646,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "2EF6913BB0BD062DB61A06856D0762432D751645662D83C39108542D563BB7FC"
+          "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
@@ -19691,7 +19656,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "B9FB46DA70B1AA1B97D37A7B83E32E4E1E3D7AD46DEC4302D08C4D99557C62DF"
+          "qualificationSourceSha256": "BC14FB379EFCBE9C252E749CF87AB30FE7943FE442333AD7FE3320FCCDD3FE01"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
@@ -19701,7 +19666,7 @@
           "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
           "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
           "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
-          "qualificationSourceSha256": "5E5B38F86CEAD927DA09CD7F0254E25EA70472713A485227FEA8D6E2B85DB555"
+          "qualificationSourceSha256": "F2FA56E58461698A50245DA9E60F8696919525C084AF92389687D61716492C18"
         }
       ],
       "predecessors": [],
@@ -20029,7 +19994,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20126,7 +20091,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20134,7 +20099,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20142,7 +20107,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -20150,7 +20115,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -21236,7 +21201,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
@@ -21246,7 +21211,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
@@ -21256,7 +21221,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
@@ -21266,7 +21231,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
@@ -21276,7 +21241,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
@@ -21286,7 +21251,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
@@ -21296,7 +21261,7 @@
           "hash": "BD5221300D0A5838C17DE02671A3231E5DFB2C4519CA030705DA6EF35872DE8A",
           "shape": "F9D3FB9B4E1BBB8AAD3D86FBF2768389F1477D0EAB3A9599230CDC109BB1AD72",
           "qualification": "Typed normalize/id/path projection over original Amiga gated writer; ordering, API targets and failure cleanup verified in legacyConfigurationSaveReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
         }
       ],
       "predecessors": [],
@@ -21352,7 +21317,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "4FA0F379142A5B4634FC2466FC59028EB2C5C5CA4E0AB6EA10C122ED0F714126"
+          "qualificationSourceSha256": "0C48250AEC2166DF39CE29CDAD33DE1EBE84AB68CD4550662F9AC77491DB7CF0"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
@@ -21362,7 +21327,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "0A30620125C2682BAB36CD6570905D5BCEB853E7CAD077F106597D4BFF12D35C"
+          "qualificationSourceSha256": "80028D76E33BE7D4A78C6763C7305317583611D5363E74A2114BD06FAD728FB5"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
@@ -21372,7 +21337,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "6F63E27179C3BA48DE00840C4829F8CD181C43B9EDE134B2796DAECD264959CB"
+          "qualificationSourceSha256": "9A396A7FBC77DF57B1E8A652C624DAB8A5A7DA6D37C72F5D9297B5A70C8E583F"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
@@ -21382,7 +21347,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "B58360E5E9B3DEEDCAE3518C1C1BD05205C988699BC38BAFB7F986EE4CED41A6"
+          "qualificationSourceSha256": "02DCE2E6D2A4847D4288A059FCAC1E3F4304BC3FEF1327AC591B26B94C9D2793"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
@@ -21392,7 +21357,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "7CB445903B6663FA26A172F3A726A06035115BDFB2E8CD3CBC7F870DF3EDA946"
+          "qualificationSourceSha256": "FE0D2E18B94D4A2C85D7549095684B68760ABAC50ACCA163697A2E9CC58BF770"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
@@ -21402,7 +21367,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "3AF91C5BE8354EC24AF551020999E1DB39BC698936F859C9F6EEED2AC4E783DC"
+          "qualificationSourceSha256": "1B18ECD3C3DBFC09DE8E3D8B87529374928C0B67FE0CAE8E72D0480156C94D08"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
@@ -21412,7 +21377,7 @@
           "hash": "BDF0DEC0CF5DFD8DFA160586201E289DF796366A754F9D39364D2B66989E94FB",
           "shape": "E2E07D0C48A54B512AA9EA8BECC95978AEB571891C835E40E80FCBF9FC97F43B",
           "qualification": "Typed parser/schema/EnsureId/path projection over original Amiga read control; synchronous exceptions and source operations verified in legacyConfigurationLoadReuse",
-          "qualificationSourceSha256": "5063C56DFC3ECD798AF608483B5443E077E92C8C49279F15ABD61AA37603E14F"
+          "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
       "predecessors": [],
@@ -34068,7 +34033,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 42,
+          "line": 37,
           "tokens": 103,
           "hash": "AC565DFED9B4D2C63CD17D5D02860C5BF64C0AFD6D22DC7EFE4A6E710E31234E",
           "shape": "AF192544EDB149BEF565DC41AC25C89B360230C022802B09A31655FDE6E2D891"
@@ -34076,7 +34041,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 50,
+          "line": 45,
           "tokens": 103,
           "hash": "CB1873959BEB651298CD1990FDCC4DC81A6DBAE378565B2DC644C4C7FE21914B",
           "shape": "AF192544EDB149BEF565DC41AC25C89B360230C022802B09A31655FDE6E2D891"
@@ -34577,7 +34542,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 64,
           "hash": "396F7EFC5EAA02E5676DF64C4AE82B51922CA0495818213D61D9C1F1279A4791",
           "shape": "B8B73A6474C2C7A94596B1E3CFF6E8F8C46876C6CBAB61A8BB4E14ED23B3795B"
@@ -34585,7 +34550,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 47,
+          "line": 42,
           "tokens": 64,
           "hash": "7FE9B5D2D4882C58E41D951A90F3E32A68254AFF09C36F2C9E4D680622630CFC",
           "shape": "B8B73A6474C2C7A94596B1E3CFF6E8F8C46876C6CBAB61A8BB4E14ED23B3795B"
@@ -34874,7 +34839,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 43,
+          "line": 38,
           "tokens": 73,
           "hash": "AB42B24703FEDEDFE2D217747166A7F5026EEF7827A510175E1A553ADA63E0CE",
           "shape": "BC2CFA6AA360E4245E641002E8247BDE86DB61F12A8ABE0F64AE19DE22276659"
@@ -34882,7 +34847,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 50,
+          "line": 45,
           "tokens": 73,
           "hash": "4D92695DE48AE2BB061F8AC99006DA7124D763DC8AEC4B4BA8A160FE58FF4B60",
           "shape": "BC2CFA6AA360E4245E641002E8247BDE86DB61F12A8ABE0F64AE19DE22276659"
@@ -37058,7 +37023,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37066,7 +37031,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37074,7 +37039,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37082,7 +37047,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37090,7 +37055,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37098,7 +37063,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37106,7 +37071,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "StorePaths",
-          "line": 41,
+          "line": 36,
           "tokens": 34,
           "hash": "B07AE5C1C353C91F17F9F9747679284C8F25DB70D1BADC75C0EC6B78F4B568BF",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37114,7 +37079,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
           "name": "ResolvePaths",
-          "line": 46,
+          "line": 41,
           "tokens": 34,
           "hash": "177C4FFA9C214B0EF45513646E39E121CCB65ACFE6D880CD5EADEA79A44E2608",
           "shape": "FAAFA17F9398DBF267F28B198EE9A9479587919A956F9010D3948F3115B4B4A9"
@@ -37503,7 +37468,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 182,
+    "occurrences": 168,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

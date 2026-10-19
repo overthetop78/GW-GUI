@@ -38,8 +38,7 @@ public sealed class ConfigurationStore
     public void Delete(Guid id)
     {
         if (id == Guid.Empty) throw new ArgumentException(nameof(id));
-        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);
+        ConfigurationFileAccessFunctions.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
 
     private IEnumerable<string> ConfigurationPaths() => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);
