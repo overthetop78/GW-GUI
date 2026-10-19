@@ -47,8 +47,7 @@ public static class CoreHost
                                 writer.Write(true);
                                 EmulationHostProtocolFunctions.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
                                     writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator);
-                                writer.Write(core.DiskCount);
-                                writer.Write(core.CurrentDiskIndex);
+                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                                 break;
                             case HostCommand.RunFrame:
@@ -56,23 +55,11 @@ public static class CoreHost
                                 EmulationHostProtocolFunctions.RunCoreFrame<IEmulatorCore, MachineConfiguration, CoreOption>(
                                     reader, writer, activeCore, CoreHostProtocol.ReadInput,
                                     (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
-                                    static (statusWriter, frameCore) =>
-                                    {
-                                        statusWriter.Write(frameCore.DiskCount);
-                                        statusWriter.Write(frameCore.CurrentDiskIndex);
-                                    }, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
                                 break;
                             case HostCommand.SoftReset:
                                 EnsureCore(core).SoftReset();
-                                WriteSuccess(writer);
-                                break;
-                            case HostCommand.InsertMedia:
-                                EnsureCore(core).InsertMedia(reader.ReadString());
-                                WriteSuccess(writer);
-                                break;
-                            case HostCommand.EjectMedia:
-                                EnsureCore(core).EjectMedia();
                                 WriteSuccess(writer);
                                 break;
                             case HostCommand.Dispose:
@@ -80,7 +67,7 @@ public static class CoreHost
                                 WriteSuccess(writer);
                                 break;
                             default:
-                                if (!EmulationHostProtocolFunctions.TryExecuteCoreStateCommand((byte)command, reader, writer,
+                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,
                                         () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
                                     throw new InvalidDataException(CommonExceptions.UnknownHostCommand((byte)command));
                                 break;

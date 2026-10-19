@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7293,
+  "currentCSharpFiles": 7294,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11654,
+  "currentMethodCount": 11663,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -16024,6 +16024,49 @@
     },
     {
       "language": "CSharp",
+      "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+      "method": "RunSession",
+      "tokens": 444,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+          "name": "RunSession",
+          "line": 28,
+          "tokens": 444,
+          "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+          "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+          "name": "RunSession",
+          "line": 28,
+          "tokens": 444,
+          "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+          "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "91542207321A8287B4E9060EA27C385DAD11BE031F7A7E3B3C4EAB4D9ED4BC88",
       "method": "CopyVersionTwoDefinitions",
       "tokens": 65,
@@ -18433,7 +18476,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18743,7 +18786,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -20024,7 +20067,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23414,45 +23457,6 @@
           "tokens": 34,
           "hash": "D01319D5F92320CEC44A0B22741DC0289158859CA5880207A876762D20A3B27A",
           "shape": "2A7BC55C8B401BAD7A69098F30FB1B01B4A3864BD3163DF5DF6470C0334555AB"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "D0846E98A92DCC03E0023FD66576A268CB01F30429A736EC5C83817DCE9C181D",
-      "method": "RunSession",
-      "tokens": 524,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
-          "name": "RunSession",
-          "line": 28,
-          "tokens": 524,
-          "hash": "D0846E98A92DCC03E0023FD66576A268CB01F30429A736EC5C83817DCE9C181D",
-          "shape": "B7BBD5006A52E37826D5781DEDA9B0B781E3E0919591A809DE5F41D6E6A7E72C",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "909DE100D75E0C2E5148F9D17B8722794002FB6630ECC5F684EAE2A4179C92EB",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "909DE100D75E0C2E5148F9D17B8722794002FB6630ECC5F684EAE2A4179C92EB",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "909DE100D75E0C2E5148F9D17B8722794002FB6630ECC5F684EAE2A4179C92EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
-          "name": "RunSession",
-          "line": 28,
-          "tokens": 524,
-          "hash": "D0846E98A92DCC03E0023FD66576A268CB01F30429A736EC5C83817DCE9C181D",
-          "shape": "B7BBD5006A52E37826D5781DEDA9B0B781E3E0919591A809DE5F41D6E6A7E72C",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "A940F45168F905C347C6BAA92D6C6BB290E45A4A4BB79E59C87970551ABC67A7",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "A940F45168F905C347C6BAA92D6C6BB290E45A4A4BB79E59C87970551ABC67A7",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "A940F45168F905C347C6BAA92D6C6BB290E45A4A4BB79E59C87970551ABC67A7"
         }
       ],
       "predecessors": [],
@@ -26920,7 +26924,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27766,7 +27770,9 @@
           "line": 19,
           "tokens": 40,
           "hash": "F95FD04A01C0AF11C002FFA997FDE74E70A59EC4E169CAA262C92FA037080147",
-          "shape": "59C0B6C25698C4DE794952D1F8FB2F79824B1752B649D5511F1A860AA491E4E8"
+          "shape": "59C0B6C25698C4DE794952D1F8FB2F79824B1752B649D5511F1A860AA491E4E8",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
@@ -27774,7 +27780,9 @@
           "line": 19,
           "tokens": 40,
           "hash": "F95FD04A01C0AF11C002FFA997FDE74E70A59EC4E169CAA262C92FA037080147",
-          "shape": "59C0B6C25698C4DE794952D1F8FB2F79824B1752B649D5511F1A860AA491E4E8"
+          "shape": "59C0B6C25698C4DE794952D1F8FB2F79824B1752B649D5511F1A860AA491E4E8",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433"
         }
       ],
       "predecessors": [],
@@ -28752,6 +28760,29 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "08ACAAED3B19BDB5AC79B416147AF782AD44EB98C8CDAA383D37A4A6C3BB9938",
+      "tokens": 112,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
+          "name": "MissingCoreFailsBeforeReadingAnyArgument",
+          "line": 84,
+          "tokens": 112,
+          "hash": "AA38D1EDA9FCB956B2335BF45BA929E0A2ABCEF9953DA40B011AD4445F9A2F6C",
+          "shape": "08ACAAED3B19BDB5AC79B416147AF782AD44EB98C8CDAA383D37A4A6C3BB9938"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
+          "name": "PathMediaMissingCoreDoesNotReadPayloadOrAcknowledge",
+          "line": 167,
+          "tokens": 112,
+          "hash": "AB4F83BDBDFB390C87B8D09B68682576AE2F83D85952DD96D067BEEB10021DDD",
+          "shape": "08ACAAED3B19BDB5AC79B416147AF782AD44EB98C8CDAA383D37A4A6C3BB9938"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "097AD644589DE39BE47165A3FD7FF2594A48D84DAAB3570C62F4F2DAE537DA70",
       "tokens": 54,
       "current": [
@@ -29191,6 +29222,45 @@
           "tokens": 66,
           "hash": "3DEF9A50FECB44749A4F960E1CEC8C9C3B0ED4F393F4E4F632EFE00D4F5DF0C8",
           "shape": "12A5ADB57F117FF7472F1EE3949A57028F8DF2E2B4D2F8A941A83B2190423A10"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
+      "tokens": 494,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 18,
+          "tokens": 494,
+          "hash": "50B794B95FE96160C8B71CBD465CA710EBD9D37F5EE590DC79F4D729B7216D83",
+          "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 18,
+          "tokens": 494,
+          "hash": "7EAB0A67FBAD57CD7CA3FDE66B47911E0540D6DA64F6C32E47A8E34AB2039698",
+          "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -34326,6 +34396,29 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "B5FD28A1CCA74013479862FA59ED382EDF0E12DBF4D549B4DBE5389775F1D652",
+      "tokens": 94,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
+          "name": "CommandsOwnedByTheHostDoNotAcquireACoreOrReadArguments",
+          "line": 66,
+          "tokens": 94,
+          "hash": "D006884B2EE0D3067B508C844AAB029EAEDB39736799D452140EB2D9C1C916F5",
+          "shape": "B5FD28A1CCA74013479862FA59ED382EDF0E12DBF4D549B4DBE5389775F1D652"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
+          "name": "PathMediaCommandsLeaveHostAndNativeOnlyCommandsUntouched",
+          "line": 146,
+          "tokens": 94,
+          "hash": "4F29A59F8D735AF28F6E1BEBE9EE2E5883846F287877DEA6CA7027A775005861",
+          "shape": "B5FD28A1CCA74013479862FA59ED382EDF0E12DBF4D549B4DBE5389775F1D652"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "B651BE6CFA66D24F78A3ED1D4C2BEF1650B9C5AD4CB2975E607B8FAF6C06E028",
       "tokens": 45,
       "current": [
@@ -35762,41 +35855,6 @@
           "tokens": 149,
           "hash": "E7CBEE0C5A5ABB6F3BC748033426CD29E77A08071360BF0C414FBB9F4CCE245D",
           "shape": "DB8DA50A6C7DB61A3D8D699A7FA6A805D9D21DA6BEAC5E3BE180EB2B52DCE820"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "DC78060D7E5D11BAC3580E0FC905880D19EFC45E836C34F9AADD29C8367D0731",
-      "tokens": 574,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
-          "name": "Run",
-          "line": 18,
-          "tokens": 574,
-          "hash": "802BBE27E24E8708F760F25867C075B8D7EBFF7B22A078C218931FB0BF3664BC",
-          "shape": "DC78060D7E5D11BAC3580E0FC905880D19EFC45E836C34F9AADD29C8367D0731",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "BA446DEE40A2FEED2B84EAE52EE37DC1C840239C654CAA7728ABC16B4089003E",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "BA446DEE40A2FEED2B84EAE52EE37DC1C840239C654CAA7728ABC16B4089003E",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "BA446DEE40A2FEED2B84EAE52EE37DC1C840239C654CAA7728ABC16B4089003E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
-          "name": "Run",
-          "line": 18,
-          "tokens": 574,
-          "hash": "F784C436DFD3D816925A072BFE953253E6A3C8FFE96CF7B4AEA1C89B4EE4279E",
-          "shape": "DC78060D7E5D11BAC3580E0FC905880D19EFC45E836C34F9AADD29C8367D0731",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "25A5354E357DCB82F07EA6021521E1227DB31DD009C03F750AFABA1AFBFCD4C6",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "25A5354E357DCB82F07EA6021521E1227DB31DD009C03F750AFABA1AFBFCD4C6",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "25A5354E357DCB82F07EA6021521E1227DB31DD009C03F750AFABA1AFBFCD4C6"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -37522,7 +37580,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 230,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 230
   }
 }

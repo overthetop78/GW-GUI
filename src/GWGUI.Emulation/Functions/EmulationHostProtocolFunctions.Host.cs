@@ -125,6 +125,30 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(core.SampleRate);
     }
 
+    internal static void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core)
+    {
+        writer.Write(core.DiskCount);
+        writer.Write(core.CurrentDiskIndex);
+    }
+
+    internal static bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
+        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
+        Action<BinaryWriter> writeSuccess)
+    {
+        switch (command)
+        {
+            case EmulationHostProtocolConstants.InsertMediaCommand:
+                ensureCore().InsertMedia(reader.ReadString());
+                break;
+            case EmulationHostProtocolConstants.EjectMediaCommand:
+                ensureCore().EjectMedia();
+                break;
+            default:
+                return TryExecuteCoreStateCommand(command, reader, writer, ensureCore, readBytes, writeSuccess);
+        }
+        writeSuccess(writer);
+        return true;
+    }
     internal static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreStateCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
         Action<BinaryWriter>? writeSuccess = null)
