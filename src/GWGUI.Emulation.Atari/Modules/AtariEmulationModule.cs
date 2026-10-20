@@ -81,15 +81,11 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (configuration is not MachineConfiguration atari)
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(atari.Options);
-        foreach (var value in values)
-        {
-            if (value.Key is SettingsConstants.AudioEnabled
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey => optionKey is SettingsConstants.AudioEnabled
                 or SettingsConstants.SystemFirmware or SettingsConstants.BasicFirmware
                 or SettingsConstants.XegsFirmware or SettingsConstants.HardDiskFolder
-                or SettingsConstants.CpuOriginalFrequency) continue;
-            if (value.Value is null) options.Remove(value.Key);
-            else options[value.Key] = value.Value;
-        }
+                or SettingsConstants.CpuOriginalFrequency);
         IReadOnlyList<FirmwareConfiguration> firmwares = atari.Firmwares;
         foreach (var fieldId in new[]
                  {

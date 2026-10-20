@@ -70,14 +70,10 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     {
         var amstrad = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(amstrad.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        foreach (var item in values)
-        {
-            if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey => optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(SettingsConstants.Model + ConfigurationStoreConstants.TemporaryNameSeparator, StringComparison.Ordinal)) continue;
-            if (item.Value is null) options.Remove(item.Key);
-            else options[item.Key] = item.Value;
-        }
+                or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ConfigurationStoreConstants.TemporaryNameSeparator, StringComparison.Ordinal));
         var audio = amstrad.Audio ?? new AudioConfiguration();
         return amstrad with
         {

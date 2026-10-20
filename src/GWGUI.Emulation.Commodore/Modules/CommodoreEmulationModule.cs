@@ -68,14 +68,10 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var slots = _engine.Adapter(current).GetFirmwareSlots(current);
         var firmwareFields = slots.Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>());
-        foreach (var value in values)
-        {
-            if (firmwareFields.Contains(value.Key) || value.Key is StorageDirectorySettings.HardDiskDirectory or MachineSettingsConstants.AudioEnabled
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey => firmwareFields.Contains(optionKey) || optionKey is StorageDirectorySettings.HardDiskDirectory or MachineSettingsConstants.AudioEnabled
                 or MachineSettingsConstants.AudioOutput
-                or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation) continue;
-            if (value.Value is null) options.Remove(value.Key);
-            else options[value.Key] = value.Value;
-        }
+                or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation);
         var currentAudio = current.Audio ?? new AudioConfiguration();
         var hasOutput = values.TryGetValue(MachineSettingsConstants.AudioOutput, out var output);
         var latency = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioLatency), out var latencyValue) ? latencyValue : currentAudio.LatencyMilliseconds;

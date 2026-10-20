@@ -7,6 +7,22 @@ namespace GWGUI.Emulation.Functions;
 
 public static partial class EmulationCoreOptionFunctions
 {
+    internal static HashSet<string> EditableFieldIds(IEnumerable<EmulationSettingsBlock> blocks) =>
+        blocks.SelectMany(block => block.Fields)
+            .Where(field => field.IsEnabled && field.IsVisible && field.Editor != EmulationSettingsEditor.Information)
+            .Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+
+    internal static void ApplyValues(IDictionary<string, string> options,
+        IReadOnlyDictionary<string, string?> values, Func<string, bool>? excluded = null)
+    {
+        foreach (var value in values)
+        {
+            if (excluded?.Invoke(value.Key) == true) continue;
+            if (value.Value is null) options.Remove(value.Key);
+            else options[value.Key] = value.Value;
+        }
+    }
+
     internal static Dictionary<string, string> FilterForEmulator(IEnumerable<string> allowedKeys,
         IReadOnlyDictionary<string, string> options, string audioOutputKey, string audioLatencyKey, string audioVolumeKey)
     {

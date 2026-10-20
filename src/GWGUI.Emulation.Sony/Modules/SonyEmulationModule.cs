@@ -83,14 +83,10 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         if (sony.Model == ModelConstants.Psp && string.IsNullOrWhiteSpace(options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0)))
             options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = _memoryStickDirectory;
-        foreach (var item in values)
-        {
-            if (firmwareFields.Contains(item.Key) || item.Key is SettingsConstants.Model or SettingsConstants.Emulator
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey => firmwareFields.Contains(optionKey) || optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
-            if (item.Value is null) options.Remove(item.Key);
-            else options[item.Key] = item.Value;
-        }
+                or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));
         var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
         (adapter as IEmulatorSettingsAdapter)?.ApplySettingsOptions(options, values);
         var updated = (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with

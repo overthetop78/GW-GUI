@@ -74,15 +74,15 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
     {
         var nintendo = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(nintendo.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        foreach (var item in values)
-        {
-            if (_engine.Adapter(nintendo).GetFirmwareSlots(nintendo).Any(slot => slot.FieldId == item.Key)) continue;
-            if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey =>
+            {
+                if (_engine.Adapter(nintendo).GetFirmwareSlots(nintendo).Any(slot => slot.FieldId == optionKey)) return true;
+                if (optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
-            if (item.Value is null) options.Remove(item.Key);
-            else options[item.Key] = item.Value;
-        }
+                or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) return true;
+                return false;
+            });
         var audio = nintendo.Audio ?? new AudioConfiguration();
         return FirmwareConfigurationFunctions.Apply(nintendo, values, _engine.Adapter(nintendo)) with
         {

@@ -47,17 +47,10 @@ public sealed class PanasonicEmulationModule : IEmulationModule, IEmulationEmula
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
-        var editable = SettingsDescriptionFunctions.Create(current).SelectMany(block => block.Fields).Where(field => field.IsEnabled && field.IsVisible && field.Editor != EmulationSettingsEditor.Information).Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        var editable = GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
-        foreach (var value in values)
-        {
-            if (!editable.Contains(value.Key) || value.Key == SettingsConstants.AudioEnabled || FirmwareFunctions.Requirements(current).Any(requirement => requirement.FieldId == value.Key))
-                continue;
-            if (value.Value is null)
-                options.Remove(value.Key);
-            else
-                options[value.Key] = value.Value;
-        }
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey => !editable.Contains(optionKey) || optionKey == SettingsConstants.AudioEnabled || FirmwareFunctions.Requirements(current).Any(requirement => requirement.FieldId == optionKey));
 
         var result = current with
         {

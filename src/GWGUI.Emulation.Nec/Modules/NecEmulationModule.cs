@@ -76,17 +76,17 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var necConfiguration = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(necConfiguration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         var firmwareSlots = FirmwareFunctions.Slots(necConfiguration.EmulatorId);
-        foreach (var item in values)
-        {
-            if (firmwareSlots.Any(slot => slot.FieldId == item.Key)) continue;
-            if (item.Key is StorageDirectorySettings.HardDiskDirectory or SettingsConstants.Model or SettingsConstants.Emulator
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+            optionKey =>
+            {
+                if (firmwareSlots.Any(slot => slot.FieldId == optionKey)) return true;
+                if (optionKey is StorageDirectorySettings.HardDiskDirectory or SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency or SettingsConstants.FirmwarePath
                 or SettingsConstants.Ram or SettingsConstants.FirmwareIntegrated
-                || item.Key.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
-            if (item.Value is null) options.Remove(item.Key);
-            else options[item.Key] = item.Value;
-        }
+                || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) return true;
+                return false;
+            });
         var audio = necConfiguration.Audio ?? new AudioConfiguration();
         return FirmwareFunctions.Apply(necConfiguration, values) with
         {

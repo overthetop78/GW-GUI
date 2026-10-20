@@ -79,11 +79,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
-        foreach (var value in values)
-        {
-            if (value.Value is null) options.Remove(value.Key);
-            else options[value.Key] = value.Value;
-        }
+        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values);
         return current with { Options = options };
     }
 
