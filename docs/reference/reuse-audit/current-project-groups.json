@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7235,
-  "outsideSrcCSharpFiles": 333,
+  "currentCSharpFiles": 7236,
+  "outsideSrcCSharpFiles": 334,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11478,
+  "currentMethodCount": 11485,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -482,33 +482,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "066073F582108BAD45813541CF825C6B7A6427B0AB433AF94B49B24138D94D79",
-      "method": "Apply",
-      "tokens": 240,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 14,
-          "tokens": 240,
-          "hash": "066073F582108BAD45813541CF825C6B7A6427B0AB433AF94B49B24138D94D79",
-          "shape": "C2C0F50E7165C9E7943F8690B35E89ADA0A009FAFDE1A01C2524D3BC98AE720C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 18,
-          "tokens": 240,
-          "hash": "066073F582108BAD45813541CF825C6B7A6427B0AB433AF94B49B24138D94D79",
-          "shape": "C2C0F50E7165C9E7943F8690B35E89ADA0A009FAFDE1A01C2524D3BC98AE720C"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
       "method": "Write",
       "tokens": 38,
@@ -802,7 +775,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3332,6 +3305,37 @@
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         }
       ],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "2147A0A114504C62F44CEC218BDF8FEA0580849AB6CF930B5E7D3CE85DEC28EE",
+      "method": "Apply",
+      "tokens": 131,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 14,
+          "tokens": 131,
+          "hash": "2147A0A114504C62F44CEC218BDF8FEA0580849AB6CF930B5E7D3CE85DEC28EE",
+          "shape": "CD6BE0581875CE0AB70114D30D1685DD6B95DAFE5C16D452189941AEC4C6E83D",
+          "qualificationStoragePredicates": "Only common slot and mounted-media checks shared from original Sharp; storageSettingsValidationReuse verifies full-file inverse, original predicates and local exceptions/policies. Remaining Apply dependencies and lifecycle not qualified.",
+          "qualificationStoragePredicatesSourceSha256": "E66FAC054024A7522DCA23798A4E4A007CBEFF1F7412AC432B3CF920DA66A594"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 18,
+          "tokens": 131,
+          "hash": "2147A0A114504C62F44CEC218BDF8FEA0580849AB6CF930B5E7D3CE85DEC28EE",
+          "shape": "CD6BE0581875CE0AB70114D30D1685DD6B95DAFE5C16D452189941AEC4C6E83D",
+          "qualificationStoragePredicates": "Only common slot and mounted-media checks shared from original Sharp; storageSettingsValidationReuse verifies full-file inverse, original predicates and local exceptions/policies. Remaining Apply dependencies and lifecycle not qualified.",
+          "qualificationStoragePredicatesSourceSha256": "FB05F1A428E9F4C21F8A7F01AF72B4D3A231D3E44B873D7E2C5E5BBE1E32554A"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -17225,7 +17229,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -17518,7 +17522,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -18818,7 +18822,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27134,29 +27138,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "3FA445AF542EBDE77D9E6C0B467DB5BBEDFCEF80D6E45AF29BE76681DE15926A",
-      "tokens": 248,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 14,
-          "tokens": 248,
-          "hash": "01DE5B4FCDD6D0A04232463BDDC50BD7D96364A8C63D066EEA7F3DF2D64631B5",
-          "shape": "3FA445AF542EBDE77D9E6C0B467DB5BBEDFCEF80D6E45AF29BE76681DE15926A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 14,
-          "tokens": 248,
-          "hash": "585BD8690C97D233979E2B508E4F0F43BFF493F1B457C17641BC1771A94A7F30",
-          "shape": "3FA445AF542EBDE77D9E6C0B467DB5BBEDFCEF80D6E45AF29BE76681DE15926A"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "4172BBCB0A92E1A61B7F6ABB04EA543A6FAFEA9764569248DA723EB6E00E7A04",
       "tokens": 44,
       "current": [
@@ -33571,6 +33552,33 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "FCBBBAE445C876F1636406BE4797AFE688B783473F500EC6C7368E94642EDA4C",
+      "tokens": 139,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 14,
+          "tokens": 139,
+          "hash": "CB60FDAA6BC997A1A0C002512AF6B5E971CD576165693BA0B8D8715E5D278D33",
+          "shape": "FCBBBAE445C876F1636406BE4797AFE688B783473F500EC6C7368E94642EDA4C",
+          "qualificationStoragePredicates": "Only common slot and mounted-media checks shared from original Sharp; storageSettingsValidationReuse verifies full-file inverse, original predicates and local exceptions/policies. Remaining Apply dependencies and lifecycle not qualified.",
+          "qualificationStoragePredicatesSourceSha256": "45822528CCCE220E752AB0D0EBB222C0AC0B22C3466BB1FF07C762B231454C11"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 14,
+          "tokens": 139,
+          "hash": "8D44502C69668CF632F8F34DAFB17808B949263C889D9940A0D28401E721F737",
+          "shape": "FCBBBAE445C876F1636406BE4797AFE688B783473F500EC6C7368E94642EDA4C",
+          "qualificationStoragePredicates": "Only common slot and mounted-media checks shared from original Sharp; storageSettingsValidationReuse verifies full-file inverse, original predicates and local exceptions/policies. Remaining Apply dependencies and lifecycle not qualified.",
+          "qualificationStoragePredicatesSourceSha256": "C0EB1FACDDC20F7BF4379F1D2E8465D9665641FDCA8B9C97BF215BDC26D6226D"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "FE4AFD20725179F3844F58A149FC3120A1F910EDDD292F495151C77A6F6F08F3",
       "tokens": 74,
       "current": [
@@ -33752,7 +33760,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 507,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 507
   }
 }

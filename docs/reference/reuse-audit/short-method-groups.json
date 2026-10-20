@@ -1,11 +1,17 @@
 {
-  "snapshot": "184fee3552e12d6d4fa9ec0a4c945b3323604239",
+  "snapshot": "fcb3e6ab38d3291317dcd866c63de2f48dc59105",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs"
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
+    "src/GWGUI.Emulation/Functions/EmulationMediaRules.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7235,
+  "fileCount": 7236,
   "methodBodyCount": 9593,
   "exactGroups": [
     {
@@ -121752,7 +121758,7 @@
           "name": "RequiresReadOnly",
           "owner": "EmulationMediaRules",
           "kind": "MethodDeclaration",
-          "line": 32,
+          "line": 46,
           "parameters": "(EmulationMediaType type)",
           "tokens": 10,
           "bodyTokens": "=> type is EmulationMediaType . CompactDisc or EmulationMediaType . Cartridge",
@@ -138356,7 +138362,7 @@
           "name": "SupportsEjection",
           "owner": "EmulationMediaRules",
           "kind": "MethodDeclaration",
-          "line": 30,
+          "line": 44,
           "parameters": "(EmulationMediaType type)",
           "tokens": 18,
           "bodyTokens": "=> type is EmulationMediaType . Floppy or EmulationMediaType . CompactDisc or EmulationMediaType . Cartridge or EmulationMediaType . Cassette",
@@ -143480,7 +143486,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3096,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3098
   }
 }

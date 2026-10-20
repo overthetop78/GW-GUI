@@ -1,7 +1,21 @@
+using System.IO;
+
 namespace GWGUI.Emulation.Functions;
 
 public static class EmulationMediaRules
 {
+    public static bool HasInvalidStorageSlots(EmulationStorageSettings settings, IReadOnlyList<EmulationMediaDevice> devices) =>
+        settings.ConfiguredSlots.Distinct().Count() != settings.ConfiguredSlots.Count
+        || settings.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot))
+        || settings.MountedMedia.Select(media => media.Slot).Distinct().Count() != settings.MountedMedia.Count;
+
+    public static bool IsInvalidMountedMedia(EmulationMedia media, IReadOnlyList<EmulationMediaDevice> devices, IReadOnlyList<EmulationMediaSlot> configuredSlots)
+    {
+        var device = devices.SingleOrDefault(device => device.Slot == media.Slot);
+        return device is null || !configuredSlots.Contains(media.Slot) || media.Type != device.MediaType
+            || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase);
+    }
+
     internal static Dictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) =>
         new Dictionary<EmulationMediaSlot, bool>
     {
