@@ -74,12 +74,7 @@ internal static class MessageFunctions
             })
             .Distinct()
             .ToArray();
-        return new EmulationMessageException(new EmulationMessage(
-            EmulationMessageCategory.Media,
-            EmulationMessageCode.RequiredMediaMissing,
-            EmulationMessageSeverity.Error,
-            EmulationMessageTarget.Dialog,
-            new EmulationRequiredMachineMediaMessageContext(configuration.MachineId, required)), error);
+        return EmulationErrorService.RequiredMediaMissing(configuration.MachineId, required, error);
     }
 
     private static EmulationMessageCategory Category(ErrorCategory category) => category switch

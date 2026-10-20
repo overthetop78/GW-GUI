@@ -34,16 +34,12 @@ internal static class MessageFunctions
         if (coreError.IsLocalized)
             return EmulationErrorService.TranslateLocalized(error, Category(coreError.Category), context);
         if (coreError.Code == ErrorCode.ContentRequired)
-            return new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media,
-                EmulationMessageCode.RequiredMediaMissing, EmulationMessageSeverity.Error,
-                EmulationMessageTarget.Dialog,
-                new EmulationRequiredMachineMediaMessageContext(configuration.MachineId,
-                    [configuration.Family switch
+            return EmulationErrorService.RequiredMediaMissing(configuration.MachineId, [configuration.Family switch
                     {
                         MachineFamily.Cdi => EmulationMediaCategory.CompactDiscDrive,
                         MachineFamily.P2000 => EmulationMediaCategory.CassetteDrive,
                         _ => EmulationMediaCategory.CartridgeSlot
-                    }])), error);
+                    }], error);
         return EmulationErrorService.Translate(error, Category(coreError.Category), MessageCode(coreError.Code), context);
     }
 

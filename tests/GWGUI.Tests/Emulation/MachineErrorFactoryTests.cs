@@ -10,6 +10,53 @@ public sealed class MachineErrorFactoryTests
 {
     [Theory]
     [InlineData("")]
+    [InlineData(" machine opaque ")]
+    [InlineData("Machine-é-日本語")]
+    public void RequiredMediaKeepsIdentityBorrowedListAndCause(string machineId)
+    {
+        var media = new List<EmulationMediaCategory>
+        {
+            EmulationMediaCategory.CartridgeSlot, EmulationMediaCategory.CompactDiscDrive,
+            EmulationMediaCategory.CartridgeSlot
+        };
+        var cause = new InvalidOperationException("original cause");
+        var first = EmulationErrorService.RequiredMediaMissing(machineId, media, cause);
+        var second = EmulationErrorService.RequiredMediaMissing(machineId, media, cause);
+        var context = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(first.MessageData.Context);
+        Assert.NotSame(first, second);
+        Assert.NotSame(first.MessageData, second.MessageData);
+        Assert.NotSame(context, second.MessageData.Context);
+        Assert.Equal(first.MessageData, second.MessageData);
+        Assert.Same(machineId, context.MachineId);
+        Assert.Same(media, context.RequiredMedia);
+        Assert.Same(cause, first.InnerException);
+        Assert.Null(context.RequiredMediaNames);
+        Assert.Null(first.MessageData.OriginalText);
+        Assert.Equal(EmulationMessageCategory.Media, first.MessageData.Category);
+        Assert.Equal(EmulationMessageCode.RequiredMediaMissing, first.MessageData.MessageCode);
+        Assert.Equal(EmulationMessageSeverity.Error, first.MessageData.Severity);
+        Assert.Equal(EmulationMessageTarget.Dialog, first.MessageData.Target);
+        Assert.Equal(new[] { EmulationMediaCategory.CartridgeSlot, EmulationMediaCategory.CompactDiscDrive,
+            EmulationMediaCategory.CartridgeSlot }, context.RequiredMedia);
+        media.Add(EmulationMediaCategory.CassetteDrive);
+        Assert.Equal(4, context.RequiredMedia.Count);
+    }
+
+    [Fact]
+    public void RequiredMediaDoesNotIntroduceValidationOrDefaults()
+    {
+        var empty = Array.Empty<EmulationMediaCategory>();
+        var error = EmulationErrorService.RequiredMediaMissing(string.Empty, empty, null);
+        Assert.Same(empty, Assert.IsType<EmulationRequiredMachineMediaMessageContext>(error.MessageData.Context).RequiredMedia);
+        Assert.Null(error.InnerException);
+        var unvalidated = EmulationErrorService.RequiredMediaMissing(null!, null!, null);
+        var context = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(unvalidated.MessageData.Context);
+        Assert.Null(context.MachineId);
+        Assert.Null(context.RequiredMedia);
+    }
+
+    [Theory]
+    [InlineData("")]
     [InlineData(" adapter-with-spaces ")]
     [InlineData("Émulateur-日本語")]
     public void MissingEmulatorKeepsOpaqueIdentityAndIndependentMessageContexts(string emulatorId)

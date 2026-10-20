@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7220,
   "outsideSrcCSharpFiles": 338,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11500,
+  "currentMethodCount": 11503,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -326,90 +326,112 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 50,
+          "line": 47,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 45,
+          "line": 42,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 63,
+          "line": 54,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 58,
+          "line": 49,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 63,
+          "line": 54,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 50,
+          "line": 46,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 44,
+          "line": 41,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 44,
+          "line": 41,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 44,
+          "line": 41,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 44,
+          "line": 41,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "Category",
-          "line": 44,
+          "line": 41,
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
-          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
+          "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         }
       ],
       "predecessors": [],
@@ -779,7 +801,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -6667,98 +6689,122 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 59,
+          "line": 56,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 54,
+          "line": 51,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 71,
+          "line": 62,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 66,
+          "line": 57,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 71,
+          "line": 62,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 59,
+          "line": 55,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 95,
+          "line": 90,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 53,
+          "line": 50,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 53,
+          "line": 50,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 53,
+          "line": 50,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 53,
+          "line": 50,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "MessageCode",
-          "line": 53,
+          "line": 50,
           "tokens": 90,
           "hash": "3CB13D1E26B0DA9B4C191B07F64DF0D19C5CE6EF9A4647E80D5AFDFD084DE027",
-          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B"
+          "shape": "7CAD76DB1F5A9AF6D2318DE1ADC13AABDF98C8CB5357F78AF82CE40EC130BB0B",
+          "qualification": "Typed module enum boundary retained: distinct public ErrorCategory/ErrorCode identities and every constant mapping resolved to SDK message enums; structuredErrorMappingComparison.semantic and unchanged-method proofs. No numeric/string dispatcher or parallel catalogue.",
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         }
       ],
       "predecessors": [],
@@ -18791,7 +18837,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SinclairEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19263,6 +19309,57 @@
           "shape": "0AACFCB470E981BF54E366B69EF16BE0FFA3551CFE0EA93C1E6BC91C4F4C41AE",
           "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
           "qualificationSourceSha256": "F40D85601973767B015AEFE09F163DF6F5C40F39329337F36A2F5FEB762D2D7A"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+      "method": "Translate",
+      "tokens": 114,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         }
       ],
       "predecessors": [],
@@ -19973,6 +20070,47 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
+      "language": "CSharp",
+      "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+      "method": "Translate",
+      "tokens": 114,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 37,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 30,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 35,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -22874,41 +23012,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-      "method": "Translate",
-      "tokens": 137,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 35,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 30,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 37,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "DB6F7D0A8DEA6DF8EB75C48C9832676FE0614DE6B0910D6F53D1B097EA6F9B0E",
       "method": "Apply",
       "tokens": 215,
@@ -25322,49 +25425,6 @@
           "tokens": 44,
           "hash": "FD39A8C7FA1E6DDE5D4232F3CD5EDABBD286D19449DC6355E78DB4A7FB07EC69",
           "shape": "EAD8CDE2C8BCBFB2B9BE4066CF563DA3AA47D069F3598D9C3D32CE8AC5D96BA8"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-      "method": "Translate",
-      "tokens": 137,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
         }
       ],
       "predecessors": [],
@@ -30006,77 +30066,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9",
-      "tokens": 137,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 35,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 30,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 42,
-          "tokens": 137,
-          "hash": "ACA9CC4F2D46DEDD6BF14B2AE5BA4991200E6D19F170AA3FA4B17B3B8993D43A",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 37,
-          "tokens": 137,
-          "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-          "name": "Translate",
-          "line": 29,
-          "tokens": 137,
-          "hash": "FD48A78A14C9F121B29C2B0B0255729D5CAAC4F4B9D82B3BE42C53D2592690AA",
-          "shape": "9E54DBDBB97B716A8C5C956771FD4CFAEC8C6D9EB1AEC2F43A62398DD2335ED9"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82",
       "tokens": 66,
       "current": [
@@ -31644,6 +31633,93 @@
           "tokens": 30,
           "hash": "8894ABE0755A5C852F1CADF1728828D618E32187CB7678B741AFA97B0452BE64",
           "shape": "CA50903C584996ED9A3239844E6FB56A4F90E5E3A076F2C2BB86D1EE79E5AE2C"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+      "tokens": 114,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 42,
+          "tokens": 114,
+          "hash": "33763A8C723B637F9DC0EC300D0082BDDEE5DC31676A2582957082A47588C641",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 37,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 30,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 29,
+          "tokens": 114,
+          "hash": "B4D7B2C24F66924BC289F270CDE708A8C6BD8290486A2C97BDBB490006BB0D97",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+          "name": "Translate",
+          "line": 35,
+          "tokens": 114,
+          "hash": "BF1FBF873DA8B987D596957C76A88288D813DA84A600E73B063F412F150FBB4A",
+          "shape": "CA756832362D1F277CD07436B928DC7DF8767815D1288A87ECF072F231789231",
+          "qualificationRequiredMedia": "Only original required-media nested message construction moved to existing SDK EmulationErrorService; full-file inverse, exact machine/media expressions and original Atari source verified in structuredErrorMappingComparison. Other Translate branches and media selection remain separately audited.",
+          "qualificationRequiredMediaSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33755,7 +33831,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 508,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 513
   }
 }

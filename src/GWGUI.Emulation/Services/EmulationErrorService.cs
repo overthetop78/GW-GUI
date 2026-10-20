@@ -7,6 +7,15 @@ public static class EmulationErrorService
             EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
             new EmulationEmulatorMessageContext(emulatorId)));
 
+    internal static EmulationMessageException RequiredMediaMissing(string machineId,
+        IReadOnlyList<EmulationMediaCategory> requiredMedia, Exception? innerException) =>
+        new EmulationMessageException(new EmulationMessage(
+            EmulationMessageCategory.Media,
+            EmulationMessageCode.RequiredMediaMissing,
+            EmulationMessageSeverity.Error,
+            EmulationMessageTarget.Dialog,
+            new EmulationRequiredMachineMediaMessageContext(machineId, requiredMedia)), innerException);
+
     internal static EmulationMessageException CreateError(EmulationMessageCategory category,
         EmulationMessageCode code, Exception? innerException) =>
         new(new EmulationMessage(category, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException);

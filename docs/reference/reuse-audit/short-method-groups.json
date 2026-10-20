@@ -1,16 +1,21 @@
 {
-  "snapshot": "896b556da632412b4b11f3ac019e3bc6fabc97db",
+  "snapshot": "50652229b5b6861b6f118f891f54f51a0beb2459",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorMediaAdapter.cs",
-    "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Usb.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcee2/Factories/Pcee2MachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
+    "src/GWGUI.Emulation/Services/EmulationErrorService.cs",
+    "tests/GWGUI.Tests/Emulation/MachineErrorFactoryTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7220,
@@ -458,7 +463,7 @@
           "qualificationSourceSha256": "21A50D2A314973B2AB1DCA4952AA7C13929C0EF57DAB2296B7E638F47DCFF307"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "030DD2F508DBAD18F1DA71349E0842BA4973B94CBA2D754DCFCF50E8653796FC",
@@ -564,7 +569,7 @@
           "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "03683D5BD9E434722A73513DB4BDCA8CC0482D2F5B5E5A73B11A590E133CF7BE",
@@ -840,7 +845,7 @@
           "qualificationSourceSha256": "1DAB1DDAC4733BDCB492732ECAF7F6C30C201515F1278617230418E000869E63"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "0404E71606C5CB53C4DB33BE304B054F639675785E522CDA327FAAF433D30E57",
@@ -1656,7 +1661,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "06E920B07B4348B0AD994DB7C254B9EEFFBFBA502A331EC5FC0671A8A528C13D",
@@ -1888,7 +1893,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
@@ -2552,7 +2557,7 @@
           "qualificationSourceSha256": "21A50D2A314973B2AB1DCA4952AA7C13929C0EF57DAB2296B7E638F47DCFF307"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "0AA89754C9CF196A924BFEFFA0B2F6EBD7BEC8124F6CF0480ADF83EFD881AA02",
@@ -4050,7 +4055,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "0E0764AF0828FDFB3A273A49F7E30EC1FF2B21046CEB7BFDA31D65676CA6D3D2",
@@ -4570,7 +4575,7 @@
           "qualificationSourceSha256": "44DFEE3D8BB236F801B2C28775C52650CFDF360BE60C211E296845FDD0B25CE1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "106BB0CD9DD530E24A94B7DE53DC6C3A13D2D2FF7B525B573B08FE3ADFC02D0A",
@@ -4606,7 +4611,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1083F0F6D10AA629DC039F8C6DFC9A0CBB09A7372DA2E42E1D6DA76199390E82",
@@ -5848,7 +5853,7 @@
           "qualificationSourceSha256": "4E6DC7060D195FCF64C2ACDD410E54CD2A7211198A891514A75F4DAD6B26FD38"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
@@ -6156,7 +6161,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "14C91F044D0DB93DCFDDDBC539FCDD3744D880DF9B26537B07367655F0AF6AA6",
@@ -6436,7 +6441,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "176187464DF92C69E927EFBB3007FEAD0D9D102FD655E97D4DB6218EDF0D809B",
@@ -6514,7 +6519,7 @@
           "qualificationSourceSha256": "636F4BBA8D924D4DCFE634197ED06F9A2E3B593D353CE08B7B121FFAB69C40BC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1781511A2519812D3C00A5356EB075B4B2E0FE2F0DE4245D2C00DDDE9E4EF8EC",
@@ -6954,7 +6959,7 @@
           "qualificationSourceSha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1A60A39F943BBF5633A5B15EFC1226AF59300F9566972BF6F51B47A22DCE06AE",
@@ -8458,7 +8463,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1F86DD3C3B3CB7FB99728783BC6EBAA0ED8DE85FAA8322085E842E41795F334D",
@@ -8996,7 +9001,7 @@
           "qualificationSourceSha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "224232770C7EEB0F380399FB7EC114BC1EE892F0829E0E701BB48374F7147A58",
@@ -9326,7 +9331,7 @@
           "qualificationSourceSha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "229285AB30B98993593D609E30F1F8E5B5278965E1C36FE9CDE66D9B72C7171E",
@@ -10554,7 +10559,7 @@
           "qualificationSourceSha256": "B183C6812DD26AB3BB0736898E3E9EFD1DB28D835322D48FF033A5BEFCBD7B20"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2529F40D5695F12E608F76DD94AB46F33A1E9A8B21D49E15971D663CA1896097",
@@ -10730,7 +10735,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2531D208AE21F6F532A56C2C661A0619D1D79FE8757D36C9C326054A9552E98D",
@@ -13950,7 +13955,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "278A8B58A1B62FA1C7DF688FBF523B5835E37B03A2EC48AFA10F3943E5932B5A",
@@ -14652,7 +14657,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "29CC6A6727CE4E2A3A533DAC74B124B16E935071957A5F45FE42FFA66299D094",
@@ -15412,7 +15417,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2C7D6FAE97DC51BBE57543CE419B172A31F417018C576795ABAE45E9DE5B27E2",
@@ -15756,7 +15761,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2E0A36E4B4DC608344EF27334A6BB720F16105F6F94AB3968DB60CC4FBE2C22E",
@@ -16084,7 +16089,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2E5B159BA068E468E0D96EA66D48419CB6237F43E9F263259E64AE5589C95516",
@@ -16400,7 +16405,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2E6DBDE7F2874F42DCA12422A1AD3B25FAB093BD9B4A96C972047061E6A54949",
@@ -16516,7 +16521,7 @@
           "qualificationSourceSha256": "21A50D2A314973B2AB1DCA4952AA7C13929C0EF57DAB2296B7E638F47DCFF307"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2EED6848ABA849F5B171D1D210CECE1623563378DC1A2F0FD9E990A6A71BA672",
@@ -16848,7 +16853,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2FDFB139FE9DEE42E16B7BBBE3DF2B853668B3E2A886AE2525D70A7152304221",
@@ -16954,7 +16959,7 @@
           "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2FFC41CA8A899037E3325481C8BE41CD42D96932DDE941CCE58EC39131373987",
@@ -17362,7 +17367,7 @@
           "qualificationSourceSha256": "DA8AD7916EAD2513D0CAB0CFEA1EC7D1C49EFA02D2F03711C4DA4A1893D12BEE"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "31572AFF8E35947514AF702405F1A2FD2F7AFA43A7E57B398DEDD88CD375F5CD",
@@ -17538,7 +17543,7 @@
           "qualificationSourceSha256": "5F91324E0B86C92DC30D7BE7E81C57A0649FE7948AD60DBEEA72B4BC357AD33E"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "31BECA0F051D646F3E4F220A38BAD0693267D6B4ED1DF7091B8CBE35FA5EA889",
@@ -17850,7 +17855,7 @@
           "qualificationSourceSha256": "D4845318F9E99BA5772D6F0CB140B49EE354686CC5C7994CB774DB2BE06D912B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "32051C043C7A23FD0E68A74C4F116C36A1B7D474872123BEC2D6B4D34DA1B590",
@@ -19562,7 +19567,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "38FB1082D99F64C014CDAAF17EF0DE7EECF0376FCE70425D336A5CCC64603AE0",
@@ -19886,7 +19891,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3A114C7D190784070F6C088EF5360221969548B339ACF1784698091AB81A979D",
@@ -19922,7 +19927,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3A18ADF8508A133E580C7FD8BE6107B7ED38BAF3D1E0339F1BDCBD2903B2B03D",
@@ -20154,7 +20159,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3A47E911F38EE4BFC46A2FE75894475B1252D0298BDD7131FD3C4C0CFE503455",
@@ -20204,7 +20209,7 @@
           "qualificationSourceSha256": "576FAFA0A275BA47E53D7B834B44FA4E37E84E6056AD4E5FE06D363527CCC2AB"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3A76010E5A9160A65C40B17C4BE4EFBC5F0825655EB2E03EF1A3B4397C36C1AC",
@@ -20814,7 +20819,7 @@
           "qualificationSourceSha256": "E281AB9A5CE45FAC0A028E6B6E6FB33AEE1604F537A162DEC2F3451948911E79"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3CB3E9FC118FFF56D8F6CB0DD17FE37DEF2168B58F29083BF63D54E3AF65599F",
@@ -21466,7 +21471,7 @@
           "qualificationSourceSha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
@@ -22392,7 +22397,7 @@
           "qualificationSourceSha256": "DA8AD7916EAD2513D0CAB0CFEA1EC7D1C49EFA02D2F03711C4DA4A1893D12BEE"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "41D566B18DAAE3AB92504AAA7E9B6297BE629564998C32606217EB218ED4D14A",
@@ -23140,7 +23145,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "449400B67E9026AD70A893E2D4D6E89B282A1D0E69D2C4AF408E457102904BE4",
@@ -23276,7 +23281,7 @@
           "qualificationSourceSha256": "5459CE6B61D7D96A3E454E35331A69B0853DEDC549D6163D8A5DBECBD8A4A946"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
@@ -23390,7 +23395,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "44FFC3FEA7ECD2EF7AC2836EDFD62332D655A51DD73A87AACBE563C48543B73D",
@@ -23728,7 +23733,7 @@
           "qualificationSourceSha256": "FC9595504A5084D0B3E07C3DC7700F8719B2F5129D10631340517F6F4BDB992A"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
@@ -24346,7 +24351,7 @@
           "qualificationSourceSha256": "BCE9134806169127DCFF742B036402C9A473FABCA6E13D71A922227B0DE17A5E"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "481F55C61D3E55915CEC8436562AE0804E2B11239A6078BBCCCD72C5B116D64A",
@@ -24522,7 +24527,7 @@
           "qualificationSourceSha256": "E5202C43292BC2D222A40AE68620C3E5F2601244AC1DED89D9E5DFB7FC6020AC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4841E52516158508EADDD51505325F8F2968095C5B4DB11761D89545604DF098",
@@ -25642,7 +25647,7 @@
           "qualificationSourceSha256": "65A3E30D8E4BE28AB46554DD2498D18521307037D9E6A8952FC304C97C9BA87B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4A73FE84FA57378938283B8C6E7526FAB943AE4AB6B16418F261BE917DE2BF10",
@@ -25966,7 +25971,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4AE9B98534FCA8CAAB8CB0E337BD11507898AF49EBA91A326A8640303D56CB40",
@@ -26554,7 +26559,7 @@
           "qualificationSourceSha256": "B183C6812DD26AB3BB0736898E3E9EFD1DB28D835322D48FF033A5BEFCBD7B20"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
@@ -26573,7 +26578,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7CAC844741C42B542323F32695ED5E2E54510A8640C2ACDA4E33E2D2E95FE0D2"
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26587,7 +26592,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D15DFEF28B15205B852778D24E7E0B8D9433BC78C2879F0AAD1D4AAE22F7B9F2"
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26601,7 +26606,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26615,7 +26620,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "484EB00F928D8E59C0A354A7DD8F14A7F8E2A8F01B0BF578904F185BCD62AA9F"
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26629,7 +26634,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DC5B8DEAD8362D04B64A40DD5BE2DA2A0286ECBF3C9E30099DBF75CDF7C86EC"
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26643,7 +26648,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A11548F1C736830178D9B3D2566229A9CB80645C98B52B9EA9D0C6537BBB3064"
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26657,7 +26662,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5AD88F95C6D7BDDAD9BED4F90112C0EB1E2D46557705BB618DDB1E80783D2DA1"
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26671,7 +26676,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3D61C218BDE3D2AB29D8BBD551844002C98B28D6116D5757F820B9DF9660D36F"
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26699,7 +26704,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3177EE240245043C838F158330432ED64D080F6152FA7EB87102C625EE2A9423"
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26713,7 +26718,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F78F79569582503ADB1BC945436F9F265DA267027608DF6EF377BA151027EF53"
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26727,7 +26732,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A8E2702B674B2ABDB86CE283513B7CD8CD8B2CA58BB8B464C1FD2DAE7A637DC4"
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26741,7 +26746,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B5052549B0505CCD2527B748A68EA1DA0F395B8BC7AA5908298C1755F27DE831"
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -26786,7 +26791,7 @@
           "qualificationSourceSha256": "9AB9C988B1B76704ABB88AA3AE09EA17B7CDDF820360E9F1A54868759EB88997"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4BF2BCA7CDE7A8AE01C19E3195D8595A756094234D815BCE6AC7917C4BB92076",
@@ -26938,7 +26943,7 @@
           "qualificationSourceSha256": "1FFC2A99F7089C3FBB3CC9208287C8E75F1A856CD20AA5D55F3F6E6B3579CDF9"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4CA36A2B69C46B33C30725978C3FA931459B5A55C63E8F379D973BBF5BAB623D",
@@ -27361,7 +27366,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Acorn.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Acorn.Common.Enums.HostProcessState, GWGUI.Emulation.Acorn.Common.Enums.HostProcessState, GWGUI.Emulation.Acorn.Common.Enums.HostProcessState, GWGUI.Emulation.Acorn.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7CAC844741C42B542323F32695ED5E2E54510A8640C2ACDA4E33E2D2E95FE0D2"
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27375,7 +27380,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Apple.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Apple.Common.Enums.HostProcessState, GWGUI.Emulation.Apple.Common.Enums.HostProcessState, GWGUI.Emulation.Apple.Common.Enums.HostProcessState, GWGUI.Emulation.Apple.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D15DFEF28B15205B852778D24E7E0B8D9433BC78C2879F0AAD1D4AAE22F7B9F2"
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27389,7 +27394,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Atari.Emulators.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Atari.Emulators.Common.Enums.HostProcessState, GWGUI.Emulation.Atari.Emulators.Common.Enums.HostProcessState, GWGUI.Emulation.Atari.Emulators.Common.Enums.HostProcessState, GWGUI.Emulation.Atari.Emulators.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27403,7 +27408,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Bandai.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Bandai.Common.Enums.HostProcessState, GWGUI.Emulation.Bandai.Common.Enums.HostProcessState, GWGUI.Emulation.Bandai.Common.Enums.HostProcessState, GWGUI.Emulation.Bandai.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "484EB00F928D8E59C0A354A7DD8F14A7F8E2A8F01B0BF578904F185BCD62AA9F"
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27417,7 +27422,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Coleco.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Coleco.Common.Enums.HostProcessState, GWGUI.Emulation.Coleco.Common.Enums.HostProcessState, GWGUI.Emulation.Coleco.Common.Enums.HostProcessState, GWGUI.Emulation.Coleco.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DC5B8DEAD8362D04B64A40DD5BE2DA2A0286ECBF3C9E30099DBF75CDF7C86EC"
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27431,7 +27436,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Epoch.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Epoch.Common.Enums.HostProcessState, GWGUI.Emulation.Epoch.Common.Enums.HostProcessState, GWGUI.Emulation.Epoch.Common.Enums.HostProcessState, GWGUI.Emulation.Epoch.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A11548F1C736830178D9B3D2566229A9CB80645C98B52B9EA9D0C6537BBB3064"
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27445,7 +27450,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Fairchild.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Fairchild.Common.Enums.HostProcessState, GWGUI.Emulation.Fairchild.Common.Enums.HostProcessState, GWGUI.Emulation.Fairchild.Common.Enums.HostProcessState, GWGUI.Emulation.Fairchild.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5AD88F95C6D7BDDAD9BED4F90112C0EB1E2D46557705BB618DDB1E80783D2DA1"
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27459,7 +27464,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Mattel.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Mattel.Common.Enums.HostProcessState, GWGUI.Emulation.Mattel.Common.Enums.HostProcessState, GWGUI.Emulation.Mattel.Common.Enums.HostProcessState, GWGUI.Emulation.Mattel.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3D61C218BDE3D2AB29D8BBD551844002C98B28D6116D5757F820B9DF9660D36F"
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27487,7 +27492,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Philips.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Philips.Common.Enums.HostProcessState, GWGUI.Emulation.Philips.Common.Enums.HostProcessState, GWGUI.Emulation.Philips.Common.Enums.HostProcessState, GWGUI.Emulation.Philips.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3177EE240245043C838F158330432ED64D080F6152FA7EB87102C625EE2A9423"
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27501,7 +27506,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Sharp.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Sharp.Common.Enums.HostProcessState, GWGUI.Emulation.Sharp.Common.Enums.HostProcessState, GWGUI.Emulation.Sharp.Common.Enums.HostProcessState, GWGUI.Emulation.Sharp.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F78F79569582503ADB1BC945436F9F265DA267027608DF6EF377BA151027EF53"
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27515,7 +27520,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Sinclair.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Sinclair.Common.Enums.HostProcessState, GWGUI.Emulation.Sinclair.Common.Enums.HostProcessState, GWGUI.Emulation.Sinclair.Common.Enums.HostProcessState, GWGUI.Emulation.Sinclair.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A8E2702B674B2ABDB86CE283513B7CD8CD8B2CA58BB8B464C1FD2DAE7A637DC4"
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27529,7 +27534,7 @@
           "hash": "4D78FDA748402931ED5584F6109ADB4B75E9DFEA4035DEAF70894AFA7AE9A77E",
           "shape": "490510C5352243AA3837EB364D0A68E6C9CA08FC2B5C52B443F21B45C2FB5EDF",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.GetProcessState<GWGUI.Emulation.Snk.Common.Enums.HostProcessState>(System.Diagnostics.Process?, bool, bool, GWGUI.Emulation.Snk.Common.Enums.HostProcessState, GWGUI.Emulation.Snk.Common.Enums.HostProcessState, GWGUI.Emulation.Snk.Common.Enums.HostProcessState, GWGUI.Emulation.Snk.Common.Enums.HostProcessState); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B5052549B0505CCD2527B748A68EA1DA0F395B8BC7AA5908298C1755F27DE831"
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -27574,7 +27579,7 @@
           "qualificationSourceSha256": "9AB9C988B1B76704ABB88AA3AE09EA17B7CDDF820360E9F1A54868759EB88997"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4D8969EBD0B8480B86DCCFDF317195C75112E157378BD95FE5CB30B2B0AF74DF",
@@ -27938,7 +27943,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4FE379149A799B6DFA5B16A56FA2C20AA7BF0F9B9C6DB5292A8430205C99062B",
@@ -28254,7 +28259,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "4FF7A9296FA04B7DEA76C1D04971695B86BEAC9224492D13E6037E51EF7D9F03",
@@ -28632,7 +28637,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "5124B9FC014D67D8E271C9F5FB391FD9FB5128F429E6D3DCB083194BF037D2DC",
@@ -29244,7 +29249,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "52CFE62246CCE0461797429E1B66D79E59E046BCA1DE68BD1E213CA3984C1B5B",
@@ -30354,7 +30359,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "57E2115AC4CA685B95B58F42C1CA3151CAC26FE78C18FDFF28DC1F8B74CC2E49",
@@ -30530,7 +30535,7 @@
           "qualificationSourceSha256": "E5202C43292BC2D222A40AE68620C3E5F2601244AC1DED89D9E5DFB7FC6020AC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "58852B462D0F2F76DA60AEF66C2A568AFC968E9A81DAF93EFAA6A26CB7B3C83E",
@@ -31326,7 +31331,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "5CCFC45C82263B150FC2CDD4546753FC9C4710EC636711BDFAD4727E15B8739F",
@@ -31502,7 +31507,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "5D963D769A02844D66BDA21FFE3055EA6B1957B5528E42C291AEE65AC1EBC110",
@@ -35424,7 +35429,7 @@
           "qualificationSourceSha256": "E5202C43292BC2D222A40AE68620C3E5F2601244AC1DED89D9E5DFB7FC6020AC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "69F245D23DEE829BC41F572E28F195D7FC0D5B595EF3EA6DC1AB709C45B9E91E",
@@ -35504,7 +35509,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6AB33DEAA920AE842E3E1D23BEC16E6D881443CB483F8E1AD3B98B73530F21CF",
@@ -36014,7 +36019,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6D6898516FDABCFDC2CF0EFEB0E4CC8423E618ED13B8E5350C1F05BAE0EA9FD7",
@@ -36338,7 +36343,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6E30AFC21554A2A336C210659D5882B344100C48DA1AA3ECF5B8E5CD4D91B78E",
@@ -36374,7 +36379,7 @@
           "qualificationSourceSha256": "65A3E30D8E4BE28AB46554DD2498D18521307037D9E6A8952FC304C97C9BA87B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6EC7F98D182F6BD59E823A9568667947D5F92B18956A1DE0688A2885AC16E5F1",
@@ -36846,7 +36851,7 @@
           "qualificationSourceSha256": "21A50D2A314973B2AB1DCA4952AA7C13929C0EF57DAB2296B7E638F47DCFF307"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "7001CAC6DF94257CEDA21F30D6E70831B4B0B5AF50B59B0EA075F14B1B4EED1C",
@@ -38592,7 +38597,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "74E48A6B2096DD2C410C5F54C0CB23DF37D54E522B1144483A3103EB1A7B497E",
@@ -39008,7 +39013,7 @@
           "qualificationSourceSha256": "DA8AD7916EAD2513D0CAB0CFEA1EC7D1C49EFA02D2F03711C4DA4A1893D12BEE"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "76D5A58062DDF84AA8DCA10DEAD64723D804FDF29CE53D119B559F7D9396C43E",
@@ -39200,7 +39205,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "77866834FA04FF77D3F62912AFAE9A8D9C8A1E872046735E82BB4EF4BB844B0A",
@@ -39236,7 +39241,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "77894FCF40AADAB65FAD8EF43CA3DE33DF93C5CCC98BDA003534ACC91E6F9E5E",
@@ -39412,7 +39417,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "77DDF06F28F9B4B7700B7583E809ACB5FF1A01BF65767D99F9EC7911C66E63A1",
@@ -39874,7 +39879,7 @@
           "qualificationSourceSha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "799962050A3D1FE225562FDF0A2BB891C3C063ED4AC06474E1CCD40594A26784",
@@ -40126,7 +40131,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "7BA3E1EAAAF15714B6682E9DEC20FC36D65AB6E9544F98C4AD1F37B5C2A9A1CC",
@@ -40594,7 +40599,7 @@
           "name": "IsRemovable",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 132,
+          "line": 127,
           "parameters": "(MediaCategory category)",
           "tokens": 18,
           "bodyTokens": "=> category is MediaCategory . Floppy or MediaCategory . Cassette or MediaCategory . Cartridge or MediaCategory . CompactDisc",
@@ -41380,7 +41385,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "80A76D495794C319294159714CDDE6F1A7C8E431E143904E63ED35CEEFCAB39C",
@@ -41430,7 +41435,7 @@
           "qualificationSourceSha256": "9220AEA31531C6B5BD8CFC43E4D557D41A5D70D9E05EDDF9AA04591193030FC3"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8153D4D2CF9C4544192DF46A841C2097E307C9BFF3BC28F40A74A289462B5006",
@@ -42590,7 +42595,7 @@
           "qualificationSourceSha256": "D4845318F9E99BA5772D6F0CB140B49EE354686CC5C7994CB774DB2BE06D912B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "85635D673FC392A2D070F9B45DBF7F1F3F6B1D7E8AE61653C9648BB263879188",
@@ -43226,7 +43231,7 @@
           "qualificationSourceSha256": "797DEF9AF2591B0F83D463E287B78DA34A826F4409E0A5CD5BA4BC4E83C7A96B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "869F52BC69375002CA08007246B2A1C79AD7EFFFF65FB79561212F45602B9859",
@@ -43826,7 +43831,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "895A692AA0D6025BD80817154B4041C94C73E6FD1601B62F13934F2AA78DB690",
@@ -44668,7 +44673,7 @@
           "qualificationSourceSha256": "5292667B73037082541C7F86D9248D92D716D2A6D6D1E0EA3FE70B29E3F5752F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
@@ -44900,7 +44905,7 @@
           "qualificationSourceSha256": "0FA571FFA87AA0C3BEE2D4B040D7AB90970839C0F53D3616BDDFD8083E9ADDC2"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8D7937882DADBDF1872EE61943464FCADDA6ED43A063F6A8CF939AE2D012205C",
@@ -45644,7 +45649,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8F2503C70396387E49669D960C2788E00A116AFEE5F163CCFB052BE9B4815F92",
@@ -46060,7 +46065,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "913E580F49C280737B899F2C702623C5EABEB7B382870D15AEFDF68A05C16413",
@@ -47464,7 +47469,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "937865C1405B772B90376D208F4C0839562B52CB9EBAAD07E74067C51D398900",
@@ -47588,7 +47593,7 @@
           "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "946F9FA324836677BF4FAF4AE16B4EA7C1F694EE9A7C93BFD9213658BDC57725",
@@ -47764,7 +47769,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9475055C9A437E4AB66FFB14F23B5D0E853551749C37BE4BA7A66A73AB6D3B10",
@@ -48568,7 +48573,7 @@
           "qualificationSourceSha256": "B183C6812DD26AB3BB0736898E3E9EFD1DB28D835322D48FF033A5BEFCBD7B20"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9705826DD58B856DF4443F17C8F60B61F46BDBC948056B2EEF16DA5E1905AB2C",
@@ -48878,7 +48883,7 @@
           "qualificationSourceSha256": "A80CEE064AA08AEB07C35BB533FD79F00EDD7E10EFE5E81FB2CB22968CBB137B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "979CC2939C4A747F4C261B53DA8CC19F44CA68DA62DA1D2ACB7CF015F84A2EBF",
@@ -49690,7 +49695,7 @@
           "qualificationSourceSha256": "44DFEE3D8BB236F801B2C28775C52650CFDF360BE60C211E296845FDD0B25CE1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9ABBCE34FCFBAC7B02BFB567478512755CD09032037D657AF630E768ACD67740",
@@ -49894,7 +49899,7 @@
           "qualificationSourceSha256": "21A50D2A314973B2AB1DCA4952AA7C13929C0EF57DAB2296B7E638F47DCFF307"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9AC0B84525DB22012813F6354C703762266F61A0018F1FED46CE4738C6936CCB",
@@ -50410,7 +50415,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9B0E0DF25E9E59F3B3B5524F27F03AA0DD4CA00CDC8CB1F59F04F007C92E7B87",
@@ -50886,7 +50891,7 @@
           "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9DCBEF2CA60E5895C3C4583355275964C2D2B7BB608DCA914A0B100EEAAC69C4",
@@ -51692,7 +51697,7 @@
           "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "9FBC2E6F3FC900326F79D8E671C415292C24F71DAC01C6DB2D854ABBFD3239D1",
@@ -52668,7 +52673,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
@@ -53210,7 +53215,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
@@ -53334,7 +53339,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A645512BD0097D2B8D8F45E16D06AB9C8FBBF1D566CE7EE6073593C936235A2C",
@@ -53786,7 +53791,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A84180AC69FDE327300682FA5A41F47F764AA8EA94055172D5432A6C19728E41",
@@ -54482,7 +54487,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "ABC0700273E497B74339AD12738E3A9BFA88568EEF3362074F28FB8B9A2EDF1D",
@@ -54562,7 +54567,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "AC89665654395CF28A726E3F1EDB64FABA4C41C38B0AA61C4B1E2506F2A9E56B",
@@ -55114,7 +55119,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "AE2493582A07D17C227DB350601CD5A197D4A59EE5A6E3AAA6E5E29FB3E79756",
@@ -55838,7 +55843,7 @@
           "qualificationSourceSha256": "1F95FE2BE3E5E5231A7CEA3B1E78A0E03223A58F325636A101E2089CFDE40B35"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B21F0F907D20D9309A136BA086A98A347D9363995569F24C4049517CE70CCE11",
@@ -55930,7 +55935,7 @@
           "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B29E5B1F828118F98C43F0A4725D6715D9244BA25AF5C5C1485D6323DF7D5AD7",
@@ -56850,7 +56855,7 @@
           "qualificationSourceSha256": "D4845318F9E99BA5772D6F0CB140B49EE354686CC5C7994CB774DB2BE06D912B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B62B866EBBA5E8886690D4790F426945EB19CF437AE861F419A51B4C4195322C",
@@ -57602,7 +57607,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
@@ -57746,7 +57751,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B9B7B67A5B0D9CC534EEAFACAC7B6B5907A0603CA2CE18ACF265CCBB98F8FFDB",
@@ -57922,7 +57927,7 @@
           "qualificationSourceSha256": "5F91324E0B86C92DC30D7BE7E81C57A0649FE7948AD60DBEEA72B4BC357AD33E"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "BA05D46330B0A891EBB75389B78AFE3B35BE82C3F42D0135AB69B8F5183687B3",
@@ -58602,7 +58607,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
@@ -61570,7 +61575,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "C7B9C5939A6FE6B23B491F04C8AFDA988C232FAA8922AC473D58E99BD810CEBB",
@@ -61912,7 +61917,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "C907FEA933267C7BEA059FD271ED149BE7C90497F5275B6A3F5AC50D4DEF17E1",
@@ -62388,7 +62393,7 @@
           "qualificationSourceSha256": "014FC983C443B2C5FA8A8E21E56703A8C96F1A81B5F0359C30C3E40DE1A24572"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "CA45CDFEA9CF099CE3A2DC883B71E4EBA299CA52F76BA0FD5A975081FB0D1AF5",
@@ -64312,7 +64317,7 @@
           "qualificationSourceSha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
@@ -64404,7 +64409,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "D2E366F60445ED8A7089441E47ECA826722915B61B1026B7F3E747B768181E7F",
@@ -65520,7 +65525,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "D552511D3A21B06430968CF2B73618B1E3FD59877AEB772A6897FE48C1271CC6",
@@ -65836,7 +65841,7 @@
           "qualificationSourceSha256": "9AB9C988B1B76704ABB88AA3AE09EA17B7CDDF820360E9F1A54868759EB88997"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "D796B7196734C1AC4A2E6C4232BAA9F684AB3B711CB6D4B91AAA24E87BBCAC25",
@@ -66898,7 +66903,7 @@
           "qualificationSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "DAE71DF91AF7CC48004587C82C4442C2E68AB3EF4DE3EFDAF2B80A7DFA06FBD2",
@@ -67370,7 +67375,7 @@
           "qualificationSourceSha256": "4195093C63BA7F7FEC78CC9BC17F688BFCE0E1DEA93950842215CA4FA4D142F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "DC662F2D33F8CC2C02E4E357CB4643A282F2ADE7517ACC71BDF46C4F76FC9F91",
@@ -68346,7 +68351,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "DF9E7BDF09820A7F67A81E4B927B0CAD29C056C2B4832BB6181F0321CE3AEA4E",
@@ -68878,7 +68883,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "E407E6F51460990375EDFBE827537B688597C9DAFBE781D4CD4B17B380DD65A4",
@@ -70184,7 +70189,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "EB2DEE29F607C4D9020939A0A064440F8F132BE7D468F94B1ED73EBF5983691E",
@@ -70588,7 +70593,7 @@
           "qualificationSourceSha256": "E5202C43292BC2D222A40AE68620C3E5F2601244AC1DED89D9E5DFB7FC6020AC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "ECFFA492C696C35CD3CF7ABDA932F7163A4EA657084CDE73B8CAAEA9B939372E",
@@ -71028,7 +71033,7 @@
           "qualificationSourceSha256": "797DEF9AF2591B0F83D463E287B78DA34A826F4409E0A5CD5BA4BC4E83C7A96B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "EECBDE023F7517A77A3E08BEC1A66BEBE0EEFEC9938D8CEA51191DCD715A0263",
@@ -71703,7 +71708,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7CAC844741C42B542323F32695ED5E2E54510A8640C2ACDA4E33E2D2E95FE0D2"
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71717,7 +71722,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D15DFEF28B15205B852778D24E7E0B8D9433BC78C2879F0AAD1D4AAE22F7B9F2"
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71731,7 +71736,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71745,7 +71750,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "484EB00F928D8E59C0A354A7DD8F14A7F8E2A8F01B0BF578904F185BCD62AA9F"
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71759,7 +71764,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DC5B8DEAD8362D04B64A40DD5BE2DA2A0286ECBF3C9E30099DBF75CDF7C86EC"
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71773,7 +71778,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A11548F1C736830178D9B3D2566229A9CB80645C98B52B9EA9D0C6537BBB3064"
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71787,7 +71792,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5AD88F95C6D7BDDAD9BED4F90112C0EB1E2D46557705BB618DDB1E80783D2DA1"
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71801,7 +71806,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3D61C218BDE3D2AB29D8BBD551844002C98B28D6116D5757F820B9DF9660D36F"
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71815,7 +71820,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3177EE240245043C838F158330432ED64D080F6152FA7EB87102C625EE2A9423"
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71829,7 +71834,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F78F79569582503ADB1BC945436F9F265DA267027608DF6EF377BA151027EF53"
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71843,7 +71848,7 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A8E2702B674B2ABDB86CE283513B7CD8CD8B2CA58BB8B464C1FD2DAE7A637DC4"
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -71857,10 +71862,10 @@
           "hash": "F06D061FFB31D1DF3B832F7F271FE8564C5DA943414D62FAD53E3B03BA74626B",
           "shape": "E482ABD8A21658EE74470B4EC02F8C83087FECC312254B7D6128085856375C35",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadRegion(int, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B5052549B0505CCD2527B748A68EA1DA0F395B8BC7AA5908298C1755F27DE831"
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "F0EBECBE9EBBC1AD9497245B45302C9110DEC0862E39EF25D826FD8122250A6F",
@@ -72422,7 +72427,7 @@
           "qualificationSourceSha256": "636F4BBA8D924D4DCFE634197ED06F9A2E3B593D353CE08B7B121FFAB69C40BC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "F204C0F282A750F13493E8946A0680FADEE28C0B6BEA9CBFF8C13DCB3989E4D4",
@@ -72842,7 +72847,7 @@
           "qualificationSourceSha256": "9CCD9965A9016CA04943EBC605BB382E775AE1F9DBA5819107B4B007C3EEAF4F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "F4952254F6ECE441BB9EDAA5059DDF37A6807C9A1A35519F14FC1F9547CA860D",
@@ -73338,7 +73343,7 @@
           "qualificationSourceSha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "F6034E8FC7BFAF53E1814AB9392F4A82682CB7E126D45C8068CDBC915CBA669F",
@@ -73950,7 +73955,7 @@
           "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "F7DE902AEA6CCCDD25B27C0DF8FAED85543B9C11087CE17544A8C12357BFA47A",
@@ -75500,7 +75505,7 @@
           "qualificationSourceSha256": "F8DC5AFA3FE08A455B137976AC9AE40A0D07809709F525D0B37CB58D2A9E360B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "FC4EFDAD2C37C0B583152CCDB4AAE535B4787B2CE26A85C115C8DEAD395C795B",
@@ -83411,7 +83416,7 @@
           "name": "Availability",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 130,
+          "line": 125,
           "parameters": "(bool available)",
           "tokens": 10,
           "bodyTokens": "=> available ? ShortcutAvailability . Available : ShortcutAvailability . Unavailable",
@@ -84775,7 +84780,7 @@
           "qualificationSourceSha256": "A80CEE064AA08AEB07C35BB533FD79F00EDD7E10EFE5E81FB2CB22968CBB137B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "212998FA524F1BF871FE3D1E66933B56FD70A996F9B344CAF518E41A96793142",
@@ -85112,7 +85117,7 @@
           "name": "IsDiskSelectable",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 134,
+          "line": 129,
           "parameters": "(MediaCategory category)",
           "tokens": 6,
           "bodyTokens": "=> category == MediaCategory . Floppy",
@@ -86797,7 +86802,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
@@ -93026,7 +93031,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "3218F77669570B84B9B31E97023483FDD736B2356B6243F004FDE6DDEFCA7A1D",
@@ -94334,7 +94339,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "38B72D2BBE8CCE26B1010FA533608B1B53AB34942D422237142F8E17C2B7696F",
@@ -100612,7 +100617,7 @@
           "qualificationSourceSha256": "A1EF2338312F3E2258F56C86634430A1B1FDB1D0418A7684B49092FAA44DF3B3"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "4DC7D37C0CBDF6DE0693458EC2B5FB855250C547F7FEB3361F79175F2B2BAD3A",
@@ -101612,7 +101617,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "50EB8A2DBA20BADB955489672178FECC4A14BD79E8F27103057F543043D80790",
@@ -103871,14 +103876,14 @@
           "name": "Available",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 128,
+          "line": 123,
           "parameters": "(string action)",
           "tokens": 9,
           "bodyTokens": "=> new ( action , ShortcutAvailability . Available )",
           "hash": "FD42FF35F09240E0DF06ADB35B0289DCD7A54986EAF87771E643E1B56C11A503",
           "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
           "qualification": "public-atari-record-and-enum-data-constructor-projection",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -104440,7 +104445,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7CAC844741C42B542323F32695ED5E2E54510A8640C2ACDA4E33E2D2E95FE0D2"
+          "qualificationSourceSha256": "400D92EFCC48B9F92827EFF807601B16EF4A7962C8F075C585A177AE4161CEEC"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
@@ -104818,7 +104823,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D15DFEF28B15205B852778D24E7E0B8D9433BC78C2879F0AAD1D4AAE22F7B9F2"
+          "qualificationSourceSha256": "A78496D0718032754A751771506EACF78FA3FBCDECCBA2A17526B564DEA8E391"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -105144,7 +105149,7 @@
           "hash": "291550345C94D445B9E62AAA84D31086EFC4508A0A6355253F0802513A1E511D",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.Region(uint); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -105158,7 +105163,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
+          "qualificationSourceSha256": "E2899F4E7D586706713C1C87BF93FAAE21B6F2442B4A8319246728A855B2D1AD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -105586,7 +105591,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "484EB00F928D8E59C0A354A7DD8F14A7F8E2A8F01B0BF578904F185BCD62AA9F"
+          "qualificationSourceSha256": "F0434DB07FCC1DF5FC5A5EE14313708D25B0B400DC1864A0BAE5A407B5AC8035"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -105890,7 +105895,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DC5B8DEAD8362D04B64A40DD5BE2DA2A0286ECBF3C9E30099DBF75CDF7C86EC"
+          "qualificationSourceSha256": "911852089DDE365BE5E3ED68DBC079D36512AA8982A44F239C0F992A5E3DCE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -106444,7 +106449,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A11548F1C736830178D9B3D2566229A9CB80645C98B52B9EA9D0C6537BBB3064"
+          "qualificationSourceSha256": "1BD2E61CD10B27BDD7ACC016942989BB6AB47BB7FA787E1FAB13BAD7BAE93F36"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -106810,7 +106815,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5AD88F95C6D7BDDAD9BED4F90112C0EB1E2D46557705BB618DDB1E80783D2DA1"
+          "qualificationSourceSha256": "D6D7CAF077FF9FAF0ED414D678A4E6EEC4AF6A26BB423576D449285764D934E7"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -107140,7 +107145,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3D61C218BDE3D2AB29D8BBD551844002C98B28D6116D5757F820B9DF9660D36F"
+          "qualificationSourceSha256": "DD7B5ACA9707AA7AAE88F19811737026346B20658F578DE1AB08B2CF4577A861"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -108002,7 +108007,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3177EE240245043C838F158330432ED64D080F6152FA7EB87102C625EE2A9423"
+          "qualificationSourceSha256": "175977FC0D049AD05B83A3D3B1445BF2E67E127007CBA0AA9573C269BE9C9BFD"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -108422,7 +108427,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F78F79569582503ADB1BC945436F9F265DA267027608DF6EF377BA151027EF53"
+          "qualificationSourceSha256": "62537405A83137B3D84FD8B3222FF6681B4207DD26195B31B79E87626C0FDD29"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -108812,7 +108817,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A8E2702B674B2ABDB86CE283513B7CD8CD8B2CA58BB8B464C1FD2DAE7A637DC4"
+          "qualificationSourceSha256": "2AB2172F436E9844D4D5A27B4F354562BBDAED62575608CA017B5414F5D960B8"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -109214,7 +109219,7 @@
           "hash": "4BD77F852D428B360B16FD7088297BAF4ED79F87306531C07504EABCB4097F09",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.RegionValue(GWGUI.Emulation.Enums.EmulationVideoStandard?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B5052549B0505CCD2527B748A68EA1DA0F395B8BC7AA5908298C1755F27DE831"
+          "qualificationSourceSha256": "AD4FB394A0C663FC077CD050CA877B203E0E9597D3F858BA0E4D266780347F19"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -115955,7 +115960,7 @@
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "5C5826E97DB065B508A2EB55E1050B14BCCE33B0B82A119949EF7B962251CE95",
@@ -117276,7 +117281,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08",
@@ -117339,7 +117344,7 @@
           "qualificationSourceSha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "67BF3DBCE0DCA67476B3863FA0C037CA9486C34868878D252AAD941B6D2AAF22",
@@ -121427,7 +121432,7 @@
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "85DEE532EF000C7E8E51AE0D5067F1B32EAD2F40F1CAF463C6BB1444709D80A6",
@@ -121720,7 +121725,7 @@
           "qualificationSourceSha256": "65A3E30D8E4BE28AB46554DD2498D18521307037D9E6A8952FC304C97C9BA87B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "881F30031D32C35BA4A5AC99AD7E7965E6A587A1B639CBE9D9C8DBE8176CD1D6",
@@ -121774,7 +121779,7 @@
           "name": "IsEjectable",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 136,
+          "line": 131,
           "parameters": "(MediaCategory category)",
           "tokens": 10,
           "bodyTokens": "=> category is MediaCategory . Floppy or MediaCategory . Cassette",
@@ -125435,7 +125440,7 @@
           "qualificationSourceSha256": "32B98EB3D05564BB616062C38768D26794DE8CD70A93FA3E38FC7FCABC16786F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "A158CF0AC71681CF145F1CF212D4372DCBBFDC688BF79C62F852ACBDCFAB8C0D",
@@ -130962,7 +130967,7 @@
           "qualificationSourceSha256": "A267AD4710769746F6E783A39958C5D69CEBE347C54B41EDC9BCB6AFA1411237"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "BB272D7360315AF62BFB228A1C58D63F7E6CC0235A717911972555AC2CBED7CB",
@@ -137493,7 +137498,7 @@
           "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "CC851862CB17590CCD7B05032B6B25C0B10A4BECFDD7E7DC7E1F1019D1F8AA0E",
@@ -138402,7 +138407,7 @@
           "name": "IsRemovable",
           "owner": "ShortcutFunctions",
           "kind": "MethodDeclaration",
-          "line": 132,
+          "line": 127,
           "parameters": "(MediaCategory category)",
           "tokens": 18,
           "bodyTokens": "=> category is MediaCategory . Floppy or MediaCategory . Cassette or MediaCategory . Cartridge or MediaCategory . CompactDisc",
@@ -142493,7 +142498,7 @@
           "qualificationSourceSha256": "52815F52F95B1FF13E52B21CDE63A198A0B154AECD9A43D763CDF7A4A8AA9114"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "F804E26310A4531EFAF71F8E8EDC908CAB082BB3C06B309D17AD4F5E7FE63099",
@@ -143558,11 +143563,7 @@
           "qualificationSourceSha256": "5DC2FDDB8DCAD311355C8F4DA9B9B8CDB009844B667468CA200EFACBBBE5E9CB"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     }
-  ],
-  "qualificationCarryForward": {
-    "occurrences": 3088,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
-  }
+  ]
 }
