@@ -6,6 +6,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -145,23 +146,116 @@ public sealed class CoreHostResponseTests
         Assert.Equal(stream.Length, stream.Position);
     }
 
+    [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(true, false, true)]
+    [InlineData(false, true, true)]
+    [InlineData(true, true, false)]
+    public void NativeFramePreservesWirePositionsAndPreDrainCounters(bool support, bool latency, bool changed)
+    {
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
+        using var core = new Core();
+        long sequence = 17;
+        var count = changed ? 0 : 1;
+        EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
+            writer, core, (output, frame) =>
+            {
+                core.Trace.Add("frame");
+                Assert.Null(frame);
+                output.Write(12345678);
+            }, (output, states) =>
+            {
+                core.Trace.Add("led-write");
+                Assert.Empty(states);
+                output.Write(44);
+            }, () =>
+            {
+                core.Trace.Add("json");
+                return new JsonSerializerOptions(JsonSerializerDefaults.Web);
+            }, ref sequence, ref count,
+            support ? static (output, source) => output.Write(source.SupportsSaveStates) : null,
+            latency ? (output, _) => { core.Trace.Add("latency"); output.Write(33); } : null);
+        writer.Flush();
+
+        var trace = new List<string> { "video", "frame", "buffered", "overrun", "underrun", "dequeue", "fps", "rate" };
+        if (latency) trace.Add("latency");
+        trace.Add("region");
+        if (support) trace.Add("support");
+        trace.Add("diagnostics");
+        if (changed) trace.AddRange(new[] { "diagnostics", "json", "diagnostics" });
+        trace.AddRange(new[] { "led", "led-write" });
+        Assert.Equal(trace, core.Trace);
+        Assert.Equal(17, sequence);
+        Assert.Equal(changed ? 2 : 1, count);
+        Assert.False(core.Disposed);
+
+        stream.Position = 0;
+        using var reader = new BinaryReader(stream, Encoding.UTF8, leaveOpen: true);
+        Assert.Equal(12345678, reader.ReadInt32()); // No legacy success boolean precedes the frame.
+        Assert.Empty(EmulationHostProtocolFunctions.ReadAudio(reader, "native-response-test"));
+        Assert.Equal(72.5, reader.ReadDouble());
+        Assert.Equal(22050, reader.ReadInt32());
+        if (latency) Assert.Equal(33, reader.ReadInt32());
+        Assert.Equal(1, reader.ReadInt32());
+        Assert.Equal(9, reader.ReadInt32());
+        Assert.Equal(10, reader.ReadInt64());
+        Assert.Equal(11, reader.ReadInt64());
+        if (support) Assert.True(reader.ReadBoolean());
+        Assert.Equal(changed, reader.ReadBoolean());
+        if (changed)
+        {
+            using var diagnostics = JsonDocument.Parse(reader.ReadString());
+            Assert.Equal(new[] { "first", "second" }, diagnostics.RootElement.EnumerateArray().Select(item => item.GetString()));
+        }
+        Assert.Equal(44, reader.ReadInt32());
+        Assert.Equal(stream.Length, stream.Position);
+    }
+
+    [Fact]
+    public void NativeFrameWriterFailureStopsBeforeAudioAndKeepsBorrowedCoreAndCounters()
+    {
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
+        using var core = new Core();
+        long sequence = 17;
+        var count = 42;
+        var failure = new InvalidOperationException("frame");
+        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
+            EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
+                writer, core, (_, _) => throw failure,
+                (_, _) => throw new Xunit.Sdk.XunitException("LED writer must not run"),
+                () => throw new Xunit.Sdk.XunitException("JSON getter must not run"), ref sequence, ref count)));
+        Assert.Equal(new[] { "video" }, core.Trace);
+        Assert.Equal(17, sequence);
+        Assert.Equal(42, count);
+        Assert.False(core.Disposed);
+        Assert.True(stream.CanWrite);
+    }
+
     private sealed record Configuration;
     private sealed record Option(int Code, [property: JsonPropertyName("profileDetail")] string Detail);
 
-    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>
+    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>, IEmulationCoreRuntimeStatus
     {
         private int _diagnosticReads;
         private double _fps = 59.5;
         private int _sampleRate = 44100;
+        private bool _drained;
         internal List<string> Trace { get; } = [];
         internal Queue<AudioChunk> Chunks { get; } = new();
         internal bool Disposed { get; private set; }
         internal int ProfileStatus => 1234;
-        public VideoFrame? LatestVideoFrame => null;
+        public VideoFrame? LatestVideoFrame => Read<VideoFrame?>("video", null);
         public AudioChunk? LatestAudioChunk => null;
         public IReadOnlyList<Option> Options => Read("options", new[] { new Option(7, "module-specific") });
         public IReadOnlyList<string> Diagnostics => Read("diagnostics", ++_diagnosticReads == 1 ? new[] { "first" } : new[] { "first", "second" });
-        public IReadOnlyDictionary<int, bool> LedStates { get; } = new Dictionary<int, bool>();
+        public IReadOnlyDictionary<int, bool> LedStates => Read<IReadOnlyDictionary<int, bool>>("led", new Dictionary<int, bool>());
+        public bool SupportsSaveStates => Read("support", true);
+        public EmulationVideoStandard? Region => Read<EmulationVideoStandard?>("region", _drained ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc);
+        public int BufferedAudioFrames => Read("buffered", _drained ? 99 : 9);
+        public long AudioOverrunCount => Read("overrun", _drained ? 100L : 10L);
+        public long AudioUnderrunCount => Read("underrun", _drained ? 101L : 11L);
         public string CoreName => Read("name", "core");
         public string CoreVersion => Read("version", "version");
         public IReadOnlySet<string> SupportedContentExtensions => Read("extensions", new HashSet<string> { "Z", "a", "mid" });
@@ -175,6 +269,7 @@ public sealed class CoreHostResponseTests
         {
             Trace.Add("dequeue");
             if (Chunks.TryDequeue(out chunk)) return true;
+            _drained = true;
             _fps = 72.5;
             _sampleRate = 22050;
             return false;

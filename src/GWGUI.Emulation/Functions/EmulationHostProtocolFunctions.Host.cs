@@ -168,6 +168,27 @@ internal static partial class EmulationHostProtocolFunctions
         writeLedStates(writer, core.LedStates);
     }
 
+    internal static void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(
+        BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame,
+        Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
+        Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount,
+        Action<BinaryWriter, TCore>? writeStateSupport = null,
+        Action<BinaryWriter, TCore>? writeAudioStatus = null)
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
+    {
+        WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
+        var bufferedAudioFrames = core.BufferedAudioFrames;
+        var audioOverrunCount = core.AudioOverrunCount;
+        var audioUnderrunCount = core.AudioUnderrunCount;
+        WriteCoreAudio(writer, core);
+        writeAudioStatus?.Invoke(writer, core);
+        WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
+        writeStateSupport?.Invoke(writer, core);
+        WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
+            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, jsonOptions())), ref lastDiagnosticCount);
+        writeLedStates(writer, core.LedStates);
+    }
+
     internal static void WriteCoreAudio<TConfiguration, TOption>(BinaryWriter writer,
         IEmulationCoreRuntime<TConfiguration, TOption> core)
     {

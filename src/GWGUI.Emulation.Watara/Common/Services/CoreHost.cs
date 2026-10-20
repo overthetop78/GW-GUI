@@ -79,18 +79,11 @@ public static class CoreHost
             feedback.SetAudioBufferStatus(audioStatus);
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.RunFrame();
-        EmulationHostProtocolFunctions.WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence,
-            (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video));
-        var bufferedAudioFrames = core.BufferedAudioFrames;
-        var audioOverrunCount = core.AudioOverrunCount;
-        var audioUnderrunCount = core.AudioUnderrunCount;
-        EmulationHostProtocolFunctions.WriteCoreAudio(writer, core);
-        EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
-        writer.Write(core.SupportsSaveStates);
-        EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
-            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions)), ref lastDiagnosticCount);
-
-        CoreHostFunctions.WriteLedStates(writer, core.LedStates);
+        EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
+            writer, core, (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),
+            CoreHostFunctions.WriteLedStates, static () => CoreHostFunctions.JsonOptions,
+            ref lastVideoSequence, ref lastDiagnosticCount,
+            writeStateSupport: static (statusWriter, currentCore) => statusWriter.Write(currentCore.SupportsSaveStates));
         writer.Write(core is IEmulatorAudioBufferFeedback latency ? latency.MinimumAudioLatencyMilliseconds : 0);
     }
 
