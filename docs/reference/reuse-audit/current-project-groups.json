@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7217,
-  "outsideSrcCSharpFiles": 314,
+  "currentCSharpFiles": 7222,
+  "outsideSrcCSharpFiles": 316,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11415,
+  "currentMethodCount": 11409,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1499,154 +1499,6 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-      "method": "Parse",
-      "tokens": 37,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 10,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 11,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 13,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 6,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-          "name": "Parse",
-          "line": 7,
-          "tokens": 37,
-          "hash": "12C05ECB768E19AE9DF3C4555C92741E5E862824559724F70F54656A1A63C297",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Dictionaries/AtariModelCatalog.cs",
-          "name": "Parse",
-          "line": 31,
-          "tokens": 37,
-          "hash": "A16C3104413F9D5D24917F4E859B3D80E330C38CFB53BF10DF1390BBCAD2EE9C",
-          "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
-        }
-      ],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -16933,7 +16785,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -17226,7 +17078,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -18589,7 +18441,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24647,7 +24499,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -34085,7 +33937,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 308,
+    "occurrences": 367,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

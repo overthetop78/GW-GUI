@@ -1,69 +1,27 @@
 {
-  "snapshot": "f99bc49f9132ea0261c4f83aa3949960eb3771f5",
+  "snapshot": "1ee4ec17e9243b32425297c44ee16126465b8bfe",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/StateContracts.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Dictionaries/ModelCatalog.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7217,
-  "methodBodyCount": 9526,
+  "fileCount": 7222,
+  "methodBodyCount": 9543,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -11459,6 +11417,18 @@
           "qualificationSourceSha256": "7DD4B4A262D6D211B1E83844264E64BCB4E597D61E8D6B86A5FBE914069A59C8"
         },
         {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11486,6 +11456,18 @@
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
           "qualificationSourceSha256": "E8B6D9120B19ED61697C8EE80639BD000EADB2688A9166091E1C58C61218EBBD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11546,6 +11528,18 @@
           "qualificationSourceSha256": "AA845952BEA9F9BBFB7C6AE1F5A8F22A91F64616CAEEAA1E9E7D0F0D5B9D945D"
         },
         {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
           "name": "ValidatePreparedContent",
           "owner": "MachineFactory",
@@ -11588,6 +11582,18 @@
           "qualificationSourceSha256": "F2EF6C4231BAF4CD84E14193E3938623D975771CA0BB8C44555B39B546E7ECAF"
         },
         {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11615,6 +11621,18 @@
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
           "qualificationSourceSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11660,6 +11678,18 @@
           "qualificationSourceSha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64"
         },
         {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11689,6 +11719,18 @@
           "qualificationSourceSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB"
         },
         {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11716,6 +11758,18 @@
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
           "qualificationSourceSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11760,6 +11814,18 @@
           "qualificationSourceSha256": "7D62AC90B7A38959BA13D70EFF72F7625A4308CDCC35E9446163189CAB6E6C51"
         },
         {
+          "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11775,6 +11841,18 @@
           "qualificationSourceSha256": "463762AF23B03C1880FA84B2630026C7D5B7A9883248F2924B5AD2990B4301B3"
         },
         {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
@@ -11788,6 +11866,18 @@
           "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "85FA1F23B0F53B78FF341B206FF1140F86768D70B19F53D7AEE212ED03F2D482",
           "qualificationSourceSha256": "85FA1F23B0F53B78FF341B206FF1140F86768D70B19F53D7AEE212ED03F2D482"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11831,6 +11921,18 @@
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
           "qualificationSourceSha256": "46A47B3D7FCD5FF3325095F8837D45304BEBFE20D01DD50F1926BF1AE04E8AA5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Exceptions/EmulationException.cs",
+          "name": "EmulationException",
+          "owner": "EmulationException",
+          "kind": "ConstructorDeclaration",
+          "line": 5,
+          "parameters": "(ErrorCategory category, ErrorCode code, string message,\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\n        bool isLocalized = false)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -19075,6 +19177,238 @@
           "bodyTokens": "=> DecodeCore ( FluxTransitionDecoder . DecodeNrzi ( revolution . FluxIntervals ) )",
           "hash": "34973A6A94EC4947752BD366F49C76B22A51C8ECE8FFD23C87A1B13235BA7FE0",
           "shape": "0F144811A13C9BE6CA151841352A00694C8284C4D3880A7EDBA9C91F521F9164"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+      "tokens": 16,
+      "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 10,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "99B9E6F4E33064F1E1D296A676432D606069CABD539BE8DF7AA8B61ED064C495"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "B39B4A0CAE7792C0ECE2ED8EBB5D57D770179BD6EB1DE061C3932F3E5DC324DC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 13,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "5DDE0C0844BEF9AEFF43716A9898B64D6DD41DC0E13C951465C1818559A85C5B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "78A73774C0E398ED4D8B101B28BF798D1E42836E76642555550DEDBEC36EB418"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "794F2EB05C87F10F058F2D54A78EE70BC934B768D9284988E4B3450E59B0E2C0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "A7D7CDDC2D97D4BC87EB51871BC24F3FC7FAAB158DD57A248BB4A29B3746C8B7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "2558CA414097039E353FFE8D913DA3C06C09C2771410FDECB054EE39BFFBFE4A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "613AB16BD1FFD1C019089F7F4C9329A3A7B42F5C1E859DCDC05093594E24AE19"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "FE9B024319AEC10B95A90E5D9B884FC9D015B78D090356A90D04FE0D9170CE04"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "7889BD5F2819A53A74334A4D3D0947B309C7501BBF533FC915F82237DD3FA4D2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "A7ACD2B488F964EA5F34BF8397E174437275FD0C929D558D9F4E7E4088BC35ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "D4D326D015D1AD26D001A6A772859BDE730E683C0904A3864C8A7BB762542A24"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "0877E807AA692E90B49ABCF22A6D1D2ABE4A875ACD17744FF7F80830441372AA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "7F3E4FDEBCD039C41589A24BDCE2FD5475615A7C8830C19A624A4FEF84EFAAC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "7515BC25C534EA94D0CD701AD26C0D26D042FE12B638B94C685E943B8E3560B7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
+          "name": "Parse",
+          "owner": "ModelCatalog",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(string id)",
+          "tokens": 16,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMachineModelFunctions . Parse < MachineModel > ( id )",
+          "hash": "3612A7D2D79F2BB6BF4D3DE4744AC458080E76C6CAC969A9DE0921C8A6BB8D1F",
+          "shape": "E6C9053653FAFD1FD521C4EF75BA8BF9BB8CC5BBB74CF93A63B28F9ECFA08069",
+          "qualification": "Verified complete closed-model adapter to original SDK parser; machineModelParserReuse.",
+          "qualificationSourceSha256": "69E9AFD26D29DA1FE7F878938801965BC50F1AEBF403EE2877F92FBEA2E29570"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -49996,7 +50330,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "48C9026C0F490FE8E014A43F4D71D2B2C4A2ED0A13B6DD20A76ED4A0738B53B6"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
@@ -50008,7 +50344,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "FE22D50754ED1BFC878FAF9151DE1E56759B9E10DECE6388CF09B76FD657B73D"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -50020,7 +50358,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "2B292CF166BC346E859A677C768712481B117FFB55EED74C3008E135D5472FDE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -50032,7 +50372,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "19FA647916DC444E5954E463995388B6649B56E226E7CD1F7B636BE66F9FA23F"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -50044,7 +50386,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "E8752118D6E575A905225896FA69C4468EA6BA7A9FE0A07F817FDBB97C48B926"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -50056,7 +50400,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "36D035160EAF78D89B965B25F1A7885606DE019F7A084B810EC37CD7D42500ED"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
@@ -50068,7 +50414,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "4002C518B60CAE9EC12BB247074B14CF4604EB727D2A03EC800BBB8061E66E9C"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
@@ -50080,7 +50428,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "57DE1885A88BBB8267FE57E1B949894ACDFAA560DAA113B7059D22E921703409"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -50092,7 +50442,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "3CC5643C1690168C9E9276FA22C7DCD22CC45735BD3F3381F0B675E0EA78B458"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
@@ -50104,7 +50456,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "CC4A4903A5A0C62FCD666C140DFBB1DF71091F1B8A7C79CA49C656C557EC3E85"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
@@ -50116,7 +50470,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "C9E05C28DADC2944CC908CCF3C4DF3A16A1F9C3016FC7F20F9C9ACA6B7CDBC88"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -50128,7 +50484,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "D1913980855B5CE1A81DF466B45F28CF46BCD4D619A657BE078FD474E055C2AB"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
@@ -50140,7 +50498,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "6B479E0C459A8F47E6A08A3FDCF98E7BEAD800E488F18AA9C5EBA74534099CD6"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
@@ -50152,7 +50512,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "5905958CFD2607DEC2E05D7ABDF75413000CAE8C5F490FDBD22140083F53D678"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
@@ -50164,159 +50526,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( _store . SaveAsync ( Require ( configuration ) , cancellationToken ) )",
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
-          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-      "tokens": 28,
-      "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Exceptions/EmulationException.cs",
-          "name": "EmulationException",
-          "owner": "EmulationException",
-          "kind": "ConstructorDeclaration",
-          "line": 7,
-          "parameters": "(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)",
-          "tokens": 28,
-          "bodyTokens": "{ Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; }",
-          "hash": "9B50CB94E68A3CEE64DF41249E088BA5BB8F98787514C857E0E9DAC59C23E8E2",
-          "shape": "D8FE214399AAB94FA00C83BBC03A31E6EA745B45E614797D86C0B52E15783E16"
+          "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
+          "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
+          "qualificationSourceSha256": "3231C83EC1B593BD69ED1376D7E1F80887F92A24577E3B2623E0914E8C2238D3"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -142452,7 +142664,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 2781
+    "occurrences": 2845,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
