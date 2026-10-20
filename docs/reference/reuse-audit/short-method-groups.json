@@ -1,18 +1,42 @@
 {
-  "snapshot": "de0333a70c1e7c824c4868ce8ff8136ed7047d82",
+  "snapshot": "090b5f95df22aaaf30a7f9786c4d69f5e8309b76",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Philips/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/MediaContracts.cs",
+    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7236,
+  "fileCount": 7228,
   "methodBodyCount": 9587,
   "exactGroups": [
     {
@@ -30984,7 +31008,9 @@
           "tokens": 20,
           "bodyTokens": "=> new ( _content is null ? 0 : 1 , 0 , _content is null , [ ] )",
           "hash": "5A1A61C81F427B67B29E00D7198E4F5E2EA41DA559665EE9B59E17A8D81B54BD",
-          "shape": "435F69ACC7CB86E7FB808A0E04523F5E361629B8D3670EC5E354934C735AD42A"
+          "shape": "435F69ACC7CB86E7FB808A0E04523F5E361629B8D3670EC5E354934C735AD42A",
+          "qualification": "original-shared-sdk-disk-status-record-projection-repeated-content-reads-preserved",
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
@@ -30996,7 +31022,9 @@
           "tokens": 20,
           "bodyTokens": "=> new ( _content is null ? 0 : 1 , 0 , _content is null , [ ] )",
           "hash": "5A1A61C81F427B67B29E00D7198E4F5E2EA41DA559665EE9B59E17A8D81B54BD",
-          "shape": "435F69ACC7CB86E7FB808A0E04523F5E361629B8D3670EC5E354934C735AD42A"
+          "shape": "435F69ACC7CB86E7FB808A0E04523F5E361629B8D3670EC5E354934C735AD42A",
+          "qualification": "original-shared-sdk-disk-status-record-projection-repeated-content-reads-preserved",
+          "qualificationSourceSha256": "3DC2EA37594AB19E400191E7F8D9D985AB5D95FDE3C403BD9C142A9FDBF25603"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -143640,6 +143668,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3043
+    "occurrences": 3077
   }
 }

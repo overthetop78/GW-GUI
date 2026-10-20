@@ -1,3 +1,5 @@
+global using DiskImageStatus = GWGUI.Emulation.Contracts.DiskImageStatus;
+global using DiskStatus = GWGUI.Emulation.Contracts.DiskStatus;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using AudioBuffer = GWGUI.Emulation.Services.EmulationAudioBuffer;
