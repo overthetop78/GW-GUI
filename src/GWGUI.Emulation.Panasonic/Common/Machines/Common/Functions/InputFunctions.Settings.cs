@@ -74,7 +74,7 @@ internal static class InputSettingsFunctions
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || binding.DeadZonePercent < ControllerConstants.MinimumDeadZonePercent || binding.DeadZonePercent > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));
             var commands = ControllerCatalog.Commands(binding.Peripheral).Select(command => command.ToString()).ToHashSet(StringComparer.Ordinal);
-            if (binding.Mappings?.Any(pair => !commands.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, commands, IsSource))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

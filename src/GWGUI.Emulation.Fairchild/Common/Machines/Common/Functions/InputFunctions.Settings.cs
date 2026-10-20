@@ -59,13 +59,8 @@ internal static class InputSettingsFunctions
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
             var actions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (controller.Mappings?.Any(pair => !actions.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+            if (EmulationInputMappingFunctions.HasInvalidBindings(controller.Mappings, actions, EmulationKeyboardBindingFunctions.IsValidSourcePrefix))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
-
-    private static bool IsSource(string source) => string.IsNullOrEmpty(source)
-        || source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)
-        || source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)
-        || source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
 }

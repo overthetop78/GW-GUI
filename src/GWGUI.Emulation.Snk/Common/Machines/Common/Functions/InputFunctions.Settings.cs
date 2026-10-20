@@ -93,12 +93,10 @@ internal static class InputSettingsFunctions
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
             var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
                 throw new ArgumentException(nameof(configuration.Input));
             if (!string.IsNullOrEmpty(binding.VisualId) && !ControllerVisualDictionary.VisualIds(binding.Peripheral).Contains(binding.VisualId, StringComparer.Ordinal))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
-
-    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }

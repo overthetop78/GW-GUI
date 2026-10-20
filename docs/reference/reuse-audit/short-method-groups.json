@@ -1,21 +1,25 @@
 {
-  "snapshot": "f714b9714183bf3500bf8a5bafd59d447001704f",
+  "snapshot": "88ff851656529e7643b1bd365699b1e601344ed7",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
     "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/ControllerBindingProjectionTests.cs",
+    "src/GWGUI.Emulation/Functions/EmulationKeyboardBindingFunctions.cs",
     "tests/GWGUI.Tests/Emulation/InputBindingConversionTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7229,
-  "methodBodyCount": 9588,
+  "methodBodyCount": 9584,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -29406,7 +29410,7 @@
           "hash": "52EF77FF4C8560A938756C63C6ECC6B2A798401127C0C4D28C8AC2F7852BAEB3",
           "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1",
           "qualification": "fresh-empty-standard-dictionary-default-per-call",
-          "qualificationSourceSha256": "9B81563D2990E2EB68F277FFFA27A9CCEAE2C489B8391CEF418725B10B3DEB9C"
+          "qualificationSourceSha256": "DD86522E20C39A7F8248177BF52680615E9F05166860A77586F77B4D0EFFB22F"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -29420,7 +29424,7 @@
           "hash": "52EF77FF4C8560A938756C63C6ECC6B2A798401127C0C4D28C8AC2F7852BAEB3",
           "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1",
           "qualification": "fresh-empty-standard-dictionary-default-per-call",
-          "qualificationSourceSha256": "C3719F27A46DCDC34B43E7F60A6C4476B2F81E126846CE193B523FB036AAA52B"
+          "qualificationSourceSha256": "9CA9E591CEA74720DE67A975D531C6BDA6FA232891CE3207B7E7AD5CA5EAAF48"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -67461,84 +67465,6 @@
           "bodyTokens": "=> formatId . StartsWith ( DiskImageFormatIds . IbmPrefix , StringComparison . OrdinalIgnoreCase )",
           "hash": "DCA701B1852EA2E2F947FD8FBA72CF8A63C8717D4696C9D0243412F37E6E6DA8",
           "shape": "B964A1B4C7720825DD53DDE1E59E34C0366B106575D1A887DE81157D9DE1F534"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-      "tokens": 7,
-      "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0B9654C97A9483FF5D45BCCE5C13B96117A27552D240A6DE6B5AAD2D2CC192F8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "82AF41F32B77CD2029F7D51BD5DCA683E5CCA1E3FD8DF68A47B6984A73E33D1A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 103,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6C087062EF854C8FF57CEF1E44DEE7F37CB4DF42F4EA190746E79465BCB1BC40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 86,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E80E4B0B0B59E16C08D85B1409CB7B64608E909AB123EAB6880CEB4B832771F2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C3719F27A46DCDC34B43E7F60A6C4476B2F81E126846CE193B523FB036AAA52B"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -108554,20 +108480,6 @@
           "qualificationSourceSha256": "FACBEBF1DBC1C2CDCD1A4C13D451BA2B5BDC0F69CF1F92D9EFBF37BC1FB3754E"
         },
         {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0B9654C97A9483FF5D45BCCE5C13B96117A27552D240A6DE6B5AAD2D2CC192F8"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
           "name": "DeleteSessionDirectory",
           "owner": "MachineFunctions",
@@ -108972,20 +108884,6 @@
           "qualificationSourceSha256": "A09772DFA7ACD45D83C85F0105F191E9F7D4572809EBC098D468AAA54A7E5D86"
         },
         {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "82AF41F32B77CD2029F7D51BD5DCA683E5CCA1E3FD8DF68A47B6984A73E33D1A"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
           "name": "DeleteSessionDirectory",
           "owner": "MachineFunctions",
@@ -109386,20 +109284,6 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
           "qualificationSourceSha256": "5292667B73037082541C7F86D9248D92D716D2A6D6D1E0EA3FE70B29E3F5752F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 103,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6C087062EF854C8FF57CEF1E44DEE7F37CB4DF42F4EA190746E79465BCB1BC40"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
@@ -110590,20 +110474,6 @@
           "qualificationSourceSha256": "D5FBDD12B3E02B06A0CE26549B103602A6F0B8B8BE917ADBBE2AE972A4533930"
         },
         {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 86,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E80E4B0B0B59E16C08D85B1409CB7B64608E909AB123EAB6880CEB4B832771F2"
-        },
-        {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
           "name": "DeleteSessionDirectory",
           "owner": "MachineFunctions",
@@ -110822,20 +110692,6 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationAudioFunctions.NormalizeVolume(float); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "51356E7B87AA73515C89A3BED1D550240A6A7602B005C4839AA5F3F0DA1FEEEE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "IsSource",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(string source)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
-          "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C3719F27A46DCDC34B43E7F60A6C4476B2F81E126846CE193B523FB036AAA52B"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
@@ -117276,7 +117132,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 288,
+          "line": 292,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -143634,7 +143490,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3089,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3086
   }
 }

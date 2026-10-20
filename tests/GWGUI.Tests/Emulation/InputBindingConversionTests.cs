@@ -10,6 +10,75 @@ public sealed class InputBindingConversionTests
     private enum OtherMouseAction : byte { None, Left }
 
     [Fact]
+    public void MissingAndEmptyMappingsDoNotInvokeTheSourcePolicy()
+    {
+        var ids = new HashSet<string>(StringComparer.Ordinal) { "Fire" };
+        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(null, ids, _ => throw new InvalidOperationException()));
+        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(new Dictionary<string, string>(), ids,
+            _ => throw new InvalidOperationException()));
+    }
+
+    [Fact]
+    public void UnknownCommandsStopBeforeSourceValidation()
+    {
+        var values = new Dictionary<string, string> { ["unknown"] = "Keyboard:A" };
+        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, new HashSet<string> { "Fire" },
+            _ => throw new InvalidOperationException()));
+    }
+
+    [Fact]
+    public void MappingValidationPreservesOrderAndStopsAtTheFirstRejectedSource()
+    {
+        var values = new Dictionary<string, string> { ["Fire"] = "first", ["Jump"] = "rejected", ["After"] = "unreached" };
+        var visited = new List<string>();
+        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, values.Keys.ToHashSet(StringComparer.Ordinal), source =>
+        {
+            visited.Add(source);
+            return source != "rejected";
+        }));
+        Assert.Equal(new[] { "first", "rejected" }, visited);
+        Assert.Equal(3, values.Count);
+    }
+
+    [Fact]
+    public void MappingValidationKeepsTheCommandSetComparerAndPropagatesPolicyErrors()
+    {
+        var values = new Dictionary<string, string> { ["fire"] = "Keyboard:A" };
+        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values,
+            new HashSet<string>(StringComparer.Ordinal) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
+        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(values,
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
+        var failure = new InvalidOperationException("source policy");
+        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() => EmulationInputMappingFunctions.HasInvalidBindings(values,
+            new HashSet<string> { "fire" }, _ => throw failure)));
+    }
+
+    [Fact]
+    public void NullSourcesKeepTheirDistinctSyntaxAndWataraConfigurationPolicies()
+    {
+        var values = new Dictionary<string, string> { ["Fire"] = null! };
+        var ids = new HashSet<string> { "Fire" };
+        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(values, ids, EmulationKeyboardBindingFunctions.IsValid));
+        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, ids, static source => source is not null));
+    }
+
+    [Theory]
+    [InlineData(null, true, true)]
+    [InlineData("", true, true)]
+    [InlineData(" ", false, true)]
+    [InlineData("Keyboard:DefinitelyNotAKey", true, false)]
+    [InlineData("Mouse:X+", true, false)]
+    [InlineData("LeftControl", false, true)]
+    [InlineData("controller:", true, false)]
+    [InlineData("mouse:left", true, true)]
+    [InlineData("unexpected", false, false)]
+    public void PrefixOnlyAdaptersKeepTheirOriginalPolicyDistinctFromFullSyntax(string? source, bool prefix, bool syntax)
+    {
+        Assert.Equal(prefix, EmulationKeyboardBindingFunctions.IsValidSourcePrefix(source));
+        Assert.Equal(syntax, EmulationKeyboardBindingFunctions.IsValid(source));
+    }
+
+    [Fact]
     public void DefinitionDefaultsProduceIndependentOrdinalResults()
     {
         InputBindingDefinition[] definitions = [new("A", "unused", "Keyboard:A"), new("a", "unused", "Keyboard:B")];

@@ -49,9 +49,7 @@ internal static class InputSettingsFunctions
     {
         var commands = ControllerCatalog.Definitions.Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (binding.Mappings?.Any(pair => !commands.Contains(pair.Key) || !IsSource(pair.Value)) == true || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
+            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, commands, EmulationKeyboardBindingFunctions.IsValid) || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
                 throw new ArgumentException(nameof(configuration.Input));
     }
-
-    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }

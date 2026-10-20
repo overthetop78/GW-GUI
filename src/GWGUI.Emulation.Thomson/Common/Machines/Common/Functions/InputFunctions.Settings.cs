@@ -75,13 +75,11 @@ internal static class InputSettingsFunctions
         _ = KeyboardBindings(configuration.Input, configuration.Model);
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         mouseIds.Add(InputMappingConstants.MouseRight);
-        if (configuration.Input.Mouse?.Any(pair => !mouseIds.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid))
             throw new ArgumentException(nameof(configuration.Input));
         var ids = ControllerCatalog.Definitions(PeripheralCategory.Joystick).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
                 throw new ArgumentException(nameof(configuration.Input));
     }
-
-    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }

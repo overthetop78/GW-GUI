@@ -99,17 +99,15 @@ internal static class InputSettingsFunctions
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)
             throw new ArgumentException(nameof(configuration.Input));
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        if (configuration.Input.Mouse?.Any(pair => !mouseIds.Contains(pair.Key) || !IsSource(pair.Value)) == true || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
+        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
             throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
             var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
-
-    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }

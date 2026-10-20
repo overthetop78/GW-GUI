@@ -11,6 +11,11 @@ public static class EmulationKeyboardBindingFunctions
         values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
         ?? (emptyComparer is null ? new Dictionary<string, string>() : new Dictionary<string, string>(emptyComparer));
 
+    internal static bool IsValidSourcePrefix(string? source) => string.IsNullOrEmpty(source)
+        || source.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)
+        || source.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)
+        || source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
+
     public static bool IsValid(string? binding)
     {
         if (string.IsNullOrWhiteSpace(binding)) return true;

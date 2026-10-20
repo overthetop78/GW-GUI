@@ -22,7 +22,7 @@ internal static class ConfigurationFunctions
         {
             if (controller.Port != ControllerConstants.FirstPort || !ports.Add(controller.Port) || controller.Peripheral != PeripheralCategory.Supervision || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));
-            if (controller.Mappings?.Any(pair => !commands.Contains(pair.Key) || pair.Value is null) == true)
+            if (EmulationInputMappingFunctions.HasInvalidBindings(controller.Mappings, commands, static value => value is not null))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

@@ -72,6 +72,10 @@ public static class EmulationInputMappingFunctions
         values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
             .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
 
+    internal static bool HasInvalidBindings(IReadOnlyDictionary<string, string>? bindings,
+        IReadOnlySet<string> commandIds, Func<string, bool> isValidSource) =>
+        bindings?.Any(pair => !commandIds.Contains(pair.Key) || !isValidSource(pair.Value)) == true;
+
     internal static bool HasInvalidControllerPortNumbers(EmulationInputSettings settings, int count) =>
         settings.ControllerPorts.Count != count
         || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count));
