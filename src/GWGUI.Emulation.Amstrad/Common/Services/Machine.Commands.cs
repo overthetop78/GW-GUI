@@ -118,19 +118,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void WriteAudio(ReadOnlySpan<short> samples)
-    {
-        if (_audioOutput is null) return;
-        if (_audioVolume >= AudioConstants.MaximumVolume)
-        {
-            _audioOutput.Write(samples);
-            return;
-        }
-
-        var scaled = new short[samples.Length];
-        for (var index = BufferConstants.FirstCollectionIndex; index < samples.Length; index++)
-            scaled[index] = (short)Math.Clamp(samples[index] * _audioVolume, short.MinValue, short.MaxValue);
-        _audioOutput.Write(scaled);
-    }
+    => EmulationAudioFunctions.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
 
     private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
     {

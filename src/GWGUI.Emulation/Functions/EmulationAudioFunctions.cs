@@ -4,6 +4,21 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationAudioFunctions
 {
+    internal static void WriteVolume(ref IAudioOutput? output, ref float volume, ReadOnlySpan<short> samples)
+    {
+        if (output is null) return;
+        if (volume >= 1f)
+        {
+            output.Write(samples);
+            return;
+        }
+
+        var scaled = new short[samples.Length];
+        for (var index = 0; index < samples.Length; index++)
+            scaled[index] = (short)Math.Clamp(samples[index] * volume, short.MinValue, short.MaxValue);
+        output.Write(scaled);
+    }
+
     internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(1, sampleRate / 5);
 
     internal static AudioChunk RetainNativeNewestFrames(AudioChunk chunk, int maximumFrames, bool multichannel)

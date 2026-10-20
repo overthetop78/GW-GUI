@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7235,
-  "outsideSrcCSharpFiles": 324,
+  "currentCSharpFiles": 7236,
+  "outsideSrcCSharpFiles": 325,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11430,
+  "currentMethodCount": 11431,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -781,77 +781,8 @@
     },
     {
       "language": "CSharp",
-      "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-      "method": "WriteAudio",
-      "tokens": 89,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 131,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 137,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 120,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 120,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 131,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Services/AmigaMachine.cs",
-          "name": "WriteAudio",
-          "line": 433,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Services/AmigaMachine.cs",
-          "name": "WriteAudio",
-          "line": 433,
-          "tokens": 89,
-          "hash": "09F1072FBA13D335D153464A0738069EC48C811848DC67503350F87A95D073CE",
-          "shape": "D7ADD5FA8E47A7A57D8A88689BB2F407CE6DCB0BE6BDEF9B375452A5AB2A37E3"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5391,7 +5322,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 149,
+          "line": 137,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -5399,7 +5330,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 160,
+          "line": 148,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -5407,7 +5338,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 166,
+          "line": 154,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -5415,7 +5346,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 149,
+          "line": 137,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -5423,7 +5354,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 149,
+          "line": 137,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -5431,7 +5362,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 169,
+          "line": 157,
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
@@ -6688,7 +6619,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 135,
+          "line": 123,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -6696,7 +6627,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 146,
+          "line": 134,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -6704,7 +6635,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 152,
+          "line": 140,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -6712,7 +6643,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 135,
+          "line": 123,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -6720,7 +6651,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 135,
+          "line": 123,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -6728,7 +6659,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 137,
+          "line": 125,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -16825,7 +16756,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -17118,7 +17049,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -18485,7 +18416,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24439,7 +24370,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -26418,29 +26349,6 @@
           "tokens": 30,
           "hash": "0B9DAE58B1AF0EAF8D7738A81BE682AA9AFEBACD776EE4FEE1620C5AD6A4B80E",
           "shape": "1085FB2A3482C3DF15791D84B98A63EFBE8663F7DAA25700516CB822E7D21E4F"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "114658C3BCABE9E0DFE9D863CB0915D3B767892C162B15882F43BA069E0D0F4D",
-      "tokens": 93,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 120,
-          "tokens": 93,
-          "hash": "16490CA50405792C4ADC3B3E4165A8E14232D0504C2C1D812F0DD32C7EC3845D",
-          "shape": "114658C3BCABE9E0DFE9D863CB0915D3B767892C162B15882F43BA069E0D0F4D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
-          "name": "WriteAudio",
-          "line": 122,
-          "tokens": 93,
-          "hash": "D103515C1C08916F7B848FFE8DF77151010D84FB93F9B1BAF1EC20CF1E5634C9",
-          "shape": "114658C3BCABE9E0DFE9D863CB0915D3B767892C162B15882F43BA069E0D0F4D"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
