@@ -823,7 +823,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -6962,33 +6962,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
-      "method": "Dispose",
-      "tokens": 102,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 132,
-          "tokens": 102,
-          "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
-          "shape": "B6C42CA6973DFBF52305261F992706003D3389A8335B4906D75B3B2D1CDC99CE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 133,
-          "tokens": 102,
-          "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
-          "shape": "B6C42CA6973DFBF52305261F992706003D3389A8335B4906D75B3B2D1CDC99CE"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "3D15FC007ECDDB2C3E0BEA696142CA5CEC556BDD710644E4E88DC3E5B1B19D90",
       "method": "SaveStateAsync",
       "tokens": 68,
@@ -8763,35 +8736,8 @@
     },
     {
       "language": "CSharp",
-      "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
-      "method": "Dispose",
-      "tokens": 122,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 128,
-          "tokens": 122,
-          "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
-          "shape": "CB9A9A25DF4ADA7368BE75836CF56032E4F5C0B536564F307BCCDF5F27233F1D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 128,
-          "tokens": 122,
-          "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
-          "shape": "CB9A9A25DF4ADA7368BE75836CF56032E4F5C0B536564F307BCCDF5F27233F1D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -10597,7 +10543,7 @@
     {
       "language": "CSharp",
       "hash": "5E41B8E6BA64FCBA1E07049FEE804449442712123C0582A02BF64109180A8E92",
-      "method": "CreateAdapters",
+      "method": "DiscoverAdapters",
       "tokens": 32,
       "current": [
         {
@@ -17694,6 +17640,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "A772CCBC86D6805BAB24D42FE7F469FB0264305E40E96C61DEBAAD819B4D13ED",
+      "method": "Dispose",
+      "tokens": 120,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 128,
+          "tokens": 120,
+          "hash": "A772CCBC86D6805BAB24D42FE7F469FB0264305E40E96C61DEBAAD819B4D13ED",
+          "shape": "86C75374B85A899BF03ADFB5001747FAF41DB0790A8B36C757050752A0DE906E",
+          "qualificationQuietDisposalFragment": "Five historical callbacks directly reuse the existing SDK catch-Exception disposal; other callback-owned resources and state remain outside this fragment qualification.",
+          "qualificationQuietDisposalSourceSha256": "3D000075FDEF92FB6D98C3C4454332FC1E3BE90205E96EAE096B220DB07BD21C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 128,
+          "tokens": 120,
+          "hash": "A772CCBC86D6805BAB24D42FE7F469FB0264305E40E96C61DEBAAD819B4D13ED",
+          "shape": "86C75374B85A899BF03ADFB5001747FAF41DB0790A8B36C757050752A0DE906E",
+          "qualificationQuietDisposalFragment": "Five historical callbacks directly reuse the existing SDK catch-Exception disposal; other callback-owned resources and state remain outside this fragment qualification.",
+          "qualificationQuietDisposalSourceSha256": "D9A3B921FA8B76AC62A59D73B87B5E3886779C92D7C4B5A1720D165007AD1FC7"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
       "method": "GetActiveManifestPath",
       "tokens": 35,
@@ -18686,7 +18663,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19339,6 +19316,37 @@
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "BAE05F2C08629AC91F8895D4197632F1731830463B0A5013FF70898BD2D0412C",
+      "method": "Dispose",
+      "tokens": 100,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 132,
+          "tokens": 100,
+          "hash": "BAE05F2C08629AC91F8895D4197632F1731830463B0A5013FF70898BD2D0412C",
+          "shape": "3603E882837B5F716C4D0AFC4223DF361D7422D88933560162E4694421D569C8",
+          "qualificationQuietDisposalFragment": "Five historical callbacks directly reuse the existing SDK catch-Exception disposal; other callback-owned resources and state remain outside this fragment qualification.",
+          "qualificationQuietDisposalSourceSha256": "9B35C035AC170CC984FC8650809157520AF754A342F4C427E8BA7B7C90D7436F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 133,
+          "tokens": 100,
+          "hash": "BAE05F2C08629AC91F8895D4197632F1731830463B0A5013FF70898BD2D0412C",
+          "shape": "3603E882837B5F716C4D0AFC4223DF361D7422D88933560162E4694421D569C8",
+          "qualificationQuietDisposalFragment": "Five historical callbacks directly reuse the existing SDK catch-Exception disposal; other callback-owned resources and state remain outside this fragment qualification.",
+          "qualificationQuietDisposalSourceSha256": "07B817C0B0073FAE1CCACC8EF3F673E3EF1018FE827B9D31CC9CB4ABC7F62305"
         }
       ],
       "predecessors": [],
@@ -24395,7 +24403,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -33505,7 +33513,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 576,
+    "occurrences": 622,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

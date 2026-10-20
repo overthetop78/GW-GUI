@@ -135,8 +135,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
             foreach (var pointer in _nativeStrings.Values)
             {
-                try { pointer.Dispose(); }
-                catch (Exception) { }
+                GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(pointer);
             }
             }
         }
