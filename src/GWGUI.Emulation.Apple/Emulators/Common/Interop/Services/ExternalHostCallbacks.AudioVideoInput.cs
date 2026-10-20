@@ -75,13 +75,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
-        using (_systemDirectory)
-        using (_contentDirectory)
-        using (_saveDirectory)
-        using (_assetsDirectory)
-        using (_virtualFileSystem)
-        using (_videoBuffers)
-            _optionHost.Dispose();
+        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(
+                _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);
         _keyboardEvent = null;
         KeyboardCallbackPointer = nint.Zero;
     }

@@ -1,16 +1,23 @@
 {
-  "snapshot": "3957b11376b353396c8e1394dd7409f9db0c6351",
+  "snapshot": "41ee5fd98cfd12c7add9fc3a354f99ccb51287dc",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+    "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7221,
-  "methodBodyCount": 9565,
+  "fileCount": 7222,
+  "methodBodyCount": 9566,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -122749,6 +122756,37 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "901AA6D823B38C095C1D403E74F96F120C1C52F23FA897087FA7808176E1492C",
+      "tokens": 19,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreStateCommandTests.cs",
+          "name": "Record",
+          "owner": "Core.CoreStateCommandTests",
+          "kind": "MethodDeclaration",
+          "line": 119,
+          "parameters": "(string operation)",
+          "tokens": 19,
+          "bodyTokens": "{ events . Add ( operation ) ; if ( Failure is not null ) throw Failure ; }",
+          "hash": "EC13DBCC1904DA9CAB273F49AE4FA705105456DF7D32CCE3EF03FA0FED4861DF",
+          "shape": "901AA6D823B38C095C1D403E74F96F120C1C52F23FA897087FA7808176E1492C"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/EmulationContracts/CallbackResourceDisposalTests.cs",
+          "name": "Dispose",
+          "owner": "Resource.CallbackResourceDisposalTests",
+          "kind": "MethodDeclaration",
+          "line": 61,
+          "parameters": "()",
+          "tokens": 19,
+          "bodyTokens": "{ calls . Add ( name ) ; if ( failure is not null ) throw failure ; }",
+          "hash": "7066A5BB61D059869E72D63A480EBDD53F2832CB61EC5B0C4BB61E6387732568",
+          "shape": "901AA6D823B38C095C1D403E74F96F120C1C52F23FA897087FA7808176E1492C"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "9077F89631CABA071684761CF391D637228288C9FC56E89829B76B00D9C717A7",
       "tokens": 10,
       "current": [
@@ -142861,7 +142899,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3064,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3064
   }
 }

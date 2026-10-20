@@ -4,6 +4,18 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class ExternalCoreLifecycleFunctions
 {
+    internal static void DisposeCallbackResources(IDisposable? systemDirectory, IDisposable? contentDirectory,
+        IDisposable? saveDirectory, IDisposable? assetsDirectory, IDisposable? virtualFileSystem,
+        IDisposable? videoBuffers, IDisposable optionHost)
+    {
+        using (systemDirectory)
+        using (contentDirectory)
+        using (saveDirectory)
+        using (assetsDirectory)
+        using (virtualFileSystem)
+        using (videoBuffers)
+            optionHost.Dispose();
+    }
 
     internal static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)
     {

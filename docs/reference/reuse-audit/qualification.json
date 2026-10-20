@@ -1498207,7 +1498207,7 @@
     "temporaryVerifierRemoved": true
   },
   "functionCoverageComparison": {
-    "declarations": 19675,
+    "declarations": 19676,
     "unresolvedMethodGroups": 1,
     "limitations": [
       "Tests and external SDK consumers not scanned; absence of source references does not prove dead code",
@@ -1498435,7 +1498435,7 @@
     "semanticErrors": 0,
     "state": "All23 modules and application graph recorded; five initial expression candidates reviewed, no unsupported removal; module applicability/local-copy audit remains open",
     "report": "docs/reference/reuse-audit/function-call-coverage.json",
-    "sdkMethods": 2634,
+    "sdkMethods": 2635,
     "toolInvocationCorrection": "Analysis helper compiled in memory using PowerShell reference assemblies rather than runtime implementation assemblies; Roslyn System.Runtime9/host10 CS1701 warnings permitted for helper only, product compilation remains zero errors.",
     "resolvedReferenceSites": 56020,
     "applicationIncluded": true,
@@ -1498495,8 +1498495,8 @@
     ],
     "obligationMatrix": {
       "reviewedReferenceEvidence": 403,
-      "uniqueReviewedModuleObligations": 395,
-      "methodsWithReviewedRoutesCovered": 47,
+      "uniqueReviewedModuleObligations": 406,
+      "methodsWithReviewedRoutesCovered": 48,
       "rows": [
         {
           "status": "Applicability review pending; no established obligation inferred from zero references",
@@ -1517473,13 +1517473,34 @@
           "reviewedObligationProjects": [],
           "proofRefs": [],
           "method": "gwgui.emulation|M:Pfs3DoctorStats.enterblock(Pfs3DoctorStats,System.UInt32)"
+        },
+        {
+          "missingReviewedProjects": [],
+          "proofRefs": [
+            "nativeCallbackResourceDisposalComparison.semanticVerification"
+          ],
+          "reviewedObligationProjects": [
+            "gwgui.emulation.acorn",
+            "gwgui.emulation.apple",
+            "gwgui.emulation.bandai",
+            "gwgui.emulation.coleco",
+            "gwgui.emulation.epoch",
+            "gwgui.emulation.fairchild",
+            "gwgui.emulation.mattel",
+            "gwgui.emulation.philips",
+            "gwgui.emulation.sharp",
+            "gwgui.emulation.sinclair",
+            "gwgui.emulation.snk"
+          ],
+          "method": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "status": "All eleven original Acorn-chain callback obligations resolved; other cleanup policies explicitly excluded."
         }
       ],
       "pending": "Compare remaining modules/capabilities and duplicate candidates before globally qualifying each function",
-      "sourceHead": "3957b11376b353396c8e1394dd7409f9db0c6351",
+      "sourceHead": "41ee5fd98cfd12c7add9fc3a354f99ccb51287dc",
       "missingPreviouslyReviewedRoutes": [],
       "expectationBasis": "Earlier source-reviewed and compiled module scopes, kept independently from current graph; not a claim that other modules are inapplicable",
-      "sdkMethodRows": 2634,
+      "sdkMethodRows": 2635,
       "unmatchedSignatures": []
     }
   },
@@ -1600314,6 +1600335,563 @@
       "priorArchivesRetained": true,
       "retainedActiveAnnotations": 3733,
       "priorActiveAnnotations": 3733
+    }
+  },
+  "nativeCallbackResourceDisposalComparison": {
+    "inputs": [
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();\n        _keyboardEvent = null;\n        KeyboardCallbackPointer = nint.Zero;\n    }\n",
+        "sha256": "0FF1AED347788EAD90C614555C1D64A1CAF399E31E07275FF65CEA012745C867",
+        "chain": "using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();\n        _keyboardEvent = null;\n        KeyboardCallbackPointer = nint.Zero;\n    }\n}\n\n\n",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\r\n    public void Dispose()\r\n    {\r\n        if (_disposed) return;\r\n        _disposed = true;\r\n        using (_systemDirectory)\r\n        using (_contentDirectory)\r\n        using (_saveDirectory)\r\n        using (_assetsDirectory)\r\n        using (_virtualFileSystem)\r\n        using (_videoBuffers)\r\n            _optionHost.Dispose();\r\n        _keyboardEvent = null;\r\n        KeyboardCallbackPointer = nint.Zero;\r\n    }\r\n",
+        "sha256": "E2592695AE116571D83FE740C98E6BFE368D0F5951BE60D26391FA7C3B89B07E",
+        "chain": "using (_systemDirectory)\r\n        using (_contentDirectory)\r\n        using (_saveDirectory)\r\n        using (_assetsDirectory)\r\n        using (_virtualFileSystem)\r\n        using (_videoBuffers)\r\n            _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;\r\nusing System.IO;\r\nusing System.Diagnostics;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing GWGUI.Emulation.Services;\r\n\r\nnamespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IDisposable\r\n{\r\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero)\r\n        {\r\n            if (LatestVideoFrame is { } previous)\r\n                LatestVideoFrame = previous with\r\n                {\r\n                    Sequence = ++_videoSequence,\r\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\r\n                };\r\n            return;\r\n        }\r\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\r\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\r\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\r\n        var length = VideoFunctions.FrameLength(height, pitch);\r\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\r\n        var pixels = _videoBuffers.Rent(length);\r\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\r\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\r\n    }\r\n\r\n    private void OnAudioSample(short left, short right)\r\n    {\r\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\r\n    }\r\n\r\n    private nuint OnAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\r\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\r\n        var frameCount = checked((int)frames);\r\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\r\n        AddAudio(samples, frameCount);\r\n        return frames;\r\n    }\r\n\r\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\r\n    {\r\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\r\n        LatestAudioChunk = chunk;\r\n        _audio.Enqueue(chunk);\r\n    }\r\n\r\n    private void OnInputPoll()\r\n    {\r\n        _input.Poll();\r\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\r\n    }\r\n    private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);\r\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\r\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\r\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\r\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\r\n\r\n    private void OnLog(int level, nint format)\r\n    {\r\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\r\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\r\n    }\r\n\r\n    public void Dispose()\r\n    {\r\n        if (_disposed) return;\r\n        _disposed = true;\r\n        using (_systemDirectory)\r\n        using (_contentDirectory)\r\n        using (_saveDirectory)\r\n        using (_assetsDirectory)\r\n        using (_virtualFileSystem)\r\n        using (_videoBuffers)\r\n            _optionHost.Dispose();\r\n        _keyboardEvent = null;\r\n        KeyboardCallbackPointer = nint.Zero;\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();\n        KeyboardCallbackPointer = nint.Zero;\n    }\n",
+        "sha256": "8BB08C4996C08414A875D7AEAA8967B613387DF470E85F1A1DBD75C274049B93",
+        "chain": "using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();\n        KeyboardCallbackPointer = nint.Zero;\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _keyboardEvent = null;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "17B1206AA54F3FD375FB4D9766D75056C9EB3B4F6CCD1E297A0581EB46E0E83D",
+        "chain": "using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _keyboardEvent = null;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _keyboardEvent = null;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "CB3E8F7019D53D1D7701C676E8F5CD192C9E3A708D6988724567A65027680F1A",
+        "chain": "using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _keyboardEvent = null;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "4A07B072B2B3E2DD01EC7C48AF81D43D123D49D5440B3756CA5E0900F9F265CB",
+        "chain": "using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "37FDB74D8DB86A44EAEDBD383F6AC271166D66581303FB4F56879277308B826B",
+        "chain": "using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        BeginFrame();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id, _emulator);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "E4BBDC913E6DA5B36B9F857C72525179F9C7511090A6E152AF2E311AE5624BCC",
+        "chain": "using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        BeginFrame();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id, _emulator);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory)\n            using (_contentDirectory)\n            using (_saveDirectory)\n            using (_assetsDirectory)\n            using (_virtualFileSystem)\n            using (_videoBuffers)\n                _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "40DB02A4A4C46D7AB51F4D2AED0C78349D4C157B9AD03D7E2F2F01B56D49AF31",
+        "chain": "using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous) LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension || height == ExternalCoreInteropConstants.EmptyFrameDimension || pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize || frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        BeginFrame();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, _keyboard.Codes, port, device, index, id, _emulator);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "54647284E268AF21C3E3D1A7764FE04F31E91CFDFE59B29C74B45AF813A51089",
+        "chain": "using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous) LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension || height == ExternalCoreInteropConstants.EmptyFrameDimension || pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize || frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        BeginFrame();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, _keyboard.Codes, port, device, index, id, _emulator);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            KeyboardCallbackPointer = nint.Zero;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "dispose": "\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            _audioBufferStatusCallback = null;\n            OutputAudioStatus = null;\n            MinimumAudioLatencyMilliseconds = default;\n            _diskControl.Clear();\n        }\n    }\n",
+        "sha256": "390DAC9173960CE4F820D2D9B30D0CD56446F121D3F9ED7AFE45BACC55585F3F",
+        "chain": "using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();",
+        "source": "using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous) LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension || height == ExternalCoreInteropConstants.EmptyFrameDimension || pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize || frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, _controllerButtonIds, _inputCapabilities, port, device, index, id);\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        try\n        {\n            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();\n        }\n        finally\n        {\n            _audioBufferStatusCallback = null;\n            OutputAudioStatus = null;\n            MinimumAudioLatencyMilliseconds = default;\n            _diskControl.Clear();\n        }\n    }\n}\n",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+      }
+    ],
+    "originalOwner": {
+      "commit": "296e23e7e",
+      "source": "using System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable\n{\nprivate void OnVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero)\n        {\n            if (LatestVideoFrame is { } previous)\n                LatestVideoFrame = previous with\n                {\n                    Sequence = ++_videoSequence,\n                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)\n                };\n            return;\n        }\n        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            height == ExternalCoreInteropConstants.EmptyFrameDimension ||\n            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;\n        var length = VideoFunctions.FrameLength(height, pitch);\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\n        var pixels = _videoBuffers.Rent(length);\n        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length),\n            checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,\n            ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));\n    }\n\n    private void OnAudioSample(short left, short right)\n    {\n        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);\n    }\n\n    private nuint OnAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||\n            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;\n        var frameCount = checked((int)frames);\n        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);\n        AddAudio(samples, frameCount);\n        return frames;\n    }\n\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\n        LatestAudioChunk = chunk;\n        _audio.Enqueue(chunk);\n    }\n\n    private void OnInputPoll()\n    {\n        _input.Poll();\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\n    }\n    private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);\n    private void OnSetLedState(int led, int state) =>\n        _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\n    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;\n\n    private void OnLog(int level, nint format)\n    {\n        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\n    }\n\n    public void Dispose()\n    {\n        if (_disposed) return;\n        _disposed = true;\n        using (_systemDirectory)\n        using (_contentDirectory)\n        using (_saveDirectory)\n        using (_assetsDirectory)\n        using (_virtualFileSystem)\n        using (_videoBuffers)\n            _optionHost.Dispose();\n        _keyboardEvent = null;\n        KeyboardCallbackPointer = nint.Zero;\n    }\n}\n\n",
+      "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+    },
+    "comparison": {
+      "noExistingEquivalent": "SDK Cleanup owns core stages, TryDisposeCore reports failure, quiet helper suppresses failure; SDK environment/video hosts have different resources. App DisposeAll preserves first failure, unlike nested using. No equivalent ordered callback operation found.",
+      "semantics": "Nested using attempts all seven owned resources even after a Dispose failure; later (outer using) failure replaces earlier one. Keep each caller guard, finally, hardware and state reset unchanged. Dispose resource ownership delegated by original callback owners.",
+      "order": [
+        "options",
+        "video buffers",
+        "virtual file system",
+        "assets directory",
+        "save directory",
+        "content directory",
+        "system directory"
+      ],
+      "Atari": "Earlier sequential cleanup uses another order; remains outside this extraction and is not overwritten from later Acorn copy."
+    },
+    "state": "verified-source-semantic-tests-and-inventory",
+    "sourceHead": "41ee5fd98cfd12c7add9fc3a354f99ccb51287dc",
+    "pattern": "using\\s*\\(_systemDirectory\\)\\s*using\\s*\\(_contentDirectory\\)\\s*using\\s*\\(_saveDirectory\\)\\s*using\\s*\\(_assetsDirectory\\)\\s*using\\s*\\(_virtualFileSystem\\)\\s*using\\s*\\(_videoBuffers\\)\\s*_optionHost.Dispose\\(\\);",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs",
+    "sdkBefore": "using GWGUI.Emulation.Contracts;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\ninternal static class ExternalCoreLifecycleFunctions\r\n{\r\n\r\n    internal static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)\r\n    {\r\n        try\r\n        {\r\n            if (loop is not null) await loop.ConfigureAwait(false);\r\n        }\r\n        finally { thread?.Join(); }\r\n    }\r\n\r\n    internal static bool TryDisposeCore(IDisposable core, Action<Exception> reportFailure)\r\n    {\r\n        try\r\n        {\r\n            core.Dispose();\r\n            return true;\r\n        }\r\n        catch (Exception error)\r\n        {\r\n            reportFailure(error);\r\n            return false;\r\n        }\r\n    }\r\n\r\n    internal static bool IsSupportedStateSize(nuint size, nuint maximumStateSize)\r\n        => size > nuint.Zero && size <= maximumStateSize;\r\n\r\n    internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary)\r\n    {\r\n        try\r\n        {\r\n            if (gameLoaded) exports?.UnloadGame();\r\n        }\r\n        finally\r\n        {\r\n            try\r\n            {\r\n                if (initialized) exports?.Deinitialize();\r\n            }\r\n            finally\r\n            {\r\n                try { disposeCallbacks(); }\r\n                finally { disposeLibrary(); }\r\n            }\r\n        }\r\n    }\r\n}\r\n",
+    "replacement": "GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(\r\n                _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);",
+    "semanticVerification": {
+      "scopes": [
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation",
+          "assembly": "gwgui.emulation"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Acorn",
+          "assembly": "gwgui.emulation.acorn"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Apple",
+          "assembly": "gwgui.emulation.apple"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Bandai",
+          "assembly": "gwgui.emulation.bandai"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Coleco",
+          "assembly": "gwgui.emulation.coleco"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Epoch",
+          "assembly": "gwgui.emulation.epoch"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Fairchild",
+          "assembly": "gwgui.emulation.fairchild"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Mattel",
+          "assembly": "gwgui.emulation.mattel"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Philips",
+          "assembly": "gwgui.emulation.philips"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Sharp",
+          "assembly": "gwgui.emulation.sharp"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Sinclair",
+          "assembly": "gwgui.emulation.sinclair"
+        },
+        {
+          "semanticErrors": 0,
+          "project": "GWGUI.Emulation.Snk",
+          "assembly": "gwgui.emulation.snk"
+        }
+      ],
+      "otherProjectSourcesUnchanged": true,
+      "inverses": [
+        {
+          "sha256": "5417E4AC595BFB3706FDCA411B037A576C2FC31F17B5E5926ED0D2FD33F1A686",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "554651FD70250E92BEAAD975EC35B37E7FDF5372A1C04352B30149CD69D350A4",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "A219E5FF4CCD964EC8768ECEA79BA2CECDE3B63ADAFC3BD07001B5417BBAEDD9",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "8DBE96E550A7B8685016D5AA6F2CEDDE49CBE3D8AA6ACFD3BBC03745C4643B92",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "437AE15A96B1F7CED7EA93689EC7CF11FD01B15763257AA153AE4385A4CD280E",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "244ECC71D76F13AA24A4980955A723CDCD787FAB49F43FD31DE415329165BED3",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "9BCB5C4554F6754166784077BFCEE3D281619943907CD84456B7DEE1027EA19A",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "2918786AC66F456E069F6C454D3E58B717F804843819A5C9A4CA636E893D7E5E",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "4F6AED3F9D552760D19AA18163905F9C71A716E76C9427325EC9E9F75ACD458C",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "070F5EC1603CE045B4A43F25D4836BF70FD0E4485D0DA2AE8ED6ED535B612D97",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "sha256": "6EA710C9888B3704E7CFF3123E2E4C0E212087E52EDD8496FBD74B0CA0F9461C",
+          "byteExactInverse": true,
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        }
+      ],
+      "otherSdkMembersUnchanged": true,
+      "originalAcornAlgorithm": true,
+      "bindings": [
+        {
+          "Caller": "gwgui.emulation.acorn|M:GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.acorn",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 78,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.apple|M:GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.apple",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 78,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.bandai|M:GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.bandai",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 77,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.coleco|M:GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.coleco",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 80,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.epoch|M:GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.epoch",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 80,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.fairchild|M:GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.fairchild",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 79,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.mattel|M:GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.mattel",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 80,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.philips|M:GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.philips",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 80,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.sharp|M:GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.sharp",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 76,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.sinclair|M:GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.sinclair",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 76,
+          "Kind": "invocation"
+        },
+        {
+          "Caller": "gwgui.emulation.snk|M:GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks.Dispose",
+          "CallerProject": "gwgui.emulation.snk",
+          "Target": "gwgui.emulation|M:GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable,System.IDisposable)",
+          "Path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "Line": 75,
+          "Kind": "invocation"
+        }
+      ],
+      "argumentEvaluation": [
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "argumentEvaluationHasNoMutableFieldOrGetter": true,
+          "readonlyResources": [
+            "_optionHost",
+            "_videoBuffers",
+            "_systemDirectory",
+            "_contentDirectory",
+            "_saveDirectory",
+            "_assetsDirectory",
+            "_virtualFileSystem"
+          ],
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        }
+      ]
+    },
+    "tests": {
+      "newCases": 10,
+      "exitCode": 0,
+      "filter": "CallbackResourceDisposalTests",
+      "externalFixtures": false,
+      "passed": 10,
+      "failed": 0,
+      "coreOrWindowExecuted": false
+    },
+    "inventory": {
+      "newFragmentOccurrencesCount": 9,
+      "priorArchivesRetained": true,
+      "retainedPartialScopes": 114,
+      "priorPartialScopes": 114,
+      "newFragmentOccurrences": [
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "595D81CF9AA0257632EB82668F6E71BFC1D58C05B79DA98A18AA40FDCDFE9A0F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "595D81CF9AA0257632EB82668F6E71BFC1D58C05B79DA98A18AA40FDCDFE9A0F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "9E8FEE5E148E68B73985A5CE0665CFA955229BADC5FFC3846E8A2AABEFE87378",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "9E8FEE5E148E68B73985A5CE0665CFA955229BADC5FFC3846E8A2AABEFE87378",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 73,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 74,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 70,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        },
+        {
+          "wholeMethodQualified": false,
+          "name": "Dispose",
+          "line": 70,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs"
+        }
+      ],
+      "priorActiveAnnotations": 3737,
+      "retainedActiveAnnotations": 3737,
+      "wholeMethodQualified": false
     }
   }
 }

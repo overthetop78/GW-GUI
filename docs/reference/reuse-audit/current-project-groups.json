@@ -1,38 +1,11 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7221,
-  "outsideSrcCSharpFiles": 339,
+  "currentCSharpFiles": 7222,
+  "outsideSrcCSharpFiles": 340,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11476,
+  "currentMethodCount": 11480,
   "powerShellFunctionCount": 17,
   "groups": [
-    {
-      "language": "CSharp",
-      "hash": "00462AF43754E92B05CDAD0FF7F81DED7FDF6C4CEE04C2E31678E6F445FCC81D",
-      "method": "Dispose",
-      "tokens": 64,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 64,
-          "hash": "00462AF43754E92B05CDAD0FF7F81DED7FDF6C4CEE04C2E31678E6F445FCC81D",
-          "shape": "52C8A7115D96B963990467882678453A6096C80820883A112BBD87660824C19E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 64,
-          "hash": "00462AF43754E92B05CDAD0FF7F81DED7FDF6C4CEE04C2E31678E6F445FCC81D",
-          "shape": "52C8A7115D96B963990467882678453A6096C80820883A112BBD87660824C19E"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
     {
       "language": "CSharp",
       "hash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
@@ -823,7 +796,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3646,57 +3619,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-      "method": "Dispose",
-      "tokens": 60,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 70,
-          "tokens": 60,
-          "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-          "shape": "C8D57D6DB74FC030DC0E86E948098A5F0ED0D9361F40D88E1743BF6D07007E61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 70,
-          "tokens": 60,
-          "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-          "shape": "C8D57D6DB74FC030DC0E86E948098A5F0ED0D9361F40D88E1743BF6D07007E61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 60,
-          "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-          "shape": "C8D57D6DB74FC030DC0E86E948098A5F0ED0D9361F40D88E1743BF6D07007E61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 60,
-          "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-          "shape": "C8D57D6DB74FC030DC0E86E948098A5F0ED0D9361F40D88E1743BF6D07007E61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 73,
-          "tokens": 60,
-          "hash": "23D62E42854B43202DB6DAF7FC93938DB79955C5F89B09601B525E830AB0FFB9",
-          "shape": "C8D57D6DB74FC030DC0E86E948098A5F0ED0D9361F40D88E1743BF6D07007E61"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "23F2DE3256A378BC518E944A546E84EA6A3A40AD797682005374FBEC1DBEEFA5",
       "method": "InitialContentPaths",
       "tokens": 85,
@@ -5864,33 +5786,6 @@
           "tokens": 78,
           "hash": "36523F0CE4E7DCC4B8052C37CB46B9B2DD4F0AE731AACB706F7295FA9273FEAE",
           "shape": "B6B1B98785B46667BF188914252F1915BA18F7C7716F9C3CDE4C67C25D3875B1"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "379374078A27ACCE9B3E7C83E2789E760C3BE7EA6968A24E6FE2E56F0F9A7545",
-      "method": "Dispose",
-      "tokens": 52,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 52,
-          "hash": "379374078A27ACCE9B3E7C83E2789E760C3BE7EA6968A24E6FE2E56F0F9A7545",
-          "shape": "2E4DFAD2400E8B7E2F9B038B1161EECF96E339F241244BC5E28F7BF644E182A4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
-          "name": "Dispose",
-          "line": 74,
-          "tokens": 52,
-          "hash": "379374078A27ACCE9B3E7C83E2789E760C3BE7EA6968A24E6FE2E56F0F9A7545",
-          "shape": "2E4DFAD2400E8B7E2F9B038B1161EECF96E339F241244BC5E28F7BF644E182A4"
         }
       ],
       "predecessors": [],
@@ -8737,7 +8632,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -9684,6 +9579,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "595D81CF9AA0257632EB82668F6E71BFC1D58C05B79DA98A18AA40FDCDFE9A0F",
+      "method": "Dispose",
+      "tokens": 59,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 59,
+          "hash": "595D81CF9AA0257632EB82668F6E71BFC1D58C05B79DA98A18AA40FDCDFE9A0F",
+          "shape": "F59EF94AA89D6C5E830DBBFAAE8DE57F177536B7C086F9DC41E7761C20C87AC1",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "8DBE96E550A7B8685016D5AA6F2CEDDE49CBE3D8AA6ACFD3BBC03745C4643B92"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 59,
+          "hash": "595D81CF9AA0257632EB82668F6E71BFC1D58C05B79DA98A18AA40FDCDFE9A0F",
+          "shape": "F59EF94AA89D6C5E830DBBFAAE8DE57F177536B7C086F9DC41E7761C20C87AC1",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "437AE15A96B1F7CED7EA93689EC7CF11FD01B15763257AA153AE4385A4CD280E"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "5A74697F5AC5F86460BD88053A28A0A64A90ED18207E51DEC6925D4747665991",
       "method": "OnVideo",
       "tokens": 176,
@@ -10543,7 +10469,7 @@
     {
       "language": "CSharp",
       "hash": "5E41B8E6BA64FCBA1E07049FEE804449442712123C0582A02BF64109180A8E92",
-      "method": "DiscoverAdapters",
+      "method": "CreateAdapters",
       "tokens": 32,
       "current": [
         {
@@ -16989,6 +16915,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "9E8FEE5E148E68B73985A5CE0665CFA955229BADC5FFC3846E8A2AABEFE87378",
+      "method": "Dispose",
+      "tokens": 47,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 47,
+          "hash": "9E8FEE5E148E68B73985A5CE0665CFA955229BADC5FFC3846E8A2AABEFE87378",
+          "shape": "E968CB27005F71D2035D416E4D91B748EFCBDBCF11F151C65A7FA7F692BC5967",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "554651FD70250E92BEAAD975EC35B37E7FDF5372A1C04352B30149CD69D350A4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 47,
+          "hash": "9E8FEE5E148E68B73985A5CE0665CFA955229BADC5FFC3846E8A2AABEFE87378",
+          "shape": "E968CB27005F71D2035D416E4D91B748EFCBDBCF11F151C65A7FA7F692BC5967",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "5417E4AC595BFB3706FDCA411B037A576C2FC31F17B5E5926ED0D2FD33F1A686"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
       "method": "GetStatus",
       "tokens": 57,
@@ -18663,7 +18620,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20675,6 +20632,67 @@
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+      "method": "Dispose",
+      "tokens": 55,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 55,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "shape": "D2F15254B6DB15D623B36ED3FA41CFDFBE7D6EFFED70F6A6745CD5443A3B6837",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "9BCB5C4554F6754166784077BFCEE3D281619943907CD84456B7DEE1027EA19A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 73,
+          "tokens": 55,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "shape": "D2F15254B6DB15D623B36ED3FA41CFDFBE7D6EFFED70F6A6745CD5443A3B6837",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "244ECC71D76F13AA24A4980955A723CDCD787FAB49F43FD31DE415329165BED3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 74,
+          "tokens": 55,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "shape": "D2F15254B6DB15D623B36ED3FA41CFDFBE7D6EFFED70F6A6745CD5443A3B6837",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "2918786AC66F456E069F6C454D3E58B717F804843819A5C9A4CA636E893D7E5E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 70,
+          "tokens": 55,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "shape": "D2F15254B6DB15D623B36ED3FA41CFDFBE7D6EFFED70F6A6745CD5443A3B6837",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "070F5EC1603CE045B4A43F25D4836BF70FD0E4485D0DA2AE8ED6ED535B612D97"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
+          "name": "Dispose",
+          "line": 70,
+          "tokens": 55,
+          "hash": "C479F56F3022F2CA11F0F301CFF74FE736F7051F2CBBAD489DCC71655D48511F",
+          "shape": "D2F15254B6DB15D623B36ED3FA41CFDFBE7D6EFFED70F6A6745CD5443A3B6837",
+          "qualificationOwnedResourceFragment": "Direct SDK reuse of original Acorn seven-resource nested using chain; byte-exact inverse of each caller, original order/finally/exception behavior and ten pure-memory cases verified. Caller guards and state resets outside fragment.",
+          "qualificationOwnedResourceSourceSha256": "4F6AED3F9D552760D19AA18163905F9C71A716E76C9427325EC9E9F75ACD458C"
         }
       ],
       "predecessors": [],
@@ -24403,7 +24421,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -33513,7 +33531,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 622,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 622
   }
 }

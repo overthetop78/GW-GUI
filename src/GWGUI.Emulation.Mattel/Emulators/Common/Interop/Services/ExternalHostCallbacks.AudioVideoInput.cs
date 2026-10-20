@@ -77,13 +77,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _disposed = true;
         try
         {
-            using (_systemDirectory)
-            using (_contentDirectory)
-            using (_saveDirectory)
-            using (_assetsDirectory)
-            using (_virtualFileSystem)
-            using (_videoBuffers)
-                _optionHost.Dispose();
+            GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(
+                _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);
         }
         finally
         {
