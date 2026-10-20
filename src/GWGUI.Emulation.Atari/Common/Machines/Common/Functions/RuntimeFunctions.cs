@@ -7,8 +7,6 @@ internal static class RuntimeFunctions
 {
     internal static EmulationVideoStandard? Region(uint nativeRegion) => EmulationHostProtocolFunctions.Region(nativeRegion);
 
-    internal static int RegionValue(EmulationVideoStandard? region) => EmulationHostProtocolFunctions.RegionValue(region);
-
     internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)

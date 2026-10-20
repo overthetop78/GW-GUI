@@ -12,8 +12,6 @@ internal static class EmulatorCatalog
 
     internal static EmulationEmulatorDefinition Get(Emulator emulator) => CreateAdapter(emulator).Definition;
 
-    internal static EmulationEmulatorDefinition Get(string emulatorId) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
-
     internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 
     internal static Emulator DefaultFor(string machineId)

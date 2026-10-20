@@ -11,11 +11,8 @@ internal static class CoreExceptions
     internal static string HostNotInitialized() => Text("Emulation.Error.Core.HostNotInitialized");
     internal static string CoreNotInitialized() => Text("Emulation.Error.Core.CoreNotInitialized");
     internal static string MediaNotFound() => Text("Emulation.Error.Core.MediaNotFound");
-    internal static string FullContentPathsRequired() => Text("Emulation.Error.Core.FullContentPathsRequired");
     internal static string StartWithoutMediaUnsupported() => Text("Emulation.Error.Core.StartWithoutMediaUnsupported");
     internal static string ContentRefused() => Text("Emulation.Error.Core.ContentRefused");
-    internal static string PlaylistLimitExceeded() => Text("Emulation.Error.Core.PlaylistLimitExceeded");
-    internal static string DiskLabelInvalid() => Text("Emulation.Error.Core.DiskLabelInvalid");
     internal static string StateSaveFailed() => Text("Emulation.Error.Core.StateSaveFailed");
     internal static string StateEmpty() => Text("Emulation.Error.Core.StateEmpty");
     internal static string StateRestoreFailed() => Text("Emulation.Error.Core.StateRestoreFailed");

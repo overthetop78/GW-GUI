@@ -4,12 +4,6 @@ internal static partial class ConfigurationFunctions
 {
     internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
 
-    internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model)
-    {
-        _ = DefaultEmulator(model);
-        return [EmulationMediaSlot.Cartridge0];
-    }
-
     internal static void Validate(MachineConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);

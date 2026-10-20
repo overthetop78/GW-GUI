@@ -9,6 +9,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Atari.Emulators.Common.Contracts;
+using GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Contracts;

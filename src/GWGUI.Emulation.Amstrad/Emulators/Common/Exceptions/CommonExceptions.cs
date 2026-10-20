@@ -11,11 +11,9 @@ internal static class CommonExceptions
     internal static string HostNotInitialized() => Text(CommonExceptionsConstants.HostNotInitializedResourceKey);
     internal static string CoreNotInitialized() => Text(CommonExceptionsConstants.CoreNotInitializedResourceKey);
     internal static string MediaNotFound() => Text(CommonExceptionsConstants.MediaNotFoundResourceKey);
-    internal static string FullContentPathsRequired() => Text(CommonExceptionsConstants.FullContentPathsRequiredResourceKey);
     internal static string StartWithoutMediaUnsupported() => Text(CommonExceptionsConstants.StartWithoutMediaUnsupportedResourceKey);
     internal static string ContentRefused() => Text(CommonExceptionsConstants.ContentRefusedResourceKey);
     internal static string PlaylistLimitExceeded() => Text(CommonExceptionsConstants.PlaylistLimitExceededResourceKey);
-    internal static string DiskLabelInvalid() => Text(CommonExceptionsConstants.DiskLabelInvalidResourceKey);
     internal static string StateSaveFailed() => Text(CommonExceptionsConstants.StateSaveFailedResourceKey);
     internal static string StateEmpty() => Text(CommonExceptionsConstants.StateEmptyResourceKey);
     internal static string StateRestoreFailed() => Text(CommonExceptionsConstants.StateRestoreFailedResourceKey);

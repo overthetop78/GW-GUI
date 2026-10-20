@@ -33,14 +33,6 @@ internal static class CoreFunctions
     internal static bool WritePointer(nint destination, nint value)
         => ExternalCoreEnvironmentFunctions.WritePointer(destination, value);
 
-    internal static bool WriteBoolean(nint destination, bool value)
-        => ExternalCoreEnvironmentFunctions.WriteBoolean(destination, value);
-
     internal static bool WriteInteger(nint destination, int value)
         => ExternalCoreEnvironmentFunctions.WriteInteger(destination, value);
-
-    internal static bool WriteInteger(nint destination, uint value) => ExternalCoreEnvironmentFunctions.WriteInteger(destination, value);
-
-    internal static bool WriteUnsignedLong(nint destination, ulong value)
-        => ExternalCoreEnvironmentFunctions.WriteUnsignedLong(destination, value);
 }

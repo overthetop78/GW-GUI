@@ -10,14 +10,10 @@ internal static class CoreExceptions
     internal static string HostConfigurationInvalid() => Text(CoreErrorResourceKeys.HostConfigurationInvalid);
     internal static string HostNotInitialized() => Text(CoreErrorResourceKeys.HostNotInitialized);
     internal static string CoreNotInitialized() => Text(CoreErrorResourceKeys.CoreNotInitialized);
-    internal static string KickstartNotFound() => Text(CoreErrorResourceKeys.KickstartNotFound);
     internal static string MediaNotFound() => Text(CoreErrorResourceKeys.MediaNotFound);
-    internal static string ExtendedRomNotFound() => Text(CoreErrorResourceKeys.ExtendedRomNotFound);
-    internal static string RomKeyNotFound() => Text(CoreErrorResourceKeys.RomKeyNotFound);
     internal static string FullContentPathsRequired() => Text(CoreErrorResourceKeys.FullContentPathsRequired);
     internal static string StartWithoutMediaUnsupported() => Text(CoreErrorResourceKeys.StartWithoutMediaUnsupported);
     internal static string ContentRefused() => Text(CoreErrorResourceKeys.ContentRefused);
-    internal static string DiskLabelInvalid() => Text(CoreErrorResourceKeys.DiskLabelInvalid);
     internal static string StateSaveFailed() => Text(CoreErrorResourceKeys.StateSaveFailed);
     internal static string StateEmpty() => Text(CoreErrorResourceKeys.StateEmpty);
     internal static string StateRestoreFailed() => Text(CoreErrorResourceKeys.StateRestoreFailed);

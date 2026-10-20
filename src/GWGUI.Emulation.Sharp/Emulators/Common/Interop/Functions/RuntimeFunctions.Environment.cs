@@ -16,8 +16,6 @@ internal static class EnvironmentFunctions
 
     internal static IReadOnlyList<MemoryDescriptor> CopyMemoryMap(nint data)
         => GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<MemoryDescriptor>(data, EnvironmentConstants.MaximumMemoryDescriptorCount, static (flags, pointer, offset, start, select, disconnect, length, addressSpace) => new(flags, pointer, offset, start, select, disconnect, length, addressSpace));
-
-    internal static uint CurrentLanguage() => GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CurrentLanguage();
     internal static string CopyNativeLogTemplate(nint format)
         => GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyNativeLogTemplate(format, EnvironmentConstants.NativeLogArgumentMarker, EnvironmentConstants.NativeLogConversionCharacters);
 }

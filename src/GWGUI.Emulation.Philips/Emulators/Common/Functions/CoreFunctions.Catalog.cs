@@ -28,22 +28,4 @@ internal static class EmulatorCatalogFunctions
             throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
         return Path.Combine(Path.GetFullPath(installationRoot), entry.Id, EmulatorCatalogConstants.ActiveManifestFileName);
     }
-
-    internal static IReadOnlyDictionary<MachineModel, Emulator> CreateModelAssociations(IReadOnlyList<EmulatorCatalogEntry> entries)
-    {
-        if (entries.Select(entry => entry.Emulator).Distinct().Count() != entries.Count
-            || entries.Select(entry => entry.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() != entries.Count)
-            throw new InvalidDataException(EmulatorCatalogErrors.DuplicateCore);
-
-        var result = new Dictionary<MachineModel, Emulator>();
-        foreach (var entry in entries)
-        {
-            foreach (var model in entry.Models)
-            {
-                result.TryAdd(model, entry.Emulator);
-            }
-        }
-
-        return result;
-    }
 }

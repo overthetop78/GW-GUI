@@ -4,13 +4,6 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class StStorageFunctions
 {
-    internal static StStorage? Prepare(MachineConfiguration configuration, IReadOnlySet<string> supportedExtensions)
-    {
-        var storage = configuration.Media.Where(IsStorage).Where(media => media.IsInserted).OrderBy(media => media.MountOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray();
-        if (storage.Length > StStorageConstants.MaximumPrimaryStorageCount)
-            throw new InvalidOperationException(StStorageErrors.MultiplePrimaryStorageUnsupported);
-        return storage.Length == StStorageConstants.FirstStorageIndex ? null : Prepare(configuration.Model, storage[StStorageConstants.FirstStorageIndex], supportedExtensions);
-    }
 
     internal static StStorage Prepare(MachineModel model, MediaConfiguration media, IReadOnlySet<string> supportedExtensions)
     {
@@ -92,8 +85,6 @@ internal static class StStorageFunctions
         if (!IsPartitionName(value)) throw new ArgumentException(StStorageErrors.MountPointInvalid);
         return value;
     }
-
-    private static bool IsStorage(MediaConfiguration media) => media.Category is MediaCategory.HardDisk or MediaCategory.Directory;
 
     private static void ValidateImageAccess(MediaConfiguration media)
     {

@@ -38,8 +38,6 @@ internal static class ConfigurationValidationFunctions
         }
     }
 
-    internal static bool Supports(Model model, MediaCategory category) => Supports(model, category, default, null);
-
     internal static bool IsIncompatibleMedia(Model model, MediaConfiguration media, IReadOnlyDictionary<string, string>? options)
     {
         if (model.Id != ModelConstants.MegaDrive || media.Category != MediaCategory.Cartridge)

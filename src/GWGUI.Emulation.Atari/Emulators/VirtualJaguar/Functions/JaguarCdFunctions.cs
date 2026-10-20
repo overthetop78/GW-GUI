@@ -7,7 +7,6 @@ namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
 
 internal static class JaguarCdFunctions
 {
-    internal static bool IsSupported(IReadOnlySet<string> reportedExtensions) => JaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
 
     internal static PreparedJaguarCd Prepare(MachineConfiguration machine, MediaConfiguration media, bool needsFullPath, IReadOnlySet<string> reportedExtensions)
     {

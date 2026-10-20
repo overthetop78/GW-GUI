@@ -16,8 +16,6 @@ internal static class CoreCatalog
 
     public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CatalogFactories.Select(adapter => CreateAdapter(adapter.Emulator)).ToArray();
-
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator)
     {
         if (!AdapterTypes.TryGetValue(emulator, out var type)) throw new ArgumentOutOfRangeException(nameof(emulator));

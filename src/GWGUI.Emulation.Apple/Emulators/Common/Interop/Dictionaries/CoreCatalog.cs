@@ -20,14 +20,6 @@ internal static class CoreCatalog
             .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
             .ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();
-
-    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)
-    {
-        var id = Get(emulator).Id;
-        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));
-    }
-
     public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 
     public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);

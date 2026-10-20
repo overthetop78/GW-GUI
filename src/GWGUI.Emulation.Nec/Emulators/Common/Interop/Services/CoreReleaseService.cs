@@ -95,9 +95,6 @@ public sealed class CoreReleaseService
             path => VerifyWindowsX64Library(path, _errorResourcePrefix));
     }
 
-    internal static void VerifyWindowsX64Library(string path)
-        => VerifyWindowsX64Library(path, "Emulation.Error.Core");
-
     private static void VerifyWindowsX64Library(string path, string errorResourcePrefix)
         => EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
             () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreNotPe"),

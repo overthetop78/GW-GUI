@@ -101,9 +101,6 @@ public sealed class CoreReleaseService
         }
     }
 
-    internal static void VerifyWindowsX64Library(string path)
-        => VerifyWindowsX64Library(path, null);
-
     private static void VerifyWindowsX64Library(string path, string? emulatorId) =>
         EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
             () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreNotPe),

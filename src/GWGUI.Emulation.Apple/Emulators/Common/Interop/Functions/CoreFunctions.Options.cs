@@ -21,8 +21,6 @@ internal static class CoreOptionFunctions
             CreateOption, static (value, label) => new(value, label), static value => value.Value,
             static (key, name, description) => new(key, name, description), static category => category.Key);
 
-    internal static nint SelectInternationalDefinitions(nint data) => EmulationCoreOptionFunctions.SelectInternationalDefinitions(data);
-
     internal static IReadOnlyList<CoreOption> MergeLocalizedDefinitions(IReadOnlyList<CoreOption> english, IReadOnlyList<CoreOption> localized) =>
         EmulationCoreOptionFunctions.MergeLocalized(english, localized, static option => option.Key,
             static (option, local) => local with { DefaultValue = option.DefaultValue });

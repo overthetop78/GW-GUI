@@ -3,7 +3,6 @@ using System.Diagnostics;
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 internal static class RuntimeFunctions
 {
-    internal static int RegionValue(EmulationVideoStandard? region) => EmulationHostProtocolFunctions.RegionValue(region);
     internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
         =>
@@ -34,7 +33,6 @@ internal static class RuntimeFunctions
 
 internal static class RuntimeOptionFunctions
 {
-    internal static bool RequiresRestart(Emulator emulator, string key) => CoreOptionValidationFunctions.ForCore(emulator).Any(option => option.Key == key && option.RequiresRestart);
 }
 
 internal static class MessageFunctions

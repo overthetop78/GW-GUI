@@ -5,8 +5,6 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Functions;
 
 internal static class ControllerFunctions
 {
-    internal static short ApplyDeadZone(short value, int percent)
-    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(value, percent);
 
     internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot snapshot, IReadOnlyList<ControllerBinding>? bindings)
     {

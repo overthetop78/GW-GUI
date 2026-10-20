@@ -4,7 +4,6 @@ namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static int RegionValue(EmulationVideoStandard? region) => EmulationHostProtocolFunctions.RegionValue(region);
 
     internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
 

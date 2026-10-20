@@ -52,8 +52,6 @@ internal static class CoreHostFunctions
     internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
 
     internal static HostError ReadError(BinaryReader reader) => JsonSerializer.Deserialize<HostError>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
-
-    internal static void WriteString(BinaryWriter writer, string? value) => EmulationHostProtocolFunctions.WriteString(writer, value);
     internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
     internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => EmulationHostProtocolFunctions.WriteBytes(writer, value);
     internal static byte[] ReadBytes(BinaryReader reader) => EmulationHostProtocolFunctions.ReadBytes(reader, CoreHostConstants.HostName);
@@ -69,7 +67,6 @@ internal static class CoreHostFunctions
     [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
     internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName) =>
         EmulationHostProtocolFunctions.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
-    internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks) => EmulationHostProtocolFunctions.WriteAudio(writer, chunks);
     internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudio(reader, CoreHostConstants.HostName);
     internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => EmulationHostProtocolFunctions.ReadLedStates(reader, CoreHostConstants.HostName);

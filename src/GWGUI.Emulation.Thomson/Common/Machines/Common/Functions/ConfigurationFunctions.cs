@@ -21,11 +21,6 @@ internal static partial class ConfigurationFunctions
         MachineModel.To7 or MachineModel.To770 or MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => MachineFamily.To,
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
-    internal static int ControllerPortCount(MachineModel model)
-    {
-        _ = Family(model);
-        return ControllerConstants.PortCount;
-    }
 
     internal static void Validate(MachineConfiguration configuration)
     {
