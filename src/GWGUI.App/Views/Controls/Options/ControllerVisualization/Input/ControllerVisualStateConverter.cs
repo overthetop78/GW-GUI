@@ -119,81 +119,17 @@ internal static class ControllerVisualStateConverter
         };
     }
 
-    private static void AddGamepadControls(ISet<ControllerVisualControl> target, GameInputGamepadButtons buttons)
-    {
-        Add(target, buttons, GameInputGamepadButtons.A, ControllerVisualControl.GamepadA);
-        Add(target, buttons, GameInputGamepadButtons.B, ControllerVisualControl.GamepadB);
-        Add(target, buttons, GameInputGamepadButtons.C, ControllerVisualControl.GamepadC);
-        Add(target, buttons, GameInputGamepadButtons.X, ControllerVisualControl.GamepadX);
-        Add(target, buttons, GameInputGamepadButtons.Y, ControllerVisualControl.GamepadY);
-        Add(target, buttons, GameInputGamepadButtons.Z, ControllerVisualControl.GamepadZ);
-        Add(target, buttons, GameInputGamepadButtons.DPadUp, ControllerVisualControl.GamepadDPadUp);
-        Add(target, buttons, GameInputGamepadButtons.DPadDown, ControllerVisualControl.GamepadDPadDown);
-        Add(target, buttons, GameInputGamepadButtons.DPadLeft, ControllerVisualControl.GamepadDPadLeft);
-        Add(target, buttons, GameInputGamepadButtons.DPadRight, ControllerVisualControl.GamepadDPadRight);
-        Add(target, buttons, GameInputGamepadButtons.LeftShoulder, ControllerVisualControl.GamepadLeftShoulder);
-        Add(target, buttons, GameInputGamepadButtons.RightShoulder, ControllerVisualControl.GamepadRightShoulder);
-        Add(target, buttons, GameInputGamepadButtons.LeftThumbstick, ControllerVisualControl.GamepadLeftThumbstick);
-        Add(target, buttons, GameInputGamepadButtons.RightThumbstick, ControllerVisualControl.GamepadRightThumbstick);
-        Add(target, buttons, GameInputGamepadButtons.LeftTriggerButton, ControllerVisualControl.GamepadLeftTriggerButton);
-        Add(target, buttons, GameInputGamepadButtons.RightTriggerButton, ControllerVisualControl.GamepadRightTriggerButton);
-        Add(target, buttons, GameInputGamepadButtons.View, ControllerVisualControl.GamepadView);
-        Add(target, buttons, GameInputGamepadButtons.Menu, ControllerVisualControl.GamepadMenu);
-        Add(target, buttons, GameInputGamepadButtons.PaddleLeft1, ControllerVisualControl.GamepadPaddleLeft1);
-        Add(target, buttons, GameInputGamepadButtons.PaddleLeft2, ControllerVisualControl.GamepadPaddleLeft2);
-        Add(target, buttons, GameInputGamepadButtons.PaddleRight1, ControllerVisualControl.GamepadPaddleRight1);
-        Add(target, buttons, GameInputGamepadButtons.PaddleRight2, ControllerVisualControl.GamepadPaddleRight2);
-    }
+    private static void AddGamepadControls(ISet<ControllerVisualControl> target, GameInputGamepadButtons buttons) =>
+        AddControls(target, buttons, ControllerVisualControlMappings.GamepadMappings);
 
-    private static void AddRacingControls(ISet<ControllerVisualControl> target, GameInputRacingWheelButtons buttons)
-    {
-        Add(target, buttons, GameInputRacingWheelButtons.A, ControllerVisualControl.RacingA);
-        Add(target, buttons, GameInputRacingWheelButtons.B, ControllerVisualControl.RacingB);
-        Add(target, buttons, GameInputRacingWheelButtons.X, ControllerVisualControl.RacingX);
-        Add(target, buttons, GameInputRacingWheelButtons.Y, ControllerVisualControl.RacingY);
-        Add(target, buttons, GameInputRacingWheelButtons.DPadUp, ControllerVisualControl.RacingDPadUp);
-        Add(target, buttons, GameInputRacingWheelButtons.DPadDown, ControllerVisualControl.RacingDPadDown);
-        Add(target, buttons, GameInputRacingWheelButtons.DPadLeft, ControllerVisualControl.RacingDPadLeft);
-        Add(target, buttons, GameInputRacingWheelButtons.DPadRight, ControllerVisualControl.RacingDPadRight);
-        Add(target, buttons, GameInputRacingWheelButtons.PreviousGear, ControllerVisualControl.RacingPreviousGear);
-        Add(target, buttons, GameInputRacingWheelButtons.NextGear, ControllerVisualControl.RacingNextGear);
-        Add(target, buttons, GameInputRacingWheelButtons.View, ControllerVisualControl.RacingView);
-        Add(target, buttons, GameInputRacingWheelButtons.Menu, ControllerVisualControl.RacingMenu);
-        Add(target, buttons, GameInputRacingWheelButtons.LeftThumbstick, ControllerVisualControl.RacingLeftThumbstick);
-        Add(target, buttons, GameInputRacingWheelButtons.RightThumbstick, ControllerVisualControl.RacingRightThumbstick);
-    }
+    private static void AddRacingControls(ISet<ControllerVisualControl> target, GameInputRacingWheelButtons buttons) =>
+        AddControls(target, buttons, ControllerVisualControlMappings.RacingMappings);
 
-    private static void AddFlightControls(ISet<ControllerVisualControl> target, GameInputFlightStickButtons buttons)
-    {
-        Add(target, buttons, GameInputFlightStickButtons.A, ControllerVisualControl.FlightA);
-        Add(target, buttons, GameInputFlightStickButtons.B, ControllerVisualControl.FlightB);
-        Add(target, buttons, GameInputFlightStickButtons.X, ControllerVisualControl.FlightX);
-        Add(target, buttons, GameInputFlightStickButtons.Y, ControllerVisualControl.FlightY);
-        Add(target, buttons, GameInputFlightStickButtons.FirePrimary, ControllerVisualControl.FlightFirePrimary);
-        Add(target, buttons, GameInputFlightStickButtons.FireSecondary, ControllerVisualControl.FlightFireSecondary);
-        Add(target, buttons, GameInputFlightStickButtons.LeftShoulder, ControllerVisualControl.FlightLeftShoulder);
-        Add(target, buttons, GameInputFlightStickButtons.RightShoulder, ControllerVisualControl.FlightRightShoulder);
-        Add(target, buttons, GameInputFlightStickButtons.View, ControllerVisualControl.FlightView);
-        Add(target, buttons, GameInputFlightStickButtons.Menu, ControllerVisualControl.FlightMenu);
-        Add(target, buttons, GameInputFlightStickButtons.HatSwitchUp, ControllerVisualControl.FlightHatUp);
-        Add(target, buttons, GameInputFlightStickButtons.HatSwitchDown, ControllerVisualControl.FlightHatDown);
-        Add(target, buttons, GameInputFlightStickButtons.HatSwitchLeft, ControllerVisualControl.FlightHatLeft);
-        Add(target, buttons, GameInputFlightStickButtons.HatSwitchRight, ControllerVisualControl.FlightHatRight);
-    }
+    private static void AddFlightControls(ISet<ControllerVisualControl> target, GameInputFlightStickButtons buttons) =>
+        AddControls(target, buttons, ControllerVisualControlMappings.FlightMappings);
 
-    private static void AddArcadeControls(ISet<ControllerVisualControl> target, GameInputArcadeStickButtons buttons)
-    {
-        Add(target, buttons, GameInputArcadeStickButtons.Action1, ControllerVisualControl.ArcadeAction1);
-        Add(target, buttons, GameInputArcadeStickButtons.Action2, ControllerVisualControl.ArcadeAction2);
-        Add(target, buttons, GameInputArcadeStickButtons.Action3, ControllerVisualControl.ArcadeAction3);
-        Add(target, buttons, GameInputArcadeStickButtons.Action4, ControllerVisualControl.ArcadeAction4);
-        Add(target, buttons, GameInputArcadeStickButtons.Action5, ControllerVisualControl.ArcadeAction5);
-        Add(target, buttons, GameInputArcadeStickButtons.Action6, ControllerVisualControl.ArcadeAction6);
-        Add(target, buttons, GameInputArcadeStickButtons.Special1, ControllerVisualControl.ArcadeSpecial1);
-        Add(target, buttons, GameInputArcadeStickButtons.Special2, ControllerVisualControl.ArcadeSpecial2);
-        Add(target, buttons, GameInputArcadeStickButtons.View, ControllerVisualControl.ArcadeView);
-        Add(target, buttons, GameInputArcadeStickButtons.Menu, ControllerVisualControl.ArcadeMenu);
-    }
+    private static void AddArcadeControls(ISet<ControllerVisualControl> target, GameInputArcadeStickButtons buttons) =>
+        AddControls(target, buttons, ControllerVisualControlMappings.ArcadeMappings);
 
     private static void AddDirectionControls(ISet<ControllerVisualControl> target, GameInputSwitchPosition position, ControllerVisualControl up, ControllerVisualControl down, ControllerVisualControl left, ControllerVisualControl right)
     {
@@ -208,6 +144,14 @@ internal static class ControllerVisualStateConverter
     }
 
     private static float DigitalAxis(bool negative, bool positive) => negative == positive ? NeutralAxisValue : negative ? MinimumSignedAxisValue : MaximumAxisValue;
+
+    private static void AddControls<TButtons>(ISet<ControllerVisualControl> target, TButtons buttons,
+        IReadOnlyList<(TButtons Button, ControllerVisualControl Control)> mappings)
+        where TButtons : struct, Enum
+    {
+        foreach (var mapping in mappings)
+            Add(target, buttons, mapping.Button, mapping.Control);
+    }
 
     private static void Add<TButtons>(ISet<ControllerVisualControl> target, TButtons buttons, TButtons flag, ControllerVisualControl control)
         where TButtons : struct, Enum

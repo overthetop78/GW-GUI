@@ -5,73 +5,94 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerVisualControlMappings
 {
+    internal static readonly IReadOnlyList<(GameInputGamepadButtons Button, ControllerVisualControl Control)> GamepadMappings =
+        Array.AsReadOnly<(GameInputGamepadButtons Button, ControllerVisualControl Control)>(
+    [
+        (GameInputGamepadButtons.A, ControllerVisualControl.GamepadA),
+        (GameInputGamepadButtons.B, ControllerVisualControl.GamepadB),
+        (GameInputGamepadButtons.C, ControllerVisualControl.GamepadC),
+        (GameInputGamepadButtons.X, ControllerVisualControl.GamepadX),
+        (GameInputGamepadButtons.Y, ControllerVisualControl.GamepadY),
+        (GameInputGamepadButtons.Z, ControllerVisualControl.GamepadZ),
+        (GameInputGamepadButtons.DPadUp, ControllerVisualControl.GamepadDPadUp),
+        (GameInputGamepadButtons.DPadDown, ControllerVisualControl.GamepadDPadDown),
+        (GameInputGamepadButtons.DPadLeft, ControllerVisualControl.GamepadDPadLeft),
+        (GameInputGamepadButtons.DPadRight, ControllerVisualControl.GamepadDPadRight),
+        (GameInputGamepadButtons.LeftShoulder, ControllerVisualControl.GamepadLeftShoulder),
+        (GameInputGamepadButtons.RightShoulder, ControllerVisualControl.GamepadRightShoulder),
+        (GameInputGamepadButtons.LeftThumbstick, ControllerVisualControl.GamepadLeftThumbstick),
+        (GameInputGamepadButtons.RightThumbstick, ControllerVisualControl.GamepadRightThumbstick),
+        (GameInputGamepadButtons.LeftTriggerButton, ControllerVisualControl.GamepadLeftTriggerButton),
+        (GameInputGamepadButtons.RightTriggerButton, ControllerVisualControl.GamepadRightTriggerButton),
+        (GameInputGamepadButtons.View, ControllerVisualControl.GamepadView),
+        (GameInputGamepadButtons.Menu, ControllerVisualControl.GamepadMenu),
+        (GameInputGamepadButtons.PaddleLeft1, ControllerVisualControl.GamepadPaddleLeft1),
+        (GameInputGamepadButtons.PaddleLeft2, ControllerVisualControl.GamepadPaddleLeft2),
+        (GameInputGamepadButtons.PaddleRight1, ControllerVisualControl.GamepadPaddleRight1),
+        (GameInputGamepadButtons.PaddleRight2, ControllerVisualControl.GamepadPaddleRight2),
+    ]);
+
+    internal static readonly IReadOnlyList<(GameInputRacingWheelButtons Button, ControllerVisualControl Control)> RacingMappings =
+        Array.AsReadOnly<(GameInputRacingWheelButtons Button, ControllerVisualControl Control)>(
+    [
+        (GameInputRacingWheelButtons.A, ControllerVisualControl.RacingA),
+        (GameInputRacingWheelButtons.B, ControllerVisualControl.RacingB),
+        (GameInputRacingWheelButtons.X, ControllerVisualControl.RacingX),
+        (GameInputRacingWheelButtons.Y, ControllerVisualControl.RacingY),
+        (GameInputRacingWheelButtons.DPadUp, ControllerVisualControl.RacingDPadUp),
+        (GameInputRacingWheelButtons.DPadDown, ControllerVisualControl.RacingDPadDown),
+        (GameInputRacingWheelButtons.DPadLeft, ControllerVisualControl.RacingDPadLeft),
+        (GameInputRacingWheelButtons.DPadRight, ControllerVisualControl.RacingDPadRight),
+        (GameInputRacingWheelButtons.PreviousGear, ControllerVisualControl.RacingPreviousGear),
+        (GameInputRacingWheelButtons.NextGear, ControllerVisualControl.RacingNextGear),
+        (GameInputRacingWheelButtons.View, ControllerVisualControl.RacingView),
+        (GameInputRacingWheelButtons.Menu, ControllerVisualControl.RacingMenu),
+        (GameInputRacingWheelButtons.LeftThumbstick, ControllerVisualControl.RacingLeftThumbstick),
+        (GameInputRacingWheelButtons.RightThumbstick, ControllerVisualControl.RacingRightThumbstick),
+    ]);
+
+    internal static readonly IReadOnlyList<(GameInputFlightStickButtons Button, ControllerVisualControl Control)> FlightMappings =
+        Array.AsReadOnly<(GameInputFlightStickButtons Button, ControllerVisualControl Control)>(
+    [
+        (GameInputFlightStickButtons.A, ControllerVisualControl.FlightA),
+        (GameInputFlightStickButtons.B, ControllerVisualControl.FlightB),
+        (GameInputFlightStickButtons.X, ControllerVisualControl.FlightX),
+        (GameInputFlightStickButtons.Y, ControllerVisualControl.FlightY),
+        (GameInputFlightStickButtons.FirePrimary, ControllerVisualControl.FlightFirePrimary),
+        (GameInputFlightStickButtons.FireSecondary, ControllerVisualControl.FlightFireSecondary),
+        (GameInputFlightStickButtons.LeftShoulder, ControllerVisualControl.FlightLeftShoulder),
+        (GameInputFlightStickButtons.RightShoulder, ControllerVisualControl.FlightRightShoulder),
+        (GameInputFlightStickButtons.View, ControllerVisualControl.FlightView),
+        (GameInputFlightStickButtons.Menu, ControllerVisualControl.FlightMenu),
+        (GameInputFlightStickButtons.HatSwitchUp, ControllerVisualControl.FlightHatUp),
+        (GameInputFlightStickButtons.HatSwitchDown, ControllerVisualControl.FlightHatDown),
+        (GameInputFlightStickButtons.HatSwitchLeft, ControllerVisualControl.FlightHatLeft),
+        (GameInputFlightStickButtons.HatSwitchRight, ControllerVisualControl.FlightHatRight),
+    ]);
+
+    internal static readonly IReadOnlyList<(GameInputArcadeStickButtons Button, ControllerVisualControl Control)> ArcadeMappings =
+        Array.AsReadOnly<(GameInputArcadeStickButtons Button, ControllerVisualControl Control)>(
+    [
+        (GameInputArcadeStickButtons.Action1, ControllerVisualControl.ArcadeAction1),
+        (GameInputArcadeStickButtons.Action2, ControllerVisualControl.ArcadeAction2),
+        (GameInputArcadeStickButtons.Action3, ControllerVisualControl.ArcadeAction3),
+        (GameInputArcadeStickButtons.Action4, ControllerVisualControl.ArcadeAction4),
+        (GameInputArcadeStickButtons.Action5, ControllerVisualControl.ArcadeAction5),
+        (GameInputArcadeStickButtons.Action6, ControllerVisualControl.ArcadeAction6),
+        (GameInputArcadeStickButtons.Special1, ControllerVisualControl.ArcadeSpecial1),
+        (GameInputArcadeStickButtons.Special2, ControllerVisualControl.ArcadeSpecial2),
+        (GameInputArcadeStickButtons.View, ControllerVisualControl.ArcadeView),
+        (GameInputArcadeStickButtons.Menu, ControllerVisualControl.ArcadeMenu),
+    ]);
+
     internal static ControllerVisualControl? GamepadControl(GameInputGamepadButtons button) =>
-        button switch
-        {
-            GameInputGamepadButtons.A => ControllerVisualControl.GamepadA,
-            GameInputGamepadButtons.B => ControllerVisualControl.GamepadB,
-            GameInputGamepadButtons.C => ControllerVisualControl.GamepadC,
-            GameInputGamepadButtons.X => ControllerVisualControl.GamepadX,
-            GameInputGamepadButtons.Y => ControllerVisualControl.GamepadY,
-            GameInputGamepadButtons.Z => ControllerVisualControl.GamepadZ,
-            GameInputGamepadButtons.DPadUp => ControllerVisualControl.GamepadDPadUp,
-            GameInputGamepadButtons.DPadDown => ControllerVisualControl.GamepadDPadDown,
-            GameInputGamepadButtons.DPadLeft => ControllerVisualControl.GamepadDPadLeft,
-            GameInputGamepadButtons.DPadRight => ControllerVisualControl.GamepadDPadRight,
-            GameInputGamepadButtons.LeftShoulder => ControllerVisualControl.GamepadLeftShoulder,
-            GameInputGamepadButtons.RightShoulder => ControllerVisualControl.GamepadRightShoulder,
-            GameInputGamepadButtons.LeftThumbstick => ControllerVisualControl.GamepadLeftThumbstick,
-            GameInputGamepadButtons.RightThumbstick => ControllerVisualControl.GamepadRightThumbstick,
-            GameInputGamepadButtons.LeftTriggerButton => ControllerVisualControl.GamepadLeftTriggerButton,
-            GameInputGamepadButtons.RightTriggerButton => ControllerVisualControl.GamepadRightTriggerButton,
-            GameInputGamepadButtons.View => ControllerVisualControl.GamepadView,
-            GameInputGamepadButtons.Menu => ControllerVisualControl.GamepadMenu,
-            GameInputGamepadButtons.PaddleLeft1 => ControllerVisualControl.GamepadPaddleLeft1,
-            GameInputGamepadButtons.PaddleLeft2 => ControllerVisualControl.GamepadPaddleLeft2,
-            GameInputGamepadButtons.PaddleRight1 => ControllerVisualControl.GamepadPaddleRight1,
-            GameInputGamepadButtons.PaddleRight2 => ControllerVisualControl.GamepadPaddleRight2,
-            _ => null
-        };
+        ControlFor(GamepadMappings, button);
 
     internal static ControllerVisualControl RacingControl(GameInputRacingWheelButtons button) =>
-        button switch
-        {
-            GameInputRacingWheelButtons.A => ControllerVisualControl.RacingA,
-            GameInputRacingWheelButtons.B => ControllerVisualControl.RacingB,
-            GameInputRacingWheelButtons.X => ControllerVisualControl.RacingX,
-            GameInputRacingWheelButtons.Y => ControllerVisualControl.RacingY,
-            GameInputRacingWheelButtons.DPadUp => ControllerVisualControl.RacingDPadUp,
-            GameInputRacingWheelButtons.DPadDown => ControllerVisualControl.RacingDPadDown,
-            GameInputRacingWheelButtons.DPadLeft => ControllerVisualControl.RacingDPadLeft,
-            GameInputRacingWheelButtons.DPadRight => ControllerVisualControl.RacingDPadRight,
-            GameInputRacingWheelButtons.PreviousGear => ControllerVisualControl.RacingPreviousGear,
-            GameInputRacingWheelButtons.NextGear => ControllerVisualControl.RacingNextGear,
-            GameInputRacingWheelButtons.View => ControllerVisualControl.RacingView,
-            GameInputRacingWheelButtons.Menu => ControllerVisualControl.RacingMenu,
-            GameInputRacingWheelButtons.LeftThumbstick => ControllerVisualControl.RacingLeftThumbstick,
-            GameInputRacingWheelButtons.RightThumbstick => ControllerVisualControl.RacingRightThumbstick,
-            _ => throw new ArgumentOutOfRangeException(nameof(button), button, null)
-        };
+        ControlFor(RacingMappings, button) ?? throw new ArgumentOutOfRangeException(nameof(button), button, null);
 
     internal static ControllerVisualControl FlightControl(GameInputFlightStickButtons button) =>
-        button switch
-        {
-            GameInputFlightStickButtons.A => ControllerVisualControl.FlightA,
-            GameInputFlightStickButtons.B => ControllerVisualControl.FlightB,
-            GameInputFlightStickButtons.X => ControllerVisualControl.FlightX,
-            GameInputFlightStickButtons.Y => ControllerVisualControl.FlightY,
-            GameInputFlightStickButtons.FirePrimary => ControllerVisualControl.FlightFirePrimary,
-            GameInputFlightStickButtons.FireSecondary => ControllerVisualControl.FlightFireSecondary,
-            GameInputFlightStickButtons.LeftShoulder => ControllerVisualControl.FlightLeftShoulder,
-            GameInputFlightStickButtons.RightShoulder => ControllerVisualControl.FlightRightShoulder,
-            GameInputFlightStickButtons.View => ControllerVisualControl.FlightView,
-            GameInputFlightStickButtons.Menu => ControllerVisualControl.FlightMenu,
-            GameInputFlightStickButtons.HatSwitchUp => ControllerVisualControl.FlightHatUp,
-            GameInputFlightStickButtons.HatSwitchDown => ControllerVisualControl.FlightHatDown,
-            GameInputFlightStickButtons.HatSwitchLeft => ControllerVisualControl.FlightHatLeft,
-            GameInputFlightStickButtons.HatSwitchRight => ControllerVisualControl.FlightHatRight,
-            _ => throw new ArgumentOutOfRangeException(nameof(button), button, null)
-        };
+        ControlFor(FlightMappings, button) ?? throw new ArgumentOutOfRangeException(nameof(button), button, null);
 
     internal static ControllerVisualControl? FlightHatControl(GameInputSwitchPosition position) =>
         position switch
@@ -84,20 +105,7 @@ internal static class ControllerVisualControlMappings
         };
 
     internal static ControllerVisualControl ArcadeControl(GameInputArcadeStickButtons button) =>
-        button switch
-        {
-            GameInputArcadeStickButtons.Action1 => ControllerVisualControl.ArcadeAction1,
-            GameInputArcadeStickButtons.Action2 => ControllerVisualControl.ArcadeAction2,
-            GameInputArcadeStickButtons.Action3 => ControllerVisualControl.ArcadeAction3,
-            GameInputArcadeStickButtons.Action4 => ControllerVisualControl.ArcadeAction4,
-            GameInputArcadeStickButtons.Action5 => ControllerVisualControl.ArcadeAction5,
-            GameInputArcadeStickButtons.Action6 => ControllerVisualControl.ArcadeAction6,
-            GameInputArcadeStickButtons.Special1 => ControllerVisualControl.ArcadeSpecial1,
-            GameInputArcadeStickButtons.Special2 => ControllerVisualControl.ArcadeSpecial2,
-            GameInputArcadeStickButtons.View => ControllerVisualControl.ArcadeView,
-            GameInputArcadeStickButtons.Menu => ControllerVisualControl.ArcadeMenu,
-            _ => throw new ArgumentOutOfRangeException(nameof(button), button, null)
-        };
+        ControlFor(ArcadeMappings, button) ?? throw new ArgumentOutOfRangeException(nameof(button), button, null);
 
     internal static ControllerVisualControl? SystemControl(GameInputSystemButtons button) =>
         button switch
@@ -146,4 +154,14 @@ internal static class ControllerVisualControlMappings
             _ => null
         };
 
+
+    private static ControllerVisualControl? ControlFor<TButtons>(
+        IReadOnlyList<(TButtons Button, ControllerVisualControl Control)> mappings, TButtons button)
+        where TButtons : struct, Enum
+    {
+        foreach (var mapping in mappings)
+            if (EqualityComparer<TButtons>.Default.Equals(mapping.Button, button))
+                return mapping.Control;
+        return null;
+    }
 }

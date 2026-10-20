@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7234,
-  "outsideSrcCSharpFiles": 332,
+  "currentCSharpFiles": 7235,
+  "outsideSrcCSharpFiles": 333,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11476,
+  "currentMethodCount": 11479,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -8597,7 +8597,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -11220,7 +11220,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -17225,7 +17225,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17518,7 +17518,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18818,7 +18818,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -28651,29 +28651,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "76693484276836F23629626666D27186D310BF3A9FE09BE10C3ED220E0039684",
-      "tokens": 132,
-      "current": [
-        {
-          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
-          "name": "RacingControl",
-          "line": 36,
-          "tokens": 132,
-          "hash": "5429651AB687F26D740430FED698038FC2A454C48AC1D251022BF69261726164",
-          "shape": "76693484276836F23629626666D27186D310BF3A9FE09BE10C3ED220E0039684"
-        },
-        {
-          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
-          "name": "FlightControl",
-          "line": 56,
-          "tokens": 132,
-          "hash": "2B0D8DA786343972A7DF2705178689921877F93606253FE874F2230DE4B8FC2B",
-          "shape": "76693484276836F23629626666D27186D310BF3A9FE09BE10C3ED220E0039684"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "76D0AA5DD1933623B33EC07883E9996624E39B36F03A4FB37A84BF305B6D7641",
       "tokens": 116,
       "current": [
@@ -29757,29 +29734,6 @@
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "9559740C6E405A9A7B476AEE61AA2C5913BB43B8EB7877585EAD2EFBB1CDC280",
-      "tokens": 212,
-      "current": [
-        {
-          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
-          "name": "AddRacingControls",
-          "line": 148,
-          "tokens": 212,
-          "hash": "DA73E7E74978F9748F3CC8D6826B2F1C9A4FA5FA61415F9A9FA81903A66CA120",
-          "shape": "9559740C6E405A9A7B476AEE61AA2C5913BB43B8EB7877585EAD2EFBB1CDC280"
-        },
-        {
-          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
-          "name": "AddFlightControls",
-          "line": 166,
-          "tokens": 212,
-          "hash": "09CB90D62CB959F153B130D8709243501A3FD53C5D2069E69E906F51791C1B30",
-          "shape": "9559740C6E405A9A7B476AEE61AA2C5913BB43B8EB7877585EAD2EFBB1CDC280"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -32331,7 +32285,7 @@
         {
           "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
           "name": "FlightHatControl",
-          "line": 76,
+          "line": 97,
           "tokens": 40,
           "hash": "32930E2CD5B862398D206C03E04B50E10898B1936E0362510D6306FDCDDA9DEE",
           "shape": "DE73F17432230F74A6413CF68C7EB0E439140DBF9C00BB656C1D08143E59C70E"
@@ -32339,7 +32293,7 @@
         {
           "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
           "name": "DirectionControl",
-          "line": 110,
+          "line": 118,
           "tokens": 40,
           "hash": "8F403A8C3A1F2A059574F005AA1A5CDC7F0C6960301FA3B6235895BBAAE53B98",
           "shape": "DE73F17432230F74A6413CF68C7EB0E439140DBF9C00BB656C1D08143E59C70E"
@@ -33817,7 +33771,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 505,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 505
   }
 }

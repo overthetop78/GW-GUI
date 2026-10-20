@@ -1,20 +1,13 @@
 {
-  "snapshot": "9f345f2705e82570ead29f855084ae4f3c047bb1",
+  "snapshot": "a83314b66f372944e286cc5657942ba0d7ed0b02",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs"
+    "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
+    "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7234,
-  "methodBodyCount": 9582,
+  "fileCount": 7235,
+  "methodBodyCount": 9591,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -120313,6 +120306,62 @@
           "bodyTokens": "=> ResolveDataDirectory ( applicationDirectory , roamingDirectory , File . Exists )",
           "hash": "71164FAF82FD45182EEA69AABADDFB7025E9787B108972524544E05C8B8EF92A",
           "shape": "78A7F585CA91F3740E6CC9418A8201D7FB02332B01DEDBB313F561FDA3799A9D"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
+          "name": "AddGamepadControls",
+          "owner": "ControllerVisualStateConverter",
+          "kind": "MethodDeclaration",
+          "line": 122,
+          "parameters": "(ISet<ControllerVisualControl> target, GameInputGamepadButtons buttons)",
+          "tokens": 11,
+          "bodyTokens": "=> AddControls ( target , buttons , ControllerVisualControlMappings . GamepadMappings )",
+          "hash": "4C9FD371B4F18E8ED5464CEE8A352F3AA3E0CDC9ACD0A4D82B0DE9C927693B6C",
+          "shape": "78A7F585CA91F3740E6CC9418A8201D7FB02332B01DEDBB313F561FDA3799A9D",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "505B14E3948281ED7CBFF643950E41036E239E18FD1986BC96B7E241B203E948"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
+          "name": "AddRacingControls",
+          "owner": "ControllerVisualStateConverter",
+          "kind": "MethodDeclaration",
+          "line": 125,
+          "parameters": "(ISet<ControllerVisualControl> target, GameInputRacingWheelButtons buttons)",
+          "tokens": 11,
+          "bodyTokens": "=> AddControls ( target , buttons , ControllerVisualControlMappings . RacingMappings )",
+          "hash": "8B882C930CA6357DE20EA7F81A10DA8BBF2DA51675AFD89F5F919FD4C306F9BB",
+          "shape": "78A7F585CA91F3740E6CC9418A8201D7FB02332B01DEDBB313F561FDA3799A9D",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "505B14E3948281ED7CBFF643950E41036E239E18FD1986BC96B7E241B203E948"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
+          "name": "AddFlightControls",
+          "owner": "ControllerVisualStateConverter",
+          "kind": "MethodDeclaration",
+          "line": 128,
+          "parameters": "(ISet<ControllerVisualControl> target, GameInputFlightStickButtons buttons)",
+          "tokens": 11,
+          "bodyTokens": "=> AddControls ( target , buttons , ControllerVisualControlMappings . FlightMappings )",
+          "hash": "4102F103EDB656EB0FF7DAFE65703A5F3755BDA728EFF90C14ACAF7B9CD158FC",
+          "shape": "78A7F585CA91F3740E6CC9418A8201D7FB02332B01DEDBB313F561FDA3799A9D",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "505B14E3948281ED7CBFF643950E41036E239E18FD1986BC96B7E241B203E948"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs",
+          "name": "AddArcadeControls",
+          "owner": "ControllerVisualStateConverter",
+          "kind": "MethodDeclaration",
+          "line": 131,
+          "parameters": "(ISet<ControllerVisualControl> target, GameInputArcadeStickButtons buttons)",
+          "tokens": 11,
+          "bodyTokens": "=> AddControls ( target , buttons , ControllerVisualControlMappings . ArcadeMappings )",
+          "hash": "5F62C2E4A986102D4C4E5EABA00B761E178AA5809DC612CEF7148C3746D258BF",
+          "shape": "78A7F585CA91F3740E6CC9418A8201D7FB02332B01DEDBB313F561FDA3799A9D",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "505B14E3948281ED7CBFF643950E41036E239E18FD1986BC96B7E241B203E948"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -125576,6 +125625,55 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "A34C27B157D324DDFA2871E60808CFFEE63BD00ED9BA523F67C0A7F96E0EDF80",
+      "tokens": 21,
+      "current": [
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
+          "name": "RacingControl",
+          "owner": "ControllerVisualControlMappings",
+          "kind": "MethodDeclaration",
+          "line": 91,
+          "parameters": "(GameInputRacingWheelButtons button)",
+          "tokens": 21,
+          "bodyTokens": "=> ControlFor ( RacingMappings , button ) ?? throw new ArgumentOutOfRangeException ( nameof ( button ) , button , null )",
+          "hash": "C029B4EEEAB038E6FBAD9CF4A005E0204159F303AAFFCD2BF7D30FE07CEF544A",
+          "shape": "A34C27B157D324DDFA2871E60808CFFEE63BD00ED9BA523F67C0A7F96E0EDF80",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "FB8A7118D9AE92AE869DF9FB8583BBB544EB3BC8F7236C52548796736EDB03D0"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
+          "name": "FlightControl",
+          "owner": "ControllerVisualControlMappings",
+          "kind": "MethodDeclaration",
+          "line": 94,
+          "parameters": "(GameInputFlightStickButtons button)",
+          "tokens": 21,
+          "bodyTokens": "=> ControlFor ( FlightMappings , button ) ?? throw new ArgumentOutOfRangeException ( nameof ( button ) , button , null )",
+          "hash": "0DBB0F02054D50525ACF6413C204B237CD8A569C2FD45105CE85104AD7979258",
+          "shape": "A34C27B157D324DDFA2871E60808CFFEE63BD00ED9BA523F67C0A7F96E0EDF80",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "FB8A7118D9AE92AE869DF9FB8583BBB544EB3BC8F7236C52548796736EDB03D0"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
+          "name": "ArcadeControl",
+          "owner": "ControllerVisualControlMappings",
+          "kind": "MethodDeclaration",
+          "line": 107,
+          "parameters": "(GameInputArcadeStickButtons button)",
+          "tokens": 21,
+          "bodyTokens": "=> ControlFor ( ArcadeMappings , button ) ?? throw new ArgumentOutOfRangeException ( nameof ( button ) , button , null )",
+          "hash": "D41DE686D8310AA9801C332D7B75F211F8B87F6B6E653DFBAAEC0BE167396A1A",
+          "shape": "A34C27B157D324DDFA2871E60808CFFEE63BD00ED9BA523F67C0A7F96E0EDF80",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "FB8A7118D9AE92AE869DF9FB8583BBB544EB3BC8F7236C52548796736EDB03D0"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "A4513E211333262773F08943526DB896ECD84E5FAB272291A0541514412A4B2A",
       "tokens": 6,
       "current": [
@@ -128478,6 +128576,20 @@
           "bodyTokens": "=> localize ( key , arguments )",
           "hash": "04CEE3E4CD86CB391643FC6D6007879DD7806AA59EEC338DB22816FB2850E8A7",
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
+          "name": "GamepadControl",
+          "owner": "ControllerVisualControlMappings",
+          "kind": "MethodDeclaration",
+          "line": 88,
+          "parameters": "(GameInputGamepadButtons button)",
+          "tokens": 7,
+          "bodyTokens": "=> ControlFor ( GamepadMappings , button )",
+          "hash": "1FC2AAB7BA159A9A44F5BC36844EB15431DBBA6B717A01381112EA5BAD251DAA",
+          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355",
+          "qualification": "entire-typed-visual-control-method-reuses-original-immutable-pairs-and-preserves-flag-or-exact-lookup-policy",
+          "qualificationSourceSha256": "FB8A7118D9AE92AE869DF9FB8583BBB544EB3BC8F7236C52548796736EDB03D0"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs",
@@ -134750,7 +134862,7 @@
           "name": "SystemControl",
           "owner": "ControllerVisualControlMappings",
           "kind": "MethodDeclaration",
-          "line": 102,
+          "line": 110,
           "parameters": "(GameInputSystemButtons button)",
           "tokens": 24,
           "bodyTokens": "=> button switch { GameInputSystemButtons . Guide => ControllerVisualControl . SystemGuide , GameInputSystemButtons . Share => ControllerVisualControl . SystemShare , _ => null }",
@@ -143341,7 +143453,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3088,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3088
   }
 }
