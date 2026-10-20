@@ -466635,9 +466635,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 39,
+        "currentLine": 38,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC"
+        "currentSourceSha256": "3FF9D37B3E2C19D2A786939D7A699EEEEA89E386930CE50F8436476BEE5EE813"
       },
       {
         "line": 54,
@@ -466715,9 +466715,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 41,
+        "currentLine": 40,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54"
+        "currentSourceSha256": "30E10B085607184DF717AD25D36A6437509817D840C45C9ED7FCDB6414620102"
       },
       {
         "line": 22,
@@ -467848,9 +467848,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 40,
+        "currentLine": 39,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28"
+        "currentSourceSha256": "477D998F1C7902C487452FDDA47ACA620B065C1FAB71AF0B9235963B04A474CE"
       },
       {
         "line": 15,
@@ -468174,9 +468174,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 39,
+        "currentLine": 38,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675"
+        "currentSourceSha256": "DB42B7A445781C64F333C7034CE21E2AAB7EC192FDD65A43A5514432DFF002E4"
       },
       {
         "line": 5,
@@ -468648,9 +468648,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 35,
+        "currentLine": 34,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83"
+        "currentSourceSha256": "25119410225AC3708E03561AA4337092534E581B3B7A1B44F72DB7072ADAC06F"
       },
       {
         "line": 5,
@@ -468945,9 +468945,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 39,
+        "currentLine": 38,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7"
+        "currentSourceSha256": "C0FCB87F583A18EB661E76182F1CE9272BB0C7F69D2A1211ABEE2F1ED291ECB8"
       },
       {
         "line": 69,
@@ -469202,9 +469202,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 30,
+        "currentLine": 28,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1"
+        "currentSourceSha256": "403B2488128691D193CC43C844FFBD3488055438DB61ADC1D11691D2D99B6405"
       },
       {
         "line": 10,
@@ -469699,9 +469699,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 41,
+        "currentLine": 40,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941"
+        "currentSourceSha256": "675C60712DE3E2DA7DAEC4C9236CBD34E72E3F91C86CE0DD4C5D8BF7293C0E77"
       },
       {
         "line": 5,
@@ -471398,9 +471398,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 41,
+        "currentLine": 40,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C"
+        "currentSourceSha256": "74DCBC842920AF1BB8AD876A53F3939AA317402852741E2CC407DA4D39C99123"
       },
       {
         "line": 52,
@@ -471695,9 +471695,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 41,
+        "currentLine": 40,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB"
+        "currentSourceSha256": "518AC7A0D975D0EA77B88E65A4F81635C64CC3C95CD8DC78278AFAE5719198CA"
       },
       {
         "line": 10,
@@ -471992,9 +471992,9 @@
         "previousClassification": "sdk-record-with-nontrivial-arguments-pending",
         "resolved": true,
         "resolution": "coreCatalogDefinitionReuse",
-        "currentLine": 30,
+        "currentLine": 28,
         "currentBodyHash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
-        "currentSourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5"
+        "currentSourceSha256": "2BB54C64BABD4AFB65AB4952BC36D4A0BE41349923BAA5BDFA0DC4EDF0DB10F5"
       }
     ],
     "retainedPending": 188,
@@ -642630,43 +642630,43 @@
     "inventory": {
       "completeAdapters": [
         {
-          "line": 30,
-          "sourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1",
+          "line": 28,
+          "sourceSha256": "403B2488128691D193CC43C844FFBD3488055438DB61ADC1D11691D2D99B6405",
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 41,
-          "sourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941",
+          "line": 40,
+          "sourceSha256": "675C60712DE3E2DA7DAEC4C9236CBD34E72E3F91C86CE0DD4C5D8BF7293C0E77",
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 41,
-          "sourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C",
+          "line": 40,
+          "sourceSha256": "74DCBC842920AF1BB8AD876A53F3939AA317402852741E2CC407DA4D39C99123",
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 41,
-          "sourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54",
+          "line": 40,
+          "sourceSha256": "30E10B085607184DF717AD25D36A6437509817D840C45C9ED7FCDB6414620102",
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 39,
-          "sourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7",
+          "line": 38,
+          "sourceSha256": "C0FCB87F583A18EB661E76182F1CE9272BB0C7F69D2A1211ABEE2F1ED291ECB8",
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 41,
-          "sourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB",
+          "line": 40,
+          "sourceSha256": "518AC7A0D975D0EA77B88E65A4F81635C64CC3C95CD8DC78278AFAE5719198CA",
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
@@ -642679,36 +642679,36 @@
           "name": "GetDefinition"
         },
         {
-          "line": 30,
-          "sourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5",
+          "line": 28,
+          "sourceSha256": "2BB54C64BABD4AFB65AB4952BC36D4A0BE41349923BAA5BDFA0DC4EDF0DB10F5",
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 39,
-          "sourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC",
+          "line": 38,
+          "sourceSha256": "3FF9D37B3E2C19D2A786939D7A699EEEEA89E386930CE50F8436476BEE5EE813",
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 40,
-          "sourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28",
+          "line": 39,
+          "sourceSha256": "477D998F1C7902C487452FDDA47ACA620B065C1FAB71AF0B9235963B04A474CE",
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 39,
-          "sourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675",
+          "line": 38,
+          "sourceSha256": "DB42B7A445781C64F333C7034CE21E2AAB7EC192FDD65A43A5514432DFF002E4",
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
         },
         {
-          "line": 35,
-          "sourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83",
+          "line": 34,
+          "sourceSha256": "25119410225AC3708E03561AA4337092534E581B3B7A1B44F72DB7072ADAC06F",
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
           "name": "GetDefinition"
@@ -642742,6 +642742,2329 @@
       "newCases": 7,
       "passed": 72,
       "filter": "CoreCatalogDefinitionTests|MachineModelParsingTests|SnkInputSettingsTests"
+    }
+  },
+  "typedFactoryDiscoveryReuse": {
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Microsoft",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Panasonic",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk",
+      "GWGUI.Emulation.Sony",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing"
+    ],
+    "policyDifference": {
+      "typedFactories": "Two assignability filters; no open generic exclusion; reflection type order for construction,then factory EmulatorId ordinal order",
+      "decision": "Reuse SDK instantiation primitive; separate typed filter overload without flags; retain caller final materialization and ID sorting",
+      "publicSdk": "Reject open generic types; sort type FullName ordinal before construction; assembly null guard"
+    },
+    "sharedPeer": {
+      "decision": "Already routes through EmulatorCatalog.CreateAdapters and existing SDK discovery; preserve",
+      "sha256": "0BE11C1962ECBED68A6A982091370FAC7529EC4FF4846E451A6E2754DBACD4C4",
+      "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs",
+      "source": "using GWGUI.Emulation.Snk.Emulators.Common.Functions;\nusing GWGUI.Emulation.Snk.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Snk.Common.Interfaces;\nusing GWGUI.Emulation.Snk.Emulators.Common.Factories;\n\nnamespace GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<MachineFactory> CatalogFactories = EmulatorCatalog.CreateAdapters().OfType<MachineFactory>().ToArray();\n    private static readonly IReadOnlyDictionary<Emulator, Type> AdapterTypes = CatalogFactories.ToDictionary(adapter => adapter.Emulator, adapter => adapter.GetType());\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = CatalogFactories.Select(adapter => adapter.CatalogEntry) .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CatalogFactories.Select(adapter => CreateAdapter(adapter.Emulator)).ToArray();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        if (!AdapterTypes.TryGetValue(emulator, out var type)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        return (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!;\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n"
+    },
+    "sdkOrigin": {
+      "source": "using System.Reflection;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\npublic static class EmulationAdapterFunctions\r\n{\r\n    public static IReadOnlyList<T> Create<T>(Assembly assembly) where T : class\r\n    {\r\n        ArgumentNullException.ThrowIfNull(assembly);\r\n        return assembly.GetTypes().Where(type => !type.IsAbstract && !type.ContainsGenericParameters && typeof(T).IsAssignableFrom(type))\r\n            .OrderBy(type => type.FullName, StringComparer.Ordinal)\r\n            .Select(type => (T)Activator.CreateInstance(type, nonPublic: true)!).ToArray();\r\n    }\r\n}",
+      "commit": "69a6643bf"
+    },
+    "sdkBefore": {
+      "sha256": "D47F4FF8C5DCB1150D99AAE6AF85673B32E1500B2C97F593FFE7DB53D1083B99",
+      "path": "src/GWGUI.Emulation/Functions/EmulationAdapterFunctions.cs",
+      "source": "using System.Reflection;\n\nnamespace GWGUI.Emulation.Functions;\n\npublic static class EmulationAdapterFunctions\n{\n    public static IReadOnlyList<T> Create<T>(Assembly assembly) where T : class\n    {\n        ArgumentNullException.ThrowIfNull(assembly);\n        return assembly.GetTypes().Where(type => !type.IsAbstract && !type.ContainsGenericParameters && typeof(T).IsAssignableFrom(type))\n            .OrderBy(type => type.FullName, StringComparer.Ordinal)\n            .Select(type => (T)Activator.CreateInstance(type, nonPublic: true)!).ToArray();\n    }\n}\n"
+    },
+    "before": [
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Acorn.Emulators.B2.Factories.B2MachineFactory"
+          }
+        ],
+        "sha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675",
+        "source": "using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Functions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Contracts;\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n\n",
+        "adapterType": "GWGUI.Emulation.Acorn.Common.Interfaces.IEmulatorAdapter",
+        "start": 1164,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 17
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Apple.Emulators.MiniVmac.Factories.MiniVmacMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Apple.Emulators.AppleWin.Factories.AppleWinMachineFactory"
+          }
+        ],
+        "sha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28",
+        "source": "using GWGUI.Emulation.Apple.Emulators.Common.Contracts;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Functions;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;\r\nusing GWGUI.Emulation.Apple.Common.Interfaces;\r\n\r\nnamespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Dictionaries;\r\n\r\ninternal static class CoreCatalog\r\n{\r\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\r\n\r\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\r\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\r\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\r\n\r\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();\r\n\r\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\r\n\r\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\r\n    {\r\n        var id = Get(emulator).Id;\r\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\r\n    }\r\n\r\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\r\n\r\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\r\n\r\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\r\n\r\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\r\n\r\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\r\n\r\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\r\n}\r\n",
+        "adapterType": "GWGUI.Emulation.Apple.Common.Interfaces.IEmulatorAdapter",
+        "start": 1173,
+        "length": 367,
+        "factoryType": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 18
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Factories.VirtualJaguarMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Hatari.Factories.HatariMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Handy.Factories.HandyMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Atari800.Factories.Atari800MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.GearLynx.Factories.GearLynxMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Stella2023.Factories.Stella2023MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.A5200.Factories.A5200MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Stella2014.Factories.Stella2014MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.BeetleLynx.Factories.BeetleLynxMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Holani.Factories.HolaniMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Stella.Factories.StellaMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.HatariB.Factories.HatariBMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.ProSystem.Factories.ProSystemMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Atari.Emulators.Hatari2014.Factories.Hatari2014MachineFactory"
+          }
+        ],
+        "sha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83",
+        "source": "namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries;\r\n\r\ninternal static class CoreCatalog\r\n{\r\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\r\n\r\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\r\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\r\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\r\n\r\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();\r\n\r\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\r\n\r\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\r\n    {\r\n        var id = Get(emulator).Id;\r\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\r\n    }\r\n\r\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\r\n\r\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\r\n\r\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\r\n\r\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\r\n\r\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\r\n\r\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\r\n}\r\n",
+        "adapterType": "GWGUI.Emulation.Atari.Common.Interfaces.IEmulatorAdapter",
+        "start": 944,
+        "length": 367,
+        "factoryType": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 13
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Factories.TamaLibretroMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Factories.PlaydiaEmuMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories.BeetleWonderSwanMachineFactory"
+          }
+        ],
+        "sha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C",
+        "source": "using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;\nusing GWGUI.Emulation.Bandai.Emulators.Common.Functions;\nusing GWGUI.Emulation.Bandai.Common.Interfaces;\nusing GWGUI.Emulation.Bandai.Emulators.Common.Interop.Factories;\n\nnamespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Bandai.Common.Interfaces.IEmulatorAdapter",
+        "start": 1218,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 19
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Coleco.Emulators.JollyCV.Factories.JollyCVMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Coleco.Emulators.GearColeco.Factories.GearColecoMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Coleco.Emulators.BlueMSX.Factories.BlueMSXMachineFactory"
+          }
+        ],
+        "sha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB",
+        "source": "using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;\nusing GWGUI.Emulation.Coleco.Emulators.Common.Functions;\nusing GWGUI.Emulation.Coleco.Common.Interfaces;\nusing GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;\n\nnamespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorAdapter",
+        "start": 1218,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 19
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Epoch.Emulators.PD777.Factories.PD777MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Epoch.Emulators.EmuSCV.Factories.EmuSCVMachineFactory"
+          }
+        ],
+        "sha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941",
+        "source": "using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Epoch.Emulators.Common.Exceptions;\nusing GWGUI.Emulation.Epoch.Emulators.Common.Functions;\nusing GWGUI.Emulation.Epoch.Common.Interfaces;\nusing GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;\n\nnamespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Epoch.Common.Interfaces.IEmulatorAdapter",
+        "start": 1212,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 19
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Factories.FreeChaFMachineFactory"
+          }
+        ],
+        "sha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54",
+        "source": "using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions;\nusing GWGUI.Emulation.Fairchild.Emulators.Common.Functions;\nusing GWGUI.Emulation.Fairchild.Common.Interfaces;\nusing GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories;\n\nnamespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel = EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Fairchild.Common.Interfaces.IEmulatorAdapter",
+        "start": 1236,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+        "line": 19
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Mattel.Emulators.FreeIntv.Factories.FreeIntvMachineFactory"
+          }
+        ],
+        "sha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC",
+        "source": "using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Functions;\nusing GWGUI.Emulation.Mattel.Common.Interfaces;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Factories;\n\nnamespace GWGUI.Emulation.Mattel.Emulators.Common.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Mattel.Common.Interfaces.IEmulatorAdapter",
+        "start": 960,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+        "line": 17
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Philips.Emulators.SameCdi.Factories.SameCdiMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Philips.Emulators.M2000.Factories.M2000MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Philips.Emulators.O2em.Factories.O2emMachineFactory"
+          }
+        ],
+        "sha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7",
+        "source": "using GWGUI.Emulation.Philips.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Philips.Emulators.Common.Functions;\nusing GWGUI.Emulation.Philips.Common.Interfaces;\nusing GWGUI.Emulation.Philips.Emulators.Common.Factories;\n\nnamespace GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;\n\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();\n\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n\n    public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));\n\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}\n",
+        "adapterType": "GWGUI.Emulation.Philips.Common.Interfaces.IEmulatorAdapter",
+        "start": 965,
+        "length": 364,
+        "factoryType": "GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\n            .ToArray();",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+        "line": 17
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Sharp.Emulators.X1.Factories.X1MachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Sharp.Emulators.Px68k.Factories.Px68kMachineFactory"
+          }
+        ],
+        "sha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1",
+        "source": "using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Functions;\nusing GWGUI.Emulation.Sharp.Common.Interfaces;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Factories;\n\nnamespace GWGUI.Emulation.Sharp.Emulators.Common.Dictionaries;\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract \n        && typeof(MachineFactory).IsAssignableFrom(type) \n        && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type,\n        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,\n        StringComparer.Ordinal).ToArray();\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n    public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}",
+        "adapterType": "GWGUI.Emulation.Sharp.Common.Interfaces.IEmulatorAdapter",
+        "start": 944,
+        "length": 359,
+        "factoryType": "GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract \n        && typeof(MachineFactory).IsAssignableFrom(type) \n        && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type,\n        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,\n        StringComparer.Ordinal).ToArray();",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+        "line": 14
+      },
+      {
+        "selectedFactories": [
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories.FuseMachineFactory"
+          },
+          {
+            "generic": false,
+            "abstract": false,
+            "name": "GWGUI.Emulation.Sinclair.Emulators.EightyOne.Factories.EightyOneMachineFactory"
+          }
+        ],
+        "sha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5",
+        "source": "using GWGUI.Emulation.Sinclair.Emulators.Common.Functions;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;\nusing GWGUI.Emulation.Sinclair.Common.Interfaces;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Factories;\n\nnamespace GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;\ninternal static class CoreCatalog\n{\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries = DiscoverFactories().Select(adapter => adapter.CatalogEntry).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\n\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract \n        && typeof(MachineFactory).IsAssignableFrom(type) \n        && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type,\n        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,\n        StringComparer.Ordinal).ToArray();\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\n    {\n        var id = Get(emulator).Id;\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\n    }\n\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\n    public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\n}",
+        "adapterType": "GWGUI.Emulation.Sinclair.Common.Interfaces.IEmulatorAdapter",
+        "start": 959,
+        "length": 359,
+        "factoryType": "GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory",
+        "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract \n        && typeof(MachineFactory).IsAssignableFrom(type) \n        && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type,\n        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,\n        StringComparer.Ordinal).ToArray();",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+        "line": 14
+      }
+    ],
+    "state": "both-original-discovery-policies-reused-and-eleven-typed-compositions-verified",
+    "origin": {
+      "method": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes()\r\n            .Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type)\r\n                && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+      "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+      "source": "namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries;\r\n\r\ninternal static class CoreCatalog\r\n{\r\n    private static readonly IReadOnlyList<EmulatorCatalogEntry> Entries =\r\n        DiscoverFactories().Select(adapter => adapter.CatalogEntry)\r\n            .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();\r\n\r\n    private static readonly IReadOnlyDictionary<Emulator, EmulatorCatalogEntry> ByEmulator =\r\n        Entries.ToDictionary(entry => entry.Emulator);\r\n    private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById =\r\n        Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);\r\n    private static readonly IReadOnlyDictionary<MachineModel, Emulator> ByModel =\r\n        EmulatorCatalogFunctions.CreateModelAssociations(Entries.OrderBy(entry => entry.Emulator).ToArray());\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;\r\n\r\n    private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        typeof(CoreCatalog).Assembly.GetTypes()\r\n            .Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type)\r\n                && typeof(IEmulatorAdapter).IsAssignableFrom(type))\r\n            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();\r\n\r\n    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();\r\n\r\n    internal static IEmulatorAdapter CreateAdapter(Emulator emulator)\r\n    {\r\n        var id = Get(emulator).Id;\r\n        return CreateAdapters().Single(adapter => string.Equals(adapter.EmulatorId, id, StringComparison.Ordinal));\r\n    }\r\n\r\n    public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry)\r\n        ? entry\r\n        : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);\r\n\r\n    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator)\r\n        ? Get(emulator)\r\n        : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);\r\n\r\n    public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry)\r\n        ? entry\r\n        : throw new ArgumentOutOfRangeException(nameof(id), id, null);\r\n\r\n    public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) =>\r\n        Entries.Where(entry => entry.Models.Contains(model)).ToArray();\r\n\r\n    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => new(\r\n        entry.Id, entry.LibraryName, entry.DescriptionResourceKey ?? $\"Emulation.Emulator.{entry.Id}.Description\",\r\n        entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));\r\n\r\n    public static CoreInstallationPaths GetInstallationPaths(Emulator emulator,\r\n        string installationRoot, string version) =>\r\n        EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);\r\n\r\n    public static string GetActiveManifestPath(Emulator emulator, string installationRoot) =>\r\n        EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);\r\n}",
+      "commit": "5f9fe4cc5"
+    },
+    "beforeReportAnnotations": {
+      "docs/reference/reuse-audit/current-project-groups.json": [
+        {
+          "sha256": "1FEC198DCB3D9228DEFCCFB4E46FC6AD7904EE0C05BE9136EAB6DDBA049F2725",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "1FEC198DCB3D9228DEFCCFB4E46FC6AD7904EE0C05BE9136EAB6DDBA049F2725"
+          }
+        },
+        {
+          "sha256": "0AF96AEE40839977EE0A2C9DD36AAAE9CA9E6BB61D6F9E8E2BDECE62910259F8",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "0AF96AEE40839977EE0A2C9DD36AAAE9CA9E6BB61D6F9E8E2BDECE62910259F8"
+          }
+        },
+        {
+          "sha256": "EAA9751C8D0A59CE363F75FE6FCDD66CE63681185B344216E84E7C76FFCDEBF2",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "EAA9751C8D0A59CE363F75FE6FCDD66CE63681185B344216E84E7C76FFCDEBF2"
+          }
+        },
+        {
+          "sha256": "041E32E820BECE6C68FDF152E645D72D55D3079D33A188910263A257143CC0B1",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "041E32E820BECE6C68FDF152E645D72D55D3079D33A188910263A257143CC0B1"
+          }
+        },
+        {
+          "sha256": "300743D1E1A72B059F922E596F598BFF6C9EE310FAA02E43AF556CEDC56D4EA1",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "300743D1E1A72B059F922E596F598BFF6C9EE310FAA02E43AF556CEDC56D4EA1"
+          }
+        },
+        {
+          "sha256": "506EA2913B76BABE386F46CABD18E2948B799B3D0D04574054BDB7A752F304E7",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "506EA2913B76BABE386F46CABD18E2948B799B3D0D04574054BDB7A752F304E7"
+          }
+        },
+        {
+          "sha256": "7B0CA18273BE9C580B1105B6405A98F0A8FB10DE9E5217ABE1ED3205D39FB4E5",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "7B0CA18273BE9C580B1105B6405A98F0A8FB10DE9E5217ABE1ED3205D39FB4E5"
+          }
+        },
+        {
+          "sha256": "929F8AF3519CBB72CF8738BF2A5F665FB5267076C4E3BADBE4E89FE678332C91",
+          "item": {
+            "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "929F8AF3519CBB72CF8738BF2A5F665FB5267076C4E3BADBE4E89FE678332C91"
+          }
+        },
+        {
+          "sha256": "B9672DDD822B236D5DEBC3A32159AB90AE970EF1664CAB45B784F411F98E01A3",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 14,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "B9672DDD822B236D5DEBC3A32159AB90AE970EF1664CAB45B784F411F98E01A3"
+          }
+        },
+        {
+          "sha256": "37093C8EB83A47EAD67930DAB36F05A6CB0AD514D7722A3EB85EC823645290D8",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 13,
+            "tokens": 362,
+            "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+            "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "37093C8EB83A47EAD67930DAB36F05A6CB0AD514D7722A3EB85EC823645290D8"
+          }
+        },
+        {
+          "sha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+            "name": "HandleEnvironment",
+            "line": 15,
+            "tokens": 133,
+            "hash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+            "shape": "1ED85FF7128DFB65B9E786B070E8EDE6A70584EC9175B2F09D4833BC783C4A0A",
+            "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+            "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
+            "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+            "qualificationLegacyQueriesSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
+          }
+        },
+        {
+          "sha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+            "name": "HandleEnvironment",
+            "line": 15,
+            "tokens": 133,
+            "hash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+            "shape": "1ED85FF7128DFB65B9E786B070E8EDE6A70584EC9175B2F09D4833BC783C4A0A",
+            "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+            "qualificationSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
+            "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+            "qualificationLegacyQueriesSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72"
+          }
+        },
+        {
+          "sha256": "3F5806E64F92203D8A7138EB2D7C9CCD41EDD764105CB41F4E14147239D20E1B",
+          "item": {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 305,
+            "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+            "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "3F5806E64F92203D8A7138EB2D7C9CCD41EDD764105CB41F4E14147239D20E1B"
+          }
+        },
+        {
+          "sha256": "D26A31C17FF93732B3B11CEE5AE8EB79DBF05C6FA23549C80F041CD22F0F08E3",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 305,
+            "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+            "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "D26A31C17FF93732B3B11CEE5AE8EB79DBF05C6FA23549C80F041CD22F0F08E3"
+          }
+        },
+        {
+          "sha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C",
+          "item": {
+            "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 305,
+            "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+            "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C"
+          }
+        },
+        {
+          "sha256": "3D56372A08255E6638E6BB1207ABE11FD5BF4CF446E4B7FBC2FDCF3B27ED694F",
+          "item": {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 305,
+            "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+            "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "3D56372A08255E6638E6BB1207ABE11FD5BF4CF446E4B7FBC2FDCF3B27ED694F"
+          }
+        },
+        {
+          "sha256": "150E3059664B598145D211E6E28C452F98DA324CEEDBCC70CFCDF4E33F4CB294",
+          "item": {
+            "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+            "name": "Run",
+            "line": 12,
+            "tokens": 305,
+            "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+            "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationCoreLifetimeSourceSha256": "150E3059664B598145D211E6E28C452F98DA324CEEDBCC70CFCDF4E33F4CB294"
+          }
+        },
+        {
+          "sha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+            "name": "RunSession",
+            "line": 24,
+            "tokens": 444,
+            "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+            "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+            "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+            "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+            "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+            "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+            "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+            "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+          }
+        },
+        {
+          "sha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+            "name": "RunSession",
+            "line": 24,
+            "tokens": 444,
+            "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+            "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+            "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+            "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+            "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+            "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+            "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+            "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+            "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+            "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+          }
+        },
+        {
+          "sha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2",
+          "item": {
+            "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD",
+          "item": {
+            "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5",
+          "item": {
+            "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079",
+          "item": {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 77,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 76,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9",
+          "item": {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+            "name": "Dispose",
+            "line": 73,
+            "tokens": 143,
+            "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+            "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
+            "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9",
+            "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          }
+        },
+        {
+          "sha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9",
+          "item": {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+            "name": "ThrowRemoteError",
+            "line": 44,
+            "tokens": 53,
+            "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+            "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+            "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+            "qualificationDialogErrorConstructionSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+          }
+        },
+        {
+          "sha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079",
+          "item": {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+            "name": "ThrowRemoteError",
+            "line": 44,
+            "tokens": 53,
+            "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+            "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+            "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+            "qualificationDialogErrorConstructionSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+          }
+        },
+        {
+          "sha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD",
+          "item": {
+            "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+            "name": "ThrowRemoteError",
+            "line": 44,
+            "tokens": 53,
+            "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+            "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+            "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+            "qualificationDialogErrorConstructionSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+          }
+        },
+        {
+          "sha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5",
+          "item": {
+            "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+            "name": "ThrowRemoteError",
+            "line": 44,
+            "tokens": 53,
+            "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+            "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+            "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+            "qualificationDialogErrorConstructionSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+          }
+        }
+      ],
+      "docs/reference/reuse-audit/short-method-groups.json": [
+        {
+          "sha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB",
+          "item": {
+            "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 63,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 82,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E",
+          "item": {
+            "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008",
+          "item": {
+            "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 51,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 73,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 60,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994",
+          "item": {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 60,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 79,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06",
+          "item": {
+            "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 80,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 64,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125",
+          "item": {
+            "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403",
+          "item": {
+            "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675"
+          }
+        },
+        {
+          "sha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 40,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28"
+          }
+        },
+        {
+          "sha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83",
+          "item": {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 35,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83"
+          }
+        },
+        {
+          "sha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C"
+          }
+        },
+        {
+          "sha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB"
+          }
+        },
+        {
+          "sha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941"
+          }
+        },
+        {
+          "sha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54"
+          }
+        },
+        {
+          "sha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC"
+          }
+        },
+        {
+          "sha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7"
+          }
+        },
+        {
+          "sha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 30,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1"
+          }
+        },
+        {
+          "sha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 30,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5"
+          }
+        },
+        {
+          "sha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675"
+          }
+        },
+        {
+          "sha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 40,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28"
+          }
+        },
+        {
+          "sha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83",
+          "item": {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 35,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83"
+          }
+        },
+        {
+          "sha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C"
+          }
+        },
+        {
+          "sha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB"
+          }
+        },
+        {
+          "sha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941"
+          }
+        },
+        {
+          "sha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 41,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54"
+          }
+        },
+        {
+          "sha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC"
+          }
+        },
+        {
+          "sha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 39,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7"
+          }
+        },
+        {
+          "sha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 30,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1"
+          }
+        },
+        {
+          "sha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+            "name": "GetDefinition",
+            "owner": "CoreCatalog",
+            "kind": "MethodDeclaration",
+            "line": 30,
+            "parameters": "(EmulatorCatalogEntry entry)",
+            "tokens": 6,
+            "bodyTokens": "=> entry . ToDefinition ( )",
+            "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+            "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+            "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+            "qualificationSourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5"
+          }
+        },
+        {
+          "sha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE",
+          "item": {
+            "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB",
+          "item": {
+            "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 63,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 82,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E",
+          "item": {
+            "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D",
+          "item": {
+            "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596",
+          "item": {
+            "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008",
+          "item": {
+            "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 51,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E",
+          "item": {
+            "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6",
+          "item": {
+            "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59",
+          "item": {
+            "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 73,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B",
+          "item": {
+            "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 60,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994",
+          "item": {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9",
+          "item": {
+            "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 60,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 79,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06",
+          "item": {
+            "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 80,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 64,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A",
+          "item": {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125",
+          "item": {
+            "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 81,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        },
+        {
+          "sha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403",
+          "item": {
+            "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+            "name": "TryDequeueAudio",
+            "owner": "ProcessCore",
+            "kind": "MethodDeclaration",
+            "line": 78,
+            "parameters": "(out AudioChunk? chunk)",
+            "tokens": 8,
+            "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
+            "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+            "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
+            "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+            "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403",
+            "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
+          }
+        }
+      ]
+    },
+    "beforeReportCounts": {
+      "docs/reference/reuse-audit/current-project-groups.json": {
+        "full": 367,
+        "partial": 38
+      },
+      "docs/reference/reuse-audit/short-method-groups.json": {
+        "full": 2986,
+        "partial": 44
+      }
+    },
+    "verification": {
+      "policyFlagsAdded": false,
+      "bindings": [
+        {
+          "line": 17,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "DB42B7A445781C64F333C7034CE21E2AAB7EC192FDD65A43A5514432DFF002E4",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Acorn.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 18,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "477D998F1C7902C487452FDDA47ACA620B065C1FAB71AF0B9235963B04A474CE",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Apple.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 13,
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "25119410225AC3708E03561AA4337092534E581B3B7A1B44F72DB7072ADAC06F",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\r\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Atari.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 19,
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "74DCBC842920AF1BB8AD876A53F3939AA317402852741E2CC407DA4D39C99123",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Bandai.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Bandai.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 19,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "518AC7A0D975D0EA77B88E65A4F81635C64CC3C95CD8DC78278AFAE5719198CA",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 19,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "675C60712DE3E2DA7DAEC4C9236CBD34E72E3F91C86CE0DD4C5D8BF7293C0E77",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Epoch.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 19,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "30E10B085607184DF717AD25D36A6437509817D840C45C9ED7FCDB6414620102",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories.MachineFactory, GWGUI.Emulation.Fairchild.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 17,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "3FF9D37B3E2C19D2A786939D7A699EEEEA89E386930CE50F8436476BEE5EE813",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory, GWGUI.Emulation.Mattel.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 17,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "C0FCB87F583A18EB661E76182F1CE9272BB0C7F69D2A1211ABEE2F1ED291ECB8",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() =>\n        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory, GWGUI.Emulation.Philips.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 14,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "403B2488128691D193CC43C844FFBD3488055438DB61ADC1D11691D2D99B6405",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() => GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory, GWGUI.Emulation.Sharp.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        },
+        {
+          "line": 14,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "otherDeclarationsUnchanged": true,
+          "pipelineExpandedEquivalent": true,
+          "sourceSha256": "2BB54C64BABD4AFB65AB4952BC36D4A0BE41349923BAA5BDFA0DC4EDF0DB10F5",
+          "name": "DiscoverFactories",
+          "source": "private static IReadOnlyList<MachineFactory> DiscoverFactories() => GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)\r\n            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)\r\n            .ToArray();",
+          "sdkSymbol": "GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory, GWGUI.Emulation.Sinclair.Common.Interfaces.IEmulatorAdapter>(System.Reflection.Assembly)",
+          "closedTypesPreserved": true
+        }
+      ],
+      "sdkSourceSha256": "1861CFE7BC311D5EC67EB4185FC62D884BEE861BC6B9C9AD618091D13A7D08FF",
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "typedPipelineExpandedEquivalent": true,
+      "publicPipelineExpandedEquivalent": true,
+      "sharedSnkPeerUnchanged": true
+    },
+    "inventory": {
+      "completeDiscoveries": [
+        {
+          "line": 14,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "2BB54C64BABD4AFB65AB4952BC36D4A0BE41349923BAA5BDFA0DC4EDF0DB10F5",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 14,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "403B2488128691D193CC43C844FFBD3488055438DB61ADC1D11691D2D99B6405",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 17,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "C0FCB87F583A18EB661E76182F1CE9272BB0C7F69D2A1211ABEE2F1ED291ECB8",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 17,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "3FF9D37B3E2C19D2A786939D7A699EEEEA89E386930CE50F8436476BEE5EE813",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 19,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "30E10B085607184DF717AD25D36A6437509817D840C45C9ED7FCDB6414620102",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 17,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "DB42B7A445781C64F333C7034CE21E2AAB7EC192FDD65A43A5514432DFF002E4",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 19,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "74DCBC842920AF1BB8AD876A53F3939AA317402852741E2CC407DA4D39C99123",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 19,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "675C60712DE3E2DA7DAEC4C9236CBD34E72E3F91C86CE0DD4C5D8BF7293C0E77",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 18,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "477D998F1C7902C487452FDDA47ACA620B065C1FAB71AF0B9235963B04A474CE",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 19,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "518AC7A0D975D0EA77B88E65A4F81635C64CC3C95CD8DC78278AFAE5719198CA",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        },
+        {
+          "line": 13,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "sourceSha256": "25119410225AC3708E03561AA4337092534E581B3B7A1B44F72DB7072ADAC06F",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories"
+        }
+      ],
+      "priorPartialOccurrencesRetained": 82,
+      "priorAnnotationsRestored": 104,
+      "qualifiedOccurrences": 11,
+      "pendingConstructionsUnchanged": 136,
+      "unchangedDefinitionLocationsUpdated": 11,
+      "reports": [
+        {
+          "fullOccurrences": 378,
+          "partialOccurrences": 38,
+          "path": "docs/reference/reuse-audit/current-project-groups.json"
+        },
+        {
+          "fullOccurrences": 2986,
+          "partialOccurrences": 44,
+          "path": "docs/reference/reuse-audit/short-method-groups.json"
+        }
+      ]
+    },
+    "tests": {
+      "passed": 30,
+      "externalFixturesCreated": false,
+      "newCases": 6,
+      "failed": 0,
+      "filter": "AdapterDiscoveryTests|CoreCatalogDefinitionTests|SnkInputSettingsTests"
     }
   }
 }

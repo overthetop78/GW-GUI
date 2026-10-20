@@ -11,8 +11,7 @@ internal static class CoreCatalog
     public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;
 
     private static IReadOnlyList<MachineFactory> DiscoverFactories() =>
-        typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type))
-            .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!)
+        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)
             .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
             .ToArray();
 

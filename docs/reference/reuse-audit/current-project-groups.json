@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7230,
-  "outsideSrcCSharpFiles": 320,
+  "currentCSharpFiles": 7231,
+  "outsideSrcCSharpFiles": 321,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11415,
+  "currentMethodCount": 11420,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -168,8 +168,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "1FEC198DCB3D9228DEFCCFB4E46FC6AD7904EE0C05BE9136EAB6DDBA049F2725"
+          "qualificationCoreLifetimeSourceSha256": "1FEC198DCB3D9228DEFCCFB4E46FC6AD7904EE0C05BE9136EAB6DDBA049F2725",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
@@ -178,8 +178,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "0AF96AEE40839977EE0A2C9DD36AAAE9CA9E6BB61D6F9E8E2BDECE62910259F8"
+          "qualificationCoreLifetimeSourceSha256": "0AF96AEE40839977EE0A2C9DD36AAAE9CA9E6BB61D6F9E8E2BDECE62910259F8",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
@@ -188,8 +188,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "EAA9751C8D0A59CE363F75FE6FCDD66CE63681185B344216E84E7C76FFCDEBF2"
+          "qualificationCoreLifetimeSourceSha256": "EAA9751C8D0A59CE363F75FE6FCDD66CE63681185B344216E84E7C76FFCDEBF2",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
@@ -198,8 +198,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "041E32E820BECE6C68FDF152E645D72D55D3079D33A188910263A257143CC0B1"
+          "qualificationCoreLifetimeSourceSha256": "041E32E820BECE6C68FDF152E645D72D55D3079D33A188910263A257143CC0B1",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
@@ -208,8 +208,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "300743D1E1A72B059F922E596F598BFF6C9EE310FAA02E43AF556CEDC56D4EA1"
+          "qualificationCoreLifetimeSourceSha256": "300743D1E1A72B059F922E596F598BFF6C9EE310FAA02E43AF556CEDC56D4EA1",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
@@ -218,8 +218,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "506EA2913B76BABE386F46CABD18E2948B799B3D0D04574054BDB7A752F304E7"
+          "qualificationCoreLifetimeSourceSha256": "506EA2913B76BABE386F46CABD18E2948B799B3D0D04574054BDB7A752F304E7",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
@@ -228,8 +228,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "7B0CA18273BE9C580B1105B6405A98F0A8FB10DE9E5217ABE1ED3205D39FB4E5"
+          "qualificationCoreLifetimeSourceSha256": "7B0CA18273BE9C580B1105B6405A98F0A8FB10DE9E5217ABE1ED3205D39FB4E5",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
@@ -238,8 +238,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "929F8AF3519CBB72CF8738BF2A5F665FB5267076C4E3BADBE4E89FE678332C91"
+          "qualificationCoreLifetimeSourceSha256": "929F8AF3519CBB72CF8738BF2A5F665FB5267076C4E3BADBE4E89FE678332C91",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
@@ -248,8 +248,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "B9672DDD822B236D5DEBC3A32159AB90AE970EF1664CAB45B784F411F98E01A3"
+          "qualificationCoreLifetimeSourceSha256": "B9672DDD822B236D5DEBC3A32159AB90AE970EF1664CAB45B784F411F98E01A3",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
@@ -258,8 +258,8 @@
           "tokens": 362,
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "37093C8EB83A47EAD67930DAB36F05A6CB0AD514D7722A3EB85EC823645290D8"
+          "qualificationCoreLifetimeSourceSha256": "37093C8EB83A47EAD67930DAB36F05A6CB0AD514D7722A3EB85EC823645290D8",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         }
       ],
       "predecessors": [],
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2776,8 +2776,8 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "3F5806E64F92203D8A7138EB2D7C9CCD41EDD764105CB41F4E14147239D20E1B"
+          "qualificationCoreLifetimeSourceSha256": "3F5806E64F92203D8A7138EB2D7C9CCD41EDD764105CB41F4E14147239D20E1B",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
@@ -2786,8 +2786,8 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "D26A31C17FF93732B3B11CEE5AE8EB79DBF05C6FA23549C80F041CD22F0F08E3"
+          "qualificationCoreLifetimeSourceSha256": "D26A31C17FF93732B3B11CEE5AE8EB79DBF05C6FA23549C80F041CD22F0F08E3",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
@@ -2796,8 +2796,8 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C"
+          "qualificationCoreLifetimeSourceSha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
@@ -2806,8 +2806,8 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "3D56372A08255E6638E6BB1207ABE11FD5BF4CF446E4B7FBC2FDCF3B27ED694F"
+          "qualificationCoreLifetimeSourceSha256": "3D56372A08255E6638E6BB1207ABE11FD5BF4CF446E4B7FBC2FDCF3B27ED694F",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
@@ -2816,8 +2816,8 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "150E3059664B598145D211E6E28C452F98DA324CEEDBCC70CFCDF4E33F4CB294"
+          "qualificationCoreLifetimeSourceSha256": "150E3059664B598145D211E6E28C452F98DA324CEEDBCC70CFCDF4E33F4CB294",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending"
         }
       ],
       "predecessors": [],
@@ -7317,6 +7317,127 @@
     },
     {
       "language": "CSharp",
+      "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+      "method": "DiscoverFactories",
+      "tokens": 40,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 17,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "DB42B7A445781C64F333C7034CE21E2AAB7EC192FDD65A43A5514432DFF002E4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 19,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "518AC7A0D975D0EA77B88E65A4F81635C64CC3C95CD8DC78278AFAE5719198CA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 17,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "C0FCB87F583A18EB661E76182F1CE9272BB0C7F69D2A1211ABEE2F1ED291ECB8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 13,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "25119410225AC3708E03561AA4337092534E581B3B7A1B44F72DB7072ADAC06F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 19,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "74DCBC842920AF1BB8AD876A53F3939AA317402852741E2CC407DA4D39C99123"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 18,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "477D998F1C7902C487452FDDA47ACA620B065C1FAB71AF0B9235963B04A474CE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 14,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "2BB54C64BABD4AFB65AB4952BC36D4A0BE41349923BAA5BDFA0DC4EDF0DB10F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 17,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "3FF9D37B3E2C19D2A786939D7A699EEEEA89E386930CE50F8436476BEE5EE813"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 14,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "403B2488128691D193CC43C844FFBD3488055438DB61ADC1D11691D2D99B6405"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 19,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "30E10B085607184DF717AD25D36A6437509817D840C45C9ED7FCDB6414620102"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "DiscoverFactories",
+          "line": 19,
+          "tokens": 40,
+          "hash": "42CF651F812826978AD86AC94D900A91AB8343027735CD77865B069AE340757A",
+          "shape": "9C4D37F2976F0DD76A6D7825B82ED6D496F5AAAEB081D293B4FCD0B071D4BC73",
+          "qualification": "Verified complete typed discovery composition to existing SDK owner; original two assignability filters,reflection constructor order,private activation,then ordinal EmulatorId sorting and materialization preserved; typedFactoryDiscoveryReuse.",
+          "qualificationSourceSha256": "675C60712DE3E2DA7DAEC4C9236CBD34E72E3F91C86CE0DD4C5D8BF7293C0E77"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
       "method": "SetOptionAsync",
       "tokens": 35,
@@ -10667,7 +10788,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -14162,7 +14283,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 26,
+          "line": 25,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14170,7 +14291,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 25,
+          "line": 24,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14178,7 +14299,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 20,
+          "line": 18,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14186,7 +14307,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 20,
+          "line": 18,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14194,7 +14315,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 25,
+          "line": 24,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14202,7 +14323,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 25,
+          "line": 24,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14210,7 +14331,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 27,
+          "line": 26,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14218,7 +14339,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 21,
+          "line": 20,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14226,7 +14347,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 27,
+          "line": 26,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14234,7 +14355,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 27,
+          "line": 26,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14242,7 +14363,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "CreateAdapter",
-          "line": 27,
+          "line": 26,
           "tokens": 37,
           "hash": "8C38C0A220391EC94B2CC728E5F00109137C5BB23B3C28F4E5A84103F9DE5B40",
           "shape": "19F75156AA56796FC693BE2A69CA34C62036CCA58C1AE5CC488F56A36BF9AF0B"
@@ -14755,14 +14876,14 @@
           "tokens": 444,
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+          "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
@@ -14771,14 +14892,14 @@
           "tokens": 444,
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+          "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending"
         }
       ],
       "predecessors": [],
@@ -15820,7 +15941,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 34,
+          "line": 33,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15828,7 +15949,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 33,
+          "line": 32,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15836,7 +15957,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 35,
+          "line": 34,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15844,7 +15965,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 29,
+          "line": 28,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15852,7 +15973,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 35,
+          "line": 34,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15860,7 +15981,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 35,
+          "line": 34,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -15868,7 +15989,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 35,
+          "line": 34,
           "tokens": 32,
           "hash": "998002D92BCDD1AA436C342359B8A36BC6574E69EAFABD6C506131C342465E70",
           "shape": "599C1F932768A01F5D13FE63C4816DE21684EC292D5F1FEBE278083006A7BD31"
@@ -16742,7 +16863,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -17574,8 +17695,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Protocol.cs",
@@ -17584,8 +17705,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Protocol.cs",
@@ -17594,8 +17715,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Protocol.cs",
@@ -17604,8 +17725,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
@@ -17614,8 +17735,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Protocol.cs",
@@ -17624,8 +17745,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Protocol.cs",
@@ -17634,8 +17755,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Protocol.cs",
@@ -17644,8 +17765,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
@@ -17654,8 +17775,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs",
@@ -17664,8 +17785,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
@@ -17674,8 +17795,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs",
@@ -17684,8 +17805,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Protocol.cs",
@@ -17694,8 +17815,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Protocol.cs",
@@ -17704,8 +17825,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
@@ -17714,8 +17835,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
         }
       ],
       "predecessors": [],
@@ -18398,7 +18519,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23726,105 +23847,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-      "method": "DiscoverFactories",
-      "tokens": 78,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 18,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 17,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 14,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 14,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 17,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 17,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 19,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 13,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 19,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 19,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "DiscoverFactories",
-          "line": 19,
-          "tokens": 78,
-          "hash": "E9276569D49A926E552E68D400D14BC0B7BB40A7F4938B69F5799C8B7325C0B8",
-          "shape": "F5C48B7CB4FC6B03AB425F5F34531FBFA7EB250651B66CBC12DA02F94837AB31"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
