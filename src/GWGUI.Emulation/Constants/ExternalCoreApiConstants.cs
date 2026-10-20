@@ -93,4 +93,20 @@ internal static class ExternalCoreApiConstants
     internal const uint SetVariable = 70;
     internal const uint SetNetworkPacketInterface = 78;
     internal const uint SetSerializationQuirks = 87;
+    internal const uint PrimaryPort = 0;
+    internal const uint LeftAnalogIndex = 0;
+    internal const uint RightAnalogIndex = 1;
+    internal const uint AnalogXId = 0;
+    internal const uint AnalogYId = 1;
+    internal const uint MouseXId = 0;
+    internal const uint MouseYId = 1;
+    internal const uint MouseLeftId = 2;
+    internal const uint MouseRightId = 3;
+    internal const uint MouseWheelUpId = 4;
+    internal const uint MouseWheelDownId = 5;
+    internal const uint MouseMiddleId = 6;
+    internal const uint JoypadMaskId = 256;
+    internal const short ActiveState = 1;
+    internal const short InactiveState = 0;
+    internal const int ConsumedRelativeValue = 0;
 }

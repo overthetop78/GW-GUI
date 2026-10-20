@@ -1,29 +1,21 @@
 {
-  "snapshot": "588f6daf99842f7760cd6db7cd0b0109755b389a",
+  "snapshot": "c0b7ca8b6c5ab2ca8ab26feb9b1900bf3046b0da",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/Atari/AtariThreadOwnershipTests.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
+    "src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs",
+    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7230,
-  "methodBodyCount": 9586,
+  "fileCount": 7231,
+  "methodBodyCount": 9578,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -10113,59 +10105,11 @@
       "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "Boolean",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 53,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.cs",
           "name": "Boolean",
           "owner": "NativeInputFunctions",
           "kind": "MethodDeclaration",
-          "line": 55,
+          "line": 30,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -10177,7 +10121,7 @@
           "name": "Boolean",
           "owner": "NativeInputFunctions",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 42,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -54113,18 +54057,6 @@
       "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "Clamp",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "ClampToShort",
           "owner": "ExternalHostCallbacks",
@@ -54137,59 +54069,11 @@
           "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
         },
         {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Clamp",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "Clamp",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 55,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Clamp",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "ClampToShort",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 120,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Clamp",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 71,
           "parameters": "(int value)",
           "tokens": 18,
           "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
@@ -54221,18 +54105,6 @@
           "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
         },
         {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "Clamp",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 69,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "ClampToShort",
           "owner": "ExternalHostCallbacks",
@@ -54250,6 +54122,18 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 176,
+          "parameters": "(int value)",
+          "tokens": 18,
+          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
+          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
+          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
+          "name": "Clamp",
+          "owner": "EmulationInputMappingFunctions",
+          "kind": "MethodDeclaration",
+          "line": 41,
           "parameters": "(int value)",
           "tokens": 18,
           "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
@@ -83432,18 +83316,6 @@
           "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
         },
         {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "Boolean",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "Bool",
           "owner": "ExternalHostCallbacks",
@@ -83453,18 +83325,6 @@
           "tokens": 10,
           "bodyTokens": "=> value ? ExternalCoreInteropConstants . PressedInputState : ExternalCoreInteropConstants . ReleasedInputState",
           "hash": "FC81E4C881B9B4E56A6911D7AFC7DF782C875FDB33F290264FEFD70824C59713",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
           "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
         },
         {
@@ -83480,35 +83340,11 @@
           "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
         },
         {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Boolean",
-          "owner": "NativeInputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 53,
-          "parameters": "(bool value)",
-          "tokens": 10,
-          "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
-          "hash": "2423860A6C0287D43958A75E7636F2243756360FDB26FA099DEA33F8467DCB73",
-          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
-        },
-        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.cs",
           "name": "Boolean",
           "owner": "NativeInputFunctions",
           "kind": "MethodDeclaration",
-          "line": 55,
+          "line": 30,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -83520,7 +83356,7 @@
           "name": "Boolean",
           "owner": "NativeInputFunctions",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 42,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -83561,6 +83397,18 @@
           "tokens": 10,
           "bodyTokens": "=> pressed ? InputConstants . ActiveState : InputConstants . InactiveState",
           "hash": "74510EBD3E08C0B2BCCE0C5E46DF75DF04E9B9D5BF614C4AECCDA10B09862B9E",
+          "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
+          "name": "Boolean",
+          "owner": "EmulationInputMappingFunctions",
+          "kind": "MethodDeclaration",
+          "line": 40,
+          "parameters": "(bool value)",
+          "tokens": 10,
+          "bodyTokens": "=> value ? ExternalCoreApiConstants . ActiveState : ExternalCoreApiConstants . InactiveState",
+          "hash": "28CF18E3517C01F5429128B70DA9AD7CE638AF71EFB7CFFE4E1D30BA55B1510F",
           "shape": "1D91DC9A9664B93A3C8C43F3AB9B789D02017A8C1FBE6F34EE6ECB96DA6CC583"
         },
         {
@@ -117136,7 +116984,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 292,
+          "line": 330,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -143494,7 +143342,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2990,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3088
   }
 }

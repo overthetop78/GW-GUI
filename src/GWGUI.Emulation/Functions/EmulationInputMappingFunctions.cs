@@ -2,6 +2,44 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationInputMappingFunctions
 {
+    internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id)
+    {
+        if (port != ExternalCoreApiConstants.PrimaryPort || index != ExternalCoreApiConstants.LeftAnalogIndex)
+            return ExternalCoreApiConstants.InactiveState;
+        return id switch
+        {
+            ExternalCoreApiConstants.MouseXId => Clamp(pointer.DeltaX),
+            ExternalCoreApiConstants.MouseYId => Clamp(pointer.DeltaY),
+            ExternalCoreApiConstants.MouseLeftId => Boolean(pointer.Left),
+            ExternalCoreApiConstants.MouseRightId => Boolean(pointer.Right),
+            ExternalCoreApiConstants.MouseWheelUpId => Boolean(pointer.Wheel > ExternalCoreApiConstants.ConsumedRelativeValue),
+            ExternalCoreApiConstants.MouseWheelDownId => Boolean(pointer.Wheel < ExternalCoreApiConstants.ConsumedRelativeValue),
+            ExternalCoreApiConstants.MouseMiddleId => Boolean(pointer.Middle),
+            _ => ExternalCoreApiConstants.InactiveState
+        };
+    }
+
+    internal static short NativeJoypadState(uint buttons, uint id, uint maximumButtonCount)
+    {
+        if (id == ExternalCoreApiConstants.JoypadMaskId)
+            return unchecked((short)(buttons & ushort.MaxValue));
+        return id < maximumButtonCount && (buttons & (1u << checked((int)id))) != 0
+            ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;
+    }
+
+    internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id) =>
+        (index, id) switch
+        {
+            (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogXId) => controller.LeftX,
+            (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.LeftY,
+            (ExternalCoreApiConstants.RightAnalogIndex, ExternalCoreApiConstants.AnalogXId) => controller.RightX,
+            (ExternalCoreApiConstants.RightAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.RightY,
+            _ => ExternalCoreApiConstants.InactiveState
+        };
+
+    private static short Boolean(bool value) => value ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;
+    private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
+
     internal static string? BindingDisplayValue(string resourceKey, string? invariant = null) =>
         invariant ?? (resourceKey.Contains('.') ? null : resourceKey);
 

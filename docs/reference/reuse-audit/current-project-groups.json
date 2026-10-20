@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7230,
-  "outsideSrcCSharpFiles": 328,
+  "currentCSharpFiles": 7231,
+  "outsideSrcCSharpFiles": 329,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11458,
+  "currentMethodCount": 11461,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5240,74 +5240,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-      "method": "MouseState",
-      "tokens": 117,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "MouseState",
-          "line": 39,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "MouseState",
-          "line": 39,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "MouseState",
-          "line": 50,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "MouseState",
-          "line": 36,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "MouseState",
-          "line": 37,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "MouseState",
-          "line": 38,
-          "tokens": 117,
-          "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "MouseState",
-          "line": 72,
-          "tokens": 117,
-          "hash": "AAAA25CF1E9F598BB2DE602D3A13A1FC224259EE59DBC3EAC97C7E74F9674A41",
-          "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -10497,7 +10429,7 @@
     {
       "language": "CSharp",
       "hash": "5E41B8E6BA64FCBA1E07049FEE804449442712123C0582A02BF64109180A8E92",
-      "method": "DiscoverAdapters",
+      "method": "CreateAdapters",
       "tokens": 32,
       "current": [
         {
@@ -11226,7 +11158,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -18824,7 +18756,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -28819,6 +28751,29 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "77B46CD8F3DF4A1BD54E69D84F3684E86F770256835DF275653E1059BE7AEFF5",
+      "tokens": 198,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
+          "name": "State",
+          "line": 11,
+          "tokens": 198,
+          "hash": "F27107D25D90146DF21F846E1FB0C67B9255DB4E2ABE09A46A1334FCB4A26C0C",
+          "shape": "77B46CD8F3DF4A1BD54E69D84F3684E86F770256835DF275653E1059BE7AEFF5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
+          "name": "State",
+          "line": 11,
+          "tokens": 198,
+          "hash": "8F80195C26C2C50D4FB769C6141C615138FC3185A099DCD1C983BE7A9999A75F",
+          "shape": "77B46CD8F3DF4A1BD54E69D84F3684E86F770256835DF275653E1059BE7AEFF5"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "7A8DD4EE7EC1D0DCE78B7222C22D604B27456FF80AF7C0B016C3C8F3FCCB7542",
       "tokens": 31,
       "current": [
@@ -29798,7 +29753,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 182,
+          "line": 220,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
@@ -30581,29 +30536,6 @@
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "ADCF65BDC016FBF72EA82AEE6243940FF505333B82FEF29E9C7229CAAF24CBD4",
-      "tokens": 293,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "State",
-          "line": 11,
-          "tokens": 293,
-          "hash": "759ED92F8E810330AB3DF8DF7A10F4CA814AD6AB65BC2690ABA002526A1511B6",
-          "shape": "ADCF65BDC016FBF72EA82AEE6243940FF505333B82FEF29E9C7229CAAF24CBD4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
-          "name": "State",
-          "line": 11,
-          "tokens": 293,
-          "hash": "6A7742DF79F22AA29015C9A62867DB64C27EB7462A37770A76F2B953A2E4E414",
-          "shape": "ADCF65BDC016FBF72EA82AEE6243940FF505333B82FEF29E9C7229CAAF24CBD4"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
