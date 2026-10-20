@@ -1,19 +1,25 @@
 {
-  "snapshot": "3c623a3c529990ad86e339290b9746effbc2a308",
+  "snapshot": "d93d1d6751f6aefebd09be6001c8a427ce384724",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+    "src/GWGUI.Emulation/Functions/EmulationMachineModelFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7232,
-  "methodBodyCount": 9561,
+  "fileCount": 7233,
+  "methodBodyCount": 9563,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -38014,7 +38020,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "48C9026C0F490FE8E014A43F4D71D2B2C4A2ED0A13B6DD20A76ED4A0738B53B6"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
@@ -38026,7 +38034,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "FE22D50754ED1BFC878FAF9151DE1E56759B9E10DECE6388CF09B76FD657B73D"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs",
@@ -38038,7 +38048,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "177715C76442D7490C3DE6D27E7EE2ECBA0F3742AE1A69CE565FB0B72CFE91C7"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -38050,7 +38062,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "2B292CF166BC346E859A677C768712481B117FFB55EED74C3008E135D5472FDE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -38062,7 +38076,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "19FA647916DC444E5954E463995388B6649B56E226E7CD1F7B636BE66F9FA23F"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -38074,7 +38090,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "E8752118D6E575A905225896FA69C4468EA6BA7A9FE0A07F817FDBB97C48B926"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -38086,7 +38104,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "36D035160EAF78D89B965B25F1A7885606DE019F7A084B810EC37CD7D42500ED"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
@@ -38098,7 +38118,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "4002C518B60CAE9EC12BB247074B14CF4604EB727D2A03EC800BBB8061E66E9C"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
@@ -38110,7 +38132,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "57DE1885A88BBB8267FE57E1B949894ACDFAA560DAA113B7059D22E921703409"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -38122,7 +38146,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "3CC5643C1690168C9E9276FA22C7DCD22CC45735BD3F3381F0B675E0EA78B458"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
@@ -38134,7 +38160,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "CC4A4903A5A0C62FCD666C140DFBB1DF71091F1B8A7C79CA49C656C557EC3E85"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
@@ -38146,7 +38174,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "C9E05C28DADC2944CC908CCF3C4DF3A16A1F9C3016FC7F20F9C9ACA6B7CDBC88"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -38158,7 +38188,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "D1913980855B5CE1A81DF466B45F28CF46BCD4D619A657BE078FD474E055C2AB"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
@@ -38170,7 +38202,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "6B479E0C459A8F47E6A08A3FDCF98E7BEAD800E488F18AA9C5EBA74534099CD6"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
@@ -38182,7 +38216,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "5905958CFD2607DEC2E05D7ABDF75413000CAE8C5F490FDBD22140083F53D678"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
@@ -38194,7 +38230,9 @@
           "tokens": 11,
           "bodyTokens": "=> new MachineConfiguration ( ModelCatalog . Parse ( machineId ) )",
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
-          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D"
+          "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
+          "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
+          "qualificationSourceSha256": "31CFF3965A92176A1049DE31CC6C6D46942CAF286D737A6D248962E5B05F28DB"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -143145,7 +143183,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2996,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3016
   }
 }

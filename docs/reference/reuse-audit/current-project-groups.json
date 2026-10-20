@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7232,
-  "outsideSrcCSharpFiles": 322,
+  "currentCSharpFiles": 7233,
+  "outsideSrcCSharpFiles": 323,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11420,
+  "currentMethodCount": 11427,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -3984,49 +3984,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "2C7CBD1E27CAECF47215A7C8F24AACCA09FB17A7F9CFE422FBF45A48277CDE1C",
-      "method": "Create",
-      "tokens": 35,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 35,
-          "hash": "2C7CBD1E27CAECF47215A7C8F24AACCA09FB17A7F9CFE422FBF45A48277CDE1C",
-          "shape": "64CC5F7FE089F4CF5F6EF5EEB110C586D1E4048DD20737AE766AB024809EC274"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 35,
-          "hash": "2C7CBD1E27CAECF47215A7C8F24AACCA09FB17A7F9CFE422FBF45A48277CDE1C",
-          "shape": "64CC5F7FE089F4CF5F6EF5EEB110C586D1E4048DD20737AE766AB024809EC274"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 35,
-          "hash": "2C7CBD1E27CAECF47215A7C8F24AACCA09FB17A7F9CFE422FBF45A48277CDE1C",
-          "shape": "64CC5F7FE089F4CF5F6EF5EEB110C586D1E4048DD20737AE766AB024809EC274"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 35,
-          "hash": "2C7CBD1E27CAECF47215A7C8F24AACCA09FB17A7F9CFE422FBF45A48277CDE1C",
-          "shape": "64CC5F7FE089F4CF5F6EF5EEB110C586D1E4048DD20737AE766AB024809EC274"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
       "method": "RunFrame",
       "tokens": 151,
@@ -6851,33 +6808,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "3FB81271D65A50198346AAF35C86AFE2D43D94CDA62EADA16B2B08732B6097E3",
-      "method": "Create",
-      "tokens": 38,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 38,
-          "hash": "3FB81271D65A50198346AAF35C86AFE2D43D94CDA62EADA16B2B08732B6097E3",
-          "shape": "2E250938D26C571B8477AF4DAC8AE437B99F7D01E26C1DCC497BFF83FA9F0894"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 38,
-          "hash": "3FB81271D65A50198346AAF35C86AFE2D43D94CDA62EADA16B2B08732B6097E3",
-          "shape": "2E250938D26C571B8477AF4DAC8AE437B99F7D01E26C1DCC497BFF83FA9F0894"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "3FCF13FCF1065EC709A600BEB219FBD157E3F1F1F24FD1490508A94449D576BD",
       "method": "Apply",
       "tokens": 86,
@@ -7666,6 +7596,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "45468AC0DBCADB76AC5E6F9EFE8532EC1900EC7C1671C5368408B498E408578C",
+      "method": "Create",
+      "tokens": 47,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 47,
+          "hash": "45468AC0DBCADB76AC5E6F9EFE8532EC1900EC7C1671C5368408B498E408578C",
+          "shape": "830A5C106834B6191ECE76C2FE69F7292B3CBDECFABCEBDF70F0CD79C78C224E",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "5C3B74658EFE072A82A7E4E469AB28251E7EF29D184F023A5F25EE187C723581"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 47,
+          "hash": "45468AC0DBCADB76AC5E6F9EFE8532EC1900EC7C1671C5368408B498E408578C",
+          "shape": "830A5C106834B6191ECE76C2FE69F7292B3CBDECFABCEBDF70F0CD79C78C224E",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "FFCACBE5D9EB798B78C6FEE8BB456D654E8132DC3BA7C191DE53B50ECD19EDD2"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "45A2B9064073B2D2860C35CAEE940627FAEE236EDEBD829F285467FD2DEE31E4",
       "method": "Native",
       "tokens": 129,
@@ -8289,7 +8250,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -9034,6 +8995,57 @@
           "tokens": 85,
           "hash": "55AAAA6FB01263DFD8C94AA0EB33BD422806D787867FBD0A404FB20E6131E2A9",
           "shape": "C84F40E93F9695B67D0B97B392D6B31DB737801AA61CBAD4991D79163A825265"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+      "method": "Create",
+      "tokens": 44,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "044EAA5EFEFED20C321017A4ABAB520158BDF7F71C7B6407A4E1C1118D268DD6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "711138891FB28B5E7F214882A371183D4549EA273860DE29D15CA3FF9AC20235"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "254CEF9A4A7F7A50E72B532E9652E76AD3E06F56C287B7CC37C3D1C29BA859C6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "FDC5C8B03E4D494E6D3F574589CE64EFCE9EE1BECE427A010D4D16CDE33F6515"
         }
       ],
       "predecessors": [],
@@ -11510,6 +11522,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "6D8387B964D7765DA76CB7D357E6C84A80C6DD7B97AC458323857F568502210C",
+      "method": "Create",
+      "tokens": 36,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 36,
+          "hash": "6D8387B964D7765DA76CB7D357E6C84A80C6DD7B97AC458323857F568502210C",
+          "shape": "A088CC413D36A1C4843F6845E71036E99E141655BCCC2D96D49F0BE46E5A3345",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "755CD9CAC9D9F6E06EECC7E545A5C1287F1196E252504BABC8255CA188809B1E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 36,
+          "hash": "6D8387B964D7765DA76CB7D357E6C84A80C6DD7B97AC458323857F568502210C",
+          "shape": "A088CC413D36A1C4843F6845E71036E99E141655BCCC2D96D49F0BE46E5A3345",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "C0CA034598FC3FDE0C8DC2B1D826882B4A0C28F1057972E98137811008E4523C"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
       "method": "Modifiers",
       "tokens": 76,
@@ -12088,49 +12131,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-      "method": "Create",
-      "tokens": 46,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -16863,7 +16863,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17156,7 +17156,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18519,7 +18519,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -18945,6 +18945,57 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
+      "language": "CSharp",
+      "hash": "B4973012A94F0CFC60F9F8634D79583C59F1AE6D4229641D4460B8A9F183A677",
+      "method": "Create",
+      "tokens": 33,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 33,
+          "hash": "B4973012A94F0CFC60F9F8634D79583C59F1AE6D4229641D4460B8A9F183A677",
+          "shape": "0AACFCB470E981BF54E366B69EF16BE0FFA3551CFE0EA93C1E6BC91C4F4C41AE",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "DB1143D5C67D40190D7710CBFBA77DCD5F810D234D9198251004921486CF3603"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 33,
+          "hash": "B4973012A94F0CFC60F9F8634D79583C59F1AE6D4229641D4460B8A9F183A677",
+          "shape": "0AACFCB470E981BF54E366B69EF16BE0FFA3551CFE0EA93C1E6BC91C4F4C41AE",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "D3F1A696A0402C14BABE42FB36946EC76FF62DC8D9FC516DE0DAE8419F34B70A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 33,
+          "hash": "B4973012A94F0CFC60F9F8634D79583C59F1AE6D4229641D4460B8A9F183A677",
+          "shape": "0AACFCB470E981BF54E366B69EF16BE0FFA3551CFE0EA93C1E6BC91C4F4C41AE",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "C78553E0906289FF68139284315E7639E75D00093693EC3B7DC58BAA5EE4DDBB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 33,
+          "hash": "B4973012A94F0CFC60F9F8634D79583C59F1AE6D4229641D4460B8A9F183A677",
+          "shape": "0AACFCB470E981BF54E366B69EF16BE0FFA3551CFE0EA93C1E6BC91C4F4C41AE",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "F40D85601973767B015AEFE09F163DF6F5C40F39329337F36A2F5FEB762D2D7A"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -22429,33 +22480,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "D6EF59451558CDFC4314BAD3171BE67B2ECA92E5572A325DF370603B0CF46D6C",
-      "method": "Create",
-      "tokens": 49,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 49,
-          "hash": "D6EF59451558CDFC4314BAD3171BE67B2ECA92E5572A325DF370603B0CF46D6C",
-          "shape": "CFB205A49A7BACBBB2FF7C4580BE644F99CF5DE158CD17A8B179C5221C85EA67"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 49,
-          "hash": "D6EF59451558CDFC4314BAD3171BE67B2ECA92E5572A325DF370603B0CF46D6C",
-          "shape": "CFB205A49A7BACBBB2FF7C4580BE644F99CF5DE158CD17A8B179C5221C85EA67"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "D711A46956C05ED61ACE13A8081E0EE6176CD3BB5ACB8BCB37D7ED12AC686A09",
       "method": "CoreOptionHost",
       "tokens": 152,
@@ -24422,7 +24446,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -28179,6 +28203,63 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+      "tokens": 44,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "044EAA5EFEFED20C321017A4ABAB520158BDF7F71C7B6407A4E1C1118D268DD6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 5,
+          "tokens": 44,
+          "hash": "3485208E6B63487396651B7C892741788E2362BDD9A50FF08CFE7C2F4B81500C",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "6CEE2F85CFB11B31A4340B18F7B52D5CFE226E0BF75C873C834B77BB5E67FE15"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "711138891FB28B5E7F214882A371183D4549EA273860DE29D15CA3FF9AC20235"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "254CEF9A4A7F7A50E72B532E9652E76AD3E06F56C287B7CC37C3D1C29BA859C6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
+          "name": "Create",
+          "line": 7,
+          "tokens": 44,
+          "hash": "564B5D45874C671DD4D0F1D7866C11A2DA70CF9B989B8F5F1F5E9D98E3507C81",
+          "shape": "5968D446E3F4ADA3F09508CEF8D3EE8838793B23095C0CAFF0E9239DC745E189",
+          "qualification": "original-machine-display-resource-lookup-shared-sdk-local-core-summary-preserved",
+          "qualificationSourceSha256": "FDC5C8B03E4D494E6D3F574589CE64EFCE9EE1BECE427A010D4D16CDE33F6515"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "5A123CDAA41C6ED631E2D093CDD4F685EA68E78A54F643F08F73D77AFBBCCABF",
       "tokens": 145,
       "current": [
@@ -31928,53 +32009,6 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
-      "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16",
-      "tokens": 46,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 5,
-          "tokens": 46,
-          "hash": "099AF6C6FACEDB4C8779CA9922D20761C58A21B5FCC22AF90F71AB93B4141949",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-          "name": "Create",
-          "line": 7,
-          "tokens": 46,
-          "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
-          "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "D03A9AEEA0FCEDC1F48CF914497DF545EF2DD057041F0D99316E8D5D42D148BE",
       "tokens": 62,
       "current": [
@@ -33864,7 +33898,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 378
+    "occurrences": 380,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
