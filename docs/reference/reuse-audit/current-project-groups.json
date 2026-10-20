@@ -680,6 +680,137 @@
     },
     {
       "language": "CSharp",
+      "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+      "method": "Inspect",
+      "tokens": 196,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "60450E5A395D2BF58C03AE4BAD4EF392847F905EB80498391864C5027BD44689"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "F49A06954795A2A2505B8DA3264DC313D9AABA51C009DBB0F52A4BEB1E6EDBA3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 9,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "104870F414CE739F12CD96BAA9C19D83EA3E5E286E1E6A124D363CA4394A8680"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "4B79C5FE3B33BB4B5DCAD5ACC5224F760192BE9B9A71FB9693B3799767AF7267"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "7FE7D613033279E1C3803AAA2F195DE27718EBB24D70C33F85D8D4DC55A5010A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 12,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "C5534324B6C04E24974025A6C8B8B542551240067A3D2C0F60A39C3D5CDCAAAC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "ABE721A3351425B570AB628BBBA96DCA51E659D32E1B0D9CF0AE279A7BAA0779"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "83C0B3D002F9EAEB9D0D64C9157E2D9B0E132358A50E285805B7C04581D1530B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "0F1BC785030AE3B246AFA953D0D4088EF875BA50515DBD6B549F80F96AC36962"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "8BB6F4134A9F859E7DD30378AF3A1DCCF034761134E30038B640B584DFC925E0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "7B854800F0516B963B4D03B39553551D573FF5D4D6FF0953B82ED6AB5984094A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+          "name": "Inspect",
+          "line": 11,
+          "tokens": 196,
+          "hash": "08AECC0B3DCD9E4CFEE06A8A9DC1529E83B0B984F7F6EAC8F9587D3121536DC6",
+          "shape": "74F8061CBA0CF1D1C58360FC4917DEDA95F62D320539819CD99FF7EF700287EE",
+          "qualification": "native-probe-typed-facade-to-original-sdk-path-inspection-and-exception-owners-verified",
+          "qualificationSourceSha256": "613CAFFC17D9E7E3F863C463F0E8A8BF1A41E210F5E66B1863856ACDCFCCD38E"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
       "method": "SuspendForMedia",
       "tokens": 51,
@@ -796,7 +927,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1694,113 +1825,6 @@
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
           "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-      "method": "Inspect",
-      "tokens": 217,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 12,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 9,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
-          "name": "Inspect",
-          "line": 11,
-          "tokens": 217,
-          "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
-          "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
         }
       ],
       "predecessors": [],
@@ -17101,7 +17125,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17359,7 +17383,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18408,7 +18432,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SnkEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -33221,7 +33245,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 566,
+    "occurrences": 622,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

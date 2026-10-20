@@ -30,16 +30,29 @@ internal sealed class ExternalCoreLibrary : IDisposable
 
     internal static T Inspect<T>(string absolutePath, uint expectedApiVersion,
         Action<ExternalCoreLibrary> validateExports, Func<uint, Exception> unsupportedApi,
-        Func<ExternalCoreApi.SystemInfo, T> readInfo)
+        Func<ExternalCoreApi.SystemInfo, T> readInfo,
+        Func<EntryPointNotFoundException, Exception> missingExport,
+        Func<BadImageFormatException, Exception> invalidLibrary)
     {
-        using var library = new ExternalCoreLibrary(absolutePath);
-        var getApiVersion = library.Resolve<ExternalCoreApi.GetApiVersion>(ExternalCoreExportNames.ApiVersion);
-        var getSystemInfo = library.Resolve<ExternalCoreApi.GetSystemInfo>(ExternalCoreExportNames.GetSystemInfo);
-        validateExports(library);
-        var apiVersion = getApiVersion();
-        if (apiVersion != expectedApiVersion) throw unsupportedApi(apiVersion);
-        getSystemInfo(out var nativeInfo);
-        return readInfo(nativeInfo);
+        try
+        {
+            using var library = new ExternalCoreLibrary(absolutePath);
+            var getApiVersion = library.Resolve<ExternalCoreApi.GetApiVersion>(ExternalCoreExportNames.ApiVersion);
+            var getSystemInfo = library.Resolve<ExternalCoreApi.GetSystemInfo>(ExternalCoreExportNames.GetSystemInfo);
+            validateExports(library);
+            var apiVersion = getApiVersion();
+            if (apiVersion != expectedApiVersion) throw unsupportedApi(apiVersion);
+            getSystemInfo(out var nativeInfo);
+            return readInfo(nativeInfo);
+        }
+        catch (EntryPointNotFoundException error)
+        {
+            throw missingExport(error);
+        }
+        catch (BadImageFormatException error)
+        {
+            throw invalidLibrary(error);
+        }
     }
 
     internal static void ValidatePath(string absolutePath, Func<Exception> requireAbsolute,
