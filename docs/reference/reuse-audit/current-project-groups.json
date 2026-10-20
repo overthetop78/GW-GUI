@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7238,
-  "outsideSrcCSharpFiles": 336,
+  "currentCSharpFiles": 7219,
+  "outsideSrcCSharpFiles": 337,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11492,
+  "currentMethodCount": 11495,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -11228,7 +11228,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -19767,7 +19767,7 @@
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
           "name": "RequestedMachinesExposeExactlyTheirEmulators",
-          "line": 74,
+          "line": 75,
           "tokens": 69,
           "hash": "BCE09FE00EEDC9CDA01BC26E95B496F7264922A19E409841CF7A755B18FD2047",
           "shape": "371D29865E4EFDEFDEFDB731DFD4BA852366EF890B7FD11BEA4EC9419F529156"
@@ -29719,7 +29719,7 @@
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
           "name": "AdapterDiscoveryPreservesEveryExistingDefault",
-          "line": 17,
+          "line": 18,
           "tokens": 51,
           "hash": "B4E9446A846F05EAA80FA2179A5800C584B85FC57ABC3B8026E2BC36356400C2",
           "shape": "95CAB73F227C0363DDCFDC079718884A5641FF6339C853C53880631F2913743A"
@@ -33756,6 +33756,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 511
+    "occurrences": 513
   }
 }

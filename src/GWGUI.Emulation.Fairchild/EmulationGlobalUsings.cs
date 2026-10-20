@@ -56,3 +56,5 @@ global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.Emul
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums.Emulator>;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationSlotsDocument<global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts.FolderConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts.MachineConfiguration>;

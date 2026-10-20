@@ -1,14 +1,72 @@
 {
-  "snapshot": "e73d1b55a4739f4f205fe7b1aab01553661597bf",
+  "snapshot": "6c6e87eb68a7cf49fcc35c80dfd4e3e7d6874a0d",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Amstrad/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Dictionaries/OptionCatalog.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Functions/NumericOptionValueFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/PlaydiaEmu/Dictionaries/OptionCatalog.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/TamaLibretro/Dictionaries/OptionCatalog.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Philips/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sega/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sony/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Watara/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Contracts/EmulatorContracts.cs",
+    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+    "tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs",
+    "tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs",
+    "tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs",
+    "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+    "tests/GWGUI.Tests/Emulation/EmulationContracts/RuntimeOptionScenarios.cs",
+    "tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs",
+    "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
+    "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+    "tests/GWGUI.Tests/Emulation/Sony/EmulatorCatalogTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7238,
+  "fileCount": 7219,
   "methodBodyCount": 9594,
   "exactGroups": [
     {
@@ -4990,42 +5048,6 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "11D38000C9719BB75FEF9F61027E9299277534CE201DB055FA497FF97F91E3EE",
-      "tokens": 11,
-      "bodyTokens": "=> CoreSettingsFunctions . StorageFields ( this , configuration , category )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "GetStorageDeviceConfigurationFields",
-          "owner": "Pcsx2MachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 23,
-          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
-          "tokens": 11,
-          "bodyTokens": "=> CoreSettingsFunctions . StorageFields ( this , configuration , category )",
-          "hash": "11D38000C9719BB75FEF9F61027E9299277534CE201DB055FA497FF97F91E3EE",
-          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "72724C89DF2D6EE0F551C6C210DFE7992D7E20E01397E04D7044F2A69678245F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "GetStorageDeviceConfigurationFields",
-          "owner": "PpssppMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 22,
-          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
-          "tokens": 11,
-          "bodyTokens": "=> CoreSettingsFunctions . StorageFields ( this , configuration , category )",
-          "hash": "11D38000C9719BB75FEF9F61027E9299277534CE201DB055FA497FF97F91E3EE",
-          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "C627330528F0B7E987D8BE9494C9FFEF21BECA3BA1FD5947FE716AE6B1E9F9D4"
-        }
-      ],
-      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "11F8E325F00987CCEB95D3E2BD7FD4912A7209358710B7488A50E37B9456163C",
@@ -11941,8 +11963,8 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "1BF979B5EE0B70A13D0CF89A795E1C38E04D153F83287FD80813B10A0FB388A5"
+          "qualification": "empty-void-method-no-algorithm; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "29682D452DA860FD8C5BADC456E8EE9611D1353708B4A5DC29AA71993C104450"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -12983,7 +13005,7 @@
           "name": "Initialize",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 584,
+          "line": 583,
           "parameters": "(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -12995,7 +13017,7 @@
           "name": "Stop",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 588,
+          "line": 587,
           "parameters": "()",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13007,7 +13029,7 @@
           "name": "SetInput",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 589,
+          "line": 588,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13019,7 +13041,7 @@
           "name": "InsertMedia",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 590,
+          "line": 589,
           "parameters": "(string path)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13031,7 +13053,7 @@
           "name": "EjectMedia",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 591,
+          "line": 590,
           "parameters": "()",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13043,7 +13065,7 @@
           "name": "SelectDisk",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 592,
+          "line": 591,
           "parameters": "(int index)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13055,7 +13077,7 @@
           "name": "LoadState",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 594,
+          "line": 593,
           "parameters": "(ReadOnlySpan<byte> state)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13067,7 +13089,7 @@
           "name": "SetOption",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 595,
+          "line": 594,
           "parameters": "(string key, string value)",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -13160,7 +13182,7 @@
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41"
+          "qualificationSourceSha256": "2B16604E50A0365E8A703797DCBE437D436F33726FEC38BC318936B234BCAADE"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -13174,7 +13196,7 @@
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41"
+          "qualificationSourceSha256": "2B16604E50A0365E8A703797DCBE437D436F33726FEC38BC318936B234BCAADE"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -13188,7 +13210,7 @@
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41"
+          "qualificationSourceSha256": "2B16604E50A0365E8A703797DCBE437D436F33726FEC38BC318936B234BCAADE"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -13202,53 +13224,39 @@
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41"
+          "qualificationSourceSha256": "2B16604E50A0365E8A703797DCBE437D436F33726FEC38BC318936B234BCAADE"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
           "name": "Start",
           "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 68,
           "parameters": "(int sampleRate)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6"
+          "qualificationSourceSha256": "B53CDF7760BB33A5E0BCDB8B83F0B38FC10C8A267789166966019A445B6E93E0"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
           "name": "Write",
           "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
           "kind": "MethodDeclaration",
-          "line": 68,
+          "line": 69,
           "parameters": "(ReadOnlySpan<short> interleavedStereo)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6"
+          "qualificationSourceSha256": "B53CDF7760BB33A5E0BCDB8B83F0B38FC10C8A267789166966019A445B6E93E0"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
           "name": "Flush",
-          "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
-          "kind": "MethodDeclaration",
-          "line": 69,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "{ }",
-          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6"
-        },
-        {
-          "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
-          "name": "Stop",
           "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
           "kind": "MethodDeclaration",
           "line": 70,
@@ -13258,7 +13266,21 @@
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "empty-void-method-no-algorithm",
-          "qualificationSourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6"
+          "qualificationSourceSha256": "B53CDF7760BB33A5E0BCDB8B83F0B38FC10C8A267789166966019A445B6E93E0"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+          "name": "Stop",
+          "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
+          "kind": "MethodDeclaration",
+          "line": 71,
+          "parameters": "()",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm",
+          "qualificationSourceSha256": "B53CDF7760BB33A5E0BCDB8B83F0B38FC10C8A267789166966019A445B6E93E0"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -13690,6 +13712,54 @@
         }
       ],
       "qualification": "Empty method/constructor occurrences qualified only within their recorded scopes; any unannotated member and called implementation remains pending"
+    },
+    {
+      "hash": "25DAF73B3DE45C4CE36C55770257F6C8A89E36D3DBB3BC13CA9382E02F62C801",
+      "tokens": 9,
+      "bodyTokens": "=> SettingsDescriptionFunctions . MachineBlocks ( this , configuration )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
+          "name": "GetMachineSettingsBlocks",
+          "owner": "IEmulatorSettingsAdapter",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 9,
+          "bodyTokens": "=> SettingsDescriptionFunctions . MachineBlocks ( this , configuration )",
+          "hash": "25DAF73B3DE45C4CE36C55770257F6C8A89E36D3DBB3BC13CA9382E02F62C801",
+          "shape": "8B689B9CB6F28539B34B19C61D19375DE19775A84E79C296CB5397DF144048FA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "GetMachineSettingsBlocks",
+          "owner": "Pcsx2MachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 21,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 9,
+          "bodyTokens": "=> SettingsDescriptionFunctions . MachineBlocks ( this , configuration )",
+          "hash": "25DAF73B3DE45C4CE36C55770257F6C8A89E36D3DBB3BC13CA9382E02F62C801",
+          "shape": "8B689B9CB6F28539B34B19C61D19375DE19775A84E79C296CB5397DF144048FA",
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "F0A0ACAC2D198B68F8B431D08160FC73808D7DA59CCDA0C9D5BF62C50E7D65BB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "GetMachineSettingsBlocks",
+          "owner": "PpssppMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 9,
+          "bodyTokens": "=> SettingsDescriptionFunctions . MachineBlocks ( this , configuration )",
+          "hash": "25DAF73B3DE45C4CE36C55770257F6C8A89E36D3DBB3BC13CA9382E02F62C801",
+          "shape": "8B689B9CB6F28539B34B19C61D19375DE19775A84E79C296CB5397DF144048FA",
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "BB7BEC4E5B7BCE65A62CC5C074A3BAF72BC4F8499D8A2AE40BD9B93A2A1AE603"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
@@ -17081,7 +17151,7 @@
           "name": "SaveState",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 593,
+          "line": 592,
           "parameters": "()",
           "tokens": 3,
           "bodyTokens": "=> [ ]",
@@ -27912,42 +27982,6 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
-      "hash": "4FB4AEBB5399177EAB308EE689EACCEB300B5835F779EDAD0DB6B5AC651BF107",
-      "tokens": 9,
-      "bodyTokens": "=> CoreSettingsFunctions . MachineBlocks ( this , configuration )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "GetMachineSettingsBlocks",
-          "owner": "Pcsx2MachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 21,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 9,
-          "bodyTokens": "=> CoreSettingsFunctions . MachineBlocks ( this , configuration )",
-          "hash": "4FB4AEBB5399177EAB308EE689EACCEB300B5835F779EDAD0DB6B5AC651BF107",
-          "shape": "8B689B9CB6F28539B34B19C61D19375DE19775A84E79C296CB5397DF144048FA",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "72724C89DF2D6EE0F551C6C210DFE7992D7E20E01397E04D7044F2A69678245F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "GetMachineSettingsBlocks",
-          "owner": "PpssppMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 20,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 9,
-          "bodyTokens": "=> CoreSettingsFunctions . MachineBlocks ( this , configuration )",
-          "hash": "4FB4AEBB5399177EAB308EE689EACCEB300B5835F779EDAD0DB6B5AC651BF107",
-          "shape": "8B689B9CB6F28539B34B19C61D19375DE19775A84E79C296CB5397DF144048FA",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "C627330528F0B7E987D8BE9494C9FFEF21BECA3BA1FD5947FE716AE6B1E9F9D4"
-        }
-      ],
-      "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
       "hash": "4FE379149A799B6DFA5B16A56FA2C20AA7BF0F9B9C6DB5292A8430205C99062B",
       "tokens": 9,
       "bodyTokens": "=> EmulationHostProtocolFunctions . WriteLedStates ( writer , states )",
@@ -35879,6 +35913,54 @@
           "bodyTokens": "=> EmulationInputSnapshot . Empty with { Keys = keys . ToHashSet ( ) }",
           "hash": "6C9AF934B7E90EAA5E82BDF6C95F63C26C1AB317A9317D35E2BB495090691D41",
           "shape": "9688A8E2EE0DA393F5F6E9AD860B2E632233753DBA7185A252E1F18F93B58B47"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
+      "tokens": 11,
+      "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
+          "name": "GetStorageDeviceConfigurationFields",
+          "owner": "IEmulatorSettingsAdapter",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
+          "tokens": 11,
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
+          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "GetStorageDeviceConfigurationFields",
+          "owner": "Pcsx2MachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 23,
+          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
+          "tokens": 11,
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
+          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "F0A0ACAC2D198B68F8B431D08160FC73808D7DA59CCDA0C9D5BF62C50E7D65BB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "GetStorageDeviceConfigurationFields",
+          "owner": "PpssppMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
+          "tokens": 11,
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
+          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "BB7BEC4E5B7BCE65A62CC5C074A3BAF72BC4F8499D8A2AE40BD9B93A2A1AE603"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -73309,7 +73391,7 @@
           "name": "Dispose",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 597,
+          "line": 596,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Disposed = true",
@@ -73381,7 +73463,7 @@
           "name": "Dispose",
           "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
           "kind": "MethodDeclaration",
-          "line": 71,
+          "line": 72,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Disposed = true",
@@ -75803,7 +75885,7 @@
           "name": "TryDequeueAudio",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 596,
+          "line": 595,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 9,
           "bodyTokens": "{ chunk = null ; return false ; }",
@@ -75827,7 +75909,7 @@
           "name": "TryDequeueAudio",
           "owner": "Core.MachineAdapterFailureScenarios",
           "kind": "MethodDeclaration",
-          "line": 104,
+          "line": 103,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 9,
           "bodyTokens": "{ chunk = null ; return false ; }",
@@ -95266,7 +95348,7 @@
           "name": "Stop",
           "owner": "Core.MachineAdapterFailureScenarios",
           "kind": "MethodDeclaration",
-          "line": 113,
+          "line": 112,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "{ Stops ++ ; Stopped . TrySetResult ( ) ; }",
@@ -95278,7 +95360,7 @@
           "name": "Dispose",
           "owner": "Core.MachineAdapterFailureScenarios",
           "kind": "MethodDeclaration",
-          "line": 114,
+          "line": 113,
           "parameters": "()",
           "tokens": 11,
           "bodyTokens": "{ Disposals ++ ; FrameRelease . Set ( ) ; }",
@@ -101942,7 +102024,7 @@
           "name": "Dispose",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 597,
+          "line": 596,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Disposed = true",
@@ -102026,7 +102108,7 @@
           "name": "Dispose",
           "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
           "kind": "MethodDeclaration",
-          "line": 71,
+          "line": 72,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Disposed = true",
@@ -120711,6 +120793,18 @@
       "tokens": 11,
       "current": [
         {
+          "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
+          "name": "GetStorageDeviceConfigurationFields",
+          "owner": "IEmulatorSettingsAdapter",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
+          "tokens": 11,
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
+          "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
           "name": "GetStorageDeviceConfigurationFields",
           "owner": "Pcsx2MachineFactory",
@@ -120718,11 +120812,11 @@
           "line": 23,
           "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
           "tokens": 11,
-          "bodyTokens": "=> CoreSettingsFunctions . StorageFields ( this , configuration , category )",
-          "hash": "11D38000C9719BB75FEF9F61027E9299277534CE201DB055FA497FF97F91E3EE",
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
           "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "72724C89DF2D6EE0F551C6C210DFE7992D7E20E01397E04D7044F2A69678245F"
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "F0A0ACAC2D198B68F8B431D08160FC73808D7DA59CCDA0C9D5BF62C50E7D65BB"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
@@ -120732,11 +120826,11 @@
           "line": 22,
           "parameters": "(MachineConfiguration configuration, EmulationMediaCategory category)",
           "tokens": 11,
-          "bodyTokens": "=> CoreSettingsFunctions . StorageFields ( this , configuration , category )",
-          "hash": "11D38000C9719BB75FEF9F61027E9299277534CE201DB055FA497FF97F91E3EE",
+          "bodyTokens": "=> SettingsDescriptionFunctions . StorageFields ( this , configuration , category )",
+          "hash": "6CC701E5C6AC53E3F10B3DEBD915836A8DFC0A6CCF27B38F620986BE12FDC594",
           "shape": "7ECD6D8EBAE8D5456136298B5251E7A409C70F0290C61CF89341A35FC70ADD54",
-          "qualification": "Verified storage policy override forwarding to original interface projections shared in CoreSettingsFunctions; processReuse.verification.originalStorageProjections and18 migration cases",
-          "qualificationSourceSha256": "C627330528F0B7E987D8BE9494C9FFEF21BECA3BA1FD5947FE716AE6B1E9F9D4"
+          "qualification": "Verified storage policy override forwarding to original interface projections shared in SettingsDescriptionFunctions; processReuse.verification.originalStorageProjections and18 migration cases; creationContextReuse.verification.projections verifies unchanged original bodies moved to existing Common owner.",
+          "qualificationSourceSha256": "BB7BEC4E5B7BCE65A62CC5C074A3BAF72BC4F8499D8A2AE40BD9B93A2A1AE603"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs",
@@ -122882,7 +122976,7 @@
           "name": "Blocks",
           "owner": "CoreSettingsFunctions",
           "kind": "MethodDeclaration",
-          "line": 39,
+          "line": 33,
           "parameters": "(CoreDefinition definition, MachineConfiguration configuration)",
           "tokens": 9,
           "bodyTokens": "=> Blocks ( definition . Options , configuration )",
@@ -135802,7 +135896,7 @@
           "name": "HardReset",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 586,
+          "line": 585,
           "parameters": "()",
           "tokens": 3,
           "bodyTokens": "=> HardResetCount ++",
@@ -135814,7 +135908,7 @@
           "name": "SoftReset",
           "owner": "RecordingCore.AmstradEmulatorAdapterTests",
           "kind": "MethodDeclaration",
-          "line": 587,
+          "line": 586,
           "parameters": "()",
           "tokens": 3,
           "bodyTokens": "=> SoftResetCount ++",
@@ -143441,7 +143535,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3092
+    "occurrences": 3080,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

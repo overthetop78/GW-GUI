@@ -11,7 +11,6 @@ global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
 global using GWGUI.Emulation.Commodore.Common.Constants;
-global using GWGUI.Emulation.Commodore.Common.Contracts;
 global using GWGUI.Emulation.Commodore.Common.Dictionaries;
 global using GWGUI.Emulation.Commodore.Common.Interfaces;
 global using GWGUI.Emulation.Commodore.Common.Machines.Common.Constants;
@@ -46,3 +45,5 @@ global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulat
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;

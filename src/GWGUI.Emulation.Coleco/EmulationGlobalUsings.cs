@@ -14,7 +14,6 @@ global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
 global using GWGUI.Emulation;
 global using GWGUI.Emulation.Coleco.Common.Constants;
-global using GWGUI.Emulation.Coleco.Common.Contracts;
 global using GWGUI.Emulation.Coleco.Common.Dictionaries;
 global using GWGUI.Emulation.Coleco.Common.Interfaces;
 global using GWGUI.Emulation.Coleco.Common.Services;
@@ -56,3 +55,5 @@ global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.Emul
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator>;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationSlotsDocument<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts.FolderConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts.MachineConfiguration>;

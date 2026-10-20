@@ -129,6 +129,10 @@ public sealed class EmulationArchitectureTests
     [Fact]
     public void FamilyCommonContractFilesAndContentsAreIdentical()
     {
+        var atariContext = CommonAdapter(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari").Context;
+        var amigaContext = CommonAdapter(typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore").Context;
+        Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorCreationContext<>), atariContext.GetGenericTypeDefinition());
+        Assert.Equal(atariContext.GetGenericTypeDefinition(), amigaContext.GetGenericTypeDefinition());
         var root = RepositoryRoot();
         var atari = ContractFileNames(root, "Atari");
         var amiga = ContractFileNames(root, "Commodore");
@@ -290,12 +294,29 @@ public sealed class EmulationArchitectureTests
         .Order(StringComparer.Ordinal)
         .ToArray();
 
-    private static (Type Adapter, Type Context, Type Management) CommonAdapter(Assembly assembly, string rootNamespace)
+    internal static (Type Adapter, Type Context, Type Management) CommonAdapter(Assembly assembly, string rootNamespace)
     {
         var adapter = assembly.GetType($"{rootNamespace}.Common.Interfaces.IEmulatorAdapter");
-        var context = assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext");
         Assert.NotNull(adapter);
-        Assert.NotNull(context);
+        var create = adapter!.GetMethod("Create");
+        Assert.NotNull(create);
+        var parameters = create!.GetParameters();
+        Assert.Equal(2, parameters.Length);
+        var context = parameters[1].ParameterType;
+        if (rootNamespace == "GWGUI.Emulation.Nec")
+        {
+            Assert.Equal(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext"), context);
+            var firmware = context.GetConstructors().Single().GetParameters().Last();
+            Assert.Equal("FirmwareDirectory", firmware.Name);
+            Assert.False(firmware.HasDefaultValue);
+        }
+        else
+        {
+            Assert.True(context.IsGenericType);
+            Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorCreationContext<>), context.GetGenericTypeDefinition());
+            Assert.Equal(parameters[0].ParameterType, Assert.Single(context.GetGenericArguments()));
+            Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext"));
+        }
         Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorManagementContext"));
         var installation = adapter!.GetMethod("GetInstallationAsync");
         Assert.NotNull(installation);

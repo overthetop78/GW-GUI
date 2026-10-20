@@ -14,7 +14,6 @@ global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
 global using GWGUI.Emulation.Atari.Common.Constants;
-global using GWGUI.Emulation.Atari.Common.Contracts;
 global using GWGUI.Emulation.Atari.Common.Dictionaries;
 global using GWGUI.Emulation.Atari.Common.Interfaces;
 global using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
@@ -86,3 +85,5 @@ global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.Emul
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationDocument<global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.FolderConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration>;

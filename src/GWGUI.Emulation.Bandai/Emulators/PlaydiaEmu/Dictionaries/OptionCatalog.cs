@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Bandai.Common.Contracts;
 using GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Dictionaries;

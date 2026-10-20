@@ -1,6 +1,5 @@
 using System.Globalization;
 using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions;
-using GWGUI.Emulation.Bandai.Common.Contracts;
 using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries;

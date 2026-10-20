@@ -9,7 +9,6 @@ using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.Tests.Emulation.EmulationContracts;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Commodore.Common.Contracts;
 using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Commodore.Common.Interfaces;
 using GWGUI.Emulation.Commodore.Emulators.Common.Interfaces;

@@ -14,7 +14,6 @@ global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
 global using GWGUI.Emulation;
 global using GWGUI.Emulation.Bandai.Common.Constants;
-global using GWGUI.Emulation.Bandai.Common.Contracts;
 global using GWGUI.Emulation.Bandai.Common.Dictionaries;
 global using GWGUI.Emulation.Bandai.Common.Enums;
 global using GWGUI.Emulation.Bandai.Common.Exceptions;
@@ -54,3 +53,5 @@ global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.Emul
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.Emulator>;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationDocument<global::GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts.FolderConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts.MachineConfiguration>;

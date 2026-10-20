@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Globalization;
 using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Commodore.Common.Machines.Common.Enums;
-using GWGUI.Emulation.Commodore.Common.Contracts;
 using GWGUI.Emulation.Commodore.Modules;
 using GWGUI.Emulation.Commodore.Common.Services;
 using GWGUI.Emulation.Commodore.Emulators.PUAE.Factories;
@@ -13,6 +12,7 @@ using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.App.Localization.Extensions;
+using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
 
 namespace GWGUI.Tests.Emulation.Amiga;
 

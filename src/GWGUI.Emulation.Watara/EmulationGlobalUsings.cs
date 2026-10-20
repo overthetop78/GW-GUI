@@ -44,3 +44,5 @@ global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSaved
 global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
 global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.PeripheralCategory>;
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Watara.Common.Machines.Common.Contracts.MachineConfiguration>;

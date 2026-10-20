@@ -52,9 +52,7 @@ public sealed class ConsoleFamilyModuleTests
             var family = Path.GetFileName(project)["GWGUI.Emulation.".Length..];
             var files = CommonFiles(root, family);
             Assert.Contains(Path.Combine("Interfaces", "IEmulatorAdapter.cs"), files);
-            var contractSource = string.Join(Environment.NewLine, files.Where(file => file.StartsWith("Contracts" + Path.DirectorySeparatorChar, StringComparison.Ordinal))
-                .Select(file => File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", file))));
-            Assert.Contains("record EmulatorCreationContext", contractSource, StringComparison.Ordinal);
+            _ = EmulationArchitectureTests.CommonAdapter(Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}"), $"GWGUI.Emulation.{family}");
             Assert.Contains(Path.Combine("Dictionaries", "EmulatorCatalog.cs"), files);
         }
     }

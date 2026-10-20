@@ -18,8 +18,8 @@ internal sealed class PpssppMachineFactory : CoreMachineFactory
     public override int GetMemoryCardCount(MachineConfiguration configuration) => 1;
     public override bool IsCpuClock(string fieldId) => false;
     public override IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
-        CoreSettingsFunctions.MachineBlocks(this, configuration);
+        SettingsDescriptionFunctions.MachineBlocks(this, configuration);
     public override IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
-        CoreSettingsFunctions.StorageFields(this, configuration, category);
+        SettingsDescriptionFunctions.StorageFields(this, configuration, category);
     protected override MachineConfiguration Configure(MachineConfiguration configuration) => PpssppOptionFunctions.ToNative(configuration);
 }

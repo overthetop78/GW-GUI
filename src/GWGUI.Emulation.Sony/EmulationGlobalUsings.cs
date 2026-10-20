@@ -28,3 +28,5 @@ global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleas
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.Emulator>;
 
 global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationLegacySavedStateHeader;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>;

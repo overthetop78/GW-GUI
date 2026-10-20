@@ -8,12 +8,6 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 internal static class CoreSettingsFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> MachineBlocks(IEmulatorSettingsAdapter adapter, MachineConfiguration configuration) =>
-        adapter.GetSettingsBlocks(configuration).Where(block => block.Tab != EmulationMachineTab.Storage).ToArray();
-
-    internal static IReadOnlyList<EmulationSettingsField> StorageFields(IEmulatorSettingsAdapter adapter, MachineConfiguration configuration, EmulationMediaCategory category) =>
-        category == EmulationMediaCategory.CompactDiscDrive
-            ? adapter.GetSettingsBlocks(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
 
     internal static MachineConfiguration Configure(CoreDefinition definition, MachineConfiguration configuration)
     {

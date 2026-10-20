@@ -11,7 +11,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Amstrad.Common.Contracts;
 global using GWGUI.Emulation.Amstrad.Common.Dictionaries;
 global using GWGUI.Emulation.Amstrad.Common.Interfaces;
 global using GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts;
@@ -39,3 +38,5 @@ global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreReleas
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums.Emulator>;
 
 global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationLegacySavedStateHeader;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts.MachineConfiguration>;

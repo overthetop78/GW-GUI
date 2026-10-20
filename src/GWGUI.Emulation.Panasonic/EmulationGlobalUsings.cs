@@ -46,3 +46,5 @@ global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.Emul
 global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.Emulator>;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationFirmwareDocument<global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts.InputConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts.MachineConfiguration>;

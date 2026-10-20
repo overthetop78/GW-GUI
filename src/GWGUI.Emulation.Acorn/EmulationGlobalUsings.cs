@@ -21,7 +21,6 @@ global using GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Constants;
 global using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Dictionaries;
 global using GWGUI.Emulation;
-global using GWGUI.Emulation.Acorn.Common.Contracts;
 global using GWGUI.Emulation.Acorn.Common.Services;
 global using GWGUI.Emulation.Acorn.Common.Enums;
 global using GWGUI.Emulation.Acorn.Common.Machines.Common.Constants;
@@ -54,3 +53,5 @@ global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emula
 global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;
 
 global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationDocument<global::GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FolderConfiguration>;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.MachineConfiguration>;

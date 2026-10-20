@@ -4,9 +4,9 @@ internal interface IEmulatorSettingsAdapter
 {
     IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
     IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
-        Emulators.Common.Interop.Functions.CoreSettingsFunctions.MachineBlocks(this, configuration);
+        SettingsDescriptionFunctions.MachineBlocks(this, configuration);
     IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
-        Emulators.Common.Interop.Functions.CoreSettingsFunctions.StorageFields(this, configuration, category);
+        SettingsDescriptionFunctions.StorageFields(this, configuration, category);
     void ValidateConfiguration(MachineConfiguration configuration) { }
     IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
     int GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;

@@ -84,7 +84,7 @@ public sealed class ModuleConfigurationReviewTests
     {
         var audio = new TrackingAudio();
         var configuration = new SonyMachines.Contracts.MachineConfiguration(machine, emulator);
-        var context = new GWGUI.Emulation.Sony.Common.Contracts.EmulatorCreationContext(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
+        var context = new GWGUI.Emulation.Contracts.EmulatorCreationContext<SonyMachines.Contracts.MachineConfiguration>(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
         Assert.Throws<InvalidOperationException>(() => new GWGUI.Emulation.Sony.Common.Services.Engine().Adapter(configuration).Create(configuration, context));
         Assert.True(audio.Disposed);
     }

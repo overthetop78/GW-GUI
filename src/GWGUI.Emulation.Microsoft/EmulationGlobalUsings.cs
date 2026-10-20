@@ -10,7 +10,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Microsoft.Common.Contracts;
 global using GWGUI.Emulation.Microsoft.Common.Constants;
 global using GWGUI.Emulation.Microsoft.Common.Dictionaries;
 global using GWGUI.Emulation.Microsoft.Common.Interfaces;
@@ -27,3 +26,5 @@ global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulat
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 
 global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationLegacySavedStateHeader;
+
+global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts.MachineConfiguration>;

@@ -1,6 +1,5 @@
 using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.Emulation.Atari.Common.Constants;
-using GWGUI.Emulation.Atari.Common.Contracts;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
