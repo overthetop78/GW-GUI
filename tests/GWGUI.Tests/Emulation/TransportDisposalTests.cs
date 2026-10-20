@@ -9,6 +9,31 @@ public sealed class TransportDisposalTests
     public void MissingTransportNeedsNoDisposal()
         => EmulationHostProtocolFunctions.DisposeTransport(null);
 
+    [Fact]
+    public void MissingQuietTransportNeedsNoDisposal()
+        => EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(null);
+
+    [Theory]
+    [InlineData("none")]
+    [InlineData("io")]
+    [InlineData("disposed")]
+    [InlineData("unexpected")]
+    [InlineData("canceled")]
+    public void QuietLegacyDisposalPreservesItsAllExceptionPolicy(string failure)
+    {
+        Exception? error = failure switch
+        {
+            "io" => new IOException("Transport closed"),
+            "disposed" => new ObjectDisposedException("transport"),
+            "unexpected" => new InvalidOperationException("Unexpected failure"),
+            "canceled" => new OperationCanceledException(),
+            _ => null
+        };
+        var transport = new Transport(error);
+        EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(transport);
+        Assert.Equal(1, transport.DisposeCount);
+    }
+
     [Theory]
     [InlineData("none")]
     [InlineData("io")]

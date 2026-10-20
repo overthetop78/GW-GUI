@@ -1,18 +1,19 @@
 {
-  "snapshot": "2c1929bf9d52062c1f79a4ad08ccbbbbcf5eb4fe",
+  "snapshot": "bba0e17f073e4c4bc674c429433c26684cc933f2",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs"
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7229,
-  "methodBodyCount": 9588,
+  "methodBodyCount": 9585,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -25073,74 +25074,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-      "tokens": 18,
-      "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
-          "name": "DisposeSafely",
-          "owner": "ProcessCore",
-          "kind": "MethodDeclaration",
-          "line": 295,
-          "parameters": "(IDisposable? value)",
-          "tokens": 18,
-          "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-          "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-          "shape": "551907B39329DC274A73F01E733871F0F6CBD9F0BDCD35DE6D729A5E7FD2CB45"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "DisposeSafely",
-          "owner": "ProcessCore",
-          "kind": "MethodDeclaration",
-          "line": 307,
-          "parameters": "(IDisposable? value)",
-          "tokens": 18,
-          "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-          "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-          "shape": "551907B39329DC274A73F01E733871F0F6CBD9F0BDCD35DE6D729A5E7FD2CB45"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "DisposeSafely",
-          "owner": "ProcessCore",
-          "kind": "MethodDeclaration",
-          "line": 283,
-          "parameters": "(IDisposable? value)",
-          "tokens": 18,
-          "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-          "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-          "shape": "551907B39329DC274A73F01E733871F0F6CBD9F0BDCD35DE6D729A5E7FD2CB45"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "DisposeSafely",
-          "owner": "ProcessCore",
-          "kind": "MethodDeclaration",
-          "line": 283,
-          "parameters": "(IDisposable? value)",
-          "tokens": 18,
-          "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-          "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-          "shape": "551907B39329DC274A73F01E733871F0F6CBD9F0BDCD35DE6D729A5E7FD2CB45"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "DisposeSafely",
-          "owner": "ProcessCore",
-          "kind": "MethodDeclaration",
-          "line": 313,
-          "parameters": "(IDisposable? value)",
-          "tokens": 18,
-          "bodyTokens": "{ try { value ? . Dispose ( ) ; } catch ( Exception ) { } }",
-          "hash": "48D714DB94750F06747F48F43D79AB8AF01385387A657E17D5986ECD85E3F92D",
-          "shape": "551907B39329DC274A73F01E733871F0F6CBD9F0BDCD35DE6D729A5E7FD2CB45"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "48DF354E43E64C21973D13D589382418716E43590FCD0F47BB5E305DC3A3B845",
       "tokens": 21,
       "bodyTokens": "{ ValidateProtocolVersion ( reader . ReadInt32 ( ) ) ; return ( HostCommand ) reader . ReadByte ( ) ; }",
@@ -41003,7 +40936,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "13A52A4503AD2D2048A7B7AAB3199D0C92097587E386DD671F14C7B96CD741FE"
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
@@ -41073,7 +41006,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "64B3CCF0C06D0B5CA858D5D5B2BF52A04799DF93ED890BAEE9C474C13CCB7BA7"
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
@@ -41129,7 +41062,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4BDC88B21DC3759EC0E49C377F9AD76549EED7FD8430434832BB316B68926703"
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
@@ -41143,7 +41076,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "66D416698FBD108912944B69F2FC0FCCD41A62D9B90F2278B22AE1D45C791CBA"
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -41199,7 +41132,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "550BA6D82F8EEF8C9E69FEDA09F46896CE2EA8EEFD99771979CFB98A607513F7"
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
@@ -41255,7 +41188,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9F3BBAACAE82B1EFE0D3B54CA9AAD9AFDD6289FA936BAE3C2D387EF97D0699DC"
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
@@ -52801,7 +52734,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "13A52A4503AD2D2048A7B7AAB3199D0C92097587E386DD671F14C7B96CD741FE"
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
@@ -52932,7 +52865,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "64B3CCF0C06D0B5CA858D5D5B2BF52A04799DF93ED890BAEE9C474C13CCB7BA7"
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
@@ -53034,7 +52967,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "4BDC88B21DC3759EC0E49C377F9AD76549EED7FD8430434832BB316B68926703"
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
@@ -53049,7 +52982,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "66D416698FBD108912944B69F2FC0FCCD41A62D9B90F2278B22AE1D45C791CBA"
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
@@ -53108,7 +53041,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "550BA6D82F8EEF8C9E69FEDA09F46896CE2EA8EEFD99771979CFB98A607513F7"
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
@@ -53210,7 +53143,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "9F3BBAACAE82B1EFE0D3B54CA9AAD9AFDD6289FA936BAE3C2D387EF97D0699DC"
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
@@ -84240,7 +84173,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "13A52A4503AD2D2048A7B7AAB3199D0C92097587E386DD671F14C7B96CD741FE"
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
@@ -84371,7 +84304,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "64B3CCF0C06D0B5CA858D5D5B2BF52A04799DF93ED890BAEE9C474C13CCB7BA7"
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
@@ -84473,7 +84406,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "4BDC88B21DC3759EC0E49C377F9AD76549EED7FD8430434832BB316B68926703"
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
@@ -84488,7 +84421,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "66D416698FBD108912944B69F2FC0FCCD41A62D9B90F2278B22AE1D45C791CBA"
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
@@ -84547,7 +84480,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "550BA6D82F8EEF8C9E69FEDA09F46896CE2EA8EEFD99771979CFB98A607513F7"
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
@@ -84649,7 +84582,7 @@
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
-          "qualificationSourceSha256": "9F3BBAACAE82B1EFE0D3B54CA9AAD9AFDD6289FA936BAE3C2D387EF97D0699DC"
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
@@ -86027,6 +85960,37 @@
           "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( document ) ; return document . Representation is SequentialMediaImageRepresentation ; }",
           "hash": "7D88F92AD23D2383E4FE6AD1AD9093CF0CFA87457D7B94298CA413ACB3BBF838",
           "shape": "27D2DA01DB8DC2FE12826C117055B00847AFDC84784D693F4C5245775437C8FF"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "28066805A95C1542CC47607E62C424B22FDC99F30B72DE6C4627BE1B50E74196",
+      "tokens": 7,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs",
+          "name": "MissingTransportNeedsNoDisposal",
+          "owner": "TransportDisposalTests",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "()",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationHostProtocolFunctions . DisposeTransport ( null )",
+          "hash": "30F60F5E607C2709E418FA5A69BDD210994EC419432EF5B7A288894721431F0C",
+          "shape": "28066805A95C1542CC47607E62C424B22FDC99F30B72DE6C4627BE1B50E74196"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs",
+          "name": "MissingQuietTransportNeedsNoDisposal",
+          "owner": "TransportDisposalTests",
+          "kind": "MethodDeclaration",
+          "line": 12,
+          "parameters": "()",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationHostProtocolFunctions . DisposeTransportIgnoringErrors ( null )",
+          "hash": "DC19A473A6335F9E57C11190123328DB91179676E7101BD4AEEF9424CC911044",
+          "shape": "28066805A95C1542CC47607E62C424B22FDC99F30B72DE6C4627BE1B50E74196"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -104895,7 +104859,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "13A52A4503AD2D2048A7B7AAB3199D0C92097587E386DD671F14C7B96CD741FE"
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Functions/AudioFunctions.cs",
@@ -106447,7 +106411,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "64B3CCF0C06D0B5CA858D5D5B2BF52A04799DF93ED890BAEE9C474C13CCB7BA7"
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs",
@@ -107637,7 +107601,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4BDC88B21DC3759EC0E49C377F9AD76549EED7FD8430434832BB316B68926703"
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
@@ -107739,7 +107703,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "66D416698FBD108912944B69F2FC0FCCD41A62D9B90F2278B22AE1D45C791CBA"
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs",
@@ -108485,7 +108449,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "550BA6D82F8EEF8C9E69FEDA09F46896CE2EA8EEFD99771979CFB98A607513F7"
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs",
@@ -110475,7 +110439,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9F3BBAACAE82B1EFE0D3B54CA9AAD9AFDD6289FA936BAE3C2D387EF97D0699DC"
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcee2/Factories/Pcee2MachineFactory.cs",
@@ -122897,7 +122861,7 @@
           "name": "WriteDiskSelection",
           "owner": "EmulationHostProtocolFunctions",
           "kind": "MethodDeclaration",
-          "line": 200,
+          "line": 206,
           "parameters": "(BinaryWriter writer, IEmulationCorePathMediaCommands core)",
           "tokens": 20,
           "bodyTokens": "{ writer . Write ( core . DiskCount ) ; writer . Write ( core . CurrentDiskIndex ) ; }",
@@ -143636,7 +143600,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3070,
+    "occurrences": 3074,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

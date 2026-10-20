@@ -57,6 +57,12 @@ internal static partial class EmulationHostProtocolFunctions
         }
     }
 
+    internal static void DisposeTransportIgnoringErrors(IDisposable? value)
+    {
+        try { value?.Dispose(); }
+        catch (Exception) { }
+    }
+
     internal static void DisposePreviousCore<TCore>(ref TCore? core) where TCore : class, IDisposable
     {
         var previousCore = core;

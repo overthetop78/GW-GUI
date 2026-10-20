@@ -195,11 +195,11 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         finally
         {
-            DisposeSafely(_responseReader); _responseReader = null;
-            DisposeSafely(_writer); _writer = null;
-            DisposeSafely(_pipe); _pipe = null;
-            DisposeSafely(_videoMap); _videoMap = null;
-            DisposeSafely(_videoMemory); _videoMemory = null;
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_responseReader); _responseReader = null;
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_writer); _writer = null;
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe); _pipe = null;
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMap); _videoMap = null;
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMemory); _videoMemory = null;
             var process = _process;
             _process = null;
             if (process is not null)
@@ -271,19 +271,13 @@ internal sealed class ProcessCore : IEmulatorCore
 
     private void TerminateProcess()
     {
-        DisposeSafely(_pipe);
+        EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe);
         _pipe = null;
         var process = _process;
         _process = null;
         if (process is null) return;
         try { EmulationChildProcessLifetime.WaitForExit(process, graceful: false, ProcessCoreConstants.GracefulExitTimeoutMilliseconds); }
         finally { process.Dispose(); }
-    }
-
-    private static void DisposeSafely(IDisposable? value)
-    {
-        try { value?.Dispose(); }
-        catch (Exception) { }
     }
 
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(CoreExceptions.HostResponseUnavailable());

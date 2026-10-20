@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7229,
   "outsideSrcCSharpFiles": 327,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11442,
+  "currentMethodCount": 11443,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -428,6 +428,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "05C0A5207345FF7B5A968375FCC0084A708FD554E205377E82E03C027B976F30",
+      "method": "TerminateProcess",
+      "tokens": 57,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "TerminateProcess",
+          "line": 272,
+          "tokens": 57,
+          "hash": "05C0A5207345FF7B5A968375FCC0084A708FD554E205377E82E03C027B976F30",
+          "shape": "F32D63CCE82E1F7811318D83FF72A3E8E18C01198043534F7089EAA3D7337FA5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "TerminateProcess",
+          "line": 272,
+          "tokens": 57,
+          "hash": "05C0A5207345FF7B5A968375FCC0084A708FD554E205377E82E03C027B976F30",
+          "shape": "F32D63CCE82E1F7811318D83FF72A3E8E18C01198043534F7089EAA3D7337FA5"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "066073F582108BAD45813541CF825C6B7A6427B0AB433AF94B49B24138D94D79",
       "method": "Apply",
       "tokens": 240,
@@ -775,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -10922,7 +10949,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -10967,33 +10994,6 @@
           "tokens": 45,
           "hash": "6846C847E61B3BB8912A464FCEF99C5CA7F42AFA2950F8BD58820C5C0807295E",
           "shape": "6E227371DDB746CC072515BC0D4C30D9C95FE1DF874B01E4DF99DEEC40798A07"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "68612FDC8E998CFF12A6A13E72C5A8DFCDC974EB955BA4D1F50E60A20475FBBE",
-      "method": "ReleaseHost",
-      "tokens": 203,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "ReleaseHost",
-          "line": 182,
-          "tokens": 203,
-          "hash": "68612FDC8E998CFF12A6A13E72C5A8DFCDC974EB955BA4D1F50E60A20475FBBE",
-          "shape": "5AD1D15C01EEB767651A89888506D22BE7227F83954584086C028B127708AF8B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "ReleaseHost",
-          "line": 182,
-          "tokens": 203,
-          "hash": "68612FDC8E998CFF12A6A13E72C5A8DFCDC974EB955BA4D1F50E60A20475FBBE",
-          "shape": "5AD1D15C01EEB767651A89888506D22BE7227F83954584086C028B127708AF8B"
         }
       ],
       "predecessors": [],
@@ -13575,6 +13575,37 @@
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
         }
       ],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "814EA6BC8CD9C5D988CFABAF6E88F017C3B11A73981098E0751B669473C8E27A",
+      "method": "ReleaseHost",
+      "tokens": 213,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "ReleaseHost",
+          "line": 182,
+          "tokens": 213,
+          "hash": "814EA6BC8CD9C5D988CFABAF6E88F017C3B11A73981098E0751B669473C8E27A",
+          "shape": "AC7052253D75113BD6C8CE5F7930188ED48173DD8651D1829BF45A4D37512176",
+          "qualification": "entire-historical-client-lifecycle-original-sdk-owners-and-exception-policies-verified",
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "ReleaseHost",
+          "line": 182,
+          "tokens": 213,
+          "hash": "814EA6BC8CD9C5D988CFABAF6E88F017C3B11A73981098E0751B669473C8E27A",
+          "shape": "AC7052253D75113BD6C8CE5F7930188ED48173DD8651D1829BF45A4D37512176",
+          "qualification": "entire-historical-client-lifecycle-original-sdk-owners-and-exception-policies-verified",
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -16954,7 +16985,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -17247,7 +17278,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -18547,7 +18578,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23105,7 +23136,9 @@
           "line": 63,
           "tokens": 474,
           "hash": "E0A65A9791A0C9424BB606A8115757401C7A96460D0AF6C2E78679EFB99095A7",
-          "shape": "F0366164341F528F451D0814A833A25B94B316AD1860A1230F3A50834DEB89CD"
+          "shape": "F0366164341F528F451D0814A833A25B94B316AD1860A1230F3A50834DEB89CD",
+          "qualification": "entire-historical-client-lifecycle-original-sdk-owners-and-exception-policies-verified",
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
@@ -23113,7 +23146,9 @@
           "line": 63,
           "tokens": 474,
           "hash": "E0A65A9791A0C9424BB606A8115757401C7A96460D0AF6C2E78679EFB99095A7",
-          "shape": "F0366164341F528F451D0814A833A25B94B316AD1860A1230F3A50834DEB89CD"
+          "shape": "F0366164341F528F451D0814A833A25B94B316AD1860A1230F3A50834DEB89CD",
+          "qualification": "entire-historical-client-lifecycle-original-sdk-owners-and-exception-policies-verified",
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
         }
       ],
       "predecessors": [],
@@ -24859,33 +24894,6 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "F66E601337934B5CC750B521923222C5FF08584198E09F828EA429BB09A0927F",
-      "method": "TerminateProcess",
-      "tokens": 55,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "TerminateProcess",
-          "line": 272,
-          "tokens": 55,
-          "hash": "F66E601337934B5CC750B521923222C5FF08584198E09F828EA429BB09A0927F",
-          "shape": "18026CEC5CFC68BA1D171197C9E78457DE7E7BA2280C2CD5FB698AF62F9FDE24"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "TerminateProcess",
-          "line": 272,
-          "tokens": 55,
-          "hash": "F66E601337934B5CC750B521923222C5FF08584198E09F828EA429BB09A0927F",
-          "shape": "18026CEC5CFC68BA1D171197C9E78457DE7E7BA2280C2CD5FB698AF62F9FDE24"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -33986,7 +33994,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 481,
+    "occurrences": 485,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

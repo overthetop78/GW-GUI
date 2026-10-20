@@ -62,13 +62,13 @@ internal sealed class ProcessCore : IEmulatorCore
         var pipeName = string.Concat(ProcessCoreConstants.PipeNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
         var videoMapName = string.Concat(ProcessCoreConstants.VideoMapNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-        _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
-        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
-            Path.GetFullPath(sessionDirectory), ProcessCoreConstants.CoreHost, pipeName, videoMapName);
-        _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
         try
         {
+            _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+                Path.GetFullPath(sessionDirectory), ProcessCoreConstants.CoreHost, pipeName, videoMapName);
+            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
             EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
