@@ -64,7 +64,7 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
-    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, GWGUI.Emulation.Functions.EmulationInputMappingFunctions.BindingDisplayValue(resourceKey, invariant));
 
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),

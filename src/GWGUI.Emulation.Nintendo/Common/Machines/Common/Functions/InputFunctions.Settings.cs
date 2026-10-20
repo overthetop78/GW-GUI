@@ -152,7 +152,7 @@ internal static partial class InputSettingsFunctions
     ];
 
     private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) =>
-        new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey))
+        new(id, resourceKey, defaultBinding, GWGUI.Emulation.Functions.EmulationInputMappingFunctions.BindingDisplayValue(resourceKey, invariant))
         {
             OppositeDirectionId = id switch
             {

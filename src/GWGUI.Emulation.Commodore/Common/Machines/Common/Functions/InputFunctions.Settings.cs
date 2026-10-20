@@ -105,7 +105,7 @@ internal static partial class InputSettingsFunctions
         } : definition).ToArray();
     }
 
-    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
+    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, GWGUI.Emulation.Functions.EmulationInputMappingFunctions.BindingDisplayValue(resourceKey));
 
     private static EmulationControllerChoice Choice(ControllerType type) =>
         new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type))

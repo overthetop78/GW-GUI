@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationInputMappingFunctions
 {
+    internal static string? BindingDisplayValue(string resourceKey, string? invariant = null) =>
+        invariant ?? (resourceKey.Contains('.') ? null : resourceKey);
+
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;

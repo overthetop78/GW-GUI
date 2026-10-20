@@ -1,22 +1,19 @@
 {
-  "snapshot": "0a8469d6ae6fc6bd1f6156d79c28150e636efef3",
+  "snapshot": "3c623a3c529990ad86e339290b9746effbc2a308",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7231,
-  "methodBodyCount": 9558,
+  "fileCount": 7232,
+  "methodBodyCount": 9561,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -23923,6 +23920,70 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "464728DDAF7CE7F2B316A56FD8462E910EC6307D4B823A4DF0BC10FD864BE31D",
+      "tokens": 24,
+      "bodyTokens": "=> new ( id , resourceKey , defaultBinding , GWGUI . Emulation . Functions . EmulationInputMappingFunctions . BindingDisplayValue ( resourceKey , invariant ) )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Definition",
+          "owner": "InputSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 67,
+          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
+          "tokens": 24,
+          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , GWGUI . Emulation . Functions . EmulationInputMappingFunctions . BindingDisplayValue ( resourceKey , invariant ) )",
+          "hash": "464728DDAF7CE7F2B316A56FD8462E910EC6307D4B823A4DF0BC10FD864BE31D",
+          "shape": "7A8EA03083B038FBEE39376EC144BFB45A8106FEEFD29CFED343176A818E6A54",
+          "qualification": "original-binding-display-rule-shared-local-construction-and-machine-opposites-preserved",
+          "qualificationSourceSha256": "67D2259C8E8C73C660DF4B4064552CE360565036FB5B6389EF7D5D43CE2DA7FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Definition",
+          "owner": "InputSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 67,
+          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
+          "tokens": 24,
+          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , GWGUI . Emulation . Functions . EmulationInputMappingFunctions . BindingDisplayValue ( resourceKey , invariant ) )",
+          "hash": "464728DDAF7CE7F2B316A56FD8462E910EC6307D4B823A4DF0BC10FD864BE31D",
+          "shape": "7A8EA03083B038FBEE39376EC144BFB45A8106FEEFD29CFED343176A818E6A54",
+          "qualification": "original-binding-display-rule-shared-local-construction-and-machine-opposites-preserved",
+          "qualificationSourceSha256": "BF8AF00CD068379381E8C66EFA034A13C78C4CD3B62A90710DCE386896BE169A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Definition",
+          "owner": "InputSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 92,
+          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
+          "tokens": 24,
+          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , GWGUI . Emulation . Functions . EmulationInputMappingFunctions . BindingDisplayValue ( resourceKey , invariant ) )",
+          "hash": "464728DDAF7CE7F2B316A56FD8462E910EC6307D4B823A4DF0BC10FD864BE31D",
+          "shape": "7A8EA03083B038FBEE39376EC144BFB45A8106FEEFD29CFED343176A818E6A54",
+          "qualification": "original-binding-display-rule-shared-local-construction-and-machine-opposites-preserved",
+          "qualificationSourceSha256": "256345A9785ED352D269CD9E7BCADF9AF4B4A7ABE2A1486CB7D3BB666DD8FA9D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Definition",
+          "owner": "InputSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 208,
+          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
+          "tokens": 24,
+          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , GWGUI . Emulation . Functions . EmulationInputMappingFunctions . BindingDisplayValue ( resourceKey , invariant ) )",
+          "hash": "464728DDAF7CE7F2B316A56FD8462E910EC6307D4B823A4DF0BC10FD864BE31D",
+          "shape": "7A8EA03083B038FBEE39376EC144BFB45A8106FEEFD29CFED343176A818E6A54",
+          "qualification": "original-binding-display-rule-shared-local-construction-and-machine-opposites-preserved",
+          "qualificationSourceSha256": "7B9B0743AF88409D6B1E47BF40C60356F67942D027F7DE805B595EF522495B1A"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "4657F7FEDC1285BD6F922D98E1323ADABE49FF9303E3F5258E70B9087927875F",
       "tokens": 19,
       "bodyTokens": "{ Calls . Add ( $\" select: { unit } \" ) ; return ValueTask . CompletedTask ; }",
@@ -44124,50 +44185,6 @@
           "bodyTokens": "=> GWGUI . Emulation . Services . ExternalCoreLoadedContent . Create ( Validate ( contentPath , supportedExtensions ) , needsFullPath , useWindowsAnsiPath )",
           "hash": "8A153458D1D55362123E931F6A2A8FD21245843FF81D999B166C94A7F24B1471",
           "shape": "0EDA5E94266ABA3695DCD647A9C6BD2A529A91191DE5B59C5F8441476F9F2109"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "8A38F606E12E938D37FC55CD384DEF499E14C3C3BBA3E3B7AC888E455CEA858F",
-      "tokens": 24,
-      "bodyTokens": "=> new ( id , resourceKey , defaultBinding , invariant ?? ( resourceKey . Contains ( '.' ) ? null : resourceKey ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Definition",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 67,
-          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
-          "tokens": 24,
-          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , invariant ?? ( resourceKey . Contains ( '.' ) ? null : resourceKey ) )",
-          "hash": "8A38F606E12E938D37FC55CD384DEF499E14C3C3BBA3E3B7AC888E455CEA858F",
-          "shape": "F6F12300E139ED93CD2D74E852EE05B4EB996115FFACA45E2E9FBE1B69E33345"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Definition",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 92,
-          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
-          "tokens": 24,
-          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , invariant ?? ( resourceKey . Contains ( '.' ) ? null : resourceKey ) )",
-          "hash": "8A38F606E12E938D37FC55CD384DEF499E14C3C3BBA3E3B7AC888E455CEA858F",
-          "shape": "F6F12300E139ED93CD2D74E852EE05B4EB996115FFACA45E2E9FBE1B69E33345"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Definition",
-          "owner": "InputSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 208,
-          "parameters": "(string id, string resourceKey, string defaultBinding, string? invariant = null)",
-          "tokens": 24,
-          "bodyTokens": "=> new ( id , resourceKey , defaultBinding , invariant ?? ( resourceKey . Contains ( '.' ) ? null : resourceKey ) )",
-          "hash": "8A38F606E12E938D37FC55CD384DEF499E14C3C3BBA3E3B7AC888E455CEA858F",
-          "shape": "F6F12300E139ED93CD2D74E852EE05B4EB996115FFACA45E2E9FBE1B69E33345"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -84489,7 +84506,7 @@
           "bodyTokens": "=> new ( id , resourceKey , defaultBinding , invariant )",
           "hash": "DFB870FDD2CAD4068D7D8BE1A1CC98DF5915DECB07D924E328CDFF723B2F0D81",
           "shape": "2112395057D5535D9C12A461BA4DE4E540230F1C0BB2D4FCA76C02BFB8320CDE",
-          "qualification": "Verified existing SDK Contracts record construction; constructionProjectionQualification; constants and parameters only, no initializer or resource ownership.",
+          "qualification": "existing-sdk-binding-record-direct-parameter-projection-preserving-explicit-null",
           "qualificationSourceSha256": "F1B8BBB895344A151AF8FC394FAD68D59CB65F2813A7E9235E98B131704665BB"
         },
         {
@@ -116784,7 +116801,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 264,
+          "line": 267,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -143128,7 +143145,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2984,
+    "occurrences": 2996,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
