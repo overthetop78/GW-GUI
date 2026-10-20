@@ -17,6 +17,21 @@ internal static class ExternalCoreLifecycleFunctions
             optionHost.Dispose();
     }
 
+    internal static async ValueTask WaitForStartOrStopAsync(Task started,
+        CancellationToken cancellationToken, Func<ValueTask> stop)
+    {
+        var completedStart = false;
+        try
+        {
+            await started.WaitAsync(cancellationToken).ConfigureAwait(false);
+            completedStart = true;
+        }
+        finally
+        {
+            if (!completedStart) await stop().ConfigureAwait(false);
+        }
+    }
+
     internal static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)
     {
         try

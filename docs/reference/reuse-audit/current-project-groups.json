@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7197,
-  "outsideSrcCSharpFiles": 341,
+  "currentCSharpFiles": 7198,
+  "outsideSrcCSharpFiles": 342,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11450,
+  "currentMethodCount": 11456,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -132,7 +132,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 66,
           "hash": "0369E3104A4EC2D623FB8D7851D67203C194720259EB4C8AAA3EB0247F760B24",
           "shape": "D454015B0F59C9C407AE1DC1C6697AFCDB61800C08D76549DEC53D3458498598"
@@ -140,7 +140,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 168,
+          "line": 163,
           "tokens": 66,
           "hash": "0369E3104A4EC2D623FB8D7851D67203C194720259EB4C8AAA3EB0247F760B24",
           "shape": "D454015B0F59C9C407AE1DC1C6697AFCDB61800C08D76549DEC53D3458498598"
@@ -927,7 +927,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1020,7 +1020,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1028,7 +1028,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1036,7 +1036,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1044,7 +1044,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1052,7 +1052,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1060,7 +1060,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1068,7 +1068,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1076,7 +1076,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 65,
+          "line": 60,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1084,7 +1084,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1092,7 +1092,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1100,7 +1100,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1108,7 +1108,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1116,7 +1116,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 57,
           "hash": "0BEFE9960297AD26959BF46368ECBBB366BE3B7224423341A22F9D11079D4B7D",
           "shape": "75543D9B8DD5F348D072FCAE05A8D84C3C19D93C5AB9526AAD83291EBEF7AC5A"
@@ -1197,7 +1197,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1205,7 +1205,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1213,7 +1213,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1221,7 +1221,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1229,7 +1229,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1237,7 +1237,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1245,7 +1245,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 130,
+          "line": 125,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1253,7 +1253,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1261,7 +1261,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1269,7 +1269,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1277,7 +1277,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1285,7 +1285,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 135,
+          "line": 130,
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
@@ -1529,7 +1529,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "SwitchControllerPointerAsync",
-          "line": 96,
+          "line": 97,
           "tokens": 43,
           "hash": "11B8C47F02951F23B795772C47A11F207CA4475B0714EE641CBFB31F64FA999D",
           "shape": "44AD2B53F8C84ADB27B0C86E7CD24972CF27A15BC3995A192BCE5F3E0D211339"
@@ -1537,7 +1537,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "SwitchControllerPointerAsync",
-          "line": 96,
+          "line": 97,
           "tokens": 43,
           "hash": "11B8C47F02951F23B795772C47A11F207CA4475B0714EE641CBFB31F64FA999D",
           "shape": "44AD2B53F8C84ADB27B0C86E7CD24972CF27A15BC3995A192BCE5F3E0D211339"
@@ -1545,7 +1545,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "SwitchControllerPointerAsync",
-          "line": 96,
+          "line": 97,
           "tokens": 43,
           "hash": "11B8C47F02951F23B795772C47A11F207CA4475B0714EE641CBFB31F64FA999D",
           "shape": "44AD2B53F8C84ADB27B0C86E7CD24972CF27A15BC3995A192BCE5F3E0D211339"
@@ -1553,7 +1553,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "SwitchControllerPointerAsync",
-          "line": 96,
+          "line": 97,
           "tokens": 43,
           "hash": "11B8C47F02951F23B795772C47A11F207CA4475B0714EE641CBFB31F64FA999D",
           "shape": "44AD2B53F8C84ADB27B0C86E7CD24972CF27A15BC3995A192BCE5F3E0D211339"
@@ -1561,7 +1561,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "SwitchControllerPointerAsync",
-          "line": 96,
+          "line": 97,
           "tokens": 43,
           "hash": "11B8C47F02951F23B795772C47A11F207CA4475B0714EE641CBFB31F64FA999D",
           "shape": "44AD2B53F8C84ADB27B0C86E7CD24972CF27A15BC3995A192BCE5F3E0D211339"
@@ -3103,7 +3103,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3111,7 +3111,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3119,7 +3119,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3127,7 +3127,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3135,7 +3135,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3143,7 +3143,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3151,7 +3151,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3159,7 +3159,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3167,7 +3167,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3175,7 +3175,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3183,7 +3183,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3191,7 +3191,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 83,
+          "line": 78,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3199,7 +3199,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3207,7 +3207,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 85,
+          "line": 80,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3215,7 +3215,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 86,
+          "line": 81,
           "tokens": 107,
           "hash": "1CE30B8E140B06494622993785657D4015B243C5E20B5E447D70E67D84133E3A",
           "shape": "4EE2E9867AC9C0FD92B2C230C7DF2BAEA258C12084C73E1BB99A79E7A5FAB533"
@@ -3269,7 +3269,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 170,
           "hash": "1E65F8A19CF4FC28BA015B09F24885024FAE45F7FDA7AB0B2D1779A52844709F",
           "shape": "21789E6B631854DC613A64BE8AB9E3E369BA3C677884F71BF0DFC2664A2A398A"
@@ -3277,7 +3277,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 170,
           "hash": "1E65F8A19CF4FC28BA015B09F24885024FAE45F7FDA7AB0B2D1779A52844709F",
           "shape": "21789E6B631854DC613A64BE8AB9E3E369BA3C677884F71BF0DFC2664A2A398A"
@@ -3339,7 +3339,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 113,
+          "line": 114,
           "tokens": 77,
           "hash": "1EDB4D960D8AE9B08B91E0390A355F643D851437A25B76FD60FD51D262EBC1D7",
           "shape": "3D6985B5AF15B9129BD6E26DF811ED5771BF433B155F0C46458A970A3F9314EE"
@@ -3347,7 +3347,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 113,
+          "line": 114,
           "tokens": 77,
           "hash": "1EDB4D960D8AE9B08B91E0390A355F643D851437A25B76FD60FD51D262EBC1D7",
           "shape": "3D6985B5AF15B9129BD6E26DF811ED5771BF433B155F0C46458A970A3F9314EE"
@@ -3355,7 +3355,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 113,
+          "line": 114,
           "tokens": 77,
           "hash": "1EDB4D960D8AE9B08B91E0390A355F643D851437A25B76FD60FD51D262EBC1D7",
           "shape": "3D6985B5AF15B9129BD6E26DF811ED5771BF433B155F0C46458A970A3F9314EE"
@@ -3363,7 +3363,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 113,
+          "line": 114,
           "tokens": 77,
           "hash": "1EDB4D960D8AE9B08B91E0390A355F643D851437A25B76FD60FD51D262EBC1D7",
           "shape": "3D6985B5AF15B9129BD6E26DF811ED5771BF433B155F0C46458A970A3F9314EE"
@@ -3371,7 +3371,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 113,
+          "line": 114,
           "tokens": 77,
           "hash": "1EDB4D960D8AE9B08B91E0390A355F643D851437A25B76FD60FD51D262EBC1D7",
           "shape": "3D6985B5AF15B9129BD6E26DF811ED5771BF433B155F0C46458A970A3F9314EE"
@@ -4137,7 +4137,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4145,7 +4145,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4153,7 +4153,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4161,7 +4161,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 173,
+          "line": 168,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4169,7 +4169,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4177,7 +4177,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4185,7 +4185,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4193,7 +4193,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4201,7 +4201,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4552,7 +4552,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4560,7 +4560,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4568,7 +4568,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 148,
+          "line": 143,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4576,7 +4576,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -4728,7 +4728,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4736,7 +4736,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4744,7 +4744,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4752,7 +4752,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4760,7 +4760,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4768,7 +4768,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 133,
+          "line": 134,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -4776,7 +4776,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
           "name": "SelectDiskAsync",
-          "line": 160,
+          "line": 161,
           "tokens": 41,
           "hash": "2F8AFAD547BF546CC3F047E6CFF22397C7D77C98218CD5A65729305AB2A40DFE",
           "shape": "4863FD0083A3A3EEC8D17A6CA8EA32BD71D0B55C0EA078A664E83944D00AAC2C"
@@ -6555,7 +6555,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 68,
+          "line": 63,
           "tokens": 55,
           "hash": "3BE66ED6C9EFE08A77A2D8676DAC3F5C6F4CF005067BEE88D385B7DD8B42E3C8",
           "shape": "7E2B6F2014439334E965B9CE511C4969DB60B788C07442F1124E2EC858E296F1"
@@ -6563,7 +6563,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 55,
           "hash": "3BE66ED6C9EFE08A77A2D8676DAC3F5C6F4CF005067BEE88D385B7DD8B42E3C8",
           "shape": "7E2B6F2014439334E965B9CE511C4969DB60B788C07442F1124E2EC858E296F1"
@@ -6571,7 +6571,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 80,
+          "line": 75,
           "tokens": 55,
           "hash": "3BE66ED6C9EFE08A77A2D8676DAC3F5C6F4CF005067BEE88D385B7DD8B42E3C8",
           "shape": "7E2B6F2014439334E965B9CE511C4969DB60B788C07442F1124E2EC858E296F1"
@@ -6888,7 +6888,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 154,
+          "line": 149,
           "tokens": 68,
           "hash": "3D15FC007ECDDB2C3E0BEA696142CA5CEC556BDD710644E4E88DC3E5B1B19D90",
           "shape": "75580A8D298757B88258373AB082688C06B0990E5BC92097A33428AEC4DEE953"
@@ -6896,7 +6896,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 158,
+          "line": 153,
           "tokens": 68,
           "hash": "3D15FC007ECDDB2C3E0BEA696142CA5CEC556BDD710644E4E88DC3E5B1B19D90",
           "shape": "75580A8D298757B88258373AB082688C06B0990E5BC92097A33428AEC4DEE953"
@@ -7305,7 +7305,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 153,
+          "line": 154,
           "tokens": 114,
           "hash": "40C44F236902AB20A1B25FBB9364F621789D7F4DEE70413D4B04CBAD16A28FAB",
           "shape": "0AB8FD0A5B98D3C4749065B36E2562918236F76765739E3EE2F84C9E4FE7DF87"
@@ -7313,7 +7313,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 153,
+          "line": 154,
           "tokens": 114,
           "hash": "40C44F236902AB20A1B25FBB9364F621789D7F4DEE70413D4B04CBAD16A28FAB",
           "shape": "0AB8FD0A5B98D3C4749065B36E2562918236F76765739E3EE2F84C9E4FE7DF87"
@@ -7321,7 +7321,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 153,
+          "line": 154,
           "tokens": 114,
           "hash": "40C44F236902AB20A1B25FBB9364F621789D7F4DEE70413D4B04CBAD16A28FAB",
           "shape": "0AB8FD0A5B98D3C4749065B36E2562918236F76765739E3EE2F84C9E4FE7DF87"
@@ -7329,7 +7329,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 153,
+          "line": 154,
           "tokens": 114,
           "hash": "40C44F236902AB20A1B25FBB9364F621789D7F4DEE70413D4B04CBAD16A28FAB",
           "shape": "0AB8FD0A5B98D3C4749065B36E2562918236F76765739E3EE2F84C9E4FE7DF87"
@@ -7337,7 +7337,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 153,
+          "line": 154,
           "tokens": 114,
           "hash": "40C44F236902AB20A1B25FBB9364F621789D7F4DEE70413D4B04CBAD16A28FAB",
           "shape": "0AB8FD0A5B98D3C4749065B36E2562918236F76765739E3EE2F84C9E4FE7DF87"
@@ -7765,7 +7765,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 167,
+          "line": 168,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7773,7 +7773,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 167,
+          "line": 168,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7781,7 +7781,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 167,
+          "line": 168,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7789,7 +7789,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 167,
+          "line": 168,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7797,7 +7797,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 167,
+          "line": 168,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7805,7 +7805,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 173,
+          "line": 174,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -7813,7 +7813,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
           "name": "SetOptionAsync",
-          "line": 195,
+          "line": 196,
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
@@ -8114,7 +8114,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 133,
+          "line": 128,
           "tokens": 31,
           "hash": "469E0F2D56B4EAF3E310DB1079D2DDFBE5E9974CFA89045D92739B57E0CB5B1A",
           "shape": "4967250E1B8FB55D2F0312A40C9DAE2DF03D18B639A2A5C7099906FC2BC9E952"
@@ -8122,7 +8122,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 149,
+          "line": 144,
           "tokens": 31,
           "hash": "469E0F2D56B4EAF3E310DB1079D2DDFBE5E9974CFA89045D92739B57E0CB5B1A",
           "shape": "4967250E1B8FB55D2F0312A40C9DAE2DF03D18B639A2A5C7099906FC2BC9E952"
@@ -8656,7 +8656,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -9609,137 +9609,6 @@
           "tokens": 176,
           "hash": "5A74697F5AC5F86460BD88053A28A0A64A90ED18207E51DEC6925D4747665991",
           "shape": "35DF628FE95F249583AA2CFBAA1E8EE016A519CDFE41874F7EA13BC9B389460A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-      "method": "StartAsync",
-      "tokens": 217,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 12,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 10,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
-          "name": "StartAsync",
-          "line": 11,
-          "tokens": 217,
-          "hash": "5A90DDB26AEE6C9C529C0AD095B91CFD25408385B3660DBF162FFD7769AEF50E",
-          "shape": "25B124A8A85CEB54D01DDE1EE016BE9E04C9D7A5EEAA289AE95C8728708DF94B"
         }
       ],
       "predecessors": [],
@@ -10863,7 +10732,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 141,
+          "line": 142,
           "tokens": 93,
           "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
           "shape": "05C280D7FC6AE9E8E744F795026CA8E457098FD3CE095E4DE97689521D7A15D0"
@@ -10871,7 +10740,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 141,
+          "line": 142,
           "tokens": 93,
           "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
           "shape": "05C280D7FC6AE9E8E744F795026CA8E457098FD3CE095E4DE97689521D7A15D0"
@@ -10879,7 +10748,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 141,
+          "line": 142,
           "tokens": 93,
           "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
           "shape": "05C280D7FC6AE9E8E744F795026CA8E457098FD3CE095E4DE97689521D7A15D0"
@@ -10887,7 +10756,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 141,
+          "line": 142,
           "tokens": 93,
           "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
           "shape": "05C280D7FC6AE9E8E744F795026CA8E457098FD3CE095E4DE97689521D7A15D0"
@@ -10895,7 +10764,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 141,
+          "line": 142,
           "tokens": 93,
           "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
           "shape": "05C280D7FC6AE9E8E744F795026CA8E457098FD3CE095E4DE97689521D7A15D0"
@@ -10957,7 +10826,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -10965,7 +10834,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -10973,7 +10842,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -10981,7 +10850,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 183,
+          "line": 178,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -10989,7 +10858,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 174,
+          "line": 169,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -10997,7 +10866,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -11005,7 +10874,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 174,
+          "line": 169,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -11013,7 +10882,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -11021,7 +10890,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -11657,7 +11526,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 125,
+          "line": 120,
           "tokens": 38,
           "hash": "6AA839EAAE62E36E00032B01982DBCD01D2FFF36E70C1A74704F87A64E9533DB",
           "shape": "6FA4E16B6A393D498387D350CC48DBBB2AB344AD3B911936E3CBBDECA9374C0B"
@@ -11665,7 +11534,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 141,
+          "line": 136,
           "tokens": 38,
           "hash": "6AA839EAAE62E36E00032B01982DBCD01D2FFF36E70C1A74704F87A64E9533DB",
           "shape": "6FA4E16B6A393D498387D350CC48DBBB2AB344AD3B911936E3CBBDECA9374C0B"
@@ -12381,7 +12250,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 161,
           "hash": "72F4EB99A1CC85FEC94B0A5FD4EFA25D1A9DEA6CD67FD781F6B40054910FD0A3",
           "shape": "32899035920E55852908E543430A97BA7BD2739D33031D6D6ACECB0C67B30D8A"
@@ -12389,7 +12258,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 161,
           "hash": "72F4EB99A1CC85FEC94B0A5FD4EFA25D1A9DEA6CD67FD781F6B40054910FD0A3",
           "shape": "32899035920E55852908E543430A97BA7BD2739D33031D6D6ACECB0C67B30D8A"
@@ -12397,7 +12266,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 161,
           "hash": "72F4EB99A1CC85FEC94B0A5FD4EFA25D1A9DEA6CD67FD781F6B40054910FD0A3",
           "shape": "32899035920E55852908E543430A97BA7BD2739D33031D6D6ACECB0C67B30D8A"
@@ -12618,7 +12487,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 148,
+          "line": 143,
           "tokens": 77,
           "hash": "76D499856596216CBB66C640A5B3BDAF4BC518F1C045950E9EDCAD4EB41573BF",
           "shape": "D29427A5D5B1CD90B354777DFE0949AD05A7CFFF6B14FE89957BCAF895DCC331"
@@ -12626,7 +12495,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 148,
+          "line": 143,
           "tokens": 77,
           "hash": "76D499856596216CBB66C640A5B3BDAF4BC518F1C045950E9EDCAD4EB41573BF",
           "shape": "D29427A5D5B1CD90B354777DFE0949AD05A7CFFF6B14FE89957BCAF895DCC331"
@@ -13387,7 +13256,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 113,
+          "line": 108,
           "tokens": 31,
           "hash": "7E0CABE812645C68611F13A1BBADA4CAF2D3C88D388BC3544F28E8945D8E1160",
           "shape": "451C315EF507DD21BDAEA4E2E53AE90C49B8226BC94F78DA6633952939B80FF2"
@@ -13395,7 +13264,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 112,
+          "line": 107,
           "tokens": 31,
           "hash": "7E0CABE812645C68611F13A1BBADA4CAF2D3C88D388BC3544F28E8945D8E1160",
           "shape": "451C315EF507DD21BDAEA4E2E53AE90C49B8226BC94F78DA6633952939B80FF2"
@@ -13403,7 +13272,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 128,
+          "line": 123,
           "tokens": 31,
           "hash": "7E0CABE812645C68611F13A1BBADA4CAF2D3C88D388BC3544F28E8945D8E1160",
           "shape": "451C315EF507DD21BDAEA4E2E53AE90C49B8226BC94F78DA6633952939B80FF2"
@@ -14399,7 +14268,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14407,7 +14276,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14415,7 +14284,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14423,7 +14292,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14431,7 +14300,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14439,7 +14308,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 72,
+          "line": 73,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -14447,7 +14316,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
           "name": "StopAsync",
-          "line": 84,
+          "line": 85,
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
@@ -15860,6 +15729,167 @@
     },
     {
       "language": "CSharp",
+      "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+      "method": "StartAsync",
+      "tokens": 202,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "9D80AFE5019FA4B320935CD5363EBA38AA2A04F927274AD07140BFFC9372CFCB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "2E7EE6856F657F640DEFB5AA84DB98B13CBD5543570BD37FF97B6F8A833FBB57"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "19AECBB985F4BD9D78C9F1B2C602C4AC037B9616E1F77F2DA5CE0296FB9077DD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "325983EF04FB34185D5940B19DA3D55703B23B1127B57AA09CACC3A4C8DAA206"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "A114EEF8DE8EFFDACD9E3C3E91BB71FA9F89DFE8E2BEF5C284141D6A9C933C6E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "05B14E2096F351CF90E453D46BEB3F6A89D16FC284DED76FB09A87EAF8F31367"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "CCCE84446EB31F14AAB6AE4C3DEB2AE8C099CE46C7B978537F6D7091919833ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "963F06DB7B83BA2494E85FCACC46FBE8E1DDD407BC82AF4AE6DBDA0D3F3B6117"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "CD61878750479177D4A3E62D8CF27DEE92E0760E7B0DBBA3EFD8B01ACC0AE0B9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 11,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "0A1B93E2631B890E8A9F92C06CF18A28B4721B05A7538C563F310E85CC1A929B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "F20EDF1CCDFD8918DE4091AD4F4222ACB4896A03ABDAB32BC4764A5AB1F760B2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 12,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "389E8FB49059628806F747C7F6AFD04D364352F9AE1768D8E799FC18F7AEB97D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "9B8AC66E2D82C7DF9DF7C4B9D4DAC5397BC4AD6B73C7782245450947A6FE0418"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "CE13B67A8581772554549D21FA95E4DA17DBAFF99B32711EEAD2120E0F077650"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
+          "name": "StartAsync",
+          "line": 10,
+          "tokens": 202,
+          "hash": "97C57746332C1EC9330CBF7DF95CB9933F3F9AE49511BFBEFC9628E583F32988",
+          "shape": "FED782D97A70394BBF93393DEF55C660AD0504C4D6B22D9D330263AC07DA4D69",
+          "qualificationStartupWaitFragment": "All23 modules use the original Acorn wait/finally operation from the SDK lifecycle owner. Await StopAsync on unsuccessful start, including the seven former plain waits by explicit user request. Other startup allocation, state, gates, thread and stop bodies are not qualified by this fragment.",
+          "qualificationStartupWaitSourceSha256": "0136691A374FA91F06AADCFF494F279FD0F483801A503E34E5612D58E0D6D0A0"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "97E5BB1777CFB0C2B963595EFDD048EA8530F2CECDE38ADE5E2AAE1F19B1028E",
       "method": "ReadFrame",
       "tokens": 119,
@@ -17098,7 +17128,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -18438,7 +18468,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -18864,7 +18894,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -18872,7 +18902,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -18880,7 +18910,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -18888,7 +18918,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -18896,7 +18926,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -18904,7 +18934,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 110,
+          "line": 105,
           "tokens": 146,
           "hash": "B6605259BED0FDC7CA35096C74111906F979988F7408A8ACFAD4779B9CFBB960",
           "shape": "5272C133BE28012165C08FB627E495D19C0A49BC131A489CF04C5C011ABBCADB"
@@ -19063,7 +19093,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -19071,7 +19101,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -19079,7 +19109,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -19087,7 +19117,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -19137,7 +19167,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19145,7 +19175,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19153,7 +19183,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19161,7 +19191,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19169,7 +19199,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19177,7 +19207,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 38,
+          "line": 39,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -19185,7 +19215,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 40,
+          "line": 41,
           "tokens": 40,
           "hash": "BB618D26674E4E50A35B6767F38D6EA96E98F1FAE1A09FF0E072D9C2F3868A11",
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
@@ -20347,7 +20377,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20355,7 +20385,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20363,7 +20393,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20371,7 +20401,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20379,7 +20409,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20387,7 +20417,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 132,
+          "line": 127,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -20395,7 +20425,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 140,
+          "line": 135,
           "tokens": 126,
           "hash": "C46EFBDE9EB9A2FE910532CB9147DD578421F9AC36CEA5CE74C4B1068EA4135E",
           "shape": "4C76B57BF4C671FE246D07458DE24361711AEE542B8A7CB2FFDF2BAC58795315"
@@ -23058,7 +23088,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 55,
+          "line": 50,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23066,7 +23096,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23074,7 +23104,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23082,7 +23112,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23090,7 +23120,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23098,7 +23128,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23106,7 +23136,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23114,7 +23144,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23122,7 +23152,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23130,7 +23160,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 67,
+          "line": 62,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23138,7 +23168,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 52,
+          "line": 47,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23146,7 +23176,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23154,7 +23184,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23162,7 +23192,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23170,7 +23200,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -23178,7 +23208,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 54,
+          "line": 49,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -24179,7 +24209,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -24542,7 +24572,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24550,7 +24580,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24558,7 +24588,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24566,7 +24596,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24574,7 +24604,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24582,7 +24612,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 50,
+          "line": 51,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -24590,7 +24620,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 52,
+          "line": 53,
           "tokens": 43,
           "hash": "F6CB780B63B9A7CAA65D36EAAD0017560248CD3318592818CB13D9B10728FE73",
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
@@ -29350,7 +29380,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29358,7 +29388,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29366,7 +29396,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29374,7 +29404,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29382,7 +29412,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29390,7 +29420,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 173,
+          "line": 168,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29398,7 +29428,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 148,
+          "line": 143,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29406,7 +29436,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 66,
           "hash": "2D077088BA7997A681E79715986C060A749CCF5F513021EB12CC8DE8AE1AD827",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29414,7 +29444,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29422,7 +29452,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29430,7 +29460,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29438,7 +29468,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -29446,7 +29476,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 169,
+          "line": 164,
           "tokens": 66,
           "hash": "292B610E64727A7807932A09D0F9B6F6221A9550AA92CA69213A8EC22214778F",
           "shape": "A3CCAA70D350B8707E932D8DE88C6E085182CAA9CDE59A7320EB01AFB8881B82"
@@ -31627,7 +31657,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31635,7 +31665,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31643,7 +31673,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31651,7 +31681,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31659,7 +31689,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31667,7 +31697,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 183,
+          "line": 178,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31675,7 +31705,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 156,
+          "line": 151,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31683,7 +31713,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 164,
+          "line": 159,
           "tokens": 64,
           "hash": "BA6BF6C5490663CEE938038603C35328403290F842949905C4EFF86F117A11D7",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31691,7 +31721,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 174,
+          "line": 169,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31699,7 +31729,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31707,7 +31737,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 174,
+          "line": 169,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31715,7 +31745,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
@@ -31723,7 +31753,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 179,
+          "line": 174,
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"

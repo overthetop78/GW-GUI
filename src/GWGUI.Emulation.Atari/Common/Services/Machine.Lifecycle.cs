@@ -55,13 +55,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 }
             }
         }
-        var completedStart = false;
-        try
-        {
-            await started.WaitAsync(cancellationToken).ConfigureAwait(false);
-            completedStart = true;
-        }
-        finally { if (!completedStart) await StopAsync().ConfigureAwait(false); }
+        await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+            started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
     public ValueTask PauseAsync(CancellationToken cancellationToken = default)
