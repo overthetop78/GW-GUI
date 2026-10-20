@@ -554,33 +554,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "076108ED6E090450A1AA822A18E0867DB23D35FE1398ECEB2417008AECE544F2",
-      "method": "Run",
-      "tokens": 463,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
-          "name": "Run",
-          "line": 28,
-          "tokens": 463,
-          "hash": "076108ED6E090450A1AA822A18E0867DB23D35FE1398ECEB2417008AECE544F2",
-          "shape": "3A498E51EA275294AAF58F2879D143956D90701494CBFD9EC7303A1E3CBDEED8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
-          "name": "Run",
-          "line": 28,
-          "tokens": 463,
-          "hash": "076108ED6E090450A1AA822A18E0867DB23D35FE1398ECEB2417008AECE544F2",
-          "shape": "3A498E51EA275294AAF58F2879D143956D90701494CBFD9EC7303A1E3CBDEED8"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "085B956C0AB4AF601E547A9C4AC951E11E5FDECF41A47FF92193F8C106D8683B",
       "method": "SetControllerPortDevice",
       "tokens": 139,
@@ -802,7 +775,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -18574,7 +18547,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -22539,6 +22512,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "D59D70C39F82381730E6DC011FCB976E71DACEAA7BF1D9DD4633673A631C6854",
+      "method": "Run",
+      "tokens": 502,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+          "name": "Run",
+          "line": 28,
+          "tokens": 502,
+          "hash": "D59D70C39F82381730E6DC011FCB976E71DACEAA7BF1D9DD4633673A631C6854",
+          "shape": "61D969DA59942871FE9F4DFB4B7D98D8419AF2D9560F9CB6A55464F5B931A447",
+          "qualification": "entire-typed-machine-run-reuses-original-sdk-control-publication-and-audio-owners",
+          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+          "name": "Run",
+          "line": 28,
+          "tokens": 502,
+          "hash": "D59D70C39F82381730E6DC011FCB976E71DACEAA7BF1D9DD4633673A631C6854",
+          "shape": "61D969DA59942871FE9F4DFB4B7D98D8419AF2D9560F9CB6A55464F5B931A447",
+          "qualification": "entire-typed-machine-run-reuses-original-sdk-control-publication-and-audio-owners",
+          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "D711A46956C05ED61ACE13A8081E0EE6176CD3BB5ACB8BCB37D7ED12AC686A09",
       "method": "CoreOptionHost",
       "tokens": 152,
@@ -24438,7 +24442,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -28393,29 +28397,6 @@
           "tokens": 101,
           "hash": "1BC06ED21EE9FE0D3B0BE0598633AAEA8A7EA05E3EBD3967219D91CB896804A1",
           "shape": "6415AE7D60C658DE0BF75CC35352BF174969DBBFD25CCFA62FA8356FAE092533"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "6416D8C89FC57827DC39424BDE7C568984EFBB2E646C8E1F3348486E312C03FC",
-      "tokens": 473,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
-          "name": "Run",
-          "line": 28,
-          "tokens": 473,
-          "hash": "C2DE4FFDFF0F6C8BB8B724E698CFC9A6ACCA34A4C0F62AD61B04B2CFE0DB1068",
-          "shape": "6416D8C89FC57827DC39424BDE7C568984EFBB2E646C8E1F3348486E312C03FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
-          "name": "Run",
-          "line": 30,
-          "tokens": 473,
-          "hash": "0BC1C8D3618BB5B992CFEA76E8FD81A07A302961D3746EA4F51C623DB2DE403C",
-          "shape": "6416D8C89FC57827DC39424BDE7C568984EFBB2E646C8E1F3348486E312C03FC"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33072,6 +33053,33 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "F2E35FD35A02E0A36312EA5F14F29D4EE325942EABDFCDAC1C1879F7F8B8BA07",
+      "tokens": 512,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+          "name": "Run",
+          "line": 28,
+          "tokens": 512,
+          "hash": "1EB68377706C9F7DE3EB75953E8CB1463D1F1CE90520446C23A322E90C328A34",
+          "shape": "F2E35FD35A02E0A36312EA5F14F29D4EE325942EABDFCDAC1C1879F7F8B8BA07",
+          "qualification": "entire-typed-machine-run-reuses-original-sdk-control-publication-and-audio-owners",
+          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+          "name": "Run",
+          "line": 30,
+          "tokens": 512,
+          "hash": "2C816274B6E1522C93ECC449D56A531854622D72BB19C9D3FBA1B338358AD559",
+          "shape": "F2E35FD35A02E0A36312EA5F14F29D4EE325942EABDFCDAC1C1879F7F8B8BA07",
+          "qualification": "entire-typed-machine-run-reuses-original-sdk-control-publication-and-audio-owners",
+          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "F36E4E5EC75A9E842BC7AD52798EF5828C4B2729E3F9548B14561E34FDF3E204",
       "tokens": 84,
       "current": [
@@ -33978,7 +33986,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 478
+    "occurrences": 481,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

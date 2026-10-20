@@ -46,39 +46,39 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var nextFrame = TimeProvider.System.GetTimestamp();
             long videoSequence = 0;
 
+            Action<Machine, AudioChunk> publishAudio = (machine, audio) =>
+            {
+                if (machine._audioOutput is not null && !machine._audioMuted)
+                {
+                    try
+                    {
+                        if (audio.SampleRate != audioSampleRate)
+                        {
+                            machine._audioOutput.Stop();
+                            machine._audioOutput.Start(audio.SampleRate);
+                            audioSampleRate = audio.SampleRate;
+                        }
+
+                        machine.WriteAudio(audio.InterleavedSamples.Span);
+                    }
+                    catch
+                    {
+                        machine._audioOutput.Dispose();
+                        machine._audioOutput = null;
+                    }
+                }
+
+                machine.AudioChunkReady?.Invoke(machine, audio);
+            };
+
             EmulationFrameTimer.RunLoop(_gate, _commands, () => _pauseRequested,
                 () => {
                     _core.RunFrame();
-                    if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
-                    {
-                        videoSequence = video.Sequence;
-                        VideoFrameReady?.Invoke(this, video);
-                    }
-
-                    while (_core.TryDequeueAudio(out var audio) && audio is not null)
-                    {
-                        if (_audioOutput is not null && !_audioMuted)
-                        {
-                            try
-                            {
-                                if (audio.SampleRate != audioSampleRate)
-                                {
-                                    _audioOutput.Stop();
-                                    _audioOutput.Start(audio.SampleRate);
-                                    audioSampleRate = audio.SampleRate;
-                                }
-
-                                WriteAudio(audio.InterleavedSamples.Span);
-                            }
-                            catch
-                            {
-                                _audioOutput.Dispose();
-                                _audioOutput = null;
-                            }
-                        }
-
-                        AudioChunkReady?.Invoke(this, audio);
-                    }
+                    EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
+                        static machine => machine._core.LatestVideoFrame,
+                        static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
+                        static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
+                        publishAudio);
 
                     nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
                     return true;

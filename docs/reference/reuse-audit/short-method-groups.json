@@ -1,12 +1,14 @@
 {
-  "snapshot": "22c013c69f62ea4acf23db87f968dc3d972bac8f",
+  "snapshot": "2c1929bf9d52062c1f79a4ad08ccbbbbcf5eb4fe",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Constants/KeyboardConstants.cs",
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Constants/KeyboardConstants.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7229,
@@ -22043,7 +22045,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "33CC1D45F43DEC02C3B6041267F57EF36B26565F50426CC8C7E62ED79F2FD03D"
+          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
@@ -22057,7 +22059,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "AA111E17E8003747D4DF247D5F3221C44CE78A531BE90132EA4672A221F977B8"
+          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
@@ -22071,7 +22073,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "651E8FFA8C8F747818AEEA3325881E440973B971E06B5AE46F17D0B438BD0A06"
+          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -22085,7 +22087,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "87428E2934B26FA1892A31CA01B852F1E81BACCA5BC92F12FD51BF21BA75BF18"
+          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
@@ -22099,7 +22101,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "652AB96E5D747D7C8F35F3594AA182EB920320A939262EA4E10DFBAB38AB2459"
+          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
@@ -22113,7 +22115,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "A55A087CAC3325A44736F0677913FA048079416B7E1756FB0AB788A71A2964EA"
+          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
@@ -22127,7 +22129,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "4A4953F897538E9D8A339ABAA3443934E035A8201865B5D440E8DF9C04EAD581"
+          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -59327,7 +59329,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "33CC1D45F43DEC02C3B6041267F57EF36B26565F50426CC8C7E62ED79F2FD03D"
+          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
@@ -59341,7 +59343,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "AA111E17E8003747D4DF247D5F3221C44CE78A531BE90132EA4672A221F977B8"
+          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
@@ -59355,7 +59357,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "651E8FFA8C8F747818AEEA3325881E440973B971E06B5AE46F17D0B438BD0A06"
+          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -59369,7 +59371,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "87428E2934B26FA1892A31CA01B852F1E81BACCA5BC92F12FD51BF21BA75BF18"
+          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
@@ -59383,7 +59385,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "652AB96E5D747D7C8F35F3594AA182EB920320A939262EA4E10DFBAB38AB2459"
+          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
@@ -59397,7 +59399,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "A55A087CAC3325A44736F0677913FA048079416B7E1756FB0AB788A71A2964EA"
+          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
@@ -59411,7 +59413,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "4A4953F897538E9D8A339ABAA3443934E035A8201865B5D440E8DF9C04EAD581"
+          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -66293,7 +66295,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "33CC1D45F43DEC02C3B6041267F57EF36B26565F50426CC8C7E62ED79F2FD03D"
+          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
@@ -66363,7 +66365,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AA111E17E8003747D4DF247D5F3221C44CE78A531BE90132EA4672A221F977B8"
+          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
@@ -66419,7 +66421,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "651E8FFA8C8F747818AEEA3325881E440973B971E06B5AE46F17D0B438BD0A06"
+          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -66433,7 +66435,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87428E2934B26FA1892A31CA01B852F1E81BACCA5BC92F12FD51BF21BA75BF18"
+          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
@@ -66447,7 +66449,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "652AB96E5D747D7C8F35F3594AA182EB920320A939262EA4E10DFBAB38AB2459"
+          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
@@ -66489,7 +66491,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A55A087CAC3325A44736F0677913FA048079416B7E1756FB0AB788A71A2964EA"
+          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
@@ -66545,7 +66547,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4A4953F897538E9D8A339ABAA3443934E035A8201865B5D440E8DF9C04EAD581"
+          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
@@ -87440,7 +87442,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "33CC1D45F43DEC02C3B6041267F57EF36B26565F50426CC8C7E62ED79F2FD03D"
+          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs",
@@ -88648,7 +88650,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AA111E17E8003747D4DF247D5F3221C44CE78A531BE90132EA4672A221F977B8"
+          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -89652,7 +89654,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "651E8FFA8C8F747818AEEA3325881E440973B971E06B5AE46F17D0B438BD0A06"
+          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -89666,7 +89668,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87428E2934B26FA1892A31CA01B852F1E81BACCA5BC92F12FD51BF21BA75BF18"
+          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -89764,7 +89766,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "652AB96E5D747D7C8F35F3594AA182EB920320A939262EA4E10DFBAB38AB2459"
+          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -90278,7 +90280,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A55A087CAC3325A44736F0677913FA048079416B7E1756FB0AB788A71A2964EA"
+          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -91630,7 +91632,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4A4953F897538E9D8A339ABAA3443934E035A8201865B5D440E8DF9C04EAD581"
+          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -143634,7 +143636,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3091,
+    "occurrences": 3070,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
