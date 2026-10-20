@@ -63,6 +63,24 @@ internal static class ExternalCoreLifecycleFunctions
         }
     }
 
+    internal static void RunCore(Action initialize, Action run,
+        Func<Exception, Action> selectFailureHandler, Action<bool> cleanup)
+    {
+        var initialized = false;
+        Action? failureHandler = null;
+        try
+        {
+            initialize();
+            initialized = true;
+            run();
+        }
+        catch (Exception error) when ((failureHandler = selectFailureHandler(error)) is not null)
+        {
+            failureHandler();
+        }
+        finally { cleanup(initialized); }
+    }
+
     internal static async ValueTask DisposeMachineAsync(Func<ValueTask> stop,
         Action disposeFirst, Action disposeSecond, Action disposeThird, Action cleanup)
     {

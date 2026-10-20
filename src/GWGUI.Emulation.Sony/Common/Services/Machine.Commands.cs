@@ -38,85 +38,83 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
     private void Run(CancellationToken cancellationToken)
     {
-        var initialized = false;
-        try
-        {
-            _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
-            initialized = true;
-            if (_audioOutput is not null)
+        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+            () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
+            () =>
             {
-                try { StartAudioOutput(_core.SampleRate, EmulationAudioChannelLayout.Stereo); }
-                catch { _audioOutput.Dispose(); _audioOutput = null; }
-            }
-            lock (_gate)
-            {
-                State = EmulationMachineState.Running;
-                _started?.TrySetResult();
-            }
-            var nextFrame = TimeProvider.System.GetTimestamp();
-            long videoSequence = 0;
-
-            Action<Machine, AudioChunk> publishAudio = static (machine, audio) =>
-            {
-                if (machine._audioOutput is not null && !machine._audioMuted)
+                if (_audioOutput is not null)
                 {
-                    try
-                    {
-                        if (audio.SampleRate != machine._audioSampleRate || audio.ChannelLayout != machine._audioChannelLayout)
-                        {
-                            machine._audioOutput.Stop();
-                            machine.StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
-                        }
-
-                        machine.WriteAudio(audio.InterleavedSamples.Span);
-                    }
-                    catch
-                    {
-                        machine._audioOutput.Dispose();
-                        machine._audioOutput = null;
-                    }
+                    try { StartAudioOutput(_core.SampleRate, EmulationAudioChannelLayout.Stereo); }
+                    catch { _audioOutput.Dispose(); _audioOutput = null; }
                 }
+                lock (_gate)
+                {
+                    State = EmulationMachineState.Running;
+                    _started?.TrySetResult();
+                }
+                var nextFrame = TimeProvider.System.GetTimestamp();
+                long videoSequence = 0;
 
-                machine.AudioChunkReady?.Invoke(machine, audio);
-            };
+                Action<Machine, AudioChunk> publishAudio = static (machine, audio) =>
+                {
+                    if (machine._audioOutput is not null && !machine._audioMuted)
+                    {
+                        try
+                        {
+                            if (audio.SampleRate != machine._audioSampleRate || audio.ChannelLayout != machine._audioChannelLayout)
+                            {
+                                machine._audioOutput.Stop();
+                                machine.StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
+                            }
 
-            EmulationFrameTimer.RunLoop(_gate, _commands, () => _pauseRequested,
-                () => {
-                    _core.RunFrame();
-                    if (_core.ShutdownRequested)
-                        return false;
-                    EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
-                        static machine => machine._core.LatestVideoFrame,
-                        static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
-                        static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
-                        publishAudio);
+                            machine.WriteAudio(audio.InterleavedSamples.Span);
+                        }
+                        catch
+                        {
+                            machine._audioOutput.Dispose();
+                            machine._audioOutput = null;
+                        }
+                    }
 
-                    nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
-                    return true;
-                },
-                () => !cancellationToken.IsCancellationRequested && !_core.ShutdownRequested, cancellationToken, 100);
-        }
-        catch (Exception error)
-        {
-            error = _startErrorTranslator?.Invoke(error) ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
-            if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
-            _started?.TrySetException(error);
-            FailPendingCommands(error);
-            lock (_gate) State = EmulationMachineState.Faulted;
-        }
-        finally
-        {
-            if (initialized)
+                    machine.AudioChunkReady?.Invoke(machine, audio);
+                };
+
+                EmulationFrameTimer.RunLoop(_gate, _commands, () => _pauseRequested,
+                    () => {
+                        _core.RunFrame();
+                        if (_core.ShutdownRequested)
+                            return false;
+                        EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
+                            static machine => machine._core.LatestVideoFrame,
+                            static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
+                            static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
+                            publishAudio);
+
+                        nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
+                        return true;
+                    },
+                    () => !cancellationToken.IsCancellationRequested && !_core.ShutdownRequested, cancellationToken, 100);
+            },
+            error => () =>
             {
-                try { _core.Stop(); }
+                error = _startErrorTranslator?.Invoke(error) ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
+                if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
+                _started?.TrySetException(error);
+                FailPendingCommands(error);
+                lock (_gate) State = EmulationMachineState.Faulted;
+            },
+            initialized => {
+                if (initialized)
+                {
+                    try { _core.Stop(); }
+                    catch (Exception) { }
+                }
+                try { _audioOutput?.Stop(); }
                 catch (Exception) { }
-            }
-            try { _audioOutput?.Stop(); }
-            catch (Exception) { }
-            FailPendingCommands(new OperationCanceledException());
-            lock (_gate)
-                if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
-        }
+                FailPendingCommands(new OperationCanceledException());
+                lock (_gate)
+                    if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
+            });
     }
     private void FailPendingCommands(Exception error)
         => EmulationMachineCommand.FailPending(_commands, error);

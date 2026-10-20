@@ -21,50 +21,48 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void Run(CancellationToken cancellationToken)
     {
-        var initialized = false;
-        try
-        {
-            _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
-            initialized = true;
-            StartAudio();
-            lock (_gate)
+        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+            () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
+            () =>
             {
-                State = EmulationMachineState.Running;
-                _started?.TrySetResult();
-            }
-            var nextFrame = Stopwatch.GetTimestamp();
-            using var frameTimer = new FrameTimer(cancellationToken);
-            long videoSequence = default;
-            EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
-                () => {
-                    _core.SetInput(_cassetteInput.NextFrame());
-                    _core.RunFrame();
-                    PublishOutputs(ref videoSequence);
-                },
-                () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
-                cancellationToken, MachineConstants.PauseWaitMilliseconds);
-        }
-        catch (Exception error)
-        {
-            error = MessageFunctions.Translate(error, Configuration);
-            if (_core.Diagnostics.Count > MachineConstants.EmptyCount)
-                error.Data[MachineConstants.DiagnosticDataKey] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.DiagnosticTailCount));
-            _started?.TrySetException(error);
-            FailPendingCommands(error);
-            lock (_gate) State = EmulationMachineState.Faulted;
-        }
-        finally
-        {
-            if (initialized) MachineFunctions.TryReleaseInput(_core);
-            if (initialized)
-                try { _core.Stop(); } catch (Exception) { }
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_core);
-            try { _audio.Stop(); } catch (Exception) { }
-            MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
-            FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
-            lock (_gate)
-                if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
-        }
+                StartAudio();
+                lock (_gate)
+                {
+                    State = EmulationMachineState.Running;
+                    _started?.TrySetResult();
+                }
+                var nextFrame = Stopwatch.GetTimestamp();
+                using var frameTimer = new FrameTimer(cancellationToken);
+                long videoSequence = default;
+                EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
+                    () => {
+                        _core.SetInput(_cassetteInput.NextFrame());
+                        _core.RunFrame();
+                        PublishOutputs(ref videoSequence);
+                    },
+                    () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
+                    cancellationToken, MachineConstants.PauseWaitMilliseconds);
+            },
+            error => () =>
+            {
+                error = MessageFunctions.Translate(error, Configuration);
+                if (_core.Diagnostics.Count > MachineConstants.EmptyCount)
+                    error.Data[MachineConstants.DiagnosticDataKey] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.DiagnosticTailCount));
+                _started?.TrySetException(error);
+                FailPendingCommands(error);
+                lock (_gate) State = EmulationMachineState.Faulted;
+            },
+            initialized => {
+                if (initialized) MachineFunctions.TryReleaseInput(_core);
+                if (initialized)
+                    try { _core.Stop(); } catch (Exception) { }
+                EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_core);
+                try { _audio.Stop(); } catch (Exception) { }
+                MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
+                FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
+                lock (_gate)
+                    if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
+            });
     }
 
     private void StartAudio()

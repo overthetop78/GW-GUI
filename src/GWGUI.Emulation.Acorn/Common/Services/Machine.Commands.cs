@@ -21,67 +21,69 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void Run(CancellationToken cancellationToken)
     {
-        var initialized = false;
-        try
-        {
-            _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
-            initialized = true;
-            StartAudio();
-            lock (_gate)
+        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+            () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
+            () =>
             {
-                State = EmulationMachineState.Running;
-                _started?.TrySetResult();
-            }
-            var nextFrame = Stopwatch.GetTimestamp();
-            using var frameTimer = new FrameTimer(cancellationToken);
-            long videoSequence = default;
-            EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
-                () => {
-                    _core.SetInput(_input.Consume());
-                    _core.RunFrame();
-                    PublishOutputs(ref videoSequence);
-                },
-                () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
-                cancellationToken, MachineConstants.PauseWaitMilliseconds);
-        }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-        {
-            _started?.TrySetCanceled(cancellationToken);
-        }
-        catch (Exception error)
-        {
-            ReportFailure(error);
-        }
-        finally
-        {
-            var released = false;
-            try
+                StartAudio();
+                lock (_gate)
+                {
+                    State = EmulationMachineState.Running;
+                    _started?.TrySetResult();
+                }
+                var nextFrame = Stopwatch.GetTimestamp();
+                using var frameTimer = new FrameTimer(cancellationToken);
+                long videoSequence = default;
+                EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
+                    () => {
+                        _core.SetInput(_input.Consume());
+                        _core.RunFrame();
+                        PublishOutputs(ref videoSequence);
+                    },
+                    () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
+                    cancellationToken, MachineConstants.PauseWaitMilliseconds);
+            },
+            error =>
             {
+                if (error is OperationCanceledException && cancellationToken.IsCancellationRequested)
+                    return () =>
+                    {
+                        _started?.TrySetCanceled(cancellationToken);
+                    };
+                return () =>
+                    {
+                        ReportFailure(error);
+                    };
+            },
+            initialized => {
+                var released = false;
                 try
                 {
-                    if (initialized) MachineFunctions.TryReleaseInput(_core);
-                    if (initialized) _core.Stop();
-                }
-                catch (Exception error) { ReportFailure(error); }
-                finally
-                {
-                    released = ExternalCoreLifecycleFunctions.TryDisposeCore(_core, ReportFailure);
-                }
-            }
-            finally
-            {
-                try { _audio.Stop(); }
-                finally
-                {
-                    if (released) MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
-                    lock (_gate)
+                    try
                     {
-                        FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
-                        if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
+                        if (initialized) MachineFunctions.TryReleaseInput(_core);
+                        if (initialized) _core.Stop();
+                    }
+                    catch (Exception error) { ReportFailure(error); }
+                    finally
+                    {
+                        released = ExternalCoreLifecycleFunctions.TryDisposeCore(_core, ReportFailure);
                     }
                 }
-            }
-        }
+                finally
+                {
+                    try { _audio.Stop(); }
+                    finally
+                    {
+                        if (released) MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
+                        lock (_gate)
+                        {
+                            FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
+                            if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
+                        }
+                    }
+                }
+            });
     }
 
     private void ReportFailure(Exception error)
