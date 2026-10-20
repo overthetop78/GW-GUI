@@ -16,13 +16,13 @@ internal sealed class KeyboardState
         var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();
         var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();
         ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
-                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),
-                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),
+                codes => codes.OrderBy(code => IsModifier(code) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder),
+                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder),
                 code => KeyboardFunctions.Character(code, keys));
         _previous = current;
     }
 
-    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;
+    private static bool IsModifier(uint code) => code is ExternalCoreKeyboardConstants.LeftShift or ExternalCoreKeyboardConstants.RightShift or ExternalCoreKeyboardConstants.LeftControl or ExternalCoreKeyboardConstants.RightControl;
 
     internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;
 }

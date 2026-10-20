@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7229,
   "outsideSrcCSharpFiles": 327,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11443,
+  "currentMethodCount": 11442,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2789,10 +2789,10 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F",
           "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
-          "qualificationSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
+          "qualificationSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
@@ -2801,10 +2801,10 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065",
           "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
-          "qualificationSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
+          "qualificationSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
@@ -2813,10 +2813,10 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7",
           "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
-          "qualificationSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
+          "qualificationSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
@@ -2825,10 +2825,10 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC",
           "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
-          "qualificationSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
+          "qualificationSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
@@ -2837,10 +2837,10 @@
           "tokens": 305,
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306",
           "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
-          "qualificationSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
+          "qualificationSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
         }
       ],
       "predecessors": [],
@@ -7079,21 +7079,11 @@
           "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
           "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
           "qualificationSourceSha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 147,
-          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
-          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
-          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
-          "qualificationSourceSha256": "CAE3F76A9480B89EDC593860B081683D3BA5181BE8F7BFFAE20DD50DC12EC81F"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -10959,7 +10949,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -11744,14 +11734,6 @@
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/KeyboardFunctions.cs",
           "name": "Modifiers",
           "line": 71,
-          "tokens": 76,
-          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
-          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
-          "name": "Modifiers",
-          "line": 52,
           "tokens": 76,
           "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
           "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
@@ -16999,7 +16981,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17292,7 +17274,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18592,7 +18574,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24456,7 +24438,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27911,16 +27893,20 @@
           "name": "CreateKeyMap",
           "line": 9,
           "tokens": 483,
-          "hash": "D9D9659E526434CC8719EE2264666676C824FF001871C0D0A1B2174D79D67DBC",
-          "shape": "539DADA8EA6B030AA3F39BA8B0D57C1888F8FD2731ED5C44A02EB17FE8A49D49"
+          "hash": "344254A566DF71B53856949C8D06F6275AC10459D0148E05EA4E8CDE608E2898",
+          "shape": "539DADA8EA6B030AA3F39BA8B0D57C1888F8FD2731ED5C44A02EB17FE8A49D49",
+          "qualification": "specific-keyboard-table-or-modifier-reuses-original-sdk-constant-and-algorithm-owners",
+          "qualificationSourceSha256": "9FE4C331CDABE4A39121DC47369F6FF788592F03F665C8E98E9389B16426B97C"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
           "name": "CreateKeyMap",
           "line": 8,
           "tokens": 483,
-          "hash": "60D4F8DCF00B8F522156046989A7E977E30175F912F59EA640632AE9C9057416",
-          "shape": "539DADA8EA6B030AA3F39BA8B0D57C1888F8FD2731ED5C44A02EB17FE8A49D49"
+          "hash": "98550E7A1FE630ACCD6D7C6930403C3B4AF56E6C9B23F2E5AF0A19279FA61F64",
+          "shape": "539DADA8EA6B030AA3F39BA8B0D57C1888F8FD2731ED5C44A02EB17FE8A49D49",
+          "qualification": "specific-keyboard-table-or-modifier-reuses-original-sdk-constant-and-algorithm-owners",
+          "qualificationSourceSha256": "A9903FB813316095B7AF538E979D6C8A3657F2479C7DB2D864691A4D46966A2E"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -28319,14 +28305,6 @@
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
           "name": "Modifiers",
           "line": 66,
-          "tokens": 76,
-          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
-          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
-          "name": "Modifiers",
-          "line": 52,
           "tokens": 76,
           "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
           "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
@@ -32245,6 +32223,53 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+      "tokens": 147,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "4DB56042B791F7532510BDA85FE4B1BDFB01C907161A2F6E18D584F1A930747A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "92CCFF6B7928D17A6500CE385E6765C74EB91335E7FA14454A4624471C992E69",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "41A3C2EEB5A45B94E3468E15C7F6D738FA8FF5011A934F1DFC5D65981CA0B50E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 13,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "BEADE65E4287F84551187B89121CACEDD6D073C1E0EF1BCF7D10141C052278FF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "D935B1C74E5C13928031DEA97F7CB161FF47699E0BEE56306FC1771D4CFFA181",
       "tokens": 42,
       "current": [
@@ -33954,6 +33979,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 453
+    "occurrences": 478
   }
 }

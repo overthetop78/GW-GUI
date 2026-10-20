@@ -9,57 +9,52 @@ internal static class KeyboardFunctions
     {
         var map = new Dictionary<EmulationKey, uint>
         {
-            [EmulationKey.Backspace] = KeyboardConstants.Backspace,
-            [EmulationKey.Tab] = KeyboardConstants.Tab,
-            [EmulationKey.Return] = KeyboardConstants.Return,
-            [EmulationKey.Escape] = KeyboardConstants.Escape,
-            [EmulationKey.Space] = KeyboardConstants.Space,
+            [EmulationKey.Backspace] = ExternalCoreKeyboardConstants.Backspace,
+            [EmulationKey.Tab] = ExternalCoreKeyboardConstants.Tab,
+            [EmulationKey.Return] = ExternalCoreKeyboardConstants.Return,
+            [EmulationKey.Escape] = ExternalCoreKeyboardConstants.Escape,
+            [EmulationKey.Space] = ExternalCoreKeyboardConstants.Space,
             [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',
             [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',
             [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\',
             [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\'', [EmulationKey.Backquote] = '`',
-            [EmulationKey.Delete] = KeyboardConstants.Delete,
-            [EmulationKey.Up] = KeyboardConstants.Up, [EmulationKey.Down] = KeyboardConstants.Down,
-            [EmulationKey.Right] = KeyboardConstants.Right, [EmulationKey.Left] = KeyboardConstants.Left,
-            [EmulationKey.Insert] = KeyboardConstants.Insert, [EmulationKey.Home] = KeyboardConstants.Home,
-            [EmulationKey.AdamClear] = KeyboardConstants.End,
-            [EmulationKey.AdamMove] = KeyboardConstants.PageUp,
-            [EmulationKey.AdamStore] = KeyboardConstants.PageDown,
+            [EmulationKey.Delete] = ExternalCoreKeyboardConstants.Delete,
+            [EmulationKey.Up] = ExternalCoreKeyboardConstants.Up, [EmulationKey.Down] = ExternalCoreKeyboardConstants.Down,
+            [EmulationKey.Right] = ExternalCoreKeyboardConstants.Right, [EmulationKey.Left] = ExternalCoreKeyboardConstants.Left,
+            [EmulationKey.Insert] = ExternalCoreKeyboardConstants.Insert, [EmulationKey.Home] = ExternalCoreKeyboardConstants.Home,
+            [EmulationKey.AdamClear] = ExternalCoreKeyboardConstants.End,
+            [EmulationKey.AdamMove] = ExternalCoreKeyboardConstants.PageUp,
+            [EmulationKey.AdamStore] = ExternalCoreKeyboardConstants.PageDown,
             [EmulationKey.AdamUndo] = KeyboardConstants.Undo,
             [EmulationKey.AdamWildCard] = KeyboardConstants.WildCard,
             [EmulationKey.AdamPrint] = KeyboardConstants.Print,
-            [EmulationKey.CapsLock] = KeyboardConstants.CapsLock,
-            [EmulationKey.RightShift] = KeyboardConstants.RightShift,
-            [EmulationKey.LeftShift] = KeyboardConstants.LeftShift,
-            [EmulationKey.RightControl] = KeyboardConstants.RightControl,
-            [EmulationKey.LeftControl] = KeyboardConstants.LeftControl,
-            [EmulationKey.RightAlt] = KeyboardConstants.RightAlt,
-            [EmulationKey.LeftAlt] = KeyboardConstants.LeftAlt,
-            [EmulationKey.NumpadPeriod] = KeyboardConstants.KeypadPeriod,
-            [EmulationKey.NumpadDivide] = KeyboardConstants.KeypadDivide,
-            [EmulationKey.NumpadMultiply] = KeyboardConstants.KeypadMultiply,
-            [EmulationKey.NumpadMinus] = KeyboardConstants.KeypadMinus,
-            [EmulationKey.NumpadPlus] = KeyboardConstants.KeypadPlus,
-            [EmulationKey.NumpadEnter] = KeyboardConstants.KeypadEnter
+            [EmulationKey.CapsLock] = ExternalCoreKeyboardConstants.CapsLock,
+            [EmulationKey.RightShift] = ExternalCoreKeyboardConstants.RightShift,
+            [EmulationKey.LeftShift] = ExternalCoreKeyboardConstants.LeftShift,
+            [EmulationKey.RightControl] = ExternalCoreKeyboardConstants.RightControl,
+            [EmulationKey.LeftControl] = ExternalCoreKeyboardConstants.LeftControl,
+            [EmulationKey.RightAlt] = ExternalCoreKeyboardConstants.RightAlt,
+            [EmulationKey.LeftAlt] = ExternalCoreKeyboardConstants.LeftAlt,
+            [EmulationKey.NumpadPeriod] = ExternalCoreKeyboardConstants.KeypadPeriod,
+            [EmulationKey.NumpadDivide] = ExternalCoreKeyboardConstants.KeypadDivide,
+            [EmulationKey.NumpadMultiply] = ExternalCoreKeyboardConstants.KeypadMultiply,
+            [EmulationKey.NumpadMinus] = ExternalCoreKeyboardConstants.KeypadMinus,
+            [EmulationKey.NumpadPlus] = ExternalCoreKeyboardConstants.KeypadPlus,
+            [EmulationKey.NumpadEnter] = ExternalCoreKeyboardConstants.KeypadEnter
         };
-        AddRange(map, EmulationKey.A, KeyboardConstants.FirstLetter, KeyboardConstants.LetterCount);
-        AddRange(map, EmulationKey.D0, KeyboardConstants.FirstDigit, KeyboardConstants.DigitCount);
-        AddRange(map, EmulationKey.AdamSmart1, KeyboardConstants.FirstFunctionKey, KeyboardConstants.SmartKeyCount);
-        AddRange(map, EmulationKey.Numpad0, KeyboardConstants.FirstKeypadDigit, KeyboardConstants.DigitCount);
+        AddRange(map, EmulationKey.A, ExternalCoreKeyboardConstants.FirstLetter, ExternalCoreKeyboardConstants.LetterCount);
+        AddRange(map, EmulationKey.D0, ExternalCoreKeyboardConstants.FirstDigit, ExternalCoreKeyboardConstants.DigitCount);
+        AddRange(map, EmulationKey.AdamSmart1, ExternalCoreKeyboardConstants.FirstFunctionKey, KeyboardConstants.SmartKeyCount);
+        AddRange(map, EmulationKey.Numpad0, ExternalCoreKeyboardConstants.FirstKeypadDigit, ExternalCoreKeyboardConstants.DigitCount);
         return map;
     }
 
-    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(
-        (HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) |
-        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) |
-        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Modifiers(keys);
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
         => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
 
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
-
-    private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
 
     private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
         => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);

@@ -1,8 +1,12 @@
 {
-  "snapshot": "c137e482b8d538da88f5afe33301c0d07a1cff70",
+  "snapshot": "22c013c69f62ea4acf23db87f968dc3d972bac8f",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Constants/KeyboardConstants.cs",
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Constants/KeyboardConstants.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7229,
@@ -5950,7 +5954,7 @@
           "name": "IsModifier",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 60,
+          "line": 57,
           "parameters": "(EmulationKey key)",
           "tokens": 26,
           "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
@@ -14953,7 +14957,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6D0880112E8147292139D9ACB152D1865A1CDB71123079513B07A89A1A0A27D2"
+          "qualificationSourceSha256": "9FE4C331CDABE4A39121DC47369F6FF788592F03F665C8E98E9389B16426B97C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
@@ -14988,14 +14992,14 @@
           "name": "Character",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 54,
           "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
           "tokens": 15,
           "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B25A16958457C0CF0C768B9A584C9B1CBB26C220DF7788CA73351CB254EBDE2"
+          "qualificationSourceSha256": "A9903FB813316095B7AF538E979D6C8A3657F2479C7DB2D864691A4D46966A2E"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -15110,7 +15114,7 @@
           "qualificationSourceSha256": "346B465B6082D0163A8CF2B62B1D61729FAA3B2568A44CD45002B298E9DE48EC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2B22E912B8A153A35C1E830680AF84708CCEC1C2DFC25AE4347D7C394C528A7C",
@@ -42970,38 +42974,6 @@
           "bodyTokens": "=> CoreExceptions . Text ( _errorPrefix + \".\" + name , arguments )",
           "hash": "8648BBFCA63B3703CAAF39182CA44AE4F4FA4B44377B83468999F1685BD4F694",
           "shape": "202E084BB07387B236AE68E4B647129035C2A3F056AF02E4090848CEBD29BB1E"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "865111C68CD3D851EF1D037BDEFC3E5EE6F9276EA2271CF317B1DAF594650E8E",
-      "tokens": 18,
-      "bodyTokens": "=> code is KeyboardConstants . LeftShift or KeyboardConstants . RightShift or KeyboardConstants . LeftControl or KeyboardConstants . RightControl",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "IsModifier",
-          "owner": "KeyboardState",
-          "kind": "MethodDeclaration",
-          "line": 25,
-          "parameters": "(uint code)",
-          "tokens": 18,
-          "bodyTokens": "=> code is KeyboardConstants . LeftShift or KeyboardConstants . RightShift or KeyboardConstants . LeftControl or KeyboardConstants . RightControl",
-          "hash": "865111C68CD3D851EF1D037BDEFC3E5EE6F9276EA2271CF317B1DAF594650E8E",
-          "shape": "DA36CCFC6A5E392F065420370A9F323BD7B5F3143901CCEFF4D40EC8140C6A6C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
-          "name": "IsModifier",
-          "owner": "KeyboardState",
-          "kind": "MethodDeclaration",
-          "line": 40,
-          "parameters": "(uint code)",
-          "tokens": 18,
-          "bodyTokens": "=> code is KeyboardConstants . LeftShift or KeyboardConstants . RightShift or KeyboardConstants . LeftControl or KeyboardConstants . RightControl",
-          "hash": "865111C68CD3D851EF1D037BDEFC3E5EE6F9276EA2271CF317B1DAF594650E8E",
-          "shape": "DA36CCFC6A5E392F065420370A9F323BD7B5F3143901CCEFF4D40EC8140C6A6C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -76398,18 +76370,6 @@
           "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
         },
         {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
-          "name": "HasShift",
-          "owner": "KeyboardFunctions",
-          "kind": "MethodDeclaration",
-          "line": 62,
-          "parameters": "(IReadOnlySet<EmulationKey> keys)",
-          "tokens": 18,
-          "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
-          "hash": "FD94BA1C07C24322E0B84CA2D79DFC0C0F218D2351CBA6B360E2276BBADFFB93",
-          "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
-        },
-        {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
           "name": "HasShift",
           "owner": "KeyboardFunctions",
@@ -76999,7 +76959,7 @@
           "hash": "FF2373EE69FEF5656E4A680180D8C28C96B09E7B91EB9C66D3BCA5E9E88C870E",
           "shape": "FDA40F08AD16A6A6B545A427F3CF35C945BD4C823DD533A024F0B7F68B6AAE24",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(System.Collections.Generic.IDictionary<GWGUI.Emulation.Enums.EmulationKey, uint>, GWGUI.Emulation.Enums.EmulationKey, uint, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6D0880112E8147292139D9ACB152D1865A1CDB71123079513B07A89A1A0A27D2"
+          "qualificationSourceSha256": "9FE4C331CDABE4A39121DC47369F6FF788592F03F665C8E98E9389B16426B97C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
@@ -77020,14 +76980,14 @@
           "name": "AddRange",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 64,
+          "line": 59,
           "parameters": "(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)",
           "tokens": 19,
           "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . AddRange ( map , firstKey , firstCode , count )",
           "hash": "FF2373EE69FEF5656E4A680180D8C28C96B09E7B91EB9C66D3BCA5E9E88C870E",
           "shape": "FDA40F08AD16A6A6B545A427F3CF35C945BD4C823DD533A024F0B7F68B6AAE24",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(System.Collections.Generic.IDictionary<GWGUI.Emulation.Enums.EmulationKey, uint>, GWGUI.Emulation.Enums.EmulationKey, uint, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B25A16958457C0CF0C768B9A584C9B1CBB26C220DF7788CA73351CB254EBDE2"
+          "qualificationSourceSha256": "A9903FB813316095B7AF538E979D6C8A3657F2479C7DB2D864691A4D46966A2E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -77086,7 +77046,7 @@
           "qualificationSourceSha256": "346B465B6082D0163A8CF2B62B1D61729FAA3B2568A44CD45002B298E9DE48EC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "FF3F1FAD6962CA826B5C067E6473360253690B415D13806848E609A2DBC0274E",
@@ -77490,18 +77450,6 @@
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
           "line": 67,
-          "parameters": "(IReadOnlySet<EmulationKey> keys)",
-          "tokens": 18,
-          "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
-          "hash": "FD94BA1C07C24322E0B84CA2D79DFC0C0F218D2351CBA6B360E2276BBADFFB93",
-          "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
-          "name": "HasShift",
-          "owner": "KeyboardFunctions",
-          "kind": "MethodDeclaration",
-          "line": 62,
           "parameters": "(IReadOnlySet<EmulationKey> keys)",
           "tokens": 18,
           "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
@@ -93962,6 +93910,20 @@
           "qualificationSourceSha256": "64852302B5095A80DB78E78E1B60A24505B45B4C69AC920C905F2B80477D1BEB"
         },
         {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
+          "name": "Modifiers",
+          "owner": "KeyboardFunctions",
+          "kind": "MethodDeclaration",
+          "line": 52,
+          "parameters": "(IReadOnlySet<EmulationKey> keys)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Modifiers ( keys )",
+          "hash": "903D36318624CC10796ACF808C4776CAD44E15ACD679370ACB52D514AB027D6F",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "specific-keyboard-table-or-modifier-reuses-original-sdk-constant-and-algorithm-owners",
+          "qualificationSourceSha256": "A9903FB813316095B7AF538E979D6C8A3657F2479C7DB2D864691A4D46966A2E"
+        },
+        {
           "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "PhysicalMouse",
           "owner": "InputSnapshotFunctions",
@@ -99390,7 +99352,7 @@
           "name": "IsModifier",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 60,
+          "line": 57,
           "parameters": "(EmulationKey key)",
           "tokens": 26,
           "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
@@ -117925,7 +117887,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6D0880112E8147292139D9ACB152D1865A1CDB71123079513B07A89A1A0A27D2"
+          "qualificationSourceSha256": "9FE4C331CDABE4A39121DC47369F6FF788592F03F665C8E98E9389B16426B97C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
@@ -118030,14 +117992,14 @@
           "name": "Character",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 54,
           "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
           "tokens": 15,
           "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B25A16958457C0CF0C768B9A584C9B1CBB26C220DF7788CA73351CB254EBDE2"
+          "qualificationSourceSha256": "A9903FB813316095B7AF538E979D6C8A3657F2479C7DB2D864691A4D46966A2E"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -138491,8 +138453,8 @@
           "line": 25,
           "parameters": "(uint code)",
           "tokens": 18,
-          "bodyTokens": "=> code is KeyboardConstants . LeftShift or KeyboardConstants . RightShift or KeyboardConstants . LeftControl or KeyboardConstants . RightControl",
-          "hash": "865111C68CD3D851EF1D037BDEFC3E5EE6F9276EA2271CF317B1DAF594650E8E",
+          "bodyTokens": "=> code is ExternalCoreKeyboardConstants . LeftShift or ExternalCoreKeyboardConstants . RightShift or ExternalCoreKeyboardConstants . LeftControl or ExternalCoreKeyboardConstants . RightControl",
+          "hash": "BD5171FFB5D30F4061FEEFA913CDC8D4F67666FAD354E85760C7538FDEB6D39D",
           "shape": "DA36CCFC6A5E392F065420370A9F323BD7B5F3143901CCEFF4D40EC8140C6A6C"
         },
         {
@@ -143672,7 +143634,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3097
+    "occurrences": 3091,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

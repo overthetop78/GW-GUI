@@ -10,49 +10,49 @@ internal static class KeyboardFunctions
     {
         var map = new Dictionary<EmulationKey, uint>
         {
-            [EmulationKey.Backspace] = KeyboardConstants.Backspace,
-            [EmulationKey.Tab] = KeyboardConstants.Tab,
-            [EmulationKey.Return] = KeyboardConstants.Return,
-            [EmulationKey.Escape] = KeyboardConstants.Escape,
-            [EmulationKey.Space] = KeyboardConstants.Space,
+            [EmulationKey.Backspace] = ExternalCoreKeyboardConstants.Backspace,
+            [EmulationKey.Tab] = ExternalCoreKeyboardConstants.Tab,
+            [EmulationKey.Return] = ExternalCoreKeyboardConstants.Return,
+            [EmulationKey.Escape] = ExternalCoreKeyboardConstants.Escape,
+            [EmulationKey.Space] = ExternalCoreKeyboardConstants.Space,
             [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',
             [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',
             [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\',
             [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\'', [EmulationKey.Backquote] = '`',
-            [EmulationKey.Delete] = KeyboardConstants.Delete,
-            [EmulationKey.Up] = KeyboardConstants.Up, [EmulationKey.Down] = KeyboardConstants.Down,
-            [EmulationKey.Right] = KeyboardConstants.Right, [EmulationKey.Left] = KeyboardConstants.Left,
-            [EmulationKey.Home] = KeyboardConstants.Home,
-            [EmulationKey.End] = KeyboardConstants.End, [EmulationKey.PageUp] = KeyboardConstants.PageUp,
-            [EmulationKey.CapsLock] = KeyboardConstants.CapsLock,
-            [EmulationKey.RightShift] = KeyboardConstants.RightShift,
-            [EmulationKey.LeftShift] = KeyboardConstants.LeftShift,
-            [EmulationKey.RightControl] = KeyboardConstants.RightControl,
-            [EmulationKey.LeftControl] = KeyboardConstants.LeftControl,
+            [EmulationKey.Delete] = ExternalCoreKeyboardConstants.Delete,
+            [EmulationKey.Up] = ExternalCoreKeyboardConstants.Up, [EmulationKey.Down] = ExternalCoreKeyboardConstants.Down,
+            [EmulationKey.Right] = ExternalCoreKeyboardConstants.Right, [EmulationKey.Left] = ExternalCoreKeyboardConstants.Left,
+            [EmulationKey.Home] = ExternalCoreKeyboardConstants.Home,
+            [EmulationKey.End] = ExternalCoreKeyboardConstants.End, [EmulationKey.PageUp] = ExternalCoreKeyboardConstants.PageUp,
+            [EmulationKey.CapsLock] = ExternalCoreKeyboardConstants.CapsLock,
+            [EmulationKey.RightShift] = ExternalCoreKeyboardConstants.RightShift,
+            [EmulationKey.LeftShift] = ExternalCoreKeyboardConstants.LeftShift,
+            [EmulationKey.RightControl] = ExternalCoreKeyboardConstants.RightControl,
+            [EmulationKey.LeftControl] = ExternalCoreKeyboardConstants.LeftControl,
             [EmulationKey.Break] = KeyboardConstants.Pause,
             [EmulationKey.AcornF0] = KeyboardConstants.F0,
-            [EmulationKey.AcornCopy] = KeyboardConstants.Insert,
-            [EmulationKey.AcornShiftLock] = KeyboardConstants.PageDown,
+            [EmulationKey.AcornCopy] = ExternalCoreKeyboardConstants.Insert,
+            [EmulationKey.AcornShiftLock] = ExternalCoreKeyboardConstants.PageDown,
             [EmulationKey.AcornKeypadHash] = KeyboardConstants.Hash,
             [EmulationKey.AcornKeypadDelete] = KeyboardConstants.Clear,
             [EmulationKey.AcornKeypadComma] = KeyboardConstants.KeypadEquals,
-            [EmulationKey.NumpadPeriod] = KeyboardConstants.KeypadPeriod,
-            [EmulationKey.NumpadDivide] = KeyboardConstants.KeypadDivide,
-            [EmulationKey.NumpadMultiply] = KeyboardConstants.KeypadMultiply,
-            [EmulationKey.NumpadMinus] = KeyboardConstants.KeypadMinus,
-            [EmulationKey.NumpadPlus] = KeyboardConstants.KeypadPlus,
-            [EmulationKey.NumpadEnter] = KeyboardConstants.KeypadEnter
+            [EmulationKey.NumpadPeriod] = ExternalCoreKeyboardConstants.KeypadPeriod,
+            [EmulationKey.NumpadDivide] = ExternalCoreKeyboardConstants.KeypadDivide,
+            [EmulationKey.NumpadMultiply] = ExternalCoreKeyboardConstants.KeypadMultiply,
+            [EmulationKey.NumpadMinus] = ExternalCoreKeyboardConstants.KeypadMinus,
+            [EmulationKey.NumpadPlus] = ExternalCoreKeyboardConstants.KeypadPlus,
+            [EmulationKey.NumpadEnter] = ExternalCoreKeyboardConstants.KeypadEnter
         };
-        AddRange(map, EmulationKey.A, KeyboardConstants.FirstLetter, KeyboardConstants.LetterCount);
-        AddRange(map, EmulationKey.D0, KeyboardConstants.FirstDigit, KeyboardConstants.DigitCount);
-        AddRange(map, EmulationKey.F1, KeyboardConstants.FirstFunctionKey, KeyboardConstants.FunctionKeyCount);
-        AddRange(map, EmulationKey.Numpad0, KeyboardConstants.FirstKeypadDigit, KeyboardConstants.DigitCount);
+        AddRange(map, EmulationKey.A, ExternalCoreKeyboardConstants.FirstLetter, ExternalCoreKeyboardConstants.LetterCount);
+        AddRange(map, EmulationKey.D0, ExternalCoreKeyboardConstants.FirstDigit, ExternalCoreKeyboardConstants.DigitCount);
+        AddRange(map, EmulationKey.F1, ExternalCoreKeyboardConstants.FirstFunctionKey, KeyboardConstants.FunctionKeyCount);
+        AddRange(map, EmulationKey.Numpad0, ExternalCoreKeyboardConstants.FirstKeypadDigit, ExternalCoreKeyboardConstants.DigitCount);
         return map;
     }
 
     internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(
-        (HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) |
-        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers));
+        (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |
+        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers));
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
         => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
