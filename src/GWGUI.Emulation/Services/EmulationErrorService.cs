@@ -2,6 +2,10 @@ namespace GWGUI.Emulation.Services;
 
 public static class EmulationErrorService
 {
+    internal static EmulationMessageException CreateError(EmulationMessageCategory category,
+        EmulationMessageCode code, Exception? innerException) =>
+        new(new EmulationMessage(category, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException);
+
     public static Exception Translate(Exception error, EmulationMessageCategory fallbackCategory, EmulationMessageCode fallbackCode, IEmulationMessageContext? context = null)
     {
         ArgumentNullException.ThrowIfNull(error);

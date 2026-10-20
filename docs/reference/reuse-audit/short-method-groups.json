@@ -1,40 +1,19 @@
 {
-  "snapshot": "316630a7770dd65d9074525d4e70fe247324832d",
+  "snapshot": "6d047f4d4dc379db2602639e71c1f7f3eb262976",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
-    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
-    "tests/GWGUI.Tests/Interface/EmulationViews/EmulationViewsTests.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+    "src/GWGUI.Emulation/Services/EmulationErrorService.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7227,
-  "methodBodyCount": 9544,
+  "fileCount": 7228,
+  "methodBodyCount": 9538,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -5885,98 +5864,6 @@
       "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
-      "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-      "tokens": 13,
-      "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 14,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
       "tokens": 26,
       "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
@@ -11484,9 +11371,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "543B6B01151FE2849250B8BCA57BE77C8C5B666442CEDA0FB7867B121DCF9579",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "543B6B01151FE2849250B8BCA57BE77C8C5B666442CEDA0FB7867B121DCF9579",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "543B6B01151FE2849250B8BCA57BE77C8C5B666442CEDA0FB7867B121DCF9579"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11525,9 +11412,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "474AF51681C6D57C163884382B6CDE6AAA3A0BEF3EE9775C8D998CBFDC879A4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "474AF51681C6D57C163884382B6CDE6AAA3A0BEF3EE9775C8D998CBFDC879A4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "474AF51681C6D57C163884382B6CDE6AAA3A0BEF3EE9775C8D998CBFDC879A4A"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11568,9 +11455,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "ACED27D9A448B5AD175B363C2EC9B32564F3059CFEBF3D565C16F760E1147A74",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "ACED27D9A448B5AD175B363C2EC9B32564F3059CFEBF3D565C16F760E1147A74",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "ACED27D9A448B5AD175B363C2EC9B32564F3059CFEBF3D565C16F760E1147A74"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
@@ -11649,9 +11536,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "CBD4FB412C2C05D92A277B887469D42B73313841CA2A8C04B4BF94CF9337FA43",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "CBD4FB412C2C05D92A277B887469D42B73313841CA2A8C04B4BF94CF9337FA43",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "CBD4FB412C2C05D92A277B887469D42B73313841CA2A8C04B4BF94CF9337FA43"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11690,9 +11577,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "50CE332EC2D572AF1DAE2EA0DA26DDE4DD3BBB7127169EF81391CE20BE4B72C0",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "50CE332EC2D572AF1DAE2EA0DA26DDE4DD3BBB7127169EF81391CE20BE4B72C0",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "50CE332EC2D572AF1DAE2EA0DA26DDE4DD3BBB7127169EF81391CE20BE4B72C0"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11745,9 +11632,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "4D9BB8948A6613041759888402C671A465799BD918037869C4ADCB6A44A3C88D",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "4D9BB8948A6613041759888402C671A465799BD918037869C4ADCB6A44A3C88D",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "4D9BB8948A6613041759888402C671A465799BD918037869C4ADCB6A44A3C88D"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11786,9 +11673,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "961A411E261FD8403D320F94DAADF94C2C3EFA956D841211C5BD0A9A14775FE4",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "961A411E261FD8403D320F94DAADF94C2C3EFA956D841211C5BD0A9A14775FE4",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "961A411E261FD8403D320F94DAADF94C2C3EFA956D841211C5BD0A9A14775FE4"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11827,9 +11714,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "AA0ABE78349ED406BA1877E01E0FACAEC7DCD0FC0ADC083F62EC84B7D932421B",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "AA0ABE78349ED406BA1877E01E0FACAEC7DCD0FC0ADC083F62EC84B7D932421B",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "AA0ABE78349ED406BA1877E01E0FACAEC7DCD0FC0ADC083F62EC84B7D932421B"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -11854,9 +11741,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "A5D85B9A7A874D7304D0E67D32E646B93E309119F8410B975362906C565E6C94",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "A5D85B9A7A874D7304D0E67D32E646B93E309119F8410B975362906C565E6C94",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "A5D85B9A7A874D7304D0E67D32E646B93E309119F8410B975362906C565E6C94"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
@@ -11881,9 +11768,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "4759460C5E9021BDF8146D4B10A0A55A64D77762BA7D8DE9589DB1D120D80DB4",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "4759460C5E9021BDF8146D4B10A0A55A64D77762BA7D8DE9589DB1D120D80DB4",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "4759460C5E9021BDF8146D4B10A0A55A64D77762BA7D8DE9589DB1D120D80DB4"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
@@ -11908,9 +11795,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "9F46C782D7DA2CFB53052A9F21DA6AD17A67D71D57EA2A26C182A6EEE7751D9A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "9F46C782D7DA2CFB53052A9F21DA6AD17A67D71D57EA2A26C182A6EEE7751D9A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "9F46C782D7DA2CFB53052A9F21DA6AD17A67D71D57EA2A26C182A6EEE7751D9A"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
@@ -11935,9 +11822,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "686C19D500A61041DCA5662BF1CDEBD460280A98D07A3F177B0BE424EF4A1D71",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "686C19D500A61041DCA5662BF1CDEBD460280A98D07A3F177B0BE424EF4A1D71",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "686C19D500A61041DCA5662BF1CDEBD460280A98D07A3F177B0BE424EF4A1D71"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -11990,9 +11877,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "DF85644C5F3D821ED8882D8968F528648216283E45B76C8B72D835213BB6FABD",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "DF85644C5F3D821ED8882D8968F528648216283E45B76C8B72D835213BB6FABD",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "DF85644C5F3D821ED8882D8968F528648216283E45B76C8B72D835213BB6FABD"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -12148,9 +12035,9 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualificationSourceSha256": "4E947EF3AF413570D1B30498233AD1B2F0C90F80A59D6BA2177FFDC081CD8C9B",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "4E947EF3AF413570D1B30498233AD1B2F0C90F80A59D6BA2177FFDC081CD8C9B",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification"
+          "qualificationSourceSha256": "4E947EF3AF413570D1B30498233AD1B2F0C90F80A59D6BA2177FFDC081CD8C9B"
         },
         {
           "path": "src/GWGUI.Emulation/Contracts/EmulationControllerControls.cs",
@@ -15827,98 +15714,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-      "tokens": 13,
-      "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2E0A36E4B4DC608344EF27334A6BB720F16105F6F94AB3968DB60CC4FBE2C22E",
@@ -23803,6 +23598,112 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
+      "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+      "tokens": 15,
+      "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 14,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "4601C477618BAD079CD9F329F0486989E3659F324634726FBD5E32879C737584",
       "tokens": 18,
       "bodyTokens": "{ _history = null ; _width = 0 ; _height = 0 ; _sequence = 0 ; }",
@@ -29533,6 +29434,218 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+      "tokens": 15,
+      "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+      "tokens": 15,
+      "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 10,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "53A61F36EF206760467D33E4971D5DF5D382297877ED703ECD8FA215B95F0272",
       "tokens": 7,
       "bodyTokens": "=> Text ( \"Emulation.Error.Core.UnsupportedApiVersion\" , version )",
@@ -32136,98 +32249,6 @@
           "bodyTokens": "=> Adapter ( machineId ) . InstallAsync ( _managementContext , release , progress , cancellationToken )",
           "hash": "5FB0B737B893434CED201ED016234938ECE66F23783CA2C9F8F81CFFD8E0A13F",
           "shape": "FFB638952C52207030A74F1DBC32ED634CE84AFAFE856B6415457F60C021CD7E"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-      "tokens": 21,
-      "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 16,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "Error",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException)",
-          "tokens": 21,
-          "bodyTokens": "=> new ( new EmulationMessage ( category , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException )",
-          "hash": "5FBC0BEB908C5F175A4A697CF3EC0B73E648EB82684DEAC52367B18E7FEAD483",
-          "shape": "B4E476AD33A66EC078A2209398F6345D75ACA625E6B106B84D93A10806D9CDA3"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -37000,6 +37021,112 @@
           "bodyTokens": "=> Settings . Create ( configuration )",
           "hash": "716EB01EFE4BD852AAA2D8320ED2F0E4293843F17E730B45AAB596DF013CBC42",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+      "tokens": 15,
+      "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 12,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -43294,98 +43421,6 @@
           "bodyTokens": "=> JsonSerializer . Deserialize < DiskStatus > ( reader . ReadString ( ) , JsonOptions ) ?? throw new InvalidDataException ( CoreHostErrors . CommunicationFailed )",
           "hash": "875DFD2B2F4088C98353E6F065106A6ADE7D09D3B31A5ECC0B4A25A0343AC6F2",
           "shape": "9581FB9FE826E3FF6AF7BB41F58E90B39EC65FE4B5C6E56AC4401026AD1C6227"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-      "tokens": 13,
-      "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -70127,98 +70162,6 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
-      "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-      "tokens": 13,
-      "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 12,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "ECFFA492C696C35CD3CF7ABDA932F7163A4EA657084CDE73B8CAAEA9B939372E",
       "tokens": 26,
       "bodyTokens": "{ if ( _hardwareRenderContext ? . MakeCurrentForCore ( ) != true ) return ; _coreContextReset ? . Invoke ( ) ; _hardwareContextReset = true ; }",
@@ -77244,6 +77187,405 @@
           "bodyTokens": "=> deleted ? DeletedDataAddressMark : DataAddressMark",
           "hash": "2BB6D39D6C757BB69AC2DBDCE59867116C4D5C4E9753AEC1047A29949E818CD6",
           "shape": "06DA7CDF237931864D52198D15F04A9D89B98535E7C9F4D07D733CA886A80ABF"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+      "tokens": 15,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "0C285056A63040160442C39EAE5CEC39800B1C46654E2D8F17DAEB91F4D2BB26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "EC9152EE05789F2A6379DE39D57DA140E99563B5B7E34B05A21D6F43CC59ECC3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "B1E64A0113C6900ABEF4A558830107F7BCEBBBD734C8BCFE1F20EC7841DEC281"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "069299C03B8FCBA092CC015756D04367EDDFE849F055A3A5362EDEE5AAE1B2CF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "58D08BF74B3990A870C96DB7C28C89CE289B6C906AEDBC6908DF2E18C5A1E041"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 10,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 12,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 14,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "71C99F01B98FAC208158B7C185F717CB915C6F42BCE5147CEF8040BD664CB087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateInvalid",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
+          "hash": "538AB41343855EC8E7C486309D2005B701BB5A620D7096E502F94BD3CADD6EE7",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "SavedStateIncompatible",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
+          "hash": "538FCEE77868986C2E743172AAD14BB369CE0801C14DB5E7A5089C99996D9126",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MediaNotFound",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
+          "hash": "718AC87825C2380D54665994FEC6D4AE5BC28DDCD51CE5B732256F342724BBC2",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
+          "name": "MachineNotRunning",
+          "owner": "MachineExceptions",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "(Exception? innerException = null)",
+          "tokens": 15,
+          "bodyTokens": "=> EmulationErrorService . CreateError ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
+          "hash": "45CC185F74559EE530E23E9F63B00614D6F72E091F2552229747D1DEEED082CE",
+          "shape": "073A4D37EAE63E898BAC516461B36224D5BE74059D3AC0C7FE6CB7C188C67153",
+          "qualification": "Verified complete typed machine-error adapter to original Amstrad factory in existing SDK EmulationErrorService.CreateError; same category/code/cause; machineErrorFactoryReuse.",
+          "qualificationSourceSha256": "24A07BB86265268E20E1405F798901FD3A10A83EF9B58CBEA5C8BBB8E7A52A55"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -123177,361 +123519,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133",
-      "tokens": 13,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 12,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 14,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateInvalid",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , innerException )",
-          "hash": "2DF51634A892D61B68244866AC9CD6B8C6B1836DAE7CCB6725C65140860EC31E",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "SavedStateIncompatible",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 7,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateIncompatible , innerException )",
-          "hash": "87F8A08AA308B52692473EC62BC06CFE14D83DF3E8C264EA892D6843F8B01FA2",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MediaNotFound",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Media , EmulationMessageCode . MediaNotFound , innerException )",
-          "hash": "ECF6628072DCC54DB243CB2AF2FAD4D8801F90C29627DAA4F2E077D1FCBABE80",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-          "name": "MachineNotRunning",
-          "owner": "MachineExceptions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(Exception? innerException = null)",
-          "tokens": 13,
-          "bodyTokens": "=> Error ( EmulationMessageCategory . Machine , EmulationMessageCode . MachineStartFailed , innerException )",
-          "hash": "1301A3897EE559FEBC04F8C13F78B2DC9BD7B3C68B162DB351B90BBF4A942BD0",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        },
-        {
-          "path": "src/GWGUI.Updates/Services/UpdatePlanBuilder.cs",
-          "name": "AcceptsHostApi",
-          "owner": "UpdatePlanBuilder",
-          "kind": "MethodDeclaration",
-          "line": 118,
-          "parameters": "(UpdateCatalogRelease release, Version hostApi)",
-          "tokens": 13,
-          "bodyTokens": "=> AcceptsHostApi ( release . HostApiMinimum , release . HostApiMaximum , hostApi )",
-          "hash": "5A76098F9CC4CACD2CD40CEB31674F8D4D6500A53824C00D44001CB9261535E6",
-          "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "98166E68699A6C60496ACE8AB8A4F93316BC8321ACA56982093CD1888FD4C034",
       "tokens": 17,
       "current": [
@@ -142721,7 +142708,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2862,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 2876
   }
 }
