@@ -21,15 +21,7 @@ internal static class ControllerFunctions
                 continue;
             }
             var controller = controllers[binding.Port];
-            controllers[binding.Port] = controller with
-            {
-                LeftX = ApplyDeadZone(controller.LeftX, binding.DeadZonePercent),
-                LeftY = ApplyDeadZone(controller.LeftY, binding.DeadZonePercent),
-                RightX = ApplyDeadZone(controller.RightX, binding.DeadZonePercent),
-                RightY = ApplyDeadZone(controller.RightY, binding.DeadZonePercent),
-                LeftTrigger = ApplyDeadZone(controller.LeftTrigger, binding.DeadZonePercent),
-                RightTrigger = ApplyDeadZone(controller.RightTrigger, binding.DeadZonePercent)
-            };
+            controllers[binding.Port] = EmulationInputMappingFunctions.ApplyDeadZones(controller, binding.DeadZonePercent);
         }
         return snapshot with { Controllers = controllers };
     }

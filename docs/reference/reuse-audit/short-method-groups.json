@@ -1,43 +1,15 @@
 {
-  "snapshot": "090b5f95df22aaaf30a7f9786c4d69f5e8309b76",
+  "snapshot": "3f1fb3017a8ce510f9116f9db3d903fe59f5fa47",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Apple/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Philips/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Snk/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/MediaContracts.cs",
-    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7228,
-  "methodBodyCount": 9587,
+  "fileCount": 7229,
+  "methodBodyCount": 9588,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -3384,7 +3356,9 @@
           "tokens": 13,
           "bodyTokens": "=> new Dictionary < EmulationKey , IReadOnlyList < EmulationKey > > ( )",
           "hash": "0BC4539DA4CCF565E562EFE2FD4D553B5CC9C898AA451D00D974D0862DE22157",
-          "shape": "9CBABCF41B694AAD4B1F18F221933959D4B325148929E6B5B1191F36E6E075B0"
+          "shape": "9CBABCF41B694AAD4B1F18F221933959D4B325148929E6B5B1191F36E6E075B0",
+          "qualification": "fresh-empty-standard-dictionary-default-per-call",
+          "qualificationSourceSha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -3396,7 +3370,9 @@
           "tokens": 13,
           "bodyTokens": "=> new Dictionary < EmulationKey , IReadOnlyList < EmulationKey > > ( )",
           "hash": "0BC4539DA4CCF565E562EFE2FD4D553B5CC9C898AA451D00D974D0862DE22157",
-          "shape": "9CBABCF41B694AAD4B1F18F221933959D4B325148929E6B5B1191F36E6E075B0"
+          "shape": "9CBABCF41B694AAD4B1F18F221933959D4B325148929E6B5B1191F36E6E075B0",
+          "qualification": "fresh-empty-standard-dictionary-default-per-call",
+          "qualificationSourceSha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -6358,7 +6334,9 @@
           "tokens": 22,
           "bodyTokens": "=> new ( new CoreProvider ( context . HttpClient , context . CoreDirectory , Core ) . FindInstalledPathAsync ( cancellationToken ) )",
           "hash": "150549DBBADF4B2D43EBCA52DADA4B8D451A4E81C71B28027E240BD6A8E722D5",
-          "shape": "FA62CF997A6C3514901C09316CEF3804BD39AD723E100AB4F100D0DB404BE673"
+          "shape": "FA62CF997A6C3514901C09316CEF3804BD39AD723E100AB4F100D0DB404BE673",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "1F2B152F87BC090A36892C055ED35306C7E4A8ACCA22273B28129B773F45F4E3"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs",
@@ -6370,7 +6348,9 @@
           "tokens": 22,
           "bodyTokens": "=> new ( new CoreProvider ( context . HttpClient , context . CoreDirectory , Core ) . FindInstalledPathAsync ( cancellationToken ) )",
           "hash": "150549DBBADF4B2D43EBCA52DADA4B8D451A4E81C71B28027E240BD6A8E722D5",
-          "shape": "FA62CF997A6C3514901C09316CEF3804BD39AD723E100AB4F100D0DB404BE673"
+          "shape": "FA62CF997A6C3514901C09316CEF3804BD39AD723E100AB4F100D0DB404BE673",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "F9E6223C3AFF63666D81DCED2E6D7AB0B406B2292D6FBD231C55B06A579600A1"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -18076,7 +18056,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , ReleaseSettings )",
           "hash": "32C627D1F5702BEE3E896FC25EBAA1E1252AACB72EB5F23B358C75B40E792A87",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "46E71C903D80DEAECBD6089F3BBBF30030BBFCDA4FFB5021C18E259B1F8851AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -18088,7 +18070,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , ReleaseSettings )",
           "hash": "32C627D1F5702BEE3E896FC25EBAA1E1252AACB72EB5F23B358C75B40E792A87",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -23380,7 +23364,7 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D7FD9DF9621D06EC1C07438ACA647552C2B610680D95735BC20AEBC60738B48C"
+          "qualificationSourceSha256": "5EE60E3E4980FE3287BAACDF2B02E6D80CF7C0DA8D689BC3A9C5B92FBB066A44"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
@@ -23394,7 +23378,7 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BF76C9C111C49AC00FA3DF2EB5898697AA9796AD724D2873D3ADE676B20B43E9"
+          "qualificationSourceSha256": "37CB8E30557657CA7E5E44B2CFF4AA5C93CC890B4B74D2BC9065FAFCE5525CDD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/ControllerFunctions.cs",
@@ -23408,10 +23392,10 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A9A952907D8D1CA94905842137E5D1FCEA9D1D3710FA9802CB2CFB8B519DB7F9"
+          "qualificationSourceSha256": "3C5D14575CCDF5401AF41A8A4806A32B64F47B75EA83744CA979CBF0FE7AA9F4"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
@@ -29482,7 +29466,9 @@
           "tokens": 10,
           "bodyTokens": "=> new Dictionary < string , string > ( )",
           "hash": "52EF77FF4C8560A938756C63C6ECC6B2A798401127C0C4D28C8AC2F7852BAEB3",
-          "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1"
+          "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1",
+          "qualification": "fresh-empty-standard-dictionary-default-per-call",
+          "qualificationSourceSha256": "D792130AE87400F54045408D79D7F32D78B3AE1DF5D39AB1940F0FB745670F66"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -29494,7 +29480,9 @@
           "tokens": 10,
           "bodyTokens": "=> new Dictionary < string , string > ( )",
           "hash": "52EF77FF4C8560A938756C63C6ECC6B2A798401127C0C4D28C8AC2F7852BAEB3",
-          "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1"
+          "shape": "0EBD6AF307209E54446A586091AF891684ACCA1D069FAF9CCC2F86CCFF0186A1",
+          "qualification": "fresh-empty-standard-dictionary-default-per-call",
+          "qualificationSourceSha256": "C3719F27A46DCDC34B43E7F60A6C4476B2F81E126846CE193B523FB036AAA52B"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -104016,7 +104004,9 @@
           "tokens": 9,
           "bodyTokens": "=> new ( key , EightBitSettingDisposition . UserVisible )",
           "hash": "069DAFB14EF145B9294025EB4C4FB2E24C6583CE5715A110F04585CB22A113F7",
-          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272"
+          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
+          "qualification": "public-atari-record-and-enum-data-constructor-projection",
+          "qualificationSourceSha256": "84C537A5A5250634D7CD2C1058B3CE415BFF60B582F23C5E3EFE996708D9A80C"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/SettingsCatalog.cs",
@@ -104028,7 +104018,9 @@
           "tokens": 9,
           "bodyTokens": "=> new ( key , EightBitSettingDisposition . ManagedByApplication )",
           "hash": "49B3A9EAABED2F6B0591BDEF514DA040E46159980C52A8E8F1124799C2F5B33A",
-          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272"
+          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
+          "qualification": "public-atari-record-and-enum-data-constructor-projection",
+          "qualificationSourceSha256": "84C537A5A5250634D7CD2C1058B3CE415BFF60B582F23C5E3EFE996708D9A80C"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/SettingsCatalog.cs",
@@ -104040,7 +104032,9 @@
           "tokens": 9,
           "bodyTokens": "=> new ( key , EightBitSettingDisposition . HiddenInternal )",
           "hash": "402E611D9879E380B19E2258ADA44B916FF371902B5DF1DD34E916ACF671E721",
-          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272"
+          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
+          "qualification": "public-atari-record-and-enum-data-constructor-projection",
+          "qualificationSourceSha256": "84C537A5A5250634D7CD2C1058B3CE415BFF60B582F23C5E3EFE996708D9A80C"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/SettingsCatalog.cs",
@@ -104052,7 +104046,9 @@
           "tokens": 9,
           "bodyTokens": "=> new ( key , EightBitSettingDisposition . DifferentModel )",
           "hash": "9A2A45271BF1A30F2254F99FB13F915C447E50C62CE2C092FF79616851149F47",
-          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272"
+          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
+          "qualification": "public-atari-record-and-enum-data-constructor-projection",
+          "qualificationSourceSha256": "84C537A5A5250634D7CD2C1058B3CE415BFF60B582F23C5E3EFE996708D9A80C"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -104064,7 +104060,9 @@
           "tokens": 9,
           "bodyTokens": "=> new ( action , ShortcutAvailability . Available )",
           "hash": "FD42FF35F09240E0DF06ADB35B0289DCD7A54986EAF87771E643E1B56C11A503",
-          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272"
+          "shape": "56CAE2C5032621267D2AA29EFF920D7EB6A9B527B22C15ED1F7418FD0BEEA272",
+          "qualification": "public-atari-record-and-enum-data-constructor-projection",
+          "qualificationSourceSha256": "D991F143F5C09E0BB62415F8A0E8AABDD51F76510299D78E041AA57B7F1DDA37"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -113793,7 +113791,9 @@
           "tokens": 10,
           "bodyTokens": "=> new ( id , ( int ) nativeButton )",
           "hash": "BCD4F95AB96AF25DA6A3DFF71676713131E26B92FE35302BAC994C2EA119661A",
-          "shape": "5ADFCDD21F03675FEA193A670E3973F6F0952EBC9BC093E060FFD8F837166EEE"
+          "shape": "5ADFCDD21F03675FEA193A670E3973F6F0952EBC9BC093E060FFD8F837166EEE",
+          "qualification": "distinct-native-input-protocol-record-constructor-projection",
+          "qualificationSourceSha256": "05525E7B68D0F76F0895C4AAC25668890EAEBA9EDAA6CC9496C85375348519F5"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Dictionaries/ControllerProtocolDictionary.cs",
@@ -113805,7 +113805,9 @@
           "tokens": 10,
           "bodyTokens": "=> new ( id , ( int ) button )",
           "hash": "B712A718CC19FAC79905456FFADAD4D18DAD2891E786344FB0F4C7B8EC4D5C05",
-          "shape": "5ADFCDD21F03675FEA193A670E3973F6F0952EBC9BC093E060FFD8F837166EEE"
+          "shape": "5ADFCDD21F03675FEA193A670E3973F6F0952EBC9BC093E060FFD8F837166EEE",
+          "qualification": "distinct-native-input-protocol-record-constructor-projection",
+          "qualificationSourceSha256": "0EEAE9D15DC92D728A04B846276734B07DF2B4323ECDA325D1CCDC2E09F2FBDF"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -117315,7 +117317,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 267,
+          "line": 278,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -117912,7 +117914,7 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D7FD9DF9621D06EC1C07438ACA647552C2B610680D95735BC20AEBC60738B48C"
+          "qualificationSourceSha256": "5EE60E3E4980FE3287BAACDF2B02E6D80CF7C0DA8D689BC3A9C5B92FBB066A44"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -117940,7 +117942,7 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BF76C9C111C49AC00FA3DF2EB5898697AA9796AD724D2873D3ADE676B20B43E9"
+          "qualificationSourceSha256": "37CB8E30557657CA7E5E44B2CFF4AA5C93CC890B4B74D2BC9065FAFCE5525CDD"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
@@ -118024,7 +118026,7 @@
           "hash": "44D54D348331A87F2AC1934ED4E9E643E900067EA066140AE180635343A444B9",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(short, int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A9A952907D8D1CA94905842137E5D1FCEA9D1D3710FA9802CB2CFB8B519DB7F9"
+          "qualificationSourceSha256": "3C5D14575CCDF5401AF41A8A4806A32B64F47B75EA83744CA979CBF0FE7AA9F4"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
@@ -126502,7 +126504,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , Core )",
           "hash": "6A37100D9E8CBCF40BA564D3366924D7F2FDF2D449C132A0BEC93D696D4012C5",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "F9E6223C3AFF63666D81DCED2E6D7AB0B406B2292D6FBD231C55B06A579600A1"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Functions/JaguarCdFunctions.cs",
@@ -126528,7 +126532,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , ReleaseSettings )",
           "hash": "32C627D1F5702BEE3E896FC25EBAA1E1252AACB72EB5F23B358C75B40E792A87",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "46E71C903D80DEAECBD6089F3BBBF30030BBFCDA4FFB5021C18E259B1F8851AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -126540,7 +126546,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , ReleaseSettings )",
           "hash": "32C627D1F5702BEE3E896FC25EBAA1E1252AACB72EB5F23B358C75B40E792A87",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-service-and-task-valuetask-constructor-projection",
+          "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -143667,7 +143675,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3077
+    "occurrences": 3091,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

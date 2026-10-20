@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7228,
-  "outsideSrcCSharpFiles": 326,
+  "currentCSharpFiles": 7229,
+  "outsideSrcCSharpFiles": 327,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11436,
+  "currentMethodCount": 11440,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -5582,6 +5582,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "393D77B6515F3F984BB34BC3B0D0B68193D77CEFE29CD41A59EF5D3FC78061CA",
+      "method": "ApplyDeadZones",
+      "tokens": 121,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "ApplyDeadZones",
+          "line": 11,
+          "tokens": 121,
+          "hash": "393D77B6515F3F984BB34BC3B0D0B68193D77CEFE29CD41A59EF5D3FC78061CA",
+          "shape": "C01DC277706CD5E159DB6F18648E1671E1E418DADEE9A6151AF1CE81091A9FA5",
+          "qualification": "typed-binding-port-loop-reuses-original-sdk-six-axis-state-projection",
+          "qualificationSourceSha256": "5EE60E3E4980FE3287BAACDF2B02E6D80CF7C0DA8D689BC3A9C5B92FBB066A44"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "ApplyDeadZones",
+          "line": 10,
+          "tokens": 121,
+          "hash": "393D77B6515F3F984BB34BC3B0D0B68193D77CEFE29CD41A59EF5D3FC78061CA",
+          "shape": "C01DC277706CD5E159DB6F18648E1671E1E418DADEE9A6151AF1CE81091A9FA5",
+          "qualification": "typed-binding-port-loop-reuses-original-sdk-six-axis-state-projection",
+          "qualificationSourceSha256": "37CB8E30557657CA7E5E44B2CFF4AA5C93CC890B4B74D2BC9065FAFCE5525CDD"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "394A3B0B9C6D22B25822D3B5FBDB5FF79D3826D86766E282D635DD1CEA4C7351",
       "method": "SaveMediaChanges",
       "tokens": 31,
@@ -5619,7 +5650,9 @@
           "line": 76,
           "tokens": 149,
           "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
-          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26",
+          "qualification": "sdk-audio-field-composition-module-owned-option-identifiers-and-existing-builders",
+          "qualificationSourceSha256": "D782483A4CA99D55B429B20D0EEB4087FA9B11E92882736246930F965B61B1E4"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -5627,7 +5660,9 @@
           "line": 52,
           "tokens": 149,
           "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
-          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26",
+          "qualification": "sdk-audio-field-composition-module-owned-option-identifiers-and-existing-builders",
+          "qualificationSourceSha256": "636F4BBA8D924D4DCFE634197ED06F9A2E3B593D353CE08B7B121FFAB69C40BC"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -5635,7 +5670,9 @@
           "line": 59,
           "tokens": 149,
           "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
-          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26",
+          "qualification": "sdk-audio-field-composition-module-owned-option-identifiers-and-existing-builders",
+          "qualificationSourceSha256": "5F58F7E835DEC5B5C29FA21F09D51F325FEC336320982EDA7961DF86B60D3322"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
@@ -5643,7 +5680,9 @@
           "line": 72,
           "tokens": 149,
           "hash": "3A07808D818F753171C7C2B022F0C6482E167FF4A3CACBF995360B771B20C579",
-          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26"
+          "shape": "8E28CC448A2622E0DE0074F32190A648E8DDE1F9ECD3729ED763B0C5D38B7D26",
+          "qualification": "sdk-audio-field-composition-module-owned-option-identifiers-and-existing-builders",
+          "qualificationSourceSha256": "B8CB0AFAB0370E0B397A797708ADEAFD5674B5D5151E7D3850CBCA8D10416BD3"
         }
       ],
       "predecessors": [],
@@ -7358,18 +7397,22 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ControllerFunctions.cs",
           "name": "Peripherals",
-          "line": 37,
+          "line": 29,
           "tokens": 58,
           "hash": "44D683BCD387BCC267E9206FE3AD1B35069F7D004850A05D8F553FE380672585",
-          "shape": "46D63D1D96B60D0F30BC4A4027BC4FB3A541CDCF5A34B9C74590A9B0ACD4C1B8"
+          "shape": "46D63D1D96B60D0F30BC4A4027BC4FB3A541CDCF5A34B9C74590A9B0ACD4C1B8",
+          "qualification": "typed-hardware-port-set-projection-distinct-local-capability-maps",
+          "qualificationSourceSha256": "5EE60E3E4980FE3287BAACDF2B02E6D80CF7C0DA8D689BC3A9C5B92FBB066A44"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
           "name": "Peripherals",
-          "line": 36,
+          "line": 28,
           "tokens": 58,
           "hash": "44D683BCD387BCC267E9206FE3AD1B35069F7D004850A05D8F553FE380672585",
-          "shape": "46D63D1D96B60D0F30BC4A4027BC4FB3A541CDCF5A34B9C74590A9B0ACD4C1B8"
+          "shape": "46D63D1D96B60D0F30BC4A4027BC4FB3A541CDCF5A34B9C74590A9B0ACD4C1B8",
+          "qualification": "typed-hardware-port-set-projection-distinct-local-capability-maps",
+          "qualificationSourceSha256": "37CB8E30557657CA7E5E44B2CFF4AA5C93CC890B4B74D2BC9065FAFCE5525CDD"
         }
       ],
       "predecessors": [],
@@ -7684,7 +7727,9 @@
           "line": 14,
           "tokens": 70,
           "hash": "4768390760918B63709758DD238E2CE105FC92026D3908F31666E21288A90BB4",
-          "shape": "AA1FEB400BDCD4A5BA86F53C381E13AFB9EE5DBB1FAA62BF465B49BB563D6F5D"
+          "shape": "AA1FEB400BDCD4A5BA86F53C381E13AFB9EE5DBB1FAA62BF465B49BB563D6F5D",
+          "qualification": "typed-firmware-capability-path-field-projection-existing-sdk-contracts",
+          "qualificationSourceSha256": "6397DDB0AED72F6BD8FB838C174689E3FC5AC5A8D1B742E3DB87BB180DD14CBB"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/FirmwareFunctions.cs",
@@ -7692,7 +7737,9 @@
           "line": 14,
           "tokens": 70,
           "hash": "4768390760918B63709758DD238E2CE105FC92026D3908F31666E21288A90BB4",
-          "shape": "AA1FEB400BDCD4A5BA86F53C381E13AFB9EE5DBB1FAA62BF465B49BB563D6F5D"
+          "shape": "AA1FEB400BDCD4A5BA86F53C381E13AFB9EE5DBB1FAA62BF465B49BB563D6F5D",
+          "qualification": "typed-firmware-capability-path-field-projection-existing-sdk-contracts",
+          "qualificationSourceSha256": "D58555AC155292EFDDCBE33660716447826A79CFCB04033EF66F4B4F4319B0BF"
         }
       ],
       "predecessors": [],
@@ -16756,7 +16803,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17049,7 +17096,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18416,7 +18463,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "EpochEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19812,7 +19859,9 @@
           "line": 7,
           "tokens": 45,
           "hash": "C1149842E65E1E9BC68CD765C6DBD8E153EC35B05B6CBD2638288D4142BF4273",
-          "shape": "2DFAD142A23BC698F2B054AB7DF305E9741FB7050B0716CA3D9EB44BBD8B76B3"
+          "shape": "2DFAD142A23BC698F2B054AB7DF305E9741FB7050B0716CA3D9EB44BBD8B76B3",
+          "qualification": "typed-storage-capability-and-shared-media-contract-projection",
+          "qualificationSourceSha256": "E1DA2D2C2C5F239F3B1BB1EB63F96ADBB00E919FD3F1C864E566615E6A4F14A9"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
@@ -19820,7 +19869,9 @@
           "line": 7,
           "tokens": 45,
           "hash": "C1149842E65E1E9BC68CD765C6DBD8E153EC35B05B6CBD2638288D4142BF4273",
-          "shape": "2DFAD142A23BC698F2B054AB7DF305E9741FB7050B0716CA3D9EB44BBD8B76B3"
+          "shape": "2DFAD142A23BC698F2B054AB7DF305E9741FB7050B0716CA3D9EB44BBD8B76B3",
+          "qualification": "typed-storage-capability-and-shared-media-contract-projection",
+          "qualificationSourceSha256": "4DEED2B0C548471C8C21385D21B794A146AA8A2D7B3A42A3BE62C020D25780A3"
         }
       ],
       "predecessors": [],
@@ -22929,33 +22980,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "E05E95E610C231040EB1185126A50403C70D4826DAABA7C68B351267658CE6EF",
-      "method": "ApplyDeadZones",
-      "tokens": 192,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "ApplyDeadZones",
-          "line": 11,
-          "tokens": 192,
-          "hash": "E05E95E610C231040EB1185126A50403C70D4826DAABA7C68B351267658CE6EF",
-          "shape": "FA16B7C1603FF140DD2774AE15564AD35F212B1D61DF5052970D80AA8E27AD81"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "ApplyDeadZones",
-          "line": 10,
-          "tokens": 192,
-          "hash": "E05E95E610C231040EB1185126A50403C70D4826DAABA7C68B351267658CE6EF",
-          "shape": "FA16B7C1603FF140DD2774AE15564AD35F212B1D61DF5052970D80AA8E27AD81"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "E0A65A9791A0C9424BB606A8115757401C7A96460D0AF6C2E78679EFB99095A7",
       "method": "Initialize",
       "tokens": 474,
@@ -24370,7 +24394,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -26950,7 +26974,9 @@
           "line": 25,
           "tokens": 109,
           "hash": "3F936ED508B2ACA86F5CCD2E3112BB007EFCCDEE919B06B6B36AEF71B5D3BE0F",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
+          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01",
+          "qualification": "distinct-mame-native-button-identifier-data-tables",
+          "qualificationSourceSha256": "60107CE95063F465A405659963DEF25654095938596D6F9ECFFDDA3F2E7BC155"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2003/Factories/Mame2003MachineFactory.cs",
@@ -26958,7 +26984,9 @@
           "line": 25,
           "tokens": 109,
           "hash": "4BBA58100437B4202E5FB1BB789F3BC702F7A70DCE39FE51BC04E5B1E7C6E9C0",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
+          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01",
+          "qualification": "distinct-mame-native-button-identifier-data-tables",
+          "qualificationSourceSha256": "F2452D2FAEDF37CF4BCA8C64D7076170ED019658CCA1215024C7D1A7E3AEC942"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -27217,7 +27245,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ControllerFunctions.cs",
           "name": "FromCapability",
-          "line": 42,
+          "line": 34,
           "tokens": 44,
           "hash": "068EAE880888A3450486395B12DDF01EC9BED9D30314406A468A91E79A875AC8",
           "shape": "4172BBCB0A92E1A61B7F6ABB04EA543A6FAFEA9764569248DA723EB6E00E7A04"
@@ -29850,7 +29878,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 157,
+          "line": 168,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
@@ -30101,7 +30129,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ControllerFunctions.cs",
           "name": "FromCapability",
-          "line": 43,
+          "line": 35,
           "tokens": 36,
           "hash": "875EF918ADE2E6BFAC0B92C414FECD79EF90D88515A0E0811D4ABBA6C171B93C",
           "shape": "98BFEA96C98C9ADBBB92A7A5966293BDB69AED7EA138CF83F9AAA5412AEA72D0"
@@ -33796,7 +33824,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 425,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 435
   }
 }

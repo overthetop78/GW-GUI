@@ -154,6 +154,17 @@ public static class EmulationInputMappingFunctions
         return Math.Abs((int)value) <= threshold ? (short)0 : value;
     }
 
+    internal static EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) =>
+        controller with
+        {
+            LeftX = ApplyDeadZone(controller.LeftX, percent),
+            LeftY = ApplyDeadZone(controller.LeftY, percent),
+            RightX = ApplyDeadZone(controller.RightX, percent),
+            RightY = ApplyDeadZone(controller.RightY, percent),
+            LeftTrigger = ApplyDeadZone(controller.LeftTrigger, percent),
+            RightTrigger = ApplyDeadZone(controller.RightTrigger, percent)
+        };
+
     internal static bool TryRemovePrefix(string? value, string prefix, out string source)
     {
         source = string.Empty;
