@@ -103,9 +103,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            // Cancellation of the caller must not abandon the owned emulation thread.
-            if (loop is not null) await loop.ConfigureAwait(false);
-            _thread?.Join();
+            await ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

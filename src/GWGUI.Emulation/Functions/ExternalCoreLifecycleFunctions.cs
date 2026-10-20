@@ -5,6 +5,15 @@ namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreLifecycleFunctions
 {
 
+    internal static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)
+    {
+        try
+        {
+            if (loop is not null) await loop.ConfigureAwait(false);
+        }
+        finally { thread?.Join(); }
+    }
+
     internal static bool TryDisposeCore(IDisposable core, Action<Exception> reportFailure)
     {
         try

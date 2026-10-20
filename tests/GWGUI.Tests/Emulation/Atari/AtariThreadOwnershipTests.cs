@@ -8,10 +8,13 @@ namespace GWGUI.Tests.Emulation.Atari;
 public sealed class AtariThreadOwnershipTests
 {
     [Theory]
-    [InlineData(EmulationMachineState.Running)]
-    [InlineData(EmulationMachineState.Stopped)]
-    [InlineData(EmulationMachineState.Faulted)]
-    public async Task CancelledStopWaitsForItsOwnedWorkerToExit(EmulationMachineState state)
+    [InlineData(EmulationMachineState.Running, false)]
+    [InlineData(EmulationMachineState.Running, true)]
+    [InlineData(EmulationMachineState.Stopped, false)]
+    [InlineData(EmulationMachineState.Stopped, true)]
+    [InlineData(EmulationMachineState.Faulted, false)]
+    [InlineData(EmulationMachineState.Faulted, true)]
+    public async Task CancelledStopWaitsForItsOwnedWorkerToExit(EmulationMachineState state, bool failLoop)
     {
         var machine = CreateMachine(state);
         using var stopSource = new CancellationTokenSource();
@@ -19,6 +22,7 @@ public sealed class AtariThreadOwnershipTests
         using var releaseWorker = new ManualResetEventSlim();
         using var workerReady = new ManualResetEventSlim();
         var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var loopError = failLoop ? new InvalidOperationException("Managed loop failed") : null;
         Set(machine, "_stopSource", stopSource);
         Set(machine, "_runLoop", completed.Task);
         var worker = new Thread(() =>
@@ -28,7 +32,11 @@ public sealed class AtariThreadOwnershipTests
                 workerReady.Set();
                 releaseWorker.Wait();
             }
-            finally { completed.TrySetResult(); }
+            finally
+            {
+                if (loopError is null) completed.TrySetResult();
+                else completed.TrySetException(loopError);
+            }
         }) { IsBackground = true, Name = "GW GUI Atari ownership regression" };
         // The original implementation has no field; its cancelled wait must fail the behavioral assertion first.
         var ownedThread = typeof(AtariMachine).GetField("_thread", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -46,7 +54,8 @@ public sealed class AtariThreadOwnershipTests
             Assert.False(stopping.IsCompleted);
             Assert.True(worker.IsAlive);
             releaseWorker.Set();
-            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => stopping);
+            if (loopError is null) await Assert.ThrowsAnyAsync<OperationCanceledException>(() => stopping);
+            else Assert.Same(loopError, await Assert.ThrowsAsync<InvalidOperationException>(() => stopping));
             Assert.False(worker.IsAlive);
             Assert.NotNull(ownedThread);
         }
@@ -57,7 +66,7 @@ public sealed class AtariThreadOwnershipTests
             if (stopping is not null)
             {
                 try { await stopping; }
-                catch (OperationCanceledException) { }
+                catch (Exception error) when (error is OperationCanceledException || ReferenceEquals(error, loopError)) { }
             }
         }
     }

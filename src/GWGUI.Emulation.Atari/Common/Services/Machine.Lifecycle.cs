@@ -119,8 +119,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            try { if (loop is not null) await loop.ConfigureAwait(false); }
-            finally { _thread?.Join(); }
+            await ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 
