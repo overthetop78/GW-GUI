@@ -27,7 +27,7 @@ internal static class CoreCatalog
     public static EmulatorCatalogEntry Get(MachineModel model) => Get(ConfigurationFunctions.DefaultEmulator(model));
     public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);
     public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();
-    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => new(entry.Id, entry.LibraryName, entry.DescriptionResourceKey ?? $"Emulation.Emulator.{entry.Id}.Description", entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
+    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();
     public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);
     public static string GetActiveManifestPath(Emulator emulator, string installationRoot) => EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);
 }

@@ -1,35 +1,24 @@
 {
-  "snapshot": "c2cf248c2543c8cc616f22e372b38f3b9470ef64",
+  "snapshot": "07ac0d9aa80a1810ea3f4181f40546dba7935c90",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
-    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/FirmwareRuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
-    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/MediaRuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/MediaRuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/FirmwareRuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-    "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
-    "src/GWGUI.Emulation/Services/EmulationLegacyOptionHost.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation/Contracts/EmulationCoreCatalogEntry.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7229,
-  "methodBodyCount": 9538,
+  "fileCount": 7230,
+  "methodBodyCount": 9550,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -58084,6 +58073,182 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+      "tokens": 6,
+      "bodyTokens": "=> entry . ToDefinition ( )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 40,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "0BE11C1962ECBED68A6A982091370FAC7529EC4FF4846E451A6E2754DBACD4C4"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "BBDA204B1A9024F9B90B7175E20727A8A7D8CD7F47F7A5A1ECA76FCECEB97F6F",
       "tokens": 4,
       "bodyTokens": "=> AudioConstants . LatencyMilliseconds",
@@ -78852,6 +79017,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
         },
         {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "DEB5DF4697879E21028BCDCB5219CF40EA5E36BD12870DF3987B344FFA0C0675"
+        },
+        {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -78876,6 +79055,20 @@
           "bodyTokens": "=> _optionHost . ValidateConfiguredValues ( )",
           "hash": "7F1031BC398A1300A39F53F9BE09ACF8B5613CC1E5270A0E7D69026D50CEB3B4",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 40,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "3552C4B85C380A4857B1AEDBF91736A7685865BF90EE83C57F766D89B1BA8A28"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -78918,6 +79111,20 @@
           "qualificationSourceSha256": "8AF54C1FE1974045F8917D0A442828D0CBC724B458072396B37401E416856B9B"
         },
         {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "CDC0230B4B40051FB7EB14EF6B8026E04548A1DB516295DFE5149A9F793A9B83"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -78942,6 +79149,20 @@
           "bodyTokens": "=> _optionHost . ValidateConfiguredValues ( )",
           "hash": "7F1031BC398A1300A39F53F9BE09ACF8B5613CC1E5270A0E7D69026D50CEB3B4",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "58AE39D4E3E4482D25C695D7FEED97A9746B6129A12A0576A30CCE154841AD7C"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -78980,6 +79201,20 @@
           "bodyTokens": "=> Settings . GetOptions ( )",
           "hash": "109BD9B578D50A6E7D7C120FE14361FB2886006DE8C99522516EB3F5A1FD2617",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "4B3C5977BBFF4D0E295CBA2DC7DAF431C2655408803CD8084F290C9B53EE7EFB"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -79044,6 +79279,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
         },
         {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "823D61600B53618396B0DE79CB5AC70BAD5AFCCAC2984AE007C2DE87DBCB7941"
+        },
+        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -79094,6 +79343,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
         },
         {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 41,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "F682AB1406FFFC0C38C4501DBD8C8A6FE33069E6BEDAFA3C10EE59B502B45E54"
+        },
+        {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -79130,6 +79393,20 @@
           "bodyTokens": "=> Settings . GetOptions ( )",
           "hash": "109BD9B578D50A6E7D7C120FE14361FB2886006DE8C99522516EB3F5A1FD2617",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "01D89144526A872AC7D305FA0A8DCAAB92F37254115D442B5755A995F7F111EC"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -79182,6 +79459,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationLegacyOptionHost<GWGUI.Emulation.Contracts.EmulationEnabledOption>.Dispose(); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "3ABC2EE5BFF55938B732E3C5268AE954EC813A259CAA434DE1314F59079CB813"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "0AD6CE41C65EBA07D6C7FEA4558B000EA347BCB45CC644467BB9505E6FDC2BB7"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -79246,6 +79537,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
         },
         {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "EA8E87AD2DADEC1474293E775C830C17CD4B0D23B801086A3F881D8D2CDB71C1"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -79272,6 +79577,20 @@
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
         },
         {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "75721A359911970C9D1447F66D6EE393866265A4AC6D7B21147DBF6A3DE43CA5"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs",
           "name": "Dispose",
           "owner": "CoreOptionHost",
@@ -79296,6 +79615,20 @@
           "bodyTokens": "=> _optionHost . ValidateConfiguredValues ( )",
           "hash": "7F1031BC398A1300A39F53F9BE09ACF8B5613CC1E5270A0E7D69026D50CEB3B4",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs",
+          "name": "GetDefinition",
+          "owner": "CoreCatalog",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulatorCatalogEntry entry)",
+          "tokens": 6,
+          "bodyTokens": "=> entry . ToDefinition ( )",
+          "hash": "BBC15810144A61E1FA31A10267E2693DE2A731FD71F7BAD20D91A49F3ABC3A1B",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified complete closed-catalog adapter to original projection in existing SDK EmulationCoreCatalogEntry.ToDefinition; same identity,description fallback,ordinal model set and fresh materialization; coreCatalogDefinitionReuse.",
+          "qualificationSourceSha256": "0BE11C1962ECBED68A6A982091370FAC7529EC4FF4846E451A6E2754DBACD4C4"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -142784,7 +143117,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2908,
+    "occurrences": 2962,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

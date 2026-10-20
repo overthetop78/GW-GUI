@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7229,
-  "outsideSrcCSharpFiles": 319,
+  "currentCSharpFiles": 7230,
+  "outsideSrcCSharpFiles": 320,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11420,
+  "currentMethodCount": 11415,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -15955,7 +15955,7 @@
         {
           "path": "src/GWGUI.Emulation/Contracts/EmulationCoreCatalogEntry.cs",
           "name": "ToString",
-          "line": 15,
+          "line": 19,
           "tokens": 49,
           "hash": "99E71693CF411141B232CE078BEBF68B4564516212CB4B40C2053E083141BDA9",
           "shape": "A79E68056B1A9404E3448594CA1D196D006D8863935C3CF6DEFEB08921429C41"
@@ -18398,7 +18398,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21006,113 +21006,6 @@
           "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
           "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
           "qualificationDialogErrorConstructionSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-      "method": "GetDefinition",
-      "tokens": 47,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 40,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 39,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 30,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 30,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 39,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 35,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 39,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 41,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 35,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 41,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 41,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-          "name": "GetDefinition",
-          "line": 41,
-          "tokens": 47,
-          "hash": "CC7B5354B5D6D4772AE49EA07B070AA3EFB850D7AC650F5FCACFF118A1FB1069",
-          "shape": "4696D77AD6B53FB6899BD5BC9AD0E145AEE359B9120D063B6F966DD0DFF61BDB"
         }
       ],
       "predecessors": [],
@@ -33946,6 +33839,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 352
+    "occurrences": 367
   }
 }

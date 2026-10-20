@@ -12,6 +12,10 @@ public sealed record EmulationCoreCatalogEntry<TEmulator, TMachineModel>(
     IReadOnlySet<TMachineModel> Models,
     string? DescriptionResourceKey = null)
 {
+    internal EmulationEmulatorDefinition ToDefinition() => new(
+        Id, LibraryName, DescriptionResourceKey ?? $"Emulation.Emulator.{Id}.Description",
+        Models.Select(model => model!.ToString()!).ToHashSet(StringComparer.Ordinal));
+
     public override string ToString()
     {
         var builder = new System.Text.StringBuilder();
