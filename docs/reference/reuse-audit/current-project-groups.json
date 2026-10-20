@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7237,
-  "outsideSrcCSharpFiles": 335,
+  "currentCSharpFiles": 7238,
+  "outsideSrcCSharpFiles": 336,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11490,
+  "currentMethodCount": 11492,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -45,7 +45,9 @@
           "line": 88,
           "tokens": 224,
           "hash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
-          "shape": "34459B87130FEAA9CB462A88553D70CE8FBE07FD2B7A9531BDA3E7A3F87AFA97"
+          "shape": "34459B87130FEAA9CB462A88553D70CE8FBE07FD2B7A9531BDA3E7A3F87AFA97",
+          "qualification": "Typed input composition verified in typedInputValidationComparison: original strict keyboard fold shared, SDK parser/rejection reused, model-specific data/constraints and original order preserved; called model catalogs and complete runtime lifecycle not qualified.",
+          "qualificationSourceSha256": "7780FEC97732A61BB98A8BB4BA68B9FD7AE51416351592FBE7C5E60AAEC8C8DD"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -53,7 +55,9 @@
           "line": 96,
           "tokens": 224,
           "hash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
-          "shape": "34459B87130FEAA9CB462A88553D70CE8FBE07FD2B7A9531BDA3E7A3F87AFA97"
+          "shape": "34459B87130FEAA9CB462A88553D70CE8FBE07FD2B7A9531BDA3E7A3F87AFA97",
+          "qualification": "Typed input composition verified in typedInputValidationComparison: original strict keyboard fold shared, SDK parser/rejection reused, model-specific data/constraints and original order preserved; called model catalogs and complete runtime lifecycle not qualified.",
+          "qualificationSourceSha256": "F2525F294E9CA16E568E5EE5E7704F2BA4F0A37742CB2CF840534243130959DF"
         }
       ],
       "predecessors": [],
@@ -775,7 +779,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -8601,7 +8605,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -18415,41 +18419,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
-      "method": "Bindings",
-      "tokens": 94,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "Bindings",
-          "line": 39,
-          "tokens": 94,
-          "hash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
-          "shape": "42FE228F193873523D35EBE934155D789045B8D241B105EDE909753B21F79B8B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "Bindings",
-          "line": 15,
-          "tokens": 94,
-          "hash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
-          "shape": "42FE228F193873523D35EBE934155D789045B8D241B105EDE909753B21F79B8B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "Bindings",
-          "line": 22,
-          "tokens": 94,
-          "hash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
-          "shape": "42FE228F193873523D35EBE934155D789045B8D241B105EDE909753B21F79B8B"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
       "method": "LoadAllAsync",
       "tokens": 32,
@@ -18822,7 +18791,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23315,8 +23284,8 @@
           "tokens": 206,
           "hash": "E0B029374727F5F674AFD9AB685A664044DE46D7CD49EC1CEC2DDAAE04E88B2D",
           "shape": "4EE651376B238B527E8EA6D521F663DF6F0BD8C22E9BD6D7447AD9149A670DA7",
-          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate.",
-          "qualificationNativeVideoCopySourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
+          "qualificationNativeVideoCopySourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7",
+          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate."
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -23325,8 +23294,8 @@
           "tokens": 206,
           "hash": "E0B029374727F5F674AFD9AB685A664044DE46D7CD49EC1CEC2DDAAE04E88B2D",
           "shape": "4EE651376B238B527E8EA6D521F663DF6F0BD8C22E9BD6D7447AD9149A670DA7",
-          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate.",
-          "qualificationNativeVideoCopySourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
+          "qualificationNativeVideoCopySourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9",
+          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate."
         }
       ],
       "predecessors": [],
@@ -24552,7 +24521,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -29727,7 +29696,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 220,
+          "line": 234,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
@@ -30768,8 +30737,8 @@
           "tokens": 243,
           "hash": "967C437FFAD349E9CD487C8A73D953AFB196A9188D6980B1EAB0CC3D4B17F545",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D"
+          "qualificationEmulatorMissingMessageSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -30778,8 +30747,8 @@
           "tokens": 243,
           "hash": "0533514F5A1808DB3AF6C67F280692BFDDF955653DB925D80E6149B1CA0E9385",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA"
+          "qualificationEmulatorMissingMessageSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -30788,8 +30757,8 @@
           "tokens": 243,
           "hash": "431D21671D61B57C3FB0E6889E396386390B61D658FE8BCB978AC3986D879C9A",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341"
+          "qualificationEmulatorMissingMessageSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -30798,8 +30767,8 @@
           "tokens": 243,
           "hash": "8A40A832161A59BBD6A7C2EE94A4DB5E85F39E925E6C720A8B2A4E68B4AD222B",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A"
+          "qualificationEmulatorMissingMessageSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -30808,8 +30777,8 @@
           "tokens": 243,
           "hash": "9DB29EE7F443C9D03ED1895578E1E087E0738C210C89FD69A2C6ADABB0E461FC",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526"
+          "qualificationEmulatorMissingMessageSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -30818,8 +30787,8 @@
           "tokens": 243,
           "hash": "1F4566F4B4BDEFD7C019BCA07C9BE2C1338640DA081680D52284EA534A11D3AC",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9"
+          "qualificationEmulatorMissingMessageSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -30828,8 +30797,8 @@
           "tokens": 243,
           "hash": "5926139F7BD0D25F77EF43106F79B63F4F024DCB2C37B837DD9B97BDBA03180B",
           "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
-          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
-          "qualificationEmulatorMissingMessageSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD"
+          "qualificationEmulatorMissingMessageSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited."
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"

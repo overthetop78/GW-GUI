@@ -13,19 +13,7 @@ internal static class KeyboardDictionary
         InputMappingConstants.KeyboardResourcePrefix + key,
         Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();
     internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
-    {
-        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
-        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
-        {
-            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))
-                throw new ArgumentException(nameof(input));
-            bindings[pair.Key] = pair.Value;
-        }
-
-        return bindings;
-    }
+        => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions(model), input.Keyboard);
 
     internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));
-
-    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);
 }

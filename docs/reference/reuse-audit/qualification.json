@@ -1225211,5 +1225211,645 @@
       "totalAnnotations": 3641,
       "wholeRuntimeMethodsQualified": false
     }
+  },
+  "typedInputValidationComparison": {
+    "inputs": [
+      {
+        "sha256": "FE0B55F405BC5FA549A140BB78C7C66ED23CF29135432DA70FD088C4502531F7",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/InputMappingConstants.cs"
+      },
+      {
+        "sha256": "981AD932D2725E2861013B7B7AB3D4D45995A3249102C183510EE68C3250A9BF",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ControllerCatalog.cs"
+      },
+      {
+        "sha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+      },
+      {
+        "sha256": "F2525F294E9CA16E568E5EE5E7704F2BA4F0A37742CB2CF840534243130959DF",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs"
+      },
+      {
+        "sha256": "BDF963B77556ACB67F52D65B49BFB5115D7554BDC01FCF2578F33251BEE54243",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Constants/InputMappingConstants.cs"
+      },
+      {
+        "sha256": "CB65D6B931899C043F36F2ECE89560EB7C43F81764980B2508BA6D142079A4B3",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ControllerCatalog.cs"
+      },
+      {
+        "sha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+      },
+      {
+        "sha256": "7780FEC97732A61BB98A8BB4BA68B9FD7AE51416351592FBE7C5E60AAEC8C8DD",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs"
+      },
+      {
+        "sha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+      },
+      {
+        "sha256": "C684D3B927204FF303C4380AB56CBDBF3F571B435C3F3D18827988BDFF399F58",
+        "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
+      },
+      {
+        "sha256": "BE5640845F49158498541DA4DF255A7E399E438A5F65B9053A4564F4D645397D",
+        "path": "src/GWGUI.Emulation/Functions/EmulationKeyboardBindingFunctions.cs"
+      }
+    ],
+    "bindingFolds": [
+      {
+        "sha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75",
+        "parser": "private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);",
+        "module": "Sharp",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "bodyHash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
+        "source": "namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries;\r\ninternal static class KeyboardDictionary\r\n{\r\n    private static readonly IReadOnlyList<EmulationKey> X68000Keys = Array.AsReadOnly(new[] { EmulationKey.Help,\r\n        EmulationKey.Undo,\r\n        EmulationKey.Break,\r\n        EmulationKey.SharpXf1,\r\n        EmulationKey.SharpXf2,\r\n        EmulationKey.SharpXf3,\r\n        EmulationKey.SharpXf4,\r\n        EmulationKey.SharpXf5,\r\n        EmulationKey.SharpOption1,\r\n        EmulationKey.SharpOption2,\r\n        EmulationKey.SharpSymbol,\r\n        EmulationKey.SharpRegister,\r\n        EmulationKey.SharpKana,\r\n        EmulationKey.SharpRoman,\r\n        EmulationKey.SharpCode,\r\n        EmulationKey.SharpHiragana,\r\n        EmulationKey.SharpFullWidth,\r\n        EmulationKey.SharpKeypadEquals });\r\n    private static readonly IReadOnlyList<EmulationKey> X1Keys = Array.AsReadOnly(new[] { EmulationKey.Break, EmulationKey.SharpGraph, EmulationKey.SharpCopy, EmulationKey.SharpKeypadEquals });\r\n    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> X68000Defaults = new Dictionary<EmulationKey, EmulationKey>\r\n    {\r\n        [EmulationKey.Help] = EmulationKey.Insert,\r\n        [EmulationKey.Undo] = EmulationKey.Home,\r\n        [EmulationKey.SharpOption1] = EmulationKey.LeftAlt,\r\n        [EmulationKey.SharpOption2] = EmulationKey.RightAlt\r\n    };\r\n    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> X1Defaults = new Dictionary<EmulationKey, EmulationKey>\r\n    {\r\n        [EmulationKey.SharpGraph] = EmulationKey.LeftAlt\r\n    };\r\n    internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? X68000Keys : X1Keys;\r\n    internal static IReadOnlyDictionary<EmulationKey, EmulationKey> Defaults(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? X68000Defaults : X1Defaults;\r\n    internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(),\r\n        InputMappingConstants.KeyboardResourcePrefix + key,\r\n        Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();\r\n    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }\r\n\r\n    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));\r\n\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n}\r\n",
+        "bindingEdit": {
+          "value": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n        => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions(model), input.Keyboard);",
+          "old": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }",
+          "start": 2278,
+          "length": 590
+        },
+        "removedParser": {
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "start": 3086,
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "length": 108,
+          "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid"
+        },
+        "hadBom": false,
+        "afterSha256": "64133C602E72CB4A8C8B6C71B5B53E8B4A394B3F18E38698A2DDF34A49D7B2D1"
+      },
+      {
+        "sha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A",
+        "parser": "private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);",
+        "module": "Sinclair",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "bodyHash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
+        "source": "namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries;\r\ninternal static class KeyboardDictionary\r\n{\r\n    private static readonly IReadOnlyList<EmulationKey> SpectrumKeys = Array.AsReadOnly(new[] { EmulationKey.SinclairSymbolShift });\r\n    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> SpectrumDefaults = new Dictionary<EmulationKey, EmulationKey>\r\n    {\r\n        [EmulationKey.SinclairSymbolShift] = EmulationKey.LeftControl\r\n    };\r\n    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> NoDefaults = new Dictionary<EmulationKey, EmulationKey>();\r\n    internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Spectrum ? SpectrumKeys : [];\r\n    internal static IReadOnlyDictionary<EmulationKey, EmulationKey> Defaults(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Spectrum ? SpectrumDefaults : NoDefaults;\r\n    internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(),\r\n        InputMappingConstants.KeyboardResourcePrefix + key,\r\n        Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();\r\n    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }\r\n\r\n    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));\r\n\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n}\r\n",
+        "bindingEdit": {
+          "value": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n        => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions(model), input.Keyboard);",
+          "old": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }",
+          "start": 1309,
+          "length": 590
+        },
+        "removedParser": {
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "start": 2117,
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "length": 108,
+          "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid"
+        },
+        "hadBom": false,
+        "afterSha256": "32E60A4830426BBD315A319EE7953058134793220AF4DA60138537ACB60663A2"
+      },
+      {
+        "sha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC",
+        "parser": "private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);",
+        "module": "Thomson",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "bodyHash": "ACAE9558B0636835E9E2DED6B1CCCD80E270B8431338B22B273A3D072CB6C5AA",
+        "source": "namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Dictionaries;\r\ninternal static class KeyboardDictionary\r\n{\r\n    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> Defaults = new Dictionary<EmulationKey, EmulationKey>\r\n    {\r\n        [EmulationKey.ThomsonStop] = EmulationKey.Tab,\r\n        [EmulationKey.ThomsonAccent] = EmulationKey.Backspace,\r\n        [EmulationKey.ThomsonRaz] = EmulationKey.LeftAlt,\r\n        [EmulationKey.ThomsonBasic] = EmulationKey.RightShift\r\n    };\r\n    private static readonly IReadOnlyDictionary<EmulationKey, string> Labels = new Dictionary<EmulationKey, string>\r\n    {\r\n        [EmulationKey.ThomsonStop] = \"STOP\",\r\n        [EmulationKey.ThomsonAccent] = \"ACC\",\r\n        [EmulationKey.ThomsonRaz] = \"RAZ\",\r\n        [EmulationKey.ThomsonBasic] = \"BASIC\"\r\n    };\r\n    internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Mo \r\n        ? [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz, EmulationKey.ThomsonBasic] \r\n        : [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz];\r\n    internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), string.Empty, Defaults[key].ToString(), Labels[key])).ToArray();\r\n    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }\r\n\r\n    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));\r\n\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n}\r\n",
+        "bindingEdit": {
+          "value": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n        => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions(model), input.Keyboard);",
+          "old": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\r\n    {\r\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\r\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\r\n        {\r\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))\r\n                throw new ArgumentException(nameof(input));\r\n            bindings[pair.Key] = pair.Value;\r\n        }\r\n\r\n        return bindings;\r\n    }",
+          "start": 1399,
+          "length": 590
+        },
+        "removedParser": {
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "start": 2207,
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "length": 108,
+          "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid"
+        },
+        "hadBom": false,
+        "afterSha256": "2CACF1EE2B13A2CC81B81970272170F671D56246357BD3EBD019B4574FCFCD51"
+      }
+    ],
+    "comparison": {
+      "remainingDuplicate": "Three strict keyboard folds first build Ordinal defaults, then reject unknown destination IDs or invalid sources in input order, preserve assigned values and throw ArgumentException(nameof(input)) message overload.",
+      "validationBodiesSameSyntax": true,
+      "existingCommonOwners": [
+        "HasInvalidBindings in SDK owns binding-key/source rejection",
+        "EmulationKeyboardBindingFunctions.IsValid owns current source grammar",
+        "ResolveBindings builds default/current projection but ignores unknown keys and falls back on null values; cannot replace strict fold"
+      ],
+      "bindingBodiesSameSyntax": true,
+      "retained": "Original Sharp strict fold can move into existing SDK mapping owner with current shared source parser; do not revert parser to older enum-only grammar, do not alter model definitions.",
+      "currentParsersAlreadyShared": true,
+      "distinctMachinePolicies": [
+        "Sinclair Choices filters Timex peripherals by model",
+        "Sharp Choices filters X1/X68000 families and Cyberstick by first port",
+        "Sharp and Sinclair keyboard key/default tables are different module data",
+        "ControllerCatalog actions and runtime capability adapters are typed module policy"
+      ]
+    },
+    "entries": [
+      {
+        "sha256": "F2525F294E9CA16E568E5EE5E7704F2BA4F0A37742CB2CF840534243130959DF",
+        "keyboardBindings": "internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);",
+        "module": "Sharp",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+        "bodyHash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
+        "supportsMouse": "internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };",
+        "source": "namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;\r\ninternal static class InputSettingsFunctions\r\n{\r\n    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? ControllerCatalog.Peripherals(model) : new Engine().Adapter(core) is IEmulatorInputMapper mapper ? mapper.GetPeripherals(model) : [];\r\n    internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };\r\n    private static string ControllerResource(PeripheralCategory peripheral) => peripheral switch\r\n    {\r\n        PeripheralCategory.None => \"Emulation.Controller.None\",\r\n        PeripheralCategory.Joystick => \"Controllers.Enum.Joystick\",\r\n        _ => \"Emulation.Sharp.Controller.\" + peripheral\r\n    };\r\n\r\n    internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? PeripheralCategory.Joystick : PeripheralCategory.X1Joystick;\r\n    internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);\r\n    private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [\r\n        new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),\r\n        new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)\r\n    ];\r\n    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationInputMappingFunctions.ResolveBindings(MouseDefinitions(), input.Mouse);\r\n    private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));\r\n        if (port != ControllerConstants.FirstPort)\r\n            choices = choices.Where(category => category is not PeripheralCategory.CyberstickAnalog and not PeripheralCategory.CyberstickDigital);\r\n        return choices.ToArray();\r\n    }\r\n\r\n    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration.Model) && Choices(configuration, port).Contains(peripheral);\r\n    internal static EmulationInputSettings Describe(MachineConfiguration configuration)\r\n    {\r\n        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);\r\n        var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;\r\n        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>\r\n        {\r\n            var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);\r\n            var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);\r\n            var choices = Choices(configuration, port).Select(category => new EmulationControllerChoice(\r\n                    category.ToString(),\r\n                    ControllerResource(category),\r\n                    BindingDefinitions: ControllerCatalog.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),\r\n                    CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),\r\n                    DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),\r\n                    VisualCommandIds: ControllerVisualDictionary.Commands(category)\r\n                )\r\n                {\r\n                    Category = category switch\r\n                    {\r\n                        PeripheralCategory.None => EmulationControllerCategory.None,\r\n                        PeripheralCategory.Joystick or PeripheralCategory.X1Joystick => EmulationControllerCategory.Joystick,\r\n                        PeripheralCategory.CpsfMd or PeripheralCategory.CpsfSfc => EmulationControllerCategory.Gamepad,\r\n                        PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => EmulationControllerCategory.FlightSimulation,\r\n                        _ => throw new ArgumentOutOfRangeException(nameof(category))\r\n                    }\r\n                }).ToArray();\r\n            return new EmulationControllerPort(\r\n                port + 1,\r\n                choices,\r\n                peripheral.ToString(),\r\n                binding?.DeviceId,\r\n                new(\r\n                    ControllerCatalog.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),\r\n                    binding?.Mappings ?? new Dictionary<string, string>(),\r\n                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,\r\n                    true\r\n                ),\r\n                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,\r\n                binding?.VisualId\r\n            );\r\n        }).ToArray();\r\n        return new(keyboard, mouse, ports);\r\n    }\r\n\r\n    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)\r\n    {\r\n        var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);\r\n        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count) || !SupportsMouse(configuration) && settings.Mouse is not null)\r\n            throw new ArgumentException(nameof(settings));\r\n        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(\r\n            settings,\r\n            (index, peripheral) => Choices(configuration, index).Contains(peripheral),\r\n            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));\r\n        var input = configuration.Input with\r\n        {\r\n            Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),\r\n            Mouse = settings.Mouse is null ? configuration.Input.Mouse : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),\r\n            Controllers = controllers\r\n        };\r\n        var result = configuration with\r\n        {\r\n            Input = input\r\n        };\r\n        ConfigurationFunctions.Validate(result);\r\n        return result;\r\n    }\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        _ = KeyboardBindings(configuration.Input, configuration.Model);\r\n        if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)\r\n            throw new ArgumentException(nameof(configuration.Input));\r\n        var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);\r\n        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)\r\n            throw new ArgumentException(nameof(configuration.Input));\r\n        foreach (var binding in configuration.Input.Controllers ?? [])\r\n        {\r\n            if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))\r\n                throw new ArgumentException(nameof(configuration.Input));\r\n            var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);\r\n            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))\r\n                throw new ArgumentException(nameof(configuration.Input));\r\n        }\r\n    }\r\n}\r\n",
+        "choices": "private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));\r\n        if (port != ControllerConstants.FirstPort)\r\n            choices = choices.Where(category => category is not PeripheralCategory.CyberstickAnalog and not PeripheralCategory.CyberstickDigital);\r\n        return choices.ToArray();\r\n    }",
+        "mouseDefinitions": "private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [\r\n        new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),\r\n        new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)\r\n    ];"
+      },
+      {
+        "sha256": "7780FEC97732A61BB98A8BB4BA68B9FD7AE51416351592FBE7C5E60AAEC8C8DD",
+        "keyboardBindings": "internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);",
+        "module": "Sinclair",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+        "bodyHash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
+        "supportsMouse": "internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None\r\n        && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };",
+        "source": "namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;\r\ninternal static class InputSettingsFunctions\r\n{\r\n    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? [PeripheralCategory.None] : new Engine().Adapter(core) is IEmulatorInputSettings input ? input.GetPeripherals(model) : [];\r\n    internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None\r\n        && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };\r\n    internal static bool SupportsInitialContent(MachineConfiguration configuration) => configuration.Core != Emulator.None\r\n        && new Engine().Adapter(configuration) is IEmulatorInitialContentSettings { SupportsInitialContent: true };\r\n    internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch\r\n    {\r\n        MachineModel.Zx80 => PeripheralCategory.None,\r\n        MachineModel.Zx81 => PeripheralCategory.CursorJoystick,\r\n        _ => PeripheralCategory.KempstonJoystick\r\n    };\r\n    internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);\r\n    private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [\r\n        new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),\r\n        new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)\r\n    ];\r\n    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationInputMappingFunctions.ResolveBindings(MouseDefinitions(), input.Mouse);\r\n    private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);\r\n        return choices.ToArray();\r\n    }\r\n\r\n    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration.Model) && Choices(configuration, port).Contains(peripheral);\r\n    internal static EmulationInputSettings Describe(MachineConfiguration configuration)\r\n    {\r\n        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);\r\n        var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;\r\n        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>\r\n        {\r\n            var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);\r\n            var available = Choices(configuration, port);\r\n            var defaultPeripheral = DefaultPeripheral(configuration.Model);\r\n            var peripheral = binding?.Peripheral ?? (available.Contains(defaultPeripheral) ? defaultPeripheral : available.FirstOrDefault(PeripheralCategory.None));\r\n            var choices = available.Select(category => new EmulationControllerChoice(\r\n                    category.ToString(),\r\n                    category == PeripheralCategory.None ? \"Emulation.Controller.None\" : \"Emulation.Sinclair.Controller.\" + category,\r\n                    BindingDefinitions: ControllerCatalog.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),\r\n                    CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),\r\n                    DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),\r\n                    VisualCommandIds: ControllerVisualDictionary.Commands(category)\r\n                ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick }).ToArray();\r\n            return new EmulationControllerPort(\r\n                port + 1,\r\n                choices,\r\n                peripheral.ToString(),\r\n                binding?.DeviceId,\r\n                new(\r\n                    ControllerCatalog.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),\r\n                    binding?.Mappings ?? new Dictionary<string, string>(),\r\n                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,\r\n                    true\r\n                ),\r\n                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,\r\n                binding?.VisualId\r\n            );\r\n        }).ToArray();\r\n        return new(keyboard, mouse, ports);\r\n    }\r\n\r\n    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)\r\n    {\r\n        var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);\r\n        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count) || !SupportsMouse(configuration) && settings.Mouse is not null)\r\n            throw new ArgumentException(nameof(settings));\r\n        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(\r\n            settings,\r\n            (index, peripheral) => Choices(configuration, index).Contains(peripheral),\r\n            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));\r\n        var input = configuration.Input with\r\n        {\r\n            Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),\r\n            Mouse = settings.Mouse is null ? configuration.Input.Mouse : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),\r\n            Controllers = controllers\r\n        };\r\n        var result = configuration with\r\n        {\r\n            Input = input\r\n        };\r\n        ConfigurationFunctions.Validate(result);\r\n        return result;\r\n    }\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        _ = KeyboardBindings(configuration.Input, configuration.Model);\r\n        if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)\r\n            throw new ArgumentException(nameof(configuration.Input));\r\n        var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);\r\n        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)\r\n            throw new ArgumentException(nameof(configuration.Input));\r\n        foreach (var binding in configuration.Input.Controllers ?? [])\r\n        {\r\n            if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))\r\n                throw new ArgumentException(nameof(configuration.Input));\r\n            var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);\r\n            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))\r\n                throw new ArgumentException(nameof(configuration.Input));\r\n        }\r\n    }\r\n}\r\n",
+        "choices": "private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);\r\n        return choices.ToArray();\r\n    }",
+        "mouseDefinitions": "private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [\r\n        new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),\r\n        new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)\r\n    ];"
+      }
+    ],
+    "state": "original-strict-keyboard-fold-shared-typed-validations-and-inventory-verified",
+    "originalBindingMethod": "internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)\n    {\n        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);\n        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())\n        {\n            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value)) throw new ArgumentException(nameof(input));\n            bindings[pair.Key] = pair.Value;\n        }\n        return bindings;\n    }",
+    "originalSharpCommit": "23d3b9896",
+    "sdk": {
+      "source": "namespace GWGUI.Emulation.Functions;\n\npublic static class EmulationInputMappingFunctions\n{\r\n    internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id)\r\n    {\r\n        if (port != ExternalCoreApiConstants.PrimaryPort || index != ExternalCoreApiConstants.LeftAnalogIndex)\r\n            return ExternalCoreApiConstants.InactiveState;\r\n        return id switch\r\n        {\r\n            ExternalCoreApiConstants.MouseXId => Clamp(pointer.DeltaX),\r\n            ExternalCoreApiConstants.MouseYId => Clamp(pointer.DeltaY),\r\n            ExternalCoreApiConstants.MouseLeftId => Boolean(pointer.Left),\r\n            ExternalCoreApiConstants.MouseRightId => Boolean(pointer.Right),\r\n            ExternalCoreApiConstants.MouseWheelUpId => Boolean(pointer.Wheel > ExternalCoreApiConstants.ConsumedRelativeValue),\r\n            ExternalCoreApiConstants.MouseWheelDownId => Boolean(pointer.Wheel < ExternalCoreApiConstants.ConsumedRelativeValue),\r\n            ExternalCoreApiConstants.MouseMiddleId => Boolean(pointer.Middle),\r\n            _ => ExternalCoreApiConstants.InactiveState\r\n        };\r\n    }\n\n    internal static short NativeJoypadState(uint buttons, uint id, uint maximumButtonCount)\n    {\n        if (id == ExternalCoreApiConstants.JoypadMaskId)\n            return unchecked((short)(buttons & ushort.MaxValue));\n        return id < maximumButtonCount && (buttons & (1u << checked((int)id))) != 0\n            ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;\n    }\n\n    internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id) =>\n        (index, id) switch\n        {\n            (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogXId) => controller.LeftX,\n            (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.LeftY,\n            (ExternalCoreApiConstants.RightAnalogIndex, ExternalCoreApiConstants.AnalogXId) => controller.RightX,\n            (ExternalCoreApiConstants.RightAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.RightY,\n            _ => ExternalCoreApiConstants.InactiveState\n        };\n\n    private static short Boolean(bool value) => value ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;\n    private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);\n\r\n    internal static string? BindingDisplayValue(string resourceKey, string? invariant = null) =>\r\n        invariant ?? (resourceKey.Contains('.') ? null : resourceKey);\r\n\r\n    internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)\r\n    {\r\n        snapshot ??= EmulationInputSnapshot.Empty;\r\n        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());\r\n    }\r\n\r\n    internal static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);\r\n\n    private static readonly IReadOnlyDictionary<string, int> ControllerButtons =\n        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)\n        {\n            [EmulationInputMappingConstants.B] = EmulationInputMappingConstants.BIndex,\n            [EmulationInputMappingConstants.ButtonB] = EmulationInputMappingConstants.BIndex,\n            [EmulationInputMappingConstants.Y] = EmulationInputMappingConstants.YIndex,\n            [EmulationInputMappingConstants.ButtonY] = EmulationInputMappingConstants.YIndex,\n            [EmulationInputMappingConstants.Select] = EmulationInputMappingConstants.SelectIndex,\n            [EmulationInputMappingConstants.View] = EmulationInputMappingConstants.SelectIndex,\n            [EmulationInputMappingConstants.Start] = EmulationInputMappingConstants.StartIndex,\n            [EmulationInputMappingConstants.Menu] = EmulationInputMappingConstants.StartIndex,\n            [EmulationInputMappingConstants.Up] = EmulationInputMappingConstants.UpIndex,\n            [EmulationInputMappingConstants.DPadUp] = EmulationInputMappingConstants.UpIndex,\n            [EmulationInputMappingConstants.Down] = EmulationInputMappingConstants.DownIndex,\n            [EmulationInputMappingConstants.DPadDown] = EmulationInputMappingConstants.DownIndex,\n            [EmulationInputMappingConstants.Left] = EmulationInputMappingConstants.LeftIndex,\n            [EmulationInputMappingConstants.DPadLeft] = EmulationInputMappingConstants.LeftIndex,\n            [EmulationInputMappingConstants.Right] = EmulationInputMappingConstants.RightIndex,\n            [EmulationInputMappingConstants.DPadRight] = EmulationInputMappingConstants.RightIndex,\n            [EmulationInputMappingConstants.A] = EmulationInputMappingConstants.AIndex,\n            [EmulationInputMappingConstants.ButtonA] = EmulationInputMappingConstants.AIndex,\n            [EmulationInputMappingConstants.X] = EmulationInputMappingConstants.XIndex,\n            [EmulationInputMappingConstants.ButtonX] = EmulationInputMappingConstants.XIndex,\n            [EmulationInputMappingConstants.L] = EmulationInputMappingConstants.LIndex,\n            [EmulationInputMappingConstants.LeftShoulder] = EmulationInputMappingConstants.LIndex,\n            [EmulationInputMappingConstants.R] = EmulationInputMappingConstants.RIndex,\n            [EmulationInputMappingConstants.RightShoulder] = EmulationInputMappingConstants.RIndex,\n            [EmulationInputMappingConstants.L2] = EmulationInputMappingConstants.L2Index,\n            [EmulationInputMappingConstants.LeftTrigger] = EmulationInputMappingConstants.L2Index,\n            [EmulationInputMappingConstants.R2] = EmulationInputMappingConstants.R2Index,\n            [EmulationInputMappingConstants.RightTrigger] = EmulationInputMappingConstants.R2Index,\n            [EmulationInputMappingConstants.L3] = EmulationInputMappingConstants.L3Index,\n            [EmulationInputMappingConstants.LeftStickClick] = EmulationInputMappingConstants.L3Index,\n            [EmulationInputMappingConstants.R3] = EmulationInputMappingConstants.R3Index,\n            [EmulationInputMappingConstants.RightStickClick] = EmulationInputMappingConstants.R3Index,\n            [EmulationInputMappingConstants.XboxButton] = EmulationInputMappingConstants.GuideIndex,\n            [EmulationInputMappingConstants.Guide] = EmulationInputMappingConstants.GuideIndex,\n            [EmulationInputMappingConstants.Share] = EmulationInputMappingConstants.ShareIndex,\n            [EmulationInputMappingConstants.PaddleLeft1] = EmulationInputMappingConstants.PaddleLeft1Index,\n            [EmulationInputMappingConstants.PaddleLeft2] = EmulationInputMappingConstants.PaddleLeft2Index,\n            [EmulationInputMappingConstants.PaddleRight1] = EmulationInputMappingConstants.PaddleRight1Index,\n            [EmulationInputMappingConstants.PaddleRight2] = EmulationInputMappingConstants.PaddleRight2Index\n        };\n\n    internal static Dictionary<string, string> MouseBindings<TAction>(IReadOnlyDictionary<string, TAction>? mappings,\n        TAction none) where TAction : struct, Enum =>\n        (mappings ?? new Dictionary<string, TAction>()).Where(item => !EqualityComparer<TAction>.Default.Equals(item.Value, none))\n            .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);\n\n    internal static Dictionary<string, TAction>? CreateMouseMappings<TAction>(EmulationInputBindingSet? bindings,\n        TAction none) where TAction : struct, Enum =>\n        bindings?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value)\n                && Enum.TryParse<TAction>(item.Key, true, out var action) && !EqualityComparer<TAction>.Default.Equals(action, none))\n            .ToDictionary(item => item.Value, item => Enum.Parse<TAction>(item.Key, true), StringComparer.OrdinalIgnoreCase);\n\n    internal static Dictionary<string, string> CopyNonEmptyBindings(IReadOnlyDictionary<string, string> values) =>\n        values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))\n            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);\n\n    internal static bool HasInvalidBindings(IReadOnlyDictionary<string, string>? bindings,\r\n        IReadOnlySet<string> commandIds, Func<string, bool> isValidSource) =>\r\n        bindings?.Any(pair => !commandIds.Contains(pair.Key) || !isValidSource(pair.Value)) == true;\r\n\r\n    internal static bool HasInvalidControllerPortNumbers(EmulationInputSettings settings, int count) =>\r\n        settings.ControllerPorts.Count != count\r\n        || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count));\r\n\r\n    internal static Dictionary<string, string> ResolveBindings(IReadOnlyList<InputBindingDefinition> definitions,\r\n        IReadOnlyDictionary<string, string>? values) =>\r\n        definitions.ToDictionary(definition => definition.Id,\r\n            definition => values?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding,\r\n            StringComparer.Ordinal);\r\n\r\n    public static TBinding[] CreateControllerBindings<TPeripheral, TBinding>(EmulationInputSettings settings,\n        Func<int, TPeripheral, bool> supportsPeripheral,\n        Func<EmulationControllerPort, TPeripheral, IReadOnlyDictionary<string, string>, TBinding> createBinding)\n        where TPeripheral : struct, Enum =>\n        settings.ControllerPorts.Select(port =>\n        {\n            if (!Enum.TryParse<TPeripheral>(port.SelectedControllerId, out var peripheral) || !supportsPeripheral(port.Number - 1, peripheral))\n                throw new ArgumentException(nameof(settings));\n            return createBinding(port, peripheral, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal));\n        }).ToArray();\n\r\n    public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings)\n    {\n        if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(keys);\n        var result = new HashSet<EmulationKey>();\n        foreach (var key in keys)\n        {\n            var mapped = mappings.FirstOrDefault(item => item.Value == key);\n            result.Add(!string.IsNullOrWhiteSpace(mapped.Key) && Enum.TryParse<EmulationKey>(mapped.Key, true, out var target) ? target : key);\n        }\n        return result;\n    }\n\n    public static IReadOnlySet<EmulationKey> MapKeyboard(EmulationInputSnapshot snapshot, IReadOnlyDictionary<string, string>? mappings)\n    {\n        if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(snapshot.Keys);\n        var simple = new Dictionary<string, EmulationKey>(StringComparer.Ordinal);\n        foreach (var mapping in mappings)\n        {\n            var source = mapping.Value.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)\n                ? mapping.Value[EmulationInputMappingConstants.KeyboardPrefix.Length..] : mapping.Value;\n            if (Enum.TryParse<EmulationKey>(source, true, out var key)) simple[mapping.Key] = key;\n        }\n        var result = new HashSet<EmulationKey>(MapKeyboard(snapshot.Keys, simple));\n        var controller = snapshot.Controllers.Count > 0 ? snapshot.Controllers[0] : EmulationControllerState.Empty;\n        foreach (var mapping in mappings)\n        {\n            if (simple.ContainsKey(mapping.Key) || string.IsNullOrWhiteSpace(mapping.Value)) continue;\n            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var target) && InputSourcePressure(mapping.Value, controller, snapshot) > .5f) result.Add(target);\n        }\n        return result;\n    }\n\n    public static string? ParseControllerDeviceId(string? source)\n    {\n        if (source?.Contains('+') == true && !source.EndsWith('+'))\n            source = source.Split('+', StringSplitOptions.TrimEntries).FirstOrDefault(part => part.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase));\n        if (string.IsNullOrWhiteSpace(source) ||\n            !source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;\n        var controlSeparator = source.LastIndexOf(EmulationInputMappingConstants.SourceSeparator);\n        return controlSeparator <= EmulationInputMappingConstants.ControllerPrefix.Length ? null : source[EmulationInputMappingConstants.ControllerPrefix.Length..controlSeparator];\n    }\n\n    public static EmulationControllerState ResolveController(string? deviceId, IReadOnlyList<EmulationControllerState> controllers, int fallbackIndex)\n    {\n        if (!string.IsNullOrWhiteSpace(deviceId))\n        {\n            var match = controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase));\n            return match ?? EmulationControllerState.Empty;\n        }\n        return fallbackIndex >= 0 && fallbackIndex < controllers.Count ? controllers[fallbackIndex] : EmulationControllerState.Empty;\n    }\n\n    public static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)\n        => ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: false);\n\n    public static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers,\n        EmulationControllerState fallback, bool fallbackWhenMissing)\n    {\n        var deviceId = ParseControllerDeviceId(source);\n        if (deviceId is null) return fallback;\n        if (!fallbackWhenMissing) return ResolveController(deviceId, controllers, -1);\n        return controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase))\n            ?? fallback;\n    }\n\n    internal static short ApplyDeadZone(short value, int percent)\n    {\n        var threshold = short.MaxValue * percent / 100;\n        return Math.Abs((int)value) <= threshold ? (short)0 : value;\n    }\r\n\r\n    internal static EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) =>\r\n        controller with\r\n        {\r\n            LeftX = ApplyDeadZone(controller.LeftX, percent),\r\n            LeftY = ApplyDeadZone(controller.LeftY, percent),\r\n            RightX = ApplyDeadZone(controller.RightX, percent),\r\n            RightY = ApplyDeadZone(controller.RightY, percent),\r\n            LeftTrigger = ApplyDeadZone(controller.LeftTrigger, percent),\r\n            RightTrigger = ApplyDeadZone(controller.RightTrigger, percent)\r\n        };\n\n    internal static bool TryRemovePrefix(string? value, string prefix, out string source)\n    {\n        source = string.Empty;\n        if (string.IsNullOrWhiteSpace(value) || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;\n        source = value[prefix.Length..];\n        return source.Length > 0;\n    }\n\n    internal static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)\n    {\n        [\"Left\"] = pointer.Left, [\"Right\"] = pointer.Right, [\"Middle\"] = pointer.Middle,\n        [\"XButton1\"] = pointer.ExtendedButton1, [\"XButton2\"] = pointer.ExtendedButton2,\n        [\"WheelUp\"] = pointer.Wheel > 0, [\"WheelDown\"] = pointer.Wheel < 0,\n        [\"WheelLeft\"] = pointer.HorizontalWheel < 0, [\"WheelRight\"] = pointer.HorizontalWheel > 0\n    };\n\n    public static float ControllerSourceValue(string source, EmulationControllerState controller)\n    {\n        var name = SourceControlName(source);\n        if (name is EmulationInputMappingConstants.LeftTrigger or EmulationInputMappingConstants.L2\n            or EmulationInputMappingConstants.RightTrigger or EmulationInputMappingConstants.R2)\n        {\n            if (controller.Controls.TryGetValue(name, out var pressure)) return Math.Clamp(pressure, 0f, 1f);\n            var trigger = name is EmulationInputMappingConstants.LeftTrigger or EmulationInputMappingConstants.L2 ? controller.LeftTrigger : controller.RightTrigger;\n            if (trigger > 0) return (float)trigger / short.MaxValue;\n        }\n        if (ControllerButtons.TryGetValue(name, out var button))\n            return (controller.Buttons & (1u << button)) != 0 ? 1f : 0f;\n        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)\n            && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.PositiveSuffix.Length], out var positive))\n            return IsGenericAxisDirection(name) ? Math.Clamp(positive * 2f - 1f, 0f, 1f) : positive;\n        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase)\n            && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.NegativeSuffix.Length], out var negative))\n            return IsGenericAxisDirection(name) ? Math.Clamp(1f - negative * 2f, 0f, 1f) : -negative;\n        if (controller.Controls.TryGetValue(name, out var value)) return value;\n        return name switch\n        {\n            EmulationInputMappingConstants.LeftStickLeft => -controller.LeftX,\n            EmulationInputMappingConstants.LeftStickRight => controller.LeftX,\n            EmulationInputMappingConstants.LeftStickUp => -controller.LeftY,\n            EmulationInputMappingConstants.LeftStickDown => controller.LeftY,\n            EmulationInputMappingConstants.RightStickLeft => -controller.RightX,\n            EmulationInputMappingConstants.RightStickRight => controller.RightX,\n            EmulationInputMappingConstants.RightStickUp => -controller.RightY,\n            EmulationInputMappingConstants.RightStickDown => controller.RightY,\n            _ => 0f\n        };\n    }\n\n    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller) => IsControllerSourcePressed(source, controller, ControllerSourceValue(source, controller));\n\n    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value)\n    {\n        var name = SourceControlName(source);\n        if (IsGenericAxisDirection(name))\n            return value > EmulationInputMappingConstants.PressedThreshold;\n        if (ControllerButtons.ContainsKey(name))\n            return value > EmulationInputMappingConstants.PressedThreshold;\n        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase))\n            return value > EmulationInputMappingConstants.PositiveThreshold;\n        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase))\n            return value > -EmulationInputMappingConstants.NegativeThreshold;\n        if (controller.Controls.ContainsKey(name))\n            return value > EmulationInputMappingConstants.PressedThreshold;\n        return value > EmulationInputMappingConstants.AnalogThreshold;\n    }\n\n    private static bool IsGenericAxisDirection(string name)\n    {\n        var suffix = name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)\n            ? EmulationInputMappingConstants.PositiveSuffix\n            : name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase) ? EmulationInputMappingConstants.NegativeSuffix : string.Empty;\n        var numberLength = name.Length - EmulationInputMappingConstants.AxisPrefix.Length - suffix.Length;\n        return suffix.Length > 0 && numberLength > 0 && name.StartsWith(EmulationInputMappingConstants.AxisPrefix, StringComparison.OrdinalIgnoreCase)\n            && int.TryParse(name.AsSpan(EmulationInputMappingConstants.AxisPrefix.Length, numberLength), out var index) && index >= 0;\n    }\n\n    private static string SourceControlName(string source) => source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;\n\n    public static short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand,\n        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)\n    {\n        var positive = mappings.TryGetValue(positiveCommand, out var positiveSource) ? SourcePressure(positiveSource, controller, physical, keys, mouse) : 0f;\n        var negative = mappings.TryGetValue(negativeCommand, out var negativeSource) ? SourcePressure(negativeSource, controller, physical, keys, mouse) : 0f;\n        var value = positive - negative;\n        return (short)Math.Round(value >= 0f ? value * short.MaxValue : -value * short.MinValue);\n    }\n\n    public static short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller,\n        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) =>\n        mappings.TryGetValue(command, out var source) ? (short)Math.Round(SourcePressure(source, controller, physical, keys, mouse) * short.MaxValue) : (short)0;\n\r\n    private static float SourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)\n    {\n        if (string.IsNullOrWhiteSpace(source)) return 0f;\n        if (source.Contains('+') && !source.EndsWith('+')) return source.Split('+', StringSplitOptions.TrimEntries).Min(part => SourcePressure(\n            part.Contains(':') ? part : EmulationInputMappingConstants.KeyboardPrefix + part, controller, physical, keys, mouse));\n        if (source.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))\n            return EmulationKeyboardBindingFunctions.IsPressed(source, keys) ? 1f : 0f;\n        if (source.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))\n            return mouse.GetValueOrDefault(source[EmulationInputMappingConstants.MousePrefix.Length..]) ? 1f : 0f;\n        var selected = ResolveSourceController(source, physical, controller);\n        return ControllerSourcePressure(source, selected);\n    }\n\n    public static float InputSourcePressure(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot) => SourcePressure(\n        source.Contains(':') ? source : EmulationInputMappingConstants.KeyboardPrefix + source, controller, snapshot.Controllers, snapshot.Keys,\n        PhysicalMouse(snapshot.Pointer));\n\n    public static float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => SourcePressure(source, controller, physical, keys, mouse);\n\n    public static float ControllerSourcePressure(string source, EmulationControllerState controller)\n    {\n        var pressure = ControllerSourceValue(source, controller);\n        var name = SourceControlName(source);\n        var rawStick = !controller.Controls.ContainsKey(name) && name is\n            EmulationInputMappingConstants.LeftStickLeft or EmulationInputMappingConstants.LeftStickRight\n            or EmulationInputMappingConstants.LeftStickUp or EmulationInputMappingConstants.LeftStickDown\n            or EmulationInputMappingConstants.RightStickLeft or EmulationInputMappingConstants.RightStickRight\n            or EmulationInputMappingConstants.RightStickUp or EmulationInputMappingConstants.RightStickDown;\n        if (rawStick || Math.Abs(pressure) > 1f) pressure /= short.MaxValue;\n        return Math.Clamp(pressure, 0f, 1f);\n    }\n\r\n    public static string? OppositeControllerAxisSource(string source)\n    {\n        if (source.Contains('+') && !source.EndsWith('+'))\n        {\n            var parts = source.Split('+', StringSplitOptions.TrimEntries);\n            var found = false;\n            for (var index = 0; index < parts.Length; index++)\n                if (OppositeControllerAxisSource(parts[index]) is { } oppositePart)\n                {\n                    parts[index] = oppositePart;\n                    found = true;\n                }\n            return found ? string.Join(\"+\", parts) : null;\n        }\n        if (!source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;\n        var name = SourceControlName(source);\n        string? opposite = name switch\n        {\n            EmulationInputMappingConstants.LeftStickLeft => EmulationInputMappingConstants.LeftStickRight,\n            EmulationInputMappingConstants.LeftStickRight => EmulationInputMappingConstants.LeftStickLeft,\n            EmulationInputMappingConstants.LeftStickUp => EmulationInputMappingConstants.LeftStickDown,\n            EmulationInputMappingConstants.LeftStickDown => EmulationInputMappingConstants.LeftStickUp,\n            EmulationInputMappingConstants.RightStickLeft => EmulationInputMappingConstants.RightStickRight,\n            EmulationInputMappingConstants.RightStickRight => EmulationInputMappingConstants.RightStickLeft,\n            EmulationInputMappingConstants.RightStickUp => EmulationInputMappingConstants.RightStickDown,\n            EmulationInputMappingConstants.RightStickDown => EmulationInputMappingConstants.RightStickUp,\n            _ => null\n        };\n        if (IsGenericAxisDirection(name))\n        {\n            if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase))\n                opposite = name[..^EmulationInputMappingConstants.PositiveSuffix.Length] + EmulationInputMappingConstants.NegativeSuffix;\n            else if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase))\n                opposite = name[..^EmulationInputMappingConstants.NegativeSuffix.Length] + EmulationInputMappingConstants.PositiveSuffix;\n        }\n        return opposite is null ? null : source[..^name.Length] + opposite;\n    }\n\r\n    internal static bool IsMappedInputPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)\r\n    {\r\n        if (mapping.Contains('+') && !mapping.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot) > .5f;\r\n        if (mapping.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))\r\n            return Enum.TryParse<EmulationKey>(mapping[EmulationInputMappingConstants.KeyboardPrefix.Length..], out var key)\r\n                && snapshot.Keys.Contains(key);\r\n        if (mapping.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))\r\n            return mapping[EmulationInputMappingConstants.MousePrefix.Length..] switch\r\n            {\r\n                \"Left\" => snapshot.Pointer.Left, \"Right\" => snapshot.Pointer.Right, \"Middle\" => snapshot.Pointer.Middle,\r\n                \"XButton1\" => snapshot.Pointer.ExtendedButton1, \"XButton2\" => snapshot.Pointer.ExtendedButton2,\r\n                \"WheelUp\" => snapshot.Pointer.Wheel > 0, \"WheelDown\" => snapshot.Pointer.Wheel < 0,\r\n                \"WheelLeft\" => snapshot.Pointer.HorizontalWheel < 0, \"WheelRight\" => snapshot.Pointer.HorizontalWheel > 0,\r\n                _ => false\r\n            };\r\n        return mapping.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)\r\n            && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);\r\n    }\r\n\r\n    internal static short NormalizedAxis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);\r\n\r\n    internal static float MappedInputMagnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)\r\n    {\r\n        if (mapping.Contains('+') && !mapping.EndsWith('+'))\n        {\n            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);\n            return combined <= deadZone / 100f ? 0f : Math.Clamp(combined, 0f, 1f);\n        }\r\n        if (!mapping.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))\r\n            return IsMappedInputPressed(mapping, controller, snapshot) ? 1f : 0f;\r\n        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);\r\n        return value <= deadZone / 100f ? 0f : Math.Clamp(value, 0f, 1f);\r\n    }\r\n}\n",
+      "sha256": "C684D3B927204FF303C4380AB56CBDBF3F571B435C3F3D18827988BDFF399F58",
+      "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
+    },
+    "annotations": [
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 54,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75"
+        },
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691"
+      },
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 30,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A"
+        },
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691"
+      },
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 37,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC"
+        },
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691"
+      },
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 54,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75"
+        },
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": null
+      },
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 30,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A"
+        },
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": null
+      },
+      {
+        "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+        "name": "IsPhysicalKey",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "line": 37,
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC"
+        },
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+        "groupHash": null
+      }
+    ],
+    "wrapperReferenceCheck": {
+      "definitions": 3,
+      "command": "rg -n IsPhysicalKey src tests -g *.cs -g *.csproj",
+      "otherNamedReferences": 0,
+      "directUses": 3,
+      "occurrences": 6,
+      "remainingAfterEdit": 0
+    },
+    "verification": {
+      "otherSdkTokensUnchanged": true,
+      "semanticProjects": 4,
+      "files": [
+        {
+          "rawBytesRestored": true,
+          "sha256": "64133C602E72CB4A8C8B6C71B5B53E8B4A394B3F18E38698A2DDF34A49D7B2D1",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "originalFoldReproduced": true,
+          "removedParser": {
+            "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+            "start": 3086,
+            "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+            "length": 108,
+            "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+            "name": "IsPhysicalKey",
+            "replacementMethod": "IsValid"
+          }
+        },
+        {
+          "rawBytesRestored": true,
+          "sha256": "32E60A4830426BBD315A319EE7953058134793220AF4DA60138537ACB60663A2",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "originalFoldReproduced": true,
+          "removedParser": {
+            "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+            "start": 2117,
+            "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+            "length": 108,
+            "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+            "name": "IsPhysicalKey",
+            "replacementMethod": "IsValid"
+          }
+        },
+        {
+          "rawBytesRestored": true,
+          "sha256": "2CACF1EE2B13A2CC81B81970272170F671D56246357BD3EBD019B4574FCFCD51",
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "originalFoldReproduced": true,
+          "removedParser": {
+            "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+            "start": 2207,
+            "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+            "length": 108,
+            "old": "\r\n    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);\r\n",
+            "name": "IsPhysicalKey",
+            "replacementMethod": "IsValid"
+          }
+        }
+      ],
+      "policies": [
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "calls": [
+            {
+              "target": "GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.InputSettingsFunctions.KeyboardBindings(GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.MachineModel)",
+              "assembly": "gwgui.emulation.sharp",
+              "expression": "KeyboardBindings ( configuration . Input , configuration . Model )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<string>.ToHashSet<string>(System.Collections.Generic.IEqualityComparer<string>?)",
+              "assembly": "System.Linq",
+              "expression": "MouseDefinitions ( ) . Select ( definition => definition . Id ) . ToHashSet ( StringComparer . Ordinal )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Contracts.InputBindingDefinition>.Select<GWGUI.Emulation.Contracts.InputBindingDefinition, string>(System.Func<GWGUI.Emulation.Contracts.InputBindingDefinition, string>)",
+              "assembly": "System.Linq",
+              "expression": "MouseDefinitions ( ) . Select ( definition => definition . Id )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.InputSettingsFunctions.MouseDefinitions()",
+              "assembly": "gwgui.emulation.sharp",
+              "expression": "MouseDefinitions ( )"
+            },
+            {
+              "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions.HasInvalidBindings(System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Collections.Generic.IReadOnlySet<string>, System.Func<string, bool>)",
+              "assembly": "gwgui.emulation",
+              "expression": "EmulationInputMappingFunctions . HasInvalidBindings ( configuration . Input . Mouse , mouseIds , EmulationKeyboardBindingFunctions . IsValid )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.InputSettingsFunctions.SupportsMouse(GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts.MachineConfiguration)",
+              "assembly": "gwgui.emulation.sharp",
+              "expression": "SupportsMouse ( configuration )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.PeripheralCategory>.Contains<GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.PeripheralCategory>(GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.PeripheralCategory)",
+              "assembly": "System.Linq",
+              "expression": "Choices ( configuration , binding . Port ) . Contains ( binding . Peripheral )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.InputSettingsFunctions.Choices(GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts.MachineConfiguration, int)",
+              "assembly": "gwgui.emulation.sharp",
+              "expression": "Choices ( configuration , binding . Port )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<string>.ToHashSet<string>(System.Collections.Generic.IEqualityComparer<string>?)",
+              "assembly": "System.Linq",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral ) . Select ( action => action . Id ) . ToHashSet ( StringComparer . Ordinal )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Sharp.Common.Contracts.InputActionDefinition>.Select<GWGUI.Emulation.Sharp.Common.Contracts.InputActionDefinition, string>(System.Func<GWGUI.Emulation.Sharp.Common.Contracts.InputActionDefinition, string>)",
+              "assembly": "System.Linq",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral ) . Select ( action => action . Id )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries.ControllerCatalog.Actions(GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.PeripheralCategory)",
+              "assembly": "gwgui.emulation.sharp",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral )"
+            },
+            {
+              "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions.HasInvalidBindings(System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Collections.Generic.IReadOnlySet<string>, System.Func<string, bool>)",
+              "assembly": "gwgui.emulation",
+              "expression": "EmulationInputMappingFunctions . HasInvalidBindings ( binding . Mappings , ids , EmulationKeyboardBindingFunctions . IsValid )"
+            }
+          ],
+          "bounds": [
+            {
+              "name": "MinimumMouseSpeedPercent",
+              "owner": "GWGUI.Emulation.Sharp.Common.Machines.Common.Constants.InputMappingConstants",
+              "assembly": "gwgui.emulation.sharp",
+              "value": 10
+            },
+            {
+              "name": "MaximumMouseSpeedPercent",
+              "owner": "GWGUI.Emulation.Sharp.Common.Machines.Common.Constants.InputMappingConstants",
+              "assembly": "gwgui.emulation.sharp",
+              "value": 1000
+            }
+          ],
+          "choices": "private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));\r\n        if (port != ControllerConstants.FirstPort)\r\n            choices = choices.Where(category => category is not PeripheralCategory.CyberstickAnalog and not PeripheralCategory.CyberstickDigital);\r\n        return choices.ToArray();\r\n    }",
+          "module": "Sharp",
+          "policyOwner": "Module-specific model/peripheral catalog and keyboard definitions retained; SDK owns binding rejection/parser"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "calls": [
+            {
+              "target": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.InputSettingsFunctions.KeyboardBindings(GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel)",
+              "assembly": "gwgui.emulation.sinclair",
+              "expression": "KeyboardBindings ( configuration . Input , configuration . Model )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<string>.ToHashSet<string>(System.Collections.Generic.IEqualityComparer<string>?)",
+              "assembly": "System.Linq",
+              "expression": "MouseDefinitions ( ) . Select ( definition => definition . Id ) . ToHashSet ( StringComparer . Ordinal )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Contracts.InputBindingDefinition>.Select<GWGUI.Emulation.Contracts.InputBindingDefinition, string>(System.Func<GWGUI.Emulation.Contracts.InputBindingDefinition, string>)",
+              "assembly": "System.Linq",
+              "expression": "MouseDefinitions ( ) . Select ( definition => definition . Id )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.InputSettingsFunctions.MouseDefinitions()",
+              "assembly": "gwgui.emulation.sinclair",
+              "expression": "MouseDefinitions ( )"
+            },
+            {
+              "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions.HasInvalidBindings(System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Collections.Generic.IReadOnlySet<string>, System.Func<string, bool>)",
+              "assembly": "gwgui.emulation",
+              "expression": "EmulationInputMappingFunctions . HasInvalidBindings ( configuration . Input . Mouse , mouseIds , EmulationKeyboardBindingFunctions . IsValid )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.InputSettingsFunctions.SupportsMouse(GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.MachineConfiguration)",
+              "assembly": "gwgui.emulation.sinclair",
+              "expression": "SupportsMouse ( configuration )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.PeripheralCategory>.Contains<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.PeripheralCategory>(GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.PeripheralCategory)",
+              "assembly": "System.Linq",
+              "expression": "Choices ( configuration , binding . Port ) . Contains ( binding . Peripheral )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.InputSettingsFunctions.Choices(GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.MachineConfiguration, int)",
+              "assembly": "gwgui.emulation.sinclair",
+              "expression": "Choices ( configuration , binding . Port )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<string>.ToHashSet<string>(System.Collections.Generic.IEqualityComparer<string>?)",
+              "assembly": "System.Linq",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral ) . Select ( action => action . Id ) . ToHashSet ( StringComparer . Ordinal )"
+            },
+            {
+              "target": "System.Collections.Generic.IEnumerable<GWGUI.Emulation.Sinclair.Common.Contracts.InputActionDefinition>.Select<GWGUI.Emulation.Sinclair.Common.Contracts.InputActionDefinition, string>(System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.InputActionDefinition, string>)",
+              "assembly": "System.Linq",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral ) . Select ( action => action . Id )"
+            },
+            {
+              "target": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries.ControllerCatalog.Actions(GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.PeripheralCategory)",
+              "assembly": "gwgui.emulation.sinclair",
+              "expression": "ControllerCatalog . Actions ( configuration . Model , binding . Peripheral )"
+            },
+            {
+              "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions.HasInvalidBindings(System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Collections.Generic.IReadOnlySet<string>, System.Func<string, bool>)",
+              "assembly": "gwgui.emulation",
+              "expression": "EmulationInputMappingFunctions . HasInvalidBindings ( binding . Mappings , ids , EmulationKeyboardBindingFunctions . IsValid )"
+            }
+          ],
+          "bounds": [
+            {
+              "name": "MinimumMouseSpeedPercent",
+              "owner": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Constants.InputMappingConstants",
+              "assembly": "gwgui.emulation.sinclair",
+              "value": 10
+            },
+            {
+              "name": "MaximumMouseSpeedPercent",
+              "owner": "GWGUI.Emulation.Sinclair.Common.Machines.Common.Constants.InputMappingConstants",
+              "assembly": "gwgui.emulation.sinclair",
+              "value": 1000
+            }
+          ],
+          "choices": "private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)\r\n    {\r\n        var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;\r\n        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);\r\n        return choices.ToArray();\r\n    }",
+          "module": "Sinclair",
+          "policyOwner": "Module-specific model/peripheral catalog and keyboard definitions retained; SDK owns binding rejection/parser"
+        }
+      ],
+      "scope": "Strict keyboard fold shared; typed validations and model policies unchanged. No claim that model-specific catalogs or whole input lifecycles are interchangeable.",
+      "newResourcesCreated": false,
+      "sdk": {
+        "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
+        "sha256": "F35D248861F825F7D205D064B924E2730A09CCC1AB1EB1360954E9CDDCEFB175"
+      },
+      "unchangedDependencies": 7,
+      "sdkOriginalTextRestored": false,
+      "semanticErrors": 0,
+      "tests": {
+        "scope": "Strict SDK fold and existing conversion/controller regressions; no external resources introduced.",
+        "passed": 55,
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~StrictKeyboardBindingResolutionTests|FullyQualifiedName~InputBindingConversionTests|FullyQualifiedName~ControllerBindingProjectionTests --verbosity minimal",
+        "failed": 0,
+        "newPureMemoryCases": 13
+      },
+      "fullMethods": [
+        {
+          "line": 39,
+          "bodyHash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "scope": "Complete typed wrapper to verified original strict fold, model Definitions unchanged.",
+          "sourceSha256": "64133C602E72CB4A8C8B6C71B5B53E8B4A394B3F18E38698A2DDF34A49D7B2D1"
+        },
+        {
+          "line": 15,
+          "bodyHash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "scope": "Complete typed wrapper to verified original strict fold, model Definitions unchanged.",
+          "sourceSha256": "32E60A4830426BBD315A319EE7953058134793220AF4DA60138537ACB60663A2"
+        },
+        {
+          "line": 22,
+          "bodyHash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "scope": "Complete typed wrapper to verified original strict fold, model Definitions unchanged.",
+          "sourceSha256": "2CACF1EE2B13A2CC81B81970272170F671D56246357BD3EBD019B4574FCFCD51"
+        },
+        {
+          "line": 96,
+          "bodyHash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Validate",
+          "scope": "Typed validation orchestration: original order,10..1000 bounds, existing shared parser/rejection plus verified strict keyboard fold; distinct model Choices/keyboard/catalog policies retained. Does not qualify nested model catalog algorithms or input lifecycle.",
+          "sourceSha256": "F2525F294E9CA16E568E5EE5E7704F2BA4F0A37742CB2CF840534243130959DF"
+        },
+        {
+          "line": 88,
+          "bodyHash": "00507BD09B1D4BAB6C3FFBFA60BA63707C352C4AC3CB413F61202DBAE5476332",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Validate",
+          "scope": "Typed validation orchestration: original order,10..1000 bounds, existing shared parser/rejection plus verified strict keyboard fold; distinct model Choices/keyboard/catalog policies retained. Does not qualify nested model catalog algorithms or input lifecycle.",
+          "sourceSha256": "7780FEC97732A61BB98A8BB4BA68B9FD7AE51416351592FBE7C5E60AAEC8C8DD"
+        }
+      ]
+    },
+    "inventory": {
+      "archivedRemovedDefinitions": [
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "exactGroups",
+          "line": 54,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        },
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "exactGroups",
+          "line": 30,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        },
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "exactGroups",
+          "line": 37,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        },
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "renamedIdentifierGroups",
+          "line": 54,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        },
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "renamedIdentifierGroups",
+          "line": 30,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        },
+        {
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "disposition": "Unused local parser forwarding definition removed; original shared SDK parser remains, now called by verified strict keyboard fold",
+          "replacementOwner": "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions",
+          "fields": {
+            "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC",
+            "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only."
+          },
+          "collection": "renamedIdentifierGroups",
+          "line": 37,
+          "name": "IsPhysicalKey",
+          "replacementMethod": "IsValid",
+          "bodyHash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs"
+        }
+      ],
+      "totalPartialScopes": 95,
+      "totalLiveAnnotations": 3640,
+      "newAnnotatedOccurrences": 5,
+      "priorAnnotationsAccounted": 3641,
+      "uniqueMethodsRecordedWithoutInventedGroups": true,
+      "priorPartialScopesRetained": 95,
+      "priorAnnotationsRetainedLive": 3635,
+      "fullMethodOccurrencesQualified": 5
+    }
   }
 }

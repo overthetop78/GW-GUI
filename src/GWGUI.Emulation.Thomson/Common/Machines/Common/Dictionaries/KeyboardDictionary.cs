@@ -20,19 +20,7 @@ internal static class KeyboardDictionary
         : [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz];
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), string.Empty, Defaults[key].ToString(), Labels[key])).ToArray();
     internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
-    {
-        var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
-        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
-        {
-            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))
-                throw new ArgumentException(nameof(input));
-            bindings[pair.Key] = pair.Value;
-        }
-
-        return bindings;
-    }
+        => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions(model), input.Keyboard);
 
     internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));
-
-    private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);
 }

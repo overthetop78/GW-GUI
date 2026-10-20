@@ -118,6 +118,20 @@ public static class EmulationInputMappingFunctions
         settings.ControllerPorts.Count != count
         || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count));
 
+    internal static Dictionary<string, string> ResolveKeyboardBindings(IReadOnlyList<InputBindingDefinition> definitions,
+        IReadOnlyDictionary<string, string>? input)
+    {
+        var bindings = definitions.ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
+        foreach (var pair in input ?? new Dictionary<string, string>())
+        {
+            if (!bindings.ContainsKey(pair.Key) || !EmulationKeyboardBindingFunctions.IsValid(pair.Value))
+                throw new ArgumentException(nameof(input));
+            bindings[pair.Key] = pair.Value;
+        }
+
+        return bindings;
+    }
+
     internal static Dictionary<string, string> ResolveBindings(IReadOnlyList<InputBindingDefinition> definitions,
         IReadOnlyDictionary<string, string>? values) =>
         definitions.ToDictionary(definition => definition.Id,

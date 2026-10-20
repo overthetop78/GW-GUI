@@ -1,34 +1,14 @@
 {
-  "snapshot": "54ebe9c52f552937cf0fbca9317a0937814dc3ed",
+  "snapshot": "e73d1b55a4739f4f205fe7b1aab01553661597bf",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Modules/AcornEmulationModule.cs",
-    "src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs",
-    "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
-    "src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs",
-    "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
-    "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
-    "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
-    "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
-    "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
-    "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
-    "src/GWGUI.Emulation.Nec/Modules/NecEmulationModule.cs",
-    "src/GWGUI.Emulation.Nintendo/Modules/NintendoEmulationModule.cs",
-    "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
-    "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
-    "src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs",
-    "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
-    "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
-    "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
-    "src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs",
-    "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
-    "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
-    "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
-    "src/GWGUI.Emulation/Services/EmulationErrorService.cs",
-    "tests/GWGUI.Tests/Emulation/MachineErrorFactoryTests.cs"
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7237,
+  "fileCount": 7238,
   "methodBodyCount": 9594,
   "exactGroups": [
     {
@@ -4918,56 +4898,6 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-      "tokens": 7,
-      "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 37,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC"
-        }
-      ],
-      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "11B1AC3E6533C0F5B7D224F7BB92E443A6023E101E5BA20C903B312B1FAAA7BC",
@@ -21851,7 +21781,7 @@
           "name": "Apply",
           "owner": "KeyboardDictionary",
           "kind": "MethodDeclaration",
-          "line": 52,
+          "line": 42,
           "parameters": "(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model)",
           "tokens": 14,
           "bodyTokens": "=> EmulationInputMappingFunctions . MapKeyboard ( snapshot , Bindings ( input , model ) )",
@@ -21863,7 +21793,7 @@
           "name": "Apply",
           "owner": "KeyboardDictionary",
           "kind": "MethodDeclaration",
-          "line": 28,
+          "line": 18,
           "parameters": "(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model)",
           "tokens": 14,
           "bodyTokens": "=> EmulationInputMappingFunctions . MapKeyboard ( snapshot , Bindings ( input , model ) )",
@@ -21875,7 +21805,7 @@
           "name": "Apply",
           "owner": "KeyboardDictionary",
           "kind": "MethodDeclaration",
-          "line": 35,
+          "line": 25,
           "parameters": "(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model)",
           "tokens": 14,
           "bodyTokens": "=> EmulationInputMappingFunctions . MapKeyboard ( snapshot , Bindings ( input , model ) )",
@@ -60269,6 +60199,56 @@
           "bodyTokens": "=> Text ( \"Emulation.Error.Core.CoreNotLoaded\" )",
           "hash": "C235EF6E35CF4D862DD70D10AD9FDCDAB3DBB38432670023FFDAA1681EF7ABF1",
           "shape": "154D3B96892AB027B2EE1957A23A7B6DF8BDFC79B552E601DF21799F83C64B38"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+      "tokens": 14,
+      "bodyTokens": "=> EmulationInputMappingFunctions . ResolveKeyboardBindings ( Definitions ( model ) , input . Keyboard )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "owner": "KeyboardDictionary",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(InputConfiguration input, MachineModel model)",
+          "tokens": 14,
+          "bodyTokens": "=> EmulationInputMappingFunctions . ResolveKeyboardBindings ( Definitions ( model ) , input . Keyboard )",
+          "hash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "shape": "431E1A2AC4FFA6EF87DA748F100F4ED088CB03852AA53708B6236AEAC1E5735A",
+          "qualification": "Typed input composition verified in typedInputValidationComparison: original strict keyboard fold shared, SDK parser/rejection reused, model-specific data/constraints and original order preserved; called model catalogs and complete runtime lifecycle not qualified.",
+          "qualificationSourceSha256": "64133C602E72CB4A8C8B6C71B5B53E8B4A394B3F18E38698A2DDF34A49D7B2D1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "owner": "KeyboardDictionary",
+          "kind": "MethodDeclaration",
+          "line": 15,
+          "parameters": "(InputConfiguration input, MachineModel model)",
+          "tokens": 14,
+          "bodyTokens": "=> EmulationInputMappingFunctions . ResolveKeyboardBindings ( Definitions ( model ) , input . Keyboard )",
+          "hash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "shape": "431E1A2AC4FFA6EF87DA748F100F4ED088CB03852AA53708B6236AEAC1E5735A",
+          "qualification": "Typed input composition verified in typedInputValidationComparison: original strict keyboard fold shared, SDK parser/rejection reused, model-specific data/constraints and original order preserved; called model catalogs and complete runtime lifecycle not qualified.",
+          "qualificationSourceSha256": "32E60A4830426BBD315A319EE7953058134793220AF4DA60138537ACB60663A2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
+          "name": "Bindings",
+          "owner": "KeyboardDictionary",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(InputConfiguration input, MachineModel model)",
+          "tokens": 14,
+          "bodyTokens": "=> EmulationInputMappingFunctions . ResolveKeyboardBindings ( Definitions ( model ) , input . Keyboard )",
+          "hash": "C23AAB7B280AEBC43994A6B62E4BF6F37DCE936C546968D789660A7A2EE76811",
+          "shape": "431E1A2AC4FFA6EF87DA748F100F4ED088CB03852AA53708B6236AEAC1E5735A",
+          "qualification": "Typed input composition verified in typedInputValidationComparison: original strict keyboard fold shared, SDK parser/rejection reused, model-specific data/constraints and original order preserved; called model catalogs and complete runtime lifecycle not qualified.",
+          "qualificationSourceSha256": "2CACF1EE2B13A2CC81B81970272170F671D56246357BD3EBD019B4574FCFCD51"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -108304,20 +108284,6 @@
           "qualificationSourceSha256": "4A7C922D52773BE112C8D3AAB5D674D526F2589EAA6BABF740AD4BE496F49611"
         },
         {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 54,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F392EA355438A02C078FD27383C8FFB06EF2AFCF89025F02E6BE3CDB10D3BB75"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/AudioFunctions.cs",
           "name": "NormalizeVolume",
           "owner": "AudioOutputFunctions",
@@ -108706,20 +108672,6 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadString(System.IO.BinaryReader); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "30CDC6F1997FF69B20EE92FA125B4D2DEE2B3FF0E5DB281B391304E459A9915E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "55C5FA3CD025390CC4304CD7E5100AE3F81E067E08E2534BE8C654A42A494C8A"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/AudioFunctions.cs",
@@ -110310,20 +110262,6 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.ReadString(System.IO.BinaryReader); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "39C008F9918B13BFE170661B502A1CE890F4BAF3704BA510DCFC5BBAAE49D00A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs",
-          "name": "IsPhysicalKey",
-          "owner": "KeyboardDictionary",
-          "kind": "MethodDeclaration",
-          "line": 37,
-          "parameters": "(string value)",
-          "tokens": 7,
-          "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( value )",
-          "hash": "115488B41A1F97FBD11F8F3D591E61973901D60D9D76A3A3192167CC26197691",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.IsValid(string?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4705484051ABFF6DBAB2FBDEACE44BAB4D752D4EA39E24FDCB61BD47FDCFB4EC"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/AudioFunctions.cs",
@@ -116998,7 +116936,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 330,
+          "line": 344,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -143503,7 +143441,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3039,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 3092
   }
 }
