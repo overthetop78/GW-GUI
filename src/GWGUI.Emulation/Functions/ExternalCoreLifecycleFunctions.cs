@@ -5,6 +5,9 @@ namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreLifecycleFunctions
 {
 
+    internal static bool IsSupportedStateSize(nuint size, nuint maximumStateSize)
+        => size > nuint.Zero && size <= maximumStateSize;
+
     internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary)
     {
         try

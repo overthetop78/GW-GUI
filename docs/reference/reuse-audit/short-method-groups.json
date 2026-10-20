@@ -1,19 +1,22 @@
 {
-  "snapshot": "bba0e17f073e4c4bc674c429433c26684cc933f2",
+  "snapshot": "eb61732f4ccc50bde9e230073f01125c18b304bc",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
-    "tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs"
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7229,
-  "methodBodyCount": 9585,
+  "methodBodyCount": 9586,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -143600,7 +143603,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3074,
+    "occurrences": 3098,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

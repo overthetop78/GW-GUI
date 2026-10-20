@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3047,6 +3047,49 @@
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         }
       ],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "2171D8FFF72A0A7AE56BD9F7F47C1ECD9B1F8EED25D466FD308FFC563CD3E43F",
+      "method": "RunFrame",
+      "tokens": 44,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "RunFrame",
+          "line": 107,
+          "tokens": 44,
+          "hash": "2171D8FFF72A0A7AE56BD9F7F47C1ECD9B1F8EED25D466FD308FFC563CD3E43F",
+          "shape": "22641EE5375B7F5759E6C34993F82FB5AF305DECE0E5B86C90C0CB5393F3A193"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "RunFrame",
+          "line": 103,
+          "tokens": 44,
+          "hash": "2171D8FFF72A0A7AE56BD9F7F47C1ECD9B1F8EED25D466FD308FFC563CD3E43F",
+          "shape": "22641EE5375B7F5759E6C34993F82FB5AF305DECE0E5B86C90C0CB5393F3A193"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "RunFrame",
+          "line": 101,
+          "tokens": 44,
+          "hash": "2171D8FFF72A0A7AE56BD9F7F47C1ECD9B1F8EED25D466FD308FFC563CD3E43F",
+          "shape": "22641EE5375B7F5759E6C34993F82FB5AF305DECE0E5B86C90C0CB5393F3A193"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "RunFrame",
+          "line": 107,
+          "tokens": 44,
+          "hash": "2171D8FFF72A0A7AE56BD9F7F47C1ECD9B1F8EED25D466FD308FFC563CD3E43F",
+          "shape": "22641EE5375B7F5759E6C34993F82FB5AF305DECE0E5B86C90C0CB5393F3A193"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -9640,6 +9683,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "5B31B436583C167D373EB4DFA50763010175EB26A9F48D506823752F214A8F8E",
+      "method": "Initialize",
+      "tokens": 375,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "Initialize",
+          "line": 59,
+          "tokens": 375,
+          "hash": "5B31B436583C167D373EB4DFA50763010175EB26A9F48D506823752F214A8F8E",
+          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "Initialize",
+          "line": 59,
+          "tokens": 375,
+          "hash": "5B31B436583C167D373EB4DFA50763010175EB26A9F48D506823752F214A8F8E",
+          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "5B4ED5A60EF35D82F53D16B08E5FC065727B492F97DB7CC8679C1A8597B23494",
       "method": "IsCompatible",
       "tokens": 57,
@@ -10243,49 +10313,6 @@
           "tokens": 32,
           "hash": "5E41B8E6BA64FCBA1E07049FEE804449442712123C0582A02BF64109180A8E92",
           "shape": "D4ACC753A1DBE169EE81F5153CF327FF39ACEDB6E3EB09B70FD10607BCC7F87D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "5EFFF72D9505CFA5264E3D7168D706960E58CC3B848FC253405CA6BB976A21E5",
-      "method": "RunFrame",
-      "tokens": 45,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "line": 101,
-          "tokens": 45,
-          "hash": "5EFFF72D9505CFA5264E3D7168D706960E58CC3B848FC253405CA6BB976A21E5",
-          "shape": "DD39819032131E66D55697EB9A2BF74EC2164AE75CE251ED54AAB18A7CBD6D5F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "line": 103,
-          "tokens": 45,
-          "hash": "5EFFF72D9505CFA5264E3D7168D706960E58CC3B848FC253405CA6BB976A21E5",
-          "shape": "DD39819032131E66D55697EB9A2BF74EC2164AE75CE251ED54AAB18A7CBD6D5F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "line": 107,
-          "tokens": 45,
-          "hash": "5EFFF72D9505CFA5264E3D7168D706960E58CC3B848FC253405CA6BB976A21E5",
-          "shape": "DD39819032131E66D55697EB9A2BF74EC2164AE75CE251ED54AAB18A7CBD6D5F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "line": 107,
-          "tokens": 45,
-          "hash": "5EFFF72D9505CFA5264E3D7168D706960E58CC3B848FC253405CA6BB976A21E5",
-          "shape": "DD39819032131E66D55697EB9A2BF74EC2164AE75CE251ED54AAB18A7CBD6D5F"
         }
       ],
       "predecessors": [],
@@ -10949,7 +10976,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -18578,7 +18605,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -22900,33 +22927,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "DC2ED382F5B65D493547BE971F3F18C4492C743A0D50B01641C8729F5ADAF0B0",
-      "method": "Initialize",
-      "tokens": 376,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "Initialize",
-          "line": 59,
-          "tokens": 376,
-          "hash": "DC2ED382F5B65D493547BE971F3F18C4492C743A0D50B01641C8729F5ADAF0B0",
-          "shape": "562EB569B28A84BC87F4A1FE68DE922D528A8EAAA66F22EC9EF8F2750557063D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "Initialize",
-          "line": 59,
-          "tokens": 376,
-          "hash": "DC2ED382F5B65D493547BE971F3F18C4492C743A0D50B01641C8729F5ADAF0B0",
-          "shape": "562EB569B28A84BC87F4A1FE68DE922D528A8EAAA66F22EC9EF8F2750557063D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
       "method": "LoadState",
       "tokens": 102,
@@ -25792,7 +25792,9 @@
           "line": 98,
           "tokens": 242,
           "hash": "EFB9113D4BE1AABC32E608000891BBBA6186990D27CD3267CD14B519285C3FB1",
-          "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5"
+          "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5",
+          "qualification": "specific-psp-and-playstation-controller-data-use-existing-shared-definition-and-sdk-display-owner",
+          "qualificationSourceSha256": "C5E2C11387DCBAEDB8E4BC9DB03F252A8E7108009F0D75506B4C023F090DBD5B"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -25800,7 +25802,9 @@
           "line": 173,
           "tokens": 242,
           "hash": "CE26839C5EB3EEED864B2FCEA0BD2A863A45141B9DEC9B9E703DDD91F831489E",
-          "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5"
+          "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5",
+          "qualification": "specific-psp-and-playstation-controller-data-use-existing-shared-definition-and-sdk-display-owner",
+          "qualificationSourceSha256": "C5E2C11387DCBAEDB8E4BC9DB03F252A8E7108009F0D75506B4C023F090DBD5B"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33994,7 +33998,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 485,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 491
   }
 }
