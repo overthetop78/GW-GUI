@@ -466638,14 +466638,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
         "constructor": "GWGUI.Emulation.Mattel.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory, GWGUI.Emulation.Mattel.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "18476EFA98AB06033400BB54F941AAAD8B6BA5DFB410A293BA569E1A47E54568",
         "owner": "gwgui.emulation.mattel",
         "name": "InvalidContent",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 47,
+        "currentBodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "currentSourceSha256": "18476EFA98AB06033400BB54F941AAAD8B6BA5DFB410A293BA569E1A47E54568"
       },
       {
         "line": 5,
@@ -467423,14 +467429,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CueRuntimeFunctions.cs",
         "constructor": "GWGUI.Emulation.Snk.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Snk.Common.Enums.ErrorCategory, GWGUI.Emulation.Snk.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "1D9CB35EBD8DE9799FEB027809CF05F58534E4D9B9F60A90001583166165C7E8",
         "owner": "gwgui.emulation.snk",
         "name": "Unsupported",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 30,
+        "currentBodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "currentSourceSha256": "1D9CB35EBD8DE9799FEB027809CF05F58534E4D9B9F60A90001583166165C7E8"
       },
       {
         "line": 44,
@@ -467706,14 +467718,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
         "constructor": "GWGUI.Emulation.Apple.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, GWGUI.Emulation.Apple.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "C0E6B06B0C55DA2FEF27A73943573316B65BFBCCD6105AC2178E331F8B1A28B6",
         "owner": "gwgui.emulation.apple",
         "name": "DynamicMediaUnavailable",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 84,
+        "currentBodyHash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
+        "currentSourceSha256": "C0E6B06B0C55DA2FEF27A73943573316B65BFBCCD6105AC2178E331F8B1A28B6"
       },
       {
         "line": 45,
@@ -468505,14 +468523,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": true,
         "path": "src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Functions/JaguarCdFunctions.cs",
         "constructor": "GWGUI.Emulation.Atari.Emulators.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "85FC3215F885D45DF75017D6CCE2F2153671D80C813B10E1D3E833199CE6C5AB",
         "owner": "gwgui.emulation.atari",
         "name": "Unsupported",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 37,
+        "currentBodyHash": "17158EE5F0C2AD819C3F19FE1684CC01BF793A87816616A3DE458D6FFD64EEEE",
+        "currentSourceSha256": "85FC3215F885D45DF75017D6CCE2F2153671D80C813B10E1D3E833199CE6C5AB"
       },
       {
         "line": 72,
@@ -469233,14 +469257,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
         "constructor": "GWGUI.Emulation.Philips.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, GWGUI.Emulation.Philips.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "9A81C843023C89F79386FFB88B4E3D03C9858D43F73F6D199A73AC72FB043E52",
         "owner": "gwgui.emulation.philips",
         "name": "InvalidContent",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 69,
+        "currentBodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "currentSourceSha256": "9A81C843023C89F79386FFB88B4E3D03C9858D43F73F6D199A73AC72FB043E52"
       },
       {
         "line": 5,
@@ -469267,14 +469297,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs",
         "constructor": "GWGUI.Emulation.Philips.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, GWGUI.Emulation.Philips.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "D0A6C609CB6E38D7F09784007DA6287D5C782F4A3D59A0134EA0DFFB8A0F7813",
         "owner": "gwgui.emulation.philips",
         "name": "InvalidFirmware",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 71,
+        "currentBodyHash": "17C29DC2D8EEA39493ECD1517473D15DEFA10AED892B0DB310BE8C4699644C8D",
+        "currentSourceSha256": "D0A6C609CB6E38D7F09784007DA6287D5C782F4A3D59A0134EA0DFFB8A0F7813"
       },
       {
         "line": 24,
@@ -471037,14 +471073,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "bcl-adapter-pending-nested-call-review",
+        "classification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
         "constructor": "System.Collections.Generic.Dictionary<string, bool>.Dictionary(System.Collections.Generic.IEqualityComparer<string>?)",
         "sourceSha256": "CB820BCE98C5EE483818A6355D717BE6EF7826688E4D9701DBE6A1F54AEA349D",
         "owner": "System.Collections",
         "name": "PhysicalMouse",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "bcl-adapter-pending-nested-call-review",
+        "resolved": true,
+        "resolution": "physicalMouseReuse",
+        "currentLine": 73,
+        "currentSourceSha256": "3586BD8D679DB58C2A532B43CC4F77ABE236D1707FB010A49877818BCF601B7E",
+        "currentBodyHash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0"
       },
       {
         "line": 59,
@@ -471366,14 +471408,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "bcl-adapter-pending-nested-call-review",
+        "classification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
         "constructor": "System.Collections.Generic.Dictionary<string, bool>.Dictionary(System.Collections.Generic.IEqualityComparer<string>?)",
         "sourceSha256": "A7BCAC2CD19F3C06A44F51ABDD2735A5327A2C09A69A9FD65958213242E448A1",
         "owner": "System.Collections",
         "name": "PhysicalMouse",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "bcl-adapter-pending-nested-call-review",
+        "resolved": true,
+        "resolution": "physicalMouseReuse",
+        "currentLine": 81,
+        "currentSourceSha256": "3BFAE42EAB6F1E6C707D40ED3CE144769C29DE29172DE0F37134ECFE0259FDEB",
+        "currentBodyHash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0"
       },
       {
         "line": 13,
@@ -471590,14 +471638,20 @@
         ],
         "isRecord": false,
         "qualified": false,
-        "classification": "module-contract-or-implementation-pending-manual-review",
+        "classification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
         "simpleConstantOrParameterArguments": false,
         "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
         "constructor": "GWGUI.Emulation.Bandai.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Bandai.Common.Enums.ErrorCategory, GWGUI.Emulation.Bandai.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
         "sourceSha256": "FE2504F584B85C15D797A8A30C8CB8609CBF1FAA1C623EB923F151CAF2F56154",
         "owner": "gwgui.emulation.bandai",
         "name": "DynamicMediaUnavailable",
-        "resourceOwner": false
+        "resourceOwner": false,
+        "previousClassification": "module-contract-or-implementation-pending-manual-review",
+        "resolved": true,
+        "resolution": "contentExceptionFactoryAdapters",
+        "currentLine": 56,
+        "currentBodyHash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
+        "currentSourceSha256": "FE2504F584B85C15D797A8A30C8CB8609CBF1FAA1C623EB923F151CAF2F56154"
       },
       {
         "line": 5,
@@ -472578,7 +472632,7 @@
     "reportOccurrencesQualified": 39,
     "resolvedByCommonFactory": 11,
     "resolvedByAtomicInputOwner": 11,
-    "remainingPending": 45,
+    "remainingPending": 36,
     "resolvedByAudioSettings": 15,
     "resolvedByStateContracts": 29,
     "resolvedByTypedSaveAdapters": 15,
@@ -472594,7 +472648,9 @@
     "resolvedByMediaProjectionAdapters": 11,
     "resolvedByMediaLed": 4,
     "resolvedByNativeOptionFactoryAdapters": 3,
-    "resolvedByAmigaFieldFactory": 2
+    "resolvedByAmigaFieldFactory": 2,
+    "resolvedByContentExceptionFactoryAdapters": 7,
+    "resolvedByPhysicalMouse": 2
   },
   "snkControllerTableReuse": {
     "before": [
@@ -727645,6 +727701,1422 @@
       "additionalEquivalentBuildersReused": 2,
       "remainingConstructions": 45,
       "priorAnnotationsRetained": 3507
+    }
+  },
+  "contentExceptionFactoryAdapters": {
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Snk"
+    ],
+    "state": "seven-whole-typed-content-error-factories-qualified-no-product-change",
+    "newHelpers": 0,
+    "decision": "Keep module-specific public exception identity, typed error enums and message expressions; constructor state is already owned by the existing SDK base. Replacing these by EmulationMessageException or another callback factory would change the contract or add a layer.",
+    "entries": [
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulationException.cs",
+        "line": 47,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.ContentLoadFailed",
+        "name": "InvalidContent",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Mattel.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.mattel",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
+        "constructorSourceSha256": "0C70F10B01C01DCEA4803D4875436A44C8730638A57A9E14AB0735C2B5393CEB",
+        "sourceSha256": "18476EFA98AB06033400BB54F941AAAD8B6BA5DFB410A293BA569E1A47E54568",
+        "localizedDefault": false,
+        "bodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "causeDefault": null,
+        "method": "private static EmulationException InvalidContent() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Snk/Common/Exceptions/EmulationException.cs",
+        "line": 30,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.ContentLoadFailed",
+        "name": "Unsupported",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Snk.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Snk.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.snk",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CueRuntimeFunctions.cs",
+        "constructorSourceSha256": "8887A4C590489993AC3E9A8728DC151E61B64C251FB942070A03393C8512195B",
+        "sourceSha256": "1D9CB35EBD8DE9799FEB027809CF05F58534E4D9B9F60A90001583166165C7E8",
+        "localizedDefault": false,
+        "bodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "causeDefault": null,
+        "method": "private static EmulationException Unsupported() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
+        "line": 84,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.DynamicMediaUnsupported",
+        "name": "DynamicMediaUnavailable",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Apple.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.apple",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
+        "constructorSourceSha256": "410E0F133D62A641CC06BBAEAD5A31126A7DA33214D46B46DCEFCE78B05C6580",
+        "sourceSha256": "C0E6B06B0C55DA2FEF27A73943573316B65BFBCCD6105AC2178E331F8B1A28B6",
+        "localizedDefault": false,
+        "bodyHash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
+        "causeDefault": null,
+        "method": "private static EmulationException DynamicMediaUnavailable() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.DynamicMediaUnsupported);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
+        "line": 37,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "message",
+        "name": "Unsupported",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.atari",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Functions/JaguarCdFunctions.cs",
+        "constructorSourceSha256": "E0663C361875C6E4ABF36076D5A308D0D0A9F27D81DF920DF0547BDFBF1D42F6",
+        "sourceSha256": "85FC3215F885D45DF75017D6CCE2F2153671D80C813B10E1D3E833199CE6C5AB",
+        "localizedDefault": false,
+        "bodyHash": "17158EE5F0C2AD819C3F19FE1684CC01BF793A87816616A3DE458D6FFD64EEEE",
+        "causeDefault": null,
+        "method": "internal static EmulationException Unsupported(string message) => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, message);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
+        "line": 69,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.ContentLoadFailed",
+        "name": "InvalidContent",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Philips.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.philips",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
+        "constructorSourceSha256": "C3CF2610AA526A438CF1823B3CBEB0A9C3F0C67F8FD8498EEF694FCA5648DAF6",
+        "sourceSha256": "9A81C843023C89F79386FFB88B4E3D03C9858D43F73F6D199A73AC72FB043E52",
+        "localizedDefault": false,
+        "bodyHash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
+        "causeDefault": null,
+        "method": "private static EmulationException InvalidContent() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
+        "line": 71,
+        "category": {
+          "value": 1,
+          "name": "Firmware"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.FirmwareFileUnreadable",
+        "name": "InvalidFirmware",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Philips.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 3,
+          "name": "FirmwareInvalid"
+        },
+        "messageOwner": "gwgui.emulation.philips",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs",
+        "constructorSourceSha256": "C3CF2610AA526A438CF1823B3CBEB0A9C3F0C67F8FD8498EEF694FCA5648DAF6",
+        "sourceSha256": "D0A6C609CB6E38D7F09784007DA6287D5C782F4A3D59A0134EA0DFFB8A0F7813",
+        "localizedDefault": false,
+        "bodyHash": "17C29DC2D8EEA39493ECD1517473D15DEFA10AED892B0DB310BE8C4699644C8D",
+        "causeDefault": null,
+        "method": "private static EmulationException InvalidFirmware() => new(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);"
+      },
+      {
+        "contextDefault": null,
+        "constructorPath": "src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulationException.cs",
+        "line": 56,
+        "category": {
+          "value": 2,
+          "name": "Content"
+        },
+        "constructor": "EmulationException",
+        "message": "ErrorMessages.DynamicMediaUnsupported",
+        "name": "DynamicMediaUnavailable",
+        "sharedBase": "global::GWGUI.Emulation.Exceptions.EmulationException<global::GWGUI.Emulation.Bandai.Common.Enums.ErrorCategory, global::GWGUI.Emulation.Bandai.Common.Enums.ErrorCode>",
+        "code": {
+          "value": 6,
+          "name": "ContentUnsupported"
+        },
+        "messageOwner": "gwgui.emulation.bandai",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
+        "constructorSourceSha256": "C459DD9C3C789BE18167FB9797476EAFCA08EF45B7D757DD437DC0D03B1067E4",
+        "sourceSha256": "FE2504F584B85C15D797A8A30C8CB8609CBF1FAA1C623EB923F151CAF2F56154",
+        "localizedDefault": false,
+        "bodyHash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
+        "causeDefault": null,
+        "method": "private static EmulationException DynamicMediaUnavailable() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.DynamicMediaUnsupported);"
+      }
+    ],
+    "semanticErrors": 0,
+    "newTests": 0,
+    "sourceChanges": 0,
+    "scope": "Seven entire constructor factories only; file/content/firmware validation and message localization implementations remain outside this qualification",
+    "sharedOwner": {
+      "path": "src/GWGUI.Emulation/Exceptions/EmulationException.cs",
+      "sha256": "B7852E014E3BB7E23A6C08E9AF46B9930DBA6DA57E2D27982AF56D9700D440C7",
+      "unchangedSinceVerifiedBuild": "modelMediaBuild"
+    },
+    "inventory": {
+      "newWholeMethodOccurrencesQualified": 12,
+      "remainingConstructions": 38,
+      "constructionCandidatesResolved": 7,
+      "existingWholeMethodOccurrencesKept": 0,
+      "partialOccurrencesRetained": 82
+    }
+  },
+  "physicalMouseReuse": {
+    "annotationRetention": {
+      "outsideCount": 3437,
+      "policy": "Full before fields for changed sources and partial scopes, sorted digest for all other unchanged-source annotations",
+      "priorTotal": 3521,
+      "outsideDigest": "B1D12C79F7EE157ABF4688E5A212EE92C11B2E7A72718FF9C39BABD092FFB905"
+    },
+    "before": [
+      {
+        "source": "namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;\r\n\r\ninternal static class InputSnapshotFunctions\r\n{\r\n    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, bool controllerPointerSwitchPressed)\r\n    {\r\n        configuration ??= new InputConfiguration();\r\n        var hostKeys = snapshot.Keys;\r\n        var physicalMouse = PhysicalMouse(snapshot.Pointer);\r\n        var mappedKeys = KeyboardBindingFunctions.Apply(snapshot, configuration);\r\n        if (controllerPointerSwitchPressed)\r\n            mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };\r\n        return snapshot with\r\n        {\r\n            Keys = mappedKeys,\r\n            Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys, physicalMouse, configuration.MouseButtonMappings),\r\n            Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse, configuration.ControllerBindings)\r\n        };\r\n    }\r\n\r\n    private static EmulationPointerState MapPointer(EmulationPointerState pointer,\r\n        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse,\r\n        IReadOnlyDictionary<string, MouseAction>? mappings)\r\n    {\r\n        mappings ??= InputSnapshotDictionary.DefaultMouseMappings;\r\n        var fallbackController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;\r\n        return pointer with\r\n        {\r\n            Left = IsMouseActionPressed(MouseAction.LeftButton, mappings, controllers, keys, physicalMouse, fallbackController),\r\n            Right = IsMouseActionPressed(MouseAction.RightButton, mappings, controllers, keys, physicalMouse, fallbackController),\r\n            Middle = IsMouseActionPressed(MouseAction.MiddleButton, mappings, controllers, keys, physicalMouse, fallbackController)\r\n        };\r\n    }\r\n\r\n    private static bool IsMouseActionPressed(MouseAction action,\r\n        IReadOnlyDictionary<string, MouseAction> mappings,\r\n        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse,\r\n        EmulationControllerState fallbackController) => mappings.Any(mapping => mapping.Value == action && IsSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, fallbackController), keys, physicalMouse));\r\n\r\n    private static IReadOnlyList<EmulationControllerState> MapControllers(\r\n        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse,\r\n        IReadOnlyList<ControllerBinding>? bindings)\r\n    {\r\n        var result = new EmulationControllerState[ControllerPortConstants.MaximumControllerPortCount];\r\n        for (var port = BufferConstants.FirstCollectionIndex; port < result.Length; port++)\r\n        {\r\n            var binding = bindings?.FirstOrDefault(item => item.Port == port);\r\n            var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);\r\n            if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount }\r\n                || !binding.ButtonMappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))\r\n            {\r\n                result[port] = EmulationControllerState.Empty;\r\n                continue;\r\n            }\r\n            uint buttons = InputSnapshotFunctionsConstants.EmptyControllerButtons;\r\n            foreach (var mapping in binding.ButtonMappings)\r\n            {\r\n                var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);\r\n                var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, InputSnapshotFunctionsConstants.UnmappedButtonIndex);\r\n                var sourceName = targetInKey ? mapping.Value : mapping.Key;\r\n                var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(sourceName, physical, source);\r\n                if (target >= BufferConstants.FirstCollectionIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))\r\n                    buttons |= InputSnapshotFunctionsConstants.ControllerButtonMask << target;\r\n            }\r\n            result[port] = source with { Buttons = buttons };\r\n        }\r\n        return result;\r\n    }\r\n\r\n    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(\r\n            StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta\r\n        };\r\n\r\n    private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)\r\n    {\r\n        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;\r\n        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))\r\n        {\r\n            var value = EmulationInputMappingFunctions.ControllerSourceValue(controllerSource, controller);\r\n            return EmulationInputMappingFunctions.IsControllerSourcePressed(controllerSource, controller, value);\r\n        }\r\n        if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))\r\n            return (controller.Buttons & (InputSnapshotFunctionsConstants.ControllerButtonMask << legacyIndex)) != InputSnapshotFunctionsConstants.EmptyControllerButtons;\r\n        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)\r\n            && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))\r\n            return keys.Contains(key);\r\n        return TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource) && mouse.GetValueOrDefault(mouseSource);\r\n    }\r\n\r\n    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)\r\n    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);\r\n\r\n    private static bool TryRemovePrefix(string? value, string prefix, out string source)\r\n    {\r\n        source = string.Empty;\r\n        if (string.IsNullOrWhiteSpace(value)\r\n            || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;\r\n        source = value[prefix.Length..];\r\n        return source.Length > BufferConstants.EmptyCollectionCount;\r\n    }\r\n}\r\n",
+        "body": "new Dictionary<string, bool>(\r\n            StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta\r\n        }",
+        "sha256": "CB820BCE98C5EE483818A6355D717BE6EF7826688E4D9701DBE6A1F54AEA349D",
+        "comparer": "StringComparer.OrdinalIgnoreCase",
+        "line": 73,
+        "parameters": "(EmulationPointerState pointer)",
+        "values": [
+          {
+            "equivalent": true,
+            "source": "pointer.Left",
+            "key": "Left",
+            "sdk": "pointer.Left"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Right",
+            "key": "Right",
+            "sdk": "pointer.Right"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Middle",
+            "key": "Middle",
+            "sdk": "pointer.Middle"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.ExtendedButton1",
+            "key": "XButton1",
+            "sdk": "pointer.ExtendedButton1"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.ExtendedButton2",
+            "key": "XButton2",
+            "sdk": "pointer.ExtendedButton2"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta",
+            "key": "WheelUp",
+            "sdk": "pointer.Wheel > 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta",
+            "key": "WheelDown",
+            "sdk": "pointer.Wheel < 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta",
+            "key": "WheelLeft",
+            "sdk": "pointer.HorizontalWheel < 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta",
+            "key": "WheelRight",
+            "sdk": "pointer.HorizontalWheel > 0"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+        "method": "private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(\r\n            StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta\r\n        };"
+      },
+      {
+        "source": "using GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;\r\n\r\ninternal static class InputSnapshotFunctions\r\n{\r\n    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, bool controllerPointerSwitchPressed)\r\n    {\r\n        configuration ??= new InputConfiguration();\r\n        var hostKeys = snapshot.Keys;\r\n        var physicalMouse = PhysicalMouse(snapshot.Pointer);\r\n        var mappedKeys = EmulationInputMappingFunctions.MapKeyboard(hostKeys, configuration.KeyboardMappings);\r\n        if (controllerPointerSwitchPressed)\r\n            mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };\r\n        return snapshot with\r\n        {\r\n            Keys = mappedKeys,\r\n            Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys, physicalMouse, configuration.MouseButtonMappings),\r\n            Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse, configuration.ControllerBindings)\r\n        };\r\n    }\r\n\r\n    private static EmulationPointerState MapPointer(EmulationPointerState pointer,\r\n        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse,\r\n        IReadOnlyDictionary<string, MouseAction>? mappings)\r\n    {\r\n        mappings ??= InputSnapshotDictionary.DefaultMouseMappings;\r\n        var fallbackController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;\r\n        return pointer with\r\n        {\r\n            Left = IsMouseActionPressed(MouseAction.LeftButton, mappings, controllers, keys, physicalMouse, fallbackController),\r\n            Right = IsMouseActionPressed(MouseAction.RightButton, mappings, controllers, keys, physicalMouse, fallbackController),\r\n            Middle = IsMouseActionPressed(MouseAction.MiddleButton, mappings, controllers, keys, physicalMouse, fallbackController)\r\n        };\r\n    }\r\n\r\n    private static bool IsMouseActionPressed(MouseAction action,\r\n        IReadOnlyDictionary<string, MouseAction> mappings,\r\n        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse, EmulationControllerState fallbackController) =>\r\n        mappings.Any(mapping => mapping.Value == action && IsSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, fallbackController), keys, physicalMouse));\r\n\r\n    private static IReadOnlyList<EmulationControllerState> MapControllers(\r\n        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys,\r\n        IReadOnlyDictionary<string, bool> physicalMouse,\r\n        IReadOnlyList<ControllerBinding>? bindings)\r\n    {\r\n        var result = new EmulationControllerState[ControllerPortConstants.MaximumControllerPortCount];\r\n        for (var port = ControllerPortConstants.MinimumControllerPort; port < result.Length; port++)\r\n        {\r\n            var binding = bindings?.FirstOrDefault(item => item.Port == port);\r\n            var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);\r\n            if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount })\r\n            {\r\n                result[port] = EmulationControllerState.Empty;\r\n                continue;\r\n            }\r\n            uint buttons = InputSnapshotFunctionsConstants.NoPressedButtons;\r\n            foreach (var mapping in binding.ButtonMappings)\r\n            {\r\n                var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);\r\n                var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, InputSnapshotFunctionsConstants.UnknownButtonIndex);\r\n                var sourceName = targetInKey ? mapping.Value : mapping.Key;\r\n                var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(sourceName, physical, source);\r\n                if (target >= InputSnapshotFunctionsConstants.MinimumButtonIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))\r\n                    buttons |= InputSnapshotFunctionsConstants.SingleButtonMask << target;\r\n            }\r\n            result[port] = source with\n            {\n                Buttons = buttons,\n                LeftX = binding.Type == ControllerType.AnalogJoystick\n                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,\n                LeftY = binding.Type == ControllerType.AnalogJoystick\n                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY\n            };\r\n        }\r\n        return result;\r\n    }\r\n\r\n    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>\r\n        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > InputSnapshotFunctionsConstants.NoWheelMovement\r\n        };\r\n\r\n    private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)\r\n    {\r\n        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;\r\n        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))\r\n        {\r\n            var value = EmulationInputMappingFunctions.ControllerSourceValue(controllerSource, controller);\r\n            return EmulationInputMappingFunctions.IsControllerSourcePressed(controllerSource, controller, value);\r\n        }\r\n        if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))\r\n            return (controller.Buttons & (InputSnapshotFunctionsConstants.SingleButtonMask << legacyIndex)) != InputSnapshotFunctionsConstants.NoPressedButtons;\r\n        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)\r\n            && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key)) return keys.Contains(key);\r\n        return TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource) && mouse.GetValueOrDefault(mouseSource);\r\n    }\r\n\r\n    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)\r\n    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);\r\n\r\n    private static bool TryRemovePrefix(string? value, string prefix, out string source)\r\n    {\r\n        source = string.Empty;\r\n        if (string.IsNullOrWhiteSpace(value) || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))\r\n            return false;\r\n        source = value[prefix.Length..];\r\n        return !string.IsNullOrEmpty(source);\r\n    }\r\n}\r\n",
+        "body": "new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > InputSnapshotFunctionsConstants.NoWheelMovement\r\n        }",
+        "sha256": "A7BCAC2CD19F3C06A44F51ABDD2735A5327A2C09A69A9FD65958213242E448A1",
+        "comparer": "StringComparer.OrdinalIgnoreCase",
+        "line": 81,
+        "parameters": "(EmulationPointerState pointer)",
+        "values": [
+          {
+            "equivalent": true,
+            "source": "pointer.Left",
+            "key": "Left",
+            "sdk": "pointer.Left"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Right",
+            "key": "Right",
+            "sdk": "pointer.Right"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Middle",
+            "key": "Middle",
+            "sdk": "pointer.Middle"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.ExtendedButton1",
+            "key": "XButton1",
+            "sdk": "pointer.ExtendedButton1"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.ExtendedButton2",
+            "key": "XButton2",
+            "sdk": "pointer.ExtendedButton2"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Wheel > InputSnapshotFunctionsConstants.NoWheelMovement",
+            "key": "WheelUp",
+            "sdk": "pointer.Wheel > 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.Wheel < InputSnapshotFunctionsConstants.NoWheelMovement",
+            "key": "WheelDown",
+            "sdk": "pointer.Wheel < 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.HorizontalWheel < InputSnapshotFunctionsConstants.NoWheelMovement",
+            "key": "WheelLeft",
+            "sdk": "pointer.HorizontalWheel < 0"
+          },
+          {
+            "equivalent": true,
+            "source": "pointer.HorizontalWheel > InputSnapshotFunctionsConstants.NoWheelMovement",
+            "key": "WheelRight",
+            "sdk": "pointer.HorizontalWheel > 0"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+        "method": "private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>\r\n        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)\r\n        {\r\n            [InputSnapshotFunctionsConstants.Left] = pointer.Left,\r\n            [InputSnapshotFunctionsConstants.Right] = pointer.Right,\r\n            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,\r\n            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,\r\n            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,\r\n            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < InputSnapshotFunctionsConstants.NoWheelMovement,\r\n            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > InputSnapshotFunctionsConstants.NoWheelMovement\r\n        };"
+      }
+    ],
+    "semanticBaselineErrors": 0,
+    "semanticBaselineProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Commodore"
+    ],
+    "sdk": {
+      "method": "internal static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)\n    {\n        [\"Left\"] = pointer.Left, [\"Right\"] = pointer.Right, [\"Middle\"] = pointer.Middle,\n        [\"XButton1\"] = pointer.ExtendedButton1, [\"XButton2\"] = pointer.ExtendedButton2,\n        [\"WheelUp\"] = pointer.Wheel > 0, [\"WheelDown\"] = pointer.Wheel < 0,\n        [\"WheelLeft\"] = pointer.HorizontalWheel < 0, [\"WheelRight\"] = pointer.HorizontalWheel > 0\n    };",
+      "sourceSha256": "F07CEA8AF88B02BCA57F216CF5C12D6238C86C3E256BE48FD26580E50B96F262",
+      "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
+      "unchanged": true
+    },
+    "annotations": [
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "1FEC198DCB3D9228DEFCCFB4E46FC6AD7904EE0C05BE9136EAB6DDBA049F2725"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "0AF96AEE40839977EE0A2C9DD36AAAE9CA9E6BB61D6F9E8E2BDECE62910259F8"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "EAA9751C8D0A59CE363F75FE6FCDD66CE63681185B344216E84E7C76FFCDEBF2"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "041E32E820BECE6C68FDF152E645D72D55D3079D33A188910263A257143CC0B1"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "300743D1E1A72B059F922E596F598BFF6C9EE310FAA02E43AF556CEDC56D4EA1"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "506EA2913B76BABE386F46CABD18E2948B799B3D0D04574054BDB7A752F304E7"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "7B0CA18273BE9C580B1105B6405A98F0A8FB10DE9E5217ABE1ED3205D39FB4E5"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "929F8AF3519CBB72CF8738BF2A5F665FB5267076C4E3BADBE4E89FE678332C91"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "B9672DDD822B236D5DEBC3A32159AB90AE970EF1664CAB45B784F411F98E01A3"
+        },
+        "line": 14,
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "37093C8EB83A47EAD67930DAB36F05A6CB0AD514D7722A3EB85EC823645290D8"
+        },
+        "line": 13,
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
+          "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
+        },
+        "line": 15,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+        "name": "HandleEnvironment"
+      },
+      {
+        "fields": {
+          "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
+          "qualificationSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72"
+        },
+        "line": 15,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+        "name": "HandleEnvironment"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "3F5806E64F92203D8A7138EB2D7C9CCD41EDD764105CB41F4E14147239D20E1B"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "D26A31C17FF93732B3B11CEE5AE8EB79DBF05C6FA23549C80F041CD22F0F08E3"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "3D56372A08255E6638E6BB1207ABE11FD5BF4CF446E4B7FBC2FDCF3B27ED694F"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "150E3059664B598145D211E6E28C452F98DA324CEEDBCC70CFCDF4E33F4CB294"
+        },
+        "line": 12,
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+        },
+        "line": 24,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+        "name": "RunSession"
+      },
+      {
+        "fields": {
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+        },
+        "line": 24,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+        "name": "RunSession"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0"
+        },
+        "line": 77,
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229"
+        },
+        "line": 76,
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose"
+      },
+      {
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+        },
+        "line": 44,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError"
+      },
+      {
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+        },
+        "line": 44,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError"
+      },
+      {
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+        },
+        "line": 44,
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError"
+      },
+      {
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+        },
+        "line": 44,
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json",
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError"
+      },
+      {
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(string, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationControllerState>, GWGUI.Emulation.Contracts.EmulationControllerState, bool); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "CB820BCE98C5EE483818A6355D717BE6EF7826688E4D9701DBE6A1F54AEA349D"
+        },
+        "line": 103,
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "73DAFAE197A3B5E2E87B3368273C12D9235F6AFC507A2D7079D2B96503099731",
+        "name": "ControllerForSource"
+      },
+      {
+        "fields": {
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(string, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationControllerState>, GWGUI.Emulation.Contracts.EmulationControllerState, bool); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "A7BCAC2CD19F3C06A44F51ABDD2735A5327A2C09A69A9FD65958213242E448A1"
+        },
+        "line": 110,
+        "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "73DAFAE197A3B5E2E87B3368273C12D9235F6AFC507A2D7079D2B96503099731",
+        "name": "ControllerForSource"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB"
+        },
+        "line": 63,
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A"
+        },
+        "line": 82,
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008"
+        },
+        "line": 51,
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B"
+        },
+        "line": 60,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE"
+        },
+        "line": 60,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C"
+        },
+        "line": 79,
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06"
+        },
+        "line": 80,
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A"
+        },
+        "line": 64,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF97F20FA08A9392CD8E4B16A6FB37305A84B3121F8821707C3EC9BEF1887AFB"
+        },
+        "line": 63,
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A"
+        },
+        "line": 82,
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "848CD752A7383951A467366AA9FE876F7D609D96B3C289979DEF48FB132AF008"
+        },
+        "line": 51,
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B7863095EF9CE66BA2310C797EA47E64AACC93D6B1AF354A6599F343A6CBE826"
+        },
+        "line": 73,
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "40440081E28C85E2F3267235AE231A05F235BF6529A7D99D6C06881B129ABE6B"
+        },
+        "line": 60,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9944AE860A88F75D82294AE8262971E2F0A7B495E0C7892E7A73D248A47344EE"
+        },
+        "line": 60,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C"
+        },
+        "line": 79,
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06"
+        },
+        "line": 80,
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "76560C987165D36F9166088D49139E9AA8044609D17173DAA0659C2D11A85D6A"
+        },
+        "line": 64,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125"
+        },
+        "line": 81,
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      },
+      {
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403"
+        },
+        "line": 78,
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "TryDequeueAudio"
+      }
+    ],
+    "state": "two-existing-sdk-physical-mouse-adapters-qualified",
+    "verification": {
+      "existingSdkUnchanged": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "comparerAndOrderUnchanged": true,
+      "semanticErrors": 0,
+      "wheelThresholdsZero": true,
+      "bindings": [
+        {
+          "sourceSha256": "3586BD8D679DB58C2A532B43CC4F77ABE236D1707FB010A49877818BCF601B7E",
+          "allOtherPipelineSourceUnchanged": true,
+          "line": 73,
+          "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions",
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "signatureUnchanged": true,
+          "nineKeyMappingsVerified": true
+        },
+        {
+          "sourceSha256": "3BFAE42EAB6F1E6C707D40ED3CE144769C29DE29172DE0F37134ECFE0259FDEB",
+          "allOtherPipelineSourceUnchanged": true,
+          "line": 81,
+          "target": "GWGUI.Emulation.Functions.EmulationInputMappingFunctions",
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "signatureUnchanged": true,
+          "nineKeyMappingsVerified": true
+        }
+      ],
+      "newSdkHelpers": 0,
+      "tests": {
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter 'FullyQualifiedName~PhysicalInputReaderTests|FullyQualifiedName~AtomicInputFrameStoreTests|FullyQualifiedName~LegacyAnalogAxisTests' --verbosity quiet",
+        "newTests": 0,
+        "passed": 84,
+        "failed": 0
+      }
+    },
+    "inventory": {
+      "compactAnnotationsRestored": 84,
+      "outsideAnnotationsDigestUnchanged": true,
+      "fullMethodOccurrencesQualified": 4,
+      "remainingConstructions": 36,
+      "priorAnnotationsRestored": 3521,
+      "constructionCandidatesResolved": 2,
+      "partialOccurrencesRetained": 82
     }
   }
 }

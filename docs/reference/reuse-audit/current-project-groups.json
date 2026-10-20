@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7234,
   "outsideSrcCSharpFiles": 324,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11430,
+  "currentMethodCount": 11428,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -18512,7 +18512,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -31042,29 +31042,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "B4316B8674D0746BE55154EE55F712986695211C71BC30ABDFDEE0397A278B0D",
-      "tokens": 120,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
-          "name": "PhysicalMouse",
-          "line": 73,
-          "tokens": 120,
-          "hash": "A5B8E5B2B4730C9BC33B8E3161F5067E2B60DCBFED63594DFC857FF5069D5E6E",
-          "shape": "B4316B8674D0746BE55154EE55F712986695211C71BC30ABDFDEE0397A278B0D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
-          "name": "PhysicalMouse",
-          "line": 81,
-          "tokens": 120,
-          "hash": "C1496DAB000464F4A8AD0943FB772D5E7FAC76B1FD0A9FF34E376B57BC2AA223",
-          "shape": "B4316B8674D0746BE55154EE55F712986695211C71BC30ABDFDEE0397A278B0D"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "B5FD28A1CCA74013479862FA59ED382EDF0E12DBF4D549B4DBE5389775F1D652",
       "tokens": 94,
       "current": [
@@ -31928,7 +31905,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "IsSourcePressed",
-          "line": 87,
+          "line": 75,
           "tokens": 174,
           "hash": "2AE562CB04A6C6A623AFA5628DA1741C2A1027F5E3AE31A02073FDE98BCACF9C",
           "shape": "CDCE73634D1F5D26DFF5099234BD72EBE055BA5E84BAEBD584328825D2A23B78"
@@ -31936,7 +31913,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "IsSourcePressed",
-          "line": 95,
+          "line": 84,
           "tokens": 174,
           "hash": "D66F0989028833CAB4476F28A2511D4441A0D7255DF23617A050F354D558F2C7",
           "shape": "CDCE73634D1F5D26DFF5099234BD72EBE055BA5E84BAEBD584328825D2A23B78"
@@ -33912,6 +33889,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 423
+    "occurrences": 425
   }
 }

@@ -70,19 +70,7 @@ internal static class InputSnapshotFunctions
         return result;
     }
 
-    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(
-            StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.Left] = pointer.Left,
-            [InputSnapshotFunctionsConstants.Right] = pointer.Right,
-            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,
-            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
-            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
-            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta,
-            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta,
-            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta,
-            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta
-        };
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(pointer);
 
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {

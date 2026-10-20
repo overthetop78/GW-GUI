@@ -1,12 +1,13 @@
 {
-  "snapshot": "5784865eba6f539718d612d1db519bbceade2c91",
+  "snapshot": "2a93969357925c2409a04c46d2a2e91a5a1df5b2",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7234,
-  "methodBodyCount": 9574,
+  "methodBodyCount": 9576,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -925,7 +926,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . DynamicMediaUnsupported )",
           "hash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "C0E6B06B0C55DA2FEF27A73943573316B65BFBCCD6105AC2178E331F8B1A28B6"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
@@ -937,7 +940,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . DynamicMediaUnsupported )",
           "hash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "FE2504F584B85C15D797A8A30C8CB8609CBF1FAA1C623EB923F151CAF2F56154"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -38284,14 +38289,14 @@
           "name": "ControllerForSource",
           "owner": "InputSnapshotFunctions",
           "kind": "MethodDeclaration",
-          "line": 103,
+          "line": 91,
           "parameters": "(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)",
           "tokens": 21,
           "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . ResolveSourceController ( source , controllers , fallback , fallbackWhenMissing : true )",
           "hash": "73DAFAE197A3B5E2E87B3368273C12D9235F6AFC507A2D7079D2B96503099731",
           "shape": "8416647050A63CEF8ACCA94AD77C47C35CFABC7A5F812A40D6A4709EB7B7E027",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(string, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationControllerState>, GWGUI.Emulation.Contracts.EmulationControllerState, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "CB820BCE98C5EE483818A6355D717BE6EF7826688E4D9701DBE6A1F54AEA349D"
+          "qualificationSourceSha256": "3586BD8D679DB58C2A532B43CC4F77ABE236D1707FB010A49877818BCF601B7E"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
@@ -38312,14 +38317,14 @@
           "name": "ControllerForSource",
           "owner": "InputSnapshotFunctions",
           "kind": "MethodDeclaration",
-          "line": 110,
+          "line": 99,
           "parameters": "(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)",
           "tokens": 21,
           "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . ResolveSourceController ( source , controllers , fallback , fallbackWhenMissing : true )",
           "hash": "73DAFAE197A3B5E2E87B3368273C12D9235F6AFC507A2D7079D2B96503099731",
           "shape": "8416647050A63CEF8ACCA94AD77C47C35CFABC7A5F812A40D6A4709EB7B7E027",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(string, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationControllerState>, GWGUI.Emulation.Contracts.EmulationControllerState, bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A7BCAC2CD19F3C06A44F51ABDD2735A5327A2C09A69A9FD65958213242E448A1"
+          "qualificationSourceSha256": "3BFAE42EAB6F1E6C707D40ED3CE144769C29DE29172DE0F37134ECFE0259FDEB"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
@@ -65506,6 +65511,20 @@
       "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . PhysicalMouse ( pointer )",
       "current": [
         {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "name": "PhysicalMouse",
+          "owner": "InputSnapshotFunctions",
+          "kind": "MethodDeclaration",
+          "line": 73,
+          "parameters": "(EmulationPointerState pointer)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . PhysicalMouse ( pointer )",
+          "hash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
+          "qualificationSourceSha256": "3586BD8D679DB58C2A532B43CC4F77ABE236D1707FB010A49877818BCF601B7E"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "PhysicalMouse",
           "owner": "InputSnapshotFunctions",
@@ -65518,6 +65537,20 @@
           "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(GWGUI.Emulation.Contracts.EmulationPointerState); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "64852302B5095A80DB78E78E1B60A24505B45B4C69AC920C905F2B80477D1BEB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "name": "PhysicalMouse",
+          "owner": "InputSnapshotFunctions",
+          "kind": "MethodDeclaration",
+          "line": 81,
+          "parameters": "(EmulationPointerState pointer)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . PhysicalMouse ( pointer )",
+          "hash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
+          "qualificationSourceSha256": "3BFAE42EAB6F1E6C707D40ED3CE144769C29DE29172DE0F37134ECFE0259FDEB"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
@@ -65590,7 +65623,7 @@
           "qualificationSourceSha256": "1FFC2A99F7089C3FBB3CC9208287C8E75F1A856CD20AA5D55F3F6E6B3579CDF9"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "D672B766954CC776FE32CCD983F5343A48E1F64B11C5B78E235A03194E1461E1",
@@ -69207,7 +69240,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "18476EFA98AB06033400BB54F941AAAD8B6BA5DFB410A293BA569E1A47E54568"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
@@ -69219,7 +69254,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "9A81C843023C89F79386FFB88B4E3D03C9858D43F73F6D199A73AC72FB043E52"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CueRuntimeFunctions.cs",
@@ -69231,7 +69268,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "1D9CB35EBD8DE9799FEB027809CF05F58534E4D9B9F60A90001583166165C7E8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -85526,7 +85565,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . DynamicMediaUnsupported )",
           "hash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "C0E6B06B0C55DA2FEF27A73943573316B65BFBCCD6105AC2178E331F8B1A28B6"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
@@ -85538,7 +85579,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . DynamicMediaUnsupported )",
           "hash": "044801DB66ADAC5395A15D1B275964FA95E69EB2C85CBD176C4F84CCB851525A",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "FE2504F584B85C15D797A8A30C8CB8609CBF1FAA1C623EB923F151CAF2F56154"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
@@ -85550,7 +85593,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "18476EFA98AB06033400BB54F941AAAD8B6BA5DFB410A293BA569E1A47E54568"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs",
@@ -85562,7 +85607,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Firmware , ErrorCode . FirmwareInvalid , ErrorMessages . FirmwareFileUnreadable )",
           "hash": "17C29DC2D8EEA39493ECD1517473D15DEFA10AED892B0DB310BE8C4699644C8D",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "D0A6C609CB6E38D7F09784007DA6287D5C782F4A3D59A0134EA0DFFB8A0F7813"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Media.cs",
@@ -85574,7 +85621,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "9A81C843023C89F79386FFB88B4E3D03C9858D43F73F6D199A73AC72FB043E52"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CueRuntimeFunctions.cs",
@@ -85586,7 +85635,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
+          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "1D9CB35EBD8DE9799FEB027809CF05F58534E4D9B9F60A90001583166165C7E8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -93684,6 +93735,20 @@
       "tokens": 13,
       "current": [
         {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "name": "PhysicalMouse",
+          "owner": "InputSnapshotFunctions",
+          "kind": "MethodDeclaration",
+          "line": 73,
+          "parameters": "(EmulationPointerState pointer)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . PhysicalMouse ( pointer )",
+          "hash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
+          "qualificationSourceSha256": "3586BD8D679DB58C2A532B43CC4F77ABE236D1707FB010A49877818BCF601B7E"
+        },
+        {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs",
           "name": "FromLedStates",
           "owner": "EmulationMediaActivityFunctions",
@@ -93710,6 +93775,20 @@
           "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(GWGUI.Emulation.Contracts.EmulationPointerState); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "64852302B5095A80DB78E78E1B60A24505B45B4C69AC920C905F2B80477D1BEB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+          "name": "PhysicalMouse",
+          "owner": "InputSnapshotFunctions",
+          "kind": "MethodDeclaration",
+          "line": 81,
+          "parameters": "(EmulationPointerState pointer)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationInputMappingFunctions . PhysicalMouse ( pointer )",
+          "hash": "D5F7D5FED9B0C75BF66EAF31C7615A45236A77DE2E8AC152A5D5A19BA76223B0",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "existing-sdk-physical-mouse-owner-nine-inputs-and-case-policy-preserved",
+          "qualificationSourceSha256": "3BFAE42EAB6F1E6C707D40ED3CE144769C29DE29172DE0F37134ECFE0259FDEB"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
@@ -126223,7 +126302,9 @@
           "tokens": 13,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , message )",
           "hash": "17158EE5F0C2AD819C3F19FE1684CC01BF793A87816616A3DE458D6FFD64EEEE",
-          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693"
+          "shape": "A94838A290386E79715FF4D8CA3D109937484AFF1262ADC8136FBCB9C815D693",
+          "qualification": "typed-public-content-exception-adapter-existing-sdk-base-message-context-preserved",
+          "qualificationSourceSha256": "85FC3215F885D45DF75017D6CCE2F2153671D80C813B10E1D3E833199CE6C5AB"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -143374,7 +143455,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3048
+    "occurrences": 3058,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
