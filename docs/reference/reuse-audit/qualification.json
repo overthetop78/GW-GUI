@@ -562748,5 +562748,226 @@
       "invocationCorrection": "First compilation overlapped comparison holding SDK output metadata. Comparison exited; identical test command rerun successfully without overlap. No product changes.",
       "newTests": 0
     }
+  },
+  "typedExceptionReuse": {
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulationException.cs",
+        "sha256": "54CCD19C8E6127E8CC76E8CEC3E3CE7C2ADDE4EB6B1FDE65539046ABADCB5B49",
+        "source": "namespace GWGUI.Emulation.Acorn.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n\n",
+        "namespace": "GWGUI.Emulation.Acorn.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
+        "sha256": "0707291A75BC472BDD4823CFE91B2158A61A2EDFB54F59269C1C188703BB5DBF",
+        "source": "namespace GWGUI.Emulation.Apple.Common.Exceptions;\r\n\r\n\r\n\r\npublic sealed class EmulationException : Exception\r\n{\r\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\r\n        : base(message, innerException)\r\n    {\r\n        Category = category;\r\n        Code = code;\r\n        Context = context ?? new Dictionary<string, string>();\r\n        IsLocalized = isLocalized;\r\n    }\r\n\r\n    public ErrorCategory Category { get; }\r\n    public ErrorCode Code { get; }\r\n    public IReadOnlyDictionary<string, string> Context { get; }\r\n    public bool IsLocalized { get; }\r\n}\r\n",
+        "namespace": "GWGUI.Emulation.Apple.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
+        "sha256": "F06E1E67E7CA20A8C7C4C405C4155F5CE5965D720F11550C4201A49829831E3D",
+        "source": "namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;\r\n\r\n\r\n\r\npublic sealed class EmulationException : Exception\r\n{\r\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\r\n        : base(message, innerException)\r\n    {\r\n        Category = category;\r\n        Code = code;\r\n        Context = context ?? new Dictionary<string, string>();\r\n        IsLocalized = isLocalized;\r\n    }\r\n\r\n    public ErrorCategory Category { get; }\r\n    public ErrorCode Code { get; }\r\n    public IReadOnlyDictionary<string, string> Context { get; }\r\n    public bool IsLocalized { get; }\r\n}\r\n",
+        "namespace": "GWGUI.Emulation.Atari.Emulators.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulationException.cs",
+        "sha256": "A69BDE5FFCE010790C189DA694D06395AD703743234FD1F059219F9556EE928A",
+        "source": "namespace GWGUI.Emulation.Bandai.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Bandai.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulationException.cs",
+        "sha256": "994A968812EC81072312C2BC36186477860F066F05A896CB82315C80F4702701",
+        "source": "namespace GWGUI.Emulation.Coleco.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Coleco.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulationException.cs",
+        "sha256": "7A0B25167867745AE5F64095631212B167C5B4AD481366CF1A23967912676029",
+        "source": "namespace GWGUI.Emulation.Epoch.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Epoch.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulationException.cs",
+        "sha256": "42C9B0298A02494F528A60CA71B0FF5FD875A818FB0CD2A537B0CD9BA582F183",
+        "source": "namespace GWGUI.Emulation.Fairchild.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Fairchild.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulationException.cs",
+        "sha256": "B4B9EA93B05A3108CA1A7E465BE7FE5FAD639232BC5E459213504EC3E2983941",
+        "source": "namespace GWGUI.Emulation.Mattel.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Mattel.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
+        "sha256": "040B9B5DC9F60497595614B6FE500A10849F5D5347622C50F9C6667CB84F817C",
+        "source": "namespace GWGUI.Emulation.Philips.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Philips.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
+        "sha256": "9BB035A82C2C0EB24D6BFA4779A5E01220CAFEEAEC6CD08050B5F36950FA7BF8",
+        "source": "namespace GWGUI.Emulation.Sharp.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)\n        : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Sharp.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
+        "sha256": "FE16919C3176BC4B359B46B42EB3419045E088EC24A95A67B10BC765CB1E3AEB",
+        "source": "namespace GWGUI.Emulation.Sinclair.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false) : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Sinclair.Common.Exceptions"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Exceptions/EmulationException.cs",
+        "sha256": "5404A896191BDE19238F8409454632F25447CF88015A6E543FF777261B205187",
+        "source": "namespace GWGUI.Emulation.Snk.Common.Exceptions;\n\n\n\npublic sealed class EmulationException : Exception\n{\n    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false) : base(message, innerException)\n    {\n        Category = category;\n        Code = code;\n        Context = context ?? new Dictionary<string, string>();\n        IsLocalized = isLocalized;\n    }\n\n    public ErrorCategory Category { get; }\n    public ErrorCode Code { get; }\n    public IReadOnlyDictionary<string, string> Context { get; }\n    public bool IsLocalized { get; }\n}\n",
+        "namespace": "GWGUI.Emulation.Snk.Common.Exceptions"
+      }
+    ],
+    "origin": {
+      "path": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
+      "commit": "615589c70",
+      "source": "namespace GWGUI.Emulation.Apple.Common.Exceptions;\r\n\r\n\r\n\r\npublic sealed class EmulationException : Exception\r\n{\r\n    public EmulationException(ErrorCategory category, ErrorCode code, string message,\r\n        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,\r\n        bool isLocalized = false)\r\n        : base(message, innerException)\r\n    {\r\n        Category = category;\r\n        Code = code;\r\n        Context = context ?? new Dictionary<string, string>();\r\n        IsLocalized = isLocalized;\r\n    }\r\n\r\n    public ErrorCategory Category { get; }\r\n    public ErrorCode Code { get; }\r\n    public IReadOnlyDictionary<string, string> Context { get; }\r\n    public bool IsLocalized { get; }\r\n}",
+      "tokens": "public sealed class EmulationException : Exception { public EmulationException ( ErrorCategory category , ErrorCode code , string message , IReadOnlyDictionary < string , string > ? context = null , Exception ? innerException = null , bool isLocalized = false ) : base ( message , innerException ) { Category = category ; Code = code ; Context = context ?? new Dictionary < string , string > ( ) ; IsLocalized = isLocalized ; } public ErrorCategory Category { get ; } public ErrorCode Code { get ; } public IReadOnlyDictionary < string , string > Context { get ; } public bool IsLocalized { get ; } }"
+    },
+    "state": "verified-awaiting-grouped-build",
+    "verification": {
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "originalPropertiesUnchanged": true,
+      "originalBaseCallUnchanged": true,
+      "originalConstructorBodyUnchanged": true,
+      "sdkSourceSha256": "B7852E014E3BB7E23A6C08E9AF46B9930DBA6DA57E2D27982AF56D9700D440C7",
+      "allOtherSourceUnchanged": true,
+      "modules": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Acorn.Common.Enums.ErrorCategory",
+          "sha256": "80C7879383887DB27568FD5D7A653FF7187E5930CE6E68778D156297F5B62E42",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Acorn.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Apple.Common.Enums.ErrorCategory",
+          "sha256": "410E0F133D62A641CC06BBAEAD5A31126A7DA33214D46B46DCEFCE78B05C6580",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Apple.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory",
+          "sha256": "E0663C361875C6E4ABF36076D5A308D0D0A9F27D81DF920DF0547BDFBF1D42F6",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Bandai.Common.Enums.ErrorCategory",
+          "sha256": "C459DD9C3C789BE18167FB9797476EAFCA08EF45B7D757DD437DC0D03B1067E4",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Bandai.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Coleco.Common.Enums.ErrorCategory",
+          "sha256": "A7FD221D7788EF4F44982D923C4BEFC64F703C9B68EC8D0B670BE02FF415C7FC",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Coleco.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Epoch.Common.Enums.ErrorCategory",
+          "sha256": "333EA721C6E2C689776904ADC8F0D1B34D71E0DB5BDF8C0DEA0E5C51B21D710B",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Epoch.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Fairchild.Common.Enums.ErrorCategory",
+          "sha256": "EEBAE4D71A953A75765390503446F284052264FF6BCE59BDE75D7FCDB47E6D27",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Fairchild.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory",
+          "sha256": "0C70F10B01C01DCEA4803D4875436A44C8730638A57A9E14AB0735C2B5393CEB",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Mattel.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Philips.Common.Enums.ErrorCategory",
+          "sha256": "C3CF2610AA526A438CF1823B3CBEB0A9C3F0C67F8FD8498EEF694FCA5648DAF6",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Philips.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Sharp.Common.Enums.ErrorCategory",
+          "sha256": "C4C10EFA771AEE6FD950921FC41BCC25178EB27035B93C7DE5F940CE221F34FF",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Sharp.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory",
+          "sha256": "B376780E3C59154DA4E19BFBC527FBE2E400792436EA6F8A015419973E26899C",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Exceptions/EmulationException.cs",
+          "closedCategory": "GWGUI.Emulation.Snk.Common.Enums.ErrorCategory",
+          "sha256": "8887A4C590489993AC3E9A8728DC151E61B64C251FB942070A03393C8512195B",
+          "publicConstructorUnchanged": true,
+          "originalImplementationReused": true,
+          "closedCode": "GWGUI.Emulation.Snk.Common.Enums.ErrorCode"
+        }
+      ]
+    },
+    "tests": {
+      "passed": 101,
+      "newCases": 60,
+      "externalFixturesCreated": false,
+      "filter": "TypedExceptionContractTests|MachineAdapterFailure|SnkFbAlphaCcdTests|SnkFbAlphaCueTests|StateIdentityComparisonTests",
+      "failed": 0
+    }
   }
 }

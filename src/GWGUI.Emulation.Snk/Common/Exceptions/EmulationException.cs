@@ -1,19 +1,11 @@
 namespace GWGUI.Emulation.Snk.Common.Exceptions;
 
-
-
-public sealed class EmulationException : Exception
+public sealed class EmulationException : GWGUI.Emulation.Exceptions.EmulationException<ErrorCategory, ErrorCode>
 {
-    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false) : base(message, innerException)
+    public EmulationException(ErrorCategory category, ErrorCode code, string message,
+        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,
+        bool isLocalized = false)
+        : base(category, code, message, context, innerException, isLocalized)
     {
-        Category = category;
-        Code = code;
-        Context = context ?? new Dictionary<string, string>();
-        IsLocalized = isLocalized;
     }
-
-    public ErrorCategory Category { get; }
-    public ErrorCode Code { get; }
-    public IReadOnlyDictionary<string, string> Context { get; }
-    public bool IsLocalized { get; }
 }
