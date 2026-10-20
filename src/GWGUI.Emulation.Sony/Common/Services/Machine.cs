@@ -18,6 +18,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IAudioOutput? _audioOutput;
     private int _audioSampleRate;
     private EmulationAudioChannelLayout _audioChannelLayout = EmulationAudioChannelLayout.Stereo;
+    private Thread? _thread;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
     private bool _pauseRequested;

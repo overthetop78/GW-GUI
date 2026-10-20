@@ -15,30 +15,19 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             ObjectDisposedException.ThrowIf(_disposed, this);
             if (State != EmulationMachineState.Created) throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
             State = EmulationMachineState.Starting;
-            _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            _thread = new Thread(() =>
+            var threadStarted = false;
+            try
             {
-                try { Run(_stopSource.Token); }
-                finally { completed.TrySetResult(); }
-            })
-            {
-                IsBackground = true,
-                Name = MachineFunctions.ThreadName(Id, Configuration.Core)
-            };
-            _runLoop = completed.Task;
-            try { _thread.Start(); }
-            catch
-            {
-                _thread = null;
-                completed.TrySetResult();
-                _stopSource.Dispose();
-                _stopSource = null;
-                State = EmulationMachineState.Faulted;
-                throw;
+                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                    Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
+                    out _stopSource, out _started, out _runLoop, out _thread);
+                threadStarted = true;
+                started = _started.Task;
             }
-            started = _started.Task;
+            finally
+            {
+                if (!threadStarted) State = EmulationMachineState.Faulted;
+            }
         }
         await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
@@ -77,26 +66,29 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
-        Task? loop;
-        lock (_gate)
-        {
-            if (State == EmulationMachineState.Created) return;
-            loop = _runLoop;
-            if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
-            {
-                State = EmulationMachineState.Stopping;
-                _stopSource?.Cancel();
-                _pauseRequested = false;
-                Monitor.PulseAll(_gate);
-            }
-        }
+        Task? loop = null;
         try
         {
+            lock (_gate)
+            {
+                if (State == EmulationMachineState.Created) return;
+                loop = _runLoop;
+                if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
+                {
+                    State = EmulationMachineState.Stopping;
+                    try { _stopSource?.Cancel(); }
+                    finally
+                    {
+                        _pauseRequested = false;
+                        Monitor.PulseAll(_gate);
+                    }
+                }
+            }
             if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
         }
         finally
         {
-            await ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

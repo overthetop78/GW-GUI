@@ -16,21 +16,19 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (State is not EmulationMachineState.Created and not EmulationMachineState.Stopped)
                 throw MachineExceptions.MachineNotRunning();
             State = EmulationMachineState.Starting;
-            _stop = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var thread = new Thread(() =>
+            var threadStarted = false;
+            try
             {
-                try { Run(_stop.Token); }
-                finally { completion.TrySetResult(); }
-            })
+                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                    Run, $"GWGUI Nintendo {Id:N}", cancellationToken,
+                    out _stop, out _started, out _runLoop, out _thread);
+                threadStarted = true;
+                started = _started.Task;
+            }
+            finally
             {
-                IsBackground = true,
-                Name = $"GWGUI Nintendo {Id:N}"
-            };
-            _runLoop = completion.Task;
-            thread.Start();
-            started = _started.Task;
+                if (!threadStarted) State = EmulationMachineState.Faulted;
+            }
         }
         await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
@@ -72,20 +70,30 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
-        Task? loop;
-        lock (_gate)
+        Task? loop = null;
+        try
         {
-            if (State is EmulationMachineState.Stopped or EmulationMachineState.Created) return;
-            loop = _runLoop;
-            if (State != EmulationMachineState.Faulted)
+            lock (_gate)
             {
-                State = EmulationMachineState.Stopping;
-                _stop?.Cancel();
-                _pauseRequested = false;
-                Monitor.PulseAll(_gate);
+                if (State == EmulationMachineState.Created) return;
+                loop = _runLoop;
+                if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
+                {
+                    State = EmulationMachineState.Stopping;
+                    try { _stop?.Cancel(); }
+                    finally
+                    {
+                        _pauseRequested = false;
+                        Monitor.PulseAll(_gate);
+                    }
+                }
             }
+            if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
         }
-        if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
+        finally
+        {
+            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+        }
     }
 
     public void SetInput(EmulationInputSnapshot snapshot)

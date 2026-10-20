@@ -14,6 +14,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly Action<string>? _deleteSession;
     private readonly Func<Exception, Exception>? _startErrorTranslator;
     private IAudioOutput? _audioOutput;
+    private Thread? _thread;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
     private bool _pauseRequested;

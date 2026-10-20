@@ -17,6 +17,48 @@ internal static class ExternalCoreLifecycleFunctions
             optionHost.Dispose();
     }
 
+    internal static void StartThread(Action<CancellationToken> run, string name,
+        CancellationToken cancellationToken, out CancellationTokenSource? stop,
+        out TaskCompletionSource started, out Task? loop, out Thread? thread)
+    {
+        stop = null;
+        started = null!;
+        loop = null;
+        thread = null;
+        TaskCompletionSource? completed = null;
+        var threadStarted = false;
+        try
+        {
+            var stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            stop = stopSource;
+            started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            completed = completion;
+            thread = new Thread(() =>
+            {
+                try { run(stopSource.Token); }
+                finally { completion.TrySetResult(); }
+            })
+            {
+                IsBackground = true,
+                Name = name
+            };
+            loop = completion.Task;
+            thread.Start();
+            threadStarted = true;
+        }
+        finally
+        {
+            if (!threadStarted)
+            {
+                thread = null;
+                completed?.TrySetResult();
+                try { stop?.Dispose(); }
+                finally { stop = null; }
+            }
+        }
+    }
+
     internal static async ValueTask WaitForStartOrStopAsync(Task started,
         CancellationToken cancellationToken, Func<ValueTask> stop)
     {

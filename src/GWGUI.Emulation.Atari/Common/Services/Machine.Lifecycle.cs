@@ -18,41 +18,18 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (State != EmulationMachineState.Created)
                 throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
             State = EmulationMachineState.Starting;
-            TaskCompletionSource? completed = null;
             var threadStarted = false;
             try
             {
-                _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-                var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-                completed = completion;
-                _thread = new Thread(() =>
-                {
-                    try { Run(_stopSource.Token); }
-                    finally { completion.TrySetResult(); }
-                })
-                {
-                    IsBackground = true,
-                    Name = MachineFunctions.ThreadName(Id, Configuration.Core)
-                };
-                _runLoop = completion.Task;
-                _thread.Start();
+                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                    Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
+                    out _stopSource, out _started, out _runLoop, out _thread);
                 threadStarted = true;
                 started = _started.Task;
             }
             finally
             {
-                if (!threadStarted)
-                {
-                    _thread = null;
-                    completed?.TrySetResult();
-                    try { _stopSource?.Dispose(); }
-                    finally
-                    {
-                        _stopSource = null;
-                        State = EmulationMachineState.Faulted;
-                    }
-                }
+                if (!threadStarted) State = EmulationMachineState.Faulted;
             }
         }
         await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
@@ -114,7 +91,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            await ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 
