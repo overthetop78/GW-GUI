@@ -12,6 +12,24 @@ namespace GWGUI.Tests.Emulation;
 public sealed class CoreHostResponseTests
 {
     [Theory]
+    [InlineData("C:\\GW GUI\\gwgui.exe", "C:\\GW GUI", "--core-host", "pipe with spaces", "video map")]
+    [InlineData("C:\\GW GUI\\gwgui.exe", "D:\\Sessions\\Amiga", "--amiga-core-host", "pipe", "video")]
+    [InlineData("D:\\Émulation\\hôte.exe", "D:\\Émulation", "--custom-host", "pipe-1", "map-2")]
+    public void HostStartInfoPreservesDirectoriesFlagsAndSeparateArguments(
+        string executable, string workingDirectory, string command, string pipe, string videoMap)
+    {
+        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(
+            executable, workingDirectory, command, pipe, videoMap);
+
+        Assert.Equal(executable, startInfo.FileName);
+        Assert.Equal(workingDirectory, startInfo.WorkingDirectory);
+        Assert.False(startInfo.UseShellExecute);
+        Assert.True(startInfo.CreateNoWindow);
+        Assert.Equal(new[] { command, pipe, videoMap }, startInfo.ArgumentList);
+        Assert.Empty(startInfo.Arguments);
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void InitializationPreservesTypedJsonStatusPositionAndRepeatedDiagnosticReads(bool withStatus)

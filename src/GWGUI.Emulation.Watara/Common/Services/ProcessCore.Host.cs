@@ -18,15 +18,8 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
 {
     private Process StartHostProcess(string pipeName, string videoMapName)
     {
-        var startInfo = new ProcessStartInfo(_hostExecutablePath)
-        {
-            UseShellExecute = false,
-            CreateNoWindow = true,
-            WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
-        };
-        startInfo.ArgumentList.Add(_hostCommand);
-        startInfo.ArgumentList.Add(pipeName);
-        startInfo.ArgumentList.Add(videoMapName);
+        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+            Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
         return EmulationChildProcessLifetime.Start(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
     }
 

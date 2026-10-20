@@ -8,6 +8,21 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static ProcessStartInfo CreateHostStartInfo(string executablePath, string workingDirectory,
+        string hostCommand, string pipeName, string videoMapName)
+    {
+        var startInfo = new ProcessStartInfo(executablePath)
+        {
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            WorkingDirectory = workingDirectory
+        };
+        startInfo.ArgumentList.Add(hostCommand);
+        startInfo.ArgumentList.Add(pipeName);
+        startInfo.ArgumentList.Add(videoMapName);
+        return startInfo;
+    }
+
     internal static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout,
         CancellationToken cancellationToken)
     {

@@ -64,15 +64,8 @@ internal sealed class ProcessCore : IEmulatorCore
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
-        var startInfo = new ProcessStartInfo(_hostExecutablePath)
-        {
-            UseShellExecute = false,
-            CreateNoWindow = true,
-            WorkingDirectory = Path.GetFullPath(sessionDirectory)
-        };
-        startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
-        startInfo.ArgumentList.Add(pipeName);
-        startInfo.ArgumentList.Add(videoMapName);
+        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+            Path.GetFullPath(sessionDirectory), ProcessCoreConstants.CoreHost, pipeName, videoMapName);
         _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
         try
         {
