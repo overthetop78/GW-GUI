@@ -157,10 +157,8 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
             EmulationMessageSeverity.Error,
             EmulationMessageTarget.Dialog,
             new EmulationEmulatorMessageContext(adapter.EmulatorId)));
-        var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
-        if (output == SettingsConstants.DefaultOutput)
-            output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : EmulationSettingConstants.DefaultAudioLatencyMilliseconds;
+        var output = EmulationAudioFunctions.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
+        var latency = EmulationAudioFunctions.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,

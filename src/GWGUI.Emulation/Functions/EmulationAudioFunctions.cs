@@ -1,9 +1,22 @@
 using System.Runtime.InteropServices;
+using System.Globalization;
 
 namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationAudioFunctions
 {
+    internal static string? ResolveRuntimeOutput(IReadOnlyDictionary<string, string> options, string key, string defaultOutput)
+    {
+        var output = options.GetValueOrDefault(key);
+        if (output == defaultOutput) output = null;
+        return output;
+    }
+
+    internal static int ResolveRuntimeLatency(IReadOnlyDictionary<string, string> options, string key) =>
+        options.TryGetValue(key, out var selectedLatency)
+            && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+                ? parsed : EmulationSettingConstants.DefaultAudioLatencyMilliseconds;
+
     internal static void WriteVolume(ref IAudioOutput? output, ref float volume, ReadOnlySpan<short> samples)
     {
         if (output is null) return;
