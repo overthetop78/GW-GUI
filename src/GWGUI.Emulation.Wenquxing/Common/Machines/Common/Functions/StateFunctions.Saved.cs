@@ -32,7 +32,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
-        Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException ?? new InvalidDataException(message));
+        Exception? innerException = null) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {

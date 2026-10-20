@@ -72,5 +72,5 @@ internal static class FirmwareRuntimeFunctions
         }
     }
 
-    private static EmulationMessageException Invalid(EmulationMessageCode code) => new(new EmulationMessage(EmulationMessageCategory.Firmware, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException Invalid(EmulationMessageCode code) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, code, null);
 }

@@ -12,7 +12,7 @@ internal static class MediaRuntimeFunctions
             MediaRuntimeConstants.Floppy or MediaRuntimeConstants.SapFloppy => MediaCategory.Floppy,
             MediaRuntimeConstants.Tape => MediaCategory.Tape,
             MediaRuntimeConstants.MoCartridge or MediaRuntimeConstants.ToCartridge or MediaRuntimeConstants.RomCartridge => MediaCategory.Cartridge,
-            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))
+            _ => throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
         };
     }
 

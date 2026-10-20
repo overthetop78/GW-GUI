@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7228,
-  "outsideSrcCSharpFiles": 318,
+  "currentCSharpFiles": 7229,
+  "outsideSrcCSharpFiles": 319,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11418,
+  "currentMethodCount": 11420,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -3059,7 +3059,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
           "name": "ThrowCallbackFailure",
-          "line": 271,
+          "line": 266,
           "tokens": 35,
           "hash": "225502367B511E96BA85998233B8636BCEE1968D75C04DB06F937AF9D3EF5A60",
           "shape": "FE4F22538EBC59A054E34D5B27C141D7862A5AA9E32504DD3493C261B7FD4CDA"
@@ -8723,8 +8723,8 @@
           "tokens": 93,
           "hash": "54A5EBF9AD14F0625C0800E11FC881CCE84E41D923E4E4EA033C7D856628FC53",
           "shape": "ACDEB7D9B295F5AAED8380188F621294D485A3665CE546F9EFBD8A406373D02C",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -8749,7 +8749,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -10667,7 +10667,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -12005,49 +12005,6 @@
           "tokens": 46,
           "hash": "744AE8D1BA47D87517282E116CD8F9A0B7554B1896A455F570BD12DC823E6315",
           "shape": "CFE88656609156BD4DE62C21B9CF4B3D40FD4688CAE80D668B8F905B722DBD16"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "74AE69E466851FC32D316BDFE4F0C6EA463F928245CCDD4D74014FBC4E5C5C55",
-      "method": "ThrowRemoteError",
-      "tokens": 58,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
-          "name": "ThrowRemoteError",
-          "line": 44,
-          "tokens": 58,
-          "hash": "74AE69E466851FC32D316BDFE4F0C6EA463F928245CCDD4D74014FBC4E5C5C55",
-          "shape": "60B9081CF1076DF500AC73365DFB3CB4988483B2C922F61F56092C29761D31BF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
-          "name": "ThrowRemoteError",
-          "line": 44,
-          "tokens": 58,
-          "hash": "74AE69E466851FC32D316BDFE4F0C6EA463F928245CCDD4D74014FBC4E5C5C55",
-          "shape": "60B9081CF1076DF500AC73365DFB3CB4988483B2C922F61F56092C29761D31BF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
-          "name": "ThrowRemoteError",
-          "line": 44,
-          "tokens": 58,
-          "hash": "74AE69E466851FC32D316BDFE4F0C6EA463F928245CCDD4D74014FBC4E5C5C55",
-          "shape": "60B9081CF1076DF500AC73365DFB3CB4988483B2C922F61F56092C29761D31BF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
-          "name": "ThrowRemoteError",
-          "line": 44,
-          "tokens": 58,
-          "hash": "74AE69E466851FC32D316BDFE4F0C6EA463F928245CCDD4D74014FBC4E5C5C55",
-          "shape": "60B9081CF1076DF500AC73365DFB3CB4988483B2C922F61F56092C29761D31BF"
         }
       ],
       "predecessors": [],
@@ -14798,14 +14755,14 @@
           "tokens": 444,
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
           "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
-          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
           "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
           "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
@@ -14814,14 +14771,14 @@
           "tokens": 444,
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
           "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
-          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
           "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
           "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
         }
       ],
       "predecessors": [],
@@ -16830,8 +16787,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -16840,8 +16797,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -16850,8 +16807,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -16860,13 +16817,13 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -17657,7 +17614,7 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "26F5BB075BA892E5BDA3AAC577BD1EA062E45899D11AFE432A1FDC4C66E49100",
+          "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD",
           "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
@@ -17697,7 +17654,7 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "F9A9365D9C22C4682E998205408A5D79AD464096570B4DD63166A7FEE94E0346",
+          "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5",
           "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
@@ -17717,7 +17674,7 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "694AA31B2D7AF71FCB0DC1226E528883F1D1104202BB40E4CF19651A361C4EE1",
+          "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079",
           "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
@@ -17757,7 +17714,7 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposalSourceSha256": "8CFFA1336847561F38D09EB9BF7325EC18EE37BCBAB0CB343990CF30767D5217",
+          "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9",
           "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         }
       ],
@@ -18441,7 +18398,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20895,8 +20852,8 @@
           "tokens": 63,
           "hash": "C9C5800D0C005E06CDA2DFBB95B5A8E4E5D4AF6BEAD46AACE78E60FA13B3AC56",
           "shape": "10EEB68ABB52DE9A8D275ACEFE483F5B481FA3DB7F4C153A3EAE1A5D36C9A0F4",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -20925,13 +20882,13 @@
           "tokens": 63,
           "hash": "C9C5800D0C005E06CDA2DFBB95B5A8E4E5D4AF6BEAD46AACE78E60FA13B3AC56",
           "shape": "10EEB68ABB52DE9A8D275ACEFE483F5B481FA3DB7F4C153A3EAE1A5D36C9A0F4",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -21002,6 +20959,57 @@
           "shape": "E0D6E34FCC1F8B1FEB3C59BE18F749988D99C9AD9A08B82C0D55654F9CBDF7ED"
         }
       ],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+      "method": "ThrowRemoteError",
+      "tokens": 53,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+          "name": "ThrowRemoteError",
+          "line": 44,
+          "tokens": 53,
+          "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+          "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+          "name": "ThrowRemoteError",
+          "line": 44,
+          "tokens": 53,
+          "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+          "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+          "name": "ThrowRemoteError",
+          "line": 44,
+          "tokens": 53,
+          "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+          "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+          "name": "ThrowRemoteError",
+          "line": 44,
+          "tokens": 53,
+          "hash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+          "shape": "F301CD03706BFE59762BA3CAE9D68C06FC9027666F1CED1FDE629A36D964C7E5",
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -21260,8 +21268,8 @@
           "tokens": 42,
           "hash": "CFD8349A9B155819EA3151FD794C241FD18DAB4898226CCB75091BC3837C2CDC",
           "shape": "22445211EF0711E1984CDF3DC32022E7D5A1E78E6057F698B11819B7EEDD056F",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21300,8 +21308,8 @@
           "tokens": 42,
           "hash": "CFD8349A9B155819EA3151FD794C241FD18DAB4898226CCB75091BC3837C2CDC",
           "shape": "22445211EF0711E1984CDF3DC32022E7D5A1E78E6057F698B11819B7EEDD056F",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21320,8 +21328,8 @@
           "tokens": 42,
           "hash": "CFD8349A9B155819EA3151FD794C241FD18DAB4898226CCB75091BC3837C2CDC",
           "shape": "22445211EF0711E1984CDF3DC32022E7D5A1E78E6057F698B11819B7EEDD056F",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21340,8 +21348,8 @@
           "tokens": 42,
           "hash": "CFD8349A9B155819EA3151FD794C241FD18DAB4898226CCB75091BC3837C2CDC",
           "shape": "22445211EF0711E1984CDF3DC32022E7D5A1E78E6057F698B11819B7EEDD056F",
-          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim."
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21405,7 +21413,7 @@
           "shape": "22445211EF0711E1984CDF3DC32022E7D5A1E78E6057F698B11819B7EEDD056F"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -26972,7 +26980,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 237,
+          "line": 232,
           "tokens": 86,
           "hash": "0BBB6A200F2F1375A5421AEBA8CA3FE7007A0FE87039C769D4AF606B607E4828",
           "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F"
@@ -29327,8 +29335,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -29377,8 +29385,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -29387,8 +29395,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -29407,8 +29415,8 @@
           "tokens": 145,
           "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
           "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
-          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved."
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -29431,7 +29439,7 @@
           "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "822C566F51278DCFE9592163DF6749BD5E9765E923AAC231C4E97679F9E75B18",
@@ -32224,7 +32232,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 216,
+          "line": 211,
           "tokens": 118,
           "hash": "CDDF16A17DF1FE3FCA3BBF874437E0D836EC837680EA25145FE7D52EC3EF1C28",
           "shape": "D6353A43CA4D2C4DC3EBB79935F18C57F2FBBD4D1FB39980003882C48B0C7D07"
@@ -33938,6 +33946,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 367
+    "occurrences": 352
   }
 }

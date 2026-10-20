@@ -43,7 +43,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     private static void ThrowRemoteError(HostError error)
     {
-        if (error.Category is { } category && error.Code is { } code) throw new EmulationMessageException(new EmulationMessage(category, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), new InvalidOperationException(error.Message));
+        if (error.Category is { } category && error.Code is { } code) throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(category, code, new InvalidOperationException(error.Message));
         throw new InvalidOperationException(error.Message);
     }
 

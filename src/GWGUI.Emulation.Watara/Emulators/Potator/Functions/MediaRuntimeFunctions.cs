@@ -11,7 +11,7 @@ internal static class MediaRuntimeFunctions
         return Path.GetExtension(path).ToLowerInvariant() switch
         {
             BinExtension or SupervisionExtension => MediaCategory.Cartridge,
-            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))
+            _ => throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
         };
     }
 

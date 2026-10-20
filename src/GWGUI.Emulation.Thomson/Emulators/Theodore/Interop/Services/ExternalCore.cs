@@ -256,6 +256,6 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             }
         }
     }
-    private static EmulationMessageException MediaUnsupported() => new(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-    private static EmulationMessageException StateInvalid() => new(new EmulationMessage(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException MediaUnsupported() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException StateInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

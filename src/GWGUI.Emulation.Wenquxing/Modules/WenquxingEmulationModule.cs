@@ -142,7 +142,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         );
         return new EmulationMachineRuntime(
             current,
-            media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)),
+            media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null),
             [],
             [],
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,

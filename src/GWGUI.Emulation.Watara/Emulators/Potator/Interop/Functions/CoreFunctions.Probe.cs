@@ -24,5 +24,5 @@ internal static class CoreProbeFunctions
         return new ExternalCoreInfo(Emulator.Potator, name, Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty, extensions, info.NeedFullPath, info.BlockExtract);
     }
 
-    private static EmulationMessageException Rejected() => new(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorRejected, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException Rejected() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorRejected, null);
 }

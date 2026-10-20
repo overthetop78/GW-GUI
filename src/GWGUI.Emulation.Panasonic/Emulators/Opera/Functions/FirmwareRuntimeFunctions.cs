@@ -36,5 +36,5 @@ internal static class FirmwareRuntimeFunctions
             File.SetAttributes(destination, File.GetAttributes(destination) & ~FileAttributes.ReadOnly);
         }
     }
-    private static EmulationMessageException Missing() => new(new EmulationMessage(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException Missing() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
 }

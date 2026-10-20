@@ -123,7 +123,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
     public void SetOption(string key, string value)
     {
         if (key == GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants.RuntimeOptionConstants.Model)
-            throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+            throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, null);
         (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
     }
 
@@ -233,7 +233,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             finally { audio?.Dispose(); }
         }
     }
-    private static EmulationMessageException FirmwareInvalid() => new(new EmulationMessage(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareIncompatible, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-    private static EmulationMessageException MediaUnsupported() => new(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-    private static EmulationMessageException StateInvalid() => new(new EmulationMessage(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException FirmwareInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareIncompatible, null);
+    private static EmulationMessageException MediaUnsupported() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException StateInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

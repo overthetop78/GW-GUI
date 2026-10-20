@@ -44,7 +44,7 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
             var values = description[(separator + 1)..].Trim().Split(ValueSeparator, StringSplitOptions.RemoveEmptyEntries);
             if (values.Length == 0) throw new InvalidOperationException("Native option descriptor has no default value.");
             var current = _values.GetValueOrDefault(key, values[0]);
-            if (!values.Contains(current, StringComparer.Ordinal)) throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+            if (!values.Contains(current, StringComparer.Ordinal)) throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, null);
             _values[key] = current;
             _options[key] = _createOption(key, description[..separator].Trim(), values[0], current, values);
         }

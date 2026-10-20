@@ -127,7 +127,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
                 throw UnsupportedMedia();
             var path = Path.GetFullPath(content.Path);
             if (!File.Exists(path))
-                throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+                throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, null);
             using var filename = new ExternalCoreUtf8String(path);
             var info = new ExternalCoreApi.GameInfo
             {
@@ -146,12 +146,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         }
 
         if (!loaded)
-            throw new EmulationMessageException(new EmulationMessage(
-                    content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media,
-                    content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported,
-                    EmulationMessageSeverity.Error,
-                    EmulationMessageTarget.Dialog
-                ));
+            throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media, content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported, null);
         _loaded = true;
         _content = content;
         exports.GetSystemAvInfo(out var av);
@@ -313,6 +308,6 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             finally { audio?.Dispose(); }
         }
     }
-    private static EmulationMessageException UnsupportedMedia() => new(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-    private static EmulationMessageException InvalidState() => new(new EmulationMessage(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    private static EmulationMessageException UnsupportedMedia() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException InvalidState() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

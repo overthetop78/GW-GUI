@@ -1,18 +1,34 @@
 {
-  "snapshot": "6d047f4d4dc379db2602639e71c1f7f3eb262976",
+  "snapshot": "c2cf248c2543c8cc616f22e372b38f3b9470ef64",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs",
-    "src/GWGUI.Emulation/Services/EmulationErrorService.cs"
+    "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/FirmwareRuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/MediaRuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/MediaRuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/FirmwareRuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
+    "src/GWGUI.Emulation/Services/EmulationLegacyOptionHost.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7228,
+  "fileCount": 7229,
   "methodBodyCount": 9538,
   "exactGroups": [
     {
@@ -4088,6 +4104,70 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "0E0E3A0D8083EF403EBBDAE8AD02F193FAAFE62E49ABA7284FBF9139F6654BE4",
+      "tokens": 25,
+      "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , code , innerException ?? new InvalidDataException ( message ) )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Invalid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
+          "tokens": 25,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , code , innerException ?? new InvalidDataException ( message ) )",
+          "hash": "0E0E3A0D8083EF403EBBDAE8AD02F193FAAFE62E49ABA7284FBF9139F6654BE4",
+          "shape": "E309AECED18BDFD8A48542683425D9D298449D09345B94BE62ABEF1B6E4B638C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Invalid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
+          "tokens": 25,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , code , innerException ?? new InvalidDataException ( message ) )",
+          "hash": "0E0E3A0D8083EF403EBBDAE8AD02F193FAAFE62E49ABA7284FBF9139F6654BE4",
+          "shape": "E309AECED18BDFD8A48542683425D9D298449D09345B94BE62ABEF1B6E4B638C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Invalid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
+          "tokens": 25,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , code , innerException ?? new InvalidDataException ( message ) )",
+          "hash": "0E0E3A0D8083EF403EBBDAE8AD02F193FAAFE62E49ABA7284FBF9139F6654BE4",
+          "shape": "E309AECED18BDFD8A48542683425D9D298449D09345B94BE62ABEF1B6E4B638C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Invalid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 33,
+          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
+          "tokens": 25,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , code , innerException ?? new InvalidDataException ( message ) )",
+          "hash": "0E0E3A0D8083EF403EBBDAE8AD02F193FAAFE62E49ABA7284FBF9139F6654BE4",
+          "shape": "E309AECED18BDFD8A48542683425D9D298449D09345B94BE62ABEF1B6E4B638C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "0E41A0363255DB770249B94ED7542888115DDC4FB3499CAF61A34DC0F0663262",
       "tokens": 14,
       "bodyTokens": "{ return CoreFunctions . WritePointer ( data , _contentDirectory . Pointer ) ; }",
@@ -6715,7 +6795,7 @@
           "name": "RequireExports",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 270,
+          "line": 265,
           "parameters": "()",
           "tokens": 16,
           "bodyTokens": "=> _loaded && _exports is { } exports ? exports : throw new InvalidOperationException ( )",
@@ -14066,7 +14146,7 @@
           "hash": "284D0C753A718B6C6E64B1B94E161A464F7E25751EBEC0FE74E0B3452301AF48",
           "shape": "B0F1DE19E74F9659939579C8F99ECDEEABF38AAC42928AAEA7678B5F454440DB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.ExternalCoreEnvironmentCallbackHost.SetOption(string, string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E842968841B00655E91E1A7F4B4659F2C26FE23F00940A82FA3A93F972C0DF2A"
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
@@ -21400,6 +21480,70 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
+      "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+      "tokens": 21,
+      "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+          "name": "InvalidState",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 312,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "10A60D423C6C6FCFB9491F02F7F1165C766B555D5AE37D58832C64845F48C9D8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 260,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 167,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "3DC2EA37594AB19E400191E7F8D9D985AB5D95FDE3C403BD9C142A9FDBF25603"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 238,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "30EBD1DFED4A72F82B56C9DB1381ADB80B870B4DB1EB515D9A4077FA3D79679D"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "3F4B111CD164BCE97A7E43F8C1603F1C1DFA797483C38B7463AAA3039C7971A3",
       "tokens": 5,
       "bodyTokens": "=> report ( value )",
@@ -27007,62 +27151,6 @@
           "bodyTokens": "=> Request ( HostCommand . SetControllerPortDevice , writer => { writer . Write ( port ) ; writer . Write ( ( int ) peripheral ) ; } )",
           "hash": "4CA36A2B69C46B33C30725978C3FA931459B5A55C63E8F379D973BBF5BAB623D",
           "shape": "BC8A570D811160F08BEFFAB9FB3FE9BB92399901609D6C698CE76FE38E241A0F"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "4CAB667E82E2F2D690A3A71B273F73A052206AC12D6CB2F6C3CD3C281B1BF4BD",
-      "tokens": 29,
-      "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException ?? new InvalidDataException ( message ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Invalid",
-          "owner": "SavedStateFunctions",
-          "kind": "MethodDeclaration",
-          "line": 35,
-          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
-          "tokens": 29,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException ?? new InvalidDataException ( message ) )",
-          "hash": "4CAB667E82E2F2D690A3A71B273F73A052206AC12D6CB2F6C3CD3C281B1BF4BD",
-          "shape": "A0A03425D7E23A4A47E5CEDBE28E6F55C0F5A248E50D992560A594F75C8EDADF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Invalid",
-          "owner": "SavedStateFunctions",
-          "kind": "MethodDeclaration",
-          "line": 35,
-          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
-          "tokens": 29,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException ?? new InvalidDataException ( message ) )",
-          "hash": "4CAB667E82E2F2D690A3A71B273F73A052206AC12D6CB2F6C3CD3C281B1BF4BD",
-          "shape": "A0A03425D7E23A4A47E5CEDBE28E6F55C0F5A248E50D992560A594F75C8EDADF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Invalid",
-          "owner": "SavedStateFunctions",
-          "kind": "MethodDeclaration",
-          "line": 35,
-          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
-          "tokens": 29,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException ?? new InvalidDataException ( message ) )",
-          "hash": "4CAB667E82E2F2D690A3A71B273F73A052206AC12D6CB2F6C3CD3C281B1BF4BD",
-          "shape": "A0A03425D7E23A4A47E5CEDBE28E6F55C0F5A248E50D992560A594F75C8EDADF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Invalid",
-          "owner": "SavedStateFunctions",
-          "kind": "MethodDeclaration",
-          "line": 33,
-          "parameters": "(EmulationMessageCode code,\n        string message,\n        Exception? innerException = null)",
-          "tokens": 29,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , code , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) , innerException ?? new InvalidDataException ( message ) )",
-          "hash": "4CAB667E82E2F2D690A3A71B273F73A052206AC12D6CB2F6C3CD3C281B1BF4BD",
-          "shape": "A0A03425D7E23A4A47E5CEDBE28E6F55C0F5A248E50D992560A594F75C8EDADF"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -35490,7 +35578,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -35560,7 +35648,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -35574,7 +35662,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -35588,10 +35676,10 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6B085E2717F854A0DE2FDC4EABE798DBBDDFC07BE42175F636BA24B432C02608",
@@ -37306,7 +37394,7 @@
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Diagnostics.cs",
@@ -37418,7 +37506,7 @@
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Diagnostics.cs",
@@ -37435,7 +37523,7 @@
           "qualificationSourceSha256": "D4845318F9E99BA5772D6F0CB140B49EE354686CC5C7994CB774DB2BE06D912B"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
@@ -39782,62 +39870,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-      "tokens": 23,
-      "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
-          "name": "InvalidState",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 317,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 260,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 167,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 238,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
       "tokens": 24,
       "bodyTokens": "{ SupportsNoGame = data != nint . Zero && Marshal . ReadByte ( data ) != ExternalCoreInteropConstants . NativeBooleanFalse ; return true ; }",
@@ -40146,7 +40178,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -40244,7 +40276,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -40258,7 +40290,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -40272,10 +40304,10 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "7C0FB0DDB6F7CE9B172E30D649ED1912DF93BD61AB8964157DE00790FAA2B2FA",
@@ -41232,62 +41264,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-      "tokens": 23,
-      "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8153D4D2CF9C4544192DF46A841C2097E307C9BFF3BC28F40A74A289462B5006",
@@ -44584,62 +44560,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-      "tokens": 23,
-      "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
-          "name": "UnsupportedMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 316,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 259,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 166,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 237,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "8D16E376EAFA63C25CCCCCC7BC257DFB9F02F51C54C5E4A2D69BFC5AC0DB7CEB",
@@ -50608,7 +50528,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "3231C83EC1B593BD69ED1376D7E1F80887F92A24577E3B2623E0914E8C2238D3"
+          "qualificationSourceSha256": "31CFF3965A92176A1049DE31CC6C6D46942CAF286D737A6D248962E5B05F28DB"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -51675,7 +51595,7 @@
           "name": "Stop",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 255,
+          "line": 250,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Cleanup ( )",
@@ -54723,6 +54643,70 @@
           "bodyTokens": "=> All . Where ( definition => definition . MachineIds . Contains ( machineId ) ) . ToArray ( )",
           "hash": "AC89665654395CF28A726E3F1EDB64FABA4C41C38B0AA61C4B1E2506F2A9E56B",
           "shape": "33C9EDFD53779D7CF2177F526DDC8644F36538D5A9EE00AF9748FD208197D98B"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+      "tokens": 21,
+      "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+          "name": "UnsupportedMedia",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 311,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "10A60D423C6C6FCFB9491F02F7F1165C766B555D5AE37D58832C64845F48C9D8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 259,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 166,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "3DC2EA37594AB19E400191E7F8D9D985AB5D95FDE3C403BD9C142A9FDBF25603"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 237,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "30EBD1DFED4A72F82B56C9DB1381ADB80B870B4DB1EB515D9A4077FA3D79679D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -62950,6 +62934,70 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+      "tokens": 21,
+      "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "65931B4E19EDB0B85BAB3D978690AF7CAF59A1B877100B26F8D77D9F4472ADC6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "BDEC9FD17D9D44D80C88DFF574AD52FCA2C9F7E062A6B995DB0646E09741F029"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "AC58766F95E142B8E1732BA9F744CEA3CF024D72ABC23378F631C7A89FC1E92B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "9261C9442FA55D347E960171B64887E097E8D0784BCF5036CD380A38CEE3A9D1"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "CFCBFB6D4BB6DA8F3E82D8BE85B28F64465EDDF3E775D9C645EA1EA78D75F51C",
       "tokens": 28,
       "bodyTokens": "=> Enum . IsDefined ( configuration . Model ) && port >= ControllerConstants . FirstPort && port < ControllerConstants . PortCount && Enum . IsDefined ( peripheral )",
@@ -69203,7 +69251,7 @@
           "name": "Dispose",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 256,
+          "line": 251,
           "parameters": "()",
           "tokens": 22,
           "bodyTokens": "{ if ( _disposed ) return ; try { Cleanup ( ) ; } finally { _disposed = true ; } }",
@@ -76022,7 +76070,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "DBBDD242A4280C058E1947395269AD0EDFEC7014463E99CAF8C098CDC29C82BE"
+          "qualificationSourceSha256": "E25322610FC1FC54DF1B4662B470B2B488CE14FB468B3E4B29C3A34F6977B428"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -76246,10 +76294,10 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3231C83EC1B593BD69ED1376D7E1F80887F92A24577E3B2623E0914E8C2238D3"
+          "qualificationSourceSha256": "31CFF3965A92176A1049DE31CC6C6D46942CAF286D737A6D248962E5B05F28DB"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "FE1345B8E1345C1450240F4BC9148CFA28A0D3813EA7C9815E2099A675958E36",
@@ -82586,6 +82634,209 @@
           "bodyTokens": "=> JaguarCdFunctions . RejectForStandardJaguar ( configuration . Model , media )",
           "hash": "2D7413B07B5BABA05D565C8F1E0B9654B22123A7F76DDEB981A51045CEAE8AC4",
           "shape": "1C70355F2DAB4354C32D59A018E090554BE7E6F0D9FDBB8E7E1F63F88A136017"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+      "tokens": 21,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/FirmwareRuntimeFunctions.cs",
+          "name": "Missing",
+          "owner": "FirmwareRuntimeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Firmware , EmulationMessageCode . FirmwareMissing , null )",
+          "hash": "21EB53D52805354F3A5F69662960E383EBC657D84DC83A96D50D5C6779C70A53",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "1883B50665743699965D613B8B3053224786310E66815BE6227CFD244874D035"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "65931B4E19EDB0B85BAB3D978690AF7CAF59A1B877100B26F8D77D9F4472ADC6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+          "name": "UnsupportedMedia",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 311,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "10A60D423C6C6FCFB9491F02F7F1165C766B555D5AE37D58832C64845F48C9D8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+          "name": "InvalidState",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 312,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "10A60D423C6C6FCFB9491F02F7F1165C766B555D5AE37D58832C64845F48C9D8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "BDEC9FD17D9D44D80C88DFF574AD52FCA2C9F7E062A6B995DB0646E09741F029"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 259,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 260,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "79E814EF2B8EA9D4762994426758D75B8D56525E40591AAB415004E6C582C6F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "AC58766F95E142B8E1732BA9F744CEA3CF024D72ABC23378F631C7A89FC1E92B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 166,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "3DC2EA37594AB19E400191E7F8D9D985AB5D95FDE3C403BD9C142A9FDBF25603"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 167,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "3DC2EA37594AB19E400191E7F8D9D985AB5D95FDE3C403BD9C142A9FDBF25603"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
+          "name": "Rejected",
+          "owner": "CoreProbeFunctions",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , null )",
+          "hash": "CF870D28046D386590A82BA4E145E0F2C5EFAD54E5424C00AEEFC32B9C0F7190",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "9261C9442FA55D347E960171B64887E097E8D0784BCF5036CD380A38CEE3A9D1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+          "name": "FirmwareInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 236,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Firmware , EmulationMessageCode . FirmwareIncompatible , null )",
+          "hash": "82F182A687C37DB1710A5D03031AE6DC3D17A85FC1BC70254E98B08F820493C9",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "30EBD1DFED4A72F82B56C9DB1381ADB80B870B4DB1EB515D9A4077FA3D79679D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+          "name": "MediaUnsupported",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 237,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , null )",
+          "hash": "AC96CBDFAB2E4C85EF192A71E6141E47DC05E935DD751D244DAFADF0BC3A113F",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "30EBD1DFED4A72F82B56C9DB1381ADB80B870B4DB1EB515D9A4077FA3D79679D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+          "name": "StateInvalid",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 238,
+          "parameters": "()",
+          "tokens": 21,
+          "bodyTokens": "=> GWGUI . Emulation . Services . EmulationErrorService . CreateError ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , null )",
+          "hash": "3F318101957F92EB4ED43F2814D4F52D8F3B74D8400A28A343BAAC19549EC5D2",
+          "shape": "1D7F5AB4AA993C0D8A67169B755FDA895047FB1052FC5DD9BBBA04268219742C",
+          "qualification": "Verified complete SDK error factory adapter; same category/code/cause expressions and Error/Dialog message with absent context/text; dialogErrorConstructionReuse.",
+          "qualificationSourceSha256": "30EBD1DFED4A72F82B56C9DB1381ADB80B870B4DB1EB515D9A4077FA3D79679D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -102221,7 +102472,7 @@
           "name": "Stop",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 255,
+          "line": 250,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> Cleanup ( )",
@@ -106759,7 +107010,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -106773,7 +107024,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -106787,7 +107038,7 @@
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+          "qualificationSourceSha256": "EF1FE039A0CF2C15CD98609FDCA8E43C7B044C3F52B9933E536665D8702EF79E"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -109559,7 +109810,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -109573,7 +109824,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+          "qualificationSourceSha256": "790755C4C8190162D18ECC1862E423C0FBA7309594286435FE1AF36ECC6B0533"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -109793,7 +110044,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -109807,7 +110058,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+          "qualificationSourceSha256": "AA74DA07C302F801402BC9920360B29EC3406A2ED1DFA1E1ED1C5FC15C4296FC"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -110043,7 +110294,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -110057,7 +110308,7 @@
           "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -110071,7 +110322,7 @@
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+          "qualificationSourceSha256": "63FAC5AC7A95D66FB1A9CF9BEE5D82EA941BF58F3E7A271738E0D0E22D4797C0"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -124782,181 +125033,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2",
-      "tokens": 23,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/FirmwareRuntimeFunctions.cs",
-          "name": "Missing",
-          "owner": "FirmwareRuntimeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 39,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Firmware , EmulationMessageCode . FirmwareMissing , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "FC704E8992B854EC852A9D67BEA7D48501FE7B720514235D2B628E46D930B790",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
-          "name": "UnsupportedMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 316,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
-          "name": "InvalidState",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 317,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 259,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 260,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 166,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 167,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
-          "name": "Rejected",
-          "owner": "CoreProbeFunctions",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Emulator , EmulationMessageCode . EmulatorRejected , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "814872B5F6FF0F4C5104CD9BB3E6770A00DFA372F6F4BA0B64B22E294DFAE19E",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-          "name": "FirmwareInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 236,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Firmware , EmulationMessageCode . FirmwareIncompatible , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "AF88C3516AFA6CC61683E8811ABA8C9C0E7839FCAD126EC4EDA1E781CC562D5A",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-          "name": "MediaUnsupported",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 237,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . Media , EmulationMessageCode . MediaUnsupported , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
-          "name": "StateInvalid",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 238,
-          "parameters": "()",
-          "tokens": 23,
-          "bodyTokens": "=> new ( new EmulationMessage ( EmulationMessageCategory . SavedState , EmulationMessageCode . SavedStateInvalid , EmulationMessageSeverity . Error , EmulationMessageTarget . Dialog ) )",
-          "hash": "7AF446F2C696E486835E94FBB072CE0BD806E740DF6F1410309D2A470529C12B",
-          "shape": "A416C06183271A67644373BAA57F8AD537DEC0B685294DDE14158388DE18C3E2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "A4513E211333262773F08943526DB896ECD84E5FAB272291A0541514412A4B2A",
       "tokens": 6,
       "current": [
@@ -125436,7 +125512,7 @@
           "name": "Dispose",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 256,
+          "line": 251,
           "parameters": "()",
           "tokens": 22,
           "bodyTokens": "{ if ( _disposed ) return ; try { Cleanup ( ) ; } finally { _disposed = true ; } }",
@@ -142708,7 +142784,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 2876
+    "occurrences": 2908,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
