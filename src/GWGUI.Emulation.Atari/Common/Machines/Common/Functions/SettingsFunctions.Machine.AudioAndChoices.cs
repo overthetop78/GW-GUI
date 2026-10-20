@@ -67,6 +67,6 @@ internal static partial class SettingsDescriptionFunctions
 
     private static IReadOnlyList<EmulationSettingsChoice> Percentages(int minimum, int maximum, int step) => Enumerable.Range(0, (maximum - minimum) / step + 1).Select(index => Percentage(minimum + index * step)).ToArray();
 
-    private static EmulationSettingsChoice Invariant(string value) => new(value, string.Empty, value);
+    private static EmulationSettingsChoice Invariant(string value) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(value, value);
 
 }

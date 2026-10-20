@@ -69,7 +69,7 @@ internal static partial class StorageSettingsFunctions
         return choices;
     }
 
-    private static EmulationSettingsChoice InvariantChoice(string id, string value) => new(id, string.Empty, value);
+    private static EmulationSettingsChoice InvariantChoice(string id, string value) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(id, value);
     private static EmulationStorageDeviceSettings DeviceSettings(MachineConfiguration configuration, EmulationMediaSlot slot)
     {
         var device = CompatibilityCatalog.Get(configuration.Model).Media.First(rule => rule.Availability == MediaAvailability.Available && rule.Slots.Contains(slot));

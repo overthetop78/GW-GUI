@@ -10,6 +10,9 @@ internal static class EmulationHardwareSettingsFunctions
     private const string MemoryResource = "Emulation.Memory.Main";
     private const string ResolutionResource = "Emulation.Video.Resolution";
 
+    internal static EmulationSettingsChoice InvariantChoice(string id, string text, long? numericValue = null) =>
+        new(id, string.Empty, text, numericValue);
+
     internal static void AddBlocks(List<EmulationSettingsBlock> blocks, string fieldPrefix, string cpuResourceKey,
         Func<string?> cpuFrequency, Func<string?> mainMemory, Func<string?> displayMemory,
         string displayMemoryResourceKey, Func<string?> resolution, bool isCompactCpu)

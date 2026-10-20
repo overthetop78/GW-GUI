@@ -1,23 +1,22 @@
 {
-  "snapshot": "3d7e0796101929725cd838e4fbff95a2f1d64935",
+  "snapshot": "0a8469d6ae6fc6bd1f6156d79c28150e636efef3",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation/Functions/EmulationAdapterFunctions.cs"
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+    "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7231,
-  "methodBodyCount": 9557,
+  "methodBodyCount": 9558,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -30005,6 +30004,112 @@
           "bodyTokens": "=> Text ( \"Emulation.Error.Core.FullContentPathsRequired\" )",
           "hash": "54B12073EB2B95F4E1F60C6A8C8E03E2DA87B1DA604E13DF486445A58294235E",
           "shape": "FE7794CF4823F1E33CAE2C3A5A37E61105F51FCF406DDA319C76D3CCD4EBFF0B"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+      "tokens": 17,
+      "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "CoreSettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "A06B7DB9DBD5E59A938A43BD5E22077E628745729FB0E1ABE5DED3F1BCF301BF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "AmigaSettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 116,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "3C9BC08D8775C949460E42C7224285257B3145150AFE2C5BA7311AB26AAE6B88"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "84631B21AA7E3CB566612B45C095D0B48901874B1203475B64A30E1FE465150B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "CoreSettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "4BB8587BA48274FDB19DC83927B44CC8F7DB91A97FF737D1E788AA9BFBA4F9B1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "53F00647D34D7B476B123B0175EA5CF1906A01D965AC778B018359F0B3D7115B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "29789FBC7601ED36CC8BE0BB03DAA70CCE1C2D57F1AEF54253B18CD49D2126AE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
+          "name": "Invariant",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 5,
+          "parameters": "(string id, string text, long? numericValue = null)",
+          "tokens": 17,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , text , numericValue )",
+          "hash": "5537DA726FD371D3E2998E2D280A04BDEB6FBF3309DD309695FB71435B77F090",
+          "shape": "5B5F02757D101131A6F0AAAD947A87B7DE29E5A422663B474FC5EBED8DCD5071",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "2154D29797DD4CA2F3FB55430E0E79F8681A0DD05B209BE1BC5F5D16C8D22C83"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -60377,98 +60482,6 @@
           "bodyTokens": "=> Text ( \"Emulation.Error.Core.StartWithoutMediaUnsupported\" )",
           "hash": "C3E248F7DF50E97B5A4E8114C477FEC181025C70DCCCACCF96919EBEF520A4A9",
           "shape": "3A17432B7FA6EE3FB406CAC471EEE2CD5AA5E0825D182C665D5F3908F5CC28F4"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-      "tokens": 13,
-      "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "CoreSettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "AmigaSettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 116,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "CoreSettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs",
-          "name": "Invariant",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 5,
-          "parameters": "(string id, string text, long? numericValue = null)",
-          "tokens": 13,
-          "bodyTokens": "=> new ( id , string . Empty , text , numericValue )",
-          "hash": "C42D69D8BFF98C2F2FE9AEBDC27D579890F3A308DF0A09CB9D6069FACEB104C1",
-          "shape": "CFB0F345F97DAB4C66CC388486242F113B41D5DDFA76BF97541C25205A878000"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -117427,6 +117440,48 @@
           "qualificationSourceSha256": "8AF54C1FE1974045F8917D0A442828D0CBC724B458072396B37401E416856B9B"
         },
         {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs",
+          "name": "Invariant",
+          "owner": "HardwareSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(string value, string displayValue)",
+          "tokens": 15,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( value , displayValue )",
+          "hash": "90F11DE8756A4E915E49C6A78F5692BD3726612F15D21FEF4A1717F8F9B84D5C",
+          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "FAC979C30BD9A7B9248009DF5FC4F00518C4B5719E68E985237358BE5D58B5CD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs",
+          "name": "Invariant",
+          "owner": "SettingsDescriptionFunctions",
+          "kind": "MethodDeclaration",
+          "line": 70,
+          "parameters": "(string value)",
+          "tokens": 15,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( value , value )",
+          "hash": "29C650F8718FDE0EC101B23F4CDA0BF8FC6DEE8940A2DA0940BAA370CE6D9820",
+          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "0D3B28D022D0AA135DAB1123317F4FE253E4AA2AB4D3659DAE6939C65F274454"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs",
+          "name": "InvariantChoice",
+          "owner": "StorageSettingsFunctions",
+          "kind": "MethodDeclaration",
+          "line": 72,
+          "parameters": "(string id, string value)",
+          "tokens": 15,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationHardwareSettingsFunctions . InvariantChoice ( id , value )",
+          "hash": "690A794C01D620A79B215045D3A9227A5289E630C50821EC1C917AA7287A7D5D",
+          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
+          "qualification": "original-invariant-choice-construction-reused-in-existing-sdk-settings-owner",
+          "qualificationSourceSha256": "301A18AE7045364987AFF092AE50466968DA26AA02DA686E9A3D4DADBED7C6AC"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/ControllerFunctions.cs",
           "name": "ApplyDeadZone",
           "owner": "ControllerFunctions",
@@ -117567,7 +117622,7 @@
           "qualificationSourceSha256": "346B465B6082D0163A8CF2B62B1D61729FAA3B2568A44CD45002B298E9DE48EC"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "6924ACFB2566A2E727921EF35F3DF9F6CE3CD9EAA8FD0B200C19BD5CF4D81175",
@@ -118465,49 +118520,6 @@
           "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( flux ) ; DeclaredFluxCount = declaredFluxCount ; Flux = flux ; Origin = origin ; }",
           "hash": "19C028FD1468D2FB37B790C86DBFD361450089E14FA0CBF60DA3E7681181B8E7",
           "shape": "70AEC3F1293FCDA0DCB6E8CA02FBD12B7FEDBC352B13B62C64D444744D04950F"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "shape": "7135A2F25D7B929D85E30EBF276967BB01A146ACC8A1493E70F275ED470ED406",
-      "tokens": 11,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs",
-          "name": "Invariant",
-          "owner": "HardwareSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(string value, string displayValue)",
-          "tokens": 11,
-          "bodyTokens": "=> new ( value , string . Empty , displayValue )",
-          "hash": "70A30FC68D274C200B993428E4B19EBA2356A7BCB5F1D504A463BE7E74A7837F",
-          "shape": "7135A2F25D7B929D85E30EBF276967BB01A146ACC8A1493E70F275ED470ED406"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs",
-          "name": "Invariant",
-          "owner": "SettingsDescriptionFunctions",
-          "kind": "MethodDeclaration",
-          "line": 70,
-          "parameters": "(string value)",
-          "tokens": 11,
-          "bodyTokens": "=> new ( value , string . Empty , value )",
-          "hash": "A2B7FCFE10E1993D305254854681D013047632D50A5FE4CE94B31B01DF0ADFA0",
-          "shape": "7135A2F25D7B929D85E30EBF276967BB01A146ACC8A1493E70F275ED470ED406"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs",
-          "name": "InvariantChoice",
-          "owner": "StorageSettingsFunctions",
-          "kind": "MethodDeclaration",
-          "line": 72,
-          "parameters": "(string id, string value)",
-          "tokens": 11,
-          "bodyTokens": "=> new ( id , string . Empty , value )",
-          "hash": "C0B003CEDD1D371BBB4EBD40A51190724835E04D7C780DCE78FD7D0AA6CC2261",
-          "shape": "7135A2F25D7B929D85E30EBF276967BB01A146ACC8A1493E70F275ED470ED406"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -130533,31 +130545,31 @@
           "name": "Information",
           "owner": "EmulationHardwareSettingsFunctions",
           "kind": "MethodDeclaration",
-          "line": 52,
+          "line": 55,
           "parameters": "(string id, EmulationMachineTab tab, string block, string label, string value,\n        string? shortHelp, string? detailedHelp)",
           "tokens": 25,
           "bodyTokens": "=> new ( id , tab , block , label , EmulationSettingsEditor . Information , value , ExplanationResourceKey : shortHelp , DetailedExplanationResourceKey : detailedHelp )",
           "hash": "4C5DB844C75C199F36CFE8F1D0375CBD84B83CB18BCFABDA3EE0C14F3F1760C1",
           "shape": "BB272D7360315AF62BFB228A1C58D63F7E6CC0235A717911972555AC2CBED7CB",
           "qualification": "Verified editor-specific constructor of existing SDK settings owner; distinct constructor arguments validated by settingBuildersReuse.verification",
-          "qualificationSourceSha256": "CC30FB1DA8FE0B45612BF162A72B0725CF09766A91A8B771510D1875CC2EF1D8"
+          "qualificationSourceSha256": "145448EFD63BD93EF12E6E562182B297ADF6EC4C1884C9856B67DC67CFD45988"
         },
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs",
           "name": "Number",
           "owner": "EmulationHardwareSettingsFunctions",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 70,
           "parameters": "(string id, EmulationMachineTab tab, string block, string label, string value,\n        string? shortHelp, string? detailedHelp)",
           "tokens": 25,
           "bodyTokens": "=> new ( id , tab , block , label , EmulationSettingsEditor . Number , value , ExplanationResourceKey : shortHelp , DetailedExplanationResourceKey : detailedHelp )",
           "hash": "C0745227C39F82F56CFAB89FB94AEF4836D9BEACBFA58B3BF4AA4815E8AC25E7",
           "shape": "BB272D7360315AF62BFB228A1C58D63F7E6CC0235A717911972555AC2CBED7CB",
           "qualification": "Verified editor-specific constructor of existing SDK settings owner; distinct constructor arguments validated by settingBuildersReuse.verification",
-          "qualificationSourceSha256": "CC30FB1DA8FE0B45612BF162A72B0725CF09766A91A8B771510D1875CC2EF1D8"
+          "qualificationSourceSha256": "145448EFD63BD93EF12E6E562182B297ADF6EC4C1884C9856B67DC67CFD45988"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "BB93EAC2C42383C5AABA674418E9E62A241045062268D5A920410381C1BEA511",
@@ -143116,7 +143128,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 2964
+    "occurrences": 2984,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

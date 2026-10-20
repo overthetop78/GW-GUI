@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class HardwareSettingsFunctions
 {
-    internal static EmulationSettingsChoice Invariant(string value, string displayValue) => new(value, string.Empty, displayValue);
+    internal static EmulationSettingsChoice Invariant(string value, string displayValue) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(value, displayValue);
 
     internal static EmulationSettingsChoice CpuPrecision(StCpuPrecision value) => value switch
     {
