@@ -17,18 +17,12 @@ internal static class StateFileFunctions
     {
         try
         {
-            for (var retry = StateConstants.FirstRetryIndex; retry < StateConstants.ReadRetryCount; retry++)
-            {
-                try
-                {
-                    return ReadOnce(path);
-                }
-                catch (IOException) when (retry + StateConstants.NextRetryCount < StateConstants.ReadRetryCount)
-                {
-                    Thread.Sleep(StateConstants.ReadRetryDelayMilliseconds);
-                }
-            }
-            throw new FileNotFoundException(path);
+            var result = EmulationStateFileFunctions.ReadFile<SavedStateHeader>(path, StateConstants.Magic,
+            StateConstants.MaximumHeaderLength, StateConstants.JsonOptions, static header => header.StateSha256,
+            static () => SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid),
+            SavedStateFunctions.IsHeaderValid, SavedStateFunctions.ValidatePayloadSize,
+                StateConstants.ReadRetryCount, StateConstants.ReadRetryDelayMilliseconds);
+            return new StateFile(result.Header, result.State);
         }
         catch (EndOfStreamException error)
         {
@@ -38,15 +32,5 @@ internal static class StateFileFunctions
         {
             throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid, error);
         }
-    }
-
-    private static StateFile ReadOnce(string path)
-    {
-        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
-        var result = EmulationStateFileFunctions.Read<SavedStateHeader>(stream, StateConstants.Magic,
-            StateConstants.MaximumHeaderLength, StateConstants.JsonOptions, static header => header.StateSha256,
-            static () => SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid),
-            SavedStateFunctions.IsHeaderValid, SavedStateFunctions.ValidatePayloadSize);
-        return new StateFile(result.Header, result.State);
     }
 }

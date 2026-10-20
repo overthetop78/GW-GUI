@@ -49,6 +49,26 @@ internal static class EmulationStateFileFunctions
         stream.Flush(flushToDisk: true);
     }
 
+    internal static (THeader Header, byte[] State) ReadFile<THeader>(string path, ReadOnlySpan<byte> expectedMagic,
+        int maximumHeaderLength, JsonSerializerOptions options, Func<THeader, string> stateHash, Func<Exception> invalid,
+        Func<THeader, bool>? validHeader, Action<int>? validatePayload, int retryCount, int retryDelayMilliseconds)
+        where THeader : class
+    {
+        for (var retry = 0; retry < retryCount; retry++)
+        {
+            try
+            {
+                using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+                return Read(stream, expectedMagic, maximumHeaderLength, options, stateHash, invalid, validHeader, validatePayload);
+            }
+            catch (IOException) when (retry + 1 < retryCount)
+            {
+                Thread.Sleep(retryDelayMilliseconds);
+            }
+        }
+        throw new FileNotFoundException(path);
+    }
+
     internal static (THeader Header, byte[] State) Read<THeader>(Stream stream, ReadOnlySpan<byte> expectedMagic,
         int maximumHeaderLength, JsonSerializerOptions options, Func<THeader, string> stateHash, Func<Exception> invalid,
         Func<THeader, bool>? validHeader = null, Action<int>? validatePayload = null) where THeader : class

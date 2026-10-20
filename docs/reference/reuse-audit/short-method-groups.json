@@ -1,21 +1,38 @@
 {
-  "snapshot": "50652229b5b6861b6f118f891f54f51a0beb2459",
+  "snapshot": "3459cb0a38bd1a07cbfeb4738d57cef3bbdf90c3",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
-    "src/GWGUI.Emulation/Services/EmulationErrorService.cs",
-    "tests/GWGUI.Tests/Emulation/MachineErrorFactoryTests.cs"
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Constants/StateConstants.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
+    "src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7220,
@@ -120724,7 +120741,7 @@
           "name": "HashBytes",
           "owner": "EmulationStateFileFunctions",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 95,
           "parameters": "(ReadOnlySpan<byte> bytes)",
           "tokens": 12,
           "bodyTokens": "=> Convert . ToHexString ( SHA256 . HashData ( bytes ) )",
@@ -143565,5 +143582,9 @@
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
     }
-  ]
+  ],
+  "qualificationCarryForward": {
+    "occurrences": 3095,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+  }
 }

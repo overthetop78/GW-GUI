@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7220,
   "outsideSrcCSharpFiles": 338,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11503,
+  "currentMethodCount": 11489,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -518,7 +518,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "63AA4B2D3DA1254501C038C127B6818FE73F74966BB62A94D27CBC50F41491E3"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -526,7 +528,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "BA7FE2D9BCAD87C5FF25FC7C74839079933DC74D43CD0EAE4A3762FEC61BE0C4"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -534,7 +538,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "5C2E91FB3B1D8918A70BEF8DF08BC49432DFADBC11FBDA115985A9237C260E52"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -542,7 +548,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "C856CDC4C47051D813E71864C8694EED7DFA6C16545443E915514C163ECE8B6F"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -550,7 +558,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "90B32A51C2C2CE5941A58EB9872D3AF80721F0D2D50AC9193999A596E25EE500"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -558,7 +568,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "54A5764768919BC83020F522F49AC153DD15AF00247839F3B2CFD31ADBC983D4"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
@@ -566,7 +578,9 @@
           "line": 18,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "88D2183DC514577AE8B1EB0EC28B79E4C929BB4665F9FEB9B26236DB74F67770"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -574,7 +588,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "2DDF66E529B1AD5E44AB2B4C7E4980D910BBD3E8C329DB3DB92D4F030607A031"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -582,7 +598,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "56CF154276EB84109464E6030291FCF849EF0C55102AB505EBAA7FC6244B6A6C"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -590,7 +608,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "8C1316A9A672E031DCB33F2ED8A669D8F53955FDAFE9BA84F655AA2CCF30CDD0"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -598,7 +618,9 @@
           "line": 9,
           "tokens": 38,
           "hash": "06AE13E23CDD0A80959DA9235F8651EC5EE497F767A7D5EE914FCEA593A0E87D",
-          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8"
+          "shape": "E44D959B4A81B9A2161FADABB838F9784AD9D676190BEAE7E739E3BD431F51D8",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "A8C608D17E9719DF38A27FBFD4EA3B23C408B0C25870FA9DDCA71C40A673DB50"
         }
       ],
       "predecessors": [],
@@ -9004,58 +9026,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-      "method": "Read",
-      "tokens": 114,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariStateFileFunctions.cs",
-          "name": "Read",
-          "line": 36,
-          "tokens": 114,
-          "hash": "E3FAFA8BFA8BC9146682FFE1047090C038E5CE4A0BE78ACE6E7446E06F54477D",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "5407D05DBC2BD6E9AB7E0BF422C4347EA5FE31FF526919C79A58ED47E6284BE1",
       "method": "MarkEjected",
       "tokens": 42,
@@ -9400,6 +9370,57 @@
           "tokens": 85,
           "hash": "55AAAA6FB01263DFD8C94AA0EB33BD422806D787867FBD0A404FB20E6131E2A9",
           "shape": "C84F40E93F9695B67D0B97B392D6B31DB737801AA61CBAD4991D79163A825265"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+      "method": "Read",
+      "tokens": 129,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "C36C6521CFC52CD57B7E4DB447E1C1CB06E6F52E6765DEBBEC0FDC30BEE04D50"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "F621B5682269504A164C5F01C80A0174C9F502D3805E5811198A8A578C8F6C87"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "BF520885E8E3D847A2A0FF9F49426BD201C62880CF755E2C67B91C9B64E8F8A3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "B5920C346D62B0069660B2AE0ED8190A6EC61D106542A299077852842F59134E"
         }
       ],
       "predecessors": [],
@@ -11274,7 +11295,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -11412,7 +11433,9 @@
           "line": 9,
           "tokens": 51,
           "hash": "693969F430BAD803B2CAD0D9E61F243DBE0E270EC6E875A291140F19B0801698",
-          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B"
+          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "B5920C346D62B0069660B2AE0ED8190A6EC61D106542A299077852842F59134E"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -11420,7 +11443,9 @@
           "line": 9,
           "tokens": 51,
           "hash": "693969F430BAD803B2CAD0D9E61F243DBE0E270EC6E875A291140F19B0801698",
-          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B"
+          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "C36C6521CFC52CD57B7E4DB447E1C1CB06E6F52E6765DEBBEC0FDC30BEE04D50"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -11428,7 +11453,9 @@
           "line": 9,
           "tokens": 51,
           "hash": "693969F430BAD803B2CAD0D9E61F243DBE0E270EC6E875A291140F19B0801698",
-          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B"
+          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "BF520885E8E3D847A2A0FF9F49426BD201C62880CF755E2C67B91C9B64E8F8A3"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
@@ -11436,7 +11463,9 @@
           "line": 9,
           "tokens": 51,
           "hash": "693969F430BAD803B2CAD0D9E61F243DBE0E270EC6E875A291140F19B0801698",
-          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B"
+          "shape": "1F80C040B965E23D94FB67FB0ACAA9BB89A7D71644D743E457B1883B03E7CF5B",
+          "qualification": "Verified existing state-write boundary: module payload validation precedes shared SDK WriteFile; original deterministic suffix/File.Replace or unique suffix/File.Move policy retained. stateFileRetryComparison verifies unchanged wrapper tokens; module validation implementation not qualified.",
+          "qualificationSourceSha256": "F621B5682269504A164C5F01C80A0174C9F502D3805E5811198A8A578C8F6C87"
         }
       ],
       "predecessors": [],
@@ -12124,49 +12153,6 @@
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-      "method": "ReadOnce",
-      "tokens": 98,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -15964,114 +15950,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-      "method": "Read",
-      "tokens": 114,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
-          "name": "Read",
-          "line": 25,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariStateFileFunctions.cs",
-          "name": "Read",
-          "line": 36,
-          "tokens": 114,
-          "hash": "E3FAFA8BFA8BC9146682FFE1047090C038E5CE4A0BE78ACE6E7446E06F54477D",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "97E5BB1777CFB0C2B963595EFDD048EA8530F2CECDE38ADE5E2AAE1F19B1028E",
       "method": "ReadFrame",
       "tokens": 119,
@@ -17279,7 +17157,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -17926,105 +17804,6 @@
           "tokens": 34,
           "hash": "A9D1D647F61DC0EA066B32E7B2EC76F9001F5A461DDE9D3EB1E841E4F66A6F0A",
           "shape": "9741AE98627FB055873AE2D7DCB6BEF71EBE676FD5EAF84C44F4D726A83FD6F3"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-      "method": "ReadOnce",
-      "tokens": 98,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
-          "name": "ReadOnce",
-          "line": 54,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
         }
       ],
       "predecessors": [],
@@ -18837,7 +18616,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23942,6 +23721,127 @@
     },
     {
       "language": "CSharp",
+      "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+      "method": "Read",
+      "tokens": 129,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "A8C608D17E9719DF38A27FBFD4EA3B23C408B0C25870FA9DDCA71C40A673DB50"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
+          "name": "Read",
+          "line": 25,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "88D2183DC514577AE8B1EB0EC28B79E4C929BB4665F9FEB9B26236DB74F67770"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "63AA4B2D3DA1254501C038C127B6818FE73F74966BB62A94D27CBC50F41491E3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "5C2E91FB3B1D8918A70BEF8DF08BC49432DFADBC11FBDA115985A9237C260E52"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "90B32A51C2C2CE5941A58EB9872D3AF80721F0D2D50AC9193999A596E25EE500"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "C856CDC4C47051D813E71864C8694EED7DFA6C16545443E915514C163ECE8B6F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "54A5764768919BC83020F522F49AC153DD15AF00247839F3B2CFD31ADBC983D4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "BA7FE2D9BCAD87C5FF25FC7C74839079933DC74D43CD0EAE4A3762FEC61BE0C4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "2DDF66E529B1AD5E44AB2B4C7E4980D910BBD3E8C329DB3DB92D4F030607A031"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "56CF154276EB84109464E6030291FCF849EF0C55102AB505EBAA7FC6244B6A6C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "8C1316A9A672E031DCB33F2ED8A669D8F53955FDAFE9BA84F655AA2CCF30CDD0"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
       "method": "ReadAsync",
       "tokens": 39,
@@ -25590,133 +25490,6 @@
           "tokens": 37,
           "hash": "6A93BF49C369969FC6A7BA38784093782E8B180CDBB16B327BC038114465B000",
           "shape": "043A85CAEC9FDCF8F428173EA4551CE0811E1C745027BE737FB96DEE832DA680"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B",
-      "tokens": 114,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
-          "name": "Read",
-          "line": 25,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "Read",
-          "line": 16,
-          "tokens": 114,
-          "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
-          "shape": "06054AF9F58C51B3A939DB2E60DF81AC71EBDACB35C2DEEF24EA9EBBDE5D131B"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -29615,133 +29388,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1",
-      "tokens": 98,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 43,
-          "tokens": 98,
-          "hash": "7000CD142F2ECFE7AE953D518F87D25D32377B51C2162447E51A79ABF7DB2631",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
-          "name": "ReadOnce",
-          "line": 54,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
-          "name": "ReadOnce",
-          "line": 45,
-          "tokens": 98,
-          "hash": "AAC4D65A5255A110A3F09E30ED010ED5BF00248194ECE11386AFFDBB5D4FD052",
-          "shape": "8E59C5E4AC1CF4D49385089706B2CF41751494EF5AFAFFD9F59C80FD16A3FEB1"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7",
       "tokens": 49,
       "current": [
@@ -33623,6 +33269,163 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+      "tokens": 129,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "A8C608D17E9719DF38A27FBFD4EA3B23C408B0C25870FA9DDCA71C40A673DB50"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "C36C6521CFC52CD57B7E4DB447E1C1CB06E6F52E6765DEBBEC0FDC30BEE04D50"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs",
+          "name": "Read",
+          "line": 25,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "88D2183DC514577AE8B1EB0EC28B79E4C929BB4665F9FEB9B26236DB74F67770"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "63AA4B2D3DA1254501C038C127B6818FE73F74966BB62A94D27CBC50F41491E3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "5C2E91FB3B1D8918A70BEF8DF08BC49432DFADBC11FBDA115985A9237C260E52"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "F621B5682269504A164C5F01C80A0174C9F502D3805E5811198A8A578C8F6C87"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "90B32A51C2C2CE5941A58EB9872D3AF80721F0D2D50AC9193999A596E25EE500"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "C856CDC4C47051D813E71864C8694EED7DFA6C16545443E915514C163ECE8B6F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "54A5764768919BC83020F522F49AC153DD15AF00247839F3B2CFD31ADBC983D4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "BF520885E8E3D847A2A0FF9F49426BD201C62880CF755E2C67B91C9B64E8F8A3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "BA7FE2D9BCAD87C5FF25FC7C74839079933DC74D43CD0EAE4A3762FEC61BE0C4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "5604330A8FBAAD0E7673F3416720A72B2BCD693151D81806833D365D544AB876",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "B5920C346D62B0069660B2AE0ED8190A6EC61D106542A299077852842F59134E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "2DDF66E529B1AD5E44AB2B4C7E4980D910BBD3E8C329DB3DB92D4F030607A031"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "56CF154276EB84109464E6030291FCF849EF0C55102AB505EBAA7FC6244B6A6C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.File.cs",
+          "name": "Read",
+          "line": 16,
+          "tokens": 129,
+          "hash": "E88C98B7BF7F4B4E207C930A77E03E0CFE243E96FC0E6794AB44D171707AA1B6",
+          "shape": "FC86010C3AC577FB8FA22616BBC0F44079FB08BCB7947102E0FFC6BD929FB758",
+          "qualification": "Verified state-file boundary:15 typed SDK ReadFile bindings, original decoder/validation arguments, StateFile projection and typed catches unchanged; fixed-delay retry and owned per-attempt stream moved to existing SDK owner. stateFileRetryComparison verifies full-source inverses and temporary I/O tests; module validator implementations not qualified.",
+          "qualificationSourceSha256": "8C1316A9A672E031DCB33F2ED8A669D8F53955FDAFE9BA84F655AA2CCF30CDD0"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "FCBBBAE445C876F1636406BE4797AFE688B783473F500EC6C7368E94642EDA4C",
       "tokens": 139,
       "current": [
@@ -33831,7 +33634,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 513
+    "occurrences": 536,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

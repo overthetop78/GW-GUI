@@ -14,8 +14,6 @@ internal static class StateConstants
     internal const int EmptyLength = 0;
     internal const int ReadRetryCount = 64;
     internal const int ReadRetryDelayMilliseconds = 1;
-    internal const int FirstRetryIndex = 0;
-    internal const int NextRetryCount = 1;
     internal const char CanonicalDirectorySeparator = '/';
     internal const string AllFilesSearchPattern = "*";
     internal const string MediaCategory = "media";
