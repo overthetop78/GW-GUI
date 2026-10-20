@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interfaces;
@@ -24,7 +25,8 @@ public sealed class CoreReleaseService : ICoreReleaseService
         var entry = CoreCatalog.Get(emulator);
         return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
         {
-            return[CoreReleaseFunctions.ParseRelease(entry, response)];
+            return[EmulationCoreReleaseFunctions.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
+                CoreReleaseConstants.ReleaseVersionFormat, static () => CoreReleaseErrors.MissingPublishedDate)];
         }, cancellationToken).ConfigureAwait(false);
     }
 
@@ -59,10 +61,9 @@ public sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        var marker = await CoreReleaseFunctions.ReadJsonAsync<CoreActiveInstallation>(CoreCatalog.GetActiveManifestPath(emulator, _installationRoot), cancellationToken).ConfigureAwait(false);
-        if (marker is null) return null;
-        var paths = CoreCatalog.GetInstallationPaths(emulator, _installationRoot, marker.ReleaseVersion);
-        return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
+        return await EmulationCoreReleaseFunctions.GetActiveInstallationAsync(
+            CoreCatalog.GetActiveManifestPath(emulator, _installationRoot),
+            version => CoreCatalog.GetInstallationPaths(emulator, _installationRoot, version), cancellationToken).ConfigureAwait(false);
     }
 }
 

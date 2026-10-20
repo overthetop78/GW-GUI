@@ -60,6 +60,18 @@ internal static class EmulationCoreReleaseFunctions
         reportProgress(archiveSize);
     }
 
+    internal static EmulationCatalogCoreRelease<TEmulator> ParseRelease<TEmulator, TMachineModel>(
+        EmulationCoreCatalogEntry<TEmulator, TMachineModel> entry, HttpResponseMessage response,
+        string releaseIdPrefix, string releaseVersionFormat, Func<string> missingPublishedDate)
+    {
+        var published = response.Content.Headers.LastModified ?? response.Headers.Date
+            ?? throw new InvalidDataException(missingPublishedDate());
+        var version = published.UtcDateTime.ToString(releaseVersionFormat,
+            CultureInfo.InvariantCulture);
+        return new EmulationCatalogCoreRelease<TEmulator>(entry.Emulator, releaseIdPrefix + version,
+            version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
+    }
+
     internal static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
         Func<HttpResponseMessage, T> readResponse, CancellationToken cancellationToken)
     {
@@ -128,6 +140,17 @@ internal static class EmulationCoreReleaseFunctions
         await using var stream = File.OpenRead(path);
         return await JsonSerializer.DeserializeAsync<T>(stream, ManifestJsonOptions, cancellationToken)
             .ConfigureAwait(false);
+    }
+
+    internal static async Task<EmulationCoreInstallationPaths?> GetActiveInstallationAsync(string markerPath,
+        Func<string, EmulationCoreInstallationPaths> pathsForVersion, CancellationToken cancellationToken)
+    {
+        var marker = await ReadJsonAsync<EmulationCoreActiveInstallation>(
+            markerPath, cancellationToken)
+            .ConfigureAwait(false);
+        if (marker is null) return null;
+        var paths = pathsForVersion(marker.ReleaseVersion);
+        return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
     }
 
     internal static Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken) =>

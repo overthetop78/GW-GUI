@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7220,
-  "outsideSrcCSharpFiles": 338,
+  "currentCSharpFiles": 7221,
+  "outsideSrcCSharpFiles": 339,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11489,
+  "currentMethodCount": 11481,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -823,7 +823,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1185,6 +1185,177 @@
           "tokens": 87,
           "hash": "0D5CD9A6D96EF836DCAD87B93E094D711088E6E169FE97144AF7F42B1D0C07A5",
           "shape": "84558FA9BF9FF1F0CC9572193192B3C4F7846B884683E4B487FAA27C1F62FA32"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+      "method": "GetActiveInstallationAsync",
+      "tokens": 38,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 68,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "3419CAD1D4D5C8E8E3D7E2C78F012A1CC49B41E5A49B8380BC0761F4254BBF2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 68,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "69F9E926873018A028EDCB885B94EAC8FA27B41DCE62171C984C134047C93E47"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 65,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "327BCEA6D34A63EF30E1EE7F9106DC739E9F6196AA2639C7DF7BF0ED978E3778"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 68,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "FA2A7246DCD57F0137F5E1EE39676B5FEA63A06D150F82F794D7DFC00B598802"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 65,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "5C86BDCBB32F0E710ECE5CAA9DA9A48F6A13EA5CCA24D5FD6BA8791C1FE7E35F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 68,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "B6F31C934195EF0869F46BB698F11339933B6D68E450F95C63609D392D9784CD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 64,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "81B6FE8C28A3A28BBF269A77866B6C408FDD935470E23F9EFFEEE3B0678C0321"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 65,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "FAF8A88C8E3A73034C56EBAC290AA31198D094DF7FDEE240F754287A37268CA7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 65,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "0FBB3BADD159558E86CFA6A89F50FBE4B48F5C8C0845809D8FF8E387707E27AB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 64,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "A6BB73F7BD4DD226E2A100B8474487682205113B50AB3CC69D06709B68581135"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 70,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "768A877DFF02E4051F65B00C029C6BD60575304861BA2CA456D550024EEC8F88"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 62,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "1CA85D8BB3D04AFF3635E440799B3F8D74E76E8057F311D2C2DB19EB7333359A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 70,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "B06E593E18F1DCD0076048BBCB0138448F50B346F6E2AC08119966B2E52676BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 70,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "A0620E48FB6693EC58D4B9B4B163645F66A38D29359DEB77B57F50146993CACE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 55,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "05267A5699FA8308A39CDD60E74D5AD5BCFB753F22EE662E07AC914280BC9B1C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetActiveInstallationAsync",
+          "line": 65,
+          "tokens": 38,
+          "hash": "0D821C3020B2FADF0D9C7C08F8C4F398A1748D15B6D6295ED007BBE22615D2FA",
+          "shape": "8506AE5C50A2B7DC0250A4A9E173E30FF03A4ACC184450B7846E1C4043429C91",
+          "qualification": "Verified typed active-installation facade: original Atari marker/null/required-files algorithm in existing SDK owner, public async/ConfigureAwait unchanged and original paths catalogue invoked only after non-null marker. releaseFacadeComparison.phaseVerification; no InstallAsync policy qualified.",
+          "qualificationSourceSha256": "E2C7055ACC1656EE0AF2E083577F954B8BCFCDCA6E9ABC649D26DBAB0E57466F"
         }
       ],
       "predecessors": [],
@@ -3957,77 +4128,77 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 33,
+          "line": 34,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "0DD8119C0A078992117A6B67887CC6694F82568F89768810B28FA9DC93AC649E"
+          "qualificationSourceSha256": "E2C7055ACC1656EE0AF2E083577F954B8BCFCDCA6E9ABC649D26DBAB0E57466F"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 33,
+          "line": 34,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "F917CBBD354F66446B518CA90425450CEE7C6AC3C94B86615EB58E0B011576C0"
+          "qualificationSourceSha256": "0FBB3BADD159558E86CFA6A89F50FBE4B48F5C8C0845809D8FF8E387707E27AB"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 33,
+          "line": 34,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "9C960D088DCB35EDDE81F5860152398DA9CF88025A0079D22A3B2F6BBFD81CE8"
+          "qualificationSourceSha256": "327BCEA6D34A63EF30E1EE7F9106DC739E9F6196AA2639C7DF7BF0ED978E3778"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 33,
+          "line": 34,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "47409CE0C4D2683FF8703AE79F2989D6EF3B75CF820AD413B661473205B78BEC"
+          "qualificationSourceSha256": "5C86BDCBB32F0E710ECE5CAA9DA9A48F6A13EA5CCA24D5FD6BA8791C1FE7E35F"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 32,
+          "line": 33,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "837D0AFA7122C38FBE7D60DD8F2291809B43C2F2D32025191DF4833D722A1F87"
+          "qualificationSourceSha256": "A6BB73F7BD4DD226E2A100B8474487682205113B50AB3CC69D06709B68581135"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 34,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
+          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
+          "qualificationSourceSha256": "FAF8A88C8E3A73034C56EBAC290AA31198D094DF7FDEE240F754287A37268CA7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
           "line": 33,
           "tokens": 288,
           "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
           "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "644F0A19D6348D8F2CD65907484291CF633C65E13FC3E6F49560E04770EDBDC4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 288,
-          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
-          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456",
-          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "A9C97FBA499C6B8289F95126370E23BFF7B07DB1A840493182ED6A2CD50130D9"
+          "qualificationSourceSha256": "81B6FE8C28A3A28BBF269A77866B6C408FDD935470E23F9EFFEEE3B0678C0321"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -6571,77 +6742,77 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 30,
+          "line": 31,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "0C76CDA5314A6DCAAA7CC1D333E6E2ABD0D3B3ACF8C09BB39A98DFFB4CB36CF5"
+          "qualificationSourceSha256": "3419CAD1D4D5C8E8E3D7E2C78F012A1CC49B41E5A49B8380BC0761F4254BBF2B"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 30,
+          "line": 31,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "198EEC4927FAF91CF2B92E3138F497CD5ADAC0814D5255FA87B50EAF7EE30186"
+          "qualificationSourceSha256": "69F9E926873018A028EDCB885B94EAC8FA27B41DCE62171C984C134047C93E47"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 32,
+          "line": 33,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "27976DB4EFB381E610D8B79DDC77B140A6168081194431E51B02EF71A07B4E16"
+          "qualificationSourceSha256": "B06E593E18F1DCD0076048BBCB0138448F50B346F6E2AC08119966B2E52676BE"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 32,
+          "line": 33,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "0C1E62AA71BA95D0977B7A1B7996D41E83E33DA0CF48FD87A507753F32F401FA"
+          "qualificationSourceSha256": "A0620E48FB6693EC58D4B9B4B163645F66A38D29359DEB77B57F50146993CACE"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 30,
+          "line": 31,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "4531EF7D7254B9C28E0DD63CA6F4673625F54CEDE8E686B9620002F14DD3BE1F"
+          "qualificationSourceSha256": "B6F31C934195EF0869F46BB698F11339933B6D68E450F95C63609D392D9784CD"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 30,
+          "line": 31,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2B79752FA36F6B4FC382D33318815B44F47F6B694C1A02B6A9001531B5E926D2"
+          "qualificationSourceSha256": "FA2A7246DCD57F0137F5E1EE39676B5FEA63A06D150F82F794D7DFC00B598802"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 32,
+          "line": 33,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "B888CF6CB1F851526F3CA877C81973CE19F0D12AECEACFCED2CA0956AB0A43CB"
+          "qualificationSourceSha256": "768A877DFF02E4051F65B00C029C6BD60575304861BA2CA456D550024EEC8F88"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -8673,7 +8844,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -9616,154 +9787,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-      "method": "ParseRelease",
-      "tokens": 77,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 12,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 15,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Release.cs",
-          "name": "ParseRelease",
-          "line": 16,
-          "tokens": 77,
-          "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariCoreReleaseFunctions.cs",
-          "name": "ParseRelease",
-          "line": 14,
-          "tokens": 77,
-          "hash": "F65BFEF4FFDB8848B3E5958110CFD498BAA9E67FC38B8BE1C025E9697B69E0EE",
-          "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -12349,6 +12372,177 @@
     },
     {
       "language": "CSharp",
+      "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+      "method": "GetAvailableAsync",
+      "tokens": 71,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 21,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "3419CAD1D4D5C8E8E3D7E2C78F012A1CC49B41E5A49B8380BC0761F4254BBF2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 21,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "69F9E926873018A028EDCB885B94EAC8FA27B41DCE62171C984C134047C93E47"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 24,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "327BCEA6D34A63EF30E1EE7F9106DC739E9F6196AA2639C7DF7BF0ED978E3778"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 21,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "FA2A7246DCD57F0137F5E1EE39676B5FEA63A06D150F82F794D7DFC00B598802"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 24,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "5C86BDCBB32F0E710ECE5CAA9DA9A48F6A13EA5CCA24D5FD6BA8791C1FE7E35F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 21,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "B6F31C934195EF0869F46BB698F11339933B6D68E450F95C63609D392D9784CD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "81B6FE8C28A3A28BBF269A77866B6C408FDD935470E23F9EFFEEE3B0678C0321"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 24,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "FAF8A88C8E3A73034C56EBAC290AA31198D094DF7FDEE240F754287A37268CA7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 24,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "0FBB3BADD159558E86CFA6A89F50FBE4B48F5C8C0845809D8FF8E387707E27AB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "A6BB73F7BD4DD226E2A100B8474487682205113B50AB3CC69D06709B68581135"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "768A877DFF02E4051F65B00C029C6BD60575304861BA2CA456D550024EEC8F88"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "1CA85D8BB3D04AFF3635E440799B3F8D74E76E8057F311D2C2DB19EB7333359A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "B06E593E18F1DCD0076048BBCB0138448F50B346F6E2AC08119966B2E52676BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 23,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "A0620E48FB6693EC58D4B9B4B163645F66A38D29359DEB77B57F50146993CACE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 16,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "05267A5699FA8308A39CDD60E74D5AD5BCFB753F22EE662E07AC914280BC9B1C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetAvailableAsync",
+          "line": 24,
+          "tokens": 71,
+          "hash": "72988F12868664AED3FDC04F72978F8F4C316D1EB317C490D5E26B50E6983862",
+          "shape": "B37A08F5822BB36B3510A518BC90CA2191FEC9CD56296A648FBC182AFD5F9FD7",
+          "qualification": "Verified typed release-query facade: existing SDK QueryReleaseAsync and original Atari metadata parser now direct SDK call, shared entry/release type arguments preserved, original prefix/UTC format and translated error getter lazy. releaseFacadeComparison.phaseVerification; no other service methods qualified.",
+          "qualificationSourceSha256": "E2C7055ACC1656EE0AF2E083577F954B8BCFCDCA6E9ABC649D26DBAB0E57466F"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "72F4EB99A1CC85FEC94B0A5FD4EFA25D1A9DEA6CD67FD781F6B40054910FD0A3",
       "method": "SetControllerPortDevice",
       "tokens": 161,
@@ -12647,7 +12841,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12655,7 +12849,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12663,7 +12857,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12671,7 +12865,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12679,7 +12873,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12687,7 +12881,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12695,7 +12889,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12703,7 +12897,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12711,7 +12905,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12719,7 +12913,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12727,7 +12921,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12735,7 +12929,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12743,7 +12937,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 19,
+          "line": 11,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12751,7 +12945,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12759,7 +12953,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 22,
+          "line": 14,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -12767,7 +12961,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 15,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -14526,27 +14720,27 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 31,
+          "line": 33,
           "tokens": 267,
           "hash": "8A925D976FDEF13CF167DBEDA76128752F146A42A3DA23319734A98AEB814201",
           "shape": "24E247F779BFF2F2848FC8371686E129043FC90A785CFAB6AE7A9CADF2C6E42C",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "332B07A3C678FD69F0EFCFED0DB65AA13CBC7C1D598B2791FCA0E7AE286B7E7D"
+          "qualificationSourceSha256": "1CA85D8BB3D04AFF3635E440799B3F8D74E76E8057F311D2C2DB19EB7333359A"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 25,
+          "line": 26,
           "tokens": 267,
           "hash": "8A925D976FDEF13CF167DBEDA76128752F146A42A3DA23319734A98AEB814201",
           "shape": "24E247F779BFF2F2848FC8371686E129043FC90A785CFAB6AE7A9CADF2C6E42C",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2D7ECAD24EB3DA727D337871DC381605B692821F271E230138B6A069E3CBF262"
+          "qualificationSourceSha256": "05267A5699FA8308A39CDD60E74D5AD5BCFB753F22EE662E07AC914280BC9B1C"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -17605,154 +17799,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-      "method": "GetActiveInstallationAsync",
-      "tokens": 78,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 63,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 60,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 67,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 69,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 69,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 64,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 67,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 69,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 67,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 67,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 64,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 64,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 54,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 64,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 64,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 63,
-          "tokens": 78,
-          "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs",
-          "name": "GetActiveInstallationAsync",
-          "line": 66,
-          "tokens": 78,
-          "hash": "9DE5184214B0EB188A6C33D14C34FD55EEE06B8D05C77E22FC4BF093C62C5B11",
-          "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "A9D1D647F61DC0EA066B32E7B2EC76F9001F5A461DDE9D3EB1E841E4F66A6F0A",
       "method": "Get",
       "tokens": 34,
@@ -18867,145 +18913,6 @@
           "tokens": 68,
           "hash": "B14CA78E55CBDA5C5FA71CF0E4A42A125295C54336017BE89744AA29C8F3DACD",
           "shape": "48798A5162CA5C0A2AB4337ACAC74F7DC624D09A82C33C940874351CA43C5FA9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-      "method": "GetAvailableAsync",
-      "tokens": 55,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 23,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 22,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 21,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 23,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 23,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 24,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 21,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 23,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 21,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 21,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 24,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 24,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 16,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 24,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 24,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetAvailableAsync",
-          "line": 23,
-          "tokens": 55,
-          "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
-          "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
         }
       ],
       "predecessors": [],
@@ -24524,7 +24431,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -33634,7 +33541,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 536,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 565
   }
 }
