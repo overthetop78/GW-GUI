@@ -7,6 +7,15 @@ namespace GWGUI.Emulation.Functions;
 
 public static partial class EmulationCoreOptionFunctions
 {
+    internal static Dictionary<string, string> FilterForEmulator(IEnumerable<string> allowedKeys,
+        IReadOnlyDictionary<string, string> options, string audioOutputKey, string audioLatencyKey, string audioVolumeKey)
+    {
+        var allowed = allowedKeys.ToHashSet(StringComparer.Ordinal);
+        return options.Where(option => allowed.Contains(option.Key)
+            || option.Key == audioOutputKey || option.Key == audioLatencyKey
+            || option.Key == audioVolumeKey).ToDictionary(option => option.Key, option => option.Value);
+    }
+
     internal static IReadOnlyList<TOption> WithDefaults<TOption>(IReadOnlyList<TOption> options,
         IReadOnlyDictionary<string, string> defaults, IReadOnlyDictionary<string, string> currentValues,
         Func<TOption, string> key, Func<TOption, string> originalDefault,

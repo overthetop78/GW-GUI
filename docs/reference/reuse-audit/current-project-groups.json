@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7232,
-  "outsideSrcCSharpFiles": 330,
+  "currentCSharpFiles": 7233,
+  "outsideSrcCSharpFiles": 331,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11466,
+  "currentMethodCount": 11473,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -8362,6 +8362,41 @@
     },
     {
       "language": "CSharp",
+      "hash": "4AB162130D52FFB9AE5018D0AA8B74620172E2CBF1D80B01F2AD9F4412D5E1C8",
+      "method": "UseEmulatorAsync",
+      "tokens": 197,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
+          "name": "UseEmulatorAsync",
+          "line": 114,
+          "tokens": 197,
+          "hash": "4AB162130D52FFB9AE5018D0AA8B74620172E2CBF1D80B01F2AD9F4412D5E1C8",
+          "shape": "7E756CE4A1D4D6607EB5BD88945DDF9BA66CA53F748A9C0B5D5EFFEF98ABA7E7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
+          "name": "UseEmulatorAsync",
+          "line": 112,
+          "tokens": 197,
+          "hash": "4AB162130D52FFB9AE5018D0AA8B74620172E2CBF1D80B01F2AD9F4412D5E1C8",
+          "shape": "7E756CE4A1D4D6607EB5BD88945DDF9BA66CA53F748A9C0B5D5EFFEF98ABA7E7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
+          "name": "UseEmulatorAsync",
+          "line": 114,
+          "tokens": 197,
+          "hash": "4AB162130D52FFB9AE5018D0AA8B74620172E2CBF1D80B01F2AD9F4412D5E1C8",
+          "shape": "7E756CE4A1D4D6607EB5BD88945DDF9BA66CA53F748A9C0B5D5EFFEF98ABA7E7"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "4AF3A6F581D2EA361DD15D4B6C10CE179ADD76400466D3C58DE240D096CD6767",
       "method": "Apply",
       "tokens": 135,
@@ -9456,6 +9491,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "58BEA7136FF8BE9CF0137E055EB02B484B5C61880BEAE03963A04A18985F1C89",
+      "method": "UseEmulatorAsync",
+      "tokens": 206,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
+          "name": "UseEmulatorAsync",
+          "line": 124,
+          "tokens": 206,
+          "hash": "58BEA7136FF8BE9CF0137E055EB02B484B5C61880BEAE03963A04A18985F1C89",
+          "shape": "9266F1C29F2C481AFB7D0BAF946FB07CAAB73A74E42D0FADB290ABFFBBA81147"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
+          "name": "UseEmulatorAsync",
+          "line": 123,
+          "tokens": 206,
+          "hash": "58BEA7136FF8BE9CF0137E055EB02B484B5C61880BEAE03963A04A18985F1C89",
+          "shape": "9266F1C29F2C481AFB7D0BAF946FB07CAAB73A74E42D0FADB290ABFFBBA81147"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "58F5E38B3C1B147CCCEB7F8921169067D3C22198B1C19927A95823D3104F908E",
       "method": "InsertMedia",
       "tokens": 203,
@@ -10537,7 +10599,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 167,
+          "line": 164,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -10545,7 +10607,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 169,
+          "line": 166,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -10553,7 +10615,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 169,
+          "line": 166,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -14027,7 +14089,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 212,
+          "line": 210,
           "tokens": 101,
           "hash": "850BF5F07606D39DD50EAB9472AF535D37026358B71A84068C0148AF3F510EFB",
           "shape": "1960099345F06C219C5A16141BDC7FACDDCB30632B7E934EF2153EFEFB91B39B"
@@ -14035,7 +14097,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 213,
+          "line": 211,
           "tokens": 101,
           "hash": "850BF5F07606D39DD50EAB9472AF535D37026358B71A84068C0148AF3F510EFB",
           "shape": "1960099345F06C219C5A16141BDC7FACDDCB30632B7E934EF2153EFEFB91B39B"
@@ -16752,7 +16814,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 195,
+          "line": 193,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16760,7 +16822,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 193,
+          "line": 191,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16768,7 +16830,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 196,
+          "line": 194,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16776,7 +16838,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 171,
+          "line": 168,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16784,7 +16846,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 169,
+          "line": 166,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -17163,7 +17225,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -18756,7 +18818,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "EpochEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19824,7 +19886,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 183,
+          "line": 180,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -19832,7 +19894,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 185,
+          "line": 182,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -19840,7 +19902,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 185,
+          "line": 182,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -20179,7 +20241,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 187,
+          "line": 184,
           "tokens": 97,
           "hash": "C26410389471DA9E4E4706B8535A3BAAC413E875BE1C129B37B0778FDBA3B48D",
           "shape": "D121AF3127A2AB2C04188640E2FD391EC976820287EDD8ED6A1BBFAD9757A456"
@@ -20187,7 +20249,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 185,
+          "line": 182,
           "tokens": 97,
           "hash": "C26410389471DA9E4E4706B8535A3BAAC413E875BE1C129B37B0778FDBA3B48D",
           "shape": "D121AF3127A2AB2C04188640E2FD391EC976820287EDD8ED6A1BBFAD9757A456"
@@ -21013,33 +21075,6 @@
           "tokens": 130,
           "hash": "C642C54DF34C01CE8081207E21894433853FD55DF69D608227DEAD434482CF53",
           "shape": "9927008327F4738F8F370D866BDE86B656E328837ED25A0E6BA0D2A3DA11F67A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "C657A5E79C791D466AD0A389E105A1F726A92BD514DEC0E03F9BF5929AE80984",
-      "method": "UseEmulatorAsync",
-      "tokens": 252,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
-          "name": "UseEmulatorAsync",
-          "line": 123,
-          "tokens": 252,
-          "hash": "C657A5E79C791D466AD0A389E105A1F726A92BD514DEC0E03F9BF5929AE80984",
-          "shape": "1508BCE0E74DEF8D3EC84D377A30EE5A6ABDF4DB0D94A73AC4ADF9CD1E67AB59"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
-          "name": "UseEmulatorAsync",
-          "line": 124,
-          "tokens": 252,
-          "hash": "C657A5E79C791D466AD0A389E105A1F726A92BD514DEC0E03F9BF5929AE80984",
-          "shape": "1508BCE0E74DEF8D3EC84D377A30EE5A6ABDF4DB0D94A73AC4ADF9CD1E67AB59"
         }
       ],
       "predecessors": [],
@@ -23697,7 +23732,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "Adapter",
-          "line": 186,
+          "line": 184,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23705,7 +23740,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
           "name": "Adapter",
-          "line": 184,
+          "line": 182,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23713,7 +23748,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "Adapter",
-          "line": 187,
+          "line": 185,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23721,7 +23756,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "Adapter",
-          "line": 161,
+          "line": 158,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23729,7 +23764,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "Adapter",
-          "line": 159,
+          "line": 156,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23737,7 +23772,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "Adapter",
-          "line": 157,
+          "line": 154,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23745,7 +23780,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "Adapter",
-          "line": 159,
+          "line": 156,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23753,7 +23788,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "Adapter",
-          "line": 159,
+          "line": 156,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -24938,41 +24973,6 @@
           "shape": "B6731EF292C8412E1975E718D8F60A5C8A691F2C3D71D2266EFA4A2EFA31B4A9"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "F6DB11BDD8EBF6551F654F70116000D546BD3EE6F7D618AFCAF166254071A55C",
-      "method": "UseEmulatorAsync",
-      "tokens": 243,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
-          "name": "UseEmulatorAsync",
-          "line": 112,
-          "tokens": 243,
-          "hash": "F6DB11BDD8EBF6551F654F70116000D546BD3EE6F7D618AFCAF166254071A55C",
-          "shape": "3836881DF94CB2061451FE44CD84B1722E82B33DB77AA17587448C02D22D431E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
-          "name": "UseEmulatorAsync",
-          "line": 114,
-          "tokens": 243,
-          "hash": "F6DB11BDD8EBF6551F654F70116000D546BD3EE6F7D618AFCAF166254071A55C",
-          "shape": "3836881DF94CB2061451FE44CD84B1722E82B33DB77AA17587448C02D22D431E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
-          "name": "UseEmulatorAsync",
-          "line": 114,
-          "tokens": 243,
-          "hash": "F6DB11BDD8EBF6551F654F70116000D546BD3EE6F7D618AFCAF166254071A55C",
-          "shape": "3836881DF94CB2061451FE44CD84B1722E82B33DB77AA17587448C02D22D431E"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -30711,7 +30711,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 136,
+          "line": 133,
           "tokens": 260,
           "hash": "81B8C4826AF7364BB297A422F39D226D677189E2832F83703DA5D20DD28C6D1F",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -30719,7 +30719,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 132,
+          "line": 129,
           "tokens": 260,
           "hash": "2C1889DE53BB5318478CC7805B3C142185491698DC747A4B59AD536EBECCA154",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -30727,7 +30727,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 134,
+          "line": 131,
           "tokens": 260,
           "hash": "38E70A9E13E0BE00F826C9EBB634D64F96A141543A99670F7634534443C1A93A",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -30735,7 +30735,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 134,
+          "line": 131,
           "tokens": 260,
           "hash": "C13AF198BCCD72CEDAB1A4A2FB71E699F8DAC59A81069F6DD54843D0E7D49BA8",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -30743,7 +30743,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 134,
+          "line": 131,
           "tokens": 260,
           "hash": "4939359D280C572EEE4367383A092FB64B97C7448A2F097C0EC71C175AA32FAC",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -30751,7 +30751,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
           "name": "CreateRuntimeAsync",
-          "line": 148,
+          "line": 146,
           "tokens": 260,
           "hash": "350F40E42758C0EF9BDA64D4188E7250D5EA916968D930A0F6DE1B0262DD6F2C",
           "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
@@ -33817,7 +33817,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 505,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 505
   }
 }

@@ -129,9 +129,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
         if (!adapter.Definition.MachineIds.Contains(current.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
         var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
-        var allowed = CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
-        var options = current.Options.Where(option => allowed.Contains(option.Key) || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key,
-            option => option.Value);
+        var options = EmulationCoreOptionFunctions.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), current.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
         var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(current.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
         var result = current with
         {
