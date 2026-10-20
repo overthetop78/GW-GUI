@@ -31,7 +31,7 @@ internal static class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
-        if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count))
+        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count)
             || settings.Mouse is not null || settings.Keyboard?.Values.Count > 0)
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(

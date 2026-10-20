@@ -9,7 +9,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
-        var mouseValues = MouseDefinitions().ToDictionary(definition => definition.Id, definition => configuration.Input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal);
+        var mouseValues = EmulationInputMappingFunctions.ResolveBindings(MouseDefinitions(), configuration.Input.Mouse);
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
         {
@@ -50,7 +50,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (settings.ControllerPorts.Count != ControllerConstants.PortCount || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, ControllerConstants.PortCount)))
+        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,

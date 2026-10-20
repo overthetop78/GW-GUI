@@ -8,6 +8,25 @@ public sealed class ControllerBindingProjectionTests
 {
     private enum Peripheral { None, Joystick }
 
+    [Theory]
+    [InlineData(2, new[] { 2, 1 }, false)]
+    [InlineData(2, new[] { 1, 1 }, true)]
+    [InlineData(2, new[] { 1 }, true)]
+    [InlineData(2, new[] { 0, 2 }, true)]
+    [InlineData(2, new[] { 1, 3 }, true)]
+    [InlineData(0, new int[0], false)]
+    [InlineData(-1, new int[0], true)]
+    public void NumberValidationAcceptsOnlyTheCompletePortSetWithoutReordering(int count, int[] numbers, bool invalid)
+    {
+        var ports = numbers.Select(number => Port(number, "Joystick")).ToArray();
+        var settings = new EmulationInputSettings(null, null, ports);
+
+        Assert.Equal(invalid, EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count));
+        Assert.Same(ports, settings.ControllerPorts);
+        Assert.Equal(numbers, ports.Select(port => port.Number));
+        Assert.All(ports, port => Assert.Equal("physical-" + port.Number, port.PhysicalDeviceId));
+    }
+
     [Fact]
     public void ProjectionKeepsPortOrderMetadataAndIndependentOrdinalMappings()
     {

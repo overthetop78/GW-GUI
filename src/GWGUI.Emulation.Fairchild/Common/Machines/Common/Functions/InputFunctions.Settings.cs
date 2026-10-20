@@ -40,8 +40,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (settings.ControllerPorts.Count != ControllerConstants.PortCount
-            || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, ControllerConstants.PortCount)))
+        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
             throw new ArgumentException(nameof(settings));
         var controllers = settings.ControllerPorts.Select(port =>
         {

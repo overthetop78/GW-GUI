@@ -16,7 +16,7 @@ internal static class InputSettingsFunctions
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
         ConfigurationFunctions.Family(model) == MachineFamily.P2000
-            ? P2000KeyboardDictionary.Definitions.ToDictionary(definition => definition.Id, definition => input.Keyboard?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal)
+            ? EmulationInputMappingFunctions.ResolveBindings(P2000KeyboardDictionary.Definitions, input.Keyboard)
             : new Dictionary<string, string>();
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
@@ -55,7 +55,7 @@ internal static class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
-        if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count))
+        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count)
             || settings.Mouse is not null || (configuration.Family != MachineFamily.P2000 && settings.Keyboard?.Values.Count > 0))
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(

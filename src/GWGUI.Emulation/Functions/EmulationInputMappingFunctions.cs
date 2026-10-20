@@ -72,6 +72,16 @@ public static class EmulationInputMappingFunctions
         values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
             .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
 
+    internal static bool HasInvalidControllerPortNumbers(EmulationInputSettings settings, int count) =>
+        settings.ControllerPorts.Count != count
+        || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count));
+
+    internal static Dictionary<string, string> ResolveBindings(IReadOnlyList<InputBindingDefinition> definitions,
+        IReadOnlyDictionary<string, string>? values) =>
+        definitions.ToDictionary(definition => definition.Id,
+            definition => values?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding,
+            StringComparer.Ordinal);
+
     public static TBinding[] CreateControllerBindings<TPeripheral, TBinding>(EmulationInputSettings settings,
         Func<int, TPeripheral, bool> supportsPeripheral,
         Func<EmulationControllerPort, TPeripheral, IReadOnlyDictionary<string, string>, TBinding> createBinding)

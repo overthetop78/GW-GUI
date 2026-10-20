@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7229,
   "outsideSrcCSharpFiles": 327,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11443,
+  "currentMethodCount": 11448,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -659,33 +659,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "090C0CC2245C665271BE56F818B172DE0A493C7807A21FC07950488AF3D3FCE4",
-      "method": "MouseBindings",
-      "tokens": 39,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseBindings",
-          "line": 20,
-          "tokens": 39,
-          "hash": "090C0CC2245C665271BE56F818B172DE0A493C7807A21FC07950488AF3D3FCE4",
-          "shape": "EAE3AC06A48D081CC15446130FDF37685741E75C85081FDFAE0F8AE9AFD99135"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseBindings",
-          "line": 19,
-          "tokens": 39,
-          "hash": "090C0CC2245C665271BE56F818B172DE0A493C7807A21FC07950488AF3D3FCE4",
-          "shape": "EAE3AC06A48D081CC15446130FDF37685741E75C85081FDFAE0F8AE9AFD99135"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
       "method": "SuspendForMedia",
       "tokens": 51,
@@ -802,7 +775,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -9693,7 +9666,9 @@
           "line": 59,
           "tokens": 375,
           "hash": "5B31B436583C167D373EB4DFA50763010175EB26A9F48D506823752F214A8F8E",
-          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF"
+          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF",
+          "qualification": "entire-typed-native-initialization-reuses-sdk-exports-callbacks-state-bound-and-finally-cleanup",
+          "qualificationSourceSha256": "27E10AFDF76E1A87B5B94DDD8ACA37DA40A3068772F889CF85C6ABEDA6AE0390"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
@@ -9701,7 +9676,9 @@
           "line": 59,
           "tokens": 375,
           "hash": "5B31B436583C167D373EB4DFA50763010175EB26A9F48D506823752F214A8F8E",
-          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF"
+          "shape": "4173C9948B72C6B7F1BC06F2477029FDF4BE609E06F0A16BFA80161A2FCEB4EF",
+          "qualification": "entire-typed-native-initialization-reuses-sdk-exports-callbacks-state-bound-and-finally-cleanup",
+          "qualificationSourceSha256": "7C1570576B631E366E58C68B195D5B0E862BE5D7ED7FFF9F887E46BFF5529467"
         }
       ],
       "predecessors": [],
@@ -15666,37 +15643,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
-      "method": "Apply",
-      "tokens": 244,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 65,
-          "tokens": 244,
-          "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
-          "shape": "F30F582E837A8D881D255E9A0FE13D8C70378F3BAFFDE23DA92DBEFDD5415511",
-          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
-          "qualificationSourceSha256": "5BC7776D72B50E9DE86F5A4E5CAFCB267611A292F35B49CE37D4A1B364F49477"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 73,
-          "tokens": 244,
-          "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
-          "shape": "F30F582E837A8D881D255E9A0FE13D8C70378F3BAFFDE23DA92DBEFDD5415511",
-          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
-          "qualificationSourceSha256": "1118FE127D36FD23F255A53A547CF861E2382051BE8D94505AC84D5093A7E7CE"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
       "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
       "method": "Read",
       "tokens": 114,
@@ -17012,7 +16958,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -17305,7 +17251,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18605,7 +18551,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -22900,6 +22846,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "DB6F7D0A8DEA6DF8EB75C48C9832676FE0614DE6B0910D6F53D1B097EA6F9B0E",
+      "method": "Apply",
+      "tokens": 215,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 65,
+          "tokens": 215,
+          "hash": "DB6F7D0A8DEA6DF8EB75C48C9832676FE0614DE6B0910D6F53D1B097EA6F9B0E",
+          "shape": "3A39332D3A494798EAE02DDDC328A5509F34ED758F276AF64B3BBF3027F7CF77",
+          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
+          "qualificationSourceSha256": "82AF41F32B77CD2029F7D51BD5DCA683E5CCA1E3FD8DF68A47B6984A73E33D1A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 73,
+          "tokens": 215,
+          "hash": "DB6F7D0A8DEA6DF8EB75C48C9832676FE0614DE6B0910D6F53D1B097EA6F9B0E",
+          "shape": "3A39332D3A494798EAE02DDDC328A5509F34ED758F276AF64B3BBF3027F7CF77",
+          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
+          "qualificationSourceSha256": "0B9654C97A9483FF5D45BCCE5C13B96117A27552D240A6DE6B5AAD2D2CC192F8"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "DBD5AE88D7DDE4F561BE5D3586A43A3201A66C8064F37F7C88D10627EE3C5F32",
       "method": "CreateAdapters",
       "tokens": 36,
@@ -25067,7 +25044,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "IsSource",
-          "line": 68,
+          "line": 67,
           "tokens": 46,
           "hash": "F789E50D13332A57C8486B0F31AAF7DE218C741529127C5D865B57C3C0DFF546",
           "shape": "76AE3B2E8E28F89EC92E24553FBB8439684F7C8734AA940A0889627904D0E97D"
@@ -29911,7 +29888,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 168,
+          "line": 178,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"

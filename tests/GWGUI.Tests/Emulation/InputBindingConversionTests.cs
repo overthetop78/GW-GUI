@@ -10,6 +10,64 @@ public sealed class InputBindingConversionTests
     private enum OtherMouseAction : byte { None, Left }
 
     [Fact]
+    public void DefinitionDefaultsProduceIndependentOrdinalResults()
+    {
+        InputBindingDefinition[] definitions = [new("A", "unused", "Keyboard:A"), new("a", "unused", "Keyboard:B")];
+        var first = EmulationInputMappingFunctions.ResolveBindings(definitions, null);
+        var second = EmulationInputMappingFunctions.ResolveBindings(definitions, null);
+
+        Assert.Equal("Keyboard:A", first["A"]);
+        Assert.Equal("Keyboard:B", first["a"]);
+        Assert.Same(StringComparer.Ordinal, first.Comparer);
+        first.Clear();
+        Assert.Equal(2, second.Count);
+    }
+
+    [Fact]
+    public void ConfiguredDefinitionsKeepEmptySourcesAndFallbackOnlyForMissingOrNullValues()
+    {
+        InputBindingDefinition[] definitions =
+        [
+            new("A", "unused", "default-A"), new("a", "unused", "default-a"),
+            new("null", "unused", "default-null"), new("missing", "unused", "default-missing"),
+            new("blank", "unused", "default-blank")
+        ];
+        var values = new Dictionary<string, string>
+        {
+            ["A"] = "Keyboard:Z", ["a"] = "", ["null"] = null!, ["blank"] = " ", ["unknown"] = "ignored"
+        };
+        var result = EmulationInputMappingFunctions.ResolveBindings(definitions, values);
+
+        Assert.Equal(5, result.Count);
+        Assert.Equal("Keyboard:Z", result["A"]);
+        Assert.Equal("", result["a"]);
+        Assert.Equal("default-null", result["null"]);
+        Assert.Equal("default-missing", result["missing"]);
+        Assert.Equal(" ", result["blank"]);
+        Assert.False(result.ContainsKey("unknown"));
+        values.Clear();
+        Assert.Equal("Keyboard:Z", result["A"]);
+    }
+
+    [Fact]
+    public void DefinitionLookupUsesTheConfiguredComparerWhileResultIdsRemainOrdinal()
+    {
+        var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { ["UP"] = "" };
+        var result = EmulationInputMappingFunctions.ResolveBindings([new("Up", "unused", "Keyboard:A")], values);
+
+        Assert.Equal("", result["Up"]);
+        Assert.False(result.ContainsKey("UP"));
+        Assert.Same(StringComparer.Ordinal, result.Comparer);
+    }
+
+    [Fact]
+    public void DuplicateDefinitionIdsRemainErrors()
+    {
+        InputBindingDefinition[] definitions = [new("A", "unused", "first"), new("A", "unused", "second")];
+        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.ResolveBindings(definitions, null));
+    }
+
+    [Fact]
     public void KeyConversionKeepsCaseInsensitiveEnumParsingAndOrdinalCommandNames()
     {
         var source = new Dictionary<string, string>
