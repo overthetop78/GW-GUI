@@ -32,10 +32,5 @@ internal static class EmulationMediaConversionFunctions
 
 internal static class EmulationMediaActivityFunctions
 {
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => new Dictionary<EmulationMediaSlot, bool>
-    {
-        [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.FloppyActivityLed),
-        [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.CassetteActivityLed),
-        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.CartridgeActivityLed)
-    };
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => GWGUI.Emulation.Functions.EmulationMediaRules.FromLedStates(leds);
 }

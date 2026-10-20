@@ -1,25 +1,17 @@
 {
-  "snapshot": "d93d1d6751f6aefebd09be6001c8a427ce384724",
+  "snapshot": "0d7f561d7afbe3a7e3e094a7157062d96517ae5c",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs",
-    "src/GWGUI.Emulation/Functions/EmulationMachineModelFunctions.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs",
+    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs",
+    "src/GWGUI.Emulation/Functions/EmulationMediaRules.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7233,
-  "methodBodyCount": 9563,
+  "fileCount": 7234,
+  "methodBodyCount": 9574,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -9898,7 +9890,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( media . Path , media . Slot , EmulationMediaType . Cartridge , media . IsReadOnly , media . IsInserted )",
           "hash": "23475B89C89C0C2DF1BC88D8EC82C86538AA54701F3830B68245701F157152A1",
-          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50"
+          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "2BCFC9857228013F751D030514DDB31479F319986DA3D91B986B091BC5EC5793"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -9910,7 +9904,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( media . Path , media . Slot , EmulationMediaType . Cartridge , media . IsReadOnly , media . IsInserted )",
           "hash": "23475B89C89C0C2DF1BC88D8EC82C86538AA54701F3830B68245701F157152A1",
-          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50"
+          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "2549C18E0986CFC003543F29D4609FBC31E7630BFEA25175AD931A4B5041937A"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -20966,7 +20962,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "B6AF8720A161C9FCF3C719153D476A80D5A386123620359FCC63F59CA775BD26"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -20978,7 +20976,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "821D67F5B8239A973D935BB53973BFFA3F24522CF791203761E5877148017870"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -20990,7 +20990,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "D8C000AB575243BB425BE254C1ECE1C001AFE93F817D11DD002CB1E58B8EE26B"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21002,7 +21004,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "A1F8FCAC5134E893CC849A514BA7F8F8629D3E7E6025757515EB59FDADB97F83"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21014,7 +21018,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "2E8993319BD0867434923A9BE88CA02ED47FC3FE59A1CFBD753F1CEEF80DAA24"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21026,7 +21032,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "69B2EB5D92A582322E0D8F3D86602E955846B9C9C6AFFF7E54BDC4C61C7D0C33"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21038,7 +21046,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "6D8C785E5AFF2A97A7DF1ECBD10156FB4B1E93CE8E4A2E0DE257FA6F79ABA9F3"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21050,7 +21060,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "D039E3C8F8F08AEF883B5832E5248EBD56F8B5A5FED1047FD4DA052D1AB9EFF1"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21062,7 +21074,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21074,7 +21088,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "432D1F6C9ABCEDCD9E05E42A787DB4091BF645806EBCD75542525A7CFD235EAF"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -21086,7 +21102,9 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . State , code , message , innerException : innerException )",
           "hash": "3D464FA7CCC5B62222474B16641DDD952936BF4338B880EA0DA54429542BE99A",
-          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177"
+          "shape": "D1B5DCEB41A2BE3D82FA21C57785469FD1FB68F7006B0E94B1C6584A9FDAF177",
+          "qualification": "local-state-exception-constructor-adapter-to-existing-typed-sdk-base",
+          "qualificationSourceSha256": "9C8B8E5970B54021AE0B388AAE4CA2F70EC99A3F68D29F7E10378B32740B2383"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -34424,6 +34442,18 @@
           "owner": "EmulationControllerControls",
           "kind": "MethodDeclaration",
           "line": 23,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> GetEnumerator ( )",
+          "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/MediaLedMappingTests.cs",
+          "name": "GetEnumerator",
+          "owner": "Probe.MediaLedMappingTests",
+          "kind": "MethodDeclaration",
+          "line": 99,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> GetEnumerator ( )",
@@ -59268,6 +59298,70 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+      "tokens": 13,
+      "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "C214A8B74535EEF9CBED705E365EC46AC39B1030B6D7B4EBFC8AE2994B0C877A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "8E942646D7827550D73A54DA386EF6FC4FEE1DD2B85717C199D2C6CC9CA8FAAA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "27409EF735D95CB442ED2A30AA217828361B815EA2169AD04A81DC734E39AFAC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 74,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "FC167077C2A28CBA722414720EFAE3B9476635189CAA8AB112947251272751B3"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "BF85638912264EB170476CB2B9EE8313B45635D9CCC76A556FEDE78FB22B0297",
       "tokens": 11,
       "bodyTokens": "=> ReadAsync ( path , formatId , null , cancellationToken )",
@@ -61402,7 +61496,9 @@
           "tokens": 26,
           "bodyTokens": "=> new ( media . Path , media . Slot , ToType ( media . Category ) , media . IsReadOnly , media . IsInserted )",
           "hash": "C7B9C5939A6FE6B23B491F04C8AFDA988C232FAA8922AC473D58E99BD810CEBB",
-          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843"
+          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "A3B8C34D6B89C5AA408AFEFE51E64C7D2CF8604D189290749CFE66978B6C604C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -61414,7 +61510,9 @@
           "tokens": 26,
           "bodyTokens": "=> new ( media . Path , media . Slot , ToType ( media . Category ) , media . IsReadOnly , media . IsInserted )",
           "hash": "C7B9C5939A6FE6B23B491F04C8AFDA988C232FAA8922AC473D58E99BD810CEBB",
-          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843"
+          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "DA64078D8284FEC33F8F1EBF2E8BD1AD822F23754854D5C0A78F8D631C14F631"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -61426,7 +61524,9 @@
           "tokens": 26,
           "bodyTokens": "=> new ( media . Path , media . Slot , ToType ( media . Category ) , media . IsReadOnly , media . IsInserted )",
           "hash": "C7B9C5939A6FE6B23B491F04C8AFDA988C232FAA8922AC473D58E99BD810CEBB",
-          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843"
+          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "C62A9170999EEAB58665FCB50FED9DF7606AB895F3BA001A30BA264503B20A34"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -61438,7 +61538,9 @@
           "tokens": 26,
           "bodyTokens": "=> new ( media . Path , media . Slot , ToType ( media . Category ) , media . IsReadOnly , media . IsInserted )",
           "hash": "C7B9C5939A6FE6B23B491F04C8AFDA988C232FAA8922AC473D58E99BD810CEBB",
-          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843"
+          "shape": "9FA2920F10113914A74CCBEA4933728E17015DEFCE951BCA67D366D876C60843",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "7571E38D09E5475B07983E99BE2051842EF0115F8285903109313CEF8E170F61"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -93581,6 +93683,20 @@
       "tokens": 13,
       "current": [
         {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStates ( leds )",
+          "hash": "4FDC3538306CC4714C88E87F039BA6834F3BA6FD0DF1E416ED14A72EC01D571D",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "269EA310F4456D082017D515C14DF8A6B2E1525A516A5A3371F51D64756E5A98"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "PhysicalMouse",
           "owner": "InputSnapshotFunctions",
@@ -93607,6 +93723,20 @@
           "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(GWGUI.Emulation.Contracts.EmulationPointerState); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "C16CDE5A6E8DC8C6E36FFA79E6D54F639F2574055479A26D5FCCF19EF4D79F04"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "C214A8B74535EEF9CBED705E365EC46AC39B1030B6D7B4EBFC8AE2994B0C877A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
@@ -93637,6 +93767,20 @@
           "qualificationSourceSha256": "65F01CDB7874A907CDB5D81CC0A3B68B9B891459A66B4F8B09C8AB6BB354C575"
         },
         {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "8E942646D7827550D73A54DA386EF6FC4FEE1DD2B85717C199D2C6CC9CA8FAAA"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "PhysicalMouse",
           "owner": "InputSnapshotFunctions",
@@ -93651,6 +93795,20 @@
           "qualificationSourceSha256": "B3A381165B243682826A769528D1C43E658DF65D6AAFFFE30BEB0B3F56398CD9"
         },
         {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "27409EF735D95CB442ED2A30AA217828361B815EA2169AD04A81DC734E39AFAC"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
           "name": "PhysicalMouse",
           "owner": "InputSnapshotFunctions",
@@ -93663,6 +93821,20 @@
           "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(GWGUI.Emulation.Contracts.EmulationPointerState); simpleSdkForwardersQualification; simple arguments only.",
           "qualificationSourceSha256": "1FFC2A99F7089C3FBB3CC9208287C8E75F1A856CD20AA5D55F3F6E6B3579CDF9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs",
+          "name": "FromLedStates",
+          "owner": "EmulationMediaActivityFunctions",
+          "kind": "MethodDeclaration",
+          "line": 74,
+          "parameters": "(IReadOnlyDictionary<int, bool> leds)",
+          "tokens": 13,
+          "bodyTokens": "=> GWGUI . Emulation . Functions . EmulationMediaRules . FromLedStatesWithCd ( leds )",
+          "hash": "BEA134930226A8073D30BFB7FC7B335B32282FF4CB954B13D516DE833166134A",
+          "shape": "372B5CE815765D1FC5D10CD848DB17E1DEC9676EFEAA581B60E9948A4AC165F1",
+          "qualification": "original-amstrad-led-prefix-reused-sdk-three-or-four-key-snapshot",
+          "qualificationSourceSha256": "FC167077C2A28CBA722414720EFAE3B9476635189CAA8AB112947251272751B3"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Play/Factories/PlayMachineFactory.cs",
@@ -103033,6 +103205,18 @@
           "owner": "EmulationControllerControls",
           "kind": "MethodDeclaration",
           "line": 23,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> GetEnumerator ( )",
+          "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/MediaLedMappingTests.cs",
+          "name": "GetEnumerator",
+          "owner": "Probe.MediaLedMappingTests",
+          "kind": "MethodDeclaration",
+          "line": 99,
           "parameters": "()",
           "tokens": 4,
           "bodyTokens": "=> GetEnumerator ( )",
@@ -121560,7 +121744,7 @@
           "name": "RequiresReadOnly",
           "owner": "EmulationMediaRules",
           "kind": "MethodDeclaration",
-          "line": 17,
+          "line": 32,
           "parameters": "(EmulationMediaType type)",
           "tokens": 10,
           "bodyTokens": "=> type is EmulationMediaType . CompactDisc or EmulationMediaType . Cartridge",
@@ -138065,7 +138249,7 @@
           "name": "SupportsEjection",
           "owner": "EmulationMediaRules",
           "kind": "MethodDeclaration",
-          "line": 15,
+          "line": 30,
           "parameters": "(EmulationMediaType type)",
           "tokens": 18,
           "bodyTokens": "=> type is EmulationMediaType . Floppy or EmulationMediaType . CompactDisc or EmulationMediaType . Cartridge or EmulationMediaType . Cassette",
@@ -142052,7 +142236,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( media . Path , media . Slot , EmulationMediaType . Cartridge , media . IsReadOnly , media . IsInserted )",
           "hash": "23475B89C89C0C2DF1BC88D8EC82C86538AA54701F3830B68245701F157152A1",
-          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50"
+          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "2BCFC9857228013F751D030514DDB31479F319986DA3D91B986B091BC5EC5793"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -142064,7 +142250,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( media . Path , media . Slot , EmulationMediaType . Cartridge , media . IsReadOnly , media . IsInserted )",
           "hash": "23475B89C89C0C2DF1BC88D8EC82C86538AA54701F3830B68245701F157152A1",
-          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50"
+          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "2549C18E0986CFC003543F29D4609FBC31E7630BFEA25175AD931A4B5041937A"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs",
@@ -142076,7 +142264,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( media . Path , media . Slot , media . Category , media . IsReadOnly , media . IsInserted )",
           "hash": "E778C28FA99947DE42A1257F517A5B8D389B3EDED269DDC14CB779538766B05D",
-          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50"
+          "shape": "F4DA20AD236E42DEAAEB7467544B2E88921C77E6FE3A93EE3B110AED21530A50",
+          "qualification": "existing-sdk-media-contract-projection-local-category-boundary",
+          "qualificationSourceSha256": "592E82FF53563FC91403F64205DBCD8331EE727587C2930ABA37963B451EAE5E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -143184,6 +143374,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3016
+    "occurrences": 3036
   }
 }

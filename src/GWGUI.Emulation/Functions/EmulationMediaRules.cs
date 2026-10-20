@@ -2,6 +2,21 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationMediaRules
 {
+    internal static Dictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) =>
+        new Dictionary<EmulationMediaSlot, bool>
+    {
+        [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(0),
+        [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(1),
+        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(2)
+    };
+
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStatesWithCd(IReadOnlyDictionary<int, bool> leds)
+    {
+        var activity = FromLedStates(leds);
+        activity[EmulationMediaSlot.Cd0] = leds.GetValueOrDefault(3);
+        return activity;
+    }
+
     public static bool IsCompatible(EmulationMediaSlot slot, EmulationMediaType type) => slot.Category switch
     {
         EmulationMediaCategory.FloppyDrive => type == EmulationMediaType.Floppy,
