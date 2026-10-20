@@ -18,52 +18,51 @@ namespace GWGUI.App.Options.Controllers;
 internal sealed partial class UpdateOptionsController : IDisposable
 {
     private async void SearchApplication(object sender, RoutedEventArgs e)
-    {
-        _section.SearchButton.IsEnabled = false;
-        _applicationState = UpdateVisualState.Busy;
-        RebuildNavigation();
-        _section.Status.Text = _localize("Updates.Searching", []);
-        try
-        {
-            _applicationResult = await _applicationService.SearchAsync(_applicationSelections);
-            RenderApplication(_applicationResult);
-            _applicationState = StateFor(_applicationResult);
-        }
-        catch (Exception exception)
-        {
-            _section.Status.Text = _localize("Updates.SearchFailed", []);
-            _applicationState = UpdateVisualState.Error;
-            _reportError(exception);
-        }
-        finally
-        {
-            RebuildNavigation();
-            if (_preparationCancellation is null) _section.SearchButton.IsEnabled = true;
-        }
-    }
+        => await SearchAsync(UpdateSearchScope.Application);
 
     private async void SearchModules(object sender, RoutedEventArgs e)
+        => await SearchAsync(UpdateSearchScope.Modules);
+
+    private async Task SearchAsync(UpdateSearchScope scope)
     {
-        _section.SearchModulesButton.IsEnabled = false;
-        _modulesState = UpdateVisualState.Busy;
+        var isApplication = scope == UpdateSearchScope.Application;
+        var button = isApplication ? _section.SearchButton : _section.SearchModulesButton;
+        var status = isApplication ? _section.Status : _section.ModuleStatus;
+        button.IsEnabled = false;
+        SetVisualState(UpdateVisualState.Busy);
         RebuildNavigation();
-        _section.ModuleStatus.Text = _localize("Updates.Searching", []);
+        status.Text = _localize("Updates.Searching", []);
         try
         {
-            _moduleResult = await _moduleService.SearchAsync(_moduleSelections);
-            RenderModules(_moduleResult);
-            _modulesState = StateFor(_moduleResult);
+            if (isApplication)
+            {
+                _applicationResult = await _applicationService.SearchAsync(_applicationSelections);
+                RenderApplication(_applicationResult);
+                _applicationState = StateFor(_applicationResult);
+            }
+            else
+            {
+                _moduleResult = await _moduleService.SearchAsync(_moduleSelections);
+                RenderModules(_moduleResult);
+                _modulesState = StateFor(_moduleResult);
+            }
         }
         catch (Exception exception)
         {
-            _section.ModuleStatus.Text = _localize("Updates.SearchFailed", []);
-            _modulesState = UpdateVisualState.Error;
+            status.Text = _localize("Updates.SearchFailed", []);
+            SetVisualState(UpdateVisualState.Error);
             _reportError(exception);
         }
         finally
         {
             RebuildNavigation();
-            if (_preparationCancellation is null) _section.SearchModulesButton.IsEnabled = true;
+            if (_preparationCancellation is null) button.IsEnabled = true;
+        }
+
+        void SetVisualState(UpdateVisualState state)
+        {
+            if (isApplication) _applicationState = state;
+            else _modulesState = state;
         }
     }
 

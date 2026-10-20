@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7235,
   "outsideSrcCSharpFiles": 333,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11479,
+  "currentMethodCount": 11478,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -18818,7 +18818,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24536,7 +24536,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -25509,7 +25509,9 @@
           "line": 17,
           "tokens": 101,
           "hash": "DDE1CCDEB57511600456DE429D9B056C79EFEC7FD922707EBDA04BB66B1308E4",
-          "shape": "034C31DE87EB8ED7283C273AB9ADFC5FECFAD743D627236A716CBA9B9B841D81"
+          "shape": "034C31DE87EB8ED7283C273AB9ADFC5FECFAD743D627236A716CBA9B9B841D81",
+          "qualification": "entire-format-specific-track-composition-with-resolved-data-checksum-and-existing-common-validation-bit-encoding-owners",
+          "qualificationSourceSha256": "1657ADEFADE2752558F36F5F5E62CA53C2484641259F2E2664EBBC1A1F821588"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs",
@@ -25517,7 +25519,9 @@
           "line": 16,
           "tokens": 101,
           "hash": "E552F3491D6F7794F1CA392F7305A7BAE934590B48497567965F17A892DF4CD0",
-          "shape": "034C31DE87EB8ED7283C273AB9ADFC5FECFAD743D627236A716CBA9B9B841D81"
+          "shape": "034C31DE87EB8ED7283C273AB9ADFC5FECFAD743D627236A716CBA9B9B841D81",
+          "qualification": "entire-format-specific-track-composition-with-resolved-data-checksum-and-existing-common-validation-bit-encoding-owners",
+          "qualificationSourceSha256": "9E2233B71218B3F8A3C7C815961B03C5CA0DE4BC93ABF5A56A4C66CB0049FE00"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -32186,29 +32190,6 @@
       "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
-      "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40",
-      "tokens": 112,
-      "current": [
-        {
-          "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs",
-          "name": "SearchApplication",
-          "line": 20,
-          "tokens": 112,
-          "hash": "9CA7ED179B27D67D6AD0B8FA1F532A3E79D3AA835BFD5B98A50B58A11E69A86B",
-          "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40"
-        },
-        {
-          "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs",
-          "name": "SearchModules",
-          "line": 45,
-          "tokens": 112,
-          "hash": "A308434483DAF2A8B6747418BB6FE666EFF3B99692F37ED259D30C6E8E7B211E",
-          "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961",
       "tokens": 70,
       "current": [
@@ -33771,7 +33752,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 505
+    "occurrences": 507,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

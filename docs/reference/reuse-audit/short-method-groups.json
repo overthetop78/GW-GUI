@@ -1,13 +1,12 @@
 {
-  "snapshot": "a83314b66f372944e286cc5657942ba0d7ed0b02",
+  "snapshot": "184fee3552e12d6d4fa9ec0a4c945b3323604239",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualControlMappings.cs",
-    "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Input/ControllerVisualStateConverter.cs"
+    "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7235,
-  "methodBodyCount": 9591,
+  "methodBodyCount": 9593,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -128013,6 +128012,34 @@
           "shape": "AF8CED0F3E989FD190D7ECEB68C9E81285661707DA55F8586D1B1E6A1EA4863A"
         },
         {
+          "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs",
+          "name": "SearchApplication",
+          "owner": "UpdateOptionsController",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(object sender, RoutedEventArgs e)",
+          "tokens": 8,
+          "bodyTokens": "=> await SearchAsync ( UpdateSearchScope . Application )",
+          "hash": "90B169B39DB2D747805A7F1C0091BDA73F63BDC0ADC9E21625143F61610C7ED8",
+          "shape": "AF8CED0F3E989FD190D7ECEB68C9E81285661707DA55F8586D1B1E6A1EA4863A",
+          "qualification": "Original controller search flow shared; both specializations and whole-file inverse verified in appUpdateSearchReuse; distinct original services and renderers retained.",
+          "qualificationSourceSha256": "6AB88278AB4DF56C4E2244DC17BBD6E9860B6D2B5DF6D016B9BE0CBDABCE5759"
+        },
+        {
+          "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs",
+          "name": "SearchModules",
+          "owner": "UpdateOptionsController",
+          "kind": "MethodDeclaration",
+          "line": 23,
+          "parameters": "(object sender, RoutedEventArgs e)",
+          "tokens": 8,
+          "bodyTokens": "=> await SearchAsync ( UpdateSearchScope . Modules )",
+          "hash": "ECACA54542B33AE5382F803CABBB7C5FA07A9DE97970AE5E8A97E857447AAF5C",
+          "shape": "AF8CED0F3E989FD190D7ECEB68C9E81285661707DA55F8586D1B1E6A1EA4863A",
+          "qualification": "Original controller search flow shared; both specializations and whole-file inverse verified in appUpdateSearchReuse; distinct original services and renderers retained.",
+          "qualificationSourceSha256": "6AB88278AB4DF56C4E2244DC17BBD6E9860B6D2B5DF6D016B9BE0CBDABCE5759"
+        },
+        {
           "path": "src/GWGUI.Infrastructure/Hardware/Greaseweazle/WindowsGreaseweazleSerialTransport.cs",
           "name": "DisposeAsync",
           "owner": "WindowsGreaseweazleSerialTransport",
@@ -143453,7 +143480,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3088
+    "occurrences": 3096,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

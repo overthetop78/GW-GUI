@@ -1100477,5 +1100477,1233 @@
       "outsideAnnotationsDigestUnchanged": true,
       "classificationScope": "Eight entire typed methods, original data, generic Add, shared mask loop and exact lookup verified. Unique methods recorded in proof without fabricated report groups; converter logic outside row wrappers untouched."
     }
+  },
+  "micropolisMicralEncoderComparison": {
+    "pending": "Resolve exact constants, exception factories, checksum implementations, original owner before MediaEngine rename bef2aeb09 and existing shared bit/validation operations before deciding any reuse. No encoding, image or hardware operation performed; no methods qualified yet.",
+    "state": "two-format-specific-encoder-compositions-qualified-existing-owners-retained",
+    "before": [
+      {
+        "source": "using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Encode les pistes utilisant le format Micropolis MFM.</summary>\r\npublic sealed class MicropolisMfmTrackEncoder : TrackEncoderBase\r\n{\r\n    /// <summary>Obtient l'identifiant technique du codec.</summary>\r\n    public override string Id => MicropolisMfmFormat.CodecId;\r\n    /// <summary>Obtient le nom affiché du codec.</summary>\r\n    public override string DisplayName => MicropolisMfmFormat.CodecDisplayName;\r\n\r\n    /// <summary>Encode les enregistrements sectoriels Micropolis avec leur adresse et leur contrôle.</summary>\r\n    /// <param name=\"request\">Piste logique contenant le cylindre et les secteurs à encoder.</param>\r\n    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>\r\n    /// <exception cref=\"ArgumentException\">La charge utile d'un secteur ne possède pas la taille Micropolis attendue.</exception>\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicropolisMfmFormat.MinimumSectorNumber or > MicropolisMfmFormat.MaximumSectorNumber) throw MicropolisMfmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data));\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Construit un enregistrement Micropolis complet à partir de valeurs validées.</summary>\r\n    /// <param name=\"cylinder\">Numéro de cylindre.</param>\r\n    /// <param name=\"sector\">Numéro de secteur.</param>\r\n    /// <param name=\"data\">Données sectorielles.</param>\r\n    /// <returns>Enregistrement prêt à encoder.</returns>\r\n    private static MicropolisMfmRecord CreateRecord(byte cylinder, byte sector, IReadOnlyList<byte> data) => MicropolisMfmRecord.Create(cylinder, sector, data);\r\n\r\n    /// <summary>Écrit le préambule nul, l'enregistrement MFM et le gap final.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules binaires.</param>\r\n    /// <param name=\"record\">Enregistrement à écrire.</param>\r\n    private static void WriteRecord(List<bool> bits, MicropolisMfmRecord record)\r\n    {\r\n        bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount]);\r\n        bits.Mfm(record.Bytes);\r\n        bits.Gap(MicropolisMfmFormat.GapBitCount);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs",
+        "sourceSha256": "1657ADEFADE2752558F36F5F5E62CA53C2484641259F2E2664EBBC1A1F821588"
+      },
+      {
+        "source": "using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Encode les pistes utilisant le format Micral NFM.</summary>\r\npublic sealed class MicralNFmTrackEncoder : TrackEncoderBase\r\n{\r\n    /// <summary>Obtient l'identifiant technique du codec.</summary>\r\n    public override string Id => MicralNFmFormat.CodecId;\r\n    /// <summary>Obtient le nom affiché du codec.</summary>\r\n    public override string DisplayName => MicralNFmFormat.CodecDisplayName;\r\n    /// <summary>Encode les secteurs Micral N avec leur adresse et leur somme de contrôle.</summary>\r\n    /// <param name=\"request\">Piste logique contenant le cylindre et les secteurs à encoder.</param>\r\n    /// <returns>Cellules FM de la piste dans leur ordre d'émission.</returns>\r\n    /// <exception cref=\"ArgumentException\">La charge utile d'un secteur ne possède pas la taille Micral N attendue.</exception>\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicralNFmFormat.SectorSize) throw MicralNFmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicralNFmFormat.MinimumSectorNumber or > MicralNFmFormat.MaximumSectorNumber) throw MicralNFmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteSector(bits, BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data));\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Construit l'adresse, les données et le checksum d'un secteur Micral N.</summary>\r\n    /// <param name=\"sector\">Numéro de secteur validé.</param>\r\n    /// <param name=\"cylinder\">Numéro de cylindre validé.</param>\r\n    /// <param name=\"data\">Données sectorielles validées.</param>\r\n    /// <returns>Octets FM situés après le préambule.</returns>\r\n    private static byte[] BuildSector(byte sector, byte cylinder, IReadOnlyList<byte> data) => new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data)).ToArray();\r\n\r\n    /// <summary>Écrit le préambule, le bloc FM et le gap final d'un secteur Micral N.</summary>\r\n    /// <param name=\"bits\">Constructeur de cellules binaires de la piste.</param>\r\n    /// <param name=\"sectorBytes\">Adresse, données et checksum du secteur.</param>\r\n    private static void WriteSector(List<bool> bits, IReadOnlyList<byte> sectorBytes)\r\n    {\r\n        bits.Raw(MicralNFmFormat.SectorMark.ToArray());\r\n        bits.Fm(sectorBytes);\r\n        bits.Gap(MicralNFmFormat.GapBitCount);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs",
+        "sourceSha256": "9E2233B71218B3F8A3C7C815961B03C5CA0DE4BC93ABF5A56A4C66CB0049FE00"
+      },
+      {
+        "source": "\r\nusing GWGUI.MediaEngine.Images.Models.Flux;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Fournit les validations et la construction du résultat communes aux encodeurs de pistes.</summary>\r\npublic abstract class TrackEncoderBase : ITrackEncoder\r\n{\r\n    /// <summary>Obtient l'identifiant technique stable de l'encodeur.</summary>\r\n    public abstract string Id { get; }\r\n    /// <summary>Obtient le nom de l'encodeur destiné à l'affichage.</summary>\r\n    public abstract string DisplayName { get; }\r\n\r\n    /// <summary>Valide puis encode une piste logique complète.</summary>\r\n    /// <param name=\"request\">Description de la piste et de ses secteurs.</param>\r\n    /// <returns>Piste encodée et révolution de flux correspondante.</returns>\r\n    /// <exception cref=\"ArgumentNullException\">La requête est nulle.</exception>\r\n    /// <exception cref=\"ArgumentOutOfRangeException\">Le cylindre ou la face se situe hors des limites communes.</exception>\r\n    /// <exception cref=\"ArgumentException\">La piste ne contient aucun secteur.</exception>\r\n    /// <exception cref=\"InvalidOperationException\">L'encodeur n'a produit aucune cellule binaire.</exception>\r\n    /// <remarks>Cette méthode applique uniquement les validations communes ; chaque encodeur conserve les contraintes propres à son format.</remarks>\r\n    public EncodedTrack Encode(TrackEncodeRequest request)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(request);\r\n        if (request.Cylinder is < TrackEncodingLimits.MinimumCylinder or > TrackEncodingLimits.MaximumCylinder) throw TrackEncodingExceptions.InvalidCylinder(request.Cylinder);\r\n        if (request.Head is < TrackEncodingLimits.MinimumHead or > TrackEncodingLimits.MaximumHead) throw TrackEncodingExceptions.InvalidHead(request.Head);\r\n        if (request.Sectors.Count < TrackEncodingLimits.MinimumSectorCount) throw TrackEncodingExceptions.MissingSectors(request.Sectors.Count);\r\n        if (request.BitCellTicks == 0) throw TrackEncodingExceptions.ZeroBitCell(request.BitCellTicks);\r\n        if (request.IndexTimeTicks == 0) throw TrackEncodingExceptions.ZeroIndexTime(request.IndexTimeTicks);\r\n        var bits = EncodeBits(request);\r\n        if (bits.Count == 0) throw TrackEncodingExceptions.EmptyTrack(Id, bits.Count);\r\n        return new(Id, bits, FluxRevolutionFactory.Create(bits, request.BitCellTicks, request.IndexTimeTicks));\r\n    }\r\n\r\n    /// <summary>Produit les cellules binaires propres au format de l'encodeur.</summary>\r\n    /// <param name=\"request\">Requête déjà validée par les règles communes.</param>\r\n    /// <returns>Cellules binaires dans leur ordre d'émission.</returns>\r\n    protected abstract IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request);\r\n\r\n    /// <summary>Parcourt les secteurs ISO en conservant les opérations propres au format FM ou MFM.</summary>\r\n    /// <param name=\"request\">Piste déjà validée par les règles communes.</param>\r\n    /// <param name=\"validateAddress\">Validation des champs d'adresse du format.</param>\r\n    /// <param name=\"resolveSizeCode\">Calcul et validation de la taille sectorielle.</param>\r\n    /// <param name=\"writeAddress\">Écriture de l'adresse et de son CRC.</param>\r\n    /// <param name=\"writeData\">Écriture des données, de leur CRC et du gap.</param>\r\n    /// <returns>Cellules binaires dans l'ordre des secteurs fournis.</returns>\r\n    protected static IReadOnlyList<bool> EncodeIsoBits(TrackEncodeRequest request,\r\n        Action<string, int> validateAddress, Func<TrackSector, byte> resolveSizeCode,\r\n        Action<List<bool>, TrackEncodeRequest, int, byte> writeAddress, Action<List<bool>, TrackSector> writeData)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        validateAddress(nameof(request.Cylinder), request.Cylinder);\r\n        validateAddress(nameof(request.Head), request.Head);\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            validateAddress(nameof(sector.Number), sector.Number);\r\n            var sizeCode = resolveSizeCode(sector);\r\n            writeAddress(bits, request, sector.Number, sizeCode);\r\n            writeData(bits, sector);\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Lit un attribut de piste ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"request\">Requête portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque la clé est absente.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    protected static int Attribute(TrackEncodeRequest request, string key, int fallback) => Attribute(request.Attributes, key, fallback);\r\n\r\n    /// <summary>Lit un attribut de secteur ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"sector\">Secteur portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque la clé est absente.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    protected static int Attribute(TrackSector sector, string key, int fallback) => Attribute(sector.Attributes, key, fallback);\r\n\r\n    /// <summary>Lit une valeur dans un dictionnaire d'attributs ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"attributes\">Dictionnaire optionnel portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque le dictionnaire ou la clé est absent.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    private static int Attribute(IReadOnlyDictionary<string, int>? attributes, string key, int fallback) => attributes is not null && attributes.TryGetValue(key, out var value) ? value : fallback;\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncoderBase.cs",
+        "sourceSha256": "00B6A1ECBCE10E7BFEB1E319A3451765F6B48480632FD27E6542E09904DCE79A"
+      },
+      {
+        "source": "using GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Images.Models.Sectors;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Fournit les primitives d'écriture et de compactage des cellules binaires d'une piste.</summary>\r\ninternal static class TrackBitEncoding\r\n{\r\n    /// <summary>Nombre de cellules FM ou MFM produites pour un octet source.</summary>\r\n    private const int EncodedCellCountPerByte = BitPrimitives.BitsPerByte * 2;\r\n\r\n    /// <summary>Crée un tampon de cellules binaires vide.</summary>\r\n    /// <returns>Nouveau tampon modifiable.</returns>\r\n    public static List<bool> Bits() => [];\r\n\r\n    /// <summary>Ajoute les bits de chaque octet, du poids fort au poids faible.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à écrire.</param>\r\n    public static void Raw(this List<bool> bits, params byte[] bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--) bits.Add((value & (1 << bit)) != 0);\r\n        }\r\n    }\r\n\r\n    /// <summary>Convertit une chaîne hexadécimale avec la plateforme puis écrit les octets obtenus.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"hexadecimal\">Chaîne contenant un nombre pair de chiffres hexadécimaux.</param>\r\n    /// <exception cref=\"FormatException\">La chaîne n'est pas une représentation hexadécimale valide.</exception>\r\n    public static void RawHex(this List<bool> bits, string hexadecimal) => bits.Raw(Convert.FromHexString(hexadecimal));\r\n\r\n    /// <summary>Ajoute une suite textuelle de cellules binaires.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"values\">Chaîne composée uniquement de <c>0</c> et de <c>1</c>.</param>\r\n    /// <exception cref=\"ArgumentException\">Un caractère différent de <c>0</c> ou <c>1</c> est rencontré.</exception>\r\n    public static void RawBits(this List<bool> bits, string values)\r\n    {\r\n        for (var index = 0; index < values.Length; index++)\r\n        {\r\n            bits.Add(values[index] switch { '0' => false, '1' => true, _ => throw TrackEncodingExceptions.InvalidBinaryCharacter(values[index], index) });\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets encodés en MFM.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    /// <param name=\"previousData\">État de la cellule de données précédant le premier octet.</param>\r\n    /// <remarks>L'état de données est propagé entre tous les octets d'un même appel.</remarks>\r\n    public static void Mfm(this List<bool> bits, IEnumerable<byte> bytes, bool previousData = false)\r\n    {\r\n        var previous = previousData;\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                var data = (value & (1 << bit)) != 0;\r\n                bits.Add(!previous && !data);\r\n                bits.Add(data);\r\n                previous = data;\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets encodés en FM, cellule d'horloge puis cellule de données.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    public static void Fm(this List<bool> bits, IEnumerable<byte> bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                bits.Add(true);\r\n                bits.Add((value & (1 << bit)) != 0);\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets en doublant chaque cellule FM.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    public static void DoubleFm(this List<bool> bits, IEnumerable<byte> bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                bits.Add(false);\r\n                bits.Add(true);\r\n                bits.Add(false);\r\n                bits.Add((value & (1 << bit)) != 0);\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute un gap alterné ou entièrement composé de cellules à un.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"count\">Nombre de cellules à ajouter.</param>\r\n    /// <param name=\"allOnes\">Indique si toutes les cellules valent un ; sinon le motif commence à un puis alterne.</param>\r\n    /// <exception cref=\"ArgumentOutOfRangeException\">La longueur du gap est négative.</exception>\r\n    public static void Gap(this List<bool> bits, int count, bool allOnes = false)\r\n    {\r\n        if (count < 0) throw TrackEncodingExceptions.NegativeGapLength(count);\r\n        for (var index = 0; index < count; index++) bits.Add(allOnes || (index & BitPrimitives.LeastSignificantBitMask) == 0);\r\n    }\r\n\r\n    /// <summary>Encode des octets en MFM puis compacte les cellules obtenues.</summary>\r\n    /// <param name=\"data\">Octets à encoder.</param>\r\n    /// <returns>Cellules MFM compactées, bit de poids fort en premier.</returns>\r\n    public static byte[] EncodeCompactMfm(params byte[] data)\r\n    {\r\n        var bits = new List<bool>(data.Length * EncodedCellCountPerByte);\r\n        bits.Mfm(data);\r\n        return Pack(bits);\r\n    }\r\n\r\n    /// <summary>Encode des octets en FM puis compacte les cellules obtenues.</summary>\r\n    /// <param name=\"data\">Octets à encoder.</param>\r\n    /// <returns>Cellules FM compactées, bit de poids fort en premier.</returns>\r\n    public static byte[] EncodeCompactFm(params byte[] data)\r\n    {\r\n        var bits = new List<bool>(data.Length * EncodedCellCountPerByte);\r\n        bits.Fm(data);\r\n        return Pack(bits);\r\n    }\r\n\r\n    /// <summary>Compacte une suite de cellules binaires dans un tableau d'octets.</summary>\r\n    /// <param name=\"bits\">Cellules à compacter, bit de poids fort en premier.</param>\r\n    /// <returns>Octets contenant les cellules compactées.</returns>\r\n    private static byte[] Pack(IReadOnlyList<bool> bits)\r\n    {\r\n        var bytes = new byte[(bits.Count + BitPrimitives.BitsPerByte - 1) / BitPrimitives.BitsPerByte];\r\n        for (var index = 0; index < bits.Count; index++)\r\n        {\r\n            if (bits[index]) bytes[index / BitPrimitives.BitsPerByte] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - index % BitPrimitives.BitsPerByte));\r\n        }\r\n        return bytes;\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackBitEncoding.cs",
+        "sourceSha256": "DAD5D77A5DCDC2191BAD222E96D9071764557394A65C22A92E2409980AC95381"
+      },
+      {
+        "source": "using GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n/// <summary>Regroupe les définitions techniques du format Micropolis MFM.</summary>\r\ninternal static class MicropolisMfmFormat\r\n{\r\n    /// <summary>Identifiant technique du codec.</summary>\r\n    public const string CodecId = FluxCodecIds.MicropolisMfm;\r\n    /// <summary>Nom affiché du codec.</summary>\r\n    public const string CodecDisplayName = FluxCodecDisplayNames.MicropolisMfm;\r\n    /// <summary>Nom employé dans les descriptions de structures.</summary>\r\n    public const string StructureDescriptionName = \"Micropolis\";\r\n    /// <summary>Marque d'adresse du record.</summary>\r\n    public const byte AddressMark = 0xff;\r\n    /// <summary>Nombre minimal d'octets nuls précédant la marque.</summary>\r\n    public const int SyncZeroCount = 3;\r\n    /// <summary>Nombre de bits encodant un octet MFM.</summary>\r\n    public const int EncodedByteBitCount = 16;\r\n    /// <summary>Longueur du motif minimal de synchronisation.</summary>\r\n    public const int SyncBitCount = (SyncZeroCount + 1) * EncodedByteBitCount;\r\n    /// <summary>Position de la marque dans le record.</summary>\r\n    public const int AddressMarkOffset = 0;\r\n    /// <summary>Position du cylindre dans le record.</summary>\r\n    public const int CylinderOffset = 1;\r\n    /// <summary>Position du secteur dans le record.</summary>\r\n    public const int SectorOffset = 2;\r\n    /// <summary>Nombre d'octets d'identité du record.</summary>\r\n    public const int RecordIdentityByteCount = 3;\r\n    /// <summary>Nombre d'octets réservés avant la charge utile.</summary>\r\n    public const int HeaderPaddingByteCount = 10;\r\n    /// <summary>Position de la charge utile.</summary>\r\n    public const int DataOffset = RecordIdentityByteCount + HeaderPaddingByteCount;\r\n    /// <summary>Taille de la charge utile.</summary>\r\n    public const int SectorSize = 256;\r\n    /// <summary>Position du checksum.</summary>\r\n    public const int ChecksumOffset = DataOffset + SectorSize;\r\n    /// <summary>Nombre d'octets terminaux.</summary>\r\n    public const int TrailerPaddingByteCount = 5;\r\n    /// <summary>Position du premier octet terminal.</summary>\r\n    public const int TrailerOffset = ChecksumOffset + 1;\r\n    /// <summary>Nombre total d'octets du record.</summary>\r\n    public const int RecordByteCount = TrailerOffset + TrailerPaddingByteCount;\r\n    /// <summary>Premier octet couvert par le checksum.</summary>\r\n    public const int ChecksumDataOffset = CylinderOffset;\r\n    /// <summary>Nombre d'octets couverts par le checksum.</summary>\r\n    public const int ChecksumDataLength = ChecksumOffset - ChecksumDataOffset;\r\n    /// <summary>Face logique des secteurs Micropolis.</summary>\r\n    public const byte LogicalHead = 0;\r\n    /// <summary>Code de taille des secteurs de 256 octets.</summary>\r\n    public const byte SectorSizeCode = 1;\r\n    /// <summary>Plus petit numéro de secteur encodable.</summary>\r\n    public const int MinimumSectorNumber = byte.MinValue;\r\n    /// <summary>Plus grand numéro de secteur encodable.</summary>\r\n    public const int MaximumSectorNumber = byte.MaxValue;\r\n    /// <summary>Nombre d'octets nuls émis avant le record.</summary>\r\n    public const int PreambleByteCount = 40;\r\n    /// <summary>Gap ajouté après le record.</summary>\r\n    public const int GapBitCount = 128;\r\n    /// <summary>Modulo du checksum.</summary>\r\n    public const int ChecksumModulus = 255;\r\n    /// <summary>Valeur initiale du checksum.</summary>\r\n    public const int InitialChecksum = 0;\r\n    /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>\r\n    public const int ConfidenceSectorWeight = 2;\r\n    /// <summary>Diviseur du calcul de confiance.</summary>\r\n    public const double ConfidenceDivisor = 24;\r\n    /// <summary>Motif minimal composé de trois zéros et de la marque.</summary>\r\n    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactMfm(0, 0, 0, AddressMark));\r\n\r\n    /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>\r\n    public static ArgumentException InvalidSectorSize(int actualSize) => new($\"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.\");\r\n    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>\r\n    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber);\r\n}\r\n\r\n/// <summary>Calcule le checksum modulo 255 du format Micropolis.</summary>\r\ninternal static class MicropolisChecksum\r\n{\r\n    /// <summary>Calcule le checksum de la séquence fournie.</summary>\r\n    public static byte Compute(IEnumerable<byte> data)\r\n    {\r\n        var value = MicropolisMfmFormat.InitialChecksum;\r\n        foreach (var item in data)\r\n        {\r\n            if (value > MicropolisMfmFormat.ChecksumModulus)\r\n                value -= MicropolisMfmFormat.ChecksumModulus;\r\n            value += item;\r\n        }\r\n\r\n        return (byte)value;\r\n    }\r\n}\r\n\r\n/// <summary>Représente les champs d'un record Micropolis complet.</summary>\r\ninternal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Data, byte StoredChecksum, byte[] Trailer, byte[] Bytes)\r\n{\r\n    /// <summary>Indique si le checksum stocké correspond au contenu du record.</summary>\r\n    public bool ChecksumValid => MicropolisChecksum.Compute(Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)) == StoredChecksum;\r\n\r\n    /// <summary>Analyse les octets d'un record complet.</summary>\r\n    public static MicropolisMfmRecord? Parse(byte[] bytes)\r\n    {\r\n        if (bytes.Length != MicropolisMfmFormat.RecordByteCount || bytes[MicropolisMfmFormat.AddressMarkOffset] != MicropolisMfmFormat.AddressMark)\r\n            return null;\r\n        return new(\r\n            bytes[MicropolisMfmFormat.CylinderOffset],\r\n            bytes[MicropolisMfmFormat.SectorOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray(),\r\n            bytes[MicropolisMfmFormat.ChecksumOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray(),\r\n            bytes\r\n        );\r\n    }\r\n\r\n    /// <summary>Crée les octets d'un record à encoder.</summary>\r\n    public static MicropolisMfmRecord Create(byte cylinder, byte sector, IReadOnlyList<byte> data)\r\n    {\r\n        var bytes = new byte[MicropolisMfmFormat.RecordByteCount];\r\n        bytes[MicropolisMfmFormat.AddressMarkOffset] = MicropolisMfmFormat.AddressMark;\r\n        bytes[MicropolisMfmFormat.CylinderOffset] = cylinder;\r\n        bytes[MicropolisMfmFormat.SectorOffset] = sector;\r\n        data.ToArray().CopyTo(bytes, MicropolisMfmFormat.DataOffset);\r\n        bytes[MicropolisMfmFormat.ChecksumOffset] = MicropolisChecksum.Compute(bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength));\r\n        return Parse(bytes)!;\r\n    }\r\n}",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicropolisMfmFormat.cs",
+        "sourceSha256": "EE703634D1991B6A28C4713B75545188280B2FA693BE81043539D2B61F4F0F12"
+      },
+      {
+        "source": "using GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\n/// <summary>Regroupe les définitions techniques du format Micral N FM.</summary>\r\ninternal static class MicralNFmFormat\r\n{\r\n    /// <summary>Identifiant technique du codec.</summary>\r\n    public const string CodecId = FluxCodecIds.MicralNFm;\r\n    /// <summary>Nom affiché du codec.</summary>\r\n    public const string CodecDisplayName = FluxCodecDisplayNames.MicralNFm;\r\n    /// <summary>Nom employé dans les descriptions de structures.</summary>\r\n    public const string StructureDescriptionName = \"Micral N\";\r\n    /// <summary>Nombre d'octets nuls précédant la marque.</summary>\r\n    public const int SyncZeroCount = 3;\r\n    /// <summary>Marque d'adresse du bloc.</summary>\r\n    public const byte AddressMark = 0xff;\r\n    /// <summary>Nombre de bits encodant un octet FM.</summary>\r\n    public const int EncodedByteBitCount = 16;\r\n    /// <summary>Longueur de la marque FM en bits.</summary>\r\n    public const int MarkBitCount = (SyncZeroCount + 1) * EncodedByteBitCount;\r\n    /// <summary>Position du numéro de secteur après la marque.</summary>\r\n    public const int SectorOffset = 0;\r\n    /// <summary>Position du cylindre après la marque.</summary>\r\n    public const int CylinderOffset = 1;\r\n    /// <summary>Position de la charge utile après la marque.</summary>\r\n    public const int DataOffset = 2;\r\n    /// <summary>Nombre d'octets d'identité.</summary>\r\n    public const int IdentityByteCount = 2;\r\n    /// <summary>Taille d'un secteur.</summary>\r\n    public const int SectorSize = 128;\r\n    /// <summary>Nombre d'octets du checksum.</summary>\r\n    public const int ChecksumByteCount = 1;\r\n    /// <summary>Position du checksum après la marque.</summary>\r\n    public const int ChecksumOffset = DataOffset + SectorSize;\r\n    /// <summary>Nombre d'octets lus après la marque.</summary>\r\n    public const int BytesAfterMark = IdentityByteCount + SectorSize + ChecksumByteCount;\r\n    /// <summary>Nombre total d'octets du bloc, synchronisation comprise.</summary>\r\n    public const int BlockByteCount = SyncZeroCount + 1 + BytesAfterMark;\r\n    /// <summary>Longueur totale du bloc en bits.</summary>\r\n    public const int BlockBitCount = BlockByteCount * EncodedByteBitCount;\r\n    /// <summary>Face logique des secteurs Micral N.</summary>\r\n    public const byte LogicalHead = 0;\r\n    /// <summary>Code de taille des secteurs de 128 octets.</summary>\r\n    public const byte SectorSizeCode = 0;\r\n    /// <summary>Plus petit numéro de secteur encodable.</summary>\r\n    public const int MinimumSectorNumber = byte.MinValue;\r\n    /// <summary>Plus grand numéro de secteur encodable.</summary>\r\n    public const int MaximumSectorNumber = byte.MaxValue;\r\n    /// <summary>Valeur initiale du checksum.</summary>\r\n    public const byte InitialChecksum = 0;\r\n    /// <summary>Masque de complément du checksum.</summary>\r\n    public const byte ComplementMask = 0xff;\r\n    /// <summary>Masque du bit de retenue.</summary>\r\n    public const byte CarryMask = 0x80;\r\n    /// <summary>Gap ajouté après chaque secteur encodé.</summary>\r\n    public const int GapBitCount = 128;\r\n    /// <summary>Avancement du balayage après une marque.</summary>\r\n    public const int ScanAdvance = MarkBitCount - 1;\r\n    /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>\r\n    public const int ConfidenceSectorWeight = 2;\r\n    /// <summary>Diviseur du calcul de confiance.</summary>\r\n    public const double ConfidenceDivisor = 20;\r\n    /// <summary>Marque FM composée de trois zéros et de <c>0xff</c>.</summary>\r\n    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactFm(0, 0, 0, AddressMark));\r\n\r\n    /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>\r\n    public static ArgumentException InvalidSectorSize(int actualSize) => new($\"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.\");\r\n    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>\r\n    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber);\r\n}\r\n\r\n/// <summary>Calcule le checksum propre au format Micral N.</summary>\r\ninternal static class MicralNChecksum\r\n{\r\n    /// <summary>Met à jour le checksum avec un octet supplémentaire.</summary>\r\n    public static byte Update(byte checksum, byte data)\r\n    {\r\n        var carrySource = ((data ^ checksum) ^ MicralNFmFormat.ComplementMask) & ((data + checksum) ^ data);\r\n        var carry = (carrySource & MicralNFmFormat.CarryMask) != 0 ? 1 : 0;\r\n        return (byte)(checksum + data + carry);\r\n    }\r\n\r\n    /// <summary>Calcule le checksum de la séquence fournie.</summary>\r\n    public static byte Compute(IEnumerable<byte> data)\r\n    {\r\n        var checksum = MicralNFmFormat.InitialChecksum;\r\n        foreach (var value in data) checksum = Update(checksum, value);\r\n        return checksum;\r\n    }\r\n}\r\n\r\n/// <summary>Représente un bloc Micral N décodé.</summary>\r\ninternal sealed record MicralNFmBlock(byte Sector, byte Cylinder, byte[] Data, byte StoredChecksum, bool ChecksumValid);\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicralNFmFormat.cs",
+        "sourceSha256": "E1955298A08F64CB59F9B5ACFB16D2A359B3AD1D44AE28FB303A55E3341588DF"
+      }
+    ],
+    "observedDifferences": [
+      "Micropolis payload256 bytes versus Micral128",
+      "Micropolis record address cylinder/sector, header padding, checksum/trailer; Micral sector/cylinder plus payload/checksum",
+      "Micropolis preamble and MFM record calls; Micral raw special mark then FM cells",
+      "Both already derive TrackEncoderBase with global request checks and FluxRevolutionFactory result; common ISO helper has different phase callbacks and constraints"
+    ],
+    "resolvedSources": [
+      {
+        "operations": [
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Bits()",
+            "expression": "TrackBitEncoding.Bits()"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmFormat.InvalidSectorSize(int)",
+            "expression": "MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmFormat.InvalidSectorNumber(int)",
+            "expression": "MicropolisMfmFormat.InvalidSectorNumber(sector.Number)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicropolisMfmTrackEncoder.WriteRecord(System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord)",
+            "expression": "WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicropolisMfmTrackEncoder.CreateRecord(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord.Create(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "MicropolisMfmRecord.Create(cylinder, sector, data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Mfm(System.Collections.Generic.IEnumerable<byte>, bool)",
+            "expression": "bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount])"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Mfm(System.Collections.Generic.IEnumerable<byte>, bool)",
+            "expression": "bits.Mfm(record.Bytes)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Gap(int, bool)",
+            "expression": "bits.Gap(MicropolisMfmFormat.GapBitCount)"
+          }
+        ],
+        "constants": {
+          "MicropolisMfmFormat.PreambleByteCount": {
+            "type": "int",
+            "value": 40
+          },
+          "MicropolisMfmFormat.CodecDisplayName": {
+            "type": "string",
+            "value": "Micropolis MFM"
+          },
+          "MicropolisMfmFormat.SectorSize": {
+            "type": "int",
+            "value": 256
+          },
+          "MicropolisMfmFormat.CodecId": {
+            "type": "string",
+            "value": "micropolis.mfm"
+          },
+          "MicropolisMfmFormat.GapBitCount": {
+            "type": "int",
+            "value": 128
+          },
+          "MicropolisMfmFormat.MaximumSectorNumber": {
+            "type": "int",
+            "value": 255
+          },
+          "MicropolisMfmFormat.MinimumSectorNumber": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "sourceSha256": "1657ADEFADE2752558F36F5F5E62CA53C2484641259F2E2664EBBC1A1F821588",
+        "source": "using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Encode les pistes utilisant le format Micropolis MFM.</summary>\r\npublic sealed class MicropolisMfmTrackEncoder : TrackEncoderBase\r\n{\r\n    /// <summary>Obtient l'identifiant technique du codec.</summary>\r\n    public override string Id => MicropolisMfmFormat.CodecId;\r\n    /// <summary>Obtient le nom affiché du codec.</summary>\r\n    public override string DisplayName => MicropolisMfmFormat.CodecDisplayName;\r\n\r\n    /// <summary>Encode les enregistrements sectoriels Micropolis avec leur adresse et leur contrôle.</summary>\r\n    /// <param name=\"request\">Piste logique contenant le cylindre et les secteurs à encoder.</param>\r\n    /// <returns>Cellules MFM de la piste dans leur ordre d'émission.</returns>\r\n    /// <exception cref=\"ArgumentException\">La charge utile d'un secteur ne possède pas la taille Micropolis attendue.</exception>\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicropolisMfmFormat.MinimumSectorNumber or > MicropolisMfmFormat.MaximumSectorNumber) throw MicropolisMfmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data));\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Construit un enregistrement Micropolis complet à partir de valeurs validées.</summary>\r\n    /// <param name=\"cylinder\">Numéro de cylindre.</param>\r\n    /// <param name=\"sector\">Numéro de secteur.</param>\r\n    /// <param name=\"data\">Données sectorielles.</param>\r\n    /// <returns>Enregistrement prêt à encoder.</returns>\r\n    private static MicropolisMfmRecord CreateRecord(byte cylinder, byte sector, IReadOnlyList<byte> data) => MicropolisMfmRecord.Create(cylinder, sector, data);\r\n\r\n    /// <summary>Écrit le préambule nul, l'enregistrement MFM et le gap final.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules binaires.</param>\r\n    /// <param name=\"record\">Enregistrement à écrire.</param>\r\n    private static void WriteRecord(List<bool> bits, MicropolisMfmRecord record)\r\n    {\r\n        bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount]);\r\n        bits.Mfm(record.Bytes);\r\n        bits.Gap(MicropolisMfmFormat.GapBitCount);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Bits()",
+            "expression": "TrackBitEncoding.Bits()"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNFmFormat.InvalidSectorSize(int)",
+            "expression": "MicralNFmFormat.InvalidSectorSize(sector.Data.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNFmFormat.InvalidSectorNumber(int)",
+            "expression": "MicralNFmFormat.InvalidSectorNumber(sector.Number)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicralNFmTrackEncoder.WriteSector(System.Collections.Generic.List<bool>, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "WriteSector(bits, BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicralNFmTrackEncoder.BuildSector(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data)).ToArray()"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Append<byte>(byte)",
+            "expression": "new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data))"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Concat<byte>(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "new byte[] { sector, cylinder }.Concat(data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNChecksum.Compute(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "MicralNChecksum.Compute(data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Raw(params byte[])",
+            "expression": "bits.Raw(MicralNFmFormat.SectorMark.ToArray())"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "MicralNFmFormat.SectorMark.ToArray()"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Fm(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "bits.Fm(sectorBytes)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Gap(int, bool)",
+            "expression": "bits.Gap(MicralNFmFormat.GapBitCount)"
+          }
+        ],
+        "constants": {
+          "MicralNFmFormat.CodecId": {
+            "type": "string",
+            "value": "micraln.fm"
+          },
+          "MicralNFmFormat.SectorSize": {
+            "type": "int",
+            "value": 128
+          },
+          "MicralNFmFormat.MinimumSectorNumber": {
+            "type": "int",
+            "value": 0
+          },
+          "MicralNFmFormat.CodecDisplayName": {
+            "type": "string",
+            "value": "Micral N hard-sectored FM"
+          },
+          "MicralNFmFormat.MaximumSectorNumber": {
+            "type": "int",
+            "value": 255
+          },
+          "MicralNFmFormat.GapBitCount": {
+            "type": "int",
+            "value": 128
+          }
+        },
+        "sourceSha256": "9E2233B71218B3F8A3C7C815961B03C5CA0DE4BC93ABF5A56A4C66CB0049FE00",
+        "source": "using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Encode les pistes utilisant le format Micral NFM.</summary>\r\npublic sealed class MicralNFmTrackEncoder : TrackEncoderBase\r\n{\r\n    /// <summary>Obtient l'identifiant technique du codec.</summary>\r\n    public override string Id => MicralNFmFormat.CodecId;\r\n    /// <summary>Obtient le nom affiché du codec.</summary>\r\n    public override string DisplayName => MicralNFmFormat.CodecDisplayName;\r\n    /// <summary>Encode les secteurs Micral N avec leur adresse et leur somme de contrôle.</summary>\r\n    /// <param name=\"request\">Piste logique contenant le cylindre et les secteurs à encoder.</param>\r\n    /// <returns>Cellules FM de la piste dans leur ordre d'émission.</returns>\r\n    /// <exception cref=\"ArgumentException\">La charge utile d'un secteur ne possède pas la taille Micral N attendue.</exception>\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicralNFmFormat.SectorSize) throw MicralNFmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicralNFmFormat.MinimumSectorNumber or > MicralNFmFormat.MaximumSectorNumber) throw MicralNFmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteSector(bits, BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data));\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Construit l'adresse, les données et le checksum d'un secteur Micral N.</summary>\r\n    /// <param name=\"sector\">Numéro de secteur validé.</param>\r\n    /// <param name=\"cylinder\">Numéro de cylindre validé.</param>\r\n    /// <param name=\"data\">Données sectorielles validées.</param>\r\n    /// <returns>Octets FM situés après le préambule.</returns>\r\n    private static byte[] BuildSector(byte sector, byte cylinder, IReadOnlyList<byte> data) => new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data)).ToArray();\r\n\r\n    /// <summary>Écrit le préambule, le bloc FM et le gap final d'un secteur Micral N.</summary>\r\n    /// <param name=\"bits\">Constructeur de cellules binaires de la piste.</param>\r\n    /// <param name=\"sectorBytes\">Adresse, données et checksum du secteur.</param>\r\n    private static void WriteSector(List<bool> bits, IReadOnlyList<byte> sectorBytes)\r\n    {\r\n        bits.Raw(MicralNFmFormat.SectorMark.ToArray());\r\n        bits.Fm(sectorBytes);\r\n        bits.Gap(MicralNFmFormat.GapBitCount);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.ArgumentNullException.ThrowIfNull(object?, string?)",
+            "expression": "ArgumentNullException.ThrowIfNull(request)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.InvalidCylinder(int)",
+            "expression": "TrackEncodingExceptions.InvalidCylinder(request.Cylinder)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.InvalidHead(int)",
+            "expression": "TrackEncodingExceptions.InvalidHead(request.Head)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.MissingSectors(int)",
+            "expression": "TrackEncodingExceptions.MissingSectors(request.Sectors.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.ZeroBitCell(uint)",
+            "expression": "TrackEncodingExceptions.ZeroBitCell(request.BitCellTicks)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.ZeroIndexTime(uint)",
+            "expression": "TrackEncodingExceptions.ZeroIndexTime(request.IndexTimeTicks)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncoderBase.EncodeBits(GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodeRequest)",
+            "expression": "EncodeBits(request)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.EmptyTrack(string, int)",
+            "expression": "TrackEncodingExceptions.EmptyTrack(Id, bits.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.EncodedTrack.EncodedTrack(string, System.Collections.Generic.IReadOnlyList<bool>, GWGUI.MediaEngine.Images.Models.Flux.FluxRevolution)",
+            "expression": "new(Id, bits, FluxRevolutionFactory.Create(bits, request.BitCellTicks, request.IndexTimeTicks))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Models.Flux.FluxRevolutionFactory.Create(System.Collections.Generic.IReadOnlyList<bool>, uint, uint)",
+            "expression": "FluxRevolutionFactory.Create(bits, request.BitCellTicks, request.IndexTimeTicks)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Bits()",
+            "expression": "TrackBitEncoding.Bits()"
+          },
+          {
+            "symbol": "System.Action<string, int>.Invoke(string, int)",
+            "expression": "validateAddress(nameof(request.Cylinder), request.Cylinder)"
+          },
+          {
+            "expression": "nameof(request.Cylinder)",
+            "value": "Cylinder",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.Action<string, int>.Invoke(string, int)",
+            "expression": "validateAddress(nameof(request.Head), request.Head)"
+          },
+          {
+            "expression": "nameof(request.Head)",
+            "value": "Head",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.Action<string, int>.Invoke(string, int)",
+            "expression": "validateAddress(nameof(sector.Number), sector.Number)"
+          },
+          {
+            "expression": "nameof(sector.Number)",
+            "value": "Number",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.Func<GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector, byte>.Invoke(GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector)",
+            "expression": "resolveSizeCode(sector)"
+          },
+          {
+            "symbol": "System.Action<System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodeRequest, int, byte>.Invoke(System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodeRequest, int, byte)",
+            "expression": "writeAddress(bits, request, sector.Number, sizeCode)"
+          },
+          {
+            "symbol": "System.Action<System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector>.Invoke(System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector)",
+            "expression": "writeData(bits, sector)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncoderBase.Attribute(System.Collections.Generic.IReadOnlyDictionary<string, int>?, string, int)",
+            "expression": "Attribute(request.Attributes, key, fallback)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncoderBase.Attribute(System.Collections.Generic.IReadOnlyDictionary<string, int>?, string, int)",
+            "expression": "Attribute(sector.Attributes, key, fallback)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IReadOnlyDictionary<string, int>.TryGetValue(string, out int)",
+            "expression": "attributes.TryGetValue(key, out var value)"
+          }
+        ],
+        "constants": {
+          "TrackEncodingLimits.MinimumSectorCount": {
+            "type": "int",
+            "value": 1
+          },
+          "TrackEncodingLimits.MaximumCylinder": {
+            "type": "int",
+            "value": 255
+          },
+          "TrackEncodingLimits.MaximumHead": {
+            "type": "int",
+            "value": 1
+          },
+          "TrackEncodingLimits.MinimumCylinder": {
+            "type": "int",
+            "value": 0
+          },
+          "TrackEncodingLimits.MinimumHead": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "sourceSha256": "00B6A1ECBCE10E7BFEB1E319A3451765F6B48480632FD27E6542E09904DCE79A",
+        "source": "\r\nusing GWGUI.MediaEngine.Images.Models.Flux;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Fournit les validations et la construction du résultat communes aux encodeurs de pistes.</summary>\r\npublic abstract class TrackEncoderBase : ITrackEncoder\r\n{\r\n    /// <summary>Obtient l'identifiant technique stable de l'encodeur.</summary>\r\n    public abstract string Id { get; }\r\n    /// <summary>Obtient le nom de l'encodeur destiné à l'affichage.</summary>\r\n    public abstract string DisplayName { get; }\r\n\r\n    /// <summary>Valide puis encode une piste logique complète.</summary>\r\n    /// <param name=\"request\">Description de la piste et de ses secteurs.</param>\r\n    /// <returns>Piste encodée et révolution de flux correspondante.</returns>\r\n    /// <exception cref=\"ArgumentNullException\">La requête est nulle.</exception>\r\n    /// <exception cref=\"ArgumentOutOfRangeException\">Le cylindre ou la face se situe hors des limites communes.</exception>\r\n    /// <exception cref=\"ArgumentException\">La piste ne contient aucun secteur.</exception>\r\n    /// <exception cref=\"InvalidOperationException\">L'encodeur n'a produit aucune cellule binaire.</exception>\r\n    /// <remarks>Cette méthode applique uniquement les validations communes ; chaque encodeur conserve les contraintes propres à son format.</remarks>\r\n    public EncodedTrack Encode(TrackEncodeRequest request)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(request);\r\n        if (request.Cylinder is < TrackEncodingLimits.MinimumCylinder or > TrackEncodingLimits.MaximumCylinder) throw TrackEncodingExceptions.InvalidCylinder(request.Cylinder);\r\n        if (request.Head is < TrackEncodingLimits.MinimumHead or > TrackEncodingLimits.MaximumHead) throw TrackEncodingExceptions.InvalidHead(request.Head);\r\n        if (request.Sectors.Count < TrackEncodingLimits.MinimumSectorCount) throw TrackEncodingExceptions.MissingSectors(request.Sectors.Count);\r\n        if (request.BitCellTicks == 0) throw TrackEncodingExceptions.ZeroBitCell(request.BitCellTicks);\r\n        if (request.IndexTimeTicks == 0) throw TrackEncodingExceptions.ZeroIndexTime(request.IndexTimeTicks);\r\n        var bits = EncodeBits(request);\r\n        if (bits.Count == 0) throw TrackEncodingExceptions.EmptyTrack(Id, bits.Count);\r\n        return new(Id, bits, FluxRevolutionFactory.Create(bits, request.BitCellTicks, request.IndexTimeTicks));\r\n    }\r\n\r\n    /// <summary>Produit les cellules binaires propres au format de l'encodeur.</summary>\r\n    /// <param name=\"request\">Requête déjà validée par les règles communes.</param>\r\n    /// <returns>Cellules binaires dans leur ordre d'émission.</returns>\r\n    protected abstract IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request);\r\n\r\n    /// <summary>Parcourt les secteurs ISO en conservant les opérations propres au format FM ou MFM.</summary>\r\n    /// <param name=\"request\">Piste déjà validée par les règles communes.</param>\r\n    /// <param name=\"validateAddress\">Validation des champs d'adresse du format.</param>\r\n    /// <param name=\"resolveSizeCode\">Calcul et validation de la taille sectorielle.</param>\r\n    /// <param name=\"writeAddress\">Écriture de l'adresse et de son CRC.</param>\r\n    /// <param name=\"writeData\">Écriture des données, de leur CRC et du gap.</param>\r\n    /// <returns>Cellules binaires dans l'ordre des secteurs fournis.</returns>\r\n    protected static IReadOnlyList<bool> EncodeIsoBits(TrackEncodeRequest request,\r\n        Action<string, int> validateAddress, Func<TrackSector, byte> resolveSizeCode,\r\n        Action<List<bool>, TrackEncodeRequest, int, byte> writeAddress, Action<List<bool>, TrackSector> writeData)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        validateAddress(nameof(request.Cylinder), request.Cylinder);\r\n        validateAddress(nameof(request.Head), request.Head);\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            validateAddress(nameof(sector.Number), sector.Number);\r\n            var sizeCode = resolveSizeCode(sector);\r\n            writeAddress(bits, request, sector.Number, sizeCode);\r\n            writeData(bits, sector);\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    /// <summary>Lit un attribut de piste ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"request\">Requête portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque la clé est absente.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    protected static int Attribute(TrackEncodeRequest request, string key, int fallback) => Attribute(request.Attributes, key, fallback);\r\n\r\n    /// <summary>Lit un attribut de secteur ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"sector\">Secteur portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque la clé est absente.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    protected static int Attribute(TrackSector sector, string key, int fallback) => Attribute(sector.Attributes, key, fallback);\r\n\r\n    /// <summary>Lit une valeur dans un dictionnaire d'attributs ou retourne sa valeur de repli.</summary>\r\n    /// <param name=\"attributes\">Dictionnaire optionnel portant les attributs.</param>\r\n    /// <param name=\"key\">Clé technique définie par le format.</param>\r\n    /// <param name=\"fallback\">Valeur retournée lorsque le dictionnaire ou la clé est absent.</param>\r\n    /// <returns>Valeur de l'attribut ou valeur de repli.</returns>\r\n    private static int Attribute(IReadOnlyDictionary<string, int>? attributes, string key, int fallback) => attributes is not null && attributes.TryGetValue(key, out var value) ? value : fallback;\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncoderBase.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add((value & (1 << bit)) != 0)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Raw(params byte[])",
+            "expression": "bits.Raw(Convert.FromHexString(hexadecimal))"
+          },
+          {
+            "symbol": "System.Convert.FromHexString(string)",
+            "expression": "Convert.FromHexString(hexadecimal)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(values[index] switch { '0' => false, '1' => true, _ => throw TrackEncodingExceptions.InvalidBinaryCharacter(values[index], index) })"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.InvalidBinaryCharacter(char, int)",
+            "expression": "TrackEncodingExceptions.InvalidBinaryCharacter(values[index], index)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(!previous && !data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(true)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add((value & (1 << bit)) != 0)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(false)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(true)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(false)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add((value & (1 << bit)) != 0)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.NegativeGapLength(int)",
+            "expression": "TrackEncodingExceptions.NegativeGapLength(count)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Add(bool)",
+            "expression": "bits.Add(allOnes || (index & BitPrimitives.LeastSignificantBitMask) == 0)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.List(int)",
+            "expression": "new List<bool>(data.Length * EncodedCellCountPerByte)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Mfm(System.Collections.Generic.IEnumerable<byte>, bool)",
+            "expression": "bits.Mfm(data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Pack(System.Collections.Generic.IReadOnlyList<bool>)",
+            "expression": "Pack(bits)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.List(int)",
+            "expression": "new List<bool>(data.Length * EncodedCellCountPerByte)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Fm(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "bits.Fm(data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Pack(System.Collections.Generic.IReadOnlyList<bool>)",
+            "expression": "Pack(bits)"
+          }
+        ],
+        "constants": {
+          "BitPrimitives.BitsPerByte": {
+            "type": "int",
+            "value": 8
+          },
+          "BitPrimitives.LeastSignificantBitMask": {
+            "type": "int",
+            "value": 1
+          }
+        },
+        "sourceSha256": "DAD5D77A5DCDC2191BAD222E96D9071764557394A65C22A92E2409980AC95381",
+        "source": "using GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Images.Models.Sectors;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Fournit les primitives d'écriture et de compactage des cellules binaires d'une piste.</summary>\r\ninternal static class TrackBitEncoding\r\n{\r\n    /// <summary>Nombre de cellules FM ou MFM produites pour un octet source.</summary>\r\n    private const int EncodedCellCountPerByte = BitPrimitives.BitsPerByte * 2;\r\n\r\n    /// <summary>Crée un tampon de cellules binaires vide.</summary>\r\n    /// <returns>Nouveau tampon modifiable.</returns>\r\n    public static List<bool> Bits() => [];\r\n\r\n    /// <summary>Ajoute les bits de chaque octet, du poids fort au poids faible.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à écrire.</param>\r\n    public static void Raw(this List<bool> bits, params byte[] bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--) bits.Add((value & (1 << bit)) != 0);\r\n        }\r\n    }\r\n\r\n    /// <summary>Convertit une chaîne hexadécimale avec la plateforme puis écrit les octets obtenus.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"hexadecimal\">Chaîne contenant un nombre pair de chiffres hexadécimaux.</param>\r\n    /// <exception cref=\"FormatException\">La chaîne n'est pas une représentation hexadécimale valide.</exception>\r\n    public static void RawHex(this List<bool> bits, string hexadecimal) => bits.Raw(Convert.FromHexString(hexadecimal));\r\n\r\n    /// <summary>Ajoute une suite textuelle de cellules binaires.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"values\">Chaîne composée uniquement de <c>0</c> et de <c>1</c>.</param>\r\n    /// <exception cref=\"ArgumentException\">Un caractère différent de <c>0</c> ou <c>1</c> est rencontré.</exception>\r\n    public static void RawBits(this List<bool> bits, string values)\r\n    {\r\n        for (var index = 0; index < values.Length; index++)\r\n        {\r\n            bits.Add(values[index] switch { '0' => false, '1' => true, _ => throw TrackEncodingExceptions.InvalidBinaryCharacter(values[index], index) });\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets encodés en MFM.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    /// <param name=\"previousData\">État de la cellule de données précédant le premier octet.</param>\r\n    /// <remarks>L'état de données est propagé entre tous les octets d'un même appel.</remarks>\r\n    public static void Mfm(this List<bool> bits, IEnumerable<byte> bytes, bool previousData = false)\r\n    {\r\n        var previous = previousData;\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                var data = (value & (1 << bit)) != 0;\r\n                bits.Add(!previous && !data);\r\n                bits.Add(data);\r\n                previous = data;\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets encodés en FM, cellule d'horloge puis cellule de données.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    public static void Fm(this List<bool> bits, IEnumerable<byte> bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                bits.Add(true);\r\n                bits.Add((value & (1 << bit)) != 0);\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute des octets en doublant chaque cellule FM.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"bytes\">Octets à encoder.</param>\r\n    public static void DoubleFm(this List<bool> bits, IEnumerable<byte> bytes)\r\n    {\r\n        foreach (var value in bytes)\r\n        {\r\n            for (var bit = BitPrimitives.BitsPerByte - 1; bit >= 0; bit--)\r\n            {\r\n                bits.Add(false);\r\n                bits.Add(true);\r\n                bits.Add(false);\r\n                bits.Add((value & (1 << bit)) != 0);\r\n            }\r\n        }\r\n    }\r\n\r\n    /// <summary>Ajoute un gap alterné ou entièrement composé de cellules à un.</summary>\r\n    /// <param name=\"bits\">Tampon recevant les cellules.</param>\r\n    /// <param name=\"count\">Nombre de cellules à ajouter.</param>\r\n    /// <param name=\"allOnes\">Indique si toutes les cellules valent un ; sinon le motif commence à un puis alterne.</param>\r\n    /// <exception cref=\"ArgumentOutOfRangeException\">La longueur du gap est négative.</exception>\r\n    public static void Gap(this List<bool> bits, int count, bool allOnes = false)\r\n    {\r\n        if (count < 0) throw TrackEncodingExceptions.NegativeGapLength(count);\r\n        for (var index = 0; index < count; index++) bits.Add(allOnes || (index & BitPrimitives.LeastSignificantBitMask) == 0);\r\n    }\r\n\r\n    /// <summary>Encode des octets en MFM puis compacte les cellules obtenues.</summary>\r\n    /// <param name=\"data\">Octets à encoder.</param>\r\n    /// <returns>Cellules MFM compactées, bit de poids fort en premier.</returns>\r\n    public static byte[] EncodeCompactMfm(params byte[] data)\r\n    {\r\n        var bits = new List<bool>(data.Length * EncodedCellCountPerByte);\r\n        bits.Mfm(data);\r\n        return Pack(bits);\r\n    }\r\n\r\n    /// <summary>Encode des octets en FM puis compacte les cellules obtenues.</summary>\r\n    /// <param name=\"data\">Octets à encoder.</param>\r\n    /// <returns>Cellules FM compactées, bit de poids fort en premier.</returns>\r\n    public static byte[] EncodeCompactFm(params byte[] data)\r\n    {\r\n        var bits = new List<bool>(data.Length * EncodedCellCountPerByte);\r\n        bits.Fm(data);\r\n        return Pack(bits);\r\n    }\r\n\r\n    /// <summary>Compacte une suite de cellules binaires dans un tableau d'octets.</summary>\r\n    /// <param name=\"bits\">Cellules à compacter, bit de poids fort en premier.</param>\r\n    /// <returns>Octets contenant les cellules compactées.</returns>\r\n    private static byte[] Pack(IReadOnlyList<bool> bits)\r\n    {\r\n        var bytes = new byte[(bits.Count + BitPrimitives.BitsPerByte - 1) / BitPrimitives.BitsPerByte];\r\n        for (var index = 0; index < bits.Count; index++)\r\n        {\r\n            if (bits[index]) bytes[index / BitPrimitives.BitsPerByte] |= (byte)(1 << (BitPrimitives.BitsPerByte - 1 - index % BitPrimitives.BitsPerByte));\r\n        }\r\n        return bytes;\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackBitEncoding.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.Array.AsReadOnly<byte>(byte[])",
+            "expression": "Array.AsReadOnly(TrackBitEncoding.EncodeCompactMfm(0, 0, 0, AddressMark))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.EncodeCompactMfm(params byte[])",
+            "expression": "TrackBitEncoding.EncodeCompactMfm(0, 0, 0, AddressMark)"
+          },
+          {
+            "symbol": "System.ArgumentException.ArgumentException(string?)",
+            "expression": "new($\"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.\")"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.FormatValueOutOfRange(string, string, int, int)",
+            "expression": "TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisChecksum.Compute(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "MicropolisChecksum.Compute(Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength))"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Take<byte>(int)",
+            "expression": "Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Skip<byte>(int)",
+            "expression": "Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord.MicropolisMfmRecord(byte, byte, byte[], byte, byte[], byte[])",
+            "expression": "new(\r\n            bytes[MicropolisMfmFormat.CylinderOffset],\r\n            bytes[MicropolisMfmFormat.SectorOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray(),\r\n            bytes[MicropolisMfmFormat.ChecksumOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray(),\r\n            bytes\r\n        )"
+          },
+          {
+            "symbol": "System.Span<byte>.ToArray()",
+            "expression": "bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray()"
+          },
+          {
+            "symbol": "byte[].AsSpan<byte>(int, int)",
+            "expression": "bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize)"
+          },
+          {
+            "symbol": "System.Span<byte>.ToArray()",
+            "expression": "bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray()"
+          },
+          {
+            "symbol": "byte[].AsSpan<byte>(int, int)",
+            "expression": "bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount)"
+          },
+          {
+            "symbol": "System.Array.CopyTo(System.Array, int)",
+            "expression": "data.ToArray().CopyTo(bytes, MicropolisMfmFormat.DataOffset)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "data.ToArray()"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisChecksum.Compute(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "MicropolisChecksum.Compute(bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength))"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Take<byte>(int)",
+            "expression": "bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Skip<byte>(int)",
+            "expression": "bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord.Parse(byte[])",
+            "expression": "Parse(bytes)"
+          }
+        ],
+        "constants": {
+          "MicropolisMfmFormat.SectorSize": {
+            "type": "int",
+            "value": 256
+          },
+          "MicropolisMfmFormat.TrailerPaddingByteCount": {
+            "type": "int",
+            "value": 5
+          },
+          "MicropolisMfmFormat.DataOffset": {
+            "type": "int",
+            "value": 13
+          },
+          "FluxCodecDisplayNames.MicropolisMfm": {
+            "type": "string",
+            "value": "Micropolis MFM"
+          },
+          "MicropolisMfmFormat.RecordByteCount": {
+            "type": "int",
+            "value": 275
+          },
+          "MicropolisMfmFormat.TrailerOffset": {
+            "type": "int",
+            "value": 270
+          },
+          "byte.MaxValue": {
+            "type": "byte",
+            "value": 255
+          },
+          "MicropolisMfmFormat.AddressMarkOffset": {
+            "type": "int",
+            "value": 0
+          },
+          "MicropolisMfmFormat.ChecksumDataOffset": {
+            "type": "int",
+            "value": 1
+          },
+          "FluxCodecIds.MicropolisMfm": {
+            "type": "string",
+            "value": "micropolis.mfm"
+          },
+          "MicropolisMfmFormat.InitialChecksum": {
+            "type": "int",
+            "value": 0
+          },
+          "MicropolisMfmFormat.ChecksumDataLength": {
+            "type": "int",
+            "value": 268
+          },
+          "MicropolisMfmFormat.AddressMark": {
+            "type": "byte",
+            "value": 255
+          },
+          "MicropolisMfmFormat.CylinderOffset": {
+            "type": "int",
+            "value": 1
+          },
+          "MicropolisMfmFormat.ChecksumOffset": {
+            "type": "int",
+            "value": 269
+          },
+          "byte.MinValue": {
+            "type": "byte",
+            "value": 0
+          },
+          "MicropolisMfmFormat.ChecksumModulus": {
+            "type": "int",
+            "value": 255
+          },
+          "MicropolisMfmFormat.SectorOffset": {
+            "type": "int",
+            "value": 2
+          }
+        },
+        "sourceSha256": "EE703634D1991B6A28C4713B75545188280B2FA693BE81043539D2B61F4F0F12",
+        "source": "using GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n/// <summary>Regroupe les définitions techniques du format Micropolis MFM.</summary>\r\ninternal static class MicropolisMfmFormat\r\n{\r\n    /// <summary>Identifiant technique du codec.</summary>\r\n    public const string CodecId = FluxCodecIds.MicropolisMfm;\r\n    /// <summary>Nom affiché du codec.</summary>\r\n    public const string CodecDisplayName = FluxCodecDisplayNames.MicropolisMfm;\r\n    /// <summary>Nom employé dans les descriptions de structures.</summary>\r\n    public const string StructureDescriptionName = \"Micropolis\";\r\n    /// <summary>Marque d'adresse du record.</summary>\r\n    public const byte AddressMark = 0xff;\r\n    /// <summary>Nombre minimal d'octets nuls précédant la marque.</summary>\r\n    public const int SyncZeroCount = 3;\r\n    /// <summary>Nombre de bits encodant un octet MFM.</summary>\r\n    public const int EncodedByteBitCount = 16;\r\n    /// <summary>Longueur du motif minimal de synchronisation.</summary>\r\n    public const int SyncBitCount = (SyncZeroCount + 1) * EncodedByteBitCount;\r\n    /// <summary>Position de la marque dans le record.</summary>\r\n    public const int AddressMarkOffset = 0;\r\n    /// <summary>Position du cylindre dans le record.</summary>\r\n    public const int CylinderOffset = 1;\r\n    /// <summary>Position du secteur dans le record.</summary>\r\n    public const int SectorOffset = 2;\r\n    /// <summary>Nombre d'octets d'identité du record.</summary>\r\n    public const int RecordIdentityByteCount = 3;\r\n    /// <summary>Nombre d'octets réservés avant la charge utile.</summary>\r\n    public const int HeaderPaddingByteCount = 10;\r\n    /// <summary>Position de la charge utile.</summary>\r\n    public const int DataOffset = RecordIdentityByteCount + HeaderPaddingByteCount;\r\n    /// <summary>Taille de la charge utile.</summary>\r\n    public const int SectorSize = 256;\r\n    /// <summary>Position du checksum.</summary>\r\n    public const int ChecksumOffset = DataOffset + SectorSize;\r\n    /// <summary>Nombre d'octets terminaux.</summary>\r\n    public const int TrailerPaddingByteCount = 5;\r\n    /// <summary>Position du premier octet terminal.</summary>\r\n    public const int TrailerOffset = ChecksumOffset + 1;\r\n    /// <summary>Nombre total d'octets du record.</summary>\r\n    public const int RecordByteCount = TrailerOffset + TrailerPaddingByteCount;\r\n    /// <summary>Premier octet couvert par le checksum.</summary>\r\n    public const int ChecksumDataOffset = CylinderOffset;\r\n    /// <summary>Nombre d'octets couverts par le checksum.</summary>\r\n    public const int ChecksumDataLength = ChecksumOffset - ChecksumDataOffset;\r\n    /// <summary>Face logique des secteurs Micropolis.</summary>\r\n    public const byte LogicalHead = 0;\r\n    /// <summary>Code de taille des secteurs de 256 octets.</summary>\r\n    public const byte SectorSizeCode = 1;\r\n    /// <summary>Plus petit numéro de secteur encodable.</summary>\r\n    public const int MinimumSectorNumber = byte.MinValue;\r\n    /// <summary>Plus grand numéro de secteur encodable.</summary>\r\n    public const int MaximumSectorNumber = byte.MaxValue;\r\n    /// <summary>Nombre d'octets nuls émis avant le record.</summary>\r\n    public const int PreambleByteCount = 40;\r\n    /// <summary>Gap ajouté après le record.</summary>\r\n    public const int GapBitCount = 128;\r\n    /// <summary>Modulo du checksum.</summary>\r\n    public const int ChecksumModulus = 255;\r\n    /// <summary>Valeur initiale du checksum.</summary>\r\n    public const int InitialChecksum = 0;\r\n    /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>\r\n    public const int ConfidenceSectorWeight = 2;\r\n    /// <summary>Diviseur du calcul de confiance.</summary>\r\n    public const double ConfidenceDivisor = 24;\r\n    /// <summary>Motif minimal composé de trois zéros et de la marque.</summary>\r\n    public static IReadOnlyList<byte> Sync { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactMfm(0, 0, 0, AddressMark));\r\n\r\n    /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>\r\n    public static ArgumentException InvalidSectorSize(int actualSize) => new($\"Micropolis sectors contain {SectorSize} bytes; received {actualSize} bytes.\");\r\n    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>\r\n    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber);\r\n}\r\n\r\n/// <summary>Calcule le checksum modulo 255 du format Micropolis.</summary>\r\ninternal static class MicropolisChecksum\r\n{\r\n    /// <summary>Calcule le checksum de la séquence fournie.</summary>\r\n    public static byte Compute(IEnumerable<byte> data)\r\n    {\r\n        var value = MicropolisMfmFormat.InitialChecksum;\r\n        foreach (var item in data)\r\n        {\r\n            if (value > MicropolisMfmFormat.ChecksumModulus)\r\n                value -= MicropolisMfmFormat.ChecksumModulus;\r\n            value += item;\r\n        }\r\n\r\n        return (byte)value;\r\n    }\r\n}\r\n\r\n/// <summary>Représente les champs d'un record Micropolis complet.</summary>\r\ninternal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Data, byte StoredChecksum, byte[] Trailer, byte[] Bytes)\r\n{\r\n    /// <summary>Indique si le checksum stocké correspond au contenu du record.</summary>\r\n    public bool ChecksumValid => MicropolisChecksum.Compute(Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)) == StoredChecksum;\r\n\r\n    /// <summary>Analyse les octets d'un record complet.</summary>\r\n    public static MicropolisMfmRecord? Parse(byte[] bytes)\r\n    {\r\n        if (bytes.Length != MicropolisMfmFormat.RecordByteCount || bytes[MicropolisMfmFormat.AddressMarkOffset] != MicropolisMfmFormat.AddressMark)\r\n            return null;\r\n        return new(\r\n            bytes[MicropolisMfmFormat.CylinderOffset],\r\n            bytes[MicropolisMfmFormat.SectorOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray(),\r\n            bytes[MicropolisMfmFormat.ChecksumOffset],\r\n            bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray(),\r\n            bytes\r\n        );\r\n    }\r\n\r\n    /// <summary>Crée les octets d'un record à encoder.</summary>\r\n    public static MicropolisMfmRecord Create(byte cylinder, byte sector, IReadOnlyList<byte> data)\r\n    {\r\n        var bytes = new byte[MicropolisMfmFormat.RecordByteCount];\r\n        bytes[MicropolisMfmFormat.AddressMarkOffset] = MicropolisMfmFormat.AddressMark;\r\n        bytes[MicropolisMfmFormat.CylinderOffset] = cylinder;\r\n        bytes[MicropolisMfmFormat.SectorOffset] = sector;\r\n        data.ToArray().CopyTo(bytes, MicropolisMfmFormat.DataOffset);\r\n        bytes[MicropolisMfmFormat.ChecksumOffset] = MicropolisChecksum.Compute(bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength));\r\n        return Parse(bytes)!;\r\n    }\r\n}",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicropolisMfmFormat.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.Array.AsReadOnly<byte>(byte[])",
+            "expression": "Array.AsReadOnly(TrackBitEncoding.EncodeCompactFm(0, 0, 0, AddressMark))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.EncodeCompactFm(params byte[])",
+            "expression": "TrackBitEncoding.EncodeCompactFm(0, 0, 0, AddressMark)"
+          },
+          {
+            "symbol": "System.ArgumentException.ArgumentException(string?)",
+            "expression": "new($\"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.\")"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.FormatValueOutOfRange(string, string, int, int)",
+            "expression": "TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNChecksum.Update(byte, byte)",
+            "expression": "Update(checksum, value)"
+          }
+        ],
+        "constants": {
+          "MicralNFmFormat.ComplementMask": {
+            "type": "byte",
+            "value": 255
+          },
+          "MicralNFmFormat.CarryMask": {
+            "type": "byte",
+            "value": 128
+          },
+          "FluxCodecDisplayNames.MicralNFm": {
+            "type": "string",
+            "value": "Micral N hard-sectored FM"
+          },
+          "MicralNFmFormat.InitialChecksum": {
+            "type": "byte",
+            "value": 0
+          },
+          "byte.MinValue": {
+            "type": "byte",
+            "value": 0
+          },
+          "byte.MaxValue": {
+            "type": "byte",
+            "value": 255
+          },
+          "FluxCodecIds.MicralNFm": {
+            "type": "string",
+            "value": "micraln.fm"
+          }
+        },
+        "sourceSha256": "E1955298A08F64CB59F9B5ACFB16D2A359B3AD1D44AE28FB303A55E3341588DF",
+        "source": "using GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;\r\n\r\n/// <summary>Regroupe les définitions techniques du format Micral N FM.</summary>\r\ninternal static class MicralNFmFormat\r\n{\r\n    /// <summary>Identifiant technique du codec.</summary>\r\n    public const string CodecId = FluxCodecIds.MicralNFm;\r\n    /// <summary>Nom affiché du codec.</summary>\r\n    public const string CodecDisplayName = FluxCodecDisplayNames.MicralNFm;\r\n    /// <summary>Nom employé dans les descriptions de structures.</summary>\r\n    public const string StructureDescriptionName = \"Micral N\";\r\n    /// <summary>Nombre d'octets nuls précédant la marque.</summary>\r\n    public const int SyncZeroCount = 3;\r\n    /// <summary>Marque d'adresse du bloc.</summary>\r\n    public const byte AddressMark = 0xff;\r\n    /// <summary>Nombre de bits encodant un octet FM.</summary>\r\n    public const int EncodedByteBitCount = 16;\r\n    /// <summary>Longueur de la marque FM en bits.</summary>\r\n    public const int MarkBitCount = (SyncZeroCount + 1) * EncodedByteBitCount;\r\n    /// <summary>Position du numéro de secteur après la marque.</summary>\r\n    public const int SectorOffset = 0;\r\n    /// <summary>Position du cylindre après la marque.</summary>\r\n    public const int CylinderOffset = 1;\r\n    /// <summary>Position de la charge utile après la marque.</summary>\r\n    public const int DataOffset = 2;\r\n    /// <summary>Nombre d'octets d'identité.</summary>\r\n    public const int IdentityByteCount = 2;\r\n    /// <summary>Taille d'un secteur.</summary>\r\n    public const int SectorSize = 128;\r\n    /// <summary>Nombre d'octets du checksum.</summary>\r\n    public const int ChecksumByteCount = 1;\r\n    /// <summary>Position du checksum après la marque.</summary>\r\n    public const int ChecksumOffset = DataOffset + SectorSize;\r\n    /// <summary>Nombre d'octets lus après la marque.</summary>\r\n    public const int BytesAfterMark = IdentityByteCount + SectorSize + ChecksumByteCount;\r\n    /// <summary>Nombre total d'octets du bloc, synchronisation comprise.</summary>\r\n    public const int BlockByteCount = SyncZeroCount + 1 + BytesAfterMark;\r\n    /// <summary>Longueur totale du bloc en bits.</summary>\r\n    public const int BlockBitCount = BlockByteCount * EncodedByteBitCount;\r\n    /// <summary>Face logique des secteurs Micral N.</summary>\r\n    public const byte LogicalHead = 0;\r\n    /// <summary>Code de taille des secteurs de 128 octets.</summary>\r\n    public const byte SectorSizeCode = 0;\r\n    /// <summary>Plus petit numéro de secteur encodable.</summary>\r\n    public const int MinimumSectorNumber = byte.MinValue;\r\n    /// <summary>Plus grand numéro de secteur encodable.</summary>\r\n    public const int MaximumSectorNumber = byte.MaxValue;\r\n    /// <summary>Valeur initiale du checksum.</summary>\r\n    public const byte InitialChecksum = 0;\r\n    /// <summary>Masque de complément du checksum.</summary>\r\n    public const byte ComplementMask = 0xff;\r\n    /// <summary>Masque du bit de retenue.</summary>\r\n    public const byte CarryMask = 0x80;\r\n    /// <summary>Gap ajouté après chaque secteur encodé.</summary>\r\n    public const int GapBitCount = 128;\r\n    /// <summary>Avancement du balayage après une marque.</summary>\r\n    public const int ScanAdvance = MarkBitCount - 1;\r\n    /// <summary>Poids d'un secteur dans le calcul de confiance.</summary>\r\n    public const int ConfidenceSectorWeight = 2;\r\n    /// <summary>Diviseur du calcul de confiance.</summary>\r\n    public const double ConfidenceDivisor = 20;\r\n    /// <summary>Marque FM composée de trois zéros et de <c>0xff</c>.</summary>\r\n    public static IReadOnlyList<byte> SectorMark { get; } = Array.AsReadOnly(TrackBitEncoding.EncodeCompactFm(0, 0, 0, AddressMark));\r\n\r\n    /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>\r\n    public static ArgumentException InvalidSectorSize(int actualSize) => new($\"Micral N sectors contain {SectorSize} bytes; received {actualSize} bytes.\");\r\n    /// <summary>Crée l'exception signalant un numéro de secteur impossible à encoder.</summary>\r\n    public static ArgumentOutOfRangeException InvalidSectorNumber(int sectorNumber) => TrackEncodingExceptions.FormatValueOutOfRange(StructureDescriptionName, \"sector number\", sectorNumber, MaximumSectorNumber);\r\n}\r\n\r\n/// <summary>Calcule le checksum propre au format Micral N.</summary>\r\ninternal static class MicralNChecksum\r\n{\r\n    /// <summary>Met à jour le checksum avec un octet supplémentaire.</summary>\r\n    public static byte Update(byte checksum, byte data)\r\n    {\r\n        var carrySource = ((data ^ checksum) ^ MicralNFmFormat.ComplementMask) & ((data + checksum) ^ data);\r\n        var carry = (carrySource & MicralNFmFormat.CarryMask) != 0 ? 1 : 0;\r\n        return (byte)(checksum + data + carry);\r\n    }\r\n\r\n    /// <summary>Calcule le checksum de la séquence fournie.</summary>\r\n    public static byte Compute(IEnumerable<byte> data)\r\n    {\r\n        var checksum = MicralNFmFormat.InitialChecksum;\r\n        foreach (var value in data) checksum = Update(checksum, value);\r\n        return checksum;\r\n    }\r\n}\r\n\r\n/// <summary>Représente un bloc Micral N décodé.</summary>\r\ninternal sealed record MicralNFmBlock(byte Sector, byte Cylinder, byte[] Data, byte StoredChecksum, bool ChecksumValid);\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicralNFmFormat.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(field, actual, $\"{format} {field} must be between 0 and {maximum}.\")"
+          },
+          {
+            "symbol": "System.ArgumentException.ArgumentException(string?, string?)",
+            "expression": "new($\"Binary text contains '{value}' at index {index}; only '0' and '1' are allowed.\", \"values\")"
+          },
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(nameof(count), count, \"Gap length cannot be negative.\")"
+          },
+          {
+            "expression": "nameof(count)",
+            "value": "count",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.OverflowException.OverflowException(string?)",
+            "expression": "new($\"A flux interval of {cells} cells at {cellTicks} ticks per cell exceeds UInt32.\")"
+          },
+          {
+            "symbol": "System.ArgumentException.ArgumentException(string?, string?)",
+            "expression": "new($\"Unsupported sector size: {sizeBytes} bytes.\", nameof(sizeBytes))"
+          },
+          {
+            "expression": "nameof(sizeBytes)",
+            "value": "sizeBytes",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(nameof(cellTicks), cellTicks, \"Bit-cell duration must be greater than zero ticks.\")"
+          },
+          {
+            "expression": "nameof(cellTicks)",
+            "value": "cellTicks",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(nameof(indexTimeTicks), indexTimeTicks, \"Index duration must be greater than zero ticks.\")"
+          },
+          {
+            "expression": "nameof(indexTimeTicks)",
+            "value": "indexTimeTicks",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(nameof(cylinder), cylinder, $\"Cylinder must be between {TrackEncodingLimits.MinimumCylinder} and {TrackEncodingLimits.MaximumCylinder}.\")"
+          },
+          {
+            "expression": "nameof(cylinder)",
+            "value": "cylinder",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?, object?, string?)",
+            "expression": "new(nameof(head), head, $\"Head must be between {TrackEncodingLimits.MinimumHead} and {TrackEncodingLimits.MaximumHead}.\")"
+          },
+          {
+            "expression": "nameof(head)",
+            "value": "head",
+            "intrinsic": "nameof"
+          },
+          {
+            "symbol": "System.ArgumentException.ArgumentException(string?, string?)",
+            "expression": "new($\"At least {TrackEncodingLimits.MinimumSectorCount} sector is required; received {sectorCount}.\", \"request\")"
+          },
+          {
+            "symbol": "System.InvalidOperationException.InvalidOperationException(string?)",
+            "expression": "new($\"Encoder '{encoderId}' produced {bitCount} bit cells.\")"
+          }
+        ],
+        "constants": {
+          "TrackEncodingLimits.MinimumSectorCount": {
+            "type": "int",
+            "value": 1
+          },
+          "TrackEncodingLimits.MaximumCylinder": {
+            "type": "int",
+            "value": 255
+          },
+          "TrackEncodingLimits.MaximumHead": {
+            "type": "int",
+            "value": 1
+          },
+          "TrackEncodingLimits.MinimumCylinder": {
+            "type": "int",
+            "value": 0
+          },
+          "TrackEncodingLimits.MinimumHead": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "sourceSha256": "F33306736AB00A7AA2A101B2911AD652BDECFADE9CAC19F0DA871487FC400199",
+        "source": "namespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Construit les erreurs communes produites pendant l'encodage d'une piste.</summary>\r\ninternal static class TrackEncodingExceptions\r\n{\r\n    /// <summary>Crée l'erreur signalant une valeur propre à un format située hors de sa plage.</summary>\r\n    /// <param name=\"format\">Nom du format.</param>\r\n    /// <param name=\"field\">Nom du champ concerné.</param>\r\n    /// <param name=\"actual\">Valeur observée.</param>\r\n    /// <param name=\"maximum\">Valeur maximale admise.</param>\r\n    /// <returns>Erreur contenant le format, le champ, la valeur et sa limite.</returns>\r\n    public static ArgumentOutOfRangeException FormatValueOutOfRange(string format, string field, int actual, int maximum) => new(field, actual, $\"{format} {field} must be between 0 and {maximum}.\");\r\n\r\n    /// <summary>Crée l'erreur signalant un caractère invalide dans une chaîne binaire.</summary>\r\n    /// <param name=\"value\">Caractère observé.</param>\r\n    /// <param name=\"index\">Position du caractère.</param>\r\n    /// <returns>Erreur contenant le caractère et sa position.</returns>\r\n    public static ArgumentException InvalidBinaryCharacter(char value, int index) => new($\"Binary text contains '{value}' at index {index}; only '0' and '1' are allowed.\", \"values\");\r\n\r\n    /// <summary>Crée l'erreur signalant une longueur de gap négative.</summary>\r\n    /// <param name=\"count\">Longueur observée, en cellules.</param>\r\n    /// <returns>Erreur contenant la longueur invalide.</returns>\r\n    public static ArgumentOutOfRangeException NegativeGapLength(int count) => new(nameof(count), count, \"Gap length cannot be negative.\");\r\n\r\n    /// <summary>Crée l'erreur signalant le dépassement d'un intervalle de flux.</summary>\r\n    /// <param name=\"cells\">Nombre de cellules de l'intervalle.</param>\r\n    /// <param name=\"cellTicks\">Durée d'une cellule, en ticks.</param>\r\n    /// <returns>Erreur contenant les deux facteurs du produit.</returns>\r\n    public static OverflowException FluxIntervalOverflow(uint cells, uint cellTicks) => new($\"A flux interval of {cells} cells at {cellTicks} ticks per cell exceeds UInt32.\");\r\n\r\n    /// <summary>Crée l'erreur signalant une taille sectorielle sans code ISO correspondant.</summary>\r\n    /// <param name=\"sizeBytes\">Taille sectorielle observée, en octets.</param>\r\n    /// <returns>Erreur contenant la taille non prise en charge.</returns>\r\n    public static ArgumentException UnsupportedSectorSize(int sizeBytes) => new($\"Unsupported sector size: {sizeBytes} bytes.\", nameof(sizeBytes));\r\n\r\n    /// <summary>Crée l'erreur signalant une durée de cellule binaire nulle.</summary>\r\n    /// <param name=\"cellTicks\">Durée observée, en ticks.</param>\r\n    /// <returns>Erreur contenant la durée invalide.</returns>\r\n    public static ArgumentOutOfRangeException ZeroBitCell(uint cellTicks) => new(nameof(cellTicks), cellTicks, \"Bit-cell duration must be greater than zero ticks.\");\r\n\r\n    /// <summary>Crée l'erreur signalant une durée de révolution nulle.</summary>\r\n    /// <param name=\"indexTimeTicks\">Durée observée, en ticks.</param>\r\n    /// <returns>Erreur contenant la durée invalide.</returns>\r\n    public static ArgumentOutOfRangeException ZeroIndexTime(uint indexTimeTicks) => new(nameof(indexTimeTicks), indexTimeTicks, \"Index duration must be greater than zero ticks.\");\r\n\r\n    /// <summary>Crée l'erreur signalant un cylindre situé hors des limites communes.</summary>\r\n    /// <param name=\"cylinder\">Numéro de cylindre observé.</param>\r\n    /// <returns>Erreur contenant la valeur et les limites admises.</returns>\r\n    public static ArgumentOutOfRangeException InvalidCylinder(int cylinder) => new(nameof(cylinder), cylinder, $\"Cylinder must be between {TrackEncodingLimits.MinimumCylinder} and {TrackEncodingLimits.MaximumCylinder}.\");\r\n\r\n    /// <summary>Crée l'erreur signalant une face située hors des limites communes.</summary>\r\n    /// <param name=\"head\">Numéro de face observé.</param>\r\n    /// <returns>Erreur contenant la valeur et les limites admises.</returns>\r\n    public static ArgumentOutOfRangeException InvalidHead(int head) => new(nameof(head), head, $\"Head must be between {TrackEncodingLimits.MinimumHead} and {TrackEncodingLimits.MaximumHead}.\");\r\n\r\n    /// <summary>Crée l'erreur signalant qu'une piste ne contient aucun secteur.</summary>\r\n    /// <param name=\"sectorCount\">Nombre de secteurs observé.</param>\r\n    /// <returns>Erreur contenant le nombre de secteurs reçu.</returns>\r\n    public static ArgumentException MissingSectors(int sectorCount) => new($\"At least {TrackEncodingLimits.MinimumSectorCount} sector is required; received {sectorCount}.\", \"request\");\r\n\r\n    /// <summary>Crée l'erreur signalant qu'un encodeur n'a produit aucune cellule binaire.</summary>\r\n    /// <param name=\"encoderId\">Identifiant technique de l'encodeur.</param>\r\n    /// <param name=\"bitCount\">Nombre de cellules produites.</param>\r\n    /// <returns>Erreur contenant l'encodeur et le nombre de cellules observé.</returns>\r\n    public static InvalidOperationException EmptyTrack(string encoderId, int bitCount) => new($\"Encoder '{encoderId}' produced {bitCount} bit cells.\");\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingExceptions.cs"
+      },
+      {
+        "operations": [],
+        "constants": {
+          "byte.MaxValue": {
+            "type": "byte",
+            "value": 255
+          },
+          "GWGUI.MediaEngine.Images.Models.Sectors.SectorSizeCode.MaximumCode": {
+            "type": "byte",
+            "value": 7
+          },
+          "GWGUI.MediaEngine.Images.Models.Sectors.SectorSizeCode.MinimumCode": {
+            "type": "byte",
+            "value": 0
+          }
+        },
+        "sourceSha256": "26E9F5025EDDF18A636F20F8F5B7951CDB964FE7048F76A0241A506553C212A4",
+        "source": "namespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Définit les limites communes appliquées aux requêtes d'encodage de piste.</summary>\r\ninternal static class TrackEncodingLimits\r\n{\r\n    /// <summary>Plus petit numéro de cylindre admis.</summary>\r\n    public const int MinimumCylinder = 0;\r\n    /// <summary>Plus grand numéro de cylindre admis.</summary>\r\n    public const int MaximumCylinder = byte.MaxValue;\r\n    /// <summary>Plus petit numéro de face admis.</summary>\r\n    public const int MinimumHead = 0;\r\n    /// <summary>Plus grand numéro de face admis.</summary>\r\n    public const int MaximumHead = 1;\r\n    /// <summary>Nombre minimal de secteurs nécessaire pour encoder une piste.</summary>\r\n    public const int MinimumSectorCount = 1;\r\n    /// <summary>Plus petit code de taille sectorielle ISO admis.</summary>\r\n    public const byte MinimumSectorSizeCode = GWGUI.MediaEngine.Images.Models.Sectors.SectorSizeCode.MinimumCode;\r\n    /// <summary>Plus grand code de taille sectorielle ISO admis.</summary>\r\n    public const byte MaximumSectorSizeCode = GWGUI.MediaEngine.Images.Models.Sectors.SectorSizeCode.MaximumCode;\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingLimits.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.ArgumentNullException.ThrowIfNull(object?, string?)",
+            "expression": "ArgumentNullException.ThrowIfNull(Sectors)"
+          },
+          {
+            "symbol": "System.Array.AsReadOnly<GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector>(GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector[])",
+            "expression": "Array.AsReadOnly(Sectors.ToArray())"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector>.ToArray<GWGUI.MediaEngine.Images.Writing.Encoding.TrackSector>()",
+            "expression": "Sectors.ToArray()"
+          },
+          {
+            "symbol": "System.Collections.ObjectModel.ReadOnlyDictionary<string, int>.ReadOnlyDictionary(System.Collections.Generic.IDictionary<string, int>)",
+            "expression": "new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(Attributes, StringComparer.Ordinal))"
+          },
+          {
+            "symbol": "System.Collections.Generic.Dictionary<string, int>.Dictionary(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, int>>, System.Collections.Generic.IEqualityComparer<string>?)",
+            "expression": "new Dictionary<string, int>(Attributes, StringComparer.Ordinal)"
+          }
+        ],
+        "constants": {
+          "TrackEncodingDefaults.BitCellTicks": {
+            "type": "uint",
+            "value": 40
+          },
+          "TrackEncodingDefaults.IndexTimeTicks": {
+            "type": "uint",
+            "value": 8000000
+          }
+        },
+        "sourceSha256": "39AB00C3E984AB92A9EA38A405815D4A36FA303B6A41EC60CE426889D715D22C",
+        "source": "using System.Collections.ObjectModel;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Regroupe les données nécessaires pour encoder une piste logique complète.</summary>\r\npublic sealed record TrackEncodeRequest\r\n{\r\n    /// <summary>Initialise une requête en copiant ses secteurs et ses attributs.</summary>\r\n    /// <param name=\"Cylinder\">Numéro du cylindre.</param>\r\n    /// <param name=\"Head\">Numéro de la face.</param>\r\n    /// <param name=\"Sectors\">Secteurs à placer sur la piste.</param>\r\n    /// <param name=\"Attributes\">Attributs techniques propres au format.</param>\r\n    /// <param name=\"BitCellTicks\">Durée d'une cellule binaire, en ticks.</param>\r\n    /// <param name=\"IndexTimeTicks\">Durée d'une révolution, en ticks.</param>\r\n    public TrackEncodeRequest(int Cylinder, int Head, IReadOnlyList<TrackSector> Sectors, IReadOnlyDictionary<string, int>? Attributes = null, uint BitCellTicks = TrackEncodingDefaults.BitCellTicks, uint IndexTimeTicks = TrackEncodingDefaults.IndexTimeTicks)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(Sectors);\r\n        this.Cylinder = Cylinder;\r\n        this.Head = Head;\r\n        this.Sectors = Array.AsReadOnly(Sectors.ToArray());\r\n        this.Attributes = Attributes is null ? null : new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(Attributes, StringComparer.Ordinal));\r\n        this.BitCellTicks = BitCellTicks;\r\n        this.IndexTimeTicks = IndexTimeTicks;\r\n    }\r\n\r\n    /// <summary>Obtient le numéro du cylindre.</summary>\r\n    public int Cylinder { get; }\r\n    /// <summary>Obtient le numéro de la face.</summary>\r\n    public int Head { get; }\r\n    /// <summary>Obtient une copie non modifiable des secteurs à encoder.</summary>\r\n    public IReadOnlyList<TrackSector> Sectors { get; }\r\n    /// <summary>Obtient une copie non modifiable des attributs propres au format.</summary>\r\n    public IReadOnlyDictionary<string, int>? Attributes { get; }\r\n    /// <summary>Obtient la durée d'une cellule binaire, en ticks.</summary>\r\n    public uint BitCellTicks { get; }\r\n    /// <summary>Obtient la durée d'une révolution complète, en ticks.</summary>\r\n    public uint IndexTimeTicks { get; }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodeRequest.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.ArgumentNullException.ThrowIfNull(object?, string?)",
+            "expression": "ArgumentNullException.ThrowIfNull(Data)"
+          },
+          {
+            "symbol": "System.Array.AsReadOnly<byte>(byte[])",
+            "expression": "Array.AsReadOnly(Data.ToArray())"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "Data.ToArray()"
+          },
+          {
+            "symbol": "System.Collections.ObjectModel.ReadOnlyDictionary<string, int>.ReadOnlyDictionary(System.Collections.Generic.IDictionary<string, int>)",
+            "expression": "new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(Attributes, StringComparer.Ordinal))"
+          },
+          {
+            "symbol": "System.Collections.Generic.Dictionary<string, int>.Dictionary(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, int>>, System.Collections.Generic.IEqualityComparer<string>?)",
+            "expression": "new Dictionary<string, int>(Attributes, StringComparer.Ordinal)"
+          }
+        ],
+        "constants": {},
+        "sourceSha256": "8A36898DBCC0552B4F4D9E8DA979BEA3BC83E58057A0189984419F5D18FC7F04",
+        "source": "using System.Collections.ObjectModel;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\n/// <summary>Décrit un secteur logique à encoder dans une piste.</summary>\r\npublic sealed record TrackSector\r\n{\r\n    /// <summary>Initialise un secteur en copiant sa charge utile et ses attributs.</summary>\r\n    /// <param name=\"Number\">Numéro logique du secteur.</param>\r\n    /// <param name=\"Data\">Octets de la charge utile.</param>\r\n    /// <param name=\"Deleted\">Indique si une marque de données supprimées doit être utilisée.</param>\r\n    /// <param name=\"SizeCode\">Code de taille imposé par le format, ou <see langword=\"null\"/> pour le déduire.</param>\r\n    /// <param name=\"Attributes\">Attributs techniques propres au format.</param>\r\n    public TrackSector(int Number, IReadOnlyList<byte> Data, bool Deleted = false, byte? SizeCode = null, IReadOnlyDictionary<string, int>? Attributes = null)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(Data);\r\n        this.Number = Number;\r\n        this.Data = Array.AsReadOnly(Data.ToArray());\r\n        this.Deleted = Deleted;\r\n        this.SizeCode = SizeCode;\r\n        this.Attributes = Attributes is null ? null : new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(Attributes, StringComparer.Ordinal));\r\n    }\r\n\r\n    /// <summary>Obtient le numéro logique du secteur.</summary>\r\n    public int Number { get; }\r\n    /// <summary>Obtient une copie non modifiable des octets de la charge utile.</summary>\r\n    public IReadOnlyList<byte> Data { get; }\r\n    /// <summary>Indique si une marque de données supprimées doit être utilisée.</summary>\r\n    public bool Deleted { get; }\r\n    /// <summary>Obtient le code de taille imposé, ou <see langword=\"null\"/> pour le déduire.</summary>\r\n    public byte? SizeCode { get; }\r\n    /// <summary>Obtient une copie non modifiable des attributs propres au format.</summary>\r\n    public IReadOnlyDictionary<string, int>? Attributes { get; }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackSector.cs"
+      },
+      {
+        "operations": [
+          {
+            "symbol": "System.ArgumentNullException.ThrowIfNull(object?, string?)",
+            "expression": "ArgumentNullException.ThrowIfNull(bits)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.ZeroBitCell(uint)",
+            "expression": "TrackEncodingExceptions.ZeroBitCell(cellTicks)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.ZeroIndexTime(uint)",
+            "expression": "TrackEncodingExceptions.ZeroIndexTime(indexTimeTicks)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<uint>.List()",
+            "expression": "new List<uint>()"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<uint>.Add(uint)",
+            "expression": "intervals.Add(Interval(cells, cellTicks))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Models.Flux.FluxRevolutionFactory.Interval(uint, uint)",
+            "expression": "Interval(cells, cellTicks)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<uint>.Add(uint)",
+            "expression": "intervals.Add(Interval(cells, cellTicks))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Models.Flux.FluxRevolutionFactory.Interval(uint, uint)",
+            "expression": "Interval(cells, cellTicks)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Models.Flux.FluxRevolution.FluxRevolution(uint, System.Collections.Generic.IReadOnlyList<uint>)",
+            "expression": "new(indexTimeTicks, intervals)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackEncodingExceptions.FluxIntervalOverflow(uint, uint)",
+            "expression": "TrackEncodingExceptions.FluxIntervalOverflow(cells, cellTicks)"
+          }
+        ],
+        "constants": {},
+        "sourceSha256": "F4DD06674DEE9B4D005008F52AD3ABA2FAE9A1AC33EC92ACAE8739272A813CE9",
+        "source": "using GWGUI.MediaEngine.Images.Writing.Encoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Models.Flux;\r\n\r\n/// <summary>Construit une révolution de flux générique à partir de cellules binaires temporelles.</summary>\r\ninternal static class FluxRevolutionFactory\r\n{\r\n    /// <summary>Convertit les transitions binaires en intervalles exprimés en ticks.</summary>\r\n    /// <param name=\"bits\">Cellules binaires ; une cellule à un représente une transition.</param>\r\n    /// <param name=\"cellTicks\">Durée d'une cellule, en ticks.</param>\r\n    /// <param name=\"indexTimeTicks\">Durée de la révolution complète, en ticks.</param>\r\n    /// <returns>Révolution contenant les intervalles copiés.</returns>\r\n    /// <exception cref=\"ArgumentNullException\">La collection de cellules est nulle.</exception>\r\n    /// <exception cref=\"ArgumentOutOfRangeException\">Une durée est nulle.</exception>\r\n    /// <exception cref=\"OverflowException\">Le produit du nombre de cellules par leur durée dépasse un entier non signé.</exception>\r\n    public static FluxRevolution Create(IReadOnlyList<bool> bits, uint cellTicks, uint indexTimeTicks)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(bits);\r\n        if (cellTicks == 0) throw TrackEncodingExceptions.ZeroBitCell(cellTicks);\r\n        if (indexTimeTicks == 0) throw TrackEncodingExceptions.ZeroIndexTime(indexTimeTicks);\r\n        var intervals = new List<uint>();\r\n        uint cells = 0;\r\n        foreach (var bit in bits)\r\n        {\r\n            cells++;\r\n            if (!bit) continue;\r\n            intervals.Add(Interval(cells, cellTicks));\r\n            cells = 0;\r\n        }\r\n        if (cells > 0) intervals.Add(Interval(cells, cellTicks));\r\n        return new(indexTimeTicks, intervals);\r\n    }\r\n\r\n    /// <summary>Calcule un intervalle de flux en contrôlant son dépassement.</summary>\r\n    /// <param name=\"cells\">Nombre de cellules composant l'intervalle.</param>\r\n    /// <param name=\"cellTicks\">Durée d'une cellule, en ticks.</param>\r\n    /// <returns>Durée de l'intervalle, en ticks.</returns>\r\n    private static uint Interval(uint cells, uint cellTicks)\r\n    {\r\n        try { return checked(cells * cellTicks); }\r\n        catch (OverflowException) { throw TrackEncodingExceptions.FluxIntervalOverflow(cells, cellTicks); }\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolutionFactory.cs"
+      }
+    ],
+    "methods": [
+      {
+        "resolvedOperations": [
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Bits()",
+            "expression": "TrackBitEncoding.Bits()"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmFormat.InvalidSectorSize(int)",
+            "expression": "MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmFormat.InvalidSectorNumber(int)",
+            "expression": "MicropolisMfmFormat.InvalidSectorNumber(sector.Number)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicropolisMfmTrackEncoder.WriteRecord(System.Collections.Generic.List<bool>, GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord)",
+            "expression": "WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicropolisMfmTrackEncoder.CreateRecord(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicropolisMfmRecord.Create(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "MicropolisMfmRecord.Create(cylinder, sector, data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Mfm(System.Collections.Generic.IEnumerable<byte>, bool)",
+            "expression": "bits.Mfm(new byte[MicropolisMfmFormat.PreambleByteCount])"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Mfm(System.Collections.Generic.IEnumerable<byte>, bool)",
+            "expression": "bits.Mfm(record.Bytes)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Gap(int, bool)",
+            "expression": "bits.Gap(MicropolisMfmFormat.GapBitCount)"
+          }
+        ],
+        "method": "protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicropolisMfmFormat.SectorSize) throw MicropolisMfmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicropolisMfmFormat.MinimumSectorNumber or > MicropolisMfmFormat.MaximumSectorNumber) throw MicropolisMfmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteRecord(bits, CreateRecord((byte)request.Cylinder, (byte)sector.Number, sector.Data));\r\n        }\r\n        return bits;\r\n    }",
+        "resolvedConstants": {
+          "MicropolisMfmFormat.PreambleByteCount": {
+            "type": "int",
+            "value": 40
+          },
+          "MicropolisMfmFormat.CodecDisplayName": {
+            "type": "string",
+            "value": "Micropolis MFM"
+          },
+          "MicropolisMfmFormat.SectorSize": {
+            "type": "int",
+            "value": 256
+          },
+          "MicropolisMfmFormat.CodecId": {
+            "type": "string",
+            "value": "micropolis.mfm"
+          },
+          "MicropolisMfmFormat.GapBitCount": {
+            "type": "int",
+            "value": 128
+          },
+          "MicropolisMfmFormat.MaximumSectorNumber": {
+            "type": "int",
+            "value": 255
+          },
+          "MicropolisMfmFormat.MinimumSectorNumber": {
+            "type": "int",
+            "value": 0
+          }
+        },
+        "line": 17,
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs",
+        "name": "EncodeBits",
+        "bodyHash": "DDE1CCDEB57511600456DE429D9B056C79EFEC7FD922707EBDA04BB66B1308E4",
+        "sourceSha256": "1657ADEFADE2752558F36F5F5E62CA53C2484641259F2E2664EBBC1A1F821588"
+      },
+      {
+        "resolvedOperations": [
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.TrackBitEncoding.Bits()",
+            "expression": "TrackBitEncoding.Bits()"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNFmFormat.InvalidSectorSize(int)",
+            "expression": "MicralNFmFormat.InvalidSectorSize(sector.Data.Count)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNFmFormat.InvalidSectorNumber(int)",
+            "expression": "MicralNFmFormat.InvalidSectorNumber(sector.Number)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicralNFmTrackEncoder.WriteSector(System.Collections.Generic.List<bool>, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "WriteSector(bits, BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data))"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Writing.Encoding.MicralNFmTrackEncoder.BuildSector(byte, byte, System.Collections.Generic.IReadOnlyList<byte>)",
+            "expression": "BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data)).ToArray()"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Append<byte>(byte)",
+            "expression": "new byte[] { sector, cylinder }.Concat(data).Append(MicralNChecksum.Compute(data))"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.Concat<byte>(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "new byte[] { sector, cylinder }.Concat(data)"
+          },
+          {
+            "symbol": "GWGUI.MediaEngine.Images.Reading.Decoding.Definitions.MicralNChecksum.Compute(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "MicralNChecksum.Compute(data)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Raw(params byte[])",
+            "expression": "bits.Raw(MicralNFmFormat.SectorMark.ToArray())"
+          },
+          {
+            "symbol": "System.Collections.Generic.IEnumerable<byte>.ToArray<byte>()",
+            "expression": "MicralNFmFormat.SectorMark.ToArray()"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Fm(System.Collections.Generic.IEnumerable<byte>)",
+            "expression": "bits.Fm(sectorBytes)"
+          },
+          {
+            "symbol": "System.Collections.Generic.List<bool>.Gap(int, bool)",
+            "expression": "bits.Gap(MicralNFmFormat.GapBitCount)"
+          }
+        ],
+        "method": "protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackBitEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != MicralNFmFormat.SectorSize) throw MicralNFmFormat.InvalidSectorSize(sector.Data.Count);\r\n            if (sector.Number is < MicralNFmFormat.MinimumSectorNumber or > MicralNFmFormat.MaximumSectorNumber) throw MicralNFmFormat.InvalidSectorNumber(sector.Number);\r\n            WriteSector(bits, BuildSector((byte)sector.Number, (byte)request.Cylinder, sector.Data));\r\n        }\r\n        return bits;\r\n    }",
+        "resolvedConstants": {
+          "MicralNFmFormat.CodecId": {
+            "type": "string",
+            "value": "micraln.fm"
+          },
+          "MicralNFmFormat.SectorSize": {
+            "type": "int",
+            "value": 128
+          },
+          "MicralNFmFormat.MinimumSectorNumber": {
+            "type": "int",
+            "value": 0
+          },
+          "MicralNFmFormat.CodecDisplayName": {
+            "type": "string",
+            "value": "Micral N hard-sectored FM"
+          },
+          "MicralNFmFormat.MaximumSectorNumber": {
+            "type": "int",
+            "value": 255
+          },
+          "MicralNFmFormat.GapBitCount": {
+            "type": "int",
+            "value": 128
+          }
+        },
+        "line": 16,
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs",
+        "name": "EncodeBits",
+        "bodyHash": "E552F3491D6F7794F1CA392F7305A7BAE934590B48497567965F17A892DF4CD0",
+        "sourceSha256": "9E2233B71218B3F8A3C7C815961B03C5CA0DE4BC93ABF5A56A4C66CB0049FE00"
+      }
+    ],
+    "origins": [
+      {
+        "commit": "cf52d7a96",
+        "method": "protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != 256) throw new ArgumentException(\"Micropolis sectors contain 256 bytes.\");\r\n            var record = new List<byte> { 0xff, (byte)request.Cylinder, (byte)sector.Number };\r\n            record.AddRange(Enumerable.Repeat((byte)0, 10));\r\n            record.AddRange(sector.Data);\r\n            record.Add(Checksum(record.Skip(1)));\r\n            record.AddRange(Enumerable.Repeat((byte)0, 5));\r\n            bits.Mfm(new byte[40]);\r\n            bits.Mfm(record);\r\n            bits.Gap(128);\r\n        }\r\n        return bits;\r\n    }",
+        "source": "namespace GWGUI.Scp.Encoding;\r\n\r\npublic sealed class MicropolisMfmTrackEncoder : TrackEncoderBase\r\n{\r\n    public override string Id => \"micropolis.mfm\";\r\n    public override string DisplayName => \"Micropolis MFM\";\r\n\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != 256) throw new ArgumentException(\"Micropolis sectors contain 256 bytes.\");\r\n            var record = new List<byte> { 0xff, (byte)request.Cylinder, (byte)sector.Number };\r\n            record.AddRange(Enumerable.Repeat((byte)0, 10));\r\n            record.AddRange(sector.Data);\r\n            record.Add(Checksum(record.Skip(1)));\r\n            record.AddRange(Enumerable.Repeat((byte)0, 5));\r\n            bits.Mfm(new byte[40]);\r\n            bits.Mfm(record);\r\n            bits.Gap(128);\r\n        }\r\n        return bits;\r\n    }\r\n\r\n    private static byte Checksum(IEnumerable<byte> data)\r\n    {\r\n        var value = 0;\r\n        foreach (var item in data) { if (value > 255) value -= 255; value += item; }\r\n        return (byte)value;\r\n    }\r\n}",
+        "path": "src/GWGUI.Scp/Encoding/Encoders/MicropolisMfmTrackEncoder.cs"
+      },
+      {
+        "commit": "cf52d7a96",
+        "method": "protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != 128) throw new ArgumentException(\"Micral N sectors contain 128 bytes.\");\r\n            byte checksum = 0;\r\n            foreach (var value in sector.Data) checksum = Update(checksum, value);\r\n            bits.Fm(new byte[] { 0,0,0,0xff,(byte)sector.Number,(byte)request.Cylinder }.Concat(sector.Data).Append(checksum));\r\n            bits.Gap(128);\r\n        }\r\n        return bits;\r\n    }",
+        "source": "namespace GWGUI.Scp.Encoding;\r\n\r\npublic sealed class MicralNFmTrackEncoder : TrackEncoderBase\r\n{\r\n    public override string Id => \"micraln.fm\";\r\n    public override string DisplayName => \"Micral N hard-sectored FM\";\r\n    protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)\r\n    {\r\n        var bits = TrackEncoding.Bits();\r\n        foreach (var sector in request.Sectors)\r\n        {\r\n            if (sector.Data.Count != 128) throw new ArgumentException(\"Micral N sectors contain 128 bytes.\");\r\n            byte checksum = 0;\r\n            foreach (var value in sector.Data) checksum = Update(checksum, value);\r\n            bits.Fm(new byte[] { 0,0,0,0xff,(byte)sector.Number,(byte)request.Cylinder }.Concat(sector.Data).Append(checksum));\r\n            bits.Gap(128);\r\n        }\r\n        return bits;\r\n    }\r\n    private static byte Update(byte checksum, byte data)\r\n    {\r\n        var carrySource = ((data ^ checksum) ^ 0xff) & ((data + checksum) ^ data);\r\n        return (byte)(checksum + data + ((carrySource & 0x80) != 0 ? 1 : 0));\r\n    }\r\n}",
+        "path": "src/GWGUI.Scp/Encoding/Encoders/MicralNFmTrackEncoder.cs"
+      }
+    ],
+    "semanticErrors": 0,
+    "semanticProject": "GWGUI.MediaEngine",
+    "decision": "Retain two format-specific EncodeBits compositions: already share TrackEncoderBase request checks/result construction, TrackBitEncoding Bits/Raw/Fm/Mfm/Gap and TrackEncodingExceptions range factory. Micropolis256 bytes uses cylinder/sector record with ten header zeros and five trailer zeros, preamble40 MFM bytes and separate Mfm calls; Micral128 bytes uses sector/cylinder header, raw compact FM sync mark then FM block. Checksums and covered bytes differ; independent helpers cannot be replaced by one format mode without adding dispatch/callback plumbing. Sector number bounds0..255 and final gap128 match, but these are shared validation shape plus distinct format data. No product change justified by normalized method shape.",
+    "policyProof": {
+      "errorOrder": "Common request checks before format work; each sector payload size before number bounds; original format-specific factories remain. No new normalization or callbacks.",
+      "micral": {
+        "checksum": "Carry-aware byte addition over payload only, not Micropolis modulo procedure",
+        "order": "sector,cylinder,payload,checksum",
+        "sync": "Compact FM 0,0,0,0xff written raw",
+        "gapBits": 128,
+        "size": 128
+      },
+      "micropolis": {
+        "separateMfmCallPreviousDataResetPreserved": true,
+        "preambleMfmBytes": 40,
+        "size": 256,
+        "gapBits": 128,
+        "order": "0xff,cylinder,sector,10 zero bytes,payload,checksum,5 zero bytes",
+        "checksum": "Original conditional subtraction255 before each addition over cylinder through payload/header padding, byte cast at end"
+      },
+      "shared": {
+        "minimumSectors": 1,
+        "commonOwners": [
+          "TrackEncoderBase",
+          "TrackBitEncoding",
+          "TrackEncodingExceptions",
+          "FluxRevolutionFactory"
+        ],
+        "sectorMinimum": 0,
+        "sectorMaximum": 255,
+        "globalCylinder": [
+          0,
+          255
+        ],
+        "globalHead": [
+          0,
+          1
+        ],
+        "requestSectorDataCopied": true
+      }
+    },
+    "verification": {
+      "productFilesChanged": 0,
+      "sourceAndDependencyFilesUnchanged": 11,
+      "semanticErrors": 0,
+      "tests": {
+        "physicalOperation": false,
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-build --no-restore --filter FullyQualifiedName~MicropolisCanPreserveTheCompleteRecordWhileKeepingPayloadModeByDefault --verbosity quiet",
+        "passed": 1,
+        "newTestOrMediaFileCreated": false,
+        "preexistingPureMemoryCase": "MicropolisCanPreserveTheCompleteRecordWhileKeepingPayloadModeByDefault",
+        "failed": 0
+      },
+      "project": "GWGUI.MediaEngine",
+      "projectSymbol": "GWGUI_MEDIA_ENGINE_EXPLORER",
+      "projectCompileLinksIncluded": 4
+    },
+    "inventory": {
+      "classificationScope": "Only two EncodeBits methods with resolved format dependencies; no claim that whole codecs, all encoders or FM/MFM/checksums are equivalent",
+      "partialScopesUnchanged": 82,
+      "reportOccurrencesQualified": 2,
+      "priorAnnotationsUnchanged": 3620,
+      "newCallbackModeOrCatalogAdded": false,
+      "productCodeChanged": false,
+      "entireCompositionsResolved": 2
+    }
+  },
+  "appUpdateSearchReuse": {
+    "state": "original-search-flow-shared-specializations-and-inventory-verified",
+    "comparison": {
+      "equalAfterExplicitPolicySubstitution": true,
+      "policies": [
+        "SearchButton/SearchModulesButton",
+        "Status/ModuleStatus",
+        "application/modules state",
+        "application/module result and selection dictionary",
+        "ApplicationUpdateService/ModuleUpdateService",
+        "RenderApplication/RenderModules"
+      ],
+      "preserved": [
+        "pre-try disable Busy navigation Searching order",
+        "await UI context",
+        "result field assignment then original render then reread field for StateFor",
+        "failed status then Error then reporter",
+        "finally navigation then live preparation-cancellation guard"
+      ],
+      "existingOwners": [
+        "same controller owns both handlers since original commit",
+        "UpdateSearchScope and UpdateSearchResult already shared",
+        "RenderModules retains module filter",
+        "SetStatus/SetModuleVisualState route by active page and must not replace search-specific policy",
+        "directory search has distinct progress and results"
+      ],
+      "ownership": "No resource created; borrowed view and window remain with their owner.",
+      "translations": "No strings added or changed."
+    },
+    "originalCommit": "31f46d2ec",
+    "files": [
+      {
+        "before": "using System.Collections.ObjectModel;\r\nusing System.Diagnostics;\r\nusing System.IO;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing Microsoft.Win32;\r\nusing GWGUI.App.Services.Updates;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.App.Localization.Extensions;\r\nusing GWGUI.App.Views.Controls.Options;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.App.Contracts.Updates;\r\nusing GWGUI.App.Constants.Controls.Visual;\r\nusing GWGUI.App.Options.Models.Updates;\r\n\r\nnamespace GWGUI.App.Options.Controllers;\r\n\r\ninternal sealed partial class UpdateOptionsController : IDisposable\r\n{\r\n    private async void SearchApplication(object sender, RoutedEventArgs e)\r\n    {\r\n        _section.SearchButton.IsEnabled = false;\r\n        _applicationState = UpdateVisualState.Busy;\r\n        RebuildNavigation();\r\n        _section.Status.Text = _localize(\"Updates.Searching\", []);\r\n        try\r\n        {\r\n            _applicationResult = await _applicationService.SearchAsync(_applicationSelections);\r\n            RenderApplication(_applicationResult);\r\n            _applicationState = StateFor(_applicationResult);\r\n        }\r\n        catch (Exception exception)\r\n        {\r\n            _section.Status.Text = _localize(\"Updates.SearchFailed\", []);\r\n            _applicationState = UpdateVisualState.Error;\r\n            _reportError(exception);\r\n        }\r\n        finally\r\n        {\r\n            RebuildNavigation();\r\n            if (_preparationCancellation is null) _section.SearchButton.IsEnabled = true;\r\n        }\r\n    }\r\n\r\n    private async void SearchModules(object sender, RoutedEventArgs e)\r\n    {\r\n        _section.SearchModulesButton.IsEnabled = false;\r\n        _modulesState = UpdateVisualState.Busy;\r\n        RebuildNavigation();\r\n        _section.ModuleStatus.Text = _localize(\"Updates.Searching\", []);\r\n        try\r\n        {\r\n            _moduleResult = await _moduleService.SearchAsync(_moduleSelections);\r\n            RenderModules(_moduleResult);\r\n            _modulesState = StateFor(_moduleResult);\r\n        }\r\n        catch (Exception exception)\r\n        {\r\n            _section.ModuleStatus.Text = _localize(\"Updates.SearchFailed\", []);\r\n            _modulesState = UpdateVisualState.Error;\r\n            _reportError(exception);\r\n        }\r\n        finally\r\n        {\r\n            RebuildNavigation();\r\n            if (_preparationCancellation is null) _section.SearchModulesButton.IsEnabled = true;\r\n        }\r\n    }\r\n\r\n    private async void SearchAvailableModules(object sender, RoutedEventArgs e)\r\n    {\r\n        _section.SearchAvailableModulesButton.IsEnabled = false;\r\n        _directoryState = UpdateVisualState.Busy;\r\n        _section.AvailableModulesProgress.Visibility = Visibility.Visible;\r\n        _section.AvailableModulesProgress.IsIndeterminate = true;\r\n        RebuildNavigation();\r\n        _section.AvailableModuleStatus.Text = _localize(\"Updates.ModuleDirectorySearching\", []);\r\n        try\r\n        {\r\n            var modules = await _moduleDirectoryService.SearchAsync();\r\n            AvailableModuleResults.Clear();\r\n            foreach (var module in modules)\r\n            {\r\n                var installedVersion = module.InstalledVersion;\r\n                var isInstalled = installedVersion is not null;\r\n                var isDownloaded = _pendingInstallations.Contains(module.Id);\r\n                var details = installedVersion is not null\r\n                    ? _localize(\"Updates.InstalledVersion\", [installedVersion])\r\n                    : isDownloaded ? _localize(\"Updates.ModuleDownloaded\", []) : module.AvailableVersion is null ? _localize(\"Updates.Incompatible\", []) : _localize(\"Updates.ModuleAvailableVersion\", [module.AvailableVersion]);\r\n                AvailableModuleResults.Add(new(module.Id, module.DisplayName, module.CatalogUrl,\r\n                    details, isInstalled, isDownloaded, module.CanInstall && !isDownloaded,\r\n                    isDownloaded ? _localize(\"Updates.ModuleDownloaded\", []) : _localize(\"Updates.ModuleDirectoryInstalledBadge\", [])));\r\n            }\r\n            _section.AvailableModuleStatus.Text = AvailableModuleResults.Count == 0 ? _localize(\"Updates.ModuleDirectoryEmpty\", []) : _localize(\"Updates.ModuleDirectoryResults\", [AvailableModuleResults.Count]);\r\n            _directoryState = UpdateVisualState.Current;\r\n        }\r\n        catch (Exception exception)\r\n        {\r\n            _section.AvailableModuleStatus.Text = _localize(\"Updates.ModuleDirectoryFailed\", []);\r\n            _directoryState = UpdateVisualState.Error;\r\n            _reportError(exception);\r\n        }\r\n        finally\r\n        {\r\n            _section.AvailableModulesProgress.IsIndeterminate = false;\r\n            _section.AvailableModulesProgress.Visibility = Visibility.Collapsed;\r\n            RebuildNavigation();\r\n            if (_preparationCancellation is null) _section.SearchAvailableModulesButton.IsEnabled = true;\r\n        }\r\n    }\r\n\r\n    private void VersionChanged(object sender, SelectionChangedEventArgs e)\r\n    {\r\n        if (sender is not ComboBox { DataContext: UpdateComponentRow row }) return;\r\n        var selections = row.Kind == UpdateComponentKind.Application ? _applicationSelections : _moduleSelections;\r\n        if (string.IsNullOrWhiteSpace(row.SelectedVersion)) selections.Remove(row.Id);\r\n        else selections[row.Id] = row.SelectedVersion;\r\n    }\r\n\r\n}\r\n",
+        "sha256": "07E53403D76E33421E90CC50535B31F956FEEB9EA8E787DA047F2188445CCAF4",
+        "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Search.cs"
+      },
+      {
+        "before": "using System.Collections.ObjectModel;\r\nusing System.Diagnostics;\r\nusing System.IO;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing Microsoft.Win32;\r\nusing GWGUI.App.Services.Updates;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.App.Localization.Extensions;\r\nusing GWGUI.App.Views.Controls.Options;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.App.Contracts.Updates;\r\nusing GWGUI.App.Constants.Controls.Visual;\r\nusing GWGUI.App.Options.Models.Updates;\r\n\r\nnamespace GWGUI.App.Options.Controllers;\r\n\r\ninternal sealed partial class UpdateOptionsController : IDisposable\r\n{\r\n    private void RenderApplication(UpdateSearchResult result)\r\n    {\r\n        Render(result, ApplicationResults);\r\n        _section.Status.Text = ResultStatus(result);\r\n        _section.InstallButton.IsEnabled = CanInstall(result) && _preparationCancellation is null;\r\n    }\r\n\r\n    private void RenderModules(UpdateSearchResult result)\r\n    {\r\n        Render(result, ModuleResults);\r\n        _section.ModuleStatus.Text = ResultStatus(result);\r\n        _section.InstallModulesButton.IsEnabled = CanInstall(result) && _preparationCancellation is null;\r\n        _section.FilterModuleResults(_section.SelectedModuleId);\r\n    }\r\n\r\n    private void Render(UpdateSearchResult result, ObservableCollection<UpdateComponentRow> target)\r\n    {\r\n        target.Clear();\r\n        foreach (var update in result.Components)\r\n        {\r\n            var displayName = update.Kind == UpdateComponentKind.Application ? _localize(\"Updates.Application\", []) : update.ComponentId;\r\n            var status = update.Availability switch\r\n            {\r\n                UpdateAvailability.UpToDate => _localize(\"Updates.UpToDate\", []),\r\n                UpdateAvailability.Available => _localize(\"Updates.Available\", []),\r\n                UpdateAvailability.ApplicationUpdateRequired => _localize(\"Updates.ApplicationRequired\", [update.RequiredHostApiVersion ?? \"\"]),\r\n                _ => _localize(\"Updates.Incompatible\", [])\r\n            };\r\n            target.Add(new(update.ComponentId, update.Kind, displayName,\r\n                _localize(\"Updates.InstalledVersion\", [update.InstalledVersion]), status,\r\n                update.Releases.Select(release => release.Version).ToArray(), update.SelectedVersion,\r\n                update.Availability == UpdateAvailability.Available, VisualStateFor(update.Availability)));\r\n        }\r\n    }\r\n\r\n    private static UpdateVisualState StateFor(UpdateSearchResult result) =>\r\n        result.Components.Any(update => update.Availability is UpdateAvailability.Incompatible or UpdateAvailability.ApplicationUpdateRequired)\r\n            ? UpdateVisualState.Error\r\n            : result.Components.Any(update => update.Availability == UpdateAvailability.Available) ? UpdateVisualState.Available : UpdateVisualState.Current;\r\n\r\n    private static UpdateVisualState VisualStateFor(UpdateAvailability availability) => availability switch\r\n    {\r\n        UpdateAvailability.UpToDate => UpdateVisualState.Current,\r\n        UpdateAvailability.Available => UpdateVisualState.Available,\r\n        _ => UpdateVisualState.Error\r\n    };\r\n\r\n    private string ResultStatus(UpdateSearchResult result) => result.Components.Any(update => update.Availability != UpdateAvailability.UpToDate) ? _localize(\"Updates.Results\", []) : _localize(\"Updates.NoUpdates\", []);\r\n\r\n}\r\n",
+        "sha256": "7A1BEE444198A3847F2B1F788C9B48751A3194F64693E1E9176EE69197D8CFED",
+        "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.Rendering.cs"
+      },
+      {
+        "before": "using System.Collections.ObjectModel;\r\nusing System.Diagnostics;\r\nusing System.IO;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing Microsoft.Win32;\r\nusing GWGUI.App.Services.Updates;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.App.Localization.Extensions;\r\nusing GWGUI.App.Views.Controls.Options;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.App.Contracts.Updates;\r\nusing GWGUI.App.Constants.Controls.Visual;\r\nusing GWGUI.App.Options.Models.Updates;\r\nusing GWGUI.App.Constants.Options.Updates;\r\n\r\nnamespace GWGUI.App.Options.Controllers;\r\n\r\ninternal sealed partial class UpdateOptionsController : IDisposable\r\n{\r\n    private readonly OptionsUpdatesSection _section;\r\n    private readonly Window _owner;\r\n    private readonly ApplicationUpdateService _applicationService;\r\n    private readonly ModuleUpdateService _moduleService;\r\n    private readonly ModuleDirectoryService _moduleDirectoryService;\r\n    private readonly UpdatePackagePreparationService _packagePreparation;\r\n    private readonly ModuleInstallationService _moduleInstallation;\r\n    private readonly PendingModuleInstallationStore _pendingInstallations;\r\n    private readonly Func<string, object[], string> _localize;\r\n    private readonly Action<Exception> _reportError;\r\n    private readonly Dictionary<string, string> _applicationSelections = new(StringComparer.OrdinalIgnoreCase);\r\n    private readonly Dictionary<string, string> _moduleSelections = new(StringComparer.OrdinalIgnoreCase);\r\n    private UpdateSearchResult? _applicationResult;\r\n    private UpdateSearchResult? _moduleResult;\r\n    private CancellationTokenSource? _preparationCancellation;\r\n    private UpdateVisualState _applicationState = UpdateVisualState.Neutral;\r\n    private UpdateVisualState _directoryState = UpdateVisualState.Neutral;\r\n    private UpdateVisualState _modulesState = UpdateVisualState.Current;\r\n    private UpdateVisualState _advancedState = UpdateVisualState.Neutral;\r\n    private ModuleOperationPage _moduleOperationPage = ModuleOperationPage.Module;\r\n\r\n    internal ObservableCollection<UpdateComponentRow> ApplicationResults { get; } = [];\r\n    internal ObservableCollection<UpdateComponentRow> ModuleResults { get; } = [];\r\n    internal ObservableCollection<AvailableModuleRow> AvailableModuleResults { get; } = [];\r\n\r\n    internal UpdateOptionsController(\r\n        Window owner,\r\n        OptionsUpdatesSection section,\r\n        ApplicationUpdateService applicationService,\r\n        Func<string, object[], string> localize,\r\n        Action<Exception> reportError,\r\n        ModuleUpdateService? moduleService = null,\r\n        ModuleDirectoryService? moduleDirectoryService = null,\r\n        UpdatePackagePreparationService? packagePreparation = null,\r\n        ModuleInstallationService? moduleInstallation = null,\r\n        PendingModuleInstallationStore? pendingInstallations = null)\r\n    {\r\n        _owner = owner;\r\n        _section = section;\r\n        _applicationService = applicationService;\r\n        _moduleService = moduleService ?? new ModuleUpdateService();\r\n        _moduleDirectoryService = moduleDirectoryService ?? new ModuleDirectoryService();\r\n        _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService();\r\n        _pendingInstallations = pendingInstallations ?? new PendingModuleInstallationStore();\r\n        _moduleInstallation = moduleInstallation ?? new ModuleInstallationService(packagePreparation: _packagePreparation, isPending: _pendingInstallations.Contains);\r\n        _localize = localize;\r\n        _reportError = reportError;\r\n        _section.Results.ItemsSource = ApplicationResults;\r\n        _section.ModuleResults.ItemsSource = ModuleResults;\r\n        _section.AvailableModuleResults.ItemsSource = AvailableModuleResults;\r\n        _section.SearchRequested += SearchApplication;\r\n        _section.SearchModulesRequested += SearchModules;\r\n        _section.SearchAvailableModulesRequested += SearchAvailableModules;\r\n        _section.InstallAvailableModuleRequested += InstallAvailableModule;\r\n        _section.VersionSelectionChanged += VersionChanged;\r\n        _section.InstallRequested += InstallApplication;\r\n        _section.InstallModulesRequested += InstallModules;\r\n        _section.CancelRequested += Cancel;\r\n        _section.CancelModulesRequested += Cancel;\r\n        _section.InstallModuleFileRequested += InstallModuleFromFile;\r\n        _section.InstallModuleUrlRequested += InstallModuleFromUrl;\r\n        _pendingInstallations.Changed += PendingInstallationsChanged;\r\n        RefreshLocalizedContent();\r\n        PendingInstallationsChanged(this, EventArgs.Empty);\r\n    }\r\n\r\n    public void Dispose() => _pendingInstallations.Changed -= PendingInstallationsChanged;\r\n\r\n    internal void RefreshLocalizedContent()\r\n    {\r\n        RebuildNavigation();\r\n        if (_applicationResult is null) _section.Status.Text = _localize(\"Updates.Ready\", []);\r\n        else RenderApplication(_applicationResult);\r\n        if (_moduleResult is null) _section.ModuleStatus.Text = _localize(\"Updates.Ready\", []);\r\n        else RenderModules(_moduleResult);\r\n        if (AvailableModuleResults.Count == 0)\r\n            _section.AvailableModuleStatus.Text = _localize(\"Updates.ModuleDirectoryReady\", []);\r\n    }\r\n\r\n    private void RebuildNavigation()\r\n    {\r\n        var items = new List<UpdateNavigationItem>\r\n        {\r\n            new(UpdateOptionsConstants.ApplicationNavigationId, UpdateNavigationPage.Application, _localize(\"Updates.Application\", []), _localize(\"Updates.NavigationApplicationSubtitle\", []), IconGlyphs.Information, _applicationState),\r\n            new(UpdateOptionsConstants.DirectoryNavigationId, UpdateNavigationPage.Directory, _localize(\"Updates.ModuleDirectoryTitle\", []), _localize(\"Updates.NavigationDirectorySubtitle\", []), IconGlyphs.Directory, _directoryState)\r\n        };\r\n        foreach (var package in EmulationModuleRegistry.Packages.OrderBy(package => LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey), StringComparer.CurrentCultureIgnoreCase))\r\n        {\r\n            var component = _moduleResult?.Components.FirstOrDefault(value => string.Equals(value.ComponentId, package.Module.Id, StringComparison.OrdinalIgnoreCase));\r\n            var state = component?.Availability switch\r\n            {\r\n                UpdateAvailability.Available => UpdateVisualState.Available,\r\n                UpdateAvailability.UpToDate => UpdateVisualState.Current,\r\n                UpdateAvailability.ApplicationUpdateRequired or UpdateAvailability.Incompatible => UpdateVisualState.Error,\r\n                _ => _modulesState\r\n            };\r\n            items.Add(new($\"{UpdateOptionsConstants.ModuleNavigationIdPrefix}{package.Module.Id}\",\r\n                UpdateNavigationPage.Module,\r\n                LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey),\r\n                _localize(\"Updates.InstalledVersion\", [package.Manifest.ModuleVersion]),\r\n                IconGlyphs.Controller, state, package.Module.Id));\r\n        }\r\n        items.Add(new(UpdateOptionsConstants.AdvancedNavigationId, UpdateNavigationPage.Advanced, _localize(\"Updates.ModuleAdvancedInstallationTitle\", []), _localize(\"Updates.NavigationAdvancedSubtitle\", []), IconGlyphs.Settings, _advancedState));\r\n        _section.SetNavigationItems(items);\r\n    }\r\n\r\n}\r\n",
+        "sha256": "99090076B2E35AF0D07D207CBB2CA969927B8BBF1F5A1D254F654407E2FCDB01",
+        "path": "src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs"
+      },
+      {
+        "before": "using System.Collections.ObjectModel;\r\nusing System.Diagnostics;\r\nusing System.IO;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing Microsoft.Win32;\r\nusing GWGUI.App.Services.Updates;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.App.Localization.Extensions;\r\nusing GWGUI.App.Views.Controls.Options;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.App.Contracts.Updates;\r\nusing GWGUI.App.Constants.Controls.Visual;\r\nusing GWGUI.App.Options.Models.Updates;\r\n\r\nnamespace GWGUI.App.Options.Controllers;\r\n\r\ninternal sealed partial class UpdateOptionsController : IDisposable\r\n{\r\n    private void SetPreparing(UpdateSearchScope scope, bool value)\r\n    {\r\n        if (value)\r\n        {\r\n            if (scope == UpdateSearchScope.Application) _applicationState = UpdateVisualState.Busy;\r\n            else SetModuleVisualState(UpdateVisualState.Busy);\r\n        }\r\n        else if (scope == UpdateSearchScope.Application && _applicationState == UpdateVisualState.Busy)\r\n            _applicationState = _applicationResult is null ? UpdateVisualState.Neutral : StateFor(_applicationResult);\r\n        else if (scope == UpdateSearchScope.Modules)\r\n            RestoreModuleVisualStateIfBusy();\r\n        RebuildNavigation();\r\n        _section.SearchButton.IsEnabled = !value;\r\n        _section.SearchModulesButton.IsEnabled = !value;\r\n        _section.SearchAvailableModulesButton.IsEnabled = !value;\r\n        _section.InstallButton.IsEnabled = !value && _applicationResult is not null && CanInstall(_applicationResult);\r\n        _section.InstallModulesButton.IsEnabled = !value && _moduleResult is not null && CanInstall(_moduleResult);\r\n        _section.InstallModuleFileButton.IsEnabled = !value;\r\n        _section.InstallModuleUrlButton.IsEnabled = !value;\r\n        _section.ModuleCatalogUrl.IsEnabled = !value;\r\n        _section.CancelButton.Visibility = value && scope == UpdateSearchScope.Application ? Visibility.Visible : Visibility.Collapsed;\r\n        _section.CancelModulesButton.Visibility = value && scope == UpdateSearchScope.Modules ? Visibility.Visible : Visibility.Collapsed;\r\n        _section.Progress.Visibility = value && scope == UpdateSearchScope.Application ? Visibility.Visible : Visibility.Collapsed;\r\n        _section.ModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Module ? Visibility.Visible : Visibility.Collapsed;\r\n        _section.AvailableModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Directory ? Visibility.Visible : Visibility.Collapsed;\r\n        _section.ManualInstallationProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Advanced ? Visibility.Visible : Visibility.Collapsed;\r\n        if (!value) return;\r\n        if (scope == UpdateSearchScope.Application) _section.Progress.Value = 0;\r\n        else ActiveModuleProgress().Value = 0;\r\n        SetStatus(scope, _localize(\"Updates.Preparing\", []));\r\n    }\r\n\r\n    private void SetStatus(UpdateSearchScope scope, string value)\r\n    {\r\n        if (scope == UpdateSearchScope.Application) _section.Status.Text = value;\r\n        else SetModuleOperationStatus(value);\r\n    }\r\n\r\n    private ProgressBar ActiveModuleProgress() => _moduleOperationPage switch\r\n    {\r\n        ModuleOperationPage.Directory => _section.AvailableModulesProgress,\r\n        ModuleOperationPage.Advanced => _section.ManualInstallationProgress,\r\n        _ => _section.ModulesProgress\r\n    };\r\n\r\n    private void SetModuleOperationStatus(string value)\r\n    {\r\n        switch (_moduleOperationPage)\r\n        {\r\n            case ModuleOperationPage.Directory: _section.AvailableModuleStatus.Text = value; break;\r\n            case ModuleOperationPage.Advanced: _section.ManualInstallationStatus.Text = value; break;\r\n            default: _section.ModuleStatus.Text = value; break;\r\n        }\r\n    }\r\n\r\n    private void SetModuleVisualState(UpdateVisualState state)\r\n    {\r\n        switch (_moduleOperationPage)\r\n        {\r\n            case ModuleOperationPage.Directory: _directoryState = state; break;\r\n            case ModuleOperationPage.Advanced: _advancedState = state; break;\r\n            default: _modulesState = state; break;\r\n        }\r\n    }\r\n\r\n    private void RestoreModuleVisualStateIfBusy()\r\n    {\r\n        switch (_moduleOperationPage)\r\n        {\r\n            case ModuleOperationPage.Directory when _directoryState == UpdateVisualState.Busy:\r\n                _directoryState = AvailableModuleResults.Count == 0 ? UpdateVisualState.Neutral : UpdateVisualState.Current;\r\n                break;\r\n            case ModuleOperationPage.Advanced when _advancedState == UpdateVisualState.Busy:\r\n                _advancedState = UpdateVisualState.Neutral;\r\n                break;\r\n            case ModuleOperationPage.Module when _modulesState == UpdateVisualState.Busy:\r\n                _modulesState = _moduleResult is null ? UpdateVisualState.Current : StateFor(_moduleResult);\r\n                break;\r\n        }\r\n    }\r\n\r\n    private static bool CanInstall(UpdateSearchResult result) => result.Plan.IsCompatible && result.Plan.Items.Count > 0;\r\n\r\n    private static void DeletePreparedWork(string workDirectory)\r\n    {\r\n        try { if (Directory.Exists(workDirectory)) Directory.Delete(workDirectory, recursive: true); }\r\n        catch { }\r\n    }\r\n\r\n    private void PendingInstallationsChanged(object? sender, EventArgs e)\r\n    {\r\n        if (!_owner.Dispatcher.CheckAccess())\r\n        {\r\n            _owner.Dispatcher.Invoke(() => PendingInstallationsChanged(sender, e));\r\n            return;\r\n        }\r\n        RefreshAvailableModuleRows();\r\n    }\r\n\r\n    private void RefreshAvailableModuleRows()\r\n    {\r\n        foreach (var row in AvailableModuleResults.ToArray())\r\n        {\r\n            var index = AvailableModuleResults.IndexOf(row);\r\n            var downloaded = _pendingInstallations.Contains(row.Id);\r\n            if (downloaded == row.IsDownloaded) continue;\r\n            AvailableModuleResults[index] = new(row.Id, row.DisplayName, row.CatalogUrl,\r\n                downloaded ? _localize(\"Updates.ModuleDownloaded\", []) : row.DetailsLabel,\r\n                row.IsInstalled, downloaded, !row.IsInstalled && !downloaded,\r\n                downloaded ? _localize(\"Updates.ModuleDownloaded\", []) : _localize(\"Updates.ModuleDirectoryInstalledBadge\", []));\r\n        }\r\n    }\r\n}\r\n",
+        "sha256": "FBAFBE3581AE7826F4BE3A602A88AF7BD1E2454F174DEE45530656B87234CDD2",
+        "path": "src/GWGUI.App/Options/Controllers/Updates/UpdateOptionsController.State.cs"
+      },
+      {
+        "before": "using System.IO;\r\nusing System.Net.Http;\r\nusing System.Reflection;\r\nusing System.Text.Json;\r\nusing GWGUI.App.Constants.Updates;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.Emulation.Constants;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.Updates.Services;\r\n\r\nnamespace GWGUI.App.Services.Updates;\r\n\r\ninternal sealed class ApplicationUpdateService\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();\r\n    private readonly HttpClient _httpClient;\r\n    private readonly Uri _catalogUri;\r\n    private readonly Func<InstalledUpdateState> _installedState;\r\n    private readonly UpdatePlanBuilder _planBuilder;\r\n    private readonly UpdatePackagePreparationService _packagePreparation;\r\n\r\n    internal ApplicationUpdateService(\r\n        HttpClient? httpClient = null,\r\n        Uri? catalogUri = null,\r\n        Func<InstalledUpdateState>? installedState = null,\r\n        UpdatePlanBuilder? planBuilder = null,\r\n        string? applicationDirectory = null,\r\n        UpdateArchiveValidator? archiveValidator = null,\r\n        string? workingRootDirectory = null,\r\n        UpdatePackagePreparationService? packagePreparation = null)\r\n    {\r\n        _httpClient = httpClient ?? new HttpClient();\r\n        _catalogUri = catalogUri ?? new Uri(UpdateEndpoints.ApplicationCatalogUrl);\r\n        _installedState = installedState ?? ReadInstalledState;\r\n        _planBuilder = planBuilder ?? new UpdatePlanBuilder();\r\n        _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService(_httpClient, _installedState, applicationDirectory, archiveValidator, workingRootDirectory);\r\n    }\r\n\r\n    internal Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan, IProgress<double>? progress = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (plan.Scope != UpdateSearchScope.Application || plan.Items.Count != 1\r\n            || plan.Items[0].Kind != UpdateComponentKind.Application)\r\n            throw new InvalidOperationException(\"ApplicationUpdateService accepts only one GW GUI application update.\");\r\n        return _packagePreparation.PrepareAsync(plan, progress, cancellationToken);\r\n    }\r\n\r\n    internal async Task<UpdateSearchResult> SearchAsync(IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)\r\n    {\r\n        using var response = await _httpClient.GetAsync(_catalogUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);\r\n        response.EnsureSuccessStatusCode();\r\n        await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);\r\n        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException(\"The update catalog is empty.\");\r\n        return _planBuilder.Search(catalog, _installedState(), UpdateSearchScope.Application, selections);\r\n    }\r\n\r\n    internal static InstalledUpdateState ReadInstalledState()\r\n    {\r\n        var installedModules = EmulationModuleRegistry.Packages.Select(package => new InstalledModuleVersion(package.Manifest.Id, package.Manifest.ModuleVersion, package.Manifest.HostApiMinimum, package.Manifest.HostApiMaximum));\r\n\r\n        return new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), installedModules.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray());\r\n    }\r\n\r\n    internal static string ReadApplicationVersion()\r\n    {\r\n        var assembly = typeof(App).Assembly;\r\n        var informational = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;\r\n        var value = informational?.Split('+')[0] ?? assembly.GetName().Version?.ToString(3);\r\n        if (string.IsNullOrWhiteSpace(value) || !Version.TryParse(value, out var version))\r\n            throw new InvalidDataException($\"Invalid installed application version '{value}'.\");\r\n        return version.ToString(3);\r\n    }\r\n}\r\n",
+        "sha256": "23BEBD40A741A92FD9611C8CFE00BB76256EFF3B91862853DF08C4B25CE501E4",
+        "path": "src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs"
+      },
+      {
+        "before": "using System.IO;\r\nusing System.Net.Http;\r\nusing System.Reflection;\r\nusing System.Text.Json;\r\nusing GWGUI.App.Services.Emulation;\r\nusing GWGUI.Emulation.Constants;\r\nusing GWGUI.Updates.Contracts;\r\nusing GWGUI.Updates.Services;\r\n\r\nnamespace GWGUI.App.Services.Updates;\r\n\r\ninternal sealed class ModuleUpdateService\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();\r\n    private readonly HttpClient _httpClient;\r\n    private readonly Func<IReadOnlyList<LoadedEmulationModule>> _installedModules;\r\n    private readonly ModuleUpdateCatalogValidator _catalogValidator;\r\n    private readonly UpdatePlanBuilder _planBuilder;\r\n    private readonly string _modulesDirectory;\r\n\r\n    internal ModuleUpdateService(\r\n        HttpClient? httpClient = null,\r\n        Func<IReadOnlyList<LoadedEmulationModule>>? installedModules = null,\r\n        ModuleUpdateCatalogValidator? catalogValidator = null,\r\n        UpdatePlanBuilder? planBuilder = null,\r\n        string? modulesDirectory = null)\r\n    {\r\n        _httpClient = httpClient ?? new HttpClient();\r\n        _installedModules = installedModules ?? (() => EmulationModuleRegistry.Packages);\r\n        _catalogValidator = catalogValidator ?? new ModuleUpdateCatalogValidator();\r\n        _planBuilder = planBuilder ?? new UpdatePlanBuilder();\r\n        _modulesDirectory = Path.GetFullPath(modulesDirectory ?? Path.Combine(AppContext.BaseDirectory, \"Modules\"));\r\n    }\r\n\r\n    internal async Task<UpdateSearchResult> SearchAsync(IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)\r\n    {\r\n        var legacyModules = FindModulesWithoutUpdateSource();\r\n        if (legacyModules.Count > 0)\r\n            throw new InvalidDataException($\"Installed module(s) {string.Join(\", \", legacyModules)} have no update source. \" + \"Reinstall each module from a ZIP archive or a direct module catalog URL.\");\r\n        var packages = _installedModules();\r\n        var installedState = new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), packages.Select(ToInstalledVersion).ToArray());\r\n        var rows = new List<AvailableComponentUpdate>();\r\n        var items = new List<UpdatePlanItem>();\r\n        var issues = new List<string>();\r\n\r\n        foreach (var package in packages.OrderBy(package => package.Manifest.Id, StringComparer.OrdinalIgnoreCase))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);\r\n            response.EnsureSuccessStatusCode();\r\n            await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);\r\n            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException( $\"The update catalog for module '{package.Manifest.Id}' is empty.\");\r\n            _catalogValidator.Validate(catalog, package.Manifest.Id);\r\n            var result = _planBuilder.Search(catalog, installedState, UpdateSearchScope.Modules, selections);\r\n            rows.AddRange(result.Components);\r\n            items.AddRange(result.Plan.Items);\r\n            issues.AddRange(result.Plan.Issues);\r\n        }\r\n\r\n        var plan = new UpdatePlan(UpdateSearchScope.Modules, items, issues.Count == 0, issues);\r\n        return new UpdateSearchResult(UpdateSearchScope.Modules, rows, plan);\r\n    }\r\n\r\n    private IReadOnlyList<string> FindModulesWithoutUpdateSource()\r\n    {\r\n        if (!Directory.Exists(_modulesDirectory)) return [];\r\n        var legacy = new List<string>();\r\n        foreach (var directory in Directory.EnumerateDirectories(_modulesDirectory))\r\n        {\r\n            var manifestPath = Path.Combine(directory, EmulationHostApi.ManifestFileName);\r\n            if (!File.Exists(manifestPath)) continue;\r\n            try\r\n            {\r\n                using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));\r\n                var root = document.RootElement;\r\n                if (root.TryGetProperty(\"updateCatalogUrl\", out var source)\r\n                    && !string.IsNullOrWhiteSpace(source.GetString())) continue;\r\n                var id = root.TryGetProperty(\"id\", out var idProperty) && !string.IsNullOrWhiteSpace(idProperty.GetString()) ? idProperty.GetString()! : Path.GetFileName(directory);\r\n                legacy.Add(id);\r\n            }\r\n            catch (JsonException)\r\n            {\r\n                // Invalid manifests are already reported by module discovery and are not classified as legacy.\r\n            }\r\n        }\r\n        return legacy.Order(StringComparer.OrdinalIgnoreCase).ToArray();\r\n    }\r\n\r\n    private static InstalledModuleVersion ToInstalledVersion(LoadedEmulationModule package) => new(package.Manifest.Id, package.Manifest.ModuleVersion, package.Manifest.HostApiMinimum, package.Manifest.HostApiMaximum);\r\n\r\n    private static string ReadApplicationVersion()\r\n    {\r\n        var version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(0, 0, 0);\r\n        return $\"{version.Major}.{version.Minor}.{Math.Max(version.Build, 0)}\";\r\n    }\r\n}\r\n",
+        "sha256": "861F17A1A4FB75B133900570F38CEE4BC8F90D3EAAC52A22067A5AA21FE9BCE2",
+        "path": "src/GWGUI.App/Services/Updates/ModuleUpdateService.cs"
+      },
+      {
+        "before": "using GWGUI.App.Options.Controllers;\r\nusing GWGUI.App.Options.Models.Updates;\r\nusing System.Windows;\r\nusing System.Windows.Controls;\r\nusing System.Windows.Data;\r\nusing System.Windows.Media;\r\n\r\nnamespace GWGUI.App.Views.Controls.Options;\r\n\r\npublic partial class OptionsUpdatesSection : UserControl\r\n{\r\n    private IReadOnlyList<UpdateNavigationItem> _navigationItems = [];\r\n\r\n    public OptionsUpdatesSection() => InitializeComponent();\r\n\r\n    public Button SearchButton => SearchAction;\r\n    public Button InstallButton => InstallAction;\r\n    public Button CancelButton => CancelAction;\r\n    public ProgressBar Progress => PreparationProgress;\r\n    public TextBlock Status => SearchStatus;\r\n    public ItemsControl Results => ResultsList;\r\n    public Button SearchModulesButton => SearchModulesAction;\r\n    public Button SearchAvailableModulesButton => SearchAvailableModulesAction;\r\n    public Button InstallModulesButton => InstallModulesAction;\r\n    public Button CancelModulesButton => CancelModulesAction;\r\n    public ProgressBar ModulesProgress => ModulesPreparationProgress;\r\n    public ProgressBar AvailableModulesProgress => DirectoryProgress;\r\n    public ProgressBar ManualInstallationProgress => AdvancedProgress;\r\n    public TextBlock ModuleStatus => ModulesStatus;\r\n    public TextBlock AvailableModuleStatus => AvailableModulesStatus;\r\n    public TextBlock ManualInstallationStatus => AdvancedStatus;\r\n    public ItemsControl ModuleResults => ModulesResultsList;\r\n    public ItemsControl AvailableModuleResults => AvailableModulesList;\r\n    public Button InstallModuleFileButton => InstallModuleFileAction;\r\n    public Button InstallModuleUrlButton => InstallModuleUrlAction;\r\n    public TextBox ModuleCatalogUrl => ModuleCatalogUrlInput;\r\n    internal ListBox NavigationControl => UpdateNavigation;\r\n    public string? SelectedModuleId => (UpdateNavigation.SelectedItem as UpdateNavigationItem)?.ModuleId;\r\n\r\n    public event RoutedEventHandler? SearchRequested;\r\n    public event SelectionChangedEventHandler? VersionSelectionChanged;\r\n    public event RoutedEventHandler? InstallRequested;\r\n    public event RoutedEventHandler? CancelRequested;\r\n    public event RoutedEventHandler? SearchModulesRequested;\r\n    public event RoutedEventHandler? SearchAvailableModulesRequested;\r\n    public event RoutedEventHandler? InstallAvailableModuleRequested;\r\n    public event RoutedEventHandler? InstallModulesRequested;\r\n    public event RoutedEventHandler? CancelModulesRequested;\r\n    public event RoutedEventHandler? InstallModuleFileRequested;\r\n    public event RoutedEventHandler? InstallModuleUrlRequested;\r\n    public event Action<string?>? SelectedModuleChanged;\r\n\r\n    internal void SetNavigationItems(IReadOnlyList<UpdateNavigationItem> items)\r\n    {\r\n        var selectedKey = (UpdateNavigation.SelectedItem as UpdateNavigationItem)?.Key;\r\n        _navigationItems = items;\r\n        UpdateNavigation.ItemsSource = items;\r\n        UpdateNavigation.SelectedItem = items.FirstOrDefault(item => item.Key == selectedKey) ?? items.FirstOrDefault();\r\n    }\r\n\r\n    internal void RefreshLocalizedContent() => ShowSelectedPage();\r\n\r\n    private void Navigation_SelectionChanged(object sender, SelectionChangedEventArgs e)\r\n    {\r\n        ShowSelectedPage();\r\n        SelectedModuleChanged?.Invoke(SelectedModuleId);\r\n    }\r\n\r\n    private void ShowSelectedPage()\r\n    {\r\n        var selected = UpdateNavigation.SelectedItem as UpdateNavigationItem ?? _navigationItems.FirstOrDefault();\r\n        ApplicationPage.Visibility = selected?.Page == UpdateNavigationPage.Application ? Visibility.Visible : Visibility.Collapsed;\r\n        DirectoryPage.Visibility = selected?.Page == UpdateNavigationPage.Directory ? Visibility.Visible : Visibility.Collapsed;\r\n        InstalledModulePage.Visibility = selected?.Page == UpdateNavigationPage.Module ? Visibility.Visible : Visibility.Collapsed;\r\n        AdvancedPage.Visibility = selected?.Page == UpdateNavigationPage.Advanced ? Visibility.Visible : Visibility.Collapsed;\r\n\r\n        if (selected?.Page != UpdateNavigationPage.Module) return;\r\n        SelectedModuleTitle.Text = selected.Title;\r\n        SelectedModuleVersion.Text = selected.Subtitle;\r\n        FilterModuleResults(selected.ModuleId);\r\n    }\r\n\r\n    internal void FilterModuleResults(string? moduleId)\r\n    {\r\n        if (ModulesResultsList.ItemsSource is null) return;\r\n        var view = CollectionViewSource.GetDefaultView(ModulesResultsList.ItemsSource);\r\n        view.Filter = item => item is UpdateComponentRow row && string.Equals(row.Id, moduleId, StringComparison.OrdinalIgnoreCase);\r\n        view.Refresh();\r\n    }\r\n\r\n    private void Search_Click(object sender, RoutedEventArgs e) => SearchRequested?.Invoke(sender, e);\r\n    private void Version_SelectionChanged(object sender, SelectionChangedEventArgs e) => VersionSelectionChanged?.Invoke(sender, e);\r\n    private void Install_Click(object sender, RoutedEventArgs e) => InstallRequested?.Invoke(sender, e);\r\n    private void Cancel_Click(object sender, RoutedEventArgs e) => CancelRequested?.Invoke(sender, e);\r\n    private void SearchModules_Click(object sender, RoutedEventArgs e) => SearchModulesRequested?.Invoke(sender, e);\r\n    private void SearchAvailableModules_Click(object sender, RoutedEventArgs e) => SearchAvailableModulesRequested?.Invoke(sender, e);\r\n    private void InstallAvailableModule_Click(object sender, RoutedEventArgs e) => InstallAvailableModuleRequested?.Invoke(sender, e);\r\n    private void InstallModules_Click(object sender, RoutedEventArgs e) => InstallModulesRequested?.Invoke(sender, e);\r\n    private void CancelModules_Click(object sender, RoutedEventArgs e) => CancelModulesRequested?.Invoke(sender, e);\r\n    private void InstallModuleFile_Click(object sender, RoutedEventArgs e) => InstallModuleFileRequested?.Invoke(sender, e);\r\n    private void InstallModuleUrl_Click(object sender, RoutedEventArgs e) => InstallModuleUrlRequested?.Invoke(sender, e);\r\n}\r\n\r\ninternal enum UpdateNavigationPage\r\n{\r\n    Application,\r\n    Directory,\r\n    Module,\r\n    Advanced\r\n}\r\n\r\ninternal enum UpdateVisualState\r\n{\r\n    Neutral,\r\n    Current,\r\n    Available,\r\n    Busy,\r\n    Error\r\n}\r\n\r\ninternal sealed class UpdateNavigationItem\r\n{\r\n    internal UpdateNavigationItem(string key, UpdateNavigationPage page, string title, string subtitle, string icon, UpdateVisualState state = UpdateVisualState.Neutral, string? moduleId = null)\r\n    {\r\n        Key = key;\r\n        Page = page;\r\n        Title = title;\r\n        Subtitle = subtitle;\r\n        Icon = icon;\r\n        ModuleId = moduleId;\r\n        (Foreground, Background) = UpdateStateBrushes.For(state);\r\n    }\r\n\r\n    public string Key { get; }\r\n    public UpdateNavigationPage Page { get; }\r\n    public string Title { get; }\r\n    public string Subtitle { get; }\r\n    public string Icon { get; }\r\n    public string? ModuleId { get; }\r\n    public Brush Foreground { get; }\r\n    public Brush Background { get; }\r\n}\r\n\r\ninternal static class UpdateStateBrushes\r\n{\r\n    private static readonly Brush NeutralForeground = Frozen(Color.FromRgb(0x4F, 0x6B, 0x86));\r\n    private static readonly Brush NeutralBackground = Frozen(Color.FromArgb(0x28, 0x4F, 0x6B, 0x86));\r\n    private static readonly Brush CurrentForeground = Frozen(Color.FromRgb(0x1E, 0x8E, 0x5A));\r\n    private static readonly Brush CurrentBackground = Frozen(Color.FromArgb(0x2E, 0x1E, 0x8E, 0x5A));\r\n    private static readonly Brush AvailableForeground = Frozen(Color.FromRgb(0xD1, 0x78, 0x00));\r\n    private static readonly Brush AvailableBackground = Frozen(Color.FromArgb(0x32, 0xD1, 0x78, 0x00));\r\n    private static readonly Brush BusyForeground = Frozen(Color.FromRgb(0x00, 0x78, 0xD4));\r\n    private static readonly Brush BusyBackground = Frozen(Color.FromArgb(0x30, 0x00, 0x78, 0xD4));\r\n    private static readonly Brush ErrorForeground = Frozen(Color.FromRgb(0xC4, 0x2B, 0x1C));\r\n    private static readonly Brush ErrorBackground = Frozen(Color.FromArgb(0x30, 0xC4, 0x2B, 0x1C));\r\n\r\n    internal static (Brush Foreground, Brush Background) For(UpdateVisualState state) => state switch\r\n    {\r\n        UpdateVisualState.Current => (CurrentForeground, CurrentBackground),\r\n        UpdateVisualState.Available => (AvailableForeground, AvailableBackground),\r\n        UpdateVisualState.Busy => (BusyForeground, BusyBackground),\r\n        UpdateVisualState.Error => (ErrorForeground, ErrorBackground),\r\n        _ => (NeutralForeground, NeutralBackground)\r\n    };\r\n\r\n    private static Brush Frozen(Color color)\r\n    {\r\n        var brush = new SolidColorBrush(color);\r\n        brush.Freeze();\r\n        return brush;\r\n    }\r\n}\r\n",
+        "sha256": "B55C006936D023307D27680D419180D080D56EA22DEC0AE3E97B33A044AEE3D9",
+        "path": "src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml.cs"
+      },
+      {
+        "before": "namespace GWGUI.Updates.Contracts;\r\n\r\npublic enum UpdateSearchScope\r\n{\r\n    Application,\r\n    Modules\r\n}\r\n\r\npublic enum UpdateAvailability\r\n{\r\n    UpToDate,\r\n    Available,\r\n    ApplicationUpdateRequired,\r\n    Incompatible\r\n}\r\n\r\npublic sealed record InstalledUpdateState(string ApplicationVersion, string HostApiVersion, IReadOnlyList<InstalledModuleVersion> Modules);\r\n\r\npublic sealed record InstalledModuleVersion(string Id, string Version, string HostApiMinimum, string HostApiMaximum);\r\n\r\npublic sealed record AvailableComponentUpdate(\r\n    string ComponentId,\r\n    UpdateComponentKind Kind,\r\n    string InstalledVersion,\r\n    UpdateAvailability Availability,\r\n    IReadOnlyList<UpdateCatalogRelease> Releases,\r\n    string? SelectedVersion,\r\n    string? RequiredHostApiVersion = null);\r\n\r\npublic sealed record UpdatePlanItem(string ComponentId, UpdateComponentKind Kind, string InstalledVersion, UpdateCatalogRelease Release);\r\n\r\npublic sealed record UpdatePlan(UpdateSearchScope Scope, IReadOnlyList<UpdatePlanItem> Items, bool IsCompatible, IReadOnlyList<string> Issues);\r\n\r\npublic sealed record UpdateSearchResult(UpdateSearchScope Scope, IReadOnlyList<AvailableComponentUpdate> Components, UpdatePlan Plan);\r\n",
+        "sha256": "3828E6C582AC1DC425E7228AD6D79125991A35F2EF8D60A7A673F4443EEF0195",
+        "path": "src/GWGUI.Updates/Contracts/UpdatePlan.cs"
+      }
+    ],
+    "verification": {
+      "scope": "controller flow and original domain tests; no live network or UI execution",
+      "completeFileInverseTokensEqual": true,
+      "semanticErrors": 0,
+      "specializations": [
+        {
+          "scope": "Application",
+          "equal": true,
+          "specializedBodySha256": "9CA7ED179B27D67D6AD0B8FA1F532A3E79D3AA835BFD5B98A50B58A11E69A86B",
+          "originalBodySha256": "9CA7ED179B27D67D6AD0B8FA1F532A3E79D3AA835BFD5B98A50B58A11E69A86B",
+          "method": "SearchApplication"
+        },
+        {
+          "scope": "Modules",
+          "equal": true,
+          "specializedBodySha256": "A308434483DAF2A8B6747418BB6FE666EFF3B99692F37ED259D30C6E8E7B211E",
+          "originalBodySha256": "A308434483DAF2A8B6747418BB6FE666EFF3B99692F37ED259D30C6E8E7B211E",
+          "method": "SearchModules"
+        }
+      ],
+      "unchangedDependencies": 7,
+      "existingUpdateTests": {
+        "scope": "Existing domain/service tests; no claim of live UI search testing.",
+        "failed": 0,
+        "passed": 21,
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~GWGUI.Tests.Updates --verbosity minimal"
+      }
+    },
+    "inventory": {
+      "priorHeadAnnotationsRetained": 3620,
+      "encoderAnnotationsRetained": 2,
+      "uniqueMethodsRecordedWithoutInventedGroup": true,
+      "totalAnnotations": 3624,
+      "existingSearchOccurrencesQualified": 2,
+      "partialScopesRetained": 82
+    }
   }
 }
