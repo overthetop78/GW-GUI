@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7237,
   "outsideSrcCSharpFiles": 335,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11489,
+  "currentMethodCount": 11490,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -775,7 +775,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2470,7 +2470,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
           "name": "Adapter",
-          "line": 162,
+          "line": 159,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -2478,7 +2478,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Modules/AcornEmulationModule.cs",
           "name": "Adapter",
-          "line": 145,
+          "line": 142,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -2486,7 +2486,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
           "name": "Adapter",
-          "line": 162,
+          "line": 159,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -2558,7 +2558,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 157,
+          "line": 153,
           "tokens": 48,
           "hash": "1999F655CE557946F49F355FEEA9666B898A0D7AD9E307FBE142A054D2BF2947",
           "shape": "8632E0D8ACEEF0CEEC99CC26796E4E64C62C84954DCC969153C7D635ADF968D0"
@@ -2566,7 +2566,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 160,
+          "line": 156,
           "tokens": 48,
           "hash": "1999F655CE557946F49F355FEEA9666B898A0D7AD9E307FBE142A054D2BF2947",
           "shape": "8632E0D8ACEEF0CEEC99CC26796E4E64C62C84954DCC969153C7D635ADF968D0"
@@ -8601,7 +8601,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -10603,7 +10603,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 164,
+          "line": 161,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -10611,7 +10611,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 166,
+          "line": 163,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -10619,7 +10619,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 166,
+          "line": 163,
           "tokens": 113,
           "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
           "shape": "CB16E8076F5F9EDBF7BBF390E8BC00A3BA99B9C5C048B863C953950F5503550F"
@@ -11224,7 +11224,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -14093,7 +14093,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 210,
+          "line": 206,
           "tokens": 101,
           "hash": "850BF5F07606D39DD50EAB9472AF535D37026358B71A84068C0148AF3F510EFB",
           "shape": "1960099345F06C219C5A16141BDC7FACDDCB30632B7E934EF2153EFEFB91B39B"
@@ -14101,7 +14101,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 211,
+          "line": 207,
           "tokens": 101,
           "hash": "850BF5F07606D39DD50EAB9472AF535D37026358B71A84068C0148AF3F510EFB",
           "shape": "1960099345F06C219C5A16141BDC7FACDDCB30632B7E934EF2153EFEFB91B39B"
@@ -16818,7 +16818,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 193,
+          "line": 189,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16826,7 +16826,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 191,
+          "line": 187,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16834,7 +16834,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 194,
+          "line": 190,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16842,7 +16842,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 168,
+          "line": 165,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -16850,7 +16850,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "ScanFirmwareAsync",
-          "line": 166,
+          "line": 163,
           "tokens": 117,
           "hash": "9E55787B661089AB53318BDE46032E619D70B84399F2B9013B2A11674B757B2A",
           "shape": "8D4D10DC89D2293A5670C3D33CA89949B5821831FA45D4A20111FDB855EADBDA"
@@ -19898,7 +19898,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 180,
+          "line": 177,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -19906,7 +19906,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 182,
+          "line": 179,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -19914,7 +19914,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 182,
+          "line": 179,
           "tokens": 93,
           "hash": "BDA67D4348F3C224E7D847A309FC3D81D03C4835A57427A14972DA29F28EA8A0",
           "shape": "13EC32F92DE17BD421084BF530F1870018C0D793C682FF2FB32704E7CACD6912"
@@ -20253,7 +20253,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 184,
+          "line": 181,
           "tokens": 97,
           "hash": "C26410389471DA9E4E4706B8535A3BAAC413E875BE1C129B37B0778FDBA3B48D",
           "shape": "D121AF3127A2AB2C04188640E2FD391EC976820287EDD8ED6A1BBFAD9757A456"
@@ -20261,7 +20261,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "UseFirmware",
-          "line": 182,
+          "line": 179,
           "tokens": 97,
           "hash": "C26410389471DA9E4E4706B8535A3BAAC413E875BE1C129B37B0778FDBA3B48D",
           "shape": "D121AF3127A2AB2C04188640E2FD391EC976820287EDD8ED6A1BBFAD9757A456"
@@ -23775,7 +23775,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
           "name": "Adapter",
-          "line": 184,
+          "line": 180,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23783,7 +23783,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
           "name": "Adapter",
-          "line": 182,
+          "line": 178,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23791,7 +23791,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
           "name": "Adapter",
-          "line": 185,
+          "line": 181,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23799,7 +23799,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
           "name": "Adapter",
-          "line": 158,
+          "line": 155,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23807,7 +23807,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
           "name": "Adapter",
-          "line": 156,
+          "line": 153,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23815,7 +23815,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
           "name": "Adapter",
-          "line": 154,
+          "line": 151,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23823,7 +23823,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
           "name": "Adapter",
-          "line": 156,
+          "line": 153,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -23831,7 +23831,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
           "name": "Adapter",
-          "line": 156,
+          "line": 153,
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
@@ -24041,7 +24041,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
           "name": "Adapter",
-          "line": 148,
+          "line": 144,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -24049,7 +24049,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
           "name": "Adapter",
-          "line": 156,
+          "line": 152,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -24057,7 +24057,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
           "name": "Adapter",
-          "line": 166,
+          "line": 162,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -24065,7 +24065,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
           "name": "Adapter",
-          "line": 169,
+          "line": 165,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -24552,7 +24552,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -30648,69 +30648,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF",
-      "tokens": 260,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 137,
-          "tokens": 260,
-          "hash": "2E9580D7F1F185A025192BD0BEE73AD7AE71338940501E09E8E58F044C084F82",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 133,
-          "tokens": 260,
-          "hash": "81B8C4826AF7364BB297A422F39D226D677189E2832F83703DA5D20DD28C6D1F",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 129,
-          "tokens": 260,
-          "hash": "2C1889DE53BB5318478CC7805B3C142185491698DC747A4B59AD536EBECCA154",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 131,
-          "tokens": 260,
-          "hash": "38E70A9E13E0BE00F826C9EBB634D64F96A141543A99670F7634534443C1A93A",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 131,
-          "tokens": 260,
-          "hash": "C13AF198BCCD72CEDAB1A4A2FB71E699F8DAC59A81069F6DD54843D0E7D49BA8",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 131,
-          "tokens": 260,
-          "hash": "4939359D280C572EEE4367383A092FB64B97C7448A2F097C0EC71C175AA32FAC",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
-          "name": "CreateRuntimeAsync",
-          "line": 146,
-          "tokens": 260,
-          "hash": "350F40E42758C0EF9BDA64D4188E7250D5EA916968D930A0F6DE1B0262DD6F2C",
-          "shape": "B048CD4D7CD52E3EAB2C9045509F89D7B2961CDFFABA2A37BFFC59EFA10A46FF"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "B0A71A685C2D9C51D79D982115BA7401C93C0869C2EA96B944A52D7B96445D07",
       "tokens": 30,
       "current": [
@@ -30816,6 +30753,83 @@
           "tokens": 30,
           "hash": "4FFFF5627F7D1926A729735ECF3E99A87499DC12A77984998EFA4A498385847C",
           "shape": "B1BB3A7E8FF4F84804B57FE5E1FBD17F6DE012EB0014920F4F171F6B8BAF463A"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+      "tokens": 243,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 131,
+          "tokens": 243,
+          "hash": "967C437FFAD349E9CD487C8A73D953AFB196A9188D6980B1EAB0CC3D4B17F545",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 131,
+          "tokens": 243,
+          "hash": "0533514F5A1808DB3AF6C67F280692BFDDF955653DB925D80E6149B1CA0E9385",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 137,
+          "tokens": 243,
+          "hash": "431D21671D61B57C3FB0E6889E396386390B61D658FE8BCB978AC3986D879C9A",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 131,
+          "tokens": 243,
+          "hash": "8A40A832161A59BBD6A7C2EE94A4DB5E85F39E925E6C720A8B2A4E68B4AD222B",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 146,
+          "tokens": 243,
+          "hash": "9DB29EE7F443C9D03ED1895578E1E087E0738C210C89FD69A2C6ADABB0E461FC",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 133,
+          "tokens": 243,
+          "hash": "1F4566F4B4BDEFD7C019BCA07C9BE2C1338640DA081680D52284EA534A11D3AC",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
+          "name": "CreateRuntimeAsync",
+          "line": 129,
+          "tokens": 243,
+          "hash": "5926139F7BD0D25F77EF43106F79B63F4F024DCB2C37B837DD9B97BDBA03180B",
+          "shape": "B1BBA009BE04B2A64746F59ADC41F8157897F686C1783430C190B0CD479D5FC4",
+          "qualificationEmulatorMissingMessage": "Only original structured missing-emulator message construction shared in existing SDK EmulationErrorService; emulatorMissingMessageReuse verifies full-file inverse, exact lazy identity expression and message defaults. Other CreateRuntimeAsync operations remain separately audited.",
+          "qualificationEmulatorMissingMessageSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -31523,7 +31537,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
           "name": "Adapter",
-          "line": 162,
+          "line": 159,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31531,7 +31545,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Modules/AcornEmulationModule.cs",
           "name": "Adapter",
-          "line": 145,
+          "line": 142,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31539,7 +31553,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
           "name": "Adapter",
-          "line": 148,
+          "line": 144,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31547,7 +31561,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
           "name": "Adapter",
-          "line": 156,
+          "line": 152,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31555,7 +31569,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
           "name": "Adapter",
-          "line": 166,
+          "line": 162,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31563,7 +31577,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
           "name": "Adapter",
-          "line": 169,
+          "line": 165,
           "tokens": 30,
           "hash": "EA327091EA31E3594A47492C6867CD56494361CD06C9A33E1132B3FCBCC9B2DC",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"
@@ -31571,7 +31585,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
           "name": "Adapter",
-          "line": 162,
+          "line": 159,
           "tokens": 30,
           "hash": "18640F5CBE108E0928B5E602E13346B11472ECCDFF87C9B183F84C5CBC8A1DE3",
           "shape": "C8FCBA28E3A1998787C09FC5A5CCD3B9D37DC7F57297270E94D0879B98FF9158"

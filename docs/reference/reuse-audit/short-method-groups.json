@@ -1,18 +1,35 @@
 {
-  "snapshot": "564ed0d8854fb8f680d19a10463fe63395b036fe",
+  "snapshot": "54ebe9c52f552937cf0fbca9317a0937814dc3ed",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreVideoFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs"
+    "src/GWGUI.Emulation.Acorn/Modules/AcornEmulationModule.cs",
+    "src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs",
+    "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
+    "src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs",
+    "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
+    "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
+    "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
+    "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
+    "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
+    "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
+    "src/GWGUI.Emulation.Nec/Modules/NecEmulationModule.cs",
+    "src/GWGUI.Emulation.Nintendo/Modules/NintendoEmulationModule.cs",
+    "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
+    "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
+    "src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs",
+    "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
+    "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
+    "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
+    "src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs",
+    "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
+    "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
+    "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
+    "src/GWGUI.Emulation/Services/EmulationErrorService.cs",
+    "tests/GWGUI.Tests/Emulation/MachineErrorFactoryTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7237,
-  "methodBodyCount": 9593,
+  "methodBodyCount": 9594,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -7686,7 +7703,7 @@
           "name": "SelectedOrDefault",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 170,
+          "line": 166,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 22,
           "bodyTokens": "=> configuration . Core == Emulator . None ? Adapter ( configuration . MachineId ) : _engine . Adapter ( configuration )",
@@ -7698,7 +7715,7 @@
           "name": "SelectedOrDefault",
           "owner": "ThomsonEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 157,
+          "line": 153,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 22,
           "bodyTokens": "=> configuration . Core == Emulator . None ? Adapter ( configuration . MachineId ) : _engine . Adapter ( configuration )",
@@ -7710,7 +7727,7 @@
           "name": "SelectedOrDefault",
           "owner": "WataraEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 149,
+          "line": 145,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 22,
           "bodyTokens": "=> configuration . Core == Emulator . None ? Adapter ( configuration . MachineId ) : _engine . Adapter ( configuration )",
@@ -7722,7 +7739,7 @@
           "name": "SelectedOrDefault",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 167,
+          "line": 163,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 22,
           "bodyTokens": "=> configuration . Core == Emulator . None ? Adapter ( configuration . MachineId ) : _engine . Adapter ( configuration )",
@@ -8822,7 +8839,7 @@
           "name": "DefaultEmulatorId",
           "owner": "NecEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 292,
+          "line": 289,
           "parameters": "(string machineId)",
           "tokens": 7,
           "bodyTokens": "=> EmulatorCatalog . DefaultFor ( machineId )",
@@ -8834,7 +8851,7 @@
           "name": "DefaultEmulatorId",
           "owner": "SegaEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 251,
+          "line": 248,
           "parameters": "(string machineId)",
           "tokens": 7,
           "bodyTokens": "=> EmulatorCatalog . DefaultFor ( machineId )",
@@ -18606,7 +18623,7 @@
           "name": "DefaultEmulatorId",
           "owner": "AmstradEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 230,
+          "line": 227,
           "parameters": "(string machineId)",
           "tokens": 18,
           "bodyTokens": "=> EmulatorCatalog . GetAll ( machineId ) . FirstOrDefault ( ) ? . Id ?? string . Empty",
@@ -18618,7 +18635,7 @@
           "name": "DefaultEmulatorId",
           "owner": "SonyEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 279,
+          "line": 276,
           "parameters": "(string machineId)",
           "tokens": 18,
           "bodyTokens": "=> EmulatorCatalog . GetAll ( machineId ) . FirstOrDefault ( ) ? . Id ?? string . Empty",
@@ -25510,7 +25527,7 @@
           "name": "UseFirmware",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 168,
+          "line": 164,
           "parameters": "(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)",
           "tokens": 12,
           "bodyTokens": "=> FirmwareFunctions . Select ( Require ( configuration ) , firmware )",
@@ -25522,7 +25539,7 @@
           "name": "UseFirmware",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 165,
+          "line": 161,
           "parameters": "(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)",
           "tokens": 12,
           "bodyTokens": "=> FirmwareFunctions . Select ( Require ( configuration ) , firmware )",
@@ -31021,7 +31038,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "3FE6AB900DD08E441838E275A7C0AA16BDA3F5C145D8A2A0F3B3529D2CD538D0"
+          "qualificationSourceSha256": "BB95126CC5C2C561ED081559E3592340D702EEB599B7E9299F7F59F0CBB99451"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
@@ -31035,7 +31052,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "E25322610FC1FC54DF1B4662B470B2B488CE14FB468B3E4B29C3A34F6977B428"
+          "qualificationSourceSha256": "2D159CB79278A14E1924423E7BF2A276FFFC64B7A71DF00F9478107726708685"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Modules/NecEmulationModule.cs",
@@ -31049,7 +31066,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "8333CF5F676EA6F16B170646BDA00715FECB7ADF9C9BB486FFFA193ED6E10783"
+          "qualificationSourceSha256": "2817A24D8EA91DCA31FD9CE3D5E14314596ABF2DCA78BEED5295BBB85C30FFF1"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Modules/NintendoEmulationModule.cs",
@@ -31063,7 +31080,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "692386A0E535FBA81E659B9702B11B35F92955BA70FF4BF7B9696A6F2618841A"
+          "qualificationSourceSha256": "55247FEF0D3C549DC645593231EF1D010A64C8DBED559FEB45FAE3645437FEFB"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs",
@@ -31077,7 +31094,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "1967625ECD0C909E60C108AE6D76EF9A3FCCE3C828300ED8D4B17791134D0407"
+          "qualificationSourceSha256": "892ECA98B4C9D2E5DDADA52EB1F1AE0294E39A37CFE6027229DDEC72252B3E72"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs",
@@ -31091,7 +31108,7 @@
           "hash": "5ADE6D24795849CEF29561250FB0DBC66ACE12E320E563D988CF552487768451",
           "shape": "C79AF1E233145216FE32452B5FED00F47BC1D334D408FEC15EFAD1C5CBE89A74",
           "qualification": "private-sdk-context-record-projection-borrowed-http-and-bcl-directory-combination",
-          "qualificationSourceSha256": "CFF32D606EF067DD5E0F9DF02CB4E7BAA6BE64412E42F42223FCC1B1640A378C"
+          "qualificationSourceSha256": "1F1C32BC1FF4A1756715281492C253DD63399BA1D85C5C343CE1588494D9BA8B"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -31770,7 +31787,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "NintendoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 234,
+          "line": 231,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Get ( machineId ) ; return _firmwareDirectory ; }",
@@ -31794,7 +31811,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SonyEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 256,
+          "line": 253,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Get ( machineId ) ; return _firmwareDirectory ; }",
@@ -38009,7 +38026,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "909D5192F60CF5772E6460E6A92AFA8AE00EC770F1DCF8A091039D2AA583DA0A"
+          "qualificationSourceSha256": "6BEE54671713719E76B39DCB385118EFC83BE70CA5E35CAF92B9D68ECD8BBF4A"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
@@ -38023,7 +38040,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "8D9FEA26D63F3C7BF30540BB46EEA68D93D0680185FC268A4086F18C1566C7D8"
+          "qualificationSourceSha256": "C42F0AA0F069A2CA7B2DD11D3C30C7CF31E7D33A94D5DB57445E0E776FEBAD76"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs",
@@ -38037,7 +38054,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "177715C76442D7490C3DE6D27E7EE2ECBA0F3742AE1A69CE565FB0B72CFE91C7"
+          "qualificationSourceSha256": "7B143CC6BBD6DAFBDE92423CF2B4CDE2584F1DB94A3FAFF211389A2E84913FC7"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -38051,7 +38068,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "729F90364A430379DD779E3A4A4AE0C31E08A707A485A37E8F44052EDB536B65"
+          "qualificationSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -38065,7 +38082,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "9F663386BF3D10775422E7CE8382191B8D5849073A91EE2416EDBB5D14A46C9A"
+          "qualificationSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -38079,7 +38096,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "EC3F4788F3AC28DED826D44BB780045743BC72F3CCD7388B5FD5B014A3D5FC33"
+          "qualificationSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -38093,7 +38110,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "5E429CD1956CAF941C3E3DD89EA6C682A43EE6DB8541D0E81673CBF6A53DC75C"
+          "qualificationSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
@@ -38107,7 +38124,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "87AF1AED7E0978825C9A417DFC5785E7A29C483BDA2752A8E05AA238BA5C2AA2"
+          "qualificationSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
@@ -38121,7 +38138,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "F5FC0CB332BB5009E6A53917853F348F4408F9151453E1672386DF601F1A8144"
+          "qualificationSourceSha256": "86F5C1DE5A901287E05631B5380EF8140E769200961F97A199A3E1BBF19E86BA"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -38135,7 +38152,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "884DB814E80B32333BD2AB2842030D16FC963E0F507DF34792E8BF8D353A2C16"
+          "qualificationSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
@@ -38149,7 +38166,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "4FEA67E9CF86AE3E0FF9B30FEDDBBF00C129705ACA89DDBF5943D0EF0F166C0D"
+          "qualificationSourceSha256": "D6D696AC023E74E9BECDC3EAE7C0BB0B0C15A353CA5C872B77C960CE36EA193C"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
@@ -38163,7 +38180,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "ED634C94FCFF416C09CBF46D877E86C231B75CC39BBC2B8BAFAC971DEB2B74BC"
+          "qualificationSourceSha256": "4E1B0A6CAE55DE0883FB27723E2C50293B0DAA78D8EFF1CCAC75F7F283074C12"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -38177,7 +38194,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "04F86D7918E6BA9FC780999730CE941EE977A2FA4942154DF53831911F22C231"
+          "qualificationSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
@@ -38191,7 +38208,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "3DA7BEA3E27C8D1B83B924DF0259C56F1409C58670474C73D1EC1C4251F3C6C1"
+          "qualificationSourceSha256": "EB831A877FE89821D4201CE845EC6D7A3522074B13E3DECE4F4A4288B531FB67"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
@@ -38205,7 +38222,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "C126E1B78D64FD0EFBD3378F41FB8D588767CBA51D8A2F98496E5E1FCDB9CA2A"
+          "qualificationSourceSha256": "711E19B20097270F4D17E35A608F7CEC81851572FA0AD362A25E8734A1F07CE4"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
@@ -38219,7 +38236,7 @@
           "hash": "73ADA7C5BDAF2F9F09608092641D2FDBFC75723085F673D1FE33D10841CEFEA5",
           "shape": "7AB21858E607205ADCA069D494ABC6832D46850BC897AB73BE4EA2EBB2970D2D",
           "qualification": "typed-local-configuration-constructor-adapter-original-sdk-model-parser-reused",
-          "qualificationSourceSha256": "1CD1BE09C28DB2159669C26AC5093253247351167E0B4C4B648C7C6AF33DF3AE"
+          "qualificationSourceSha256": "3F9E280A9E2750D9ED7F806DA4A56A3D363A845C84E3AC4B3377C1427E72875F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -45004,7 +45021,7 @@
           "name": "Require",
           "owner": "AcornEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 146,
+          "line": 143,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45016,7 +45033,7 @@
           "name": "RequireConfiguration",
           "owner": "AmstradEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 232,
+          "line": 229,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45028,7 +45045,7 @@
           "name": "Require",
           "owner": "AppleEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 196,
+          "line": 193,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45040,7 +45057,7 @@
           "name": "Require",
           "owner": "BandaiEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 196,
+          "line": 193,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45052,7 +45069,7 @@
           "name": "Require",
           "owner": "ColecoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 189,
+          "line": 186,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45064,7 +45081,7 @@
           "name": "Require",
           "owner": "EpochEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 191,
+          "line": 188,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45076,7 +45093,7 @@
           "name": "Require",
           "owner": "FairchildEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 191,
+          "line": 188,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45088,7 +45105,7 @@
           "name": "Require",
           "owner": "MattelEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 191,
+          "line": 188,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45100,7 +45117,7 @@
           "name": "RequireConfiguration",
           "owner": "NecEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 294,
+          "line": 291,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45112,7 +45129,7 @@
           "name": "RequireConfiguration",
           "owner": "NintendoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 257,
+          "line": 254,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45124,7 +45141,7 @@
           "name": "Require",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 171,
+          "line": 167,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45136,7 +45153,7 @@
           "name": "Require",
           "owner": "PhilipsEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 193,
+          "line": 190,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45148,7 +45165,7 @@
           "name": "RequireConfiguration",
           "owner": "SegaEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 253,
+          "line": 250,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45160,7 +45177,7 @@
           "name": "Require",
           "owner": "SharpEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 223,
+          "line": 219,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45172,7 +45189,7 @@
           "name": "Require",
           "owner": "SinclairEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 224,
+          "line": 220,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45184,7 +45201,7 @@
           "name": "Require",
           "owner": "SnkEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 221,
+          "line": 217,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45196,7 +45213,7 @@
           "name": "RequireConfiguration",
           "owner": "SonyEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 281,
+          "line": 278,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45208,7 +45225,7 @@
           "name": "Require",
           "owner": "ThomsonEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 158,
+          "line": 154,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45220,7 +45237,7 @@
           "name": "Require",
           "owner": "WataraEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 150,
+          "line": 146,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -45232,7 +45249,7 @@
           "name": "Require",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 168,
+          "line": 164,
           "parameters": "(IEmulationConfiguration configuration)",
           "tokens": 14,
           "bodyTokens": "=> configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) )",
@@ -50473,7 +50490,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "909D5192F60CF5772E6460E6A92AFA8AE00EC770F1DCF8A091039D2AA583DA0A"
+          "qualificationSourceSha256": "6BEE54671713719E76B39DCB385118EFC83BE70CA5E35CAF92B9D68ECD8BBF4A"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
@@ -50487,7 +50504,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "8D9FEA26D63F3C7BF30540BB46EEA68D93D0680185FC268A4086F18C1566C7D8"
+          "qualificationSourceSha256": "C42F0AA0F069A2CA7B2DD11D3C30C7CF31E7D33A94D5DB57445E0E776FEBAD76"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -50501,7 +50518,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "729F90364A430379DD779E3A4A4AE0C31E08A707A485A37E8F44052EDB536B65"
+          "qualificationSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -50515,7 +50532,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "9F663386BF3D10775422E7CE8382191B8D5849073A91EE2416EDBB5D14A46C9A"
+          "qualificationSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -50529,7 +50546,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "EC3F4788F3AC28DED826D44BB780045743BC72F3CCD7388B5FD5B014A3D5FC33"
+          "qualificationSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -50543,7 +50560,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "5E429CD1956CAF941C3E3DD89EA6C682A43EE6DB8541D0E81673CBF6A53DC75C"
+          "qualificationSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
@@ -50557,7 +50574,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "87AF1AED7E0978825C9A417DFC5785E7A29C483BDA2752A8E05AA238BA5C2AA2"
+          "qualificationSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
@@ -50571,7 +50588,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "F5FC0CB332BB5009E6A53917853F348F4408F9151453E1672386DF601F1A8144"
+          "qualificationSourceSha256": "86F5C1DE5A901287E05631B5380EF8140E769200961F97A199A3E1BBF19E86BA"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -50585,7 +50602,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "884DB814E80B32333BD2AB2842030D16FC963E0F507DF34792E8BF8D353A2C16"
+          "qualificationSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
@@ -50599,7 +50616,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "4FEA67E9CF86AE3E0FF9B30FEDDBBF00C129705ACA89DDBF5943D0EF0F166C0D"
+          "qualificationSourceSha256": "D6D696AC023E74E9BECDC3EAE7C0BB0B0C15A353CA5C872B77C960CE36EA193C"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
@@ -50613,7 +50630,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "ED634C94FCFF416C09CBF46D877E86C231B75CC39BBC2B8BAFAC971DEB2B74BC"
+          "qualificationSourceSha256": "4E1B0A6CAE55DE0883FB27723E2C50293B0DAA78D8EFF1CCAC75F7F283074C12"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -50627,7 +50644,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "04F86D7918E6BA9FC780999730CE941EE977A2FA4942154DF53831911F22C231"
+          "qualificationSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
@@ -50641,7 +50658,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "3DA7BEA3E27C8D1B83B924DF0259C56F1409C58670474C73D1EC1C4251F3C6C1"
+          "qualificationSourceSha256": "EB831A877FE89821D4201CE845EC6D7A3522074B13E3DECE4F4A4288B531FB67"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
@@ -50655,7 +50672,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "C126E1B78D64FD0EFBD3378F41FB8D588767CBA51D8A2F98496E5E1FCDB9CA2A"
+          "qualificationSourceSha256": "711E19B20097270F4D17E35A608F7CEC81851572FA0AD362A25E8734A1F07CE4"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
@@ -50669,7 +50686,7 @@
           "hash": "9B48912378C716583D8BE5BE6540F6017F3B5BD4D86DB16C68FFB28ABAC22726",
           "shape": "AFCE8D8FF69623B010387CCD2CE49ACD53BF70866619782E84FA5C2FEE7576E0",
           "qualification": "Verified complete BCL ValueTask adaptation around typed Require and existing store SaveAsync; store conversion/schema remain separately pending; machineModelParserReuse.",
-          "qualificationSourceSha256": "1CD1BE09C28DB2159669C26AC5093253247351167E0B4C4B648C7C6AF33DF3AE"
+          "qualificationSourceSha256": "3F9E280A9E2750D9ED7F806DA4A56A3D363A845C84E3AC4B3377C1427E72875F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -59836,7 +59853,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "AppleEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 164,
+          "line": 161,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59848,7 +59865,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "BandaiEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 164,
+          "line": 161,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59860,7 +59877,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "ColecoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 158,
+          "line": 155,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59872,7 +59889,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "EpochEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59884,7 +59901,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "FairchildEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59896,7 +59913,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "MattelEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59908,7 +59925,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 154,
+          "line": 150,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59920,7 +59937,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "PhilipsEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 162,
+          "line": 159,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59932,7 +59949,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SharpEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 187,
+          "line": 183,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59944,7 +59961,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SinclairEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 188,
+          "line": 184,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59956,7 +59973,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SnkEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 185,
+          "line": 181,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -59968,7 +59985,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 151,
+          "line": 147,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -76285,7 +76302,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "909D5192F60CF5772E6460E6A92AFA8AE00EC770F1DCF8A091039D2AA583DA0A"
+          "qualificationSourceSha256": "6BEE54671713719E76B39DCB385118EFC83BE70CA5E35CAF92B9D68ECD8BBF4A"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs",
@@ -76299,7 +76316,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3FE6AB900DD08E441838E275A7C0AA16BDA3F5C145D8A2A0F3B3529D2CD538D0"
+          "qualificationSourceSha256": "BB95126CC5C2C561ED081559E3592340D702EEB599B7E9299F7F59F0CBB99451"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs",
@@ -76313,7 +76330,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D9FEA26D63F3C7BF30540BB46EEA68D93D0680185FC268A4086F18C1566C7D8"
+          "qualificationSourceSha256": "C42F0AA0F069A2CA7B2DD11D3C30C7CF31E7D33A94D5DB57445E0E776FEBAD76"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs",
@@ -76327,7 +76344,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "177715C76442D7490C3DE6D27E7EE2ECBA0F3742AE1A69CE565FB0B72CFE91C7"
+          "qualificationSourceSha256": "7B143CC6BBD6DAFBDE92423CF2B4CDE2584F1DB94A3FAFF211389A2E84913FC7"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs",
@@ -76341,7 +76358,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "729F90364A430379DD779E3A4A4AE0C31E08A707A485A37E8F44052EDB536B65"
+          "qualificationSourceSha256": "5AEC9818B59EA2C0605C0CDD7D62AA01E378E350FCAE1C92DC238135E3348341"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
@@ -76355,7 +76372,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9F663386BF3D10775422E7CE8382191B8D5849073A91EE2416EDBB5D14A46C9A"
+          "qualificationSourceSha256": "451C099CB74D343A4D80E4A510E7B35F19EA26DD8A16EE62F7906BFFFA188FDD"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs",
@@ -76369,7 +76386,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E25322610FC1FC54DF1B4662B470B2B488CE14FB468B3E4B29C3A34F6977B428"
+          "qualificationSourceSha256": "2D159CB79278A14E1924423E7BF2A276FFFC64B7A71DF00F9478107726708685"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
@@ -76383,7 +76400,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "EC3F4788F3AC28DED826D44BB780045743BC72F3CCD7388B5FD5B014A3D5FC33"
+          "qualificationSourceSha256": "F0A1EC9425B0C980C297A85556532AC05D837A546E38346B25730379023B050A"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
@@ -76397,7 +76414,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5E429CD1956CAF941C3E3DD89EA6C682A43EE6DB8541D0E81673CBF6A53DC75C"
+          "qualificationSourceSha256": "E64FA2D1F89FA435ADE461A7D2D178C565F1EAE7A960D8DBD42AC82604E07ABA"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
@@ -76411,7 +76428,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87AF1AED7E0978825C9A417DFC5785E7A29C483BDA2752A8E05AA238BA5C2AA2"
+          "qualificationSourceSha256": "D3ED5D69711E7463294EC9911083C9F98013D02FE79D693CA54101881C711A0D"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Modules/MicrosoftEmulationModule.cs",
@@ -76439,7 +76456,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8333CF5F676EA6F16B170646BDA00715FECB7ADF9C9BB486FFFA193ED6E10783"
+          "qualificationSourceSha256": "2817A24D8EA91DCA31FD9CE3D5E14314596ABF2DCA78BEED5295BBB85C30FFF1"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Modules/NintendoEmulationModule.cs",
@@ -76453,7 +76470,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "692386A0E535FBA81E659B9702B11B35F92955BA70FF4BF7B9696A6F2618841A"
+          "qualificationSourceSha256": "55247FEF0D3C549DC645593231EF1D010A64C8DBED559FEB45FAE3645437FEFB"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs",
@@ -76467,7 +76484,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5FC0CB332BB5009E6A53917853F348F4408F9151453E1672386DF601F1A8144"
+          "qualificationSourceSha256": "86F5C1DE5A901287E05631B5380EF8140E769200961F97A199A3E1BBF19E86BA"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
@@ -76481,7 +76498,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "884DB814E80B32333BD2AB2842030D16FC963E0F507DF34792E8BF8D353A2C16"
+          "qualificationSourceSha256": "4A9360924C82ED9909D5FA023118653443D55F31201331D2DEA483DB2DA6B7B9"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs",
@@ -76495,7 +76512,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1967625ECD0C909E60C108AE6D76EF9A3FCCE3C828300ED8D4B17791134D0407"
+          "qualificationSourceSha256": "892ECA98B4C9D2E5DDADA52EB1F1AE0294E39A37CFE6027229DDEC72252B3E72"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
@@ -76509,7 +76526,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4FEA67E9CF86AE3E0FF9B30FEDDBBF00C129705ACA89DDBF5943D0EF0F166C0D"
+          "qualificationSourceSha256": "D6D696AC023E74E9BECDC3EAE7C0BB0B0C15A353CA5C872B77C960CE36EA193C"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
@@ -76523,7 +76540,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "ED634C94FCFF416C09CBF46D877E86C231B75CC39BBC2B8BAFAC971DEB2B74BC"
+          "qualificationSourceSha256": "4E1B0A6CAE55DE0883FB27723E2C50293B0DAA78D8EFF1CCAC75F7F283074C12"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
@@ -76537,7 +76554,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "04F86D7918E6BA9FC780999730CE941EE977A2FA4942154DF53831911F22C231"
+          "qualificationSourceSha256": "648D67ED4883A4B1471441714033A6D50EAAB70D286E7BC1CDC656FF50F65526"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs",
@@ -76551,7 +76568,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "CFF32D606EF067DD5E0F9DF02CB4E7BAA6BE64412E42F42223FCC1B1640A378C"
+          "qualificationSourceSha256": "1F1C32BC1FF4A1756715281492C253DD63399BA1D85C5C343CE1588494D9BA8B"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs",
@@ -76565,7 +76582,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3DA7BEA3E27C8D1B83B924DF0259C56F1409C58670474C73D1EC1C4251F3C6C1"
+          "qualificationSourceSha256": "EB831A877FE89821D4201CE845EC6D7A3522074B13E3DECE4F4A4288B531FB67"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs",
@@ -76579,7 +76596,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C126E1B78D64FD0EFBD3378F41FB8D588767CBA51D8A2F98496E5E1FCDB9CA2A"
+          "qualificationSourceSha256": "711E19B20097270F4D17E35A608F7CEC81851572FA0AD362A25E8734A1F07CE4"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs",
@@ -76593,7 +76610,7 @@
           "hash": "FDEAB07BDE9ED2BD725A71FBA5A139FAF8F47303028B0396F8FB0F0C595E70A1",
           "shape": "90278B931438BCA7B727A750992018DA561E1A1884772F905D2DF4FA80E9440A",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationModuleLocalization.TryGetString(string, System.Globalization.CultureInfo, out string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1CD1BE09C28DB2159669C26AC5093253247351167E0B4C4B648C7C6AF33DF3AE"
+          "qualificationSourceSha256": "3F9E280A9E2750D9ED7F806DA4A56A3D363A845C84E3AC4B3377C1427E72875F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -78253,7 +78270,7 @@
           "name": "UseFirmware",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 168,
+          "line": 164,
           "parameters": "(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)",
           "tokens": 12,
           "bodyTokens": "=> FirmwareFunctions . Select ( Require ( configuration ) , firmware )",
@@ -78469,7 +78486,7 @@
           "name": "UseFirmware",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 165,
+          "line": 161,
           "parameters": "(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)",
           "tokens": 12,
           "bodyTokens": "=> FirmwareFunctions . Select ( Require ( configuration ) , firmware )",
@@ -95846,7 +95863,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "AppleEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 164,
+          "line": 161,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95858,7 +95875,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "BandaiEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 164,
+          "line": 161,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95870,7 +95887,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "ColecoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 158,
+          "line": 155,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95894,7 +95911,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "EpochEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95906,7 +95923,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "FairchildEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95918,7 +95935,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "MattelEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 157,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95942,7 +95959,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "NintendoEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 234,
+          "line": 231,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Get ( machineId ) ; return _firmwareDirectory ; }",
@@ -95954,7 +95971,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "PanasonicEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 154,
+          "line": 150,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95966,7 +95983,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "PhilipsEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 162,
+          "line": 159,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -95990,7 +96007,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SharpEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 187,
+          "line": 183,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -96002,7 +96019,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SinclairEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 188,
+          "line": 184,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -96014,7 +96031,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SnkEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 185,
+          "line": 181,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -96026,7 +96043,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "SonyEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 256,
+          "line": 253,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Get ( machineId ) ; return _firmwareDirectory ; }",
@@ -96038,7 +96055,7 @@
           "name": "GetFirmwareDirectory",
           "owner": "WenquxingEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 151,
+          "line": 147,
           "parameters": "(string machineId)",
           "tokens": 14,
           "bodyTokens": "{ _ = ModelCatalog . Parse ( machineId ) ; return _firmwareDirectory ; }",
@@ -107441,7 +107458,7 @@
           "name": "DefaultEmulatorId",
           "owner": "NecEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 292,
+          "line": 289,
           "parameters": "(string machineId)",
           "tokens": 7,
           "bodyTokens": "=> EmulatorCatalog . DefaultFor ( machineId )",
@@ -108265,7 +108282,7 @@
           "name": "DefaultEmulatorId",
           "owner": "SegaEmulationModule",
           "kind": "MethodDeclaration",
-          "line": 251,
+          "line": 248,
           "parameters": "(string machineId)",
           "tokens": 7,
           "bodyTokens": "=> EmulatorCatalog . DefaultFor ( machineId )",
@@ -143486,7 +143503,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3070
+    "occurrences": 3039,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

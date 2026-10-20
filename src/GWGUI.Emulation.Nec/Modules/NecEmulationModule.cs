@@ -256,10 +256,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         if (configuration is not MachineConfiguration necConfiguration)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(necConfiguration);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
         var audio = necConfiguration.Audio ?? new AudioConfiguration();
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

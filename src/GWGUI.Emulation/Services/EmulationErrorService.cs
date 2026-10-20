@@ -2,6 +2,11 @@ namespace GWGUI.Emulation.Services;
 
 public static class EmulationErrorService
 {
+    internal static EmulationMessageException EmulatorNotInstalled(string emulatorId) =>
+        new(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
+            EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
+            new EmulationEmulatorMessageContext(emulatorId)));
+
     internal static EmulationMessageException CreateError(EmulationMessageCategory category,
         EmulationMessageCode code, Exception? innerException) =>
         new(new EmulationMessage(category, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException);

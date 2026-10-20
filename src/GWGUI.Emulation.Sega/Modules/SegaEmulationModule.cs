@@ -216,10 +216,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
         if (configuration is not MachineConfiguration sega)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(sega);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
         var audio = sega.Audio ?? new AudioConfiguration();
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

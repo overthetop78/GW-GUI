@@ -8,6 +8,27 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class MachineErrorFactoryTests
 {
+    [Theory]
+    [InlineData("")]
+    [InlineData(" adapter-with-spaces ")]
+    [InlineData("Émulateur-日本語")]
+    public void MissingEmulatorKeepsOpaqueIdentityAndIndependentMessageContexts(string emulatorId)
+    {
+        var first = EmulationErrorService.EmulatorNotInstalled(emulatorId);
+        var second = EmulationErrorService.EmulatorNotInstalled(emulatorId);
+        Assert.NotSame(first, second);
+        Assert.NotSame(first.MessageData, second.MessageData);
+        Assert.NotSame(first.MessageData.Context, second.MessageData.Context);
+        Assert.Equal(first.MessageData, second.MessageData);
+        Assert.Same(emulatorId, Assert.IsType<EmulationEmulatorMessageContext>(first.MessageData.Context).EmulatorId);
+        Assert.Equal(EmulationMessageCategory.Emulator, first.MessageData.Category);
+        Assert.Equal(EmulationMessageCode.EmulatorNotInstalled, first.MessageData.MessageCode);
+        Assert.Equal(EmulationMessageSeverity.Error, first.MessageData.Severity);
+        Assert.Equal(EmulationMessageTarget.Dialog, first.MessageData.Target);
+        Assert.Null(first.MessageData.OriginalText);
+        Assert.Null(first.InnerException);
+    }
+
     public static IEnumerable<object[]> Modules() =>
         new[] { "Amstrad", "Commodore", "Microsoft", "Nec", "Nintendo", "Sega", "Sony" }
             .SelectMany(family => new[] { false, true }.Select(withCause => new object[] { family, withCause }));

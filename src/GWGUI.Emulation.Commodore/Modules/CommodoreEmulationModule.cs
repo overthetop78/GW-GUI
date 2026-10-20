@@ -250,10 +250,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
         var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken).ConfigureAwait(false)
-            ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(emulator.EmulatorId)));
+            ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(emulator.EmulatorId);
         var audio = runtime.Audio ?? new AudioConfiguration();
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

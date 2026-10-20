@@ -229,10 +229,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         if (configuration is not MachineConfiguration sony)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(sony);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
         var audio = adapter is IEmulatorSettingsAdapter settingsAdapter ? settingsAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
         sony = sony with { Audio = audio };
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,

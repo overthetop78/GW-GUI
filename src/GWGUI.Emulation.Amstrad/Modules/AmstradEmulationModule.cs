@@ -196,10 +196,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         if (configuration is not MachineConfiguration amstrad)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(amstrad);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
         var audio = amstrad.Audio ?? new AudioConfiguration();
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

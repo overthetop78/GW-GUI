@@ -121,10 +121,7 @@ public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var current = Require(configuration);
         var adapter = Adapter(current.MachineId);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
         var output = EmulationAudioFunctions.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
         var latency = EmulationAudioFunctions.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
