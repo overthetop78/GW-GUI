@@ -1,27 +1,40 @@
 {
-  "snapshot": "1ee4ec17e9243b32425297c44ee16126465b8bfe",
+  "snapshot": "316630a7770dd65d9074525d4e70fe247324832d",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Dictionaries/ModelCatalog.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Dictionaries/ModelCatalog.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
+    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+    "tests/GWGUI.Tests/Interface/EmulationViews/EmulationViewsTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7222,
-  "methodBodyCount": 9543,
+  "fileCount": 7227,
+  "methodBodyCount": 9544,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -1765,6 +1778,38 @@
           "bodyTokens": "=> path",
           "hash": "07C1FE4C28720BF555E3D4ABBCB976F06BFF5209AAB9EFC64D2528076837361D",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "08000E4ABA6B12FDA087C25D99672F21CF7BEFB5E543D9EC55E0BABA3C286235",
+      "tokens": 16,
+      "bodyTokens": "=> Families . Select ( family => new object [  ] { family } )",
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/ConfigurationDocumentContractTests.cs",
+          "name": "ModuleCases",
+          "owner": "ConfigurationDocumentContractTests",
+          "kind": "MethodDeclaration",
+          "line": 15,
+          "parameters": "()",
+          "tokens": 16,
+          "bodyTokens": "=> Families . Select ( family => new object [  ] { family } )",
+          "hash": "08000E4ABA6B12FDA087C25D99672F21CF7BEFB5E543D9EC55E0BABA3C286235",
+          "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/StateFingerprintContractTests.cs",
+          "name": "NativeCases",
+          "owner": "StateFingerprintContractTests",
+          "kind": "MethodDeclaration",
+          "line": 16,
+          "parameters": "()",
+          "tokens": 16,
+          "bodyTokens": "=> Families . Select ( family => new object [  ] { family } )",
+          "hash": "08000E4ABA6B12FDA087C25D99672F21CF7BEFB5E543D9EC55E0BABA3C286235",
+          "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -11433,15 +11478,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "84E858873D3B502106265BD7E0577E60EC680081B8F0057944CC303EAF61F6E3",
-          "qualificationSourceSha256": "84E858873D3B502106265BD7E0577E60EC680081B8F0057944CC303EAF61F6E3"
+          "qualificationSourceSha256": "543B6B01151FE2849250B8BCA57BE77C8C5B666442CEDA0FB7867B121DCF9579",
+          "verifiedSourceSha256": "543B6B01151FE2849250B8BCA57BE77C8C5B666442CEDA0FB7867B121DCF9579",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11474,15 +11519,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 17,
+          "line": 14,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\r\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\r\n        FolderConfiguration folders)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "B193182C7085EB187EA610E8010CB83D2196915288CE3E0195C008D4018FFF5E",
-          "qualificationSourceSha256": "B193182C7085EB187EA610E8010CB83D2196915288CE3E0195C008D4018FFF5E"
+          "qualificationSourceSha256": "474AF51681C6D57C163884382B6CDE6AAA3A0BEF3EE9775C8D998CBFDC879A4A",
+          "verifiedSourceSha256": "474AF51681C6D57C163884382B6CDE6AAA3A0BEF3EE9775C8D998CBFDC879A4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11517,15 +11562,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 30,
+          "line": 20,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        IReadOnlyList<FirmwareConfiguration> firmwares,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        FolderConfiguration folders)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "AA845952BEA9F9BBFB7C6AE1F5A8F22A91F64616CAEEAA1E9E7D0F0D5B9D945D",
-          "qualificationSourceSha256": "AA845952BEA9F9BBFB7C6AE1F5A8F22A91F64616CAEEAA1E9E7D0F0D5B9D945D"
+          "qualificationSourceSha256": "ACED27D9A448B5AD175B363C2EC9B32564F3059CFEBF3D565C16F760E1147A74",
+          "verifiedSourceSha256": "ACED27D9A448B5AD175B363C2EC9B32564F3059CFEBF3D565C16F760E1147A74",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs",
@@ -11598,15 +11643,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "3C3AD9A466D02DE591BD255145E5DFEDE6928FD0816807020F111E01A262AD0F",
-          "qualificationSourceSha256": "3C3AD9A466D02DE591BD255145E5DFEDE6928FD0816807020F111E01A262AD0F"
+          "qualificationSourceSha256": "CBD4FB412C2C05D92A277B887469D42B73313841CA2A8C04B4BF94CF9337FA43",
+          "verifiedSourceSha256": "CBD4FB412C2C05D92A277B887469D42B73313841CA2A8C04B4BF94CF9337FA43",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11639,15 +11684,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders, IReadOnlyList<EmulationMediaSlot> configuredSlots)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "A0CE564FE43CC4B746A6B7E93C43BBA7F0AD6CECC400D022F326F033933044F9",
-          "qualificationSourceSha256": "A0CE564FE43CC4B746A6B7E93C43BBA7F0AD6CECC400D022F326F033933044F9"
+          "qualificationSourceSha256": "50CE332EC2D572AF1DAE2EA0DA26DDE4DD3BBB7127169EF81391CE20BE4B72C0",
+          "verifiedSourceSha256": "50CE332EC2D572AF1DAE2EA0DA26DDE4DD3BBB7127169EF81391CE20BE4B72C0",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11694,15 +11739,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders, IReadOnlyList<EmulationMediaSlot> configuredSlots)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "48B9A85053AE849FC82515160FFB108166C5598E21FBE8B795613A9F8FE95077",
-          "qualificationSourceSha256": "48B9A85053AE849FC82515160FFB108166C5598E21FBE8B795613A9F8FE95077"
+          "qualificationSourceSha256": "4D9BB8948A6613041759888402C671A465799BD918037869C4ADCB6A44A3C88D",
+          "verifiedSourceSha256": "4D9BB8948A6613041759888402C671A465799BD918037869C4ADCB6A44A3C88D",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11735,15 +11780,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders, IReadOnlyList<EmulationMediaSlot> configuredSlots)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "84822A5461A7258716918430DE6B360FE1B7DA6DCC7076D1A6E4D18C3E1C939E",
-          "qualificationSourceSha256": "84822A5461A7258716918430DE6B360FE1B7DA6DCC7076D1A6E4D18C3E1C939E"
+          "qualificationSourceSha256": "961A411E261FD8403D320F94DAADF94C2C3EFA956D841211C5BD0A9A14775FE4",
+          "verifiedSourceSha256": "961A411E261FD8403D320F94DAADF94C2C3EFA956D841211C5BD0A9A14775FE4",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -11776,15 +11821,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders, IReadOnlyList<EmulationMediaSlot> configuredSlots)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "66C18E0D1E77D97E3C86DE68B4FA7A7869CF08622EE13F93548B93F268F9249E",
-          "qualificationSourceSha256": "66C18E0D1E77D97E3C86DE68B4FA7A7869CF08622EE13F93548B93F268F9249E"
+          "qualificationSourceSha256": "AA0ABE78349ED406BA1877E01E0FACAEC7DCD0FC0ADC083F62EC84B7D932421B",
+          "verifiedSourceSha256": "AA0ABE78349ED406BA1877E01E0FACAEC7DCD0FC0ADC083F62EC84B7D932421B",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -11803,15 +11848,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 20,
+          "line": 9,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        FirmwareConfiguration firmware,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        IReadOnlyList<EmulationMediaSlot> configuredSlots\r\n    )",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "7D62AC90B7A38959BA13D70EFF72F7625A4308CDCC35E9446163189CAB6E6C51",
-          "qualificationSourceSha256": "7D62AC90B7A38959BA13D70EFF72F7625A4308CDCC35E9446163189CAB6E6C51"
+          "qualificationSourceSha256": "A5D85B9A7A874D7304D0E67D32E646B93E309119F8410B975362906C565E6C94",
+          "verifiedSourceSha256": "A5D85B9A7A874D7304D0E67D32E646B93E309119F8410B975362906C565E6C94",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Exceptions/EmulationException.cs",
@@ -11830,15 +11875,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 14,
+          "line": 11,
           "parameters": "(int schemaVersion, Guid id, MachineModel model, Emulator core,\n        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,\n        IReadOnlyDictionary<string, string> options, InputConfiguration input, bool audioEnabled,\n        FolderConfiguration folders, IReadOnlyList<EmulationMediaSlot> configuredSlots)",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "463762AF23B03C1880FA84B2630026C7D5B7A9883248F2924B5AD2990B4301B3",
-          "qualificationSourceSha256": "463762AF23B03C1880FA84B2630026C7D5B7A9883248F2924B5AD2990B4301B3"
+          "qualificationSourceSha256": "4759460C5E9021BDF8146D4B10A0A55A64D77762BA7D8DE9589DB1D120D80DB4",
+          "verifiedSourceSha256": "4759460C5E9021BDF8146D4B10A0A55A64D77762BA7D8DE9589DB1D120D80DB4",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulationException.cs",
@@ -11857,15 +11902,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 20,
+          "line": 8,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        IReadOnlyList<FirmwareConfiguration> firmwares,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        FolderConfiguration folders,\r\n        IReadOnlyList<EmulationMediaSlot> configuredSlots\r\n    )",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "85FA1F23B0F53B78FF341B206FF1140F86768D70B19F53D7AEE212ED03F2D482",
-          "qualificationSourceSha256": "85FA1F23B0F53B78FF341B206FF1140F86768D70B19F53D7AEE212ED03F2D482"
+          "qualificationSourceSha256": "9F46C782D7DA2CFB53052A9F21DA6AD17A67D71D57EA2A26C182A6EEE7751D9A",
+          "verifiedSourceSha256": "9F46C782D7DA2CFB53052A9F21DA6AD17A67D71D57EA2A26C182A6EEE7751D9A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulationException.cs",
@@ -11884,15 +11929,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 21,
+          "line": 8,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        IReadOnlyList<FirmwareConfiguration> firmwares,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        FolderConfiguration folders,\r\n        IReadOnlyList<EmulationMediaSlot> configuredSlots,\r\n        string? initialContent = null\r\n    )",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "674279892D0B36507F20EF8623084ED80D04242FBB64605621EA42EE1E11A636",
-          "qualificationSourceSha256": "674279892D0B36507F20EF8623084ED80D04242FBB64605621EA42EE1E11A636"
+          "qualificationSourceSha256": "686C19D500A61041DCA5662BF1CDEBD460280A98D07A3F177B0BE424EF4A1D71",
+          "verifiedSourceSha256": "686C19D500A61041DCA5662BF1CDEBD460280A98D07A3F177B0BE424EF4A1D71",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -11939,15 +11984,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 21,
+          "line": 8,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        IReadOnlyList<FirmwareConfiguration> firmwares,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        FolderConfiguration folders,\r\n        IReadOnlyList<EmulationMediaSlot> configuredSlots,\r\n        string? initialContent = null\r\n    )",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "BFF365C22FEB927573A5DE18929A9F64DA0EAF4012E68EF2A0C2A73334562385",
-          "qualificationSourceSha256": "BFF365C22FEB927573A5DE18929A9F64DA0EAF4012E68EF2A0C2A73334562385"
+          "qualificationSourceSha256": "DF85644C5F3D821ED8882D8968F528648216283E45B76C8B72D835213BB6FABD",
+          "verifiedSourceSha256": "DF85644C5F3D821ED8882D8968F528648216283E45B76C8B72D835213BB6FABD",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -12097,15 +12142,15 @@
           "name": "MachineConfiguration",
           "owner": "MachineConfiguration",
           "kind": "ConstructorDeclaration",
-          "line": 20,
+          "line": 9,
           "parameters": "(\r\n        int schemaVersion,\r\n        Guid id,\r\n        MachineModel model,\r\n        Emulator core,\r\n        FirmwareConfiguration firmware,\r\n        IReadOnlyList<MediaConfiguration> media,\r\n        IReadOnlyDictionary<string, string> options,\r\n        InputConfiguration input,\r\n        bool audioEnabled,\r\n        IReadOnlyList<EmulationMediaSlot> configuredSlots\r\n    )",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "F5E02DC4A354B78A48E6F78973BC3ED278E3052E198183FBBA64E1194071158F",
-          "qualificationSourceSha256": "F5E02DC4A354B78A48E6F78973BC3ED278E3052E198183FBBA64E1194071158F"
+          "qualificationSourceSha256": "4E947EF3AF413570D1B30498233AD1B2F0C90F80A59D6BA2177FFDC081CD8C9B",
+          "verifiedSourceSha256": "4E947EF3AF413570D1B30498233AD1B2F0C90F80A59D6BA2177FFDC081CD8C9B",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification"
         },
         {
           "path": "src/GWGUI.Emulation/Contracts/EmulationControllerControls.cs",
@@ -100564,6 +100609,18 @@
       "tokens": 16,
       "current": [
         {
+          "path": "tests/GWGUI.Tests/Emulation/ConfigurationDocumentContractTests.cs",
+          "name": "ModuleCases",
+          "owner": "ConfigurationDocumentContractTests",
+          "kind": "MethodDeclaration",
+          "line": 15,
+          "parameters": "()",
+          "tokens": 16,
+          "bodyTokens": "=> Families . Select ( family => new object [  ] { family } )",
+          "hash": "08000E4ABA6B12FDA087C25D99672F21CF7BEFB5E543D9EC55E0BABA3C286235",
+          "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8"
+        },
+        {
           "path": "tests/GWGUI.Tests/Emulation/StateFingerprintContractTests.cs",
           "name": "NativeCases",
           "owner": "StateFingerprintContractTests",
@@ -142664,7 +142721,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2845,
+    "occurrences": 2862,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

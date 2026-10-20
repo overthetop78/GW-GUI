@@ -1,20 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Contracts;
-internal sealed record ConfigurationDocument(
-    int SchemaVersion,
-    Guid Id,
-    MachineModel Model,
-    Emulator Core,
-    IReadOnlyList<FirmwareConfiguration> Firmwares,
-    IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options,
-    InputConfiguration Input,
-    FolderConfiguration Folders,
-    bool AudioEnabled,
-    IReadOnlyList<EmulationMediaSlot> ConfiguredSlots,
-    string? InitialContent = null
-);
+
 public sealed record FolderConfiguration(string? Saves = null);
 public sealed record MachineConfiguration : IEmulationConfiguration
 {

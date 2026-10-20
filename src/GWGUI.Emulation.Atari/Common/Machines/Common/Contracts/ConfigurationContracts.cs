@@ -3,17 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 
-internal sealed record ConfigurationDocument(
-    int SchemaVersion,
-    Guid Id,
-    MachineModel Model,
-    Emulator Core,
-    IReadOnlyList<FirmwareConfiguration> Firmwares,
-    IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options,
-    InputConfiguration Input,
-    FolderConfiguration Folders,
-    bool AudioEnabled);
+
 
 public sealed record FolderConfiguration(
     string? Shared = null,

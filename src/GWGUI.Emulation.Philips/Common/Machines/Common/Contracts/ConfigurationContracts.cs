@@ -2,10 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Philips.Common.Machines.Common.Contracts;
 
-internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, MachineModel Model,
-    Emulator Core, IReadOnlyList<FirmwareConfiguration> Firmwares, IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options, InputConfiguration Input, FolderConfiguration Folders,
-    bool AudioEnabled, IReadOnlyList<EmulationMediaSlot> ConfiguredSlots);
+
 
 public sealed record FolderConfiguration(string? Shared = null, string? Cartridges = null, string? Saves = null, string? States = null, string? Captures = null, string? Cassettes = null, string? CompactDiscs = null);
 

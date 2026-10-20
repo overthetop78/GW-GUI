@@ -2,10 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts;
 
-internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, MachineModel Model,
-    Emulator Core, IReadOnlyList<FirmwareConfiguration> Firmwares, IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options, InputConfiguration Input, FolderConfiguration Folders,
-    bool AudioEnabled);
+
 
 public sealed record FolderConfiguration(string? Shared = null, string? Floppies = null, string? States = null, string? Captures = null);
 

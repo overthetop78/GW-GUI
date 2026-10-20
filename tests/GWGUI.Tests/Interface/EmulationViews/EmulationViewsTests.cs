@@ -259,7 +259,8 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
         var captured = controller.Apply(configuration);
         var document = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.ConfigurationStoreFunctions.ToDocument((GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration)captured, Path.GetTempPath());
         var serialized = System.Text.Json.JsonSerializer.Serialize(document);
-        var parsed = System.Text.Json.JsonSerializer.Deserialize<GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.ConfigurationDocument>(serialized)!;
+        using var serializedDocument = System.Text.Json.JsonDocument.Parse(serialized);
+        var parsed = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.ConfigurationStoreFunctions.Deserialize(serializedDocument.RootElement);
         var restored = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.ConfigurationStoreFunctions.FromDocument(parsed, Path.GetTempPath());
         Assert.Equal("Ctrl+Shift+A", module.DescribeInputSettings(restored).Keyboard!.Values[definitions[0].Id]);
     });

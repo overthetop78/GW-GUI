@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7222,
-  "outsideSrcCSharpFiles": 316,
+  "currentCSharpFiles": 7227,
+  "outsideSrcCSharpFiles": 317,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11409,
+  "currentMethodCount": 11415,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -8112,7 +8112,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 49,
+          "line": 37,
           "tokens": 140,
           "hash": "4E4B45F06037E58BED2FBFE912AD62DA719AE9C15D2DFEF78EB501969E1707E9",
           "shape": "A338415D06D41668513B9AFC2DBA54E52AF2C56E69D4014EF6328C835724BB94"
@@ -8120,7 +8120,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 21,
+          "line": 18,
           "tokens": 140,
           "hash": "4E4B45F06037E58BED2FBFE912AD62DA719AE9C15D2DFEF78EB501969E1707E9",
           "shape": "A338415D06D41668513B9AFC2DBA54E52AF2C56E69D4014EF6328C835724BB94"
@@ -8128,7 +8128,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 21,
+          "line": 18,
           "tokens": 140,
           "hash": "4E4B45F06037E58BED2FBFE912AD62DA719AE9C15D2DFEF78EB501969E1707E9",
           "shape": "A338415D06D41668513B9AFC2DBA54E52AF2C56E69D4014EF6328C835724BB94"
@@ -12637,7 +12637,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 21,
+          "line": 18,
           "tokens": 139,
           "hash": "7CE37C75E9A972B1319BC8ADCFF2BAC90989E573CD0EC121F58219D85BD5D136",
           "shape": "E8BD340C8A9ABAABCE2160DAC25ECBA0DA09F6BB4B63FF8EBF7DD7AB4FAEDDC0"
@@ -12645,7 +12645,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 21,
+          "line": 18,
           "tokens": 139,
           "hash": "7CE37C75E9A972B1319BC8ADCFF2BAC90989E573CD0EC121F58219D85BD5D136",
           "shape": "E8BD340C8A9ABAABCE2160DAC25ECBA0DA09F6BB4B63FF8EBF7DD7AB4FAEDDC0"
@@ -14799,12 +14799,12 @@
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
           "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
           "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
           "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
           "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
         },
         {
@@ -14815,12 +14815,12 @@
           "hash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
           "shape": "ED90285EC0716D43DB0C96279C959496C66A74C012472D81D892E629FE6ABA11",
           "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
           "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
           "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
           "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
           "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
         }
       ],
@@ -16785,7 +16785,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -16877,7 +16877,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 52,
+          "line": 39,
           "tokens": 153,
           "hash": "A2D2EFF4E0F8F0DAA52529E47F44BA82BF762FA5D8DF93AF47EF2BD6ACE51516",
           "shape": "DEAD5BCDEFFBD6BB1438C783C671341F454EE29505400DBBA23B623860BF4863"
@@ -16885,7 +16885,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
           "name": "MachineConfiguration",
-          "line": 52,
+          "line": 39,
           "tokens": 153,
           "hash": "A2D2EFF4E0F8F0DAA52529E47F44BA82BF762FA5D8DF93AF47EF2BD6ACE51516",
           "shape": "DEAD5BCDEFFBD6BB1438C783C671341F454EE29505400DBBA23B623860BF4863"
@@ -17617,8 +17617,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2"
+          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Protocol.cs",
@@ -17627,8 +17627,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE"
+          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Protocol.cs",
@@ -17637,8 +17637,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF"
+          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Protocol.cs",
@@ -17647,8 +17647,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A"
+          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
@@ -17657,8 +17657,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "26F5BB075BA892E5BDA3AAC577BD1EA062E45899D11AFE432A1FDC4C66E49100"
+          "qualificationTransportDisposalSourceSha256": "26F5BB075BA892E5BDA3AAC577BD1EA062E45899D11AFE432A1FDC4C66E49100",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Protocol.cs",
@@ -17667,8 +17667,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4"
+          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Protocol.cs",
@@ -17677,8 +17677,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6"
+          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Protocol.cs",
@@ -17687,8 +17687,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A"
+          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
@@ -17697,8 +17697,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "F9A9365D9C22C4682E998205408A5D79AD464096570B4DD63166A7FEE94E0346"
+          "qualificationTransportDisposalSourceSha256": "F9A9365D9C22C4682E998205408A5D79AD464096570B4DD63166A7FEE94E0346",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs",
@@ -17707,8 +17707,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154"
+          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
@@ -17717,8 +17717,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "694AA31B2D7AF71FCB0DC1226E528883F1D1104202BB40E4CF19651A361C4EE1"
+          "qualificationTransportDisposalSourceSha256": "694AA31B2D7AF71FCB0DC1226E528883F1D1104202BB40E4CF19651A361C4EE1",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs",
@@ -17727,8 +17727,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0"
+          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Protocol.cs",
@@ -17737,8 +17737,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B"
+          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Protocol.cs",
@@ -17747,8 +17747,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229"
+          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
@@ -17757,8 +17757,8 @@
           "tokens": 143,
           "hash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
           "shape": "10262D49CDA10EECE33CFE27C5CDEE052E98D6841E60CA47A6327CAF5B27C563",
-          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
-          "qualificationTransportDisposalSourceSha256": "8CFFA1336847561F38D09EB9BF7325EC18EE37BCBAB0CB343990CF30767D5217"
+          "qualificationTransportDisposalSourceSha256": "8CFFA1336847561F38D09EB9BF7325EC18EE37BCBAB0CB343990CF30767D5217",
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending."
         }
       ],
       "predecessors": [],
@@ -24499,7 +24499,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -33937,7 +33937,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 367,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 367
   }
 }

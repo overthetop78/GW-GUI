@@ -3,18 +3,7 @@ using GWGUI.Emulation.Panasonic.Common.Constants;
 using GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts;
-internal sealed record ConfigurationDocument(
-    int SchemaVersion,
-    Guid Id,
-    MachineModel Model,
-    Emulator Core,
-    FirmwareConfiguration Firmware,
-    IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options,
-    InputConfiguration Input,
-    bool AudioEnabled,
-    IReadOnlyList<EmulationMediaSlot> ConfiguredSlots
-);
+
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
     [JsonConstructor]

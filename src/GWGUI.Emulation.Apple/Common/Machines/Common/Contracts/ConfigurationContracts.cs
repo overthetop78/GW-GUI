@@ -5,10 +5,7 @@ using GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
 
-internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, MachineModel Model,
-    Emulator Core, IReadOnlyList<FirmwareConfiguration> Firmwares, IReadOnlyList<MediaConfiguration> Media,
-    IReadOnlyDictionary<string, string> Options, InputConfiguration Input, FolderConfiguration Folders,
-    bool AudioEnabled);
+
 
 public sealed record FolderConfiguration(string? Shared = null, string? Floppies = null, string? HardDisks = null, string? States = null, string? Captures = null);
 

@@ -49,3 +49,5 @@ global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatal
 global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Acorn.Common.Enums.ErrorCategory, GWGUI.Emulation.Acorn.Common.Enums.ErrorCode>;
 
 global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;
+
+global using ConfigurationDocument = global::GWGUI.Emulation.Contracts.EmulationConfigurationDocument<global::GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FirmwareConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.MediaConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.InputConfiguration, global::GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FolderConfiguration>;
