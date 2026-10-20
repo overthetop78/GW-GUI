@@ -362,7 +362,6 @@ internal static partial class AmigaSettingsDescriptionFunctions
     }
 
     private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns, params EmulationSettingsField[] fields) => new(id, tab, title, fields, icon, columns);
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<string> choices) => Select(id, tab, block, label, value, choices.Select(choice => new EmulationSettingsChoice(choice, string.Empty, choice)));
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true, bool refreshSettingsOnChange = false) => new(
         id,
         tab,

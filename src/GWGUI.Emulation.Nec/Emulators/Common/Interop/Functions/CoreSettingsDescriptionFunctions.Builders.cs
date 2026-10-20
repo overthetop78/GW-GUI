@@ -11,8 +11,6 @@ internal static partial class CoreSettingsDescriptionFunctions
     internal static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value, bool refreshSettingsOnChange = false) =>
         FieldBuilders.Toggle(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id), refreshSettingsOnChange);
 
-    private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => FieldBuilders.Number(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id));
-
     internal static EmulationSettingsField Select(string id,
         EmulationMachineTab tab,
         string block,

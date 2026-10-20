@@ -11,8 +11,6 @@ internal static partial class SettingsDescriptionFunctions
     private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value, bool refreshSettingsOnChange = false) =>
         FieldBuilders.Toggle(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id), refreshSettingsOnChange);
 
-    private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => FieldBuilders.Number(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id));
-
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool requiresRestart = false) => FieldBuilders.Select(id, tab, block, label, value, choices.ToArray(), ShortHelp(id), DetailedHelp(id), requiresRestart: requiresRestart);
 
     private static EmulationSettingsField AudioOutput(string? value) => FieldBuilders.AudioOutput(SettingsConstants.AudioOutput, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioDevice, value ?? string.Empty, [new EmulationSettingsChoice(string.Empty, SettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)], ShortHelp(SettingsConstants.AudioOutput), DetailedHelp(SettingsConstants.AudioOutput));

@@ -8,7 +8,6 @@ namespace GWGUI.Emulation.Acorn.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray() };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
@@ -19,8 +18,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
         });
     }
-
-    private ValueTask QueueCommand<T>(Action<T> action, T value, CancellationToken cancellationToken) => QueueCommand(() => action(value), cancellationToken);
 
     private void Run(CancellationToken cancellationToken)
     {

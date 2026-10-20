@@ -20,8 +20,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         });
     }
 
-    private ValueTask QueueCommand<T>(Action<T> action, T value, CancellationToken cancellationToken) => QueueCommand(() => action(value), cancellationToken);
-
     private void Run(CancellationToken cancellationToken)
     {
         var initialized = false;

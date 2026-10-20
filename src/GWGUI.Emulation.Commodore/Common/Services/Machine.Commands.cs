@@ -8,7 +8,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
     private IReadOnlyDictionary<string, string> FirmwareHashes() => (Configuration.FirmwarePaths ?? new Dictionary<string, string>()).ToDictionary(pair => pair.Key, pair => StateStore.HashFile(pair.Value), StringComparer.Ordinal);
-    private static string? HashOptionalPath(string? path) => path is null ? null : StateStore.HashPath(path);
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken, EmulationMessageCategory category = EmulationMessageCategory.Machine, EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
     {

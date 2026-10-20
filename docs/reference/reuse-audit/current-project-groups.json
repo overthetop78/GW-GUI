@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7221,
   "outsideSrcCSharpFiles": 339,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11478,
+  "currentMethodCount": 11476,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -714,7 +714,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 134,
+          "line": 132,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -722,7 +722,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 130,
+          "line": 128,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -730,7 +730,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 130,
+          "line": 128,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -738,7 +738,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 130,
+          "line": 128,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -746,7 +746,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 133,
+          "line": 131,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -754,7 +754,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -762,7 +762,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 130,
+          "line": 128,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -770,7 +770,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 130,
+          "line": 128,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -778,7 +778,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -786,7 +786,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -794,7 +794,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -802,7 +802,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -810,7 +810,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "SuspendForMedia",
-          "line": 132,
+          "line": 130,
           "tokens": 51,
           "hash": "09E84074E9C780B2E1DC1D6350202FDA0132016BA5D85A97C10F30D1FA4E869E",
           "shape": "1D59336108DE2EC8A7BA65A0F0887C6BD30145690785910809EC745D6E75BF0F"
@@ -1625,102 +1625,102 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "0F1DE808FB92BAEEC83A7C59A542AE3BBCDE850F33A0ED5A252B810C0B0EF25D"
+          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "A45C388DB7D8F9E6F751684AE2D9AFC821CA02456857D2FA53F1F30596FF3803"
+          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "B7E470B5FAB31344D29CD95BD69D6045FCEB80E5E8F39A07E8F6F1B2F53DF5E6"
+          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "551D0862E849B33B20D48D6699CC31E6F71505FE09CBAEE14E81D4C40059254F"
+          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 25,
+          "line": 23,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "B5CD65496B5BE11669BCAA1C3AE7474BDE411FD11A3C124885F115E67C593A79"
+          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 25,
+          "line": 23,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "83B253C3BC5566CE7EEE5FE4D17EAD364672A0AD5925093DA3EB40D5BA045E8A"
+          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 25,
+          "line": 23,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "E82D90EEB35E7405B6A8B73151DEAD70B8B0D2A7249615A018C2FE3657E541BA"
+          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 25,
+          "line": 23,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "2116AB2F45B5D373ACF845345266784A585CE87057B03FF66A877063100A364B"
+          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "6379D2510E80823A8FAAD5BCBA9E44E516C63908329AA8E22245C9EB66AF89C0"
+          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 294,
           "hash": "12ABEE942FAEFC340F5C0C739E710D805296A18362F992FCBE8E213DB6FBF4CC",
           "shape": "FEA8CB4483143F1301233BB90BB77FEC15CA8C17B58A2B0B04CA82F5BADC0C48",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "1B92027C6EFAB82310EF370A5FAE7863610CFF2EFD63AAD56F1227C43BE6018B"
+          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
         }
       ],
       "predecessors": [],
@@ -5547,7 +5547,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "QueueCommand",
-          "line": 13,
+          "line": 12,
           "tokens": 81,
           "hash": "34B10B184759F56AF6CB7DD2508779A83309898F2DF01CA412F6F3CC0DCAB0C5",
           "shape": "83BD7F2D15B8380DEE04FA70ADA2530FB2C755F45A6C6CA26B6CD7E45FFD1A55"
@@ -7032,22 +7032,22 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 25,
+          "line": 22,
           "tokens": 288,
           "hash": "3D3D6B679B1E9B761AFDE1EB6B4E878C0223863700A16953F486064749645AD5",
           "shape": "6B9B653FB5FB805CC076D4689BBC0B4A6BD7D024E30D40A5335EC43078242FB3",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "2028A9F6EA2209F3D1389FEA7BDFD7DB8E516F7897CF425DD83D2A976A01C628"
+          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 26,
+          "line": 24,
           "tokens": 288,
           "hash": "3D3D6B679B1E9B761AFDE1EB6B4E878C0223863700A16953F486064749645AD5",
           "shape": "6B9B653FB5FB805CC076D4689BBC0B4A6BD7D024E30D40A5335EC43078242FB3",
           "qualification": "entire-typed-native-machine-run-reuses-original-sdk-loop-publication-and-release-policies",
-          "qualificationSourceSha256": "52A4503ABBEA191FD7FA4E5EE057EAA77FABB15F4431D1B07FE7181B257AD487"
+          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
         }
       ],
       "predecessors": [],
@@ -7251,7 +7251,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "ReplaceAudioOutput",
-          "line": 125,
+          "line": 124,
           "tokens": 63,
           "hash": "3E1A2526FA1DDE47B404B34DA0C956D521D28451AB26809C46DF0F238410483C",
           "shape": "D90BB174DFB85EBE347BBACE2C7009D5768F44BD9C0317FFBE4573568487841C"
@@ -8668,7 +8668,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 125,
+          "line": 123,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8676,7 +8676,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 121,
+          "line": 119,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8684,7 +8684,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 121,
+          "line": 119,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8692,7 +8692,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 121,
+          "line": 119,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8700,7 +8700,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 124,
+          "line": 122,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8708,7 +8708,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 121,
+          "line": 119,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -8716,7 +8716,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "ResetCore",
-          "line": 121,
+          "line": 119,
           "tokens": 32,
           "hash": "4CCA6D6E0BE9BA2CBB6ACCD588FD7E1FA112D528DB278D2611B2192CA2742B65",
           "shape": "A02BD46B5252328039C0B4470E18432160C5FC16F491239F133F33FE5B8FC4EA"
@@ -10094,7 +10094,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10102,7 +10102,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 87,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10110,7 +10110,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 94,
+          "line": 92,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10118,7 +10118,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 88,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10126,7 +10126,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 88,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10134,7 +10134,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 88,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10142,7 +10142,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 92,
+          "line": 90,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10150,7 +10150,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10158,7 +10158,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 88,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10166,7 +10166,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 90,
+          "line": 88,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10174,7 +10174,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10182,7 +10182,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10190,7 +10190,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10198,7 +10198,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10206,7 +10206,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "ReportFailure",
-          "line": 91,
+          "line": 89,
           "tokens": 79,
           "hash": "5BD5A85C1E5A85E06AB64CF0FF4AC46AB1E38FC96415406EC7A3CFD901B8BE59",
           "shape": "434F1BFB690E30118337078140F4CCB74786C3678AA951F963F52E9E4FBCAB42"
@@ -10300,7 +10300,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 148,
+          "line": 146,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10308,7 +10308,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 144,
+          "line": 142,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10316,7 +10316,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 144,
+          "line": 142,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10324,7 +10324,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 144,
+          "line": 142,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10332,7 +10332,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 147,
+          "line": 145,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10340,7 +10340,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10348,7 +10348,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 144,
+          "line": 142,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10356,7 +10356,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 144,
+          "line": 142,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10364,7 +10364,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10372,7 +10372,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10380,7 +10380,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10388,7 +10388,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -10396,7 +10396,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "RestartCore",
-          "line": 146,
+          "line": 144,
           "tokens": 174,
           "hash": "5D021C37FFB43D804BAA0362D3DC362BF0FB75CA46969B8D1817F7CD21BBF3DE",
           "shape": "F71C42800AA7F21B4922D0BED9FC9F8775D087558B7F06D0A941FB6F046AF6E5"
@@ -11956,7 +11956,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 152,
+          "line": 150,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -11964,7 +11964,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 128,
+          "line": 125,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -11972,7 +11972,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 181,
+          "line": 179,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -11980,7 +11980,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 177,
+          "line": 175,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -11988,7 +11988,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 177,
+          "line": 175,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -11996,7 +11996,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 177,
+          "line": 175,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12004,7 +12004,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 180,
+          "line": 178,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12012,7 +12012,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12020,7 +12020,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 177,
+          "line": 175,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12028,7 +12028,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 177,
+          "line": 175,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12036,7 +12036,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12044,7 +12044,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12052,7 +12052,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12060,7 +12060,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -12068,7 +12068,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "DisposeAsync",
-          "line": 179,
+          "line": 177,
           "tokens": 81,
           "hash": "6B6EEA04F03306D87D049F8DEE32532700B3D260DA2EAD19A9DFF45857066321",
           "shape": "5EC5C716A9D70F6369133687816ECD651FDC2BCBB50497848A93666BB890F300"
@@ -13039,57 +13039,57 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+          "qualificationSourceSha256": "BBBCF4D93143D4E7547A1A61EA0AE4EFEE352D8D43A3F5D3FE0D7EFFFA3CA68E"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+          "qualificationSourceSha256": "1DFA329845702825BAFCD8B73F1A42EA555BEEE004CB00D7C7837210E65B437A"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+          "qualificationSourceSha256": "DCC0CDA0ACC35A0EB5DB26B0C77953B0002E00DA239802BD037784C28CB4F56B"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+          "qualificationSourceSha256": "C43355582B56A27EDD292A27A26FBC82CF5FF27F7434EB632B9DC31D46C88E46"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 21,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
+          "qualificationSourceSha256": "B21267240CE1BB786279B448FC1BCB7B9983EECFA19572219FF5CFFB402F76AE"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -13420,162 +13420,162 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
-          "line": 77,
+          "line": 75,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
+          "qualificationSourceSha256": "2D39DCA3B4A3D4D418E029873A4F3445468CE17A74554EE1A1F755902CB2FB5D"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 105,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 107,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 107,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 105,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 107,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 107,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 105,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
           "line": 108,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "2028A9F6EA2209F3D1389FEA7BDFD7DB8E516F7897CF425DD83D2A976A01C628"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 109,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "52A4503ABBEA191FD7FA4E5EE057EAA77FABB15F4431D1B07FE7181B257AD487"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 109,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "A45C388DB7D8F9E6F751684AE2D9AFC821CA02456857D2FA53F1F30596FF3803"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 107,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "83B253C3BC5566CE7EEE5FE4D17EAD364672A0AD5925093DA3EB40D5BA045E8A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 109,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "551D0862E849B33B20D48D6699CC31E6F71505FE09CBAEE14E81D4C40059254F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 109,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "0F1DE808FB92BAEEC83A7C59A542AE3BBCDE850F33A0ED5A252B810C0B0EF25D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 107,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "E82D90EEB35E7405B6A8B73151DEAD70B8B0D2A7249615A018C2FE3657E541BA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 110,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "9BAE3FAE5324FED89B3AE3A9E1372EF7BF6D23458D90DC99F478CBB27AFA38CC"
+          "qualificationSourceSha256": "C79B024D2237F9F135A1B6CA4A76D91C773D43BA377F1E3733436CF01C613E82"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
-          "line": 109,
+          "line": 107,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "1B92027C6EFAB82310EF370A5FAE7863610CFF2EFD63AAD56F1227C43BE6018B"
+          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
-          "line": 107,
+          "line": 105,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "6007490FC633E1B770A246D17EBC1BDD4E7BA1A11956E541A31FD08C55E2A50D"
+          "qualificationSourceSha256": "87EACB4A945EB50DB9CEF4C071C4A9DA95DDEB9029D712F4DA2F59AD424DAA81"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
-          "line": 109,
+          "line": 107,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "6379D2510E80823A8FAAD5BCBA9E44E516C63908329AA8E22245C9EB66AF89C0"
+          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
+          "line": 107,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
+          "line": 105,
+          "tokens": 87,
+          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
+          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
+          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
+          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
+          "name": "PublishOutputs",
           "line": 109,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "B7E470B5FAB31344D29CD95BD69D6045FCEB80E5E8F39A07E8F6F1B2F53DF5E6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 107,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "B5CD65496B5BE11669BCAA1C3AE7474BDE411FD11A3C124885F115E67C593A79"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
-          "name": "PublishOutputs",
-          "line": 111,
-          "tokens": 87,
-          "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
-          "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
-          "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "CBF6451952969E2189A7C7AFAD5191DE0C5F3492B852216B33330D25B8679C44"
+          "qualificationSourceSha256": "C723EBA60DE79A1AF9C9225778803A330FFAC577AD40D5557C1A25B2364DA3AD"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
           "name": "PublishOutputs",
-          "line": 107,
+          "line": 105,
           "tokens": 87,
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "2116AB2F45B5D373ACF845345266784A585CE87057B03FF66A877063100A364B"
+          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
         }
       ],
       "predecessors": [],
@@ -16285,7 +16285,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
           "name": "QueueCommand",
-          "line": 13,
+          "line": 12,
           "tokens": 53,
           "hash": "9880AE890FE9264F68594561D8FE56929280C5BECCEB2321030DB099CC4F8AB8",
           "shape": "D9B03CE13AAF0A91BFFDC2BE9AB7E3669DE6F5DA704BC9127F02FABE83E7D430"
@@ -17410,7 +17410,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18686,7 +18686,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19913,67 +19913,67 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 18,
+          "line": 16,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+          "qualificationSourceSha256": "BBBCF4D93143D4E7547A1A61EA0AE4EFEE352D8D43A3F5D3FE0D7EFFFA3CA68E"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 18,
+          "line": 16,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+          "qualificationSourceSha256": "1DFA329845702825BAFCD8B73F1A42EA555BEEE004CB00D7C7837210E65B437A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 33,
+          "line": 31,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "0BEFF7748678135067291A771858B8CEF22CA86F0DE19C0429E13B6E7A6BC458"
+          "qualificationSourceSha256": "00F86A8B4EA81BE1855F15D6B01B9F3300FBF79DD1FA9692BB5600B43F3D5E0D"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 18,
+          "line": 16,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+          "qualificationSourceSha256": "DCC0CDA0ACC35A0EB5DB26B0C77953B0002E00DA239802BD037784C28CB4F56B"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 18,
+          "line": 16,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+          "qualificationSourceSha256": "C43355582B56A27EDD292A27A26FBC82CF5FF27F7434EB632B9DC31D46C88E46"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "AudioOutput",
-          "line": 23,
+          "line": 16,
           "tokens": 51,
           "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
           "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
+          "qualificationSourceSha256": "B21267240CE1BB786279B448FC1BCB7B9983EECFA19572219FF5CFFB402F76AE"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -24026,7 +24026,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "FlushAudio",
-          "line": 115,
+          "line": 114,
           "tokens": 32,
           "hash": "EB1E6CA33AF7FA82E807AD079534EB99A54A53B60444EF4A9C58C1CE548C763F",
           "shape": "DE75139F8FBE0FBF7F40868831164446A024FB6AA2C7F4D634FEFDD38A01258A"
@@ -24395,7 +24395,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -30922,65 +30922,65 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+          "qualificationSourceSha256": "BBBCF4D93143D4E7547A1A61EA0AE4EFEE352D8D43A3F5D3FE0D7EFFFA3CA68E"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+          "qualificationSourceSha256": "1DFA329845702825BAFCD8B73F1A42EA555BEEE004CB00D7C7837210E65B437A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "66DE8606F1F61365AEC9E1A3EA092EF884B83DFB556A0018A2319DA0DBFB25C8",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "0BEFF7748678135067291A771858B8CEF22CA86F0DE19C0429E13B6E7A6BC458"
+          "qualificationSourceSha256": "00F86A8B4EA81BE1855F15D6B01B9F3300FBF79DD1FA9692BB5600B43F3D5E0D"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+          "qualificationSourceSha256": "DCC0CDA0ACC35A0EB5DB26B0C77953B0002E00DA239802BD037784C28CB4F56B"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 16,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+          "qualificationSourceSha256": "C43355582B56A27EDD292A27A26FBC82CF5FF27F7434EB632B9DC31D46C88E46"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
           "name": "Select",
-          "line": 21,
+          "line": 14,
           "tokens": 35,
           "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
           "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
           "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
-          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
+          "qualificationSourceSha256": "B21267240CE1BB786279B448FC1BCB7B9983EECFA19572219FF5CFFB402F76AE"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE",
@@ -32404,12 +32404,12 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "Run",
-          "line": 30,
+          "line": 29,
           "tokens": 512,
           "hash": "2C816274B6E1522C93ECC449D56A531854622D72BB19C9D3FBA1B338358AD559",
           "shape": "F2E35FD35A02E0A36312EA5F14F29D4EE325942EABDFCDAC1C1879F7F8B8BA07",
           "qualification": "entire-typed-machine-run-reuses-original-sdk-control-publication-and-audio-owners",
-          "qualificationSourceSha256": "EB916A4D8DA0BDFB91B34067C4774BC03D89849CB291F8932DAF9907C5628DB9"
+          "qualificationSourceSha256": "F02AB84ACCCA50730DE2267B7F55ADDEF74AABDED0FFD1E25E7EF3E32D4D0FD2"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33505,7 +33505,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 613,
+    "occurrences": 576,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
