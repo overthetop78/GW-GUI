@@ -169,7 +169,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "3F3E334E3DB10CFA798719DE82B85F5DB6C8D75F9986FDA8B8D28D962FFC52BF"
+          "qualificationCoreLifetimeSourceSha256": "3F3E334E3DB10CFA798719DE82B85F5DB6C8D75F9986FDA8B8D28D962FFC52BF",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "3F3E334E3DB10CFA798719DE82B85F5DB6C8D75F9986FDA8B8D28D962FFC52BF"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
@@ -179,7 +181,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "3EF5F61266F23C9E0769F8EB9AFA6CEDE9EB571864DE184D2B06F4FF2CC13014"
+          "qualificationCoreLifetimeSourceSha256": "3EF5F61266F23C9E0769F8EB9AFA6CEDE9EB571864DE184D2B06F4FF2CC13014",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "3EF5F61266F23C9E0769F8EB9AFA6CEDE9EB571864DE184D2B06F4FF2CC13014"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
@@ -189,7 +193,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "1968B7C31E30F2B2EAB58066261B69486061CF77BCED141046BEA96130B866FA"
+          "qualificationCoreLifetimeSourceSha256": "1968B7C31E30F2B2EAB58066261B69486061CF77BCED141046BEA96130B866FA",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "1968B7C31E30F2B2EAB58066261B69486061CF77BCED141046BEA96130B866FA"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
@@ -199,7 +205,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "55A4FF6DFED6A7B741AA31814CB8A7696663F127FC4AD78B91EB69EAC5507A99"
+          "qualificationCoreLifetimeSourceSha256": "55A4FF6DFED6A7B741AA31814CB8A7696663F127FC4AD78B91EB69EAC5507A99",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "55A4FF6DFED6A7B741AA31814CB8A7696663F127FC4AD78B91EB69EAC5507A99"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
@@ -209,7 +217,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "8AAE1FED247757E404734CE44A58DA6581D91D794EDFCD026AC71C4C6E3F9B59"
+          "qualificationCoreLifetimeSourceSha256": "8AAE1FED247757E404734CE44A58DA6581D91D794EDFCD026AC71C4C6E3F9B59",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "8AAE1FED247757E404734CE44A58DA6581D91D794EDFCD026AC71C4C6E3F9B59"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
@@ -219,7 +229,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "C02011A0CE5C1E4F3446A77C913155D09B1033C17FD331CE62460B8447048BBF"
+          "qualificationCoreLifetimeSourceSha256": "C02011A0CE5C1E4F3446A77C913155D09B1033C17FD331CE62460B8447048BBF",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "C02011A0CE5C1E4F3446A77C913155D09B1033C17FD331CE62460B8447048BBF"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
@@ -229,7 +241,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "8DE9EA73E8AF1610C0C605C87AEC8B74221F0D7D4CCE4C8CBCBDACEAE61D187E"
+          "qualificationCoreLifetimeSourceSha256": "8DE9EA73E8AF1610C0C605C87AEC8B74221F0D7D4CCE4C8CBCBDACEAE61D187E",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "8DE9EA73E8AF1610C0C605C87AEC8B74221F0D7D4CCE4C8CBCBDACEAE61D187E"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
@@ -239,7 +253,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "64918F2ABD554FFD765F47DE7D96DB562205A0B5202BB30B7D18539EC5CF4D6F"
+          "qualificationCoreLifetimeSourceSha256": "64918F2ABD554FFD765F47DE7D96DB562205A0B5202BB30B7D18539EC5CF4D6F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "64918F2ABD554FFD765F47DE7D96DB562205A0B5202BB30B7D18539EC5CF4D6F"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
@@ -249,7 +265,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "28A09F5A145C0DC9B9CC5C87580C9A76B57B3099A824F673C954382049F019C1"
+          "qualificationCoreLifetimeSourceSha256": "28A09F5A145C0DC9B9CC5C87580C9A76B57B3099A824F673C954382049F019C1",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "28A09F5A145C0DC9B9CC5C87580C9A76B57B3099A824F673C954382049F019C1"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
@@ -259,7 +277,9 @@
           "hash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
           "shape": "93BEC24F2918CBB4C7F1A3FFCCBCE87BC438CA0E37F984E53CA9186283D04D93",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "1F425F8B554CE5DD5B605F9372EF6240C80318FD92D0680799862804CF680141"
+          "qualificationCoreLifetimeSourceSha256": "1F425F8B554CE5DD5B605F9372EF6240C80318FD92D0680799862804CF680141",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "1F425F8B554CE5DD5B605F9372EF6240C80318FD92D0680799862804CF680141"
         }
       ],
       "predecessors": [],
@@ -782,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2770,7 +2790,9 @@
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
+          "qualificationCoreLifetimeSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
@@ -2780,7 +2802,9 @@
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
+          "qualificationCoreLifetimeSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
@@ -2790,7 +2814,9 @@
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
+          "qualificationCoreLifetimeSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
@@ -2800,7 +2826,9 @@
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
+          "qualificationCoreLifetimeSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
@@ -2810,7 +2838,9 @@
           "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
           "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
           "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
+          "qualificationCoreLifetimeSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
         }
       ],
       "predecessors": [],
@@ -10598,12 +10628,12 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 99,
+          "line": 74,
           "tokens": 89,
           "hash": "63E1CBECF27958CF08AA71E498671622FE0F2359A3015E71E35E923BD5FB7B4A",
           "shape": "729124F2265438C2E518B5BC427C0DBC39502A195C025E6AA072B3A6F470B76B",
           "qualification": "native-frame-response-reuses-original-sdk-sequence-with-typed-audio-feedback",
-          "qualificationSourceSha256": "F50503429294C654204625333BD76C0C76465DF840409FF9E9AA25DC636FCF6F"
+          "qualificationSourceSha256": "F92B35C533D1CEA7CA7AAA19F9B96158121133599710E45A9F7DC6577B9DCA12"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
@@ -13246,12 +13276,12 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
           "name": "Initialize",
-          "line": 85,
+          "line": 60,
           "tokens": 132,
           "hash": "7E18A02A824FC17F19C0C89C768BD04303835076900B24B4265BBA240BB3814E",
           "shape": "58E7FD13538F2A8AE4C4086E4E5203624BA5374EDD7F42D645329456094EA07D",
           "qualification": "Verified complete typed InitializeCore adapter; typedHostInitializationReuse: expansion reproduces original Atari initialization, codecs, response order and diagnostic counter; session retains ownership of the core reference.",
-          "qualificationSourceSha256": "F50503429294C654204625333BD76C0C76465DF840409FF9E9AA25DC636FCF6F"
+          "qualificationSourceSha256": "F92B35C533D1CEA7CA7AAA19F9B96158121133599710E45A9F7DC6577B9DCA12"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
@@ -16969,7 +16999,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18562,7 +18592,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24426,7 +24456,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -31268,6 +31298,73 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+      "tokens": 305,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "E84914CD617248DAC5E9784F95B65215CEC4AE753111E8D637C01C7802AFA866",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "F92B35C533D1CEA7CA7AAA19F9B96158121133599710E45A9F7DC6577B9DCA12"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+          "name": "Run",
+          "line": 12,
+          "tokens": 305,
+          "hash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+          "shape": "B8D05CE2C62A694DEB0E9E6B05A8E2DEEC04A609A2CE32C469444EE63D39410F",
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "B8E21AAF3AE7505D5FB52F7E439EDB2110C976940BF7D549160EE9B6B2D7260F",
       "tokens": 40,
       "current": [
@@ -33856,7 +33953,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 426,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 453
   }
 }
