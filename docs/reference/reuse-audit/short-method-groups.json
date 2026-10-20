@@ -1,29 +1,14 @@
 {
-  "snapshot": "7ae85ab214bc354dcf388a646a0b354fb30db0d7",
+  "snapshot": "ee31ac04e67c90c8e6a51330ceef5840b39b361a",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs"
+    "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Atari/Common/Services/Machine.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7229,
-  "methodBodyCount": 9585,
+  "fileCount": 7230,
+  "methodBodyCount": 9586,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -7413,14 +7398,14 @@
           "name": "SetAudioVolume",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 100,
+          "line": 138,
           "parameters": "(float volume)",
           "tokens": 7,
           "bodyTokens": "=> _audio . SetVolume ( volume )",
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -7605,7 +7590,7 @@
           "qualificationSourceSha256": "57D3B0CE527BAD8A46902AC793E06954F7D7B9B0AFD04814E043B85467C2B7D6"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "1CBAB4FDB49E4FB02E304B31EE54F0D688C3BA8C2D2F60E5B2A88E6330A38B6A",
@@ -7941,7 +7926,7 @@
           "name": "SelectDiskAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 77,
+          "line": 78,
           "parameters": "(EmulationMediaSlot slot, int index, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> SelectDiskAsync ( index , cancellationToken )",
@@ -9469,7 +9454,7 @@
           "name": "SetMuted",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 87,
+          "line": 88,
           "parameters": "(bool muted)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioMuted ( muted )",
@@ -34153,14 +34138,14 @@
           "name": "SetAudioMuted",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 95,
+          "line": 133,
           "parameters": "(bool muted)",
           "tokens": 9,
           "bodyTokens": "{ _audio . SetMuted ( muted ) ; }",
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -34345,7 +34330,7 @@
           "qualificationSourceSha256": "57D3B0CE527BAD8A46902AC793E06954F7D7B9B0AFD04814E043B85467C2B7D6"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "6527DFBE89BA2C0223E94E975205C1F766C001A0E8574CEAC6A2338035621556",
@@ -34780,7 +34765,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D2A2AFC596A35B25403278CEB7F2B6713384DA146D96053A5E61D2F0E61656D5"
+          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -59675,7 +59660,7 @@
           "name": "LoadAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 115,
+          "line": 116,
           "parameters": "(string path, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> LoadStateAsync ( path , cancellationToken )",
@@ -62085,7 +62070,7 @@
           "name": "SetOutputFactory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 89,
+          "line": 90,
           "parameters": "(Func<IAudioOutput?>? factory)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioOutputFactory ( factory )",
@@ -62989,7 +62974,7 @@
           "name": "SetOptionAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 141,
+          "line": 179,
           "parameters": "(string key, string value, CancellationToken cancellationToken = default)",
           "tokens": 17,
           "bodyTokens": "=> QueueCommand ( ( ) => _core . SetOption ( key , value ) , cancellationToken )",
@@ -64009,7 +63994,7 @@
           "name": "SelectDiskAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 119,
+          "line": 157,
           "parameters": "(int index, CancellationToken cancellationToken = default)",
           "tokens": 15,
           "bodyTokens": "=> QueueCommand ( ( ) => _core . SelectDisk ( index ) , cancellationToken )",
@@ -66298,7 +66283,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D2A2AFC596A35B25403278CEB7F2B6713384DA146D96053A5E61D2F0E61656D5"
+          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -67179,14 +67164,14 @@
           "name": "SetAudioOutputFactory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 102,
+          "line": 140,
           "parameters": "(Func<IAudioOutput?>? factory)",
           "tokens": 7,
           "bodyTokens": "=> _audio . ReplaceFactory ( factory )",
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -67371,7 +67356,7 @@
           "qualificationSourceSha256": "57D3B0CE527BAD8A46902AC793E06954F7D7B9B0AFD04814E043B85467C2B7D6"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "DBE249881C48637F1D4363919DAC27E050BC668741711AAF3A5743356D2AB75F",
@@ -69027,7 +69012,7 @@
           "name": "SwitchControllerPointerAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 93,
+          "line": 131,
           "parameters": "(CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> ValueTask . FromResult ( false )",
@@ -71977,7 +71962,7 @@
           "name": "SaveAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 114,
+          "line": 115,
           "parameters": "(string path, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> SaveStateAsync ( path , cancellationToken )",
@@ -72971,7 +72956,7 @@
           "name": "SetVolume",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 88,
+          "line": 89,
           "parameters": "(float volume)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioVolume ( volume )",
@@ -75717,7 +75702,7 @@
           "name": "EjectAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 76,
+          "line": 77,
           "parameters": "(EmulationMediaSlot slot, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> EjectMediaAsync ( slot , cancellationToken )",
@@ -81588,7 +81573,7 @@
           "name": "InsertAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 76,
           "parameters": "(EmulationMedia media, CancellationToken cancellationToken)",
           "tokens": 14,
           "bodyTokens": "=> InsertMediaAsync ( EmulationMediaConversionFunctions . ToAtari ( media , _mountedMedia ) , cancellationToken )",
@@ -87774,7 +87759,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D2A2AFC596A35B25403278CEB7F2B6713384DA146D96053A5E61D2F0E61656D5"
+          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/AudioFunctions.cs",
@@ -92706,7 +92691,7 @@
           "name": "SetControllerPortDevice",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 116,
+          "line": 117,
           "parameters": "(int port, EmulationPeripheralCategory peripheral)",
           "tokens": 12,
           "bodyTokens": "=> SetControllerPortDevice ( port , EmulationPeripheralConversionFunctions . ToAtari ( peripheral ) )",
@@ -96531,7 +96516,7 @@
           "name": "SetMuted",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 87,
+          "line": 88,
           "parameters": "(bool muted)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioMuted ( muted )",
@@ -96543,7 +96528,7 @@
           "name": "SetVolume",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 88,
+          "line": 89,
           "parameters": "(float volume)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioVolume ( volume )",
@@ -96555,7 +96540,7 @@
           "name": "SetOutputFactory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 89,
+          "line": 90,
           "parameters": "(Func<IAudioOutput?>? factory)",
           "tokens": 5,
           "bodyTokens": "=> SetAudioOutputFactory ( factory )",
@@ -105266,28 +105251,28 @@
           "name": "SetAudioVolume",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 100,
+          "line": 138,
           "parameters": "(float volume)",
           "tokens": 7,
           "bodyTokens": "=> _audio . SetVolume ( volume )",
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "SetAudioOutputFactory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 102,
+          "line": 140,
           "parameters": "(Func<IAudioOutput?>? factory)",
           "tokens": 7,
           "bodyTokens": "=> _audio . ReplaceFactory ( factory )",
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
@@ -123384,7 +123369,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "D2A2AFC596A35B25403278CEB7F2B6713384DA146D96053A5E61D2F0E61656D5"
+          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -124675,7 +124660,7 @@
           "name": "SetInput",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 89,
+          "line": 127,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 20,
           "bodyTokens": "=> _cassetteInput . SetPhysicalInput ( InputSnapshotFunctions . Apply ( snapshot , Configuration . Input , Configuration . Model ) )",
@@ -128805,7 +128790,7 @@
           "name": "EjectAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 76,
+          "line": 77,
           "parameters": "(EmulationMediaSlot slot, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> EjectMediaAsync ( slot , cancellationToken )",
@@ -128817,7 +128802,7 @@
           "name": "SelectDiskAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 77,
+          "line": 78,
           "parameters": "(EmulationMediaSlot slot, int index, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> SelectDiskAsync ( index , cancellationToken )",
@@ -128829,7 +128814,7 @@
           "name": "SaveAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 114,
+          "line": 115,
           "parameters": "(string path, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> SaveStateAsync ( path , cancellationToken )",
@@ -128841,7 +128826,7 @@
           "name": "LoadAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 115,
+          "line": 116,
           "parameters": "(string path, CancellationToken cancellationToken)",
           "tokens": 7,
           "bodyTokens": "=> LoadStateAsync ( path , cancellationToken )",
@@ -136212,7 +136197,7 @@
           "name": "SoftResetAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 94,
           "parameters": "(CancellationToken cancellationToken = default)",
           "tokens": 15,
           "bodyTokens": "=> QueueCommand ( ( ) => ResetCore ( MachineValues . Value0 ) , cancellationToken )",
@@ -136224,7 +136209,7 @@
           "name": "HardResetAsync",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 69,
+          "line": 96,
           "parameters": "(CancellationToken cancellationToken = default)",
           "tokens": 15,
           "bodyTokens": "=> QueueCommand ( ( ) => ResetCore ( MachineValues . Value1 ) , cancellationToken )",
@@ -137789,14 +137774,14 @@
           "name": "SetAudioMuted",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 95,
+          "line": 133,
           "parameters": "(bool muted)",
           "tokens": 9,
           "bodyTokens": "{ _audio . SetMuted ( muted ) ; }",
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F37829994561E427A79E4653ED7E7D59FA5B5B7C830874D59834456996C1D67D"
+          "qualificationSourceSha256": "24E6CF18D5359B28A466C7467EBCC582CBB9803972399FB9454EA8762C7DE2CD"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -143494,7 +143479,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3026,
+    "occurrences": 3078,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

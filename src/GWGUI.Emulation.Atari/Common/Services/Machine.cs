@@ -18,6 +18,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly CassetteInputController _cassetteInput;
     private readonly List<MediaConfiguration> _mountedMedia;
     private CancellationTokenSource? _stopSource;
+    private Thread? _thread;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
     private bool _pauseRequested;

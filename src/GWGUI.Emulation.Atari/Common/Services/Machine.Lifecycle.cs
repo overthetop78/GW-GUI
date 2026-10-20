@@ -18,23 +18,50 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (State != EmulationMachineState.Created)
                 throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
             State = EmulationMachineState.Starting;
-            _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var thread = new Thread(() =>
+            TaskCompletionSource? completed = null;
+            var threadStarted = false;
+            try
             {
-                try { Run(_stopSource.Token); }
-                finally { completed.TrySetResult(); }
-            })
+                _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+                var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+                completed = completion;
+                _thread = new Thread(() =>
+                {
+                    try { Run(_stopSource.Token); }
+                    finally { completion.TrySetResult(); }
+                })
+                {
+                    IsBackground = true,
+                    Name = MachineFunctions.ThreadName(Id, Configuration.Core)
+                };
+                _runLoop = completion.Task;
+                _thread.Start();
+                threadStarted = true;
+                started = _started.Task;
+            }
+            finally
             {
-                IsBackground = true,
-                Name = MachineFunctions.ThreadName(Id, Configuration.Core)
-            };
-            _runLoop = completed.Task;
-            thread.Start();
-            started = _started.Task;
+                if (!threadStarted)
+                {
+                    _thread = null;
+                    completed?.TrySetResult();
+                    try { _stopSource?.Dispose(); }
+                    finally
+                    {
+                        _stopSource = null;
+                        State = EmulationMachineState.Faulted;
+                    }
+                }
+            }
         }
-        await started.WaitAsync(cancellationToken).ConfigureAwait(false);
+        var completedStart = false;
+        try
+        {
+            await started.WaitAsync(cancellationToken).ConfigureAwait(false);
+            completedStart = true;
+        }
+        finally { if (!completedStart) await StopAsync().ConfigureAwait(false); }
     }
 
     public ValueTask PauseAsync(CancellationToken cancellationToken = default)
@@ -70,20 +97,31 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
-        Task? loop;
-        lock (_gate)
+        Task? loop = null;
+        try
         {
-            if (State is EmulationMachineState.Created or EmulationMachineState.Stopped) return;
-            loop = _runLoop;
-            if (State != EmulationMachineState.Faulted)
+            lock (_gate)
             {
-                State = EmulationMachineState.Stopping;
-                _stopSource?.Cancel();
-                _pauseRequested = false;
-                Monitor.PulseAll(_gate);
+                if (State == EmulationMachineState.Created) return;
+                loop = _runLoop;
+                if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
+                {
+                    State = EmulationMachineState.Stopping;
+                    try { _stopSource?.Cancel(); }
+                    finally
+                    {
+                        _pauseRequested = false;
+                        Monitor.PulseAll(_gate);
+                    }
+                }
             }
+            if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
         }
-        if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
+        finally
+        {
+            try { if (loop is not null) await loop.ConfigureAwait(false); }
+            finally { _thread?.Join(); }
+        }
     }
 
     public void SetInput(EmulationInputSnapshot snapshot) => _cassetteInput.SetPhysicalInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input, Configuration.Model));

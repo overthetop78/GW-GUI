@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7229,
-  "outsideSrcCSharpFiles": 327,
+  "currentCSharpFiles": 7230,
+  "outsideSrcCSharpFiles": 328,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11454,
+  "currentMethodCount": 11457,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -163,7 +163,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "LoadStateAsync",
-          "line": 131,
+          "line": 169,
           "tokens": 66,
           "hash": "0369E3104A4EC2D623FB8D7851D67203C194720259EB4C8AAA3EB0247F760B24",
           "shape": "D454015B0F59C9C407AE1DC1C6697AFCDB61800C08D76549DEC53D3458498598"
@@ -802,7 +802,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -6419,7 +6419,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "ResumeAsync",
-          "line": 53,
+          "line": 80,
           "tokens": 55,
           "hash": "3BE66ED6C9EFE08A77A2D8676DAC3F5C6F4CF005067BEE88D385B7DD8B42E3C8",
           "shape": "7E2B6F2014439334E965B9CE511C4969DB60B788C07442F1124E2EC858E296F1"
@@ -6747,7 +6747,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "SaveStateAsync",
-          "line": 121,
+          "line": 159,
           "tokens": 68,
           "hash": "3D15FC007ECDDB2C3E0BEA696142CA5CEC556BDD710644E4E88DC3E5B1B19D90",
           "shape": "75580A8D298757B88258373AB082688C06B0990E5BC92097A33428AEC4DEE953"
@@ -7973,7 +7973,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "EjectMediaAsync",
-          "line": 112,
+          "line": 150,
           "tokens": 31,
           "hash": "469E0F2D56B4EAF3E310DB1079D2DDFBE5E9974CFA89045D92739B57E0CB5B1A",
           "shape": "4967250E1B8FB55D2F0312A40C9DAE2DF03D18B639A2A5C7099906FC2BC9E952"
@@ -11095,7 +11095,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -11603,7 +11603,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "InsertMediaAsync",
-          "line": 104,
+          "line": 142,
           "tokens": 38,
           "hash": "6AA839EAAE62E36E00032B01982DBCD01D2FFF36E70C1A74704F87A64E9533DB",
           "shape": "6FA4E16B6A393D498387D350CC48DBBB2AB344AD3B911936E3CBBDECA9374C0B"
@@ -13007,7 +13007,7 @@
           "hash": "7D4B4B5F671774C1E9C0B7FB0A6772E9961CE2AE373615882A11D7428E614A9B",
           "shape": "596CA350B74F5FE76E908ADE47F56C1333BBD60D200C7A0FCD04087160021954",
           "qualification": "Typed static event/core projection; Atari original publication centralized and bindings verified in frameOutputPublicationReuse",
-          "qualificationSourceSha256": "D2A2AFC596A35B25403278CEB7F2B6713384DA146D96053A5E61D2F0E61656D5"
+          "qualificationSourceSha256": "A8ACBC7933DA5D0C5DFA2D96D8E49B1949208EAD0E5C02EA8CBDFC6D77448736"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
@@ -13240,7 +13240,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "SetControllerPortDevice",
-          "line": 91,
+          "line": 129,
           "tokens": 31,
           "hash": "7E0CABE812645C68611F13A1BBADA4CAF2D3C88D388BC3544F28E8945D8E1160",
           "shape": "451C315EF507DD21BDAEA4E2E53AE90C49B8226BC94F78DA6633952939B80FF2"
@@ -18693,7 +18693,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23554,7 +23554,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
           "name": "PauseAsync",
-          "line": 40,
+          "line": 67,
           "tokens": 59,
           "hash": "E2EE663387FE5E3FECB5371C50B98D90FC107329EC438403F4A31DE9EF2E3EA6",
           "shape": "65C46253C10ED426212DD445DAD1A7B19111F0CE422E9B27B8E3040530885B0D"
@@ -24569,7 +24569,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -28644,77 +28644,6 @@
           "tokens": 33,
           "hash": "B9A58D583650FCD90C214EBD1DCAF4A74758AD4EABB6E93E887957723D5D31A2",
           "shape": "6E36A87D9EC3990A24004DFA18467F7C0A931EBF2AD8C1B6356C641653F064D2"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0",
-      "tokens": 84,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 71,
-          "tokens": 84,
-          "hash": "9C62B4FB88D7B4328908EFE08C3CB08949D0E781AFBB7050955B4BF69FE147F2",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 72,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
-          "name": "StopAsync",
-          "line": 84,
-          "tokens": 84,
-          "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
-          "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33956,7 +33885,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 477,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 504
   }
 }
