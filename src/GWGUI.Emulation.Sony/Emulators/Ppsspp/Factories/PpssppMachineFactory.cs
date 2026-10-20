@@ -16,6 +16,7 @@ internal sealed class PpssppMachineFactory : CoreMachineFactory
     public override int GetMemoryKib(MachineConfiguration configuration) =>
         configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;
     public override int GetMemoryCardCount(MachineConfiguration configuration) => 1;
+    public override string? MemoryStickInsertedOptionKey => OptionConstants.MemstickInsertedKey;
     public override bool IsCpuClock(string fieldId) => false;
     public override IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
         SettingsDescriptionFunctions.MachineBlocks(this, configuration);

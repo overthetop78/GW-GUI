@@ -111,7 +111,7 @@ internal static partial class InputSettingsFunctions
         if (type == ControllerType.ArcadeStick) return PlayStationButtonDefinitions()
             .Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
         if (!usb && type is ControllerType.Mouse or ControllerType.SerialMouse) return MouseDefinitions();
-        if (type == ControllerType.GunCon2) return Emulators.Pcee2.Functions.ControllerConfigurationFunctions.GunCommands;
+        if (type == ControllerType.GunCon2) return ControllerDefinitions(type, model, configuration, port);
         if (!usb && type is ControllerType.Joystick or ControllerType.DualShock or ControllerType.AnalogController
             or ControllerType.AnalogJoystick or ControllerType.NeGcon or ControllerType.NeGconRumble
             or ControllerType.GunCon or ControllerType.Justifier or ControllerType.DanceMat)
@@ -121,9 +121,8 @@ internal static partial class InputSettingsFunctions
         return ControllerDefinitions(type, model, configuration, port);
     }
 
-    private static IReadOnlyList<InputBindingDefinition> UsbKeyboardDefinitions() =>
-        Emulators.Common.Interop.Services.ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
-            .Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Sony.Keyboard.Key." + key, key.ToString())).ToArray();
+    private static IReadOnlyList<InputBindingDefinition> UsbKeyboardDefinitions(MachineConfiguration configuration) =>
+        (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetControllerBindingDefinitions(configuration, ControllerType.Keyboard, 0) ?? [];
 
     private static IReadOnlyList<InputBindingDefinition> NetPlayDefinitions() =>
     [

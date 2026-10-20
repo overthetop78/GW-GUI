@@ -92,19 +92,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             else options[item.Key] = item.Value;
         }
         var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
-        foreach (var (multitap, mode) in Emulators.Common.Interop.Constants.ControllerOptionConstants.MultitapModes)
-        {
-            if (!values.ContainsKey(multitap + ".port1") && !values.ContainsKey(multitap + ".port2")) continue;
-            var previous = options.GetValueOrDefault(multitap, mode.Disabled);
-            bool Enabled(int port) => values.TryGetValue(multitap + ".port" + port, out var selected)
-                ? selected == EmulationSettingConstants.Enabled : previous == mode.Both || previous == (port == 1 ? mode.Port1 : mode.Port2);
-            options[multitap] = (Enabled(1), Enabled(2)) switch
-            {
-                (true, true) => mode.Both, (true, false) => mode.Port1, (false, true) => mode.Port2, _ => mode.Disabled
-            };
-            options.Remove(multitap + ".port1");
-            options.Remove(multitap + ".port2");
-        }
+        (adapter as IEmulatorSettingsAdapter)?.ApplySettingsOptions(options, values);
         var updated = (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
         {
             Options = options,

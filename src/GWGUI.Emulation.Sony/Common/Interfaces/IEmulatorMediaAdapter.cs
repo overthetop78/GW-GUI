@@ -10,6 +10,9 @@ internal interface IEmulatorMediaAdapter
         ModelConstants.PlayStation or ModelConstants.PlayStation2 => StorageSettingsFunctionsConstants.MemoryCardCount,
         _ => 0
     };
+    IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => Enumerable.Range(0, GetMemoryCardCount(configuration));
+    string? GetMemoryCardDisplayLabel(int index) => null;
+    string? MemoryStickInsertedOptionKey => null;
     bool HasFixedMemoryCardDirectories => false;
     string? GetMemoryCardDirectory(int index) => null;
 }

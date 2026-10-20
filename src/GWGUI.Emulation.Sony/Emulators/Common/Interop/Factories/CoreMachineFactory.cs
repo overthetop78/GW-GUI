@@ -17,9 +17,27 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation ? [PlayStationFirmware.Selected] : CoreDefinition.Firmware;
     public virtual IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
+    public virtual void ApplySettingsOptions(Dictionary<string, string> options, IReadOnlyDictionary<string, string?> values)
+    {
+        foreach (var (multitap, mode) in ControllerOptionConstants.MultitapModes)
+        {
+            if (!values.ContainsKey(multitap + ".port1") && !values.ContainsKey(multitap + ".port2")) continue;
+            var previous = options.GetValueOrDefault(multitap, mode.Disabled);
+            bool Enabled(int port) => values.TryGetValue(multitap + ".port" + port, out var selected)
+                ? selected == EmulationSettingConstants.Enabled : previous == mode.Both || previous == (port == 1 ? mode.Port1 : mode.Port2);
+            options[multitap] = (Enabled(1), Enabled(2)) switch
+            {
+                (true, true) => mode.Both, (true, false) => mode.Port1, (false, true) => mode.Port2, _ => mode.Disabled
+            };
+            options.Remove(multitap + ".port1");
+            options.Remove(multitap + ".port2");
+        }
+    }
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
     public virtual IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => [];
-    public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) => null;
+    public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
+        type == ControllerType.Keyboard ? ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
+            .Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Sony.Keyboard.Key." + key, key.ToString())).ToArray() : null;
     public virtual IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
     {
         var globalStorage = CoreDefinition.Options.Where(option => option.IsGlobalStorageOption).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
@@ -48,6 +66,9 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public virtual bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
     public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;
+    public virtual IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => Enumerable.Range(0, GetMemoryCardCount(configuration));
+    public virtual string? GetMemoryCardDisplayLabel(int index) => null;
+    public virtual string? MemoryStickInsertedOptionKey => null;
     public virtual bool HasFixedMemoryCardDirectories => false;
     public virtual string? GetMemoryCardDirectory(int index) => null;
     public string EmulatorId => CoreDefinition.Id;

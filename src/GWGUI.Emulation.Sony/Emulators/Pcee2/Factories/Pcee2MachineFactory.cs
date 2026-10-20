@@ -9,6 +9,8 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcee2.Factories;
 internal sealed class Pcee2MachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
+    public override IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => MemoryCardFunctions.ActiveSlots(configuration);
+    public override string? GetMemoryCardDisplayLabel(int index) => MemoryCardFunctions.DisplayLabel(index);
     public override void ValidateConfiguration(MachineConfiguration configuration) => CheatFunctions.Validate(configuration);
     public override IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConfigurationFunctions.Latencies;
     public override AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => AudioConfigurationFunctions.Resolve(configuration);

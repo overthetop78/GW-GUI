@@ -16,9 +16,11 @@ internal static class StorageSettingsFunctions
         if (model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
             && mediaAdapter?.HasFixedMemoryCardDirectories != true)
             foreach (var index in MemoryCardIndexes(configuration, mediaAdapter))
-                devices.Add(configuration.EmulatorId == Emulators.Pcee2.Constants.CoreConstants.Id
-                    ? MemoryCard(index, true) with { DisplayLabel = Emulators.Pcee2.Functions.MemoryCardFunctions.DisplayLabel(index), DisplayLabelResourceKey = null }
-                    : MemoryCard(index, model.Id == ModelConstants.PlayStation2));
+            {
+                var card = MemoryCard(index, model.Id == ModelConstants.PlayStation2);
+                var label = mediaAdapter?.GetMemoryCardDisplayLabel(index);
+                devices.Add(label is null ? card : card with { DisplayLabel = label, DisplayLabelResourceKey = null });
+            }
         if (model.Id == ModelConstants.Psp)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [],
                 RequiresMachineRecreation: true, IsPermanent: false,
@@ -56,7 +58,7 @@ internal static class StorageSettingsFunctions
         var configured = devices.Where(device => device.Slot.Category switch
         {
             EmulationMediaCategory.MemoryCard => model.Id == ModelConstants.Psp
-                ? options.GetValueOrDefault(Emulators.Ppsspp.Constants.OptionConstants.MemstickInsertedKey, "enabled") != "disabled"
+                ? (mediaAdapter?.MemoryStickInsertedOptionKey is not { } insertedKey || options.GetValueOrDefault(insertedKey, "enabled") != "disabled")
                 : device.IsPermanent || model.HasBuiltInMemoryCard && device.Slot == EmulationMediaSlot.MemoryCard0
                 || mounted.Any(media => media.Slot == device.Slot)
                 || OptionBool(options, StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index),
@@ -110,8 +112,8 @@ internal static class StorageSettingsFunctions
         {
             [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0).ToString()
         };
-        if (model.Id == ModelConstants.Psp)
-            options[Emulators.Ppsspp.Constants.OptionConstants.MemstickInsertedKey] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.MemoryCard0) ? "enabled" : "disabled";
+        if (model.Id == ModelConstants.Psp && mediaAdapter?.MemoryStickInsertedOptionKey is { } insertedKey)
+            options[insertedKey] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.MemoryCard0) ? "enabled" : "disabled";
         foreach (var device in settings.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard))
             options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index] = settings.ConfiguredSlots.Contains(device.Slot).ToString();
         foreach (var device in adapterDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk))
@@ -157,9 +159,7 @@ internal static class StorageSettingsFunctions
     }
 
     private static IEnumerable<int> MemoryCardIndexes(MachineConfiguration configuration, IEmulatorMediaAdapter? adapter) =>
-        configuration.EmulatorId == Emulators.Pcee2.Constants.CoreConstants.Id
-            ? Emulators.Pcee2.Functions.MemoryCardFunctions.ActiveSlots(configuration)
-            : Enumerable.Range(0, MemoryCardCount(configuration, adapter));
+        adapter?.GetMemoryCardIndexes(configuration) ?? Enumerable.Range(0, MemoryCardCount(configuration, adapter));
 
     private static int MemoryCardCount(MachineConfiguration configuration, IEmulatorMediaAdapter? adapter) => adapter?.GetMemoryCardCount(configuration) ?? (configuration.Model == ModelConstants.Psp ? 1 : StorageSettingsFunctionsConstants.MemoryCardCount);
 
