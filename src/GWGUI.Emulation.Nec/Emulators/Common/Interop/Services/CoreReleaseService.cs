@@ -31,14 +31,7 @@ public sealed class CoreReleaseService
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version) ? version.GetString() ?? CoreReleaseConstants.Unknown : CoreReleaseConstants.Unknown;
-        }
-        catch (JsonException) { return CoreReleaseConstants.Unknown; }
-        catch (IOException) { return CoreReleaseConstants.Unknown; }
+        return EmulationCoreReleaseFunctions.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
@@ -53,10 +46,7 @@ public sealed class CoreReleaseService
 
     public bool IsInstalled(CoreRelease release)
     {
-        if (!File.Exists(RequiredLibraryPath)) return false;
-        try { VerifyWindowsX64Library(RequiredLibraryPath, _errorResourcePrefix); return true; }
-        catch (IOException) { return false; }
-        catch (InvalidDataException) { return false; }
+        return FindInstalledLibraryPath() is not null;
     }
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
@@ -105,14 +95,8 @@ public sealed class CoreReleaseService
 
     internal string? FindInstalledLibraryPath()
     {
-        if (!File.Exists(RequiredLibraryPath)) return null;
-        try
-        {
-            VerifyWindowsX64Library(RequiredLibraryPath, _errorResourcePrefix);
-            return RequiredLibraryPath;
-        }
-        catch (IOException) { return null; }
-        catch (InvalidDataException) { return null; }
+        return EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(RequiredLibraryPath,
+            path => VerifyWindowsX64Library(path, _errorResourcePrefix));
     }
 
     internal static void VerifyWindowsX64Library(string path)

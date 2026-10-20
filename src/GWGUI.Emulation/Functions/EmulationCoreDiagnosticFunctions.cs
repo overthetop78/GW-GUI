@@ -15,17 +15,22 @@ internal static class EmulationCoreDiagnosticFunctions
 
     internal static EmulationCoreDiagnosticManifest CreateManifest(string releaseId, string releaseVersion, string downloadUrl,
         long archiveSize, string libraryPath)
-        => CreateManifest(releaseId, releaseVersion, downloadUrl, archiveSize, libraryPath,
-            static (id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports)
-                => new EmulationCoreDiagnosticManifest(id, version, url, downloadedUtc, downloadedSize, librarySize,
-                    sha256, architecture, declaredVersion, exports));
-
-    internal static T CreateManifest<T>(string releaseId, string releaseVersion, string downloadUrl,
-        long archiveSize, string libraryPath,
-        Func<string, string, string, DateTimeOffset, long, long, string, string, string, IReadOnlyList<string>, T> create)
-        => create(releaseId, releaseVersion, downloadUrl, DateTimeOffset.UtcNow, archiveSize,
+        => new EmulationCoreDiagnosticManifest(releaseId, releaseVersion, downloadUrl, DateTimeOffset.UtcNow, archiveSize,
             new FileInfo(libraryPath).Length, CalculateSha256(libraryPath), ReadArchitecture(libraryPath),
             ReadDeclaredVersion(libraryPath), ReadExports(libraryPath));
+
+    internal static string? FindInstalledLibraryPath(string path, Action<string>? verifyInstallation,
+        Func<bool>? isInstallationComplete = null)
+    {
+        if (!File.Exists(path) || isInstallationComplete?.Invoke() == false) return null;
+        try
+        {
+            verifyInstallation?.Invoke(path);
+            return path;
+        }
+        catch (IOException) { return null; }
+        catch (InvalidDataException) { return null; }
+    }
 
     internal static void VerifyWindowsX64Library(string path, Func<string> notPe,
         Func<string> invalidPe, Func<string> wrongArchitecture)

@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7221,
   "outsideSrcCSharpFiles": 339,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11481,
+  "currentMethodCount": 11477,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -823,7 +823,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2713,59 +2713,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-      "method": "IsInstalled",
-      "tokens": 44,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 52,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 52,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 54,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 64,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 64,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -8844,7 +8791,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "Adapt",
+      "method": "AdaptOptions",
       "tokens": 68,
       "current": [
         {
@@ -10071,6 +10018,67 @@
           "tokens": 57,
           "hash": "5B4ED5A60EF35D82F53D16B08E5FC065727B492F97DB7CC8679C1A8597B23494",
           "shape": "C37E39BF8DB377D946430EA7B733CF9B7B9BDEBE6034D311E8C7B47C00E4CB24"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+      "method": "GetInstalledVersion",
+      "tokens": 45,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
+          "name": "GetInstalledVersion",
+          "line": 25,
+          "tokens": 45,
+          "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+          "shape": "4A21A30A3F235A6E6ABF5A09ADF4559F596C0E19895D86F08B7F473460A362DA",
+          "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
+          "qualificationSourceSha256": "B5AF865D405830B27F3EBC8BF523B562DC79BC77E7101BD2ACEC92E6FC6C1ACF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetInstalledVersion",
+          "line": 24,
+          "tokens": 45,
+          "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+          "shape": "4A21A30A3F235A6E6ABF5A09ADF4559F596C0E19895D86F08B7F473460A362DA",
+          "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
+          "qualificationSourceSha256": "30D81BFF549B332E2547A4EFC98119E7B0A8085BE0C16080902E282B68EBE5B4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetInstalledVersion",
+          "line": 30,
+          "tokens": 45,
+          "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+          "shape": "4A21A30A3F235A6E6ABF5A09ADF4559F596C0E19895D86F08B7F473460A362DA",
+          "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
+          "qualificationSourceSha256": "7EE4837A835C82D1E191E550C096BD53CE8A05FC8FBAC42825AF08FB5460C108"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetInstalledVersion",
+          "line": 28,
+          "tokens": 45,
+          "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+          "shape": "4A21A30A3F235A6E6ABF5A09ADF4559F596C0E19895D86F08B7F473460A362DA",
+          "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
+          "qualificationSourceSha256": "C9F5A2D3272230EBE96F452B947A5EDC564912D408D577853023BE56416991C9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "GetInstalledVersion",
+          "line": 28,
+          "tokens": 45,
+          "hash": "5BBBDAEE99F7D9A6ACBC95B6BD44943912BBD315E8A3CF33A7A9B6320981A75A",
+          "shape": "4A21A30A3F235A6E6ABF5A09ADF4559F596C0E19895D86F08B7F473460A362DA",
+          "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
+          "qualificationSourceSha256": "1FFE21B820A9D7047DF9278AB907A55D8C8709DCF5F13B5731736E7FF876D761"
         }
       ],
       "predecessors": [],
@@ -17470,7 +17478,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 42,
+          "line": 35,
           "tokens": 129,
           "hash": "A348D62D8E2C4BEFCED74D30353A85738718F07B9B313A6F52D4E2186807E444",
           "shape": "E14466FE6533CD42589822A63E227317DB46341C3DA1D1C684366355535C008B"
@@ -17478,7 +17486,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 44,
+          "line": 37,
           "tokens": 129,
           "hash": "A348D62D8E2C4BEFCED74D30353A85738718F07B9B313A6F52D4E2186807E444",
           "shape": "E14466FE6533CD42589822A63E227317DB46341C3DA1D1C684366355535C008B"
@@ -17486,7 +17494,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 42,
+          "line": 35,
           "tokens": 129,
           "hash": "A348D62D8E2C4BEFCED74D30353A85738718F07B9B313A6F52D4E2186807E444",
           "shape": "E14466FE6533CD42589822A63E227317DB46341C3DA1D1C684366355535C008B"
@@ -18526,27 +18534,27 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 62,
+          "line": 52,
           "tokens": 263,
           "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
           "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "576FAFA0A275BA47E53D7B834B44FA4E37E84E6056AD4E5FE06D363527CCC2AB"
+          "qualificationSourceSha256": "1FFE21B820A9D7047DF9278AB907A55D8C8709DCF5F13B5731736E7FF876D761"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 62,
+          "line": 52,
           "tokens": 263,
           "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
           "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2909911145E60E1206A5C8B35E88C08B17CB45E02F17EB0E771845C7FE823CE5"
+          "qualificationSourceSha256": "C9F5A2D3272230EBE96F452B947A5EDC564912D408D577853023BE56416991C9"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -18662,7 +18670,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23391,66 +23399,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-      "method": "GetInstalledVersion",
-      "tokens": 115,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 25,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 28,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 30,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 28,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 24,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 26,
-          "tokens": 115,
-          "hash": "CBE9CBDBC767C542A3A08BDAC30B0F91B62E63E0B7E23E019286480A1DAD952B",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "E55DA9EDEE7593F14C095C6D5732958F0FFFF74EF335266DA5DEA75B34C47186",
       "method": "Discover",
       "tokens": 65,
@@ -24431,7 +24379,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -33541,7 +33489,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 565
+    "occurrences": 611,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

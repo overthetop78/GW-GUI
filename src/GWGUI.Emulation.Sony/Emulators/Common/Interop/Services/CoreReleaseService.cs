@@ -37,14 +37,7 @@ public sealed class CoreReleaseService
     {
         if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version) ? version.GetString() ?? CoreReleaseConstants.Unknown : CoreReleaseConstants.Unknown;
-        }
-        catch (JsonException) { return CoreReleaseConstants.Unknown; }
-        catch (IOException) { return CoreReleaseConstants.Unknown; }
+        return EmulationCoreReleaseFunctions.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
@@ -61,10 +54,9 @@ public sealed class CoreReleaseService
 
     internal string? FindInstalledLibraryPath()
     {
-        if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return null;
-        try { VerifyWindowsX64Library(RequiredLibraryPath, _emulatorId); return RequiredLibraryPath; }
-        catch (IOException) { return null; }
-        catch (InvalidDataException) { return null; }
+        return EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(RequiredLibraryPath,
+            path => VerifyWindowsX64Library(path, _emulatorId),
+            _isInstallationComplete is { } complete ? () => complete(_directory) : null);
     }
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;

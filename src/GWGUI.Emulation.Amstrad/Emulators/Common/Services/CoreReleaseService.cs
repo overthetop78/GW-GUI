@@ -26,14 +26,7 @@ public sealed class CoreReleaseService
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version) ? version.GetString() ?? CoreReleaseConstants.Unknown : CoreReleaseConstants.Unknown;
-        }
-        catch (JsonException) { return CoreReleaseConstants.Unknown; }
-        catch (IOException) { return CoreReleaseConstants.Unknown; }
+        return EmulationCoreReleaseFunctions.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
@@ -48,10 +41,7 @@ public sealed class CoreReleaseService
 
     public bool IsInstalled(CoreRelease release)
     {
-        if (!File.Exists(RequiredLibraryPath)) return false;
-        try { _definition.VerifyInstallation?.Invoke(RequiredLibraryPath); return true; }
-        catch (IOException) { return false; }
-        catch (InvalidDataException) { return false; }
+        return EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(RequiredLibraryPath, _definition.VerifyInstallation) is not null;
     }
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;

@@ -22,16 +22,7 @@ public sealed class ExternalCoreInstaller
 
     public string LibraryPath => Path.Combine(_directory, _definition.LibraryFile);
 
-    public bool IsInstalled
-    {
-        get
-        {
-            if (!File.Exists(LibraryPath)) return false;
-            try { _definition.VerifyInstallation?.Invoke(LibraryPath); return true; }
-            catch (IOException) { return false; }
-            catch (InvalidDataException) { return false; }
-        }
-    }
+    public bool IsInstalled => EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(LibraryPath, _definition.VerifyInstallation) is not null;
 
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {

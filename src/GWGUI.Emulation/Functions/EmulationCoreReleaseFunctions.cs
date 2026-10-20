@@ -142,6 +142,20 @@ internal static class EmulationCoreReleaseFunctions
             .ConfigureAwait(false);
     }
 
+    internal static string ReadInstalledVersion(string manifestPath, string versionProperty, string unknownValue)
+    {
+        if (!File.Exists(manifestPath)) return unknownValue;
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
+            return document.RootElement.TryGetProperty(versionProperty, out var version)
+                ? version.GetString() ?? unknownValue
+                : unknownValue;
+        }
+        catch (JsonException) { return unknownValue; }
+        catch (IOException) { return unknownValue; }
+    }
+
     internal static async Task<EmulationCoreInstallationPaths?> GetActiveInstallationAsync(string markerPath,
         Func<string, EmulationCoreInstallationPaths> pathsForVersion, CancellationToken cancellationToken)
     {
