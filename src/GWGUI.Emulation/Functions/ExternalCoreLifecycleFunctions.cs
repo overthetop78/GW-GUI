@@ -5,6 +5,20 @@ namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreLifecycleFunctions
 {
 
+    internal static bool TryDisposeCore(IDisposable core, Action<Exception> reportFailure)
+    {
+        try
+        {
+            core.Dispose();
+            return true;
+        }
+        catch (Exception error)
+        {
+            reportFailure(error);
+            return false;
+        }
+    }
+
     internal static bool IsSupportedStateSize(nuint size, nuint maximumStateSize)
         => size > nuint.Zero && size <= maximumStateSize;
 

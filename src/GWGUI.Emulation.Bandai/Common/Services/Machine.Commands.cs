@@ -69,8 +69,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 catch (Exception error) { ReportFailure(error); }
                 finally
                 {
-                    try { _core.Dispose(); released = true; }
-                    catch (Exception error) { ReportFailure(error); }
+                    released = ExternalCoreLifecycleFunctions.TryDisposeCore(_core, ReportFailure);
                 }
             }
             finally

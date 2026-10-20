@@ -5,6 +5,60 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class TransportDisposalTests
 {
+    [Theory]
+    [InlineData("none")]
+    [InlineData("io")]
+    [InlineData("disposed")]
+    [InlineData("unexpected")]
+    [InlineData("canceled")]
+    public void CoreDisposalReturnsSuccessOnlyAfterDisposalAndReportsTheOriginalFailure(string failure)
+    {
+        Exception? error = failure switch
+        {
+            "io" => new IOException("Core closed"),
+            "disposed" => new ObjectDisposedException("core"),
+            "unexpected" => new InvalidOperationException("Core failed"),
+            "canceled" => new OperationCanceledException(),
+            _ => null
+        };
+        var core = new Transport(error);
+        var reported = new List<Exception>();
+        var released = ExternalCoreLifecycleFunctions.TryDisposeCore(core, reported.Add);
+
+        Assert.Equal(error is null, released);
+        Assert.Equal(1, core.DisposeCount);
+        if (error is null) Assert.Empty(reported);
+        else Assert.Same(error, Assert.Single(reported));
+    }
+
+    [Fact]
+    public void FailureReporterErrorsStillEscapeBeforeTheReleaseFlagCanBeSet()
+    {
+        var core = new Transport(new IOException("Dispose failed"));
+        var reportFailure = new InvalidOperationException("Reporter failed");
+        var released = false;
+        var finalizationReached = false;
+
+        var actual = Assert.Throws<InvalidOperationException>(() =>
+        {
+            try { released = ExternalCoreLifecycleFunctions.TryDisposeCore(core, _ => throw reportFailure); }
+            finally { finalizationReached = true; }
+        });
+
+        Assert.Same(reportFailure, actual);
+        Assert.False(released);
+        Assert.True(finalizationReached);
+        Assert.Equal(1, core.DisposeCount);
+    }
+
+    [Fact]
+    public void MissingCorePreservesTheOriginalCaughtDereferenceFailure()
+    {
+        var reported = new List<Exception>();
+        Assert.False(ExternalCoreLifecycleFunctions.TryDisposeCore(null!, reported.Add));
+        Assert.IsType<NullReferenceException>(Assert.Single(reported));
+    }
+
     [Fact]
     public void MissingTransportNeedsNoDisposal()
         => EmulationHostProtocolFunctions.DisposeTransport(null);

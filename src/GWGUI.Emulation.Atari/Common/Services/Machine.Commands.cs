@@ -60,7 +60,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (initialized) MachineFunctions.TryReleaseInput(_core);
             if (initialized)
                 try { _core.Stop(); } catch (Exception) { }
-            try { _core.Dispose(); } catch (Exception) { }
+            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_core);
             try { _audio.Stop(); } catch (Exception) { }
             MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
             FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
