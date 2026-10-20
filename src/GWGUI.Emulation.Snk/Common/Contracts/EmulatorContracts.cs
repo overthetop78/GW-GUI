@@ -5,6 +5,6 @@ namespace GWGUI.Emulation.Snk.Common.Contracts;
 
 internal sealed record EmulatorCreationContext( string SessionsDirectory, string CorePath, string HostExecutablePath, Func<IAudioOutput?>? AudioOutputFactory, Func<MachineConfiguration, string>? SaveDirectoryResolver);
 
-internal sealed record EmulatorManagementContext( HttpClient HttpClient, string CoreDirectory);
+
 
 internal sealed record EmulatorDefinition(Emulator Emulator, string Id, string LibraryName, string DescriptionResourceKey, IReadOnlySet<MachineModel> Models);

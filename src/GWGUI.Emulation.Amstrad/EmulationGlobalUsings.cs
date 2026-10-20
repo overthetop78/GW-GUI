@@ -1,3 +1,4 @@
+global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Amstrad.Emulators.Common.Functions;

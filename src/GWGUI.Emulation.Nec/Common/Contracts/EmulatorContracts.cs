@@ -9,6 +9,3 @@ internal sealed record EmulatorCreationContext(
     Func<IAudioOutput?>? AudioOutputFactory,
     Func<MachineConfiguration, string>? SaveDirectoryResolver,
     string FirmwareDirectory);
-
-internal sealed record EmulatorManagementContext(HttpClient HttpClient, string CoreDirectory);
-

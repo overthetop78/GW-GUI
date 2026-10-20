@@ -1,3 +1,4 @@
+global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using EnvironmentCallbackHost = GWGUI.Emulation.Services.ExternalCoreEnvironmentCallbackHost;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;

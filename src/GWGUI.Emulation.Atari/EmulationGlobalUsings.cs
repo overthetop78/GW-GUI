@@ -1,3 +1,4 @@
+global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using AudioBuffer = GWGUI.Emulation.Services.EmulationAudioBuffer;
 global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;

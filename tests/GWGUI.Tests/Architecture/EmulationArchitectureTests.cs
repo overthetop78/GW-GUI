@@ -44,7 +44,13 @@ public sealed class EmulationArchitectureTests
             "get_EmulatorKey"
         }, MemberNames(atari.Adapter).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }));
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));
-        Assert.Equal(MemberNames(atari.Management), MemberNames(amiga.Management));
+        foreach (var row in FamilyModules())
+        {
+            var family = (string)row[0];
+            var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
+            var module = CommonAdapter(assembly, $"GWGUI.Emulation.{family}");
+            Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorManagementContext), module.Management);
+        }
         foreach (var adapter in new[] { atari.Adapter, amiga.Adapter })
             Assert.DoesNotContain(MemberNames(adapter), member => member is "CatalogEntry" or "Emulator" or "NormalizeConfiguration" or "PrepareConfiguration" or "get_CatalogEntry" or "get_Emulator");
         var atariMediaAdapter = typeof(AtariEmulationModule).Assembly.GetType("GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces.IEmulatorMediaAdapter");
@@ -288,10 +294,13 @@ public sealed class EmulationArchitectureTests
     {
         var adapter = assembly.GetType($"{rootNamespace}.Common.Interfaces.IEmulatorAdapter");
         var context = assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext");
-        var management = assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorManagementContext");
         Assert.NotNull(adapter);
         Assert.NotNull(context);
-        Assert.NotNull(management);
+        Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorManagementContext"));
+        var installation = adapter!.GetMethod("GetInstallationAsync");
+        Assert.NotNull(installation);
+        var management = installation!.GetParameters()[0].ParameterType;
+        Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorManagementContext), management);
         return (adapter!, context!, management!);
     }
 
