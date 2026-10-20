@@ -1,13 +1,8 @@
 {
-  "snapshot": "0d7f561d7afbe3a7e3e094a7157062d96517ae5c",
+  "snapshot": "5784865eba6f539718d612d1db519bbceade2c91",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationMediaRules.cs"
+    "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7234,
@@ -43976,7 +43971,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( key , name , description , category , defaultValue , defaultValue , values , true , categorizedName , categorizedDescription )",
           "hash": "89F364761F5A22B2A5EBC448158DE1F9EE37350CADA553B98244CCFB809BDD3A",
-          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341"
+          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341",
+          "qualification": "typed-public-native-option-record-adapter-to-existing-sdk-parsers",
+          "qualificationSourceSha256": "4771AED7D9C6C061A0897FB0AB514E9019EB1274C0C602641E5A7D68B78253FA"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
@@ -44100,7 +44097,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( key , name , description , category , defaultValue , defaultValue , values , true , categorizedName , categorizedDescription )",
           "hash": "89F364761F5A22B2A5EBC448158DE1F9EE37350CADA553B98244CCFB809BDD3A",
-          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341"
+          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341",
+          "qualification": "typed-public-native-option-record-adapter-to-existing-sdk-parsers",
+          "qualificationSourceSha256": "062C89D4219F49FB6CDB244B0109035537F3926D6F99233E9FC033D2C9EF73D0"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
@@ -44112,7 +44111,9 @@
           "tokens": 23,
           "bodyTokens": "=> new ( key , name , description , category , defaultValue , defaultValue , values , true , categorizedName , categorizedDescription )",
           "hash": "89F364761F5A22B2A5EBC448158DE1F9EE37350CADA553B98244CCFB809BDD3A",
-          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341"
+          "shape": "1D4C8DDF343E18E066E62F656500507298CD8CA0D9293E911E38A5FC811C5341",
+          "qualification": "typed-public-native-option-record-adapter-to-existing-sdk-parsers",
+          "qualificationSourceSha256": "1DAB1DDAC4733BDCB492732ECAF7F6C30C201515F1278617230418E000869E63"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -138359,7 +138360,7 @@
           "name": "ShortHelp",
           "owner": "AmigaSettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 31,
+          "line": 22,
           "parameters": "(string id)",
           "tokens": 21,
           "bodyTokens": "=> AmigaSettingsHelpDictionary . Resources . TryGetValue ( id , out var resource ) ? resource + SettingsValueConstants . ShortHelpSuffix : null",
@@ -138371,7 +138372,7 @@
           "name": "DetailedHelp",
           "owner": "AmigaSettingsDescriptionFunctions",
           "kind": "MethodDeclaration",
-          "line": 33,
+          "line": 24,
           "parameters": "(string id)",
           "tokens": 21,
           "bodyTokens": "=> AmigaSettingsHelpDictionary . Resources . TryGetValue ( id , out var resource ) ? resource + SettingsValueConstants . DetailedHelpSuffix : null",
@@ -143374,6 +143375,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3036
+    "occurrences": 3048
   }
 }

@@ -10816,7 +10816,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -16852,7 +16852,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -17145,7 +17145,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -18512,7 +18512,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "SharpEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -31409,29 +31409,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61",
-      "tokens": 31,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 8,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "BB9C2B2C392B85C060544847E20CCA4ABD0E35963361DBE5F7831A0C8681D568",
       "tokens": 36,
       "current": [
@@ -33069,6 +33046,33 @@
           "tokens": 42,
           "hash": "D262FF2B25F0ADE39A5BAC5C29CB6A3296E7016C58C85E216010E9CBCD3348DC",
           "shape": "F3D62B79E68EE364E070D14E94A305836F8FC69FA9F944C7754E544F9C5B505E"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "F7ABF599DECD5206F63000400220E14745BCE152D1B3DA410840E8E7A566D689",
+      "tokens": 31,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
+          "name": "Information",
+          "line": 8,
+          "tokens": 31,
+          "hash": "BB4DB884AE4EA4E7358F7F6EFA5F9657195CDF5033EF958544C3D7CB605383CE",
+          "shape": "F7ABF599DECD5206F63000400220E14745BCE152D1B3DA410840E8E7A566D689",
+          "qualification": "original-sdk-settings-field-owner-reused-amiga-help-and-audio-arguments-preserved",
+          "qualificationSourceSha256": "4D6B2109AF61C731BAEDEBB546F1C23600F29E438CEE1EFA940EEF7789C436E9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
+          "name": "Number",
+          "line": 13,
+          "tokens": 31,
+          "hash": "C2BFBB793B53F90300CF8367BE1ADCDEDD2822AD3471FA299C0AC904FAF76FFB",
+          "shape": "F7ABF599DECD5206F63000400220E14745BCE152D1B3DA410840E8E7A566D689",
+          "qualification": "original-sdk-settings-field-owner-reused-amiga-help-and-audio-arguments-preserved",
+          "qualificationSourceSha256": "4D6B2109AF61C731BAEDEBB546F1C23600F29E438CEE1EFA940EEF7789C436E9"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
