@@ -16,16 +16,13 @@ internal static class CoreOptionValidationFunctions
             }
             if (option.Key == SettingsConstants.AudioLatency)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)
-                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))
+                if (EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
             if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)
-                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent
-                        or > VideoAudioSettingsConstants.MaximumVolumePercent)
+                if (EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }

@@ -1,20 +1,20 @@
 {
-  "snapshot": "5c4f98ec7cd41e60f9b2dd77328f301cf83990ff",
+  "snapshot": "9f345f2705e82570ead29f855084ae4f3c047bb1",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs",
-    "src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs",
-    "src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs",
-    "src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs",
-    "src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs",
-    "src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs",
-    "src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs",
-    "src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs",
-    "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.cs"
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+    "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7233,
-  "methodBodyCount": 9579,
+  "fileCount": 7234,
+  "methodBodyCount": 9582,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -143341,7 +143341,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 3064,
+    "occurrences": 3088,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

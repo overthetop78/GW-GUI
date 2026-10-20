@@ -14,8 +14,8 @@ internal static class CoreOptionValidationFunctions
             var valid = option.Key switch
             {
                 SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),
-                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),
-                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,
+                SettingsConstants.AudioLatency => !EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value),
+                VideoAudioSettingsConstants.AudioVolumeOption => !EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent),
                 _ => adapter?.IsDeferredOption(configuration,
                     option.Key) 
                     == true 

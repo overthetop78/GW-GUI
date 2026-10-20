@@ -5,6 +5,14 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationAudioFunctions
 {
+    internal static bool HasInvalidConfiguredLatency(string? value) =>
+        !int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency)
+            || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency);
+
+    internal static bool HasInvalidConfiguredVolume(string? value, int minimum, int maximum) =>
+        !int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume)
+            || volume < minimum || volume > maximum;
+
     internal static string? ResolveRuntimeOutput(IReadOnlyDictionary<string, string> options, string key, string defaultOutput)
     {
         var output = options.GetValueOrDefault(key);

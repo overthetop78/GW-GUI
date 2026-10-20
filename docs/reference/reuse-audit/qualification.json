@@ -1065398,5 +1065398,2014 @@
       "partialOccurrencesRetained": 82,
       "outsideAnnotationsDigestUnchanged": true
     }
+  },
+  "nativeOptionValidationReuse": {
+    "existingNativeValidation": {
+      "path": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
+      "disposition": "Existing native return validation skips unknown keys and zero-choice entries and checks first matching definition; module configuration validation rejects unknown/invalid entries and checks any valid match. Do not adapt this earlier owner to later module policies.",
+      "method": "internal static void ValidateConfiguredValues<TOption, TValue>(IEnumerable<string> configuredKeys,\n        IReadOnlyDictionary<string, string> values, IReadOnlyList<TOption> catalog, Func<TOption, string> keyFor,\n        Func<TOption, IReadOnlyList<TValue>> choicesFor, Func<TValue, string> valueFor, Action<string, string> invalid)\n        where TOption : class\n    {\n        foreach (var key in configuredKeys)\n        {\n            var option = catalog.FirstOrDefault(item => keyFor(item).Equals(key, StringComparison.Ordinal));\n            if (option is null || choicesFor(option).Count == 0) continue;\n            if (!choicesFor(option).Any(item => valueFor(item).Equals(values[key], StringComparison.Ordinal))) invalid(key, values[key]);\n        }\n    }"
+    },
+    "pending": "Resolve all constants and symbols, scope of out locals and exact original expressions before planning any product changes; no validator body or graph qualified yet.",
+    "existingAudioOwner": {
+      "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+      "source": "using System.Runtime.InteropServices;\nusing System.Globalization;\n\nnamespace GWGUI.Emulation.Functions;\n\ninternal static class EmulationAudioFunctions\n{\n    internal static string? ResolveRuntimeOutput(IReadOnlyDictionary<string, string> options, string key, string defaultOutput)\n    {\n        var output = options.GetValueOrDefault(key);\n        if (output == defaultOutput) output = null;\n        return output;\n    }\n\n    internal static int ResolveRuntimeLatency(IReadOnlyDictionary<string, string> options, string key) =>\n        options.TryGetValue(key, out var selectedLatency)\n            && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)\n                ? parsed : EmulationSettingConstants.DefaultAudioLatencyMilliseconds;\n\n    internal static void WriteVolume(ref IAudioOutput? output, ref float volume, ReadOnlySpan<short> samples)\n    {\n        if (output is null) return;\n        if (volume >= 1f)\n        {\n            output.Write(samples);\n            return;\n        }\n\n        var scaled = new short[samples.Length];\n        for (var index = 0; index < samples.Length; index++)\n            scaled[index] = (short)Math.Clamp(samples[index] * volume, short.MinValue, short.MaxValue);\n        output.Write(scaled);\n    }\n\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(1, sampleRate / 5);\n\n    internal static AudioChunk RetainNativeNewestFrames(AudioChunk chunk, int maximumFrames, bool multichannel)\n    {\n        if (chunk.FrameCount <= maximumFrames) return chunk;\n        var retainedSamples = chunk.InterleavedSamples.Slice(\n            (chunk.FrameCount - maximumFrames) * (multichannel ? chunk.ChannelCount : 2)).ToArray();\n        return multichannel\n            ? chunk with { InterleavedSamples = retainedSamples, FrameCount = maximumFrames }\n            : new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);\n    }\n\n    internal static short[] CopyBatch(nint data, int frameCount)\n        => CopyBatch(data, GC.AllocateUninitializedArray<short>(checked(frameCount * 2)));\n\n    internal static short[] CopyBatch(nint data, nuint frameCount)\n        => CopyBatch(data, frameCount, 2);\n\n    internal static short[] CopyBatch(nint data, nuint frameCount, uint channelCount)\n        => CopyBatch(data, new short[checked((int)frameCount * (int)channelCount)]);\n\n    private static short[] CopyBatch(nint data, short[] samples)\n    {\n        Marshal.Copy(data, samples, 0, samples.Length);\n        return samples;\n    }\n\n    internal static short[] SingleFrame(short left, short right) => [left, right];\n\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\n    {\n        if (chunk.FrameCount <= maximumFrames) return chunk;\n        var firstSample = checked((chunk.FrameCount - maximumFrames) * 2);\n        return chunk with\n        {\n            InterleavedSamples = chunk.InterleavedSamples[firstSample..].ToArray(),\n            FrameCount = maximumFrames\n        };\n    }\n\n    internal static float NormalizeVolume(float volume) =>\n        Math.Clamp(volume, 0f, 1f);\n\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer)\n    {\n        if (volume >= 1f) return samples;\n        if (buffer.Length < samples.Length) buffer = GC.AllocateUninitializedArray<short>(samples.Length);\n        for (var index = 0; index < samples.Length; index++)\n            buffer[index] = (short)Math.Clamp((int)MathF.Round(samples[index] * volume),\n                short.MinValue, short.MaxValue);\n        return buffer.AsSpan(0, samples.Length);\n    }\n}\r\n"
+    },
+    "observedPolicies": [
+      "Coleco and Epoch retain adapter ValidateConfiguration after ordered option loop",
+      "Sharp None guard; Sinclair configuration-specific catalog and enabled/default policy",
+      "SNK configuration catalog, deferred option handling and enabled/default policy",
+      "Eight invariant integer latency checks against existing shared choices and eight bounded invariant volume checks; resolve bounds and predicate polarity before extraction"
+    ],
+    "origin": {
+      "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+      "commit": "174ee2b83",
+      "source": "using GWGUI.Emulation.Coleco.Emulators.GearColeco.Dictionaries;\r\nusing GWGUI.Emulation.Coleco.Emulators.JollyCV.Dictionaries;\r\nusing GWGUI.Emulation.Coleco.Emulators.BlueMSX.Dictionaries;\r\n\r\nnamespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;\r\n\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch\r\n    {\r\n        Emulator.GearColeco => GearColecoOptionCatalog.All,\r\n        Emulator.JollyCV => JollyCVOptionCatalog.All,\r\n        Emulator.BlueMSX => BlueMSXOptionCatalog.All,\r\n        _ => throw new ArgumentOutOfRangeException(nameof(core))\r\n    };\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForCore(configuration.Core);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            if (option.Key == SettingsConstants.AudioOutput)\r\n            {\r\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\r\n                continue;\r\n            }\r\n            if (option.Key == SettingsConstants.AudioLatency)\r\n            {\r\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,\r\n                        System.Globalization.CultureInfo.InvariantCulture, out var latency)\r\n                    || !SettingsConstants.Latencies.Contains(latency))\r\n                    throw new ArgumentException(nameof(configuration.Options));\r\n                continue;\r\n            }\r\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\r\n            {\r\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,\r\n                        System.Globalization.CultureInfo.InvariantCulture, out var volume)\r\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\r\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\r\n                    throw new ArgumentException(nameof(configuration.Options));\r\n                continue;\r\n            }\r\n            if (!catalog.Any(definition => definition.Key == option.Key\r\n                && definition.Values.Any(choice => choice.Value == option.Value)))\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n        if (configuration.Core == Emulator.GearColeco\r\n            && configuration.Options.TryGetValue(Emulators.GearColeco.Constants.OptionConstants.OptionCartridgeHardware, out var hardware)\r\n            && hardware != (configuration.Model == MachineModel.Adam ? CoreModelConstants.Adam : CoreModelConstants.ColecoVision))\r\n            throw new ArgumentException(nameof(configuration.Options));\r\n        if (configuration.Core == Emulator.BlueMSX\r\n            && configuration.Options.TryGetValue(Emulators.BlueMSX.Constants.OptionConstants.OptionMsxtype, out var machine)\r\n            && machine is not CoreModelConstants.Automatic and not CoreModelConstants.ColecoVision)\r\n            throw new ArgumentException(nameof(configuration.Options));\r\n    }\r\n}",
+      "latencyPredicate": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,\r\n                        System.Globalization.CultureInfo.InvariantCulture, out var latency)\r\n                    || !SettingsConstants.Latencies.Contains(latency)",
+      "volumePredicate": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,\r\n                        System.Globalization.CultureInfo.InvariantCulture, out var volume)\r\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\r\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent",
+      "constantsProof": {
+        "bounds": {
+          "MaximumVolumePercent": 100,
+          "MinimumVolumePercent": 0
+        },
+        "settingsSource": "namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Constants;\r\n\r\ninternal static class SettingsConstants\r\n{\r\n    internal const string AudioEnabled = \"coleco_audio_enabled\";\r\n    internal const string AudioOutput = \"gwgui_coleco_audio_output\";\r\n    internal const string AudioLatency = \"gwgui_coleco_audio_latency\";\r\n    internal const string DefaultOutput = \"default\";\r\n    internal const string ResourceCpuProcessor = \"Emulation.Cpu.Processor\";\r\n    internal const string ResourceCpuModel = \"Emulation.Cpu.Model\";\r\n    internal const string ResourceCpuSpeedOriginal = \"Emulation.Cpu.SpeedOriginal\";\r\n    internal const string ResourceMemoryMain = \"Emulation.Memory.Main\";\r\n    internal const string ResourceDisplayMemory = \"Emulation.Coleco.Memory.Display\";\r\n    internal const string ResourceVideoResolution = \"Emulation.Video.Resolution\";\r\n    internal const string CpuModel = \"coleco_cpu_model\";\r\n    internal const string CpuFrequency = \"coleco_cpu_frequency\";\r\n    internal const string MainMemory = \"coleco_main_memory\";\r\n    internal const string DisplayMemory = \"coleco_display_memory\";\r\n    internal const string DisplayResolution = \"coleco_display_resolution\";\r\n    internal const int BytesPerKibibyte = 1024;\r\n    internal const double HertzPerMegahertz = 1_000_000;\r\n    internal const double HertzPerKilohertz = 1_000;\r\n    internal const string MegahertzUnit = \"MHz\", KilohertzUnit = \"kHz\", ByteUnit = \"B\", KibibyteUnit = \"KiB\";\r\n    internal const string ResourceFirmware = \"Emulation.Firmware.Rom.System\";\r\n    internal const string ResourceNativeVideo = \"Emulation.Coleco.Video.Native\";\r\n    internal const string ResourceNativeControls = \"Emulation.Coleco.Controls.Native\";\r\n    internal const string ResourceNativeSystem = \"Emulation.Coleco.System.Native\";\r\n    internal const string NativeOptionResourcePrefix = \"Emulation.Coleco.Option.\";\r\n    internal const string NativeChoiceResourceFormat = \"{0}.Value{1}\";\r\n    internal const string HelpResourceSuffix = \".Help\";\r\n    internal const string ResourceAudio = \"Emulation.Audio\";\r\n    internal const string ResourceAudioEnabled = \"Emulation.Audio.Enabled\";\r\n    internal const string ResourceAudioOutput = \"Emulation.Audio.Output\";\r\n    internal const string ResourceAudioLatency = \"Emulation.Audio.Latency\";\r\n    internal const string ResourceAudioVolume = \"Explorer.Volume\";\r\n    internal const string ResourceDefaultOutput = \"Emulation.Audio.DefaultOutput\";\r\n    internal const string MillisecondsUnit = \"ms\", PercentUnit = \"%\";\r\n    internal static readonly IReadOnlyList<string> CartridgeExtensions = [\".col\", \".cv\", \".bin\", \".rom\", \".zip\"];\r\n    internal static readonly IReadOnlyList<string> FloppyExtensions = [\".dsk\"];\r\n    internal static readonly IReadOnlyList<string> DataPackExtensions = [\".ddp\"];\r\n    internal const int DefaultLatency = 50, DefaultVolume = 100;\r\n    internal static readonly IReadOnlyList<int> Latencies = [20, 30, 40, 50, 75, 100, 150, 200];\r\n    internal static readonly IReadOnlyList<int> Volumes = [0, 25, 50, 75, 100];\r\n}",
+        "volumeSource": "namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Constants;\r\n\r\ninternal static class VideoAudioSettingsConstants\r\n{\r\n    internal const string AudioVolumeOption = \"gwgui_bandai_audio_volume\";\r\n    internal const int MinimumVolumePercent = 0;\r\n    internal const int MaximumVolumePercent = 100;\r\n}\r\n",
+        "currentSdkSourceSha256": "DAC28DF1F47DEA2B6EA5741D3FBB2653C044DDF50B96A6A1DD38D0C23D9BEE68",
+        "settingsPath": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "currentSdkPath": "src/GWGUI.Emulation/Constants/EmulationSettingConstants.cs",
+        "volumePath": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Constants/VideoAudioSettingsConstants.cs",
+        "latenciesEqualCurrentSdk": true,
+        "latencies": [
+          20,
+          30,
+          40,
+          50,
+          75,
+          100,
+          150,
+          200
+        ]
+      }
+    },
+    "before": [
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": null,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            if (option.Key == SettingsConstants.AudioOutput)\n            {\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == SettingsConstants.AudioLatency)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            if (option.Key == SettingsConstants.AudioOutput)\n            {\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == SettingsConstants.AudioLatency)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": true,
+        "sourceSha256": "20043A5864E8CA11ADFEFDD7FFEC311A7CB71C929A79BBB600455649B1B1706A"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": null,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": true,
+        "sourceSha256": "A71044496B91D6ACC0E8C99466DEF9644F55949232513CFFD7768D50A1703226"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": null,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "A74A50497B26367E5CF0875EDBD80A8AD9D7CD658D4A85037BB86B321100E4D1"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": null,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "772DB2118955A673B24EE1EAE26A8B4F71A1F30449AF0CAD5D04CBEADF2496B0"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": null,
+        "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "1F9AD008EA539B69ED9B109F1245826CDB58022987BCAD0A32DD84A2816E3BDD"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+        "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : (new Engine().Adapter(configuration) as IEmulatorSettings)?.GetSettingsOptions(configuration) ?? [];",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : (new Engine().Adapter(configuration) as IEmulatorSettings)?.GetSettingsOptions(configuration) ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid)\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid)\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": false,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "EDEA325EC776F7EFAD6E36D59CC89BFD0A65002DE4D683EF36D564BD89F26B9D"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettings settings ? settings.GetSettingsOptions() : [];",
+        "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration) : [];",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettings settings ? settings.GetSettingsOptions() : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration) : [];\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForConfiguration(configuration);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value) && (definition.IsEnabled || option.Value == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForConfiguration(configuration);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value) && (definition.IsEnabled || option.Value == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }",
+        "hasDeferredOptionPolicy": false,
+        "hasEnabledDefaultPolicy": true,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "CCCB9326409704208A30764FF68B02B24E94442A20A3C10BF5CB4F7D4120D357"
+      },
+      {
+        "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];",
+        "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];",
+        "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;\r\n        var catalog = adapter?.DescribeOptions(configuration) ?? [];\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => adapter?.IsDeferredOption(configuration,\r\n                    option.Key) \r\n                    == true \r\n                    && !string.IsNullOrEmpty(option.Value) \r\n                    || catalog.Any(definition => definition.Key \r\n                    == option.Key \r\n                    && definition.Values.Any(choice => choice.Value \r\n                    == option.Value) \r\n                    && (definition.IsEnabled \r\n                    || option.Value \r\n                    == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}",
+        "validate": "internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;\r\n        var catalog = adapter?.DescribeOptions(configuration) ?? [];\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => adapter?.IsDeferredOption(configuration,\r\n                    option.Key) \r\n                    == true \r\n                    && !string.IsNullOrEmpty(option.Value) \r\n                    || catalog.Any(definition => definition.Key \r\n                    == option.Key \r\n                    && definition.Values.Any(choice => choice.Value \r\n                    == option.Value) \r\n                    && (definition.IsEnabled \r\n                    || option.Value \r\n                    == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }",
+        "hasDeferredOptionPolicy": true,
+        "hasEnabledDefaultPolicy": true,
+        "retainsAdapterValidation": false,
+        "sourceSha256": "B6480A0EE3007ECD455CC7AD9BC6A9381A437696676A17B9C291C92A5A199BA6"
+      }
+    ],
+    "state": "sixteen-original-configured-value-predicates-verified-and-inventory-retained",
+    "entries": [
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": null,
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            if (option.Key == SettingsConstants.AudioOutput)\n            {\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == SettingsConstants.AudioLatency)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            if (option.Key == SettingsConstants.AudioOutput)\n            {\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == SettingsConstants.AudioLatency)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": true,
+          "sourceSha256": "20043A5864E8CA11ADFEFDD7FFEC311A7CB71C929A79BBB600455649B1B1706A"
+        },
+        "edits": [
+          {
+            "old": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 238,
+            "value": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 797,
+            "polarity": "invalid"
+          },
+          {
+            "old": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 299,
+            "value": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 1268,
+            "polarity": "invalid"
+          }
+        ],
+        "family": "Coleco",
+        "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_bandai_audio_volume",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_coleco_audio_latency",
+            "type": "string"
+          },
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_coleco_audio_output",
+            "type": "string"
+          },
+          "System.Globalization.NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "20043A5864E8CA11ADFEFDD7FFEC311A7CB71C929A79BBB600455649B1B1706A",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "invalid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "invalid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            if (option.Key == SettingsConstants.AudioOutput)\n            {\n                if (string.IsNullOrWhiteSpace(option.Value)) throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == SettingsConstants.AudioLatency)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)\n                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)\n            {\n                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)\n                    || volume is < VideoAudioSettingsConstants.MinimumVolumePercent\n                        or > VideoAudioSettingsConstants.MaximumVolumePercent)\n                    throw new ArgumentException(nameof(configuration.Options));\n                continue;\n            }\n            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": null,
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": true,
+          "sourceSha256": "A71044496B91D6ACC0E8C99466DEF9644F55949232513CFFD7768D50A1703226"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 690,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 238,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 931,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Epoch",
+        "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_epoch_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_epoch_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_epoch_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "A71044496B91D6ACC0E8C99466DEF9644F55949232513CFFD7768D50A1703226",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)\n            validator.ValidateConfiguration(configuration);\n    }\n}\n"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": null,
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "A74A50497B26367E5CF0875EDBD80A8AD9D7CD658D4A85037BB86B321100E4D1"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 693,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 238,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 934,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Fairchild",
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_fairchild_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_fairchild_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_fairchild_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "A74A50497B26367E5CF0875EDBD80A8AD9D7CD658D4A85037BB86B321100E4D1",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": null,
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "772DB2118955A673B24EE1EAE26A8B4F71A1F30449AF0CAD5D04CBEADF2496B0"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 690,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 238,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 931,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Mattel",
+        "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_mattel_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_mattel_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_mattel_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "772DB2118955A673B24EE1EAE26A8B4F71A1F30449AF0CAD5D04CBEADF2496B0",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": null,
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "1F9AD008EA539B69ED9B109F1245826CDB58022987BCAD0A32DD84A2816E3BDD"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 691,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 238,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 932,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Philips",
+        "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_philips_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_philips_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_philips_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "1F9AD008EA539B69ED9B109F1245826CDB58022987BCAD0A32DD84A2816E3BDD",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\nnamespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;\n\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent\n                    && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid) throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}\n"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];",
+          "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : (new Engine().Adapter(configuration) as IEmulatorSettings)?.GetSettingsOptions(configuration) ?? [];",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : (new Engine().Adapter(configuration) as IEmulatorSettings)?.GetSettingsOptions(configuration) ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid)\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid)\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": false,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "EDEA325EC776F7EFAD6E36D59CC89BFD0A65002DE4D683EF36D564BD89F26B9D"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 965,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 218,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 1206,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Sharp",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_sharp_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_sharp_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_sharp_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "EDEA325EC776F7EFAD6E36D59CC89BFD0A65002DE4D683EF36D564BD89F26B9D",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\n\nnamespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;\ninternal static class CoreOptionValidationFunctions\n{\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];\n\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : (new Engine().Adapter(configuration) as IEmulatorSettings)?.GetSettingsOptions(configuration) ?? [];\n\n    internal static void Validate(MachineConfiguration configuration)\n    {\n        var catalog = ForCore(configuration.Core);\n        foreach (var option in configuration.Options)\n        {\n            var valid = option.Key switch\n            {\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))\n            };\n            if (!valid)\n                throw new ArgumentException(nameof(configuration.Options));\n        }\n    }\n}"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettings settings ? settings.GetSettingsOptions() : [];",
+          "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration) : [];",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettings settings ? settings.GetSettingsOptions() : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration) : [];\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForConfiguration(configuration);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value) && (definition.IsEnabled || option.Value == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForConfiguration(configuration);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value) && (definition.IsEnabled || option.Value == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }",
+          "hasDeferredOptionPolicy": false,
+          "hasEnabledDefaultPolicy": true,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "CCCB9326409704208A30764FF68B02B24E94442A20A3C10BF5CB4F7D4120D357"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 1019,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 218,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 1261,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Sinclair",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_sinclair_audio_output",
+            "type": "string"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_sinclair_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_sinclair_audio_latency",
+            "type": "string"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          }
+        },
+        "sourceSha256": "CCCB9326409704208A30764FF68B02B24E94442A20A3C10BF5CB4F7D4120D357",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettings settings ? settings.GetSettingsOptions() : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration) : [];\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var catalog = ForConfiguration(configuration);\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value) && (definition.IsEnabled || option.Value == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}"
+      },
+      {
+        "retainedPolicy": {
+          "forCore": "internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];",
+          "forConfiguration": "internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];",
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;\r\n        var catalog = adapter?.DescribeOptions(configuration) ?? [];\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => adapter?.IsDeferredOption(configuration,\r\n                    option.Key) \r\n                    == true \r\n                    && !string.IsNullOrEmpty(option.Value) \r\n                    || catalog.Any(definition => definition.Key \r\n                    == option.Key \r\n                    && definition.Values.Any(choice => choice.Value \r\n                    == option.Value) \r\n                    && (definition.IsEnabled \r\n                    || option.Value \r\n                    == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}",
+          "validate": "internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;\r\n        var catalog = adapter?.DescribeOptions(configuration) ?? [];\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => adapter?.IsDeferredOption(configuration,\r\n                    option.Key) \r\n                    == true \r\n                    && !string.IsNullOrEmpty(option.Value) \r\n                    || catalog.Any(definition => definition.Key \r\n                    == option.Key \r\n                    && definition.Values.Any(choice => choice.Value \r\n                    == option.Value) \r\n                    && (definition.IsEnabled \r\n                    || option.Value \r\n                    == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }",
+          "hasDeferredOptionPolicy": true,
+          "hasEnabledDefaultPolicy": true,
+          "retainsAdapterValidation": false,
+          "sourceSha256": "B6480A0EE3007ECD455CC7AD9BC6A9381A437696676A17B9C291C92A5A199BA6"
+        },
+        "edits": [
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "kind": "Latency",
+            "length": 174,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+            "start": 1184,
+            "polarity": "valid"
+          },
+          {
+            "old": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "kind": "Volume",
+            "length": 218,
+            "value": "!EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+            "start": 1426,
+            "polarity": "valid"
+          }
+        ],
+        "family": "Snk",
+        "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+        "constants": {
+          "Emulator.None": {
+            "value": 0,
+            "type": "GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator"
+          },
+          "NumberStyles.Integer": {
+            "value": 7,
+            "type": "System.Globalization.NumberStyles"
+          },
+          "VideoAudioSettingsConstants.MinimumVolumePercent": {
+            "value": 0,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.MaximumVolumePercent": {
+            "value": 100,
+            "type": "int"
+          },
+          "VideoAudioSettingsConstants.AudioVolumeOption": {
+            "value": "gwgui_snk_audio_volume",
+            "type": "string"
+          },
+          "SettingsConstants.AudioLatency": {
+            "value": "gwgui_snk_audio_latency",
+            "type": "string"
+          },
+          "SettingsConstants.AudioOutput": {
+            "value": "gwgui_snk_audio_output",
+            "type": "string"
+          }
+        },
+        "sourceSha256": "B6480A0EE3007ECD455CC7AD9BC6A9381A437696676A17B9C291C92A5A199BA6",
+        "predicates": [
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Latency",
+            "polarity": "valid",
+            "style": 7,
+            "local": "latency",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency)",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          },
+          {
+            "parseSymbol": "int.TryParse(string?, System.Globalization.NumberStyles, System.IFormatProvider?, out int)",
+            "kind": "Volume",
+            "polarity": "valid",
+            "style": 7,
+            "local": "volume",
+            "localReadsConfined": true,
+            "source": "int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent",
+            "cultureSymbol": "System.Globalization.CultureInfo.InvariantCulture"
+          }
+        ],
+        "source": "using System.Globalization;\r\n\r\nnamespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;\r\ninternal static class CoreOptionValidationFunctions\r\n{\r\n    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];\r\n    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;\r\n        var catalog = adapter?.DescribeOptions(configuration) ?? [];\r\n        foreach (var option in configuration.Options)\r\n        {\r\n            var valid = option.Key switch\r\n            {\r\n                SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),\r\n                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),\r\n                VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,\r\n                _ => adapter?.IsDeferredOption(configuration,\r\n                    option.Key) \r\n                    == true \r\n                    && !string.IsNullOrEmpty(option.Value) \r\n                    || catalog.Any(definition => definition.Key \r\n                    == option.Key \r\n                    && definition.Values.Any(choice => choice.Value \r\n                    == option.Value) \r\n                    && (definition.IsEnabled \r\n                    || option.Value \r\n                    == definition.DefaultValue))\r\n            };\r\n            if (!valid)\r\n                throw new ArgumentException(nameof(configuration.Options));\r\n        }\r\n    }\r\n}"
+      }
+    ],
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk"
+    ],
+    "semanticErrors": 0,
+    "decision": "Reuse original Coleco invalid-latency and invalid-volume operations in existing SDK audio owner; positive switch predicates use boolean negation, original invalid if predicates call directly. Out locals do not escape. All bounds are int0/100 and supplied from local constants; keep keys, loop, first error, catalog matching, adapter callbacks, deferred and enabled/default policies local. ForCore/ForConfiguration typed and None-specific policies remain. Existing native ValidateConfiguredValues skip-unknown behavior untouched.",
+    "annotations": [
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "3F3E334E3DB10CFA798719DE82B85F5DB6C8D75F9986FDA8B8D28D962FFC52BF",
+          "qualificationSourceSha256": "3F3E334E3DB10CFA798719DE82B85F5DB6C8D75F9986FDA8B8D28D962FFC52BF"
+        },
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "3EF5F61266F23C9E0769F8EB9AFA6CEDE9EB571864DE184D2B06F4FF2CC13014",
+          "qualificationSourceSha256": "3EF5F61266F23C9E0769F8EB9AFA6CEDE9EB571864DE184D2B06F4FF2CC13014"
+        },
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "1968B7C31E30F2B2EAB58066261B69486061CF77BCED141046BEA96130B866FA",
+          "qualificationSourceSha256": "1968B7C31E30F2B2EAB58066261B69486061CF77BCED141046BEA96130B866FA"
+        },
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "55A4FF6DFED6A7B741AA31814CB8A7696663F127FC4AD78B91EB69EAC5507A99",
+          "qualificationSourceSha256": "55A4FF6DFED6A7B741AA31814CB8A7696663F127FC4AD78B91EB69EAC5507A99"
+        },
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "8AAE1FED247757E404734CE44A58DA6581D91D794EDFCD026AC71C4C6E3F9B59",
+          "qualificationSourceSha256": "8AAE1FED247757E404734CE44A58DA6581D91D794EDFCD026AC71C4C6E3F9B59"
+        },
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "C02011A0CE5C1E4F3446A77C913155D09B1033C17FD331CE62460B8447048BBF",
+          "qualificationSourceSha256": "C02011A0CE5C1E4F3446A77C913155D09B1033C17FD331CE62460B8447048BBF"
+        },
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "8DE9EA73E8AF1610C0C605C87AEC8B74221F0D7D4CCE4C8CBCBDACEAE61D187E",
+          "qualificationSourceSha256": "8DE9EA73E8AF1610C0C605C87AEC8B74221F0D7D4CCE4C8CBCBDACEAE61D187E"
+        },
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "64918F2ABD554FFD765F47DE7D96DB562205A0B5202BB30B7D18539EC5CF4D6F",
+          "qualificationSourceSha256": "64918F2ABD554FFD765F47DE7D96DB562205A0B5202BB30B7D18539EC5CF4D6F"
+        },
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 14,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "28A09F5A145C0DC9B9CC5C87580C9A76B57B3099A824F673C954382049F019C1",
+          "qualificationSourceSha256": "28A09F5A145C0DC9B9CC5C87580C9A76B57B3099A824F673C954382049F019C1"
+        },
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "037A88435871388501DC2BD68902080C3629EEE71F4D5162EE83627B9EFCB0A9",
+        "name": "Run",
+        "line": 13,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "1F425F8B554CE5DD5B605F9372EF6240C80318FD92D0680799862804CF680141",
+          "qualificationSourceSha256": "1F425F8B554CE5DD5B605F9372EF6240C80318FD92D0680799862804CF680141"
+        },
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+        "name": "HandleEnvironment",
+        "line": 15,
+        "fields": {
+          "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
+          "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
+        },
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
+        "name": "HandleEnvironment",
+        "line": 15,
+        "fields": {
+          "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
+          "qualificationSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72"
+        },
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F",
+          "qualificationSourceSha256": "63ED9AC8A312C9CD6EDE8C23D1E6CA1A37DBD26ED1D06C8CF0DD701C10A5933F"
+        },
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065",
+          "qualificationSourceSha256": "9BBCDABD3152C21805EDA84FA1F1A37519930600FABC66891419336EF4C08065"
+        },
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7",
+          "qualificationSourceSha256": "6D3202DC85949833F4DC78184B8B4A702C419D16BE7CBF59EAE8950E70B748E7"
+        },
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC",
+          "qualificationSourceSha256": "0A3ECC3DDC8271549643D8EA8AD80CD1B82C0C6F05DF4E0B39D203F0D9854BEC"
+        },
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "1C9AA5F8E2E37B8E45D8ED922876AEFC806A30DFDC1A666F69FFA0ACE1E947F7",
+        "name": "Run",
+        "line": 12,
+        "fields": {
+          "qualification": "entire-typed-native-session-reuses-sdk-resources-and-command-dispatch",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306",
+          "qualificationSourceSha256": "E967343EF8033AF132C993D832A6372F609549BF2892766FC24FE174630BA306"
+        },
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+        "name": "RunSession",
+        "line": 24,
+        "fields": {
+          "qualification": "complete-typed-legacy-session-sdk-resource-and-protocol-owners-verified",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "qualificationSourceSha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+        },
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "912196E7786718621D9DFCA991F94086B0F74C0399B8CE270D3E5BFCC5C8295B",
+        "name": "RunSession",
+        "line": 24,
+        "fields": {
+          "qualification": "complete-typed-legacy-session-sdk-resource-and-protocol-owners-verified",
+          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
+          "qualificationCoreLifetimeSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
+          "qualificationFixedVideoOwnershipSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
+          "qualificationFrameResponseSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
+          "qualificationPathMediaSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "qualificationSourceSha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+        },
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "EC97160A7F0C611BDA53DE039983E4F829843A1DBAB1B11EC3C838561EA14AA2"
+        },
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "57231243FFFF9EFF13D81F017952E5D65FE2E0324BBD05A4D545EF8EA2EA11FE"
+        },
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "09F06A6C106F29F8697815F2D2B68F36F84A8CFCAA62E51EF50154AB6FA22ECF"
+        },
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "B435FB64DC0E56202ECF130F3FC5D780F6E709EEB9AAC673BA04538C96F9232A"
+        },
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+        },
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "2CD12F427B9FCDBA1B47DC7A74F3FD5487AD55FA5EB9D3D09068F2F033A406D4"
+        },
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "135FEF2AB128A09D683D025023B55B66DCCF79E8BC16983A342B7C6F012C7CE6"
+        },
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "40CBB1DD94CE09C1BCEBCEB55A9E19B3FE5F3747CC4F5E5EC6C94D60BFC4873A"
+        },
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+        },
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "1C2D8ACD72918889598899F904E6C239C5D199B84B54C731B8DC2399351D1154"
+        },
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+        },
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 77,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "11F01CB5AFE23263E24F7EBBDC8BEDE48A9C9AF9CEC060DC0986DC504EC520E0"
+        },
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "C25B1414867FF3EE4463B153B86A259CF8A654C5099105D42258A120D6B5515B"
+        },
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 76,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "5D9E5A4DD0B0ED40A7C17D88ADD9D1B31523D894C59F9B7B2EF343D4035AE229"
+        },
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "AADF60F870081287C3FBCFC037F380912DA73D91801E42FBA81672F5015568B1",
+        "name": "Dispose",
+        "line": 73,
+        "fields": {
+          "qualificationTransportDisposal": "Only the transport disposal calls are verified via transportDisposalReuse; complete method/session remains pending.",
+          "qualificationTransportDisposalSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+        },
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError",
+        "line": 44,
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "4E9D83EA56E29B985D8A4E29143FB6F6A6E613534D2E7200744CDD94F77459D9"
+        },
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError",
+        "line": 44,
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "CAEEA8571F2599EF08633FBF09C50BC3D6A38FB7DC27C997F952FBD3FAEE1079"
+        },
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError",
+        "line": 44,
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "6F8B8D6EF454395A7698F714B9238ADB8D2770088BE2917905678D7E69F677CD"
+        },
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "CC7496F474157863F1E57CBE002409B8DE18CC6D91D9BBDE1E8FE355B56E8330",
+        "name": "ThrowRemoteError",
+        "line": 44,
+        "fields": {
+          "qualificationDialogErrorConstruction": "Only 1 message construction sites use existing EmulationErrorService.CreateError; enclosing control flow/session is not qualified by this fragment; dialogErrorConstructionReuse.",
+          "qualificationDialogErrorConstructionSourceSha256": "5D4EC4A57DCD755E3AC862821E1E8D11E84065346AE865A041B119DC078D42D5"
+        },
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs",
+        "report": "docs/reference/reuse-audit/current-project-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE"
+        },
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 63,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
+        },
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 82,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A"
+        },
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E"
+        },
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D"
+        },
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596"
+        },
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 51,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
+        },
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E"
+        },
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6"
+        },
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59"
+        },
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 73,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
+        },
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 60,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
+        },
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994"
+        },
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9"
+        },
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 60,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
+        },
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 79,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C"
+        },
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD"
+        },
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 80,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06"
+        },
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 64,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
+        },
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A"
+        },
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125"
+        },
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403"
+        },
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE"
+        },
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 63,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0342291AD9378D5FE318A4F90B0029D4F4CBBF12248CED9C5DAC75275104D812"
+        },
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 82,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A"
+        },
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E"
+        },
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D"
+        },
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596"
+        },
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 51,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "DBA5BF97941E5B7A23A418F51BC57C87379716EE6C26AF7C7EB4EC7A3D43D795"
+        },
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E"
+        },
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6"
+        },
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59"
+        },
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 73,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "7801589367A74F9C8BE268E7AC87C2EEB913EC20AF3893E7F5D4E342E9CB310E"
+        },
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 60,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "8BC5FA75DCAC5007EDD7007EEB78B66FFB6A763970DC10B656F68A267D6545F1"
+        },
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994"
+        },
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9"
+        },
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 60,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "2BDFF125E1768AACFA41E1C52F169AD7454977839AC4F511A11FAAA85BE0C31A"
+        },
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 79,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C"
+        },
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD"
+        },
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 80,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06"
+        },
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 64,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "2B9323D89CC0B31162E4399D2A6C05014439536CFE06142578B7DC8BE92D01B1"
+        },
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A"
+        },
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 81,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125"
+        },
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      },
+      {
+        "groupHash": null,
+        "name": "TryDequeueAudio",
+        "line": 78,
+        "fields": {
+          "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
+          "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers",
+          "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403"
+        },
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+        "report": "docs/reference/reuse-audit/short-method-groups.json"
+      }
+    ],
+    "annotationRetention": {
+      "priorTotal": 3612,
+      "outsideCount": 3530,
+      "outsideDigest": "3C030B3DAB946149160865A13CA207CA17FEF1823B2DAD94139701DEC7DFE13E"
+    },
+    "verification": {
+      "earlierNativeValidationUnchanged": true,
+      "polarityProof": "Invalid OR(!TryParse,!Choice) is complement of valid AND(TryParse,Choice). Invalid OR(!TryParse,volume<minimum,volume>maximum) is complement of valid AND(TryParse,volume>=minimum,volume<=maximum). Parse operations, invariant styles/culture, shared choice list and supplied bounds match original; order preserved and out local reads confined.",
+      "scope": "Two original value predicates only; full file inverse proves keys, option loop, first-error order, catalogs, None/deferred/enabled/default policies and adapter callbacks untouched.",
+      "fullInverseSources": 8,
+      "sdk": [
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+          "sourceSha256": "55FCB0BC2538282A44E9A0A6B9D83ACF26CF294EBEB19567948EF1A970DF27CC"
+        }
+      ],
+      "testStatus": "passed",
+      "files": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "97E9DA849AE2047154F33B504404E759B8D69926236B02167779541FCA1F82BA",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "73E8CF52701B29E92FD9A23471019CB0C0C20129DD8B5AAA5F01A527304664F2",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "7D8152DA302739221165F083B5F1D2723B550D00A752A887C2480A2DA24018EC",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "F91F6B266D01B6E12FCE7741511EA3B72035F516CA174BE15A57B06B98538815",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "DE6276371C4CE4F68326C22845813D6F2E932D1FC781830BCF11E2BF8DB4AB15",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "7114015D65864D558572B7F67F561C76E97870C9606CC7DE29C0C8C2411D220A",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "3348369E7D5C473F3B49873C2940D8DDF8161C1609B6B9D221D1D86DAA1E560F",
+          "fullSourceRestored": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "sourceSha256": "2807B3C8C3516917C9EAD13875E78213B484F1F6887C88731EEF305BD1688331",
+          "fullSourceRestored": true
+        }
+      ],
+      "removedDefinitions": [],
+      "wholeValidateMethodsQualified": 0,
+      "originalColecoOperationsVerified": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk"
+      ],
+      "sites": [
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value)",
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredLatency"
+        },
+        {
+          "call": "EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent)",
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs",
+          "caller": "Validate",
+          "method": "HasInvalidConfiguredVolume"
+        }
+      ],
+      "semanticErrors": 0,
+      "tests": {
+        "physicalMediaOrCoreStarted": false,
+        "passed": 59,
+        "newPureMemoryCases": 27,
+        "failed": 0,
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~ConfiguredAudioValueValidationTests|FullyQualifiedName~RuntimeAudioSelectionTests|FullyQualifiedName~AudioSettingsConstructionTests|FullyQualifiedName~ChangingCoreDropsForeignOptionsAndRetainsMappings --verbosity quiet"
+      }
+    },
+    "inventory": {
+      "classificationScope": "Configured latency and volume predicates only; local Validate loops, catalogs and adapter policies retained, every previous scope preserved by exact expansion. No full Validate qualification from component evidence.",
+      "priorAnnotationsRestored": 3612,
+      "partialOccurrencesRetained": 82,
+      "wholeMethodsNewlyQualified": 0,
+      "priorAnnotationsAccounted": 3612,
+      "outsideAnnotationsDigestUnchanged": true,
+      "algorithmSitesVerified": 16
+    }
   }
 }
