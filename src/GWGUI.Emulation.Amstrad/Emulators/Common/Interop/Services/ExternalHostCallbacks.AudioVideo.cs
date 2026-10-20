@@ -13,9 +13,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
             || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
-        var byteCount = checked((int)(pitch * height));
-        var pixels = new byte[byteCount];
-        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
+        var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);
         LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > VideoConstants.UnspecifiedAspectRatio ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
     }
 

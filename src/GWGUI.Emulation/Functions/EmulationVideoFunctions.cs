@@ -24,6 +24,14 @@ public static class EmulationVideoFunctions
             Marshal.Copy(nint.Add(source, checked(row * pitch)), destination, checked(row * pitch), pitch);
     }
 
+    internal static byte[] CopyFramePixels(nint data, uint height, nuint pitch)
+    {
+        var byteCount = FrameLength(height, pitch);
+        var pixels = new byte[byteCount];
+        Marshal.Copy(data, pixels, 0, byteCount);
+        return pixels;
+    }
+
     internal static TimeSpan Timestamp(long startTimestamp) => Stopwatch.GetElapsedTime(startTimestamp);
 
     public static string FormatStandard(EmulationVideoStandard standard) => standard switch

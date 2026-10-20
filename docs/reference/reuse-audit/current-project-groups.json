@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7236,
-  "outsideSrcCSharpFiles": 334,
+  "currentCSharpFiles": 7237,
+  "outsideSrcCSharpFiles": 335,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11485,
+  "currentMethodCount": 11489,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -5121,7 +5121,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
-          "line": 42,
+          "line": 40,
           "tokens": 37,
           "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
           "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3"
@@ -5129,7 +5129,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
-          "line": 43,
+          "line": 41,
           "tokens": 37,
           "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
           "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3"
@@ -8259,7 +8259,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
-          "line": 54,
+          "line": 52,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
           "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
@@ -8267,7 +8267,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
-          "line": 54,
+          "line": 52,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
           "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
@@ -8275,7 +8275,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
-          "line": 44,
+          "line": 42,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
           "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
@@ -11224,7 +11224,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -17383,7 +17383,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
-          "line": 47,
+          "line": 45,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -17391,7 +17391,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
-          "line": 48,
+          "line": 46,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -17399,7 +17399,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
-          "line": 59,
+          "line": 57,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -17407,7 +17407,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
-          "line": 59,
+          "line": 57,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -17415,7 +17415,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
-          "line": 49,
+          "line": 47,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -18822,7 +18822,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -19487,7 +19487,9 @@
           "line": 36,
           "tokens": 284,
           "hash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
-          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57"
+          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57",
+          "qualification": "Typed owner constructor composition; existing SDK allocation/VFS/options/buffer owners, local handler roots and transactional cleanup verified in callbackConstructorComparison; no claim on handler algorithms or whole lifecycle.",
+          "qualificationSourceSha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -19495,7 +19497,9 @@
           "line": 35,
           "tokens": 284,
           "hash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
-          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57"
+          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57",
+          "qualification": "Typed owner constructor composition; existing SDK allocation/VFS/options/buffer owners, local handler roots and transactional cleanup verified in callbackConstructorComparison; no claim on handler algorithms or whole lifecycle.",
+          "qualificationSourceSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -19503,7 +19507,9 @@
           "line": 33,
           "tokens": 284,
           "hash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
-          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57"
+          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57",
+          "qualification": "Typed owner constructor composition; existing SDK allocation/VFS/options/buffer owners, local handler roots and transactional cleanup verified in callbackConstructorComparison; no claim on handler algorithms or whole lifecycle.",
+          "qualificationSourceSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -19511,7 +19517,9 @@
           "line": 33,
           "tokens": 284,
           "hash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
-          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57"
+          "shape": "B553069B86901A2743031E5A662EECB5A66F7F03594F8441B7EE4BD28B24BD57",
+          "qualification": "Typed owner constructor composition; existing SDK allocation/VFS/options/buffer owners, local handler roots and transactional cleanup verified in callbackConstructorComparison; no claim on handler algorithms or whole lifecycle.",
+          "qualificationSourceSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445"
         }
       ],
       "predecessors": [],
@@ -23296,6 +23304,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "E0B029374727F5F674AFD9AB685A664044DE46D7CD49EC1CEC2DDAAE04E88B2D",
+      "method": "HandleVideo",
+      "tokens": 206,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleVideo",
+          "line": 13,
+          "tokens": 206,
+          "hash": "E0B029374727F5F674AFD9AB685A664044DE46D7CD49EC1CEC2DDAAE04E88B2D",
+          "shape": "4EE651376B238B527E8EA6D521F663DF6F0BD8C22E9BD6D7447AD9149A670DA7",
+          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate.",
+          "qualificationNativeVideoCopySourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleVideo",
+          "line": 13,
+          "tokens": 206,
+          "hash": "E0B029374727F5F674AFD9AB685A664044DE46D7CD49EC1CEC2DDAAE04E88B2D",
+          "shape": "4EE651376B238B527E8EA6D521F663DF6F0BD8C22E9BD6D7447AD9149A670DA7",
+          "qualificationNativeVideoCopy": "Only original contiguous pixel-copy component shared through SDK CopyFramePixels/FrameLength; nativeVideoCopyReuse verifies caller inverse, sizes/allocation/offset. Hardware rendering, frame publication and whole lifecycle remain separate.",
+          "qualificationNativeVideoCopySourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
       "method": "CreateKeyboardMap",
       "tokens": 55,
@@ -24322,33 +24361,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "EF417E063E4207EF6D240B79EE74658834797A7FD936958770AFCA34C48456B6",
-      "method": "HandleVideo",
-      "tokens": 225,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleVideo",
-          "line": 13,
-          "tokens": 225,
-          "hash": "EF417E063E4207EF6D240B79EE74658834797A7FD936958770AFCA34C48456B6",
-          "shape": "B47B9C52AA6E8C5C340036187380698AE99525B1BEA38F29219A55F89723FFBF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleVideo",
-          "line": 13,
-          "tokens": 225,
-          "hash": "EF417E063E4207EF6D240B79EE74658834797A7FD936958770AFCA34C48456B6",
-          "shape": "B47B9C52AA6E8C5C340036187380698AE99525B1BEA38F29219A55F89723FFBF"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "EFB0D09657CFAB1727E08563A49F68055891DE59E56A693E6D416218E9F5CD64",
       "method": "FromDocument",
       "tokens": 210,
@@ -24608,7 +24620,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
-          "line": 43,
+          "line": 41,
           "tokens": 44,
           "hash": "F3B1330702A3CDC4F4377841C5382CD7DC323A9C9BB02F190F6B0AC4AF58EF3F",
           "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81"
@@ -24616,7 +24628,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
-          "line": 43,
+          "line": 41,
           "tokens": 44,
           "hash": "F3B1330702A3CDC4F4377841C5382CD7DC323A9C9BB02F190F6B0AC4AF58EF3F",
           "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81"
@@ -33761,6 +33773,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 507
+    "occurrences": 511
   }
 }

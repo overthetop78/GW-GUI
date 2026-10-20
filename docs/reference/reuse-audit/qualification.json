@@ -1161970,5 +1161970,1500 @@
       "totalAnnotations": 3628,
       "priorAnnotationsRetained": 3624
     }
+  },
+  "callbackConstructorComparison": {
+    "originalConstructor": "internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,\n        string assetsDirectory,\n        IReadOnlyDictionary<string, string> configuredOptions)\n    {\n        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        Directory.CreateDirectory(assetsDirectory);\n        ExternalCoreUtf8String? system = null;\n        ExternalCoreUtf8String? content = null;\n        ExternalCoreUtf8String? save = null;\n        ExternalCoreUtf8String? assets = null;\n        CoreOptionHost? optionHost = null;\n        ExternalCoreVirtualFileSystem? virtualFileSystem = null;\n        var completed = false;\n        try\n        {\n            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\n            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\n            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\n            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\n            _optionHost = optionHost = new CoreOptionHost(configuredOptions);\n            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();\n            Environment = OnEnvironment;\n            Video = OnVideo;\n            AudioSample = OnAudioSample;\n            AudioBatch = OnAudioBatch;\n            InputPoll = OnInputPoll;\n            InputState = OnInputState;\n            SetLedState = OnSetLedState;\n            SetRumbleState = OnSetRumbleState;\n            SetSensorState = OnSetSensorState;\n            GetSensorInput = OnGetSensorInput;\n            Log = OnLog;\n            completed = true;\n        }\n        finally\n        {\n            if (!completed)\n            {\n                using (system)\n                using (content)\n                using (save)\n                using (assets)\n                using (virtualFileSystem)\n                using (_videoBuffers)\n                    optionHost?.Dispose();\n            }\n        }\n    }",
+    "entries": [
+      {
+        "sourceSha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758",
+        "cleanupUsingNesting": [
+          "system",
+          "content",
+          "save",
+          "assets",
+          "virtualFileSystem",
+          "_videoBuffers"
+        ],
+        "source": "internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)\n    {\n        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        Directory.CreateDirectory(assetsDirectory);\n        ExternalCoreUtf8String? system = null;\n        ExternalCoreUtf8String? content = null;\n        ExternalCoreUtf8String? save = null;\n        ExternalCoreUtf8String? assets = null;\n        CoreOptionHost? optionHost = null;\n        ExternalCoreVirtualFileSystem? virtualFileSystem = null;\n        var completed = false;\n        try\n        {\n            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\n            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\n            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\n            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\n            var settings = new Engine().Adapter(emulator) as IEmulatorSettings;\n            _optionHost = optionHost = new CoreOptionHost(configuredOptions, settings?.GetSettingsOptions());\n            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();\n            Environment = OnEnvironment;\n            Video = OnVideo;\n            AudioSample = OnAudioSample;\n            AudioBatch = OnAudioBatch;\n            InputPoll = OnInputPoll;\n            InputState = OnInputState;\n            SetLedState = OnSetLedState;\n            SetRumbleState = OnSetRumbleState;\n            SetSensorState = OnSetSensorState;\n            GetSensorInput = OnGetSensorInput;\n            Log = OnLog;\n            completed = true;\n        }\n        finally\n        {\n            if (!completed)\n            {\n                using (system)\n                using (content)\n                using (save)\n                using (assets)\n                using (virtualFileSystem)\n                using (_videoBuffers)\n                    optionHost?.Dispose();\n            }\n        }\n    }",
+        "bodyHash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
+        "firstEnumGuard": "if ( ! Enum . IsDefined ( emulator ) ) throw new ArgumentOutOfRangeException ( nameof ( emulator ) ) ;",
+        "assignments": [
+          "_systemDirectory = system = new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) ) ;",
+          "_contentDirectory = content = new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) ) ;",
+          "_saveDirectory = save = new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) ) ;",
+          "_assetsDirectory = assets = new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) ) ;",
+          "_optionHost = optionHost = new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) ) ;",
+          "_virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem ( ) ;",
+          "Environment = OnEnvironment ;",
+          "Video = OnVideo ;",
+          "AudioSample = OnAudioSample ;",
+          "AudioBatch = OnAudioBatch ;",
+          "InputPoll = OnInputPoll ;",
+          "InputState = OnInputState ;",
+          "SetLedState = OnSetLedState ;",
+          "SetRumbleState = OnSetRumbleState ;",
+          "SetSensorState = OnSetSensorState ;",
+          "GetSensorInput = OnGetSensorInput ;",
+          "Log = OnLog ;",
+          "completed = true ;"
+        ],
+        "line": 36,
+        "module": "Coleco",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sourceSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB",
+        "cleanupUsingNesting": [
+          "system",
+          "content",
+          "save",
+          "assets",
+          "virtualFileSystem",
+          "_videoBuffers"
+        ],
+        "source": "internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)\n    {\n        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        Directory.CreateDirectory(assetsDirectory);\n        ExternalCoreUtf8String? system = null;\n        ExternalCoreUtf8String? content = null;\n        ExternalCoreUtf8String? save = null;\n        ExternalCoreUtf8String? assets = null;\n        CoreOptionHost? optionHost = null;\n        ExternalCoreVirtualFileSystem? virtualFileSystem = null;\n        var completed = false;\n        try\n        {\n            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\n            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\n            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\n            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\n            var settings = new Engine().Adapter(emulator) as IEmulatorSettings;\n            _optionHost = optionHost = new CoreOptionHost(configuredOptions, settings?.GetSettingsOptions());\n            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();\n            Environment = OnEnvironment;\n            Video = OnVideo;\n            AudioSample = OnAudioSample;\n            AudioBatch = OnAudioBatch;\n            InputPoll = OnInputPoll;\n            InputState = OnInputState;\n            SetLedState = OnSetLedState;\n            SetRumbleState = OnSetRumbleState;\n            SetSensorState = OnSetSensorState;\n            GetSensorInput = OnGetSensorInput;\n            Log = OnLog;\n            completed = true;\n        }\n        finally\n        {\n            if (!completed)\n            {\n                using (system)\n                using (content)\n                using (save)\n                using (assets)\n                using (virtualFileSystem)\n                using (_videoBuffers)\n                    optionHost?.Dispose();\n            }\n        }\n    }",
+        "bodyHash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
+        "firstEnumGuard": "if ( ! Enum . IsDefined ( emulator ) ) throw new ArgumentOutOfRangeException ( nameof ( emulator ) ) ;",
+        "assignments": [
+          "_systemDirectory = system = new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) ) ;",
+          "_contentDirectory = content = new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) ) ;",
+          "_saveDirectory = save = new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) ) ;",
+          "_assetsDirectory = assets = new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) ) ;",
+          "_optionHost = optionHost = new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) ) ;",
+          "_virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem ( ) ;",
+          "Environment = OnEnvironment ;",
+          "Video = OnVideo ;",
+          "AudioSample = OnAudioSample ;",
+          "AudioBatch = OnAudioBatch ;",
+          "InputPoll = OnInputPoll ;",
+          "InputState = OnInputState ;",
+          "SetLedState = OnSetLedState ;",
+          "SetRumbleState = OnSetRumbleState ;",
+          "SetSensorState = OnSetSensorState ;",
+          "GetSensorInput = OnGetSensorInput ;",
+          "Log = OnLog ;",
+          "completed = true ;"
+        ],
+        "line": 35,
+        "module": "Epoch",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sourceSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B",
+        "cleanupUsingNesting": [
+          "system",
+          "content",
+          "save",
+          "assets",
+          "virtualFileSystem",
+          "_videoBuffers"
+        ],
+        "source": "internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)\n    {\n        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        Directory.CreateDirectory(assetsDirectory);\n        ExternalCoreUtf8String? system = null;\n        ExternalCoreUtf8String? content = null;\n        ExternalCoreUtf8String? save = null;\n        ExternalCoreUtf8String? assets = null;\n        CoreOptionHost? optionHost = null;\n        ExternalCoreVirtualFileSystem? virtualFileSystem = null;\n        var completed = false;\n        try\n        {\n            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\n            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\n            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\n            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\n            var settings = new Engine().Adapter(emulator) as IEmulatorSettings;\n            _optionHost = optionHost = new CoreOptionHost(configuredOptions, settings?.GetSettingsOptions());\n            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();\n            Environment = OnEnvironment;\n            Video = OnVideo;\n            AudioSample = OnAudioSample;\n            AudioBatch = OnAudioBatch;\n            InputPoll = OnInputPoll;\n            InputState = OnInputState;\n            SetLedState = OnSetLedState;\n            SetRumbleState = OnSetRumbleState;\n            SetSensorState = OnSetSensorState;\n            GetSensorInput = OnGetSensorInput;\n            Log = OnLog;\n            completed = true;\n        }\n        finally\n        {\n            if (!completed)\n            {\n                using (system)\n                using (content)\n                using (save)\n                using (assets)\n                using (virtualFileSystem)\n                using (_videoBuffers)\n                    optionHost?.Dispose();\n            }\n        }\n    }",
+        "bodyHash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
+        "firstEnumGuard": "if ( ! Enum . IsDefined ( emulator ) ) throw new ArgumentOutOfRangeException ( nameof ( emulator ) ) ;",
+        "assignments": [
+          "_systemDirectory = system = new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) ) ;",
+          "_contentDirectory = content = new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) ) ;",
+          "_saveDirectory = save = new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) ) ;",
+          "_assetsDirectory = assets = new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) ) ;",
+          "_optionHost = optionHost = new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) ) ;",
+          "_virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem ( ) ;",
+          "Environment = OnEnvironment ;",
+          "Video = OnVideo ;",
+          "AudioSample = OnAudioSample ;",
+          "AudioBatch = OnAudioBatch ;",
+          "InputPoll = OnInputPoll ;",
+          "InputState = OnInputState ;",
+          "SetLedState = OnSetLedState ;",
+          "SetRumbleState = OnSetRumbleState ;",
+          "SetSensorState = OnSetSensorState ;",
+          "GetSensorInput = OnGetSensorInput ;",
+          "Log = OnLog ;",
+          "completed = true ;"
+        ],
+        "line": 33,
+        "module": "Fairchild",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sourceSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445",
+        "cleanupUsingNesting": [
+          "system",
+          "content",
+          "save",
+          "assets",
+          "virtualFileSystem",
+          "_videoBuffers"
+        ],
+        "source": "internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)\n    {\n        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        Directory.CreateDirectory(assetsDirectory);\n        ExternalCoreUtf8String? system = null;\n        ExternalCoreUtf8String? content = null;\n        ExternalCoreUtf8String? save = null;\n        ExternalCoreUtf8String? assets = null;\n        CoreOptionHost? optionHost = null;\n        ExternalCoreVirtualFileSystem? virtualFileSystem = null;\n        var completed = false;\n        try\n        {\n            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\n            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\n            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\n            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\n            var settings = new Engine().Adapter(emulator) as IEmulatorSettings;\n            _optionHost = optionHost = new CoreOptionHost(configuredOptions, settings?.GetSettingsOptions());\n            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();\n            Environment = OnEnvironment;\n            Video = OnVideo;\n            AudioSample = OnAudioSample;\n            AudioBatch = OnAudioBatch;\n            InputPoll = OnInputPoll;\n            InputState = OnInputState;\n            SetLedState = OnSetLedState;\n            SetRumbleState = OnSetRumbleState;\n            SetSensorState = OnSetSensorState;\n            GetSensorInput = OnGetSensorInput;\n            Log = OnLog;\n            completed = true;\n        }\n        finally\n        {\n            if (!completed)\n            {\n                using (system)\n                using (content)\n                using (save)\n                using (assets)\n                using (virtualFileSystem)\n                using (_videoBuffers)\n                    optionHost?.Dispose();\n            }\n        }\n    }",
+        "bodyHash": "B9838B4715C01EA1175FA497ED7E74E0CE829D7A0058BC1C0CE81B9D6239B1B2",
+        "firstEnumGuard": "if ( ! Enum . IsDefined ( emulator ) ) throw new ArgumentOutOfRangeException ( nameof ( emulator ) ) ;",
+        "assignments": [
+          "_systemDirectory = system = new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) ) ;",
+          "_contentDirectory = content = new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) ) ;",
+          "_saveDirectory = save = new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) ) ;",
+          "_assetsDirectory = assets = new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) ) ;",
+          "_optionHost = optionHost = new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) ) ;",
+          "_virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem ( ) ;",
+          "Environment = OnEnvironment ;",
+          "Video = OnVideo ;",
+          "AudioSample = OnAudioSample ;",
+          "AudioBatch = OnAudioBatch ;",
+          "InputPoll = OnInputPoll ;",
+          "InputState = OnInputState ;",
+          "SetLedState = OnSetLedState ;",
+          "SetRumbleState = OnSetRumbleState ;",
+          "SetSensorState = OnSetSensorState ;",
+          "GetSensorInput = OnGetSensorInput ;",
+          "Log = OnLog ;",
+          "completed = true ;"
+        ],
+        "line": 33,
+        "module": "Bandai",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      }
+    ],
+    "inputs": [
+      {
+        "sha256": "CDA7D1108C79A46D6D5CE5D32A9247197D09487C3779BC2A044B3AB9C1E24D58",
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs"
+      },
+      {
+        "sha256": "37D86D795E63A9C3A3E47E2CFF56E199E44AD27CBF65755E5018DAE644C87813",
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/VideoBufferSet.cs"
+      },
+      {
+        "sha256": "1592D9BD5965F43C907B4B53EB5E1BF54D109AA9FF2E90D18D6EE4072022D4CF",
+        "path": "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "E120875C47963F174D498B2D959730052C4E78F2E9862F2E824226B5B026531D",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services\\CoreOptionHost.cs"
+      },
+      {
+        "sha256": "8BB08C4996C08414A875D7AEAA8967B613387DF470E85F1A1DBD75C274049B93",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services\\ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "sha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services\\ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services\\ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "519DB023C0C5A360A98FF72B75D7D6E5F390C14AE2F04BE2DE7DAD61561941F1",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services\\ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "A94834B2A5F27D89E628885AD499936DDE53D92246A4C7CAB46370DE97C39843",
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs"
+      },
+      {
+        "sha256": "C2721C39D0611E4A027412655E0D22071B71560C63D4CA7886D0C865CD9FB32B",
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/VideoBufferSet.cs"
+      },
+      {
+        "sha256": "9DCF76AC0EBD4F529DAB1B6914509DAC5ED9EEDDBA1BCB039B11E0BDEEDBA1A2",
+        "path": "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "842E50778EFB48DEBC1C58640DA59DFCDEC617DA9F7D92507042497E8A5643C9",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services\\CoreOptionHost.cs"
+      },
+      {
+        "sha256": "17B1206AA54F3FD375FB4D9766D75056C9EB3B4F6CCD1E297A0581EB46E0E83D",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services\\ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "sha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services\\ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "ACCEDFBA377555E91B7E2C60C685981202A6AFCE971FBF85C4593E65A56C4D00",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services\\ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "38549C5F760CA4E9A94367C3141319FBD0CF2C73BF22380983083FA7FE40A970",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services\\ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "B9F2FC7CC41618D052E3C281759639ABD0897F881E5CCE7D48A53E4183E37113",
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs"
+      },
+      {
+        "sha256": "636B3E194089B29BD064D5D3EC1C37D671585E6F5DB99D9934D0AAFF327BD964",
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/VideoBufferSet.cs"
+      },
+      {
+        "sha256": "74FD84BB5BAD614DE3AFB91B2E9C64C1DFFD8E4B8B5EB23C1C0F864663004760",
+        "path": "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "016AE7DB90B1E24F0D6D4C013E38D731E7FE68201A5E35F49D0A7D0A990A8604",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services\\CoreOptionHost.cs"
+      },
+      {
+        "sha256": "CB3E8F7019D53D1D7701C676E8F5CD192C9E3A708D6988724567A65027680F1A",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services\\ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "sha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services\\ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "5459CE6B61D7D96A3E454E35331A69B0853DEDC549D6163D8A5DBECBD8A4A946",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services\\ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "EE7E9D93DD67A87274ED7CD0A6D9F7E1EE824764DBAFF14F4B20E5ED9633D25D",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services\\ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "FAFA3DF8BA8612EC99C70A4C00AC1B4F36E4B28E5457824CA8AE425BE9E6639F",
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs"
+      },
+      {
+        "sha256": "410AE8E4AE7EF77D440F2B1295CFE206E3E96251BCBD061F2EEFB1DCE945BBA8",
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/VideoBufferSet.cs"
+      },
+      {
+        "sha256": "0434ED7B6BBD0907B1B195A8CD1F832266DE1753676DD91F4643D242C2CD0C78",
+        "path": "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "D224E718215F9237C81B89FD7C629292FEEF44D59F86E2983C1E2D0372FE04E2",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services\\CoreOptionHost.cs"
+      },
+      {
+        "sha256": "4A07B072B2B3E2DD01EC7C48AF81D43D123D49D5440B3756CA5E0900F9F265CB",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services\\ExternalHostCallbacks.AudioVideoInput.cs"
+      },
+      {
+        "sha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services\\ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services\\ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "D7CDC3E9600C8D038100D5175FB31519DDC841F406E69FCE19542C29C0011130",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services\\ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "BD71F327B9B4CFFF937A39EFBAF21C5C2782C8FF5B31E6D2247A75C0BC98F7BC",
+        "path": "src/GWGUI.Emulation/Services/EmulationCoreOptionHost.cs"
+      },
+      {
+        "sha256": "6611315247A537308F5B9CC87F8102AF7BA0DD3D7F649A03646C65B5ABE60B55",
+        "path": "src/GWGUI.Emulation/Services/EmulationVideoBufferSet.cs"
+      },
+      {
+        "sha256": "32B6C406AAE60D459C889FAC356BC4DE306FFBD89B8F77C316070E2A22CFA408",
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs"
+      },
+      {
+        "sha256": "64FC4E6167DC8D14EBDDF225E275EAD2C45B14569B54147867362D659C5F6CBF",
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreVirtualFileSystem.cs"
+      },
+      {
+        "sha256": "ED14F03881366DD7899A37FD9DDF042DC521479D70E3DE6B5A6DD53FE0777749",
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreVirtualFileSystem.Directories.cs"
+      }
+    ],
+    "originalCommit": "1499a40f7",
+    "comparison": {
+      "existingPresentationAddition": "new Engine().Adapter(emulator) as local IEmulatorSettings and its GetSettingsOptions() feed local CoreOptionHost",
+      "constructorResponsibility": "Instance-field initialization, typed emulator validation/adapter resolution, instance callback rooting and transactional ownership of resources; no copied lower-level allocation/VFS/option algorithm in these constructors.",
+      "retained": "No shared initialization bundle or new factory/callback layer: this would move local ownership and typed member assignments while existing SDK implementations already own reusable algorithms.",
+      "originalBandaiAcquisitionAndBindingRetained": true,
+      "scope": "Only constructor composition and direct call/type bindings; handler algorithms and entire module lifecycle remain separately audited.",
+      "existingSdkOwners": [
+        "ExternalCoreUtf8String owns native allocation/free",
+        "ExternalCoreVirtualFileSystem owns VFS native descriptor/handles",
+        "EmulationCoreOptionHost owns native option values and common algorithms",
+        "EmulationVideoBufferSet owns pooled video buffers"
+      ],
+      "sameBodyTokens": true,
+      "cleanupOrder": "On failure: local optionHost then videoBuffers, virtualFileSystem, assets, save, content, system via nested using finally; completed=true only after all delegates rooted."
+    },
+    "state": "four-typed-owner-constructors-qualified-existing-sdk-ownership-retained",
+    "verification": {
+      "unchangedInputs": 37,
+      "bindings": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "creations": [
+            {
+              "assembly": "System.Runtime",
+              "expression": "new ArgumentOutOfRangeException ( nameof ( emulator ) )",
+              "target": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation.coleco",
+              "expression": "new Engine ( )",
+              "target": "GWGUI.Emulation.Coleco.Common.Services.Engine.Engine()"
+            },
+            {
+              "assembly": "gwgui.emulation.coleco",
+              "expression": "new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) )",
+              "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.CoreOptionHost.CoreOptionHost(System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationTimingOption>?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreVirtualFileSystem ( )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem.ExternalCoreVirtualFileSystem(System.Action<string, long>?)"
+            }
+          ],
+          "delegates": [
+            {
+              "property": "Environment",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnEnvironment(uint, nint)"
+            },
+            {
+              "property": "Video",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnVideo(nint, uint, uint, nuint)"
+            },
+            {
+              "property": "AudioSample",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioSample(short, short)"
+            },
+            {
+              "property": "AudioBatch",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioBatch(nint, nuint)"
+            },
+            {
+              "property": "InputPoll",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputPoll()"
+            },
+            {
+              "property": "InputState",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputState(uint, uint, uint, uint)"
+            },
+            {
+              "property": "SetLedState",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetLedState(int, int)"
+            },
+            {
+              "property": "SetRumbleState",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetRumbleState(uint, uint, ushort)"
+            },
+            {
+              "property": "SetSensorState",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetSensorState(uint, uint, uint)"
+            },
+            {
+              "property": "GetSensorInput",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnGetSensorInput(uint, uint)"
+            },
+            {
+              "property": "Log",
+              "assembly": "gwgui.emulation.coleco",
+              "method": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnLog(int, nint)"
+            }
+          ],
+          "fields": [
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_systemDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_contentDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_saveDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_assetsDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation.coleco",
+              "type": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.CoreOptionHost",
+              "baseType": "object",
+              "field": "_optionHost"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem",
+              "baseType": "object",
+              "field": "_virtualFileSystem"
+            },
+            {
+              "assembly": "gwgui.emulation.coleco",
+              "type": "GWGUI.Emulation.Coleco.Common.Services.VideoBufferSet",
+              "baseType": "GWGUI.Emulation.Services.EmulationVideoBufferSet",
+              "field": "_videoBuffers"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "creations": [
+            {
+              "assembly": "System.Runtime",
+              "expression": "new ArgumentOutOfRangeException ( nameof ( emulator ) )",
+              "target": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation.epoch",
+              "expression": "new Engine ( )",
+              "target": "GWGUI.Emulation.Epoch.Common.Services.Engine.Engine()"
+            },
+            {
+              "assembly": "gwgui.emulation.epoch",
+              "expression": "new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) )",
+              "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.CoreOptionHost.CoreOptionHost(System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationTimingOption>?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreVirtualFileSystem ( )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem.ExternalCoreVirtualFileSystem(System.Action<string, long>?)"
+            }
+          ],
+          "delegates": [
+            {
+              "property": "Environment",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnEnvironment(uint, nint)"
+            },
+            {
+              "property": "Video",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnVideo(nint, uint, uint, nuint)"
+            },
+            {
+              "property": "AudioSample",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioSample(short, short)"
+            },
+            {
+              "property": "AudioBatch",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioBatch(nint, nuint)"
+            },
+            {
+              "property": "InputPoll",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputPoll()"
+            },
+            {
+              "property": "InputState",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputState(uint, uint, uint, uint)"
+            },
+            {
+              "property": "SetLedState",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetLedState(int, int)"
+            },
+            {
+              "property": "SetRumbleState",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetRumbleState(uint, uint, ushort)"
+            },
+            {
+              "property": "SetSensorState",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetSensorState(uint, uint, uint)"
+            },
+            {
+              "property": "GetSensorInput",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnGetSensorInput(uint, uint)"
+            },
+            {
+              "property": "Log",
+              "assembly": "gwgui.emulation.epoch",
+              "method": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnLog(int, nint)"
+            }
+          ],
+          "fields": [
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_systemDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_contentDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_saveDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_assetsDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation.epoch",
+              "type": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.CoreOptionHost",
+              "baseType": "object",
+              "field": "_optionHost"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem",
+              "baseType": "object",
+              "field": "_virtualFileSystem"
+            },
+            {
+              "assembly": "gwgui.emulation.epoch",
+              "type": "GWGUI.Emulation.Epoch.Common.Services.VideoBufferSet",
+              "baseType": "GWGUI.Emulation.Services.EmulationVideoBufferSet",
+              "field": "_videoBuffers"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "creations": [
+            {
+              "assembly": "System.Runtime",
+              "expression": "new ArgumentOutOfRangeException ( nameof ( emulator ) )",
+              "target": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation.fairchild",
+              "expression": "new Engine ( )",
+              "target": "GWGUI.Emulation.Fairchild.Common.Services.Engine.Engine()"
+            },
+            {
+              "assembly": "gwgui.emulation.fairchild",
+              "expression": "new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) )",
+              "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.CoreOptionHost.CoreOptionHost(System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationResourceReloadOption>?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreVirtualFileSystem ( )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem.ExternalCoreVirtualFileSystem(System.Action<string, long>?)"
+            }
+          ],
+          "delegates": [
+            {
+              "property": "Environment",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnEnvironment(uint, nint)"
+            },
+            {
+              "property": "Video",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnVideo(nint, uint, uint, nuint)"
+            },
+            {
+              "property": "AudioSample",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioSample(short, short)"
+            },
+            {
+              "property": "AudioBatch",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioBatch(nint, nuint)"
+            },
+            {
+              "property": "InputPoll",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputPoll()"
+            },
+            {
+              "property": "InputState",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputState(uint, uint, uint, uint)"
+            },
+            {
+              "property": "SetLedState",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetLedState(int, int)"
+            },
+            {
+              "property": "SetRumbleState",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetRumbleState(uint, uint, ushort)"
+            },
+            {
+              "property": "SetSensorState",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetSensorState(uint, uint, uint)"
+            },
+            {
+              "property": "GetSensorInput",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnGetSensorInput(uint, uint)"
+            },
+            {
+              "property": "Log",
+              "assembly": "gwgui.emulation.fairchild",
+              "method": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnLog(int, nint)"
+            }
+          ],
+          "fields": [
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_systemDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_contentDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_saveDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_assetsDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation.fairchild",
+              "type": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.CoreOptionHost",
+              "baseType": "object",
+              "field": "_optionHost"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem",
+              "baseType": "object",
+              "field": "_virtualFileSystem"
+            },
+            {
+              "assembly": "gwgui.emulation.fairchild",
+              "type": "GWGUI.Emulation.Fairchild.Common.Services.VideoBufferSet",
+              "baseType": "GWGUI.Emulation.Services.EmulationVideoBufferSet",
+              "field": "_videoBuffers"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "creations": [
+            {
+              "assembly": "System.Runtime",
+              "expression": "new ArgumentOutOfRangeException ( nameof ( emulator ) )",
+              "target": "System.ArgumentOutOfRangeException.ArgumentOutOfRangeException(string?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( systemDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( contentDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( saveDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreUtf8String ( Path . GetFullPath ( assetsDirectory ) )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreUtf8String.ExternalCoreUtf8String(string, int)"
+            },
+            {
+              "assembly": "gwgui.emulation.bandai",
+              "expression": "new Engine ( )",
+              "target": "GWGUI.Emulation.Bandai.Common.Services.Engine.Engine()"
+            },
+            {
+              "assembly": "gwgui.emulation.bandai",
+              "expression": "new CoreOptionHost ( configuredOptions , settings ? . GetSettingsOptions ( ) )",
+              "target": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.CoreOptionHost.CoreOptionHost(System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Contracts.EmulationResourceReloadOption>?)"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "expression": "new ExternalCoreVirtualFileSystem ( )",
+              "target": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem.ExternalCoreVirtualFileSystem(System.Action<string, long>?)"
+            }
+          ],
+          "delegates": [
+            {
+              "property": "Environment",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnEnvironment(uint, nint)"
+            },
+            {
+              "property": "Video",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnVideo(nint, uint, uint, nuint)"
+            },
+            {
+              "property": "AudioSample",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioSample(short, short)"
+            },
+            {
+              "property": "AudioBatch",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnAudioBatch(nint, nuint)"
+            },
+            {
+              "property": "InputPoll",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputPoll()"
+            },
+            {
+              "property": "InputState",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnInputState(uint, uint, uint, uint)"
+            },
+            {
+              "property": "SetLedState",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetLedState(int, int)"
+            },
+            {
+              "property": "SetRumbleState",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetRumbleState(uint, uint, ushort)"
+            },
+            {
+              "property": "SetSensorState",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnSetSensorState(uint, uint, uint)"
+            },
+            {
+              "property": "GetSensorInput",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnGetSensorInput(uint, uint)"
+            },
+            {
+              "property": "Log",
+              "assembly": "gwgui.emulation.bandai",
+              "method": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.OnLog(int, nint)"
+            }
+          ],
+          "fields": [
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_systemDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_contentDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_saveDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreUtf8String",
+              "baseType": "object",
+              "field": "_assetsDirectory"
+            },
+            {
+              "assembly": "gwgui.emulation.bandai",
+              "type": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.CoreOptionHost",
+              "baseType": "object",
+              "field": "_optionHost"
+            },
+            {
+              "assembly": "gwgui.emulation",
+              "type": "GWGUI.Emulation.Services.ExternalCoreVirtualFileSystem",
+              "baseType": "object",
+              "field": "_virtualFileSystem"
+            },
+            {
+              "assembly": "gwgui.emulation.bandai",
+              "type": "GWGUI.Emulation.Bandai.Common.Services.VideoBufferSet",
+              "baseType": "GWGUI.Emulation.Services.EmulationVideoBufferSet",
+              "field": "_videoBuffers"
+            }
+          ]
+        }
+      ],
+      "semanticProjects": 5,
+      "constructorsExecuted": false,
+      "semanticErrors": 0,
+      "scope": "Complete constructor composition, direct bound calls and owned resource field types; nested handler/option algorithms remain in existing owners and separately audited.",
+      "newTests": 0
+    },
+    "inventory": {
+      "priorAnnotationsRetained": 3628,
+      "totalAnnotations": 3632,
+      "partialScopesRetained": 86,
+      "constructorOccurrencesQualified": 4,
+      "productChanged": false,
+      "wholeConstructorsOnly": true
+    }
+  },
+  "nativeVideoCopyReuse": {
+    "originalMethod": "private void HandleVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == 0 || width == 0 || height == 0) return;\n        var byteCount = checked((int)(pitch * height));\n        var pixels = new byte[byteCount];\n        Marshal.Copy(data, pixels, 0, byteCount);\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),\n            checked((int)pitch), _pixelFormat, width / (float)height, ++_videoSequence, _clock.Elapsed);\n    }",
+    "annotations": [
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 28,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 27,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 29,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 62,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "name": "TryDequeueAudio",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 61,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "name": "TryDequeueAudio",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 63,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "name": "TryDequeueAudio",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "fields": {
+          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 73,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "name": "TryDequeueAudio",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "fields": {
+          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 73,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+        "name": "TryDequeueAudio",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "name": "ApplySystemAvInfo",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 37,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "name": "ApplySystemAvInfo",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 39,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "name": "ApplySystemAvInfo",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 49,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "name": "ApplySystemAvInfo",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 49,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "name": "ApplySystemAvInfo",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 33,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 32,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 34,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+        "name": "ApplyGeometry",
+        "collection": "exactGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 28,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplyGeometry",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplySystemAvInfo",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 27,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplyGeometry",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 37,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplySystemAvInfo",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 29,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplyGeometry",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 39,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplySystemAvInfo",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplyGeometry",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 49,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplySystemAvInfo",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+        "fields": {
+          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 38,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplyGeometry",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      },
+      {
+        "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+        "fields": {
+          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only."
+        },
+        "line": 49,
+        "report": "docs/reference/reuse-audit/short-method-groups.json",
+        "groupHash": null,
+        "name": "ApplySystemAvInfo",
+        "collection": "renamedIdentifierGroups",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+      }
+    ],
+    "originalCommit": "b1cacbe75",
+    "state": "six-original-bulk-copies-verified-and-inventory-retained",
+    "sdk": {
+      "sha256": "63959F2B2BFA39636D31A2941811F0DB798186DC9CEA8E9A8DE946398A891087",
+      "path": "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs",
+      "source": "using System.Globalization;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation.Enums;\nusing GWGUI.Emulation.Interop;\n\nnamespace GWGUI.Emulation.Functions;\n\npublic static class EmulationVideoFunctions\n{\n    internal static void ApplyGeometry(ExternalCoreApi.Geometry geometry, ref float aspectRatio)\n    {\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\n            aspectRatio = geometry.AspectRatio;\n        else if (geometry.BaseHeight > 0)\n            aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\n    }\n\n    internal static int FrameLength(uint height, nuint pitch) => checked((int)(pitch * height));\n\n    internal static void CopyRows(nint source, byte[] destination, int height, int pitch)\n    {\n        for (var row = 0; row < height; row++)\n            Marshal.Copy(nint.Add(source, checked(row * pitch)), destination, checked(row * pitch), pitch);\n    }\n\n    internal static TimeSpan Timestamp(long startTimestamp) => Stopwatch.GetElapsedTime(startTimestamp);\n\n    public static string FormatStandard(EmulationVideoStandard standard) => standard switch\n    {\n        EmulationVideoStandard.Ntsc => \"NTSC\",\n        EmulationVideoStandard.Pal => \"PAL\",\n        EmulationVideoStandard.Secam => \"SECAM\",\n        _ => throw new ArgumentOutOfRangeException(nameof(standard))\n    };\n\n    public static string FormatFrequency(double frequencyHz)\n    {\n        if (!double.IsFinite(frequencyHz) || frequencyHz <= 0) throw new ArgumentOutOfRangeException(nameof(frequencyHz));\n        return $\"{frequencyHz.ToString(\"0.######\", CultureInfo.InvariantCulture)} Hz\";\n    }\n\n    public static string FormatTiming(EmulationVideoStandard standard, double frequencyHz) => $\"{FormatStandard(standard)} ({FormatFrequency(frequencyHz)})\";\n}\r\n"
+    },
+    "before": [
+      {
+        "length": 172,
+        "module": "Amstrad",
+        "offset": {
+          "sha256": "A7B6F2610304B62DD2DB48EEB854ECBE67EEE51EF2FABD2FAF2B16B97096293B",
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+        "method": "HandleVideo",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Services;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private void HandleVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\r\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;\r\n        var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\r\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > VideoConstants.UnspecifiedAspectRatio ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);\r\n    }\r\n\r\n    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,\r\n            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);\r\n    }\r\n\r\n    private bool ApplyGeometry(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);\r\n    }\r\n\r\n    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);\r\n    }\r\n\r\n    private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);\r\n    }\r\n\r\n    private void HandleAudioSample(short left, short right)\r\n    {\r\n        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));\r\n    }\r\n\r\n    private nuint HandleAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }\r\n\r\n    private void PublishAudio(AudioChunk chunk)\r\n    {\r\n        LatestAudioChunk = chunk;\r\n        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);\r\n    }\r\n\r\n    internal bool TryDequeueAudio(out AudioChunk? chunk)\r\n    {\r\n        return _audioBuffer.TryDequeueNative(out chunk);\r\n    }\r\n\r\n}\r\n\r\n",
+        "start": 649,
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
+      },
+      {
+        "length": 170,
+        "module": "Nec",
+        "offset": {
+          "sha256": "E11F6DF2E4C221346D7E63997D0A9CA83CB673F8A0871A8AD782E3B2F58CC408",
+          "path": "src/GWGUI.Emulation.Nec/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+        "method": "HandleVideo",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\n        var pixels = new byte[byteCount];\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\n\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks\n{\n    private void HandleVideo(nint data, uint width, uint height, nuint pitch)\n    {\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;\n        var byteCount = checked((int)(pitch * height));\n        var pixels = new byte[byteCount];\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);\n    }\n\n    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\n    {\r\n        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,\r\n            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);\r\n    }\n\n    private bool ApplyGeometry(nint data)\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);\r\n    }\n\n    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\n    {\r\n        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);\r\n    }\n\n    private bool ApplySystemAvInfo(nint data)\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);\r\n    }\n\n    private void HandleAudioSample(short left, short right)\n    {\n        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));\n    }\n\n    private nuint HandleAudioBatch(nint data, nuint frames)\n    {\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\n        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\n        return frames;\n    }\n\n    private void PublishAudio(AudioChunk chunk)\n    {\r\n        LatestAudioChunk = chunk;\r\n        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);\r\n    }\n\n    internal bool TryDequeueAudio(out AudioChunk? chunk)\n    {\r\n        return _audioBuffer.TryDequeueNative(out chunk);\r\n    }\n\n}\r\n",
+        "start": 696,
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
+      },
+      {
+        "length": 172,
+        "module": "Commodore",
+        "offset": {
+          "sha256": "91FC476462F20318A325C3A61DA88498A0B8C00EEF7256F6CDA756F38BEC6378",
+          "path": "src/GWGUI.Emulation.Commodore/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+        "method": "HandleVideo",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\n\r\nusing static GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private void HandleVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\r\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;\r\n        var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\r\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > MinimumAspectRatio ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);\r\n    }\r\n\r\n    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,\r\n            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);\r\n    }\r\n\r\n    private bool ApplyGeometry(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);\r\n    }\r\n\r\n    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);\r\n    }\r\n\r\n    private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);\r\n    }\r\n\r\n    private void HandleAudioSample(short left, short right)\r\n    {\r\n        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));\r\n    }\r\n\r\n    private nuint HandleAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }\r\n\r\n    private void PublishAudio(AudioChunk chunk)\r\n    {\r\n        LatestAudioChunk = chunk;\r\n        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);\r\n    }\r\n\r\n    internal bool TryDequeueAudio(out AudioChunk? chunk)\r\n    {\r\n        return _audioBuffer.TryDequeueNative(out chunk);\r\n    }\r\n\r\n}\r\n",
+        "start": 576,
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+      },
+      {
+        "length": 172,
+        "module": "Nintendo",
+        "offset": {
+          "sha256": "194955632F3735DC0A78B21CDB61AF981D4622E224BF7CD29E0C55843D10C621",
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+        "method": "HandleVideo",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private void HandleVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\r\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;\r\n        if (data == Constants.HardwareRenderConstants.HardwareFramebuffer)\r\n        {\r\n            if (_hardwareRenderContext?.TryReadFramebuffer(checked((int)width), checked((int)height), out var frame) != true) return;\r\n            LatestVideoFrame = new VideoFrame(frame, checked((int)width), checked((int)height),\r\n                checked((int)width * Constants.HardwareRenderConstants.PixelByteCount),\r\n                EmulationPixelFormat.Xrgb8888, _aspectRatio > 0 ? _aspectRatio : width / (float)height,\r\n                ++_videoSequence, _clock.Elapsed);\r\n            return;\r\n        }\r\n        var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\r\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);\r\n    }\r\n\r\n    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,\r\n            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);\r\n    }\r\n\r\n    private bool ApplyGeometry(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);\r\n    }\r\n\r\n    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        _hardwareRenderContext?.EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);\r\n    }\r\n\r\n    private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);\r\n    }\r\n\r\n    private void HandleAudioSample(short left, short right)\r\n    {\r\n        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }\r\n\r\n    private nuint HandleAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }\r\n\r\n    private void PublishAudio(AudioChunk chunk)\r\n    {\r\n        LatestAudioChunk = chunk;\r\n        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);\r\n    }\r\n\r\n    internal bool TryDequeueAudio(out AudioChunk? chunk)\r\n    {\r\n        return _audioBuffer.TryDequeueNative(out chunk);\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n",
+        "start": 1334,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
+      },
+      {
+        "length": 172,
+        "module": "Sega",
+        "offset": {
+          "sha256": "6957357BB4555D93DC47104E5AF70F8CDA927F378385E4E118A72128E36C8E4D",
+          "path": "src/GWGUI.Emulation.Sega/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+        "method": "HandleVideo",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks\r\n{\r\n    private void HandleVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\r\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;\r\n        if (data == Constants.HardwareRenderConstants.HardwareFramebuffer)\r\n        {\r\n            if (_hardwareRenderContext?.TryReadFramebuffer(checked((int)width), checked((int)height), out var frame) != true) return;\r\n            LatestVideoFrame = new VideoFrame(frame, checked((int)width), checked((int)height),\r\n                checked((int)width * Constants.HardwareRenderConstants.PixelByteCount),\r\n                EmulationPixelFormat.Xrgb8888, _aspectRatio > 0 ? _aspectRatio : width / (float)height,\r\n                ++_videoSequence, _clock.Elapsed);\r\n            return;\r\n        }\r\n        var byteCount = checked((int)(pitch * height));\r\n        var pixels = new byte[byteCount];\r\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\r\n        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);\r\n    }\r\n\r\n    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,\r\n            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);\r\n    }\r\n\r\n    private bool ApplyGeometry(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);\r\n    }\r\n\r\n    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        _hardwareRenderContext?.EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);\r\n    }\r\n\r\n    private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);\r\n    }\r\n\r\n    private void HandleAudioSample(short left, short right)\r\n    {\r\n        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }\r\n\r\n    private nuint HandleAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }\r\n\r\n    private void PublishAudio(AudioChunk chunk)\r\n    {\r\n        LatestAudioChunk = chunk;\r\n        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);\r\n    }\r\n\r\n    internal bool TryDequeueAudio(out AudioChunk? chunk)\r\n    {\r\n        return _audioBuffer.TryDequeueNative(out chunk);\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n",
+        "start": 1314,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
+      },
+      {
+        "length": 170,
+        "module": "Sony",
+        "offset": {
+          "sha256": "EEBFEA347ED0C16ACE2D3D0E8611ADFD0D6C1FF0CABE2C5F07E9EECE2EA40B70",
+          "path": "src/GWGUI.Emulation.Sony/Common/Constants/BufferConstants.cs",
+          "value": 0
+        },
+        "sha256": "7AD624BC896A42F7840F12BC0EE74F8BF7B23A6BCB8B90AF8B856D3A53AB4138",
+        "method": "Read",
+        "originalCopy": "var byteCount = checked((int)(pitch * height));\n        var pixels = new byte[byteCount];\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);",
+        "source": "using System.Runtime.InteropServices;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;\n\ninternal static class CoreVideoFunctions\n{\n    internal static VideoFrame? Read(nint data, uint width, uint height, nuint pitch,\n        HardwareRenderSession hardwareRender, EmulationPixelFormat pixelFormat, float aspectRatio,\n        ref long sequence, TimeSpan elapsed)\n    {\n        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension\n            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return null;\n        if (data == HardwareRenderConstants.HardwareFramebuffer)\n        {\n            if (!hardwareRender.TryReadFramebuffer(checked((int)width), checked((int)height), out var frame)) return null;\n            return new VideoFrame(frame, checked((int)width), checked((int)height),\n                checked((int)width * HardwareRenderConstants.PixelByteCount), EmulationPixelFormat.Xrgb8888,\n                aspectRatio > 0 ? aspectRatio : width / (float)height, ++sequence, elapsed);\n        }\n        var byteCount = checked((int)(pitch * height));\n        var pixels = new byte[byteCount];\n        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);\n        return new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch),\n            pixelFormat, aspectRatio > 0 ? aspectRatio : width / (float)height, ++sequence, elapsed);\n    }\n}\r\n",
+        "start": 1192,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreVideoFunctions.cs",
+        "replacement": "var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);",
+        "hadBom": false,
+        "afterSha256": "BA428406CC5F6F56CD46066DCF2FD8123A1F2664CED05CF01EFE7450E549111C"
+      }
+    ],
+    "comparison": {
+      "exclusions": [
+        "CopyRows uses separate per-row Marshal.Copy and checked offsets",
+        "ExternalCoreVideoCallbackHost uses uninitialized allocation plus independent pitch/transport bounds, Failure capture and duplicate-frame semantics"
+      ],
+      "offsetsResolvedZero": true,
+      "resourceScope": "Only a new managed byte array; caller retains native source ownership. Tests may allocate their own native byte buffer and free it in finally; no external files, DLL fixtures or rendering.",
+      "existingFrameLengthExact": true,
+      "retained": [
+        "all null/empty guards",
+        "hardware framebuffer branch and context ownership",
+        "pixel format/aspect fields read after copying",
+        "frame dimension and pitch conversions",
+        "sequence increment and clock read remain in original caller"
+      ],
+      "sameThreeInstructions": true
+    },
+    "verification": {
+      "sdk": {
+        "path": "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs",
+        "sha256": "2EBCC1A16B078961D92CC5477EB9C35FA12A74B97A14ABCB2A9E5A7DBBB3F52C"
+      },
+      "sevenSemanticProjects": 7,
+      "semanticErrors": 0,
+      "nativeSourceOwnership": "Borrowed and never freed or modified by helper",
+      "files": [
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "HandleVideo",
+          "sha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "HandleVideo",
+          "sha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "HandleVideo",
+          "sha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "HandleVideo",
+          "sha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "HandleVideo",
+          "sha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "wholeFileRawBytesRestored": true,
+          "method": "Read",
+          "sha256": "BA428406CC5F6F56CD46066DCF2FD8123A1F2664CED05CF01EFE7450E549111C",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreVideoFunctions.cs"
+        }
+      ],
+      "managedArrayOwnership": "Returned to caller as before",
+      "originalCopyInstructionsReproduced": true,
+      "hardwareBranchesAndCallerFramePublicationUnchanged": true,
+      "existingFrameLengthUnchanged": true,
+      "otherSdkTokensUnchanged": true,
+      "tests": {
+        "passed": 18,
+        "storageRegressionCases": 11,
+        "failed": 0,
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~NativeVideoPixelCopyTests|FullyQualifiedName~StorageSettingsValidationTests --verbosity minimal",
+        "newVideoCases": 7,
+        "nativeBuffers": "Owned allocation freed in test finally; no external media, graphics or core."
+      }
+    },
+    "inventory": {
+      "priorPartialScopesRetained": 86,
+      "changedSourceAnnotationsMigrated": 28,
+      "wholeCallbacksQualified": false,
+      "constructorAnnotationsRetained": 4,
+      "newPartialOccurrences": 2,
+      "totalAnnotations": 3634,
+      "priorHeadAnnotationsRetained": 3628,
+      "totalPartialScopes": 88
+    }
   }
 }

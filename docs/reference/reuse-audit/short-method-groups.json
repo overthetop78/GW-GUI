@@ -1,17 +1,17 @@
 {
-  "snapshot": "fcb3e6ab38d3291317dcd866c63de2f48dc59105",
+  "snapshot": "564ed0d8854fb8f680d19a10463fe63395b036fe",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StorageFunctions.Settings.cs",
-    "src/GWGUI.Emulation/Functions/EmulationMediaRules.cs"
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreVideoFunctions.cs",
+    "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7236,
+  "fileCount": 7237,
   "methodBodyCount": 9593,
   "exactGroups": [
     {
@@ -4776,17 +4776,31 @@
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 28,
+          "line": 26,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -4797,49 +4811,35 @@
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 29,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+          "qualificationSourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+          "qualificationSourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4856,7 +4856,7 @@
           "qualificationSourceSha256": "B48A42B1E0BEC1A068FCE73AB4DD688B6A332A5E0350C8723AAF4CE6DF65C0B4"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "110ED191B8AC068C2089B94E02CBC1988F9C501D752E137DC816CC3F59E84F25",
@@ -16584,7 +16584,7 @@
           "name": "PublishAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 56,
+          "line": 54,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -16596,7 +16596,7 @@
           "name": "PublishAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 55,
+          "line": 53,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -16608,7 +16608,7 @@
           "name": "PublishAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 55,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -16620,7 +16620,7 @@
           "name": "PublishAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 65,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -16632,7 +16632,7 @@
           "name": "PublishAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 67,
+          "line": 65,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -37682,17 +37682,31 @@
           "name": "TryDequeueAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 62,
+          "line": 60,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
           "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "TryDequeueAudio",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 59,
+          "parameters": "(out AudioChunk? chunk)",
+          "tokens": 11,
+          "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
+          "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "TryDequeueAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -37703,49 +37717,35 @@
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
           "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 63,
-          "parameters": "(out AudioChunk? chunk)",
-          "tokens": 11,
-          "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
-          "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "TryDequeueAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 73,
+          "line": 71,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
           "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+          "qualificationSourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "TryDequeueAudio",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 73,
+          "line": 71,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
           "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioBuffer.TryDequeueNative(out GWGUI.Emulation.Contracts.AudioChunk?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+          "qualificationSourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -37762,7 +37762,7 @@
           "qualificationSourceSha256": "B48A42B1E0BEC1A068FCE73AB4DD688B6A332A5E0350C8723AAF4CE6DF65C0B4"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "726307E8D9A17A7737EF7A0B5063F7CBD492B33C177122293415298C3DFD997D",
@@ -53434,17 +53434,31 @@
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -53455,49 +53469,35 @@
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 39,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 47,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+          "qualificationSourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 47,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+          "qualificationSourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -53514,7 +53514,7 @@
           "qualificationSourceSha256": "B48A42B1E0BEC1A068FCE73AB4DD688B6A332A5E0350C8723AAF4CE6DF65C0B4"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A7237BE81063AD64FAAAA6FCB2614D6E89F21BC6A58D44A9BDE6C2A3426923C7",
@@ -57614,17 +57614,31 @@
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 33,
+          "line": 31,
           "parameters": "(ExternalCoreApi.Geometry geometry)",
           "tokens": 18,
           "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
           "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
           "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 30,
+          "parameters": "(ExternalCoreApi.Geometry geometry)",
+          "tokens": 18,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
+          "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -57635,24 +57649,10 @@
           "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
           "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 34,
-          "parameters": "(ExternalCoreApi.Geometry geometry)",
-          "tokens": 18,
-          "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
-          "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
-          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B93622EEA2A367CFFA8AABFDF4FE2E51D2C11DC849FDB0487044CCE3DED3DE97",
@@ -71446,7 +71446,7 @@
           "name": "ApplyInitialAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 22,
+          "line": 20,
           "parameters": "(ExternalCoreApi.SystemAvInfo info)",
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
@@ -71458,7 +71458,7 @@
           "name": "ApplyInitialAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 21,
+          "line": 19,
           "parameters": "(ExternalCoreApi.SystemAvInfo info)",
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
@@ -71470,7 +71470,7 @@
           "name": "ApplyInitialAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 23,
+          "line": 21,
           "parameters": "(ExternalCoreApi.SystemAvInfo info)",
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
@@ -71482,7 +71482,7 @@
           "name": "ApplyInitialAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 32,
+          "line": 30,
           "parameters": "(ExternalCoreApi.SystemAvInfo info)",
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
@@ -71494,7 +71494,7 @@
           "name": "ApplyInitialAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 32,
+          "line": 30,
           "parameters": "(ExternalCoreApi.SystemAvInfo info)",
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
@@ -111015,7 +111015,7 @@
           "name": "Timestamp",
           "owner": "EmulationVideoFunctions",
           "kind": "MethodDeclaration",
-          "line": 27,
+          "line": 35,
           "parameters": "(long startTimestamp)",
           "tokens": 7,
           "bodyTokens": "=> Stopwatch . GetElapsedTime ( startTimestamp )",
@@ -132562,31 +132562,59 @@
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 28,
+          "line": 26,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+          "qualificationSourceSha256": "4920C7DBCC1F1B754508D30C8DA7B209F533AED6C8424896D47D7AB32B34B707"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
+          "qualificationSourceSha256": "9B459B812904DFAF6F2F6332DDDA732E291ADFB54FB20BC5497B0A4573440CA2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -132597,10 +132625,10 @@
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         },
         {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -132611,91 +132639,63 @@
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 29,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 39,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+          "qualificationSourceSha256": "9A9FE692E2CB3A8965BBADA658BB31BA754300874D16A0AAD3C7F4D2F65D20C2"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+          "qualificationSourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 47,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+          "qualificationSourceSha256": "DADD76D74DD9F68A26A2BCE17E5B9FE32B8CE526E93CB9C66A19977191BCE9F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplyGeometry",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 38,
+          "line": 36,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+          "qualificationSourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "ApplySystemAvInfo",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 47,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
           "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+          "qualificationSourceSha256": "B9B0E3EAA783AD98D77E7C0BF6E3F0AE0B1E3BA62A8DB1A969AA88CD363835F7"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -132726,7 +132726,7 @@
           "qualificationSourceSha256": "B48A42B1E0BEC1A068FCE73AB4DD688B6A332A5E0350C8723AAF4CE6DF65C0B4"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "BDC0E37F77A48E079D369D6AAFDC19B435CD8827599EC067AAB6FC77E60E4EFD",
@@ -143487,6 +143487,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3098
+    "occurrences": 3070
   }
 }
