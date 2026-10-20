@@ -10,14 +10,9 @@ internal static class CoreReleaseConstants
     internal const string CoreJson = "core.json";
     internal const string Unknown = "unknown";
     internal const string Version = "version";
-    internal const string YyyyMMddHHmm = "yyyyMMdd-HHmm";
-    internal const string Latest = "latest";
     internal const string Download = ".download";
     internal const string Extract = ".extract";
     internal const string X64 = "x64";
-    internal const string OfficialReleasePrefix = "official-";
-    internal const string PublicationDateFormat = "dd/MM/yyyy HH:mm";
-    internal const string ReleaseDisplaySeparator = " · ";
     internal const int DownloadBufferSize = 81920;
     internal const double CompletedProgress = 1d;
     internal const long MinimumPeHeaderSize = 0x40;

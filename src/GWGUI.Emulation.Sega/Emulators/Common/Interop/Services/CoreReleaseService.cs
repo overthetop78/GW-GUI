@@ -35,11 +35,7 @@ public sealed class CoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
         return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _settings.OfficialArchiveUri, response =>
-        {
-            var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-            var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-            return[new CoreRelease($"official-{suffix}", published is null ? $"{_settings.DisplayName} · {CoreReleaseConstants.Latest}" : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {_settings.DisplayName}", _settings.OfficialArchiveUri, published, true, true)];
-        }, cancellationToken).ConfigureAwait(false);
+        [EmulationCoreReleaseFunctions.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
     }
 
     public bool IsInstalled(CoreRelease release)

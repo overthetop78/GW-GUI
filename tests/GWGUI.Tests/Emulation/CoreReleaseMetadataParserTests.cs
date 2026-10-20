@@ -17,6 +17,53 @@ public sealed class CoreReleaseMetadataParserTests
         "revision", new HashSet<Model> { Model.First });
 
     [Theory]
+    [InlineData("fr-FR", 0)]
+    [InlineData("fr-FR", 1)]
+    [InlineData("fr-FR", 2)]
+    [InlineData("ar-SA", 0)]
+    [InlineData("ar-SA", 1)]
+    [InlineData("ar-SA", 2)]
+    public async Task OfficialMetadataKeepsOptionalDatesCurrentCultureAndBorrowedResponse(string culture, int dateSource)
+    {
+        using var response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+        {
+            Content = new ByteArrayContent([1, 2, 3])
+        };
+        var settings = new EmulationCoreReleaseSettings(new Uri("https://example.invalid/archive"),
+            "archive.dll", "installed.dll", "Nom 日本語");
+        var headerDate = new DateTimeOffset(2025, 12, 31, 23, 59, 58, TimeSpan.Zero);
+        var contentDate = new DateTimeOffset(2026, 1, 2, 8, 9, 10, TimeSpan.FromHours(2));
+        if (dateSource > 0) response.Headers.Date = headerDate;
+        if (dateSource > 1) response.Content.Headers.LastModified = contentDate;
+        var previousCulture = CultureInfo.CurrentCulture;
+        try
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+            var release = EmulationCoreReleaseFunctions.ReadOfficialRelease(settings, response);
+            var expectedDate = dateSource switch { 1 => headerDate, 2 => contentDate, _ => (DateTimeOffset?)null };
+            Assert.Equal(expectedDate, release.PublishedUtc);
+            Assert.Same(settings.OfficialArchiveUri, release.DownloadUri);
+            Assert.True(release.IsRequired);
+            Assert.True(release.IsZip);
+            if (expectedDate is null)
+            {
+                Assert.Equal("official-latest", release.Id);
+                Assert.Equal("Nom 日本語 · latest", release.DisplayName);
+            }
+            else
+            {
+                if (culture == "fr-FR")
+                    Assert.Equal(dateSource == 1 ? "official-20251231-2359" : "official-20260102-0609", release.Id);
+                else
+                    Assert.StartsWith("official-1447", release.Id);
+                Assert.Equal(expectedDate.Value.LocalDateTime.ToString("dd/MM/yyyy HH:mm") + " · Nom 日本語", release.DisplayName);
+            }
+            Assert.Equal(new byte[] { 1, 2, 3 }, await response.Content.ReadAsByteArrayAsync());
+        }
+        finally { CultureInfo.CurrentCulture = previousCulture; }
+    }
+
+    [Theory]
     [InlineData(true)]
     [InlineData(false)]
     public async Task UsesOriginalDatePriorityUtcFormatAndBorrowedResponse(bool contentDate)

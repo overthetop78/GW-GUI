@@ -72,6 +72,18 @@ internal static class EmulationCoreReleaseFunctions
             version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
     }
 
+    internal static EmulationDownloadCoreRelease ReadOfficialRelease(EmulationCoreReleaseSettings settings,
+        HttpResponseMessage response)
+    {
+        const string latest = "latest";
+        var published = response.Content.Headers.LastModified ?? response.Headers.Date;
+        var suffix = published?.UtcDateTime.ToString("yyyyMMdd-HHmm") ?? latest;
+        return new EmulationDownloadCoreRelease($"official-{suffix}",
+            published is null ? $"{settings.DisplayName} · {latest}"
+                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {settings.DisplayName}",
+            settings.OfficialArchiveUri, published, true, true);
+    }
+
     internal static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
         Func<HttpResponseMessage, T> readResponse, CancellationToken cancellationToken)
     {

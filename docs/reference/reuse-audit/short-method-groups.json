@@ -1,16 +1,17 @@
 {
-  "snapshot": "5a588a56f73f4a7d88496b052209d6bb12ae9bc5",
+  "snapshot": "cdf2f96f9f32fcaf0b4c89f7279062fd9b29fe40",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs",
     "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs",
     "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs",
     "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation/Functions/EmulationCoreDiagnosticFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationCoreReleaseFunctions.cs"
+    "src/GWGUI.Emulation/Functions/EmulationCoreReleaseFunctions.cs",
+    "tests/GWGUI.Tests/Emulation/CoreReleaseMetadataParserTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7221,
@@ -20180,28 +20181,28 @@
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 94,
+          "line": 90,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",
           "hash": "3A47E911F38EE4BFC46A2FE75894475B1252D0298BDD7131FD3C4C0CFE503455",
           "shape": "ED5BD5BB02FCC6C42C1016653CC6D934C01D5C48F58809DEBA6059F3EFA06AE4",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(string, System.Func<string>, System.Func<string>, System.Func<string>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C9F5A2D3272230EBE96F452B947A5EDC564912D408D577853023BE56416991C9"
+          "qualificationSourceSha256": "6A53D40911C56BFBEDE07DE84EF3622B07F5419BEE370E2E34AE43758AD27B1A"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 94,
+          "line": 90,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",
           "hash": "3A47E911F38EE4BFC46A2FE75894475B1252D0298BDD7131FD3C4C0CFE503455",
           "shape": "ED5BD5BB02FCC6C42C1016653CC6D934C01D5C48F58809DEBA6059F3EFA06AE4",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(string, System.Func<string>, System.Func<string>, System.Func<string>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1FFE21B820A9D7047DF9278AB907A55D8C8709DCF5F13B5731736E7FF876D761"
+          "qualificationSourceSha256": "72634B853E87D8A3196F4D8C28B4E6877D916C538107E51CED512E3967AEA2E8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -23226,7 +23227,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 52,
+          "line": 48,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -23238,7 +23239,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 46,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -23250,7 +23251,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 46,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -23262,7 +23263,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 62,
+          "line": 58,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -50558,28 +50559,28 @@
           "name": "IsInstalled",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 41,
           "parameters": "(CoreRelease release)",
           "tokens": 15,
           "bodyTokens": "{ return EmulationCoreDiagnosticFunctions . FindInstalledLibraryPath ( RequiredLibraryPath , VerifyWindowsX64Library ) is not null ; }",
           "hash": "9D39D644B8F8BE2173F542257E3D29DED949993D855089D58F2D40A31F9524C3",
           "shape": "4599AE2108C54A8BA099B24A358BAB9215E32EFEED329069ECAA3F8138BA2385",
           "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
-          "qualificationSourceSha256": "C9F5A2D3272230EBE96F452B947A5EDC564912D408D577853023BE56416991C9"
+          "qualificationSourceSha256": "6A53D40911C56BFBEDE07DE84EF3622B07F5419BEE370E2E34AE43758AD27B1A"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "IsInstalled",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 45,
+          "line": 41,
           "parameters": "(CoreRelease release)",
           "tokens": 15,
           "bodyTokens": "{ return EmulationCoreDiagnosticFunctions . FindInstalledLibraryPath ( RequiredLibraryPath , VerifyWindowsX64Library ) is not null ; }",
           "hash": "9D39D644B8F8BE2173F542257E3D29DED949993D855089D58F2D40A31F9524C3",
           "shape": "4599AE2108C54A8BA099B24A358BAB9215E32EFEED329069ECAA3F8138BA2385",
           "qualification": "Verified installed-state boundary: original Amiga manifest/presence algorithms reused through existing SDK owners; optional Amstrad validation, NEC error prefix and Sony completeness-before-try/runtime validation retained. Nine source inverses, seven semantic compilations, thirteen shared calls and64 targeted tests recorded in releaseFacadeComparison.remainingReview.verification. No other service policy qualified.",
-          "qualificationSourceSha256": "1FFE21B820A9D7047DF9278AB907A55D8C8709DCF5F13B5731736E7FF876D761"
+          "qualificationSourceSha256": "72634B853E87D8A3196F4D8C28B4E6877D916C538107E51CED512E3967AEA2E8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -83706,7 +83707,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 52,
+          "line": 48,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -83718,7 +83719,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 46,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -83730,7 +83731,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 46,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -83742,7 +83743,7 @@
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 62,
+          "line": 58,
           "parameters": "(CoreRelease release)",
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
@@ -120611,7 +120612,7 @@
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 108,
+          "line": 104,
           "parameters": "(string path)",
           "tokens": 7,
           "bodyTokens": "=> VerifyWindowsX64Library ( path , null )",
@@ -140287,28 +140288,28 @@
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 94,
+          "line": 90,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",
           "hash": "3A47E911F38EE4BFC46A2FE75894475B1252D0298BDD7131FD3C4C0CFE503455",
           "shape": "ED5BD5BB02FCC6C42C1016653CC6D934C01D5C48F58809DEBA6059F3EFA06AE4",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(string, System.Func<string>, System.Func<string>, System.Func<string>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C9F5A2D3272230EBE96F452B947A5EDC564912D408D577853023BE56416991C9"
+          "qualificationSourceSha256": "6A53D40911C56BFBEDE07DE84EF3622B07F5419BEE370E2E34AE43758AD27B1A"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 94,
+          "line": 90,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",
           "hash": "3A47E911F38EE4BFC46A2FE75894475B1252D0298BDD7131FD3C4C0CFE503455",
           "shape": "ED5BD5BB02FCC6C42C1016653CC6D934C01D5C48F58809DEBA6059F3EFA06AE4",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(string, System.Func<string>, System.Func<string>, System.Func<string>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1FFE21B820A9D7047DF9278AB907A55D8C8709DCF5F13B5731736E7FF876D761"
+          "qualificationSourceSha256": "72634B853E87D8A3196F4D8C28B4E6877D916C538107E51CED512E3967AEA2E8"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Functions/SettingsFunctions.cs",
@@ -143380,7 +143381,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 3073
+    "occurrences": 3076,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
