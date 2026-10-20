@@ -21,7 +21,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             {
                 GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
                     Run, $"GWGUI Sega {Id:N}", cancellationToken,
-                    out _stop, out _started, out _runLoop, out _thread);
+                    ref _stop, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
                 started = _started.Task;
             }

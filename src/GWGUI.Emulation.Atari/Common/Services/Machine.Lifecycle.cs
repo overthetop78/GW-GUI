@@ -23,7 +23,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             {
                 GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
                     Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
-                    out _stopSource, out _started, out _runLoop, out _thread);
+                    ref _stopSource, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
                 started = _started.Task;
             }

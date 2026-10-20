@@ -1,42 +1,58 @@
 {
-  "snapshot": "a61833e8caa6fd226b0c3702c76c33384e155691",
+  "snapshot": "126e0f0c53cee9d4888bc016f84558196b30a3b7",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
+    "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Nec/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Sega/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
-    "src/GWGUI.Emulation.Sony/Common/Services/Machine.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
     "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
     "src/GWGUI.Emulation/Functions/ExternalCoreLifecycleFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/Atari/AtariThreadOwnershipTests.cs"
+    "tests/GWGUI.Tests/Emulation/CoreThreadStartTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7199,
+  "fileCount": 7200,
   "methodBodyCount": 9134,
   "exactGroups": [
     {
@@ -6592,7 +6608,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -6606,7 +6622,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -6620,7 +6636,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -6634,7 +6650,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
@@ -6648,7 +6664,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
@@ -6662,7 +6678,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
@@ -6676,7 +6692,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
@@ -6690,7 +6706,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -6704,7 +6720,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
@@ -6718,7 +6734,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
@@ -6732,7 +6748,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
@@ -6746,7 +6762,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -6760,7 +6776,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -6774,7 +6790,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -6788,7 +6804,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -6802,7 +6818,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -20001,73 +20017,87 @@
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 162,
+          "line": 153,
           "parameters": "()",
           "tokens": 25,
           "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
+          "qualificationSourceSha256": "FFBE8C8FD861270D51B0B0FEE15FB3E7E36D52079C31AC6C5F97AEFEDDCCA04D"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 158,
+          "line": 153,
           "parameters": "()",
           "tokens": 25,
           "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "F02AB84ACCCA50730DE2267B7F55ADDEF74AABDED0FFD1E25E7EF3E32D4D0FD2"
+          "qualificationSourceSha256": "443E360A63BFDCDD5F8B2C1405F47655E9D47A9EDE175170B025D958265FB288"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 162,
+          "line": 153,
           "parameters": "()",
           "tokens": 25,
           "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
+          "qualificationSourceSha256": "789F298F42401C00E8DC55B7B2C3D2B250EEACE96678DB04FEBFB7645CBAFAE1"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 179,
+          "line": 170,
           "parameters": "()",
           "tokens": 25,
           "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
+          "qualificationSourceSha256": "ED328C9DC97254B418622EBA13A42C9D1B30065E40E7A0F12AE2ADCDE4D4B90A"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
-          "line": 162,
+          "line": 153,
           "parameters": "()",
           "tokens": 25,
           "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
+          "qualificationSourceSha256": "E89529EE525EDCF824081EE9B10AAE55D1F9EBE1C9FF53DBD82A36BEAA147656"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 164,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "C0BDA75D117EF2CCE9491502984E4CD2A66880FC1ED61A06DAA776BDE1A8FE97"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
           "name": "DeleteSessionDirectory",
           "owner": "Machine",
           "kind": "MethodDeclaration",
@@ -20078,21 +20108,7 @@
           "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
           "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
           "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "owner": "Machine",
-          "kind": "MethodDeclaration",
-          "line": 182,
-          "parameters": "()",
-          "tokens": 25,
-          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
-          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
-          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
-          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
-          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
+          "qualificationSourceSha256": "A9016D765F63FB4FA0EE8CDF85E9986931852168B71643F782422F2D98B03A12"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -31266,7 +31282,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -31280,7 +31296,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -31294,7 +31310,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -31308,7 +31324,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
@@ -31322,7 +31338,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
@@ -31336,7 +31352,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
@@ -31350,7 +31366,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
@@ -31364,7 +31380,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -31378,7 +31394,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
@@ -31392,7 +31408,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
@@ -31406,7 +31422,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
@@ -31420,7 +31436,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -31434,7 +31450,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -31448,7 +31464,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -31462,7 +31478,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -31476,7 +31492,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -31886,7 +31902,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
+          "qualificationSourceSha256": "44B172AE9C4E64A1BBFEA123AA50949F1C316AC10E49FE3F1C7FB863A8F2F25B"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
@@ -31900,7 +31916,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
+          "qualificationSourceSha256": "814C68BF92C1479207FA191F791CE8AF7941BF6EA6A3368E0A23A65168633672"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
@@ -31914,7 +31930,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2D39DCA3B4A3D4D418E029873A4F3445468CE17A74554EE1A1F755902CB2FB5D"
+          "qualificationSourceSha256": "56EFA5ABDDD1C8E9D5FFE54EF070A7A243E5109109FBB3A7850687A3235D3510"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -31928,7 +31944,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
+          "qualificationSourceSha256": "02430885037CB3CA21ECF62127B4DA1E5E63686F5389AB29E4F7097C66B576D7"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
@@ -31942,7 +31958,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
+          "qualificationSourceSha256": "6C251C5C6DC01C01F5990A309733D58E6AD3CA822055DEB2BC49E4BF9E69DF74"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
@@ -31956,7 +31972,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
+          "qualificationSourceSha256": "25A8537BBBC75E27149427D8E2CC6F5AA3981EDD1A1FC17642E917B36E2FE8DA"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
@@ -31970,7 +31986,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
+          "qualificationSourceSha256": "F225D4620C396D17337533022EA36B8FDD3D888B00450C091BC272E1E4F664E5"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
@@ -31984,7 +32000,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
+          "qualificationSourceSha256": "973DAC661E460B459E4CB556773B946BC871EF0FEC48D321C5492AC7F36B950B"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
@@ -31998,7 +32014,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87EACB4A945EB50DB9CEF4C071C4A9DA95DDEB9029D712F4DA2F59AD424DAA81"
+          "qualificationSourceSha256": "089F545ABCF0929E0729A4AD4A7DB088CD5D267574B5411B91FEAEC3AC504CC1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
@@ -32012,7 +32028,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
+          "qualificationSourceSha256": "B87E85365F6B91C6E46C5681E6BFACE268486852FC5B7EE325189FED2FC63849"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
@@ -32026,7 +32042,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
+          "qualificationSourceSha256": "6B40F1AB6146DAD9094322038D5457EBF69A428290C204CA92420E6F3C7520F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
@@ -32040,7 +32056,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
+          "qualificationSourceSha256": "5E4A03834E1DE2337A6DF7E43E835D042BA65387D0A9285472E55FA7DBCD9A71"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
@@ -32054,7 +32070,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
+          "qualificationSourceSha256": "2FCFA95C1807428DD55ABB894F11055BB74117302C82D04F9D9B733243C89433"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
@@ -32068,7 +32084,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C723EBA60DE79A1AF9C9225778803A330FFAC577AD40D5557C1A25B2364DA3AD"
+          "qualificationSourceSha256": "3336314627C032F7E5A7064AC5D5528D0829784EE7515C1E7552C935243D9528"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
@@ -32082,7 +32098,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
+          "qualificationSourceSha256": "5610C0BE9107E50C531582DCE54A052A5815714BC46369F0A9A0E263FBAD7A5D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -37966,7 +37982,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
@@ -54272,7 +54288,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
+          "qualificationSourceSha256": "FFBE8C8FD861270D51B0B0FEE15FB3E7E36D52079C31AC6C5F97AEFEDDCCA04D"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
@@ -54286,7 +54302,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "F02AB84ACCCA50730DE2267B7F55ADDEF74AABDED0FFD1E25E7EF3E32D4D0FD2"
+          "qualificationSourceSha256": "443E360A63BFDCDD5F8B2C1405F47655E9D47A9EDE175170B025D958265FB288"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
@@ -54300,7 +54316,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
+          "qualificationSourceSha256": "789F298F42401C00E8DC55B7B2C3D2B250EEACE96678DB04FEBFB7645CBAFAE1"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -54314,7 +54330,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
+          "qualificationSourceSha256": "ED328C9DC97254B418622EBA13A42C9D1B30065E40E7A0F12AE2ADCDE4D4B90A"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
@@ -54328,7 +54344,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
+          "qualificationSourceSha256": "E89529EE525EDCF824081EE9B10AAE55D1F9EBE1C9FF53DBD82A36BEAA147656"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
@@ -54342,7 +54358,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
+          "qualificationSourceSha256": "C0BDA75D117EF2CCE9491502984E4CD2A66880FC1ED61A06DAA776BDE1A8FE97"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
@@ -54356,7 +54372,7 @@
           "hash": "BE5B4C9660D5D274A742942AB4BA53467BA08CF59E65A41155B503A181BFB610",
           "shape": "9011B4E0C7D7F2977BFA1168A7EFBC69BDC549404B8D0CDDD5931C046F78801D",
           "qualification": "original-entire-machine-volume-writer-sdk-ref-fields-truncation-and-fresh-allocation-preserved",
-          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
+          "qualificationSourceSha256": "A9016D765F63FB4FA0EE8CDF85E9986931852168B71643F782422F2D98B03A12"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -61270,7 +61286,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
+          "qualificationSourceSha256": "44B172AE9C4E64A1BBFEA123AA50949F1C316AC10E49FE3F1C7FB863A8F2F25B"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
@@ -61284,7 +61300,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
+          "qualificationSourceSha256": "FFBE8C8FD861270D51B0B0FEE15FB3E7E36D52079C31AC6C5F97AEFEDDCCA04D"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
@@ -61298,7 +61314,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
+          "qualificationSourceSha256": "814C68BF92C1479207FA191F791CE8AF7941BF6EA6A3368E0A23A65168633672"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
@@ -61312,7 +61328,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2D39DCA3B4A3D4D418E029873A4F3445468CE17A74554EE1A1F755902CB2FB5D"
+          "qualificationSourceSha256": "56EFA5ABDDD1C8E9D5FFE54EF070A7A243E5109109FBB3A7850687A3235D3510"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -61326,7 +61342,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
+          "qualificationSourceSha256": "02430885037CB3CA21ECF62127B4DA1E5E63686F5389AB29E4F7097C66B576D7"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
@@ -61340,7 +61356,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
+          "qualificationSourceSha256": "6C251C5C6DC01C01F5990A309733D58E6AD3CA822055DEB2BC49E4BF9E69DF74"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
@@ -61354,7 +61370,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F02AB84ACCCA50730DE2267B7F55ADDEF74AABDED0FFD1E25E7EF3E32D4D0FD2"
+          "qualificationSourceSha256": "443E360A63BFDCDD5F8B2C1405F47655E9D47A9EDE175170B025D958265FB288"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
@@ -61368,7 +61384,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
+          "qualificationSourceSha256": "25A8537BBBC75E27149427D8E2CC6F5AA3981EDD1A1FC17642E917B36E2FE8DA"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
@@ -61382,7 +61398,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
+          "qualificationSourceSha256": "F225D4620C396D17337533022EA36B8FDD3D888B00450C091BC272E1E4F664E5"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
@@ -61396,7 +61412,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
+          "qualificationSourceSha256": "973DAC661E460B459E4CB556773B946BC871EF0FEC48D321C5492AC7F36B950B"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
@@ -61410,7 +61426,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
+          "qualificationSourceSha256": "789F298F42401C00E8DC55B7B2C3D2B250EEACE96678DB04FEBFB7645CBAFAE1"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -61424,7 +61440,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
+          "qualificationSourceSha256": "ED328C9DC97254B418622EBA13A42C9D1B30065E40E7A0F12AE2ADCDE4D4B90A"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
@@ -61438,7 +61454,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
+          "qualificationSourceSha256": "E89529EE525EDCF824081EE9B10AAE55D1F9EBE1C9FF53DBD82A36BEAA147656"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
@@ -61452,7 +61468,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87EACB4A945EB50DB9CEF4C071C4A9DA95DDEB9029D712F4DA2F59AD424DAA81"
+          "qualificationSourceSha256": "089F545ABCF0929E0729A4AD4A7DB088CD5D267574B5411B91FEAEC3AC504CC1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
@@ -61466,7 +61482,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
+          "qualificationSourceSha256": "B87E85365F6B91C6E46C5681E6BFACE268486852FC5B7EE325189FED2FC63849"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
@@ -61480,7 +61496,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
+          "qualificationSourceSha256": "C0BDA75D117EF2CCE9491502984E4CD2A66880FC1ED61A06DAA776BDE1A8FE97"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
@@ -61494,7 +61510,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
+          "qualificationSourceSha256": "6B40F1AB6146DAD9094322038D5457EBF69A428290C204CA92420E6F3C7520F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
@@ -61508,7 +61524,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
+          "qualificationSourceSha256": "5E4A03834E1DE2337A6DF7E43E835D042BA65387D0A9285472E55FA7DBCD9A71"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
@@ -61522,7 +61538,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C79B024D2237F9F135A1B6CA4A76D91C773D43BA377F1E3733436CF01C613E82"
+          "qualificationSourceSha256": "CE9A8319532B03FD133E836EAE290CC9FF79CDFC30F8FD0F28FFB24AEE6BD797"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
@@ -61536,7 +61552,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
+          "qualificationSourceSha256": "A9016D765F63FB4FA0EE8CDF85E9986931852168B71643F782422F2D98B03A12"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
@@ -61550,7 +61566,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
+          "qualificationSourceSha256": "2FCFA95C1807428DD55ABB894F11055BB74117302C82D04F9D9B733243C89433"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
@@ -61564,7 +61580,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C723EBA60DE79A1AF9C9225778803A330FFAC577AD40D5557C1A25B2364DA3AD"
+          "qualificationSourceSha256": "3336314627C032F7E5A7064AC5D5528D0829784EE7515C1E7552C935243D9528"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
@@ -61578,7 +61594,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
+          "qualificationSourceSha256": "5610C0BE9107E50C531582DCE54A052A5815714BC46369F0A9A0E263FBAD7A5D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -62160,7 +62176,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -62174,7 +62190,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -62188,7 +62204,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -62202,7 +62218,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
@@ -62216,7 +62232,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
@@ -62230,7 +62246,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
@@ -62244,7 +62260,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
@@ -62258,7 +62274,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -62272,7 +62288,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
@@ -62286,7 +62302,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
@@ -62300,7 +62316,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
@@ -62314,7 +62330,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -62328,7 +62344,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -62342,7 +62358,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -62356,7 +62372,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -62370,7 +62386,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -81915,7 +81931,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
+          "qualificationSourceSha256": "44B172AE9C4E64A1BBFEA123AA50949F1C316AC10E49FE3F1C7FB863A8F2F25B"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/B2/Factories/B2MachineFactory.cs",
@@ -82049,7 +82065,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB25F308C1160CCDABFC55FCD7F3A5C44FA800C7070692A52392F83446EA074F"
+          "qualificationSourceSha256": "FFBE8C8FD861270D51B0B0FEE15FB3E7E36D52079C31AC6C5F97AEFEDDCCA04D"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs",
@@ -82203,7 +82219,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
+          "qualificationSourceSha256": "814C68BF92C1479207FA191F791CE8AF7941BF6EA6A3368E0A23A65168633672"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -82341,7 +82357,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2D39DCA3B4A3D4D418E029873A4F3445468CE17A74554EE1A1F755902CB2FB5D"
+          "qualificationSourceSha256": "56EFA5ABDDD1C8E9D5FFE54EF070A7A243E5109109FBB3A7850687A3235D3510"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/AudioFunctions.cs",
@@ -82589,7 +82605,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
+          "qualificationSourceSha256": "02430885037CB3CA21ECF62127B4DA1E5E63686F5389AB29E4F7097C66B576D7"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -82769,7 +82785,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
+          "qualificationSourceSha256": "6C251C5C6DC01C01F5990A309733D58E6AD3CA822055DEB2BC49E4BF9E69DF74"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -82879,7 +82895,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F02AB84ACCCA50730DE2267B7F55ADDEF74AABDED0FFD1E25E7EF3E32D4D0FD2"
+          "qualificationSourceSha256": "443E360A63BFDCDD5F8B2C1405F47655E9D47A9EDE175170B025D958265FB288"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -83105,7 +83121,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
+          "qualificationSourceSha256": "25A8537BBBC75E27149427D8E2CC6F5AA3981EDD1A1FC17642E917B36E2FE8DA"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -83299,7 +83315,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
+          "qualificationSourceSha256": "F225D4620C396D17337533022EA36B8FDD3D888B00450C091BC272E1E4F664E5"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -83493,7 +83509,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
+          "qualificationSourceSha256": "973DAC661E460B459E4CB556773B946BC871EF0FEC48D321C5492AC7F36B950B"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -83603,7 +83619,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "222F072D6CD21D8F067F61F883384163ACC860423B840DA1F32B502D77A1037F"
+          "qualificationSourceSha256": "789F298F42401C00E8DC55B7B2C3D2B250EEACE96678DB04FEBFB7645CBAFAE1"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
@@ -83617,7 +83633,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "3B8A43EDC4BC58A8A6AD39756A778B9ADC11A4930ED5C2348F7C40F17FA916B8"
+          "qualificationSourceSha256": "ED328C9DC97254B418622EBA13A42C9D1B30065E40E7A0F12AE2ADCDE4D4B90A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -83687,7 +83703,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8E771B348AB2FB7E57A2B28522BE4A4D809E999FF27CFDBFD64144770138103D"
+          "qualificationSourceSha256": "E89529EE525EDCF824081EE9B10AAE55D1F9EBE1C9FF53DBD82A36BEAA147656"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -83827,7 +83843,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87EACB4A945EB50DB9CEF4C071C4A9DA95DDEB9029D712F4DA2F59AD424DAA81"
+          "qualificationSourceSha256": "089F545ABCF0929E0729A4AD4A7DB088CD5D267574B5411B91FEAEC3AC504CC1"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
@@ -83951,7 +83967,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
+          "qualificationSourceSha256": "B87E85365F6B91C6E46C5681E6BFACE268486852FC5B7EE325189FED2FC63849"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -84061,7 +84077,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B78979C17FEF63B2310F968F4DC644CCBEE9C48C2036BCA0E750432393C9601F"
+          "qualificationSourceSha256": "C0BDA75D117EF2CCE9491502984E4CD2A66880FC1ED61A06DAA776BDE1A8FE97"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
@@ -84227,7 +84243,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
+          "qualificationSourceSha256": "6B40F1AB6146DAD9094322038D5457EBF69A428290C204CA92420E6F3C7520F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -84457,7 +84473,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
+          "qualificationSourceSha256": "5E4A03834E1DE2337A6DF7E43E835D042BA65387D0A9285472E55FA7DBCD9A71"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -84675,7 +84691,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C79B024D2237F9F135A1B6CA4A76D91C773D43BA377F1E3733436CF01C613E82"
+          "qualificationSourceSha256": "CE9A8319532B03FD133E836EAE290CC9FF79CDFC30F8FD0F28FFB24AEE6BD797"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.cs",
@@ -85133,7 +85149,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "7B9D8D42611EFD7EDD7375A657153A6B16ACF07530AB3351CE962A5D5972732F"
+          "qualificationSourceSha256": "A9016D765F63FB4FA0EE8CDF85E9986931852168B71643F782422F2D98B03A12"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -85321,7 +85337,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
+          "qualificationSourceSha256": "2FCFA95C1807428DD55ABB894F11055BB74117302C82D04F9D9B733243C89433"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs",
@@ -85405,7 +85421,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C723EBA60DE79A1AF9C9225778803A330FFAC577AD40D5557C1A25B2364DA3AD"
+          "qualificationSourceSha256": "3336314627C032F7E5A7064AC5D5528D0829784EE7515C1E7552C935243D9528"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
@@ -85527,7 +85543,7 @@
           "hash": "D90D4BF1C57FA86C9F293C093A10F6B898F46A49B0F5B0E513DD2A83B35EDF08",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Contracts.EmulationMachineCommand.FailPending(System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.EmulationMachineCommand>, System.Exception); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
+          "qualificationSourceSha256": "5610C0BE9107E50C531582DCE54A052A5815714BC46369F0A9A0E263FBAD7A5D"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/Containers/DifferencingImageStreams.cs",
@@ -97692,7 +97708,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs",
@@ -97706,7 +97722,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
@@ -97988,7 +98004,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -98002,7 +98018,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
@@ -98244,7 +98260,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -98258,7 +98274,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
@@ -98584,7 +98600,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -98598,7 +98614,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
@@ -98778,7 +98794,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
@@ -98792,7 +98808,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
@@ -99234,7 +99250,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
@@ -99248,7 +99264,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
@@ -99502,7 +99518,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
@@ -99516,7 +99532,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
@@ -99734,7 +99750,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
@@ -99748,7 +99764,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
@@ -100184,7 +100200,7 @@
           "hash": "7F50DB101D4C402273117D9D205FF38BF46D09150D4CF56E66952FE77B072433",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationInputAccumulator.Update(GWGUI.Emulation.Contracts.EmulationInputSnapshot?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -100198,7 +100214,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -100212,7 +100228,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
@@ -100414,7 +100430,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
@@ -100428,7 +100444,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
@@ -100736,7 +100752,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
@@ -100750,7 +100766,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
@@ -101028,7 +101044,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
@@ -101042,7 +101058,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
@@ -101320,7 +101336,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -101334,7 +101350,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
@@ -102420,7 +102436,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -102434,7 +102450,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
@@ -102556,7 +102572,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -102570,7 +102586,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
@@ -102736,7 +102752,7 @@
           "hash": "1C11B89ED46C3080B8422B667D460809D654178CC3A0260F43D909E7127E358A",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetVolume(float); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -102750,7 +102766,7 @@
           "hash": "DBAD04750EED0452B0FB71F4DE23812655FD9B5B2A4F65E992F93054F23C7884",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.ReplaceFactory(System.Func<GWGUI.Emulation.Interfaces.IAudioOutput?>?); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
@@ -112776,7 +112792,7 @@
           "name": "Set",
           "owner": "MachineThreadOwnershipTests",
           "kind": "MethodDeclaration",
-          "line": 139,
+          "line": 145,
           "parameters": "(object machine, string name, object value)",
           "tokens": 27,
           "bodyTokens": "=> machine . GetType ( ) . GetField ( name , BindingFlags . Instance | BindingFlags . NonPublic ) ! . SetValue ( machine , value )",
@@ -114510,7 +114526,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1116E1F3B38FB84146C1C8B011FC41217C6BC70CD4178F1A65ADFCB748D7E048"
+          "qualificationSourceSha256": "44B172AE9C4E64A1BBFEA123AA50949F1C316AC10E49FE3F1C7FB863A8F2F25B"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
@@ -114524,7 +114540,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A6C423792823F15968D43D8936ECC0234374AC26BE525BA20C52469297E0DAEA"
+          "qualificationSourceSha256": "814C68BF92C1479207FA191F791CE8AF7941BF6EA6A3368E0A23A65168633672"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
@@ -114538,7 +114554,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2D39DCA3B4A3D4D418E029873A4F3445468CE17A74554EE1A1F755902CB2FB5D"
+          "qualificationSourceSha256": "56EFA5ABDDD1C8E9D5FFE54EF070A7A243E5109109FBB3A7850687A3235D3510"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
@@ -114552,7 +114568,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2AF400E21FB38FE0569764AB0272116BBA1237878047B6706E1EAF5CF48E0C28"
+          "qualificationSourceSha256": "02430885037CB3CA21ECF62127B4DA1E5E63686F5389AB29E4F7097C66B576D7"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
@@ -114566,7 +114582,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2305C7E554BE90F901412C3842540101D065798847F198DD40BBF2F73A11ED5D"
+          "qualificationSourceSha256": "6C251C5C6DC01C01F5990A309733D58E6AD3CA822055DEB2BC49E4BF9E69DF74"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
@@ -114580,7 +114596,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "508C5FE4C1BD912785E467AA76EA4192172C578DCC2CBC745C79D2B4428459FF"
+          "qualificationSourceSha256": "25A8537BBBC75E27149427D8E2CC6F5AA3981EDD1A1FC17642E917B36E2FE8DA"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
@@ -114594,7 +114610,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "614F8476448DC76EC7B04F5384613B2AC8AD685C06C36CF6EF6798C21A1A3C5A"
+          "qualificationSourceSha256": "F225D4620C396D17337533022EA36B8FDD3D888B00450C091BC272E1E4F664E5"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
@@ -114608,7 +114624,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "5B45D077AAD8CA5514E238380DE8698C17584AA3B63A530E1242240063C60116"
+          "qualificationSourceSha256": "973DAC661E460B459E4CB556773B946BC871EF0FEC48D321C5492AC7F36B950B"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
@@ -114622,7 +114638,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "87EACB4A945EB50DB9CEF4C071C4A9DA95DDEB9029D712F4DA2F59AD424DAA81"
+          "qualificationSourceSha256": "089F545ABCF0929E0729A4AD4A7DB088CD5D267574B5411B91FEAEC3AC504CC1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
@@ -114636,7 +114652,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4D0BEB8F684178E05D906863F0715490221F42C4C9C9C049718DDB873A7932AB"
+          "qualificationSourceSha256": "B87E85365F6B91C6E46C5681E6BFACE268486852FC5B7EE325189FED2FC63849"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
@@ -114650,7 +114666,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "BB5C7DDA36D26AC5B6E9564C8052F48C3F85410E83E16D9C194F311C4000861B"
+          "qualificationSourceSha256": "6B40F1AB6146DAD9094322038D5457EBF69A428290C204CA92420E6F3C7520F9"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
@@ -114664,7 +114680,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "1D30B0DDA4C35312704D6C429A361C9AF21C1A413671ABCE273528D19325F6F6"
+          "qualificationSourceSha256": "5E4A03834E1DE2337A6DF7E43E835D042BA65387D0A9285472E55FA7DBCD9A71"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
@@ -114678,7 +114694,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B465CAFFDCE8BBD6F106783059F98C6AD6962ABB85D40F24E91D0D139B61C985"
+          "qualificationSourceSha256": "2FCFA95C1807428DD55ABB894F11055BB74117302C82D04F9D9B733243C89433"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
@@ -114692,7 +114708,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C723EBA60DE79A1AF9C9225778803A330FFAC577AD40D5557C1A25B2364DA3AD"
+          "qualificationSourceSha256": "3336314627C032F7E5A7064AC5D5528D0829784EE7515C1E7552C935243D9528"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
@@ -114706,7 +114722,7 @@
           "hash": "66B199800B6197B652D0F7CE777C39232CB7FF4D48B5E465C28B2DB403692A92",
           "shape": "90A861487B92F0D725821B09C30588112E9E07DA9195F5BE59C11C3925CEBCBB",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.Start(int); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "2340F6F35F62048EF1B562524EEDA4BF3DC9F7923C1A217E6E6BD356E96AF875"
+          "qualificationSourceSha256": "5610C0BE9107E50C531582DCE54A052A5815714BC46369F0A9A0E263FBAD7A5D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -128733,7 +128749,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EA4C2EDD1F457E3FB141C4562461CA6F5C7F499BC89FD4343465251578FC52D"
+          "qualificationSourceSha256": "633A292CA2D5460DFC93E9100CA0A93E76295AB09625A42FFB94D8FBBE23366C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -128747,7 +128763,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8D17D2D595FA785B12A74DFF3FC5B3910DFC4A82A9BB300BFFEEB069A247C392"
+          "qualificationSourceSha256": "9B5BA26142E30FAF67C969BB9BA7A6A1101AEB4FE37DB2D67BA7F78841B685FD"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -128761,7 +128777,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E18C328A4844DE8DF8B72AB482BE0F39259685566EE2908CCA1E8B25C0AAD02E"
+          "qualificationSourceSha256": "5B235DAA406DC2486D33235F125FAAF1E73882E54C97B7941A660D1514928265"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
@@ -128775,7 +128791,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "89E450B9DF9F704FF7A5F4E13D6F449F230EE573614E79583D8E0880789A6CF9"
+          "qualificationSourceSha256": "754D2ABC803D4C3CD496ED3500BF1FB4863EEEF7B2ED45DF80182DF93F732DFE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs",
@@ -128789,7 +128805,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4EB9C26EA8F56BA1A80C0F392CA674B2D33401250D8061C38FACDAC420655602"
+          "qualificationSourceSha256": "DB7B1ABFDFB2AA81DD2C0BE4DBBFB69F2BA55AEE25C6FD3648F8F9584085A168"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs",
@@ -128803,7 +128819,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "71455E26CE72F7AF643770F543278E31E802E6145954A56EC15CE4F6876754A6"
+          "qualificationSourceSha256": "186091A00870B126844511E93B7477CF95463E4EE44A1FC61BD1E6CA8862D7E8"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs",
@@ -128817,7 +128833,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "0F1EF9D9B1C9AAC071D426B7C83293E3C756A6B26E29309D44C06207655FF087"
+          "qualificationSourceSha256": "29D09289C8F028C55E6495AF7B0E490FBAB27BA7D49BCE00D4E6D1350DCFA46D"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs",
@@ -128831,7 +128847,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41C4B2D48746B3C9B03181D643A957D7B9976E45EE10113C30B59ADB7C1857D7"
+          "qualificationSourceSha256": "01FAA62DDEC09183068449F8F1CB466DCFE7269D25400ED2FB8B26A55A959F8D"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -128845,7 +128861,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "54B6F8734BA9AAF5E3985E58E22167AFC800BBC561C08E3D7188FD434AD5D24F"
+          "qualificationSourceSha256": "36519FDF8D209543C714F9F48DE631EF5B64FC06000FD4389AF77AE16562FC27"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs",
@@ -128859,7 +128875,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AE52903A0D23BECAC2D992F67791489A7DA88FADE858E06F50F9DC526FAF3C97"
+          "qualificationSourceSha256": "74B7397E5E71C62E864DFED571C6EE064C921F5EB21B69E4E12307EAE29F8E92"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs",
@@ -128873,7 +128889,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "366D8692AB1078963AD84CF576B135ACB38D2D4296FB9B91E9349839538B9C39"
+          "qualificationSourceSha256": "56E0AA943979E11A5C6C16CD0352E87E6210A6BEE26CCA0AE58DC83909C58689"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs",
@@ -128887,7 +128903,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "C25A5448DA0DA1F91E3B0AF87C217563FE2CBD2C26FA9116D38BF0504019938F"
+          "qualificationSourceSha256": "7AA74949B504AC29C3BD2F52E5C0199441D385F6328FDCE0729FCC1A15EB87C7"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -128901,7 +128917,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5F0067F5E636B63B9A0E98D2B8CB5E467D47633E3C4F4645960D111F09C6AA0"
+          "qualificationSourceSha256": "0361436A94B184C34347CD2B1F2022ADFBB1C93A2CC0F72AE5D641DC5717BE64"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -128915,7 +128931,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "A345FCA140D2910A2FE69BFBAC73164F0022A4ABF095CF5DC880EAEBF0201571"
+          "qualificationSourceSha256": "7D1BC67D562911416B03DB05CD6578C78E8E37EDA8E492DF35CEE6B38A9D3A20"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -128929,7 +128945,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "4C134F17888AAB41CF514626E0147403115642B63B61703040D27ED094C6A91F"
+          "qualificationSourceSha256": "056E4450E86C3189C75B072AFEC5B3DEAE06766D8D2A7699737B7F60F2538266"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -128943,7 +128959,7 @@
           "hash": "64D3A28432A12F26AE6DEFF6D4EC5C676C7D51B0A30A0C77CA7EAA4D69DF5B8B",
           "shape": "D23603CDE3407FF3F1C1D27CF561D6BE25989385ED3A31BFF96236B1AFDE535F",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Services.EmulationAudioOutputController.SetMuted(bool); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "9AB5102273D01193AB4AA28C13C610CD92920803BC26BADC894C414BA1272534"
+          "qualificationSourceSha256": "99E6BF29204CA9CAF3341823138ED7802999C02AC2D914076081C1DBAE8A036D"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Macro.cs",
@@ -134373,7 +134389,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2505,
+    "occurrences": 2415,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

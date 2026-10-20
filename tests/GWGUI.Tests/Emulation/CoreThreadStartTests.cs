@@ -25,7 +25,7 @@ public sealed class CoreThreadStartTests
                 ready.Set();
                 release.Wait();
             }, "GW GUI common startup regression", cancellation.Token,
-                out stop, out var started, out loop, out thread);
+                ref stop, out var started, out loop, ref thread);
 
             Assert.True(ready.Wait(TimeSpan.FromSeconds(5)));
             Assert.NotNull(thread);
@@ -55,5 +55,59 @@ public sealed class CoreThreadStartTests
         }
         Assert.NotNull(thread);
         Assert.False(thread.IsAlive);
+    }
+
+    [Fact]
+    public async Task NextStartJoinsPreviousWorkerAndDisposesOnlyItsLinkedSource()
+    {
+        using var firstCancellation = new CancellationTokenSource();
+        using var secondCancellation = new CancellationTokenSource();
+        using var ready = new ManualResetEventSlim();
+        using var release = new ManualResetEventSlim();
+        CancellationTokenSource? stop = null;
+        Task? loop = null;
+        Thread? thread = null;
+        CancellationToken secondToken = default;
+        try
+        {
+            ExternalCoreLifecycleFunctions.StartThread(_ => { }, "GW GUI first worker",
+                firstCancellation.Token, ref stop, out _, out loop, ref thread);
+            var previousThread = thread;
+            var previousStop = stop;
+            Assert.NotNull(loop);
+            await loop;
+
+            ExternalCoreLifecycleFunctions.StartThread(token =>
+            {
+                secondToken = token;
+                ready.Set();
+                release.Wait();
+            }, "GW GUI second worker", secondCancellation.Token,
+                ref stop, out _, out loop, ref thread);
+
+            Assert.True(ready.Wait(TimeSpan.FromSeconds(5)));
+            Assert.NotNull(previousThread);
+            Assert.False(previousThread.IsAlive);
+            Assert.NotNull(previousStop);
+            Assert.Throws<ObjectDisposedException>(() => previousStop.Token);
+            Assert.NotSame(previousStop, stop);
+            firstCancellation.Cancel();
+            Assert.False(secondToken.IsCancellationRequested);
+            secondCancellation.Cancel();
+            Assert.True(secondToken.IsCancellationRequested);
+        }
+        finally
+        {
+            release.Set();
+            try
+            {
+                if (loop is not null) await loop;
+            }
+            finally
+            {
+                try { thread?.Join(); }
+                finally { stop?.Dispose(); }
+            }
+        }
     }
 }

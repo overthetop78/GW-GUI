@@ -21,7 +21,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             {
                 GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
                     Run, $"{MachineConstants.ThreadNamePrefix}{Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}", cancellationToken,
-                    out _stop, out _started, out _runLoop, out _thread);
+                    ref _stop, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
                 started = _started.Task;
             }

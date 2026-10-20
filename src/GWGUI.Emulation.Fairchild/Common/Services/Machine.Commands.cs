@@ -178,21 +178,16 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         if (_disposed) return;
         var disposeUnstartedCore = _thread is null;
-        try { await StopAsync().ConfigureAwait(false); }
-        finally
+        try
         {
-            try
-            {
-                try { if (disposeUnstartedCore) _core.Dispose(); }
-                finally { _audio.Dispose(); }
-            }
-            finally
-            {
-                _stopSource?.Dispose();
-                _disposed = true;
-                if (disposeUnstartedCore) MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
-            }
+            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+                () => StopAsync(),
+                () => { if (disposeUnstartedCore) _core.Dispose(); },
+                () => _audio.Dispose(),
+                () => _stopSource?.Dispose(),
+                () => { _disposed = true; if (disposeUnstartedCore) MachineFunctions.DeleteSessionDirectory(_sessionDirectory); }).ConfigureAwait(false);
         }
+        finally { _disposed = true; }
     }
 }
 
