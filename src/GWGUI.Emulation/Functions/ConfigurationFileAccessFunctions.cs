@@ -10,7 +10,8 @@ public static class ConfigurationFileAccessFunctions
     private const int DefaultReplacementRetryCount = 5;
     private const int DefaultReplacementRetryDelayMilliseconds = 25;
 
-    internal static string? StorePath(string? path, string pathBase)
+    /// <summary>Stocke un chemin relatif à la base lorsqu’il reste dans cette base, sinon conserve le chemin absolu.</summary>
+    public static string? StorePath(string? path, string pathBase)
     {
         if (string.IsNullOrWhiteSpace(path)) return path;
         var fullPath = Path.GetFullPath(path);
@@ -18,7 +19,8 @@ public static class ConfigurationFileAccessFunctions
         return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, '/') : fullPath;
     }
 
-    internal static string? ResolvePath(string? path, string pathBase)
+    /// <summary>Résout un chemin stocké par rapport à sa base, sans changer les chemins déjà absolus.</summary>
+    public static string? ResolvePath(string? path, string pathBase)
     {
         if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
         return Path.GetFullPath(Path.Combine(pathBase, path.Replace('/', Path.DirectorySeparatorChar)));
@@ -38,7 +40,9 @@ public static class ConfigurationFileAccessFunctions
             return Task.CompletedTask;
         }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();
 
-    internal static async Task WithSaveGateAsync(SemaphoreSlim saveGate, Func<Task> write,
+    /// <summary>Sérialise les écritures avec le verrou fourni et le libère même si l’écriture échoue.</summary>
+    /// <remarks>Le verrou est emprunté ; sa destruction reste à la charge de son propriétaire.</remarks>
+    public static async Task WithSaveGateAsync(SemaphoreSlim saveGate, Func<Task> write,
         CancellationToken cancellationToken)
     {
         await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
@@ -77,7 +81,8 @@ public static class ConfigurationFileAccessFunctions
         }
     }
 
-    internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,
+    /// <summary>Écrit le document JSON dans un fichier temporaire avant de remplacer sa destination.</summary>
+    public static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,
         JsonSerializerOptions options, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
@@ -106,7 +111,8 @@ public static class ConfigurationFileAccessFunctions
         finally { DeleteIfExists(temporary); }
     }
 
-    internal static void DeleteDirectoryIfExists(string path, bool recursive)
+    /// <summary>Supprime un dossier existant selon la politique de récursion choisie par le module.</summary>
+    public static void DeleteDirectoryIfExists(string path, bool recursive)
     {
         if (Directory.Exists(path)) Directory.Delete(path, recursive);
     }
@@ -116,10 +122,13 @@ public static class ConfigurationFileAccessFunctions
         if (File.Exists(path)) File.Delete(path);
     }
 
-    internal static IEnumerable<string> EnumerateDocumentPaths(string configurationDirectory, string fileName) =>
+    /// <summary>Énumère les documents existants des sous-dossiers, dans l’ordre ordinal insensible à la casse.</summary>
+    public static IEnumerable<string> EnumerateDocumentPaths(string configurationDirectory, string fileName) =>
         Directory.EnumerateDirectories(configurationDirectory).Select(directory => Path.Combine(directory, fileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
 
-    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(
+    /// <summary>Charge les documents sélectionnés et restaure leurs configurations avec les conversions du module.</summary>
+    /// <remarks>Conserve la politique commune qui ignore les documents illisibles ou invalides.</remarks>
+    public static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(
         string configurationDirectory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize,
         Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)
     {
@@ -143,7 +152,8 @@ public static class ConfigurationFileAccessFunctions
         return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);
     }
 
-    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(
+    /// <summary>Charge les configurations dont le schéma est accepté, puis résout leurs chemins.</summary>
+    public static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(
         string configurationDirectory, string fileName, Func<string, TConfiguration?> deserialize,
         Func<TConfiguration, bool> isSupported, Func<TConfiguration, TConfiguration> resolve,
         CancellationToken cancellationToken) where TConfiguration : class

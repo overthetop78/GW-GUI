@@ -2,7 +2,9 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
 
-internal class EmulationAudioOutputController : IDisposable
+/// <summary>Gestion commune de la sortie audio, du volume et de la récupération après une erreur de sortie.</summary>
+/// <remarks>Une sortie reçue est empruntée ; une sortie créée par la fabrique appartient au contrôleur.</remarks>
+public class EmulationAudioOutputController : IDisposable
 {
     protected readonly object _gate = new();
     private Func<IAudioOutput?>? _factory;
@@ -17,16 +19,20 @@ internal class EmulationAudioOutputController : IDisposable
     protected bool _started;
     protected bool _unavailable;
 
-    internal EmulationAudioOutputController(IAudioOutput? output = null, Func<IAudioOutput?>? factory = null)
+    /// <summary>Associe une sortie empruntée et, éventuellement, une fabrique de sorties possédées.</summary>
+    public EmulationAudioOutputController(IAudioOutput? output = null, Func<IAudioOutput?>? factory = null)
     {
         _output = output;
         _factory = factory;
     }
 
-    internal bool IsMuted { get { lock (_gate) return _muted; } }
-    internal float Volume { get { lock (_gate) return _volume; } }
+    /// <summary>Indique si les échantillons doivent être ignorés pour couper le son.</summary>
+    public bool IsMuted { get { lock (_gate) return _muted; } }
+    /// <summary>Volume appliqué aux échantillons avant leur écriture.</summary>
+    public float Volume { get { lock (_gate) return _volume; } }
 
-    internal void Start(int sampleRate)
+    /// <summary>Définit la fréquence et démarre la sortie si son état le permet.</summary>
+    public void Start(int sampleRate)
     {
         lock (_gate)
         {
@@ -37,7 +43,8 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void Write(AudioChunk chunk)
+    /// <summary>Écrit les échantillons avec le volume courant et tente de récupérer une sortie défaillante.</summary>
+    public void Write(AudioChunk chunk)
     {
         lock (_gate)
         {
@@ -61,7 +68,8 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void SetMuted(bool muted)
+    /// <summary>Coupe ou rétablit le son ; couper le son vide la sortie.</summary>
+    public void SetMuted(bool muted)
     {
         lock (_gate)
         {
@@ -75,12 +83,14 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void SetVolume(float volume)
+    /// <summary>Applique le bornage de volume commun au SDK.</summary>
+    public void SetVolume(float volume)
     {
         lock (_gate) _volume = EmulationAudioFunctions.NormalizeVolume(volume);
     }
 
-    internal void Pause()
+    /// <summary>Suspend, vide et arrête la sortie sans détruire le contrôleur.</summary>
+    public void Pause()
     {
         lock (_gate)
         {
@@ -90,7 +100,8 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void Resume()
+    /// <summary>Réactive la sortie après une pause et autorise une nouvelle tentative de démarrage.</summary>
+    public void Resume()
     {
         lock (_gate)
         {
@@ -100,9 +111,11 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void Reset() { lock (_gate) Flush(); }
+    /// <summary>Vide les échantillons en attente lors d’une réinitialisation de la machine.</summary>
+    public void Reset() { lock (_gate) Flush(); }
 
-    internal void ReplaceFactory(Func<IAudioOutput?>? factory)
+    /// <summary>Remplace la fabrique et détache la sortie courante en respectant sa propriété.</summary>
+    public void ReplaceFactory(Func<IAudioOutput?>? factory)
     {
         lock (_gate)
         {
@@ -113,7 +126,8 @@ internal class EmulationAudioOutputController : IDisposable
         }
     }
 
-    internal void Stop()
+    /// <summary>Arrête la sortie et empêche de nouvelles écritures jusqu’au prochain démarrage.</summary>
+    public void Stop()
     {
         lock (_gate)
         {
@@ -193,6 +207,7 @@ internal class EmulationAudioOutputController : IDisposable
         finally { _started = false; }
     }
 
+    /// <summary>Arrête la sortie et libère uniquement les sorties créées par ce contrôleur.</summary>
     public void Dispose()
     {
         lock (_gate)

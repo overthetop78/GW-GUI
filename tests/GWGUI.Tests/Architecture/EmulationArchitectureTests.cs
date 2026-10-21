@@ -298,27 +298,28 @@ public sealed class EmulationArchitectureTests
     {
         var adapter = assembly.GetType($"{rootNamespace}.Common.Interfaces.IEmulatorAdapter");
         Assert.NotNull(adapter);
-        var create = adapter!.GetMethod("Create");
+        var sharedAdapter = Assert.Single(adapter!.GetInterfaces(), type => type.IsGenericType
+            && type.GetGenericTypeDefinition() == typeof(GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<,>));
+        Assert.True(sharedAdapter.GetGenericTypeDefinition().IsPublic);
+        var create = sharedAdapter.GetMethod("Create");
         Assert.NotNull(create);
         var parameters = create!.GetParameters();
         Assert.Equal(2, parameters.Length);
         var context = parameters[1].ParameterType;
+        Assert.True(context.IsGenericType);
+        Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorCreationContext<>), context.GetGenericTypeDefinition());
+        Assert.True(context.GetGenericTypeDefinition().IsPublic);
+        Assert.Equal(parameters[0].ParameterType, Assert.Single(context.GetGenericArguments()));
+        Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext"));
         if (rootNamespace == "GWGUI.Emulation.Nec")
         {
-            Assert.Equal(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext"), context);
-            var firmware = context.GetConstructors().Single().GetParameters().Last();
+            var firmware = context.GetConstructors().Single(constructor => constructor.GetParameters().Length == 6)
+                .GetParameters().Last();
             Assert.Equal("FirmwareDirectory", firmware.Name);
             Assert.False(firmware.HasDefaultValue);
         }
-        else
-        {
-            Assert.True(context.IsGenericType);
-            Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorCreationContext<>), context.GetGenericTypeDefinition());
-            Assert.Equal(parameters[0].ParameterType, Assert.Single(context.GetGenericArguments()));
-            Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorCreationContext"));
-        }
         Assert.Null(assembly.GetType($"{rootNamespace}.Common.Contracts.EmulatorManagementContext"));
-        var installation = adapter!.GetMethod("GetInstallationAsync");
+        var installation = sharedAdapter.GetMethod("GetInstallationAsync");
         Assert.NotNull(installation);
         var management = installation!.GetParameters()[0].ParameterType;
         Assert.Equal(typeof(GWGUI.Emulation.Contracts.EmulatorManagementContext), management);
@@ -355,7 +356,9 @@ public sealed class EmulationArchitectureTests
         return directory?.FullName ?? throw new DirectoryNotFoundException();
     }
 
-    private static string[] MemberNames(Type type) => type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly).Select(member => member.Name).Order(StringComparer.Ordinal).ToArray();
+    private static string[] MemberNames(Type type) => (type.IsInterface ? type.GetInterfaces().Append(type) : [type])
+        .SelectMany(contract => contract.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+        .Select(member => member.Name).Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal).ToArray();
 
     private static string NormalizedFamilySource(string path, string family)
     {

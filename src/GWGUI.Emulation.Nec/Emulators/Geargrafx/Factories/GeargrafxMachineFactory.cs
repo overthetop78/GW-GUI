@@ -37,5 +37,5 @@ internal sealed class GeargrafxMachineFactory : CoreMachineFactory, IEmulatorMac
     protected override MachineConfiguration Configure(MachineConfiguration configuration) => BeetlePceFastOptionFunctions.ToNative(configuration);
 
     protected override void PrepareSession(MachineConfiguration configuration, EmulatorCreationContext context, string sessionDirectory) =>
-        GeargrafxFirmwareFunctions.Prepare(context.FirmwareDirectory, sessionDirectory, configuration.FirmwarePath);
+        GeargrafxFirmwareFunctions.Prepare(context.FirmwareDirectory!, sessionDirectory, configuration.FirmwarePath);
 }

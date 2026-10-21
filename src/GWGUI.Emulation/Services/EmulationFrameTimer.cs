@@ -6,9 +6,11 @@ using Microsoft.Win32.SafeHandles;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class EmulationFrameTimer : IDisposable
+/// <summary>Cadence et boucles de frames communes aux modules d’émulation.</summary>
+public sealed class EmulationFrameTimer : IDisposable
 {
-    internal static long WaitForNextFrame(long nextFrame, double framesPerSecond,
+    /// <summary>Calcule la prochaine échéance avec l’horloge fournie et attend avec la fonction du module.</summary>
+    public static long WaitForNextFrame(long nextFrame, double framesPerSecond,
         TimeProvider clock, Action<TimeSpan> sleep)
     {
         var frameDuration = TimeSpan.FromSeconds(1 / Math.Clamp(framesPerSecond, 1, 1000));
@@ -19,7 +21,9 @@ internal sealed class EmulationFrameTimer : IDisposable
         return nextFrame;
     }
 
-    internal static void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands,
+    /// <summary>Exécute les commandes et les frames avec une attente par échéance.</summary>
+    /// <remarks>Cette variante propage les erreurs des commandes vers le traitement d’échec de la machine.</remarks>
+    public static void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands,
         Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond,
         Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil,
         CancellationToken cancellationToken, int pauseWaitMilliseconds)
@@ -35,7 +39,9 @@ internal sealed class EmulationFrameTimer : IDisposable
             static command => command.Execute(rethrow: true), cancellationToken, pauseWaitMilliseconds);
     }
 
-    internal static void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands,
+    /// <summary>Exécute la boucle de la machine avec ses règles de pause et de poursuite.</summary>
+    /// <remarks>Cette variante signale les erreurs des commandes à leurs appelants sans les propager à la boucle.</remarks>
+    public static void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands,
         Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning, CancellationToken cancellationToken,
         int pauseWaitMilliseconds)
         => RunFrames(gate, commands, isPaused, runFrame, keepRunning,
@@ -65,7 +71,8 @@ internal sealed class EmulationFrameTimer : IDisposable
     private readonly EventWaitHandle _timer = new(false, EventResetMode.AutoReset);
     private readonly WaitHandle[] _waitHandles;
 
-    internal EmulationFrameTimer(CancellationToken cancellationToken)
+    /// <summary>Crée un minuteur Windows possédé par l’appelant, à libérer après la fin de la boucle.</summary>
+    public EmulationFrameTimer(CancellationToken cancellationToken)
     {
         var completed = false;
         SafeWaitHandle? nativeHandle = null;
@@ -89,7 +96,8 @@ internal sealed class EmulationFrameTimer : IDisposable
         }
     }
 
-    internal void WaitUntil(long target, CancellationToken cancellationToken)
+    /// <summary>Attend l’échéance Stopwatch indiquée ou l’annulation.</summary>
+    public void WaitUntil(long target, CancellationToken cancellationToken)
     {
         var remaining = target - Stopwatch.GetTimestamp();
         if (remaining <= 0) return;
@@ -100,6 +108,7 @@ internal sealed class EmulationFrameTimer : IDisposable
         if (WaitHandle.WaitAny(_waitHandles) == 1) cancellationToken.ThrowIfCancellationRequested();
     }
 
+    /// <summary>Libère le handle du minuteur ; son propriétaire doit avoir terminé les attentes en cours.</summary>
     public void Dispose() => _timer.Dispose();
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]

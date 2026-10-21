@@ -2,7 +2,8 @@ using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Functions;
 
-internal static class ExternalCoreLifecycleFunctions
+/// <summary>Opérations de cycle de vie communes aux modules d’émulation indépendants.</summary>
+public static class ExternalCoreLifecycleFunctions
 {
     internal static void DisposeCallbackResources(IDisposable? systemDirectory, IDisposable? contentDirectory,
         IDisposable? saveDirectory, IDisposable? assetsDirectory, IDisposable? virtualFileSystem,
@@ -17,7 +18,9 @@ internal static class ExternalCoreLifecycleFunctions
             optionHost.Dispose();
     }
 
-    internal static void StartThread(Action<CancellationToken> run, string name,
+    /// <summary>Démarre la boucle possédée par la machine et fournit les signaux de démarrage et de fin.</summary>
+    /// <remarks>La boucle signale elle-même son démarrage. Son propriétaire doit demander l’arrêt puis attendre le thread avant de libérer ses ressources.</remarks>
+    public static void StartThread(Action<CancellationToken> run, string name,
         CancellationToken cancellationToken, ref CancellationTokenSource? stop,
         out TaskCompletionSource started, out Task? loop, ref Thread? thread)
     {
@@ -63,7 +66,9 @@ internal static class ExternalCoreLifecycleFunctions
         }
     }
 
-    internal static void RunCore(Action initialize, Action run,
+    /// <summary>Exécute l’initialisation et la boucle du cœur, avec traitement de l’échec et nettoyage garanti.</summary>
+    /// <remarks>Le nettoyage reçoit la réussite de l’initialisation et s’exécute aussi après une erreur.</remarks>
+    public static void RunCore(Action initialize, Action run,
         Func<Exception, Action> selectFailureHandler, Action<bool> cleanup)
     {
         var initialized = false;
@@ -81,7 +86,9 @@ internal static class ExternalCoreLifecycleFunctions
         finally { cleanup(initialized); }
     }
 
-    internal static async ValueTask DisposeMachineAsync(Func<ValueTask> stop,
+    /// <summary>Attend l’arrêt puis libère, dans leur ordre, toutes les ressources confiées par la machine.</summary>
+    /// <remarks>Chaque libération reste exécutée même si l’arrêt ou une libération précédente échoue.</remarks>
+    public static async ValueTask DisposeMachineAsync(Func<ValueTask> stop,
         Action disposeFirst, Action disposeSecond, Action disposeThird, Action cleanup)
     {
         try { await stop().ConfigureAwait(false); }
@@ -100,7 +107,8 @@ internal static class ExternalCoreLifecycleFunctions
         }
     }
 
-    internal static async ValueTask WaitForStartOrStopAsync(Task started,
+    /// <summary>Attend le démarrage et arrête la machine si cette attente échoue ou est annulée.</summary>
+    public static async ValueTask WaitForStartOrStopAsync(Task started,
         CancellationToken cancellationToken, Func<ValueTask> stop)
     {
         var completedStart = false;
@@ -115,7 +123,8 @@ internal static class ExternalCoreLifecycleFunctions
         }
     }
 
-    internal static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)
+    /// <summary>Attend la fin de la boucle puis la terminaison effective de son thread, y compris après une erreur.</summary>
+    public static async ValueTask WaitForThreadAsync(Task? loop, Thread? thread)
     {
         try
         {

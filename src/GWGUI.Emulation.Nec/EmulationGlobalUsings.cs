@@ -1,4 +1,5 @@
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
+global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Constants;
@@ -10,7 +11,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Nec.Common.Contracts;
 global using GWGUI.Emulation.Nec.Common.Constants;
 global using GWGUI.Emulation.Nec.Common.Dictionaries;
 global using GWGUI.Emulation.Nec.Common.Interfaces;
