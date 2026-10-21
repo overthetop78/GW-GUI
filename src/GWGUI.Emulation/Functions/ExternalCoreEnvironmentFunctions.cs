@@ -5,9 +5,12 @@ using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Emulation.Functions;
+/// <summary>Traitement commun des commandes et structures d’environnement des cœurs natifs.</summary>
+/// <remarks>Les pointeurs et exports fournis sont empruntés. Les fournisseurs de callbacks gardent leurs délégués vivants pendant leur enregistrement ; cette classe ne prend pas possession du cœur ou de sa bibliothèque.</remarks>
 internal static class ExternalCoreEnvironmentFunctions
 {
-    internal static void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info,
+    /// <summary>Applique géométrie, cadence et fréquence audio en conservant les contrôles de valeurs finies.</summary>
+    public static void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info,
         Action<ExternalCoreApi.Geometry> applyGeometry, Action<double> setFramesPerSecond, Action<int> setSampleRate)
     {
         applyGeometry(info.Geometry);
@@ -17,14 +20,16 @@ internal static class ExternalCoreEnvironmentFunctions
             setSampleRate(checked((int)Math.Round(info.Timing.SampleRate)));
     }
 
-    internal static bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct
+    /// <summary>Copie une structure native empruntée avant de la transmettre au récepteur.</summary>
+    public static bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct
     {
         if (data == 0) return false;
         apply(Marshal.PtrToStructure<T>(data));
         return true;
     }
 
-    internal static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)
+    /// <summary>Copie et publie le diagnostic UTF-8 selon la politique de texte vide fournie.</summary>
+    public static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)
     {
         var text = textPointer == nint.Zero ? null : Marshal.PtrToStringUTF8(textPointer);
         if (allowWhitespace ? string.IsNullOrEmpty(text) : string.IsNullOrWhiteSpace(text)) return null;
@@ -32,7 +37,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return text;
     }
 
-    internal static bool TryHandleLegacyCallbackCommand(uint command, nint data,
+    /// <summary>Route les commandes du profil natif existant avec sa politique de réponses aux options.</summary>
+    public static bool TryHandleLegacyCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, IEmulationCoreOptionCommands options, out bool result)
     {
         if (TryHandleLegacyEnvironmentCommand(command, data, callbacks, false, out result))
@@ -61,7 +67,8 @@ internal static class ExternalCoreEnvironmentFunctions
                 return false;
         }
     }
-    internal static bool TryHandleCallbackCommand(uint command, nint data,
+    /// <summary>Route une commande d’environnement vers le contrat commun de callbacks.</summary>
+    public static bool TryHandleCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, out bool result)
         => TryHandleCallbackCommand(command, data, callbacks, false, out result);
 
@@ -149,7 +156,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
-    internal static bool TryHandleLegacyEnvironmentCommand(uint command, nint data,
+    /// <summary>Route les commandes reconnues par ce profil natif avec sa politique de contrôle des disques.</summary>
+    public static bool TryHandleLegacyEnvironmentCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, bool captureNullDiskControls, out bool result)
     {
         switch (command)
@@ -181,7 +189,8 @@ internal static class ExternalCoreEnvironmentFunctions
         }
     }
 
-    internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)
+    /// <summary>Enregistre chaque callback emprunté immédiatement après sa lecture, dans l’ordre imposé par le cœur.</summary>
+    public static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)
     {
         exports.SetEnvironment(callbacks.Environment);
         exports.SetVideo(callbacks.Video);
@@ -192,7 +201,8 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
 
-    internal static bool TryHandleLegacyQuery(uint command, nint data, uint coreOptionsVersion,
+    /// <summary>Répond aux requêtes natives de capacités selon la politique fournie par ce profil.</summary>
+    public static bool TryHandleLegacyQuery(uint command, nint data, uint coreOptionsVersion,
         uint messageInterfaceVersion, out bool result)
     {
         switch (command)
@@ -211,7 +221,8 @@ internal static class ExternalCoreEnvironmentFunctions
                 return false;
         }
     }
-    internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,
+    /// <summary>Répond aux commandes sans état avec versions, capacités et langue courante.</summary>
+    public static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,
         uint messageInterfaceVersion, ulong inputCapabilities, out bool result)
     {
         switch (command)
@@ -247,7 +258,8 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
 
-    internal static bool HandleRemainingCommand(uint command, nint data,
+    /// <summary>Route les options restantes et consigne une seule fois chaque commande inconnue.</summary>
+    public static bool HandleRemainingCommand(uint command, nint data,
         IEmulationCoreOptionCommands options, ISet<uint> unknownCommands,
         ICollection<string> diagnostics, Func<uint, string> createUnknownDiagnostic)
     {
@@ -267,7 +279,8 @@ internal static class ExternalCoreEnvironmentFunctions
                 return false;
         }
     }
-    internal static bool TryHandleOptionCommand(uint command, nint data,
+    /// <summary>Route les opérations d’options vers leur unique hôte typé.</summary>
+    public static bool TryHandleOptionCommand(uint command, nint data,
         IEmulationCoreOptionCommands options, out bool result)
     {
         switch (command)
@@ -314,37 +327,43 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
-    internal static bool WritePointer(nint destination, nint value)
+    /// <summary>Écrit un pointeur dans une destination empruntée non nulle.</summary>
+    public static bool WritePointer(nint destination, nint value)
     {
         if (destination == nint.Zero) return false;
         Marshal.WriteIntPtr(destination, value);
         return true;
     }
 
-    internal static bool WriteBoolean(nint destination, bool value)
+    /// <summary>Écrit un booléen natif dans une destination empruntée non nulle.</summary>
+    public static bool WriteBoolean(nint destination, bool value)
     {
         if (destination == nint.Zero) return false;
         Marshal.WriteByte(destination, value ? (byte)1 : (byte)0);
         return true;
     }
 
-    internal static bool WriteInteger(nint destination, int value)
+    /// <summary>Écrit un entier natif dans une destination empruntée avec la conversion contrôlée existante.</summary>
+    public static bool WriteInteger(nint destination, int value)
     {
         if (destination == nint.Zero) return false;
         Marshal.WriteInt32(destination, value);
         return true;
     }
 
-    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
+    /// <summary>Écrit un entier natif dans une destination empruntée avec la conversion contrôlée existante.</summary>
+    public static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
 
-    internal static bool WriteUnsignedLong(nint destination, ulong value)
+    /// <summary>Écrit les bits d’un entier non signé de 64 bits dans la destination native.</summary>
+    public static bool WriteUnsignedLong(nint destination, ulong value)
     {
         if (destination == nint.Zero) return false;
         Marshal.WriteInt64(destination, unchecked((long)value));
         return true;
     }
 
-    internal static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)
+    /// <summary>Lit et valide le format natif puis met à jour le format commun.</summary>
+    public static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)
     {
         if (data == nint.Zero) return false;
         if (!TryGetPixelFormat(Marshal.ReadInt32(data), true, out var format)) return false;
@@ -352,7 +371,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
-    internal static EmulationPixelFormat ReadLegacyPixelFormat(nint data, Func<int, Exception> createUnsupportedError)
+    /// <summary>Lit le format vidéo avec la politique de formats acceptés propre à cette variante.</summary>
+    public static EmulationPixelFormat ReadLegacyPixelFormat(nint data, Func<int, Exception> createUnsupportedError)
     {
         var value = Marshal.ReadInt32(data);
         if (TryGetPixelFormat(value, false, out var format)) return format;
@@ -378,41 +398,49 @@ internal static class ExternalCoreEnvironmentFunctions
         }
     }
 
-    internal static T? OptionalDelegate<T>(nint pointer) where T : Delegate
+    /// <summary>Résout un délégué facultatif emprunté, en conservant les lectures différées de la source.</summary>
+    public static T? OptionalDelegate<T>(nint pointer) where T : Delegate
         => OptionalDelegate<T, nint>(pointer, static value => value);
 
     // Garder deux lectures distinctes pour une source qui peut changer entre les lectures.
-    internal static T? OptionalDelegate<T, TSource>(TSource source, Func<TSource, nint> readPointer) where T : Delegate
+    /// <summary>Résout un délégué facultatif emprunté, en conservant les lectures différées de la source.</summary>
+    public static T? OptionalDelegate<T, TSource>(TSource source, Func<TSource, nint> readPointer) where T : Delegate
         => readPointer(source) == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(readPointer(source));
 
-    internal static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate
+    /// <summary>Résout un délégué obligatoire ou produit l’erreur différée fournie.</summary>
+    public static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate
     {
         if (pointer == 0) throw createError();
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 
-    internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
+    /// <summary>Installe le pointeur du callback de journalisation conservé par son fournisseur.</summary>
+    public static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
         => SetLogInterface<ExternalCoreApi.LogCallback>(data, log);
 
-    internal static bool SetLogInterface<TLog>(nint data, TLog log) where TLog : Delegate
+    /// <summary>Installe le pointeur du callback de journalisation conservé par son fournisseur.</summary>
+    public static bool SetLogInterface<TLog>(nint data, TLog log) where TLog : Delegate
         => InstallInterface(data, () => new ExternalCoreApi.LogInterface
         {
             Log = Marshal.GetFunctionPointerForDelegate(log)
         });
 
-    internal static bool SetLedInterface(nint data, ExternalCoreApi.SetLedState setState)
+    /// <summary>Installe le callback d’activité des lecteurs conservé par son fournisseur.</summary>
+    public static bool SetLedInterface(nint data, ExternalCoreApi.SetLedState setState)
         => InstallInterface(data, () => new ExternalCoreApi.LedInterface
         {
             SetLedState = Marshal.GetFunctionPointerForDelegate(setState)
         });
 
-    internal static bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState)
+    /// <summary>Installe le callback de vibration conservé par son fournisseur.</summary>
+    public static bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState)
         => InstallInterface(data, () => new ExternalCoreApi.RumbleInterface
         {
             SetState = Marshal.GetFunctionPointerForDelegate(setState)
         });
 
-    internal static bool SetSensorInterface(nint data, ExternalCoreApi.SetSensorState setState, ExternalCoreApi.GetSensorInput getInput)
+    /// <summary>Installe les callbacks de capteurs conservés par leur fournisseur.</summary>
+    public static bool SetSensorInterface(nint data, ExternalCoreApi.SetSensorState setState, ExternalCoreApi.GetSensorInput getInput)
         => InstallInterface(data, () => new ExternalCoreApi.SensorInterface
         {
             SetState = Marshal.GetFunctionPointerForDelegate(setState),
@@ -426,7 +454,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
-    internal static IReadOnlyList<T> CopyInputDescriptors<T>(nint data, int maximumCount, Func<uint, uint, uint, uint, string, T> create)
+    /// <summary>Copie les descripteurs d’entrée dans la limite indiquée.</summary>
+    public static IReadOnlyList<T> CopyInputDescriptors<T>(nint data, int maximumCount, Func<uint, uint, uint, uint, string, T> create)
     {
         if (data == nint.Zero)
             return[];
@@ -443,14 +472,16 @@ internal static class ExternalCoreEnvironmentFunctions
         return result;
     }
 
-    internal static IReadOnlyList<TPort> CopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices, Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort)
+    /// <summary>Copie les périphériques des ports selon les bornes existantes.</summary>
+    public static IReadOnlyList<TPort> CopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices, Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort)
     {
         TryCopyControllerPorts(data, maximumPorts, maximumDevices, createDevice, createPort,
             rejectOverflow: false, skipEmptyNames: false, out var ports);
         return ports;
     }
 
-    internal static bool TryCopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices,
+    /// <summary>Copie les ports avec les politiques de dépassement et de noms vides demandées.</summary>
+    public static bool TryCopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices,
         Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort,
         bool rejectOverflow, bool skipEmptyNames, out IReadOnlyList<TPort> result)
     {
@@ -484,7 +515,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
-    internal static IReadOnlyList<T> CopyMemoryMap<T>(nint data, int maximumCount, Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, T> create)
+    /// <summary>Copie les descripteurs mémoire sans prendre possession des plages natives décrites.</summary>
+    public static IReadOnlyList<T> CopyMemoryMap<T>(nint data, int maximumCount, Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, T> create)
     {
         if (data == nint.Zero)
             return[];
@@ -503,7 +535,8 @@ internal static class ExternalCoreEnvironmentFunctions
         return result;
     }
 
-    internal static uint CurrentLanguage() => (uint)(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
+    /// <summary>Résout la langue native depuis la culture d’interface courante de l’application.</summary>
+    public static uint CurrentLanguage() => (uint)(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
     {
         "ja" => Language.Japanese,
         "fr" => Language.French,
@@ -564,7 +597,8 @@ internal static class ExternalCoreEnvironmentFunctions
         Thai = 36
     }
 
-    internal static string CopyNativeLogTemplate(nint format, string argumentMarker, string conversionCharacters)
+    /// <summary>Copie le modèle natif de journalisation en remplaçant ses conversions par le marqueur fourni.</summary>
+    public static string CopyNativeLogTemplate(nint format, string argumentMarker, string conversionCharacters)
     {
         var source = Marshal.PtrToStringUTF8(format)?.Trim();
         if (string.IsNullOrEmpty(source))
@@ -599,7 +633,8 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
 
-    internal static void SelectDisk(int index, Func<uint> getImageIndex, Func<bool> getEjectState,
+    /// <summary>Sélectionne une image et restaure la sélection et l’insertion précédentes si une opération échoue.</summary>
+    public static void SelectDisk(int index, Func<uint> getImageIndex, Func<bool> getEjectState,
         Func<bool, bool> setEjectState, Func<uint, bool> setImageIndex,
         Func<Exception> ejectError, Func<Exception> selectError, Func<Exception> insertError)
     {
@@ -619,7 +654,8 @@ internal static class ExternalCoreEnvironmentFunctions
         }
     }
 
-    internal static string? ReadDiskText<T>(T? getter, int index, int bufferSize)
+    /// <summary>Lit un chemin ou libellé natif avec un buffer temporaire toujours libéré dans finally.</summary>
+    public static string? ReadDiskText<T>(T? getter, int index, int bufferSize)
         where T : Delegate
     {
         if (getter is null || index < 0)

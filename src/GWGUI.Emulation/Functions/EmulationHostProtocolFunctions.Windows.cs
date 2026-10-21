@@ -9,8 +9,9 @@ internal static partial class EmulationHostProtocolFunctions
     private const uint SuppressCriticalErrorDialogs = 0x0001;
     private const uint SuppressFaultDialogs = 0x0002;
 
+    /// <summary>Rétablit dans finally le mode d’erreur Windows après exécution du callback.</summary>
     [SupportedOSPlatform("windows")]
-    internal static void WithSuppressedErrorDialogs(Action run)
+    public static void WithSuppressedErrorDialogs(Action run)
     {
         var previousErrorMode = GetErrorMode();
         SetErrorMode(previousErrorMode | SuppressCriticalErrorDialogs | SuppressFaultDialogs);

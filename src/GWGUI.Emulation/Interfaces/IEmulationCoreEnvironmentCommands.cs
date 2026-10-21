@@ -1,6 +1,8 @@
 namespace GWGUI.Emulation.Interfaces;
 
-internal interface IEmulationCoreEnvironmentCommands
+/// <summary>Opérations d’environnement natives partagées par les adaptateurs de modules.</summary>
+/// <remarks>Les pointeurs sont empruntés selon l’ABI ExternalCoreApi. Chaque opération renvoie sa prise en charge réelle ; les copies, allocations et délégués qu’elle crée restent sous sa responsabilité.</remarks>
+public interface IEmulationCoreEnvironmentCommands
 {
     bool SetRotation(nint data);
     bool CapturePerformanceLevel(nint data);

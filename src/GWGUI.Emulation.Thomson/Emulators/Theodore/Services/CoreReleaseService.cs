@@ -40,9 +40,9 @@ internal sealed class CoreReleaseService
         {
             await EmulationCoreReleaseFunctions.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
             {
-                var manifest = EmulationCoreDiagnosticFunctions.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
+                var manifest = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
                     archiveSize, extracted);
-                EmulationCoreDiagnosticFunctions.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
+                global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
                     static () => CoreReleaseErrors.InvalidArchitecture);
                 return manifest;
             }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>

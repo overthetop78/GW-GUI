@@ -5,9 +5,12 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Functions;
 
+/// <summary>Opérations communes de sélection, téléchargement et installation des cœurs.</summary>
+/// <remarks>Le client HTTP est emprunté. Chaque opération conserve sa politique de progression, d’erreur et de remplacement ; les requêtes, réponses et flux créés sont libérés par leur propriétaire.</remarks>
 internal static class EmulationCoreReleaseFunctions
 {
-    internal static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
+    /// <summary>Sélectionne une release connue et applique le contrôle de correspondance lorsqu’il est fourni.</summary>
+    public static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
         EmulationEmulatorRelease release)
     {
         if (!availableReleases.TryGetValue(release.Id, out var selected))
@@ -15,7 +18,8 @@ internal static class EmulationCoreReleaseFunctions
         return selected;
     }
 
-    internal static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
+    /// <summary>Sélectionne une release connue et applique le contrôle de correspondance lorsqu’il est fourni.</summary>
+    public static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
         EmulationEmulatorRelease release, Func<TRelease, bool> matchesEmulator)
     {
         var selected = SelectRelease(availableReleases, release);
@@ -24,7 +28,8 @@ internal static class EmulationCoreReleaseFunctions
         return selected;
     }
 
-    internal static EmulationCoreInstallationPaths CreateInstallationPaths(string fullRoot, string coreId,
+    /// <summary>Construit les chemins de version, bibliothèque et manifeste dans la racine fournie.</summary>
+    public static EmulationCoreInstallationPaths CreateInstallationPaths(string fullRoot, string coreId,
         string version, string libraryName, string manifestFileName)
     {
         var versionDirectory = Path.Combine(fullRoot, coreId, version);
@@ -34,17 +39,20 @@ internal static class EmulationCoreReleaseFunctions
     }
 
 
-    internal static IProgress<TProgress>? CreateInstallProgress<TProgress>(IProgress<double>? progress,
+    /// <summary>Adapte la progression typée vers sa fraction, sans créer d’adaptateur lorsque la progression est absente.</summary>
+    public static IProgress<TProgress>? CreateInstallProgress<TProgress>(IProgress<double>? progress,
         Func<TProgress, double?> fraction)
         => progress is null ? null : new Progress<TProgress>(value => progress.Report(fraction(value) ?? 0));
 
-    internal static Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
+    /// <summary>Exécute téléchargement, extraction, manifeste, remplacement et activation dans leur ordre commun ; la préparation facultative précède le remplacement.</summary>
+    public static Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
         Action extractLibrary, Func<long, TManifest> createManifest, Action replaceLibrary,
         Func<TManifest, Task> writeManifest, Func<Task> activateInstallation, Action<long> reportProgress)
         => InstallLibraryAsync(downloadArchive, extractLibrary, createManifest, replaceLibrary,
             writeManifest, activateInstallation, reportProgress, prepareReplacement: null);
 
-    internal static async Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
+    /// <summary>Exécute téléchargement, extraction, manifeste, remplacement et activation dans leur ordre commun ; la préparation facultative précède le remplacement.</summary>
+    public static async Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
         Action extractLibrary, Func<long, TManifest> createManifest, Action replaceLibrary,
         Func<TManifest, Task> writeManifest, Func<Task> activateInstallation, Action<long> reportProgress,
         Func<Task>? prepareReplacement)
@@ -60,7 +68,8 @@ internal static class EmulationCoreReleaseFunctions
         reportProgress(archiveSize);
     }
 
-    internal static EmulationCatalogCoreRelease<TEmulator> ParseRelease<TEmulator, TMachineModel>(
+    /// <summary>Construit une release de catalogue avec date obligatoire et format invariant.</summary>
+    public static EmulationCatalogCoreRelease<TEmulator> ParseRelease<TEmulator, TMachineModel>(
         EmulationCoreCatalogEntry<TEmulator, TMachineModel> entry, HttpResponseMessage response,
         string releaseIdPrefix, string releaseVersionFormat, Func<string> missingPublishedDate)
     {
@@ -72,7 +81,8 @@ internal static class EmulationCoreReleaseFunctions
             version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
     }
 
-    internal static EmulationDownloadCoreRelease ReadOfficialRelease(EmulationCoreReleaseSettings settings,
+    /// <summary>Lit une release officielle avec date facultative et les règles de formatage prévues.</summary>
+    public static EmulationDownloadCoreRelease ReadOfficialRelease(EmulationCoreReleaseSettings settings,
         HttpResponseMessage response)
     {
         const string latest = "latest";
@@ -84,7 +94,8 @@ internal static class EmulationCoreReleaseFunctions
             settings.OfficialArchiveUri, published, true, true);
     }
 
-    internal static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
+    /// <summary>Interroge les métadonnées HTTP et transmet la réponse empruntée au lecteur avant sa libération.</summary>
+    public static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
         Func<HttpResponseMessage, T> readResponse, CancellationToken cancellationToken)
     {
         using var request = new HttpRequestMessage(HttpMethod.Head, archiveUri);
@@ -101,7 +112,8 @@ internal static class EmulationCoreReleaseFunctions
 
 
 
-    internal static async Task<long> DownloadAsync(HttpClient client, Uri source, string destination,
+    /// <summary>Télécharge vers le fichier possédé par cette opération et rapporte les octets écrits avec le total éventuellement connu.</summary>
+    public static async Task<long> DownloadAsync(HttpClient client, Uri source, string destination,
         Action<long, long?>? progress, CancellationToken cancellationToken)
     {
         using var response = await client.GetAsync(source, HttpCompletionOption.ResponseHeadersRead,
@@ -125,7 +137,8 @@ internal static class EmulationCoreReleaseFunctions
         return written;
     }
 
-    internal static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination,
+    /// <summary>Extrait la bibliothèque attendue selon la politique de remplacement et de date fournie.</summary>
+    public static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination,
         Func<string, string> missingExpectedLibrary, bool preserveLastWriteTime = false)
     {
         using var archive = ZipFile.OpenRead(archivePath);
@@ -146,6 +159,7 @@ internal static class EmulationCoreReleaseFunctions
 
 
 
+    /// <summary>Lit un document JSON existant et libère son flux ; renvoie la valeur par défaut si le fichier manque.</summary>
     internal static async Task<T?> ReadJsonAsync<T>(string path, CancellationToken cancellationToken)
     {
         if (!File.Exists(path)) return default;
@@ -154,7 +168,8 @@ internal static class EmulationCoreReleaseFunctions
             .ConfigureAwait(false);
     }
 
-    internal static string ReadInstalledVersion(string manifestPath, string versionProperty, string unknownValue)
+    /// <summary>Lit la propriété de version du manifeste ou conserve la valeur de repli prévue.</summary>
+    public static string ReadInstalledVersion(string manifestPath, string versionProperty, string unknownValue)
     {
         if (!File.Exists(manifestPath)) return unknownValue;
         try
@@ -168,7 +183,8 @@ internal static class EmulationCoreReleaseFunctions
         catch (IOException) { return unknownValue; }
     }
 
-    internal static async Task<EmulationCoreInstallationPaths?> GetActiveInstallationAsync(string markerPath,
+    /// <summary>Résout le marqueur actif avant de vérifier la bibliothèque et son manifeste.</summary>
+    public static async Task<EmulationCoreInstallationPaths?> GetActiveInstallationAsync(string markerPath,
         Func<string, EmulationCoreInstallationPaths> pathsForVersion, CancellationToken cancellationToken)
     {
         var marker = await ReadJsonAsync<EmulationCoreActiveInstallation>(
@@ -179,12 +195,14 @@ internal static class EmulationCoreReleaseFunctions
         return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
     }
 
-    internal static Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken) =>
+    /// <summary>Écrit le manifeste temporaire puis remplace sa destination avec le propriétaire d’écriture commun.</summary>
+    public static Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken) =>
         ConfigurationFileAccessFunctions.WriteAtomicallyAsync(manifestPath, manifestPath + ".temporary",
             temporary => WriteJsonAsync(temporary, value, ManifestJsonOptions, cancellationToken),
             static (source, target) => File.Move(source, target, overwrite: true));
 
-    internal static void ReplaceLibraryAtomically(string source, string destination, Func<string, string> installedLibraryLocked)
+    /// <summary>Remplace la bibliothèque installée et traduit le refus d’accès avec le message différé du module.</summary>
+    public static void ReplaceLibraryAtomically(string source, string destination, Func<string, string> installedLibraryLocked)
     {
         try
         {
@@ -196,6 +214,7 @@ internal static class EmulationCoreReleaseFunctions
         }
     }
 
-    internal static Task WriteJsonAsync<T>(string path, T value, JsonSerializerOptions options, CancellationToken cancellationToken) =>
+    /// <summary>Écrit le document avec les options de sérialisation explicitement fournies.</summary>
+    public static Task WriteJsonAsync<T>(string path, T value, JsonSerializerOptions options, CancellationToken cancellationToken) =>
         File.WriteAllTextAsync(path, JsonSerializer.Serialize(value, options), cancellationToken);
 }

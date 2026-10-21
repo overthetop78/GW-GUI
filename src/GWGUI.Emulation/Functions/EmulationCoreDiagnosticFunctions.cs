@@ -5,21 +5,26 @@ using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Functions;
 
-internal static class EmulationCoreDiagnosticFunctions
+/// <summary>Inspection et identité des bibliothèques de cœur pour tout module indépendant.</summary>
+/// <remarks>Ces opérations inspectent les fichiers et métadonnées sans charger un cœur. Les flux créés sont libérés ; les fournisseurs de messages ne sont évalués que sur leurs branches d’erreur.</remarks>
+internal sealed class EmulationCoreDiagnosticFunctions : IEmulationCoreDiagnostics
 {
-    internal static void RequireArchitecture(string? actual, string expected, Func<string> error)
+    /// <summary>Vérifie que l’architecture annoncée correspond à celle attendue.</summary>
+    public void RequireArchitecture(string? actual, string expected, Func<string> error)
     {
         if (!string.Equals(actual, expected, StringComparison.Ordinal))
             throw new InvalidDataException(error());
     }
 
-    internal static EmulationCoreDiagnosticManifest CreateManifest(string releaseId, string releaseVersion, string downloadUrl,
+    /// <summary>Construit le manifeste diagnostique avec date, tailles, empreinte et métadonnées de la bibliothèque.</summary>
+    public EmulationCoreDiagnosticManifest CreateManifest(string releaseId, string releaseVersion, string downloadUrl,
         long archiveSize, string libraryPath)
         => new EmulationCoreDiagnosticManifest(releaseId, releaseVersion, downloadUrl, DateTimeOffset.UtcNow, archiveSize,
             new FileInfo(libraryPath).Length, CalculateSha256(libraryPath), ReadArchitecture(libraryPath),
             ReadDeclaredVersion(libraryPath), ReadExports(libraryPath));
 
-    internal static string? FindInstalledLibraryPath(string path, Action<string>? verifyInstallation,
+    /// <summary>Renvoie le chemin d’une installation complète et vérifiée, ou null lorsqu’elle manque ou reste invalide.</summary>
+    public string? FindInstalledLibraryPath(string path, Action<string>? verifyInstallation,
         Func<bool>? isInstallationComplete = null)
     {
         if (!File.Exists(path) || isInstallationComplete?.Invoke() == false) return null;
@@ -32,7 +37,8 @@ internal static class EmulationCoreDiagnosticFunctions
         catch (InvalidDataException) { return null; }
     }
 
-    internal static void VerifyWindowsX64Library(string path, Func<string> notPe,
+    /// <summary>Vérifie les signatures PE et la machine x64 avec les erreurs différées du module.</summary>
+    public void VerifyWindowsX64Library(string path, Func<string> notPe,
         Func<string> invalidPe, Func<string> wrongArchitecture)
     {
         using var stream = File.OpenRead(path);
@@ -48,12 +54,14 @@ internal static class EmulationCoreDiagnosticFunctions
             throw new InvalidDataException(wrongArchitecture());
     }
 
-    internal static string CalculateSha256(string path)
+    /// <summary>Calcule l’empreinte SHA-256 hexadécimale du fichier, avec libération du flux.</summary>
+    public string CalculateSha256(string path)
     {
         using var stream = File.OpenRead(path);
         return Convert.ToHexString(SHA256.HashData(stream));
     }
 
+    /// <summary>Lit l’architecture PE ou renvoie unknown si le fichier ne peut pas être interprété.</summary>
     internal static string ReadArchitecture(string path)
     {
         try
@@ -78,6 +86,7 @@ internal static class EmulationCoreDiagnosticFunctions
         }
     }
 
+    /// <summary>Lit la version déclarée dans le fichier ou la valeur unknown prévue.</summary>
     internal static string ReadDeclaredVersion(string path)
     {
         try
@@ -91,6 +100,7 @@ internal static class EmulationCoreDiagnosticFunctions
         }
     }
 
+    /// <summary>Lit et trie les noms exportés par une bibliothèque PE sans charger cette bibliothèque.</summary>
     internal static IReadOnlyList<string> ReadExports(string path)
     {
         try

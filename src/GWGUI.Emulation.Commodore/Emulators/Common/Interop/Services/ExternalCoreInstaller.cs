@@ -48,7 +48,7 @@ public sealed class ExternalCoreInstaller
             EmulationCoreReleaseFunctions.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
                 static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
+            var sha256 = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
             File.Move(extracted, LibraryPath, true);
             await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;

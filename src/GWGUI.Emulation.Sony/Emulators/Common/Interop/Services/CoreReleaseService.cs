@@ -50,7 +50,7 @@ public sealed class CoreReleaseService
 
     internal string? FindInstalledLibraryPath()
     {
-        return EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(RequiredLibraryPath,
+        return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(RequiredLibraryPath,
             path => VerifyWindowsX64Library(path, _emulatorId),
             _isInstallationComplete is { } complete ? () => complete(_directory) : null);
     }
@@ -84,7 +84,7 @@ public sealed class CoreReleaseService
                 archiveSize =>
                 {
                     VerifyWindowsX64Library(extracted, _emulatorId);
-                    return EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
+                    return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
                 sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
@@ -102,7 +102,7 @@ public sealed class CoreReleaseService
     }
 
     private static void VerifyWindowsX64Library(string path, string? emulatorId) =>
-        EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
+        global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.VerifyWindowsX64Library(path,
             () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreNotPe),
             () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreInvalidPe),
             () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreWrongArchitecture));

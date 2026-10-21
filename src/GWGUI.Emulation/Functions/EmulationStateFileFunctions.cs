@@ -186,7 +186,7 @@ public static class EmulationStateFileFunctions
     /// <remarks>Pour un dossier, les noms relatifs et leurs longueurs participent à l’empreinte avant les octets des fichiers. Les flux sont possédés et libérés par cette opération.</remarks>
     public static string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing)
     {
-        if (File.Exists(path)) return EmulationCoreDiagnosticFunctions.CalculateSha256(path);
+        if (File.Exists(path)) return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(path);
         if (!Directory.Exists(path)) throw missing();
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];

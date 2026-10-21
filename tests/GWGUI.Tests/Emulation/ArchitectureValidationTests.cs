@@ -1,10 +1,24 @@
 using System.IO;
-using GWGUI.Emulation.Functions;
+using System.Reflection;
+using GWGUI.Emulation.Interfaces;
 
 namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void DiagnosticApiExposesAnInterfaceAndKeepsItsImplementationInternal()
+    {
+        var entry = typeof(global::GWGUI.Emulation.EmulationSdk)
+            .GetProperty(nameof(global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics))!;
+        Assert.Equal(typeof(IEmulationCoreDiagnostics), entry.PropertyType);
+        Assert.True(entry.PropertyType.IsPublic);
+        var implementation = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.GetType();
+        Assert.False(implementation.IsVisible);
+        foreach (var name in new[] { "ReadArchitecture", "ReadDeclaredVersion", "ReadExports" })
+            Assert.Null(implementation.GetMethod(name, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance));
+    }
+
     [Theory]
     [InlineData("x64", true)]
     [InlineData("X64", false)]
@@ -23,13 +37,13 @@ public sealed class ArchitectureValidationTests
 
         if (accepted)
         {
-            EmulationCoreDiagnosticFunctions.RequireArchitecture(actual, "x64", Message);
+            global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.RequireArchitecture(actual, "x64", Message);
             Assert.Equal(0, reads);
         }
         else
         {
             var error = Assert.Throws<InvalidDataException>(() =>
-                EmulationCoreDiagnosticFunctions.RequireArchitecture(actual, "x64", Message));
+                global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.RequireArchitecture(actual, "x64", Message));
             Assert.Equal("architecture refusée", error.Message);
             Assert.Equal(1, reads);
         }
@@ -41,8 +55,8 @@ public sealed class ArchitectureValidationTests
         var expected = new InvalidOperationException("message unavailable");
         string Message() => throw expected;
 
-        EmulationCoreDiagnosticFunctions.RequireArchitecture("x64", "x64", Message);
+        global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.RequireArchitecture("x64", "x64", Message);
         Assert.Same(expected, Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreDiagnosticFunctions.RequireArchitecture("unknown", "x64", Message)));
+            global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.RequireArchitecture("unknown", "x64", Message)));
     }
 }

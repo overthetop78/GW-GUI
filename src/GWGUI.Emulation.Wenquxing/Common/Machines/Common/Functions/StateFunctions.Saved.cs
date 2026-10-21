@@ -47,5 +47,5 @@ internal static class SavedStateFunctions
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
     private static StateInputFingerprint InputFingerprint(InputConfiguration input, MachineModel model) => new(KeyboardDictionary.Bindings(input, model).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray());
 
-    private static string HashFile(string path) => EmulationCoreDiagnosticFunctions.CalculateSha256(path);
+    private static string HashFile(string path) => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(path);
 }

@@ -41,7 +41,7 @@ public sealed class CoreReleaseService
 
     public bool IsInstalled(CoreRelease release)
     {
-        return EmulationCoreDiagnosticFunctions.FindInstalledLibraryPath(RequiredLibraryPath, _definition.VerifyInstallation) is not null;
+        return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(RequiredLibraryPath, _definition.VerifyInstallation) is not null;
     }
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
@@ -73,7 +73,7 @@ public sealed class CoreReleaseService
                 archiveSize =>
                 {
                     _definition.VerifyInstallation?.Invoke(extracted);
-                    return EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
+                    return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
                 sha256 => ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _definition.Architecture, cancellationToken),

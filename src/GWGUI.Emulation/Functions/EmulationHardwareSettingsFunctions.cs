@@ -2,6 +2,8 @@ using System.Globalization;
 
 namespace GWGUI.Emulation.Functions;
 
+/// <summary>Construction commune des réglages matériels, audio et des champs de configuration.</summary>
+/// <remarks>Les clés de ressources partagées restent dans le SDK ; les noms et valeurs invariantes ne sont pas dupliqués dans les traductions des modules.</remarks>
 internal static class EmulationHardwareSettingsFunctions
 {
     private const string CpuResource = "Emulation.Cpu.Processor";
@@ -10,10 +12,12 @@ internal static class EmulationHardwareSettingsFunctions
     private const string MemoryResource = "Emulation.Memory.Main";
     private const string ResolutionResource = "Emulation.Video.Resolution";
 
-    internal static EmulationSettingsChoice InvariantChoice(string id, string text, long? numericValue = null) =>
+    /// <summary>Crée un choix dont le texte est invariant, sans inventer une clé de traduction.</summary>
+    public static EmulationSettingsChoice InvariantChoice(string id, string text, long? numericValue = null) =>
         new(id, string.Empty, text, numericValue);
 
-    internal static void AddBlocks(List<EmulationSettingsBlock> blocks, string fieldPrefix, string cpuResourceKey,
+    /// <summary>Ajoute les blocs CPU, mémoire et résolution à partir des caractéristiques réellement fournies.</summary>
+    public static void AddBlocks(List<EmulationSettingsBlock> blocks, string fieldPrefix, string cpuResourceKey,
         Func<string?> cpuFrequency, Func<string?> mainMemory, Func<string?> displayMemory,
         string displayMemoryResourceKey, Func<string?> resolution, bool isCompactCpu)
     {
@@ -37,55 +41,65 @@ internal static class EmulationHardwareSettingsFunctions
                 [Information(fieldPrefix + "_display_resolution", EmulationMachineTab.Video, ResolutionResource, ResolutionResource, dimensions)]));
     }
 
-    internal static string FormatFrequency(long hertz, bool useKilohertz = false) =>
+    /// <summary>Formate la fréquence en MHz ou kHz selon la politique demandée et la culture courante.</summary>
+    public static string FormatFrequency(long hertz, bool useKilohertz = false) =>
         !useKilohertz || hertz >= 1_000_000
             ? FormatMegahertz(hertz, "0.######")
             : $"{(hertz / 1_000d).ToString("0.###", CultureInfo.CurrentCulture)} kHz";
 
-    internal static string FormatMegahertz(long hertz, string format) =>
+    /// <summary>Formate une fréquence en MHz avec le format numérique demandé.</summary>
+    public static string FormatMegahertz(long hertz, string format) =>
         $"{(hertz / 1_000_000d).ToString(format, CultureInfo.CurrentCulture)} MHz";
 
-    internal static string FormatMemory(long bytes) => bytes >= 1024
+    /// <summary>Formate la capacité mémoire avec la représentation invariante commune.</summary>
+    public static string FormatMemory(long bytes) => bytes >= 1024
         ? $"{(bytes / 1024).ToString(CultureInfo.InvariantCulture)} KiB"
         : $"{bytes.ToString(CultureInfo.InvariantCulture)} B";
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) =>
         Information(id, tab, block, label, value, null, null);
 
-    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value,
+    /// <summary>Crée un champ informatif avec les ressources d’aide fournies.</summary>
+    public static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value,
         string? shortHelp, string? detailedHelp) =>
         new(id, tab, block, label, EmulationSettingsEditor.Information, value,
             ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
 
-    internal static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns,
+    /// <summary>Crée un bloc avec son onglet, ses colonnes et sa présentation compacte éventuelle.</summary>
+    public static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns,
         EmulationSettingsField[] fields, bool isCompact = false) => new(id, tab, title, fields, icon, columns, IsCompact: isCompact);
 
-    internal static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value,
+    /// <summary>Crée un réglage booléen avec les valeurs activée et désactivée communes.</summary>
+    public static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value,
         string? shortHelp, string? detailedHelp, bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled,
             ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp,
             RefreshSettingsOnChange: refreshSettingsOnChange);
 
-    internal static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value,
+    /// <summary>Crée un champ numérique décrit par le module.</summary>
+    public static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value,
         string? shortHelp, string? detailedHelp) =>
         new(id, tab, block, label, EmulationSettingsEditor.Number, value,
             ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
 
-    internal static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value,
+    /// <summary>Crée une sélection déclarée, avec aides et exigence éventuelle de redémarrage.</summary>
+    public static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value,
         IReadOnlyList<EmulationSettingsChoice> choices, string? shortHelp, string? detailedHelp,
         bool isEnabled = true, bool requiresRestart = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices,
             IsEnabled: isEnabled, ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp,
             RequiresRestart: requiresRestart);
 
-    internal static EmulationSettingsField AudioOutput(string id, string block, string label, string value,
+    /// <summary>Crée la sélection des sorties audio disponibles dans l’hôte.</summary>
+    public static EmulationSettingsField AudioOutput(string id, string block, string label, string value,
         IReadOnlyList<EmulationSettingsChoice> choices, string? shortHelp, string? detailedHelp) =>
         new(id, EmulationMachineTab.Audio, block, label, EmulationSettingsEditor.Selection, value, choices,
             ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices,
             ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
 
-    internal static EmulationSettingsField AudioSelection(IReadOnlyDictionary<string, string> options,
+    /// <summary>Construit les choix audio numériques à partir des options et valeurs de repli fournies.</summary>
+    public static EmulationSettingsField AudioSelection(IReadOnlyDictionary<string, string> options,
         string id, string block, string resource, int fallback, IReadOnlyList<int> values, string unit,
         IFormatProvider? labelFormatProvider) =>
         Select(id, EmulationMachineTab.Audio, block, resource,

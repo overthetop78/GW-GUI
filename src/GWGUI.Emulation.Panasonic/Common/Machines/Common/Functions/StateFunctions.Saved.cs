@@ -61,5 +61,5 @@ internal static class SavedStateFunctions
         EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
 
-    private static string HashFile(string path) => EmulationCoreDiagnosticFunctions.CalculateSha256(path);
+    private static string HashFile(string path) => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(path);
 }

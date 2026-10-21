@@ -3,16 +3,19 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Functions;
 
-internal delegate TOption EmulationNativeOptionFactory<TOption, TValue>(string key, string name,
+/// <summary>Construit une option typée du module à partir des valeurs copiées de la table native.</summary>
+public delegate TOption EmulationNativeOptionFactory<TOption, TValue>(string key, string name,
     string? description, string? category, string defaultValue, IReadOnlyList<TValue> values,
     string? categorizedName, string? categorizedDescription);
 
-internal delegate IReadOnlyList<TOption> EmulationNativeOptionTableReader<TOption, TCategory>(nint data,
+/// <summary>Lit les options et catégories natives dans les contrats propres au module.</summary>
+public delegate IReadOnlyList<TOption> EmulationNativeOptionTableReader<TOption, TCategory>(nint data,
     out IReadOnlyList<TCategory> categories);
 
 public static partial class EmulationCoreOptionFunctions
 {
-    internal static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption>(nint data,
+    /// <summary>Copie puis fusionne les définitions anglaises et locales avec les lecteurs fournis.</summary>
+    public static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption>(nint data,
         int englishPointerIndex, int localPointerIndex, Func<nint, IReadOnlyList<TOption>> read,
         Func<IReadOnlyList<TOption>, IReadOnlyList<TOption>, IReadOnlyList<TOption>> merge)
     {
@@ -24,7 +27,8 @@ public static partial class EmulationCoreOptionFunctions
         return merge(english, local);
     }
 
-    internal static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption, TCategory>(nint data,
+    /// <summary>Copie puis fusionne les définitions anglaises et locales avec les lecteurs fournis.</summary>
+    public static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption, TCategory>(nint data,
         int englishPointerIndex, int localPointerIndex,
         EmulationNativeOptionTableReader<TOption, TCategory> read,
         Func<IReadOnlyList<TOption>, IReadOnlyList<TOption>, IReadOnlyList<TOption>> mergeOptions,
@@ -42,14 +46,16 @@ public static partial class EmulationCoreOptionFunctions
         return options;
     }
 
-    internal static nint SelectInternationalDefinitions(nint data)
+    /// <summary>Sélectionne la table locale disponible, sinon la table anglaise.</summary>
+    public static nint SelectInternationalDefinitions(nint data)
     {
         if (data == nint.Zero) return nint.Zero;
         var local = Marshal.ReadIntPtr(data, IntPtr.Size);
         return local != nint.Zero ? local : Marshal.ReadIntPtr(data);
     }
 
-    internal static IReadOnlyList<T> MergeLocalized<T>(IReadOnlyList<T> english, IReadOnlyList<T> localized,
+    /// <summary>Fusionne par clé les textes localisés sans changer l’ordre du catalogue de base.</summary>
+    public static IReadOnlyList<T> MergeLocalized<T>(IReadOnlyList<T> english, IReadOnlyList<T> localized,
         Func<T, string> key, Func<T, T, T> merge)
     {
         if (localized.Count == 0) return english;
@@ -57,7 +63,8 @@ public static partial class EmulationCoreOptionFunctions
         return english.Select(item => localByKey.TryGetValue(key(item), out var local) ? merge(item, local) : item).ToArray();
     }
 
-    internal static bool ReturnNativeValue(nint data, IReadOnlyDictionary<string, string> values,
+    /// <summary>Écrit la valeur native de la clé demandée dans la structure empruntée.</summary>
+    public static bool ReturnNativeValue(nint data, IReadOnlyDictionary<string, string> values,
         Func<string, string, nint> nativeValue, bool unavailableResult = true)
     {
         if (data == nint.Zero) return unavailableResult;
@@ -74,7 +81,8 @@ public static partial class EmulationCoreOptionFunctions
         return unavailableResult;
     }
 
-    internal static bool SetNativeValue(nint data, Func<string, string, bool> setValue)
+    /// <summary>Lit la clé et valeur natives puis appelle le setter typé fourni.</summary>
+    public static bool SetNativeValue(nint data, Func<string, string, bool> setValue)
     {
         if (data == nint.Zero) return false;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
@@ -83,14 +91,16 @@ public static partial class EmulationCoreOptionFunctions
         return !string.IsNullOrWhiteSpace(key) && value is not null && setValue(key, value);
     }
 
-    internal static bool GetAndClearUpdated(nint data, ref int updated)
+    /// <summary>Consomme atomiquement le marqueur de modification et le transmet au cœur.</summary>
+    public static bool GetAndClearUpdated(nint data, ref int updated)
     {
         if (data == nint.Zero) return false;
         Marshal.WriteByte(data, Interlocked.Exchange(ref updated, 0) != 0 ? (byte)1 : (byte)0);
         return true;
     }
 
-    internal static bool ApplyNativeVisibility<T>(nint data, IDictionary<string, bool> visibility, IReadOnlyList<T> catalog,
+    /// <summary>Met à jour la visibilité d’une option et projette le catalogue résultant.</summary>
+    public static bool ApplyNativeVisibility<T>(nint data, IDictionary<string, bool> visibility, IReadOnlyList<T> catalog,
         Func<T, string> keyFor, Func<T, bool, T> update, out IReadOnlyList<T> result)
     {
         result = catalog;
@@ -103,7 +113,8 @@ public static partial class EmulationCoreOptionFunctions
         return true;
     }
 
-    internal static bool TryGetDisplayCallback(nint data, out ExternalCoreApi.UpdateCoreOptionsDisplay? callback)
+    /// <summary>Capture le délégué facultatif de mise à jour de l’affichage des options.</summary>
+    public static bool TryGetDisplayCallback(nint data, out ExternalCoreApi.UpdateCoreOptionsDisplay? callback)
     {
         callback = null;
         if (data == nint.Zero) return false;
@@ -112,7 +123,8 @@ public static partial class EmulationCoreOptionFunctions
         return true;
     }
 
-    internal static void ValidateConfiguredValues<TOption, TValue>(IEnumerable<string> configuredKeys,
+    /// <summary>Vérifie les valeurs configurées avec les choix réellement déclarés par le cœur.</summary>
+    public static void ValidateConfiguredValues<TOption, TValue>(IEnumerable<string> configuredKeys,
         IReadOnlyDictionary<string, string> values, IReadOnlyList<TOption> catalog, Func<TOption, string> keyFor,
         Func<TOption, IReadOnlyList<TValue>> choicesFor, Func<TValue, string> valueFor, Action<string, string> invalid)
         where TOption : class
@@ -160,12 +172,14 @@ public static partial class EmulationCoreOptionFunctions
         internal const char LegacyValueSeparator = '|';
     }
 
-    internal static IReadOnlyList<TOption> CopyLegacyDefinitions<TOption, TValue>(nint definitions,
+    /// <summary>Copie les définitions natives de version un avec le constructeur typé du module.</summary>
+    public static IReadOnlyList<TOption> CopyLegacyDefinitions<TOption, TValue>(nint definitions,
         EmulationNativeOptionFactory<TOption, TValue> createOption, Func<string, string, TValue> createValue,
         Func<TValue, string> valueText) => CopyNativeDefinitions(definitions, false,
             new HashSet<string>(StringComparer.Ordinal), createOption, createValue, valueText);
 
-    internal static IReadOnlyList<TOption> CopyVersionTwoDefinitions<TOption, TValue, TCategory>(nint options,
+    /// <summary>Copie les catégories et définitions natives de version deux.</summary>
+    public static IReadOnlyList<TOption> CopyVersionTwoDefinitions<TOption, TValue, TCategory>(nint options,
         out IReadOnlyList<TCategory> categories, EmulationNativeOptionFactory<TOption, TValue> createOption,
         Func<string, string, TValue> createValue, Func<TValue, string> valueText,
         Func<string, string, string?, TCategory> createCategory, Func<TCategory, string> categoryKey)
@@ -179,7 +193,8 @@ public static partial class EmulationCoreOptionFunctions
             createOption, createValue, valueText);
     }
 
-    internal static IReadOnlyList<TOption> CopyLegacyVariables<TOption, TValue>(nint variables,
+    /// <summary>Copie les variables natives de version zéro et leurs choix déclarés.</summary>
+    public static IReadOnlyList<TOption> CopyLegacyVariables<TOption, TValue>(nint variables,
         EmulationNativeOptionFactory<TOption, TValue> createOption, Func<string, string, TValue> createValue,
         Func<TValue, string> valueText)
     {

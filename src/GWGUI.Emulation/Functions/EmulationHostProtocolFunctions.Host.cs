@@ -8,7 +8,8 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
-    internal static ProcessStartInfo CreateHostStartInfo(string executablePath, string workingDirectory,
+    /// <summary>Prépare le lancement sans fenêtre de l’hôte ; son lancement et sa destruction restent à la charge de l’appelant.</summary>
+    public static ProcessStartInfo CreateHostStartInfo(string executablePath, string workingDirectory,
         string hostCommand, string pipeName, string videoMapName)
     {
         var startInfo = new ProcessStartInfo(executablePath)
@@ -23,7 +24,8 @@ internal static partial class EmulationHostProtocolFunctions
         return startInfo;
     }
 
-    internal static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout,
+    /// <summary>Attend la connexion sur le pipe emprunté avec délai et, selon la surcharge, annulation.</summary>
+    public static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout,
         CancellationToken cancellationToken)
     {
         var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
@@ -35,14 +37,16 @@ internal static partial class EmulationHostProtocolFunctions
         finally { timeout.Dispose(); }
     }
 
-    internal static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout)
+    /// <summary>Attend la connexion sur le pipe emprunté avec délai et, selon la surcharge, annulation.</summary>
+    public static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout)
     {
         var timeout = new CancellationTokenSource(connectionTimeout);
         try { pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult(); }
         finally { timeout.Dispose(); }
     }
 
-    internal static void DisposeTransport(IDisposable? resource)
+    /// <summary>Libère une ressource possédée par l’appelant en conservant la politique des erreurs de transport.</summary>
+    public static void DisposeTransport(IDisposable? resource)
     {
         if (resource is null) return;
         try
@@ -57,13 +61,15 @@ internal static partial class EmulationHostProtocolFunctions
         }
     }
 
-    internal static void DisposeTransportIgnoringErrors(IDisposable? value)
+    /// <summary>Libère une ressource possédée selon la politique existante qui ignore les erreurs de destruction.</summary>
+    public static void DisposeTransportIgnoringErrors(IDisposable? value)
     {
         try { value?.Dispose(); }
         catch (Exception) { }
     }
 
-    internal static void DisposePreviousCore<TCore>(ref TCore? core) where TCore : class, IDisposable
+    /// <summary>Retire la référence au cœur précédent avant sa destruction, y compris si celle-ci échoue.</summary>
+    public static void DisposePreviousCore<TCore>(ref TCore? core) where TCore : class, IDisposable
     {
         var previousCore = core;
         core = null;
@@ -71,7 +77,8 @@ internal static partial class EmulationHostProtocolFunctions
         finally { core = null; }
     }
 
-    internal static (string CorePath, string Session, string? Saves, TConfiguration Configuration)
+    /// <summary>Lit la demande d’initialisation avec les codecs typés du module et l’ordre de protocole commun.</summary>
+    public static (string CorePath, string Session, string? Saves, TConfiguration Configuration)
         ReadInitializationRequest<TConfiguration>(BinaryReader reader,
             Func<BinaryReader, string?> readSaves, Func<BinaryReader, TConfiguration> readConfiguration)
     {
@@ -82,7 +89,8 @@ internal static partial class EmulationHostProtocolFunctions
         return (corePath, session, saves, configuration);
     }
 
-    internal static (string CorePath, TEmulator Emulator, string Session, string? Saves, TConfiguration Configuration)
+    /// <summary>Lit la demande d’initialisation avec les codecs typés du module et l’ordre de protocole commun.</summary>
+    public static (string CorePath, TEmulator Emulator, string Session, string? Saves, TConfiguration Configuration)
         ReadInitializationRequest<TEmulator, TConfiguration>(BinaryReader reader,
             Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
             Func<BinaryReader, TConfiguration> readConfiguration)
@@ -97,7 +105,8 @@ internal static partial class EmulationHostProtocolFunctions
 
     // The session owns the slot and releases it in its finally. Publishing the new
     // core before Initialize keeps a failed instance reachable by that owner.
-    internal static void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(
+    /// <summary>Remplace le cœur, publie sa référence pour le nettoyage de l’hôte puis initialise ses services et écrit la réponse.</summary>
+    public static void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(
         BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
         ref TCore? core, ref int lastDiagnosticCount,
         Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
@@ -116,7 +125,8 @@ internal static partial class EmulationHostProtocolFunctions
         writeLedStates(writer, core.LedStates);
     }
 
-    internal static void WriteInitializationRequest(ref BinaryWriter? writer, string corePath,
+    /// <summary>Écrit les paramètres d’initialisation avec les codecs et les règles de chemins fournis.</summary>
+    public static void WriteInitializationRequest(ref BinaryWriter? writer, string corePath,
         Func<string?> session, Func<string?> saves, Action<BinaryWriter, string?> writeSaves,
         Func<string> serializeConfiguration)
     {
@@ -126,7 +136,8 @@ internal static partial class EmulationHostProtocolFunctions
         writer!.Write(serializeConfiguration());
     }
 
-    internal static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
+    /// <summary>Écrit les paramètres d’initialisation avec les codecs et les règles de chemins fournis.</summary>
+    public static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
         string corePath, int emulator, string sessionDirectory, string? saveDirectory,
         TConfiguration configuration, JsonSerializerOptions jsonOptions)
     {
@@ -137,7 +148,8 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(JsonSerializer.Serialize(configuration, jsonOptions));
     }
 
-    internal static void WriteCoreInitialization<TCore, TConfiguration, TOption>(BinaryWriter writer, TCore core,
+    /// <summary>Écrit les caractéristiques, options et diagnostics du cœur emprunté dans leur ordre commun.</summary>
+    public static void WriteCoreInitialization<TCore, TConfiguration, TOption>(BinaryWriter writer, TCore core,
         JsonSerializerOptions jsonOptions, ref int lastDiagnosticCount, char extensionSeparator,
         Action<BinaryWriter, TCore>? writeStatus = null)
         where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
@@ -154,7 +166,8 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(string.Join(extensionSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
     }
 
-    internal static void RunCoreFrame<TCore, TConfiguration, TOption>(
+    /// <summary>Applique les entrées, exécute une frame puis publie vidéo, audio et statuts dans leur ordre de protocole.</summary>
+    public static void RunCoreFrame<TCore, TConfiguration, TOption>(
         BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame,
         Action<BinaryWriter, TCore> writeMediaStatus,
@@ -174,7 +187,8 @@ internal static partial class EmulationHostProtocolFunctions
         writeLedStates(writer, core.LedStates);
     }
 
-    internal static void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(
+    /// <summary>Écrit la réponse native de frame avec compteurs audio et callbacks de statut facultatifs.</summary>
+    public static void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(
         BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount,
@@ -195,7 +209,8 @@ internal static partial class EmulationHostProtocolFunctions
         writeLedStates(writer, core.LedStates);
     }
 
-    internal static void WriteCoreAudio<TConfiguration, TOption>(BinaryWriter writer,
+    /// <summary>Vide la file audio puis écrit cadence vidéo et fréquence audio.</summary>
+    public static void WriteCoreAudio<TConfiguration, TOption>(BinaryWriter writer,
         IEmulationCoreRuntime<TConfiguration, TOption> core)
     {
         WriteQueuedAudio(writer, () => core.TryDequeueAudio(out var chunk) ? chunk : null);
@@ -203,13 +218,15 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(core.SampleRate);
     }
 
-    internal static void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core)
+    /// <summary>Écrit le nombre d’images et la sélection courante du lecteur.</summary>
+    public static void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core)
     {
         writer.Write(core.DiskCount);
         writer.Write(core.CurrentDiskIndex);
     }
 
-    internal static bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
+    /// <summary>Exécute une commande de média par chemin ; une commande inconnue ne consomme pas de contenu.</summary>
+    public static bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
         Action<BinaryWriter> writeSuccess)
     {
@@ -227,7 +244,8 @@ internal static partial class EmulationHostProtocolFunctions
         writeSuccess(writer);
         return true;
     }
-    internal static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
+    /// <summary>Exécute les commandes communes de reset, arrêt, état, option et sélection de disque.</summary>
+    public static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreStateCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
         Action<BinaryWriter>? writeSuccess = null)
     {
@@ -261,7 +279,8 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
 
-    internal static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region,
+    /// <summary>Écrit région vidéo et compteurs audio dans leur ordre commun.</summary>
+    public static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region,
         int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
     {
         writer.Write(RegionValue(region));
@@ -270,7 +289,8 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(audioUnderrunCount);
     }
 
-    internal static void ReadRuntimeStatus(BinaryReader reader, Action<int> setRegion,
+    /// <summary>Lit région vidéo et compteurs audio en appelant les récepteurs fournis.</summary>
+    public static void ReadRuntimeStatus(BinaryReader reader, Action<int> setRegion,
         Action<int> setBufferedAudioFrames, Action<long> setAudioOverrunCount, Action<long> setAudioUnderrunCount)
     {
         setRegion(reader.ReadInt32());
@@ -280,21 +300,24 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
 
-    internal static void WriteFrameIfChanged(BinaryWriter writer, VideoFrame? frame,
+    /// <summary>Transmet une image seulement lorsque sa séquence diffère de la dernière publiée.</summary>
+    public static void WriteFrameIfChanged(BinaryWriter writer, VideoFrame? frame,
         ref long lastVideoSequence, Action<BinaryWriter, VideoFrame?> writeFrame)
     {
         writeFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame);
         if (frame is not null) lastVideoSequence = frame.Sequence;
     }
 
-    internal static void WriteQueuedAudio(BinaryWriter writer, Func<AudioChunk?> dequeue)
+    /// <summary>Vide séquentiellement les blocs audio disponibles dans une réponse.</summary>
+    public static void WriteQueuedAudio(BinaryWriter writer, Func<AudioChunk?> dequeue)
     {
         var audio = new List<AudioChunk>();
         while (dequeue() is { } chunk) audio.Add(chunk);
         WriteAudio(writer, audio);
     }
 
-    internal static void WriteChangedDiagnostics(BinaryWriter writer, Func<int> count,
+    /// <summary>Écrit les diagnostics seulement lorsque leur nombre a changé.</summary>
+    public static void WriteChangedDiagnostics(BinaryWriter writer, Func<int> count,
         Action<BinaryWriter> writeDiagnostics, ref int lastDiagnosticCount)
     {
         var diagnosticsChanged = count() != lastDiagnosticCount;
@@ -309,7 +332,8 @@ internal static partial class EmulationHostProtocolFunctions
 
     // The caller owns the core and codecs. Unknown commands must not acquire a core
     // or consume a payload; initialization, frames and disposal stay in their host.
-    internal static bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(
+    /// <summary>Décode les commandes typées communes sans acquérir de cœur ni lire de charge utile pour une commande inconnue.</summary>
+    public static bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(
         byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus>> ensureCore,
         Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes,
@@ -335,7 +359,8 @@ internal static partial class EmulationHostProtocolFunctions
         return true;
     }
 
-    internal static TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed,
+    /// <summary>Lit l’état du processus emprunté sans le détruire ni changer son propriétaire.</summary>
+    public static TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed,
         TState faulted, TState notStarted, TState exited, TState running)
         where TState : struct, Enum
     {
@@ -346,22 +371,26 @@ internal static partial class EmulationHostProtocolFunctions
         catch (InvalidOperationException) { return exited; }
     }
 
-    internal static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
+    /// <summary>Convertit la région native en standard vidéo connu ou null.</summary>
+    public static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
     {
         0 => EmulationVideoStandard.Ntsc,
         1 => EmulationVideoStandard.Pal,
         _ => null
     };
 
-    internal static int RegionValue(EmulationVideoStandard? region) => region is null ? -1 : (int)region.Value;
+    /// <summary>Convertit le standard vidéo facultatif dans sa représentation de protocole.</summary>
+    public static int RegionValue(EmulationVideoStandard? region) => region is null ? -1 : (int)region.Value;
 
-    internal static EmulationVideoStandard? ReadRegion(int value, bool allowAllDefinedStandards) =>
+    /// <summary>Lit le standard vidéo avec la politique de valeurs autorisées fournie.</summary>
+    public static EmulationVideoStandard? ReadRegion(int value, bool allowAllDefinedStandards) =>
         allowAllDefinedStandards
             ? Enum.IsDefined(typeof(EmulationVideoStandard), value) ? (EmulationVideoStandard)value : null
             : value is (int)EmulationVideoStandard.Ntsc or (int)EmulationVideoStandard.Pal
                 ? (EmulationVideoStandard)value : null;
 
-    internal static void RunConnectedSession(string pipeName, string serverName, int connectionTimeoutMilliseconds,
+    /// <summary>Possède et libère le pipe client et ses codecs autour de la session fournie.</summary>
+    public static void RunConnectedSession(string pipeName, string serverName, int connectionTimeoutMilliseconds,
         Action<BinaryReader, BinaryWriter> run)
     {
         using var pipe = new NamedPipeClientStream(serverName, pipeName, PipeDirection.InOut, PipeOptions.None);
@@ -371,7 +400,8 @@ internal static partial class EmulationHostProtocolFunctions
         run(reader, transportWriter);
     }
 
-    internal static void RunCommandLoop<TCommand>(BinaryReader reader, BinaryWriter transportWriter,
+    /// <summary>Exécute les commandes jusqu’à la fermeture du flux ou à la commande de destruction.</summary>
+    public static void RunCommandLoop<TCommand>(BinaryReader reader, BinaryWriter transportWriter,
         Func<BinaryReader, TCommand> readCommand, TCommand disposeCommand,
         Action<TCommand, BinaryWriter> execute, Action<BinaryWriter, Exception> writeFailure)
         where TCommand : struct, Enum
