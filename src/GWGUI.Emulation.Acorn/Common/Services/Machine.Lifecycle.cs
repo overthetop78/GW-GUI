@@ -135,20 +135,20 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         var state = _core.SaveState();
         var header = new EmulationSavedStateHeader<MachineModel, Emulator>(
             EmulationSavedStateConstants.CurrentFormatVersion, _core.Emulator, _core.CoreName, _core.CoreVersion,
-            _core.CoreSha256, configuration.Model, EmulationStateFileFunctions.HashDocument(configuration),
-            StateContentHash(configuration), EmulationStateFileFunctions.HashBytes(state));
-        EmulationStateFileFunctions.WriteState(path, header, state);
+            _core.CoreSha256, configuration.Model, EmulationSdk.StateFiles.HashDocument(configuration),
+            StateContentHash(configuration), EmulationSdk.StateFiles.HashBytes(state));
+        EmulationSdk.StateFiles.WriteState(path, header, state);
     }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) => QueueCommand(() =>
     {
         if (!_core.SupportsSaveStates)
             throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
-        var saved = EmulationStateFileFunctions.ReadState<MachineModel, Emulator>(path,
+        var saved = EmulationSdk.StateFiles.ReadState<MachineModel, Emulator>(path,
             static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateInvalid));
         var configuration = StateConfiguration();
-        if (!EmulationStateFileFunctions.IsCompatible(saved.Header, configuration.Model, _core.Emulator, _core,
-                () => EmulationStateFileFunctions.HashDocument(configuration), () => StateContentHash(configuration)))
+        if (!EmulationSdk.StateFiles.IsCompatible(saved.Header, configuration.Model, _core.Emulator, _core,
+                () => EmulationSdk.StateFiles.HashDocument(configuration), () => StateContentHash(configuration)))
             throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
         _core.LoadState(saved.State);
     }, cancellationToken);
@@ -160,7 +160,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Options = _core.Options.ToDictionary(option => option.Key, option => option.CurrentValue, StringComparer.Ordinal)
     };
 
-    private static string StateContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(
+    private static string StateContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(
         configuration.Firmwares.OrderBy(firmware => firmware.Category)
             .Select(firmware => new EmulationStateContentEntry("firmware", firmware.Category.ToString(), HashStatePath(firmware.Path)))
             .Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(media => media.Slot)
@@ -168,7 +168,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 .Select(media => new EmulationStateContentEntry("media", media.Category + ":" + media.Slot,
                     HashStatePath(media.Path)))).ToArray());
 
-    private static string HashStatePath(string path) => EmulationStateFileFunctions.HashPath(path, "*", '/', 64 * 1024,
+    private static string HashStatePath(string path) => EmulationSdk.StateFiles.HashPath(path, "*", '/', 64 * 1024,
         () => new FileNotFoundException(ErrorMessages.StateInvalid, path));
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);

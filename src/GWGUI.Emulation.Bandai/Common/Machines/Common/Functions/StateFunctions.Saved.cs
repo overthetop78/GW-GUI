@@ -21,7 +21,7 @@ internal static class SavedStateFunctions
 
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
-        if (!EmulationStateFileFunctions.IsCompatible(header, configuration.Model, core.Emulator, core,
+        if (!EmulationSdk.StateFiles.IsCompatible(header, configuration.Model, core.Emulator, core,
                 () => ConfigurationHash(configuration), () => ContentHash(configuration)))
             throw Invalid(ErrorCode.StateIncompatible, ErrorMessages.StateIncompatible);
     }
@@ -36,7 +36,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationException Invalid(ErrorCode code, string message, Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
 
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
 
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -50,11 +50,11 @@ internal static class SavedStateFunctions
             InputFingerprint(configuration.Input),
             configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray(),
             configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
-        return EmulationStateFileFunctions.HashDocument(fingerprint);
+        return EmulationSdk.StateFiles.HashDocument(fingerprint);
     }
 
 
-    internal static string ContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(ContentEntries(configuration));
+    internal static string ContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(ContentEntries(configuration));
 
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
@@ -75,11 +75,11 @@ internal static class SavedStateFunctions
                 controller.Peripheral,
                 controller.DeviceId,
                 controller.DeadZonePercent,
-                EmulationStateFileFunctions.OrderInputMappings(controller.Mappings).ToArray()))
+                EmulationSdk.StateFiles.OrderInputMappings(controller.Mappings).ToArray()))
             .ToArray());
 
     private static string HashPath(string path) =>
-        EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+        EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
 
 }

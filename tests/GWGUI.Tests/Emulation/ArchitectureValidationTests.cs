@@ -10,6 +10,7 @@ public sealed class ArchitectureValidationTests
     [Theory]
     [InlineData(nameof(EmulationSdk.AudioProcessing), typeof(IEmulationAudioProcessing))]
     [InlineData(nameof(EmulationSdk.SessionDirectories), typeof(IEmulationSessionDirectories))]
+    [InlineData(nameof(EmulationSdk.StateFiles), typeof(IEmulationStateFiles))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
         var entry = typeof(EmulationSdk).GetProperty(serviceName)!;
@@ -17,6 +18,18 @@ public sealed class ArchitectureValidationTests
         Assert.True(contract.IsInterface);
         Assert.True(contract.IsPublic);
         Assert.False(entry.GetValue(null)!.GetType().IsVisible);
+    }
+
+    [Fact]
+    public void SavedStateBinaryAlgorithmsRemainInternalBehindThePublicInterface()
+    {
+        var implementation = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationStateFileFunctions", throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        foreach (var name in new[] { "Read", "ReadFile", "Write", "WriteFile" })
+        {
+            Assert.Null(implementation.GetMethod(name, BindingFlags.Public | BindingFlags.Static));
+            Assert.True(implementation.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static)!.IsAssembly);
+        }
     }
 
     [Fact]

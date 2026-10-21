@@ -190,7 +190,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         QueueCommand(() =>
         {
             var saved = StateStore.Read(path);
-            if (!EmulationStateFileFunctions.IsCompatible(saved.Header, Configuration.Model, Configuration.Core.ToString(), _core,
+            if (!EmulationSdk.StateFiles.IsCompatible(saved.Header, Configuration.Model, Configuration.Core.ToString(), _core,
                 StateConfigurationHash,
                 StateContentHash))
                 throw MachineExceptions.SavedStateIncompatible();
@@ -203,7 +203,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             EmulationMessageCategory.Machine, EmulationMessageCode.OptionInvalid);
 
     // Projections du modèle ; les écritures, comparaisons et empreintes restent dans le SDK commun.
-    private string StateConfigurationHash() => EmulationStateFileFunctions.HashDocument(new
+    private string StateConfigurationHash() => EmulationSdk.StateFiles.HashDocument(new
     {
         Configuration = Configuration with
         {
@@ -227,6 +227,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new EmulationStateContentEntry("media", media.Type + ":" + media.Slot,
                     StateStore.HashPath(media.Path))));
-        return EmulationStateFileFunctions.HashDocument(entries.ToArray());
+        return EmulationSdk.StateFiles.HashDocument(entries.ToArray());
     }
 }

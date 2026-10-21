@@ -21,6 +21,12 @@ public interface IEmulationStateFiles
         TModel model, TCore emulator, IEmulationCoreRuntime<TConfiguration, TOption> core, Func<string> configurationHash, Func<string> contentHash);
     /// <summary>Calcule une empreinte JSON avec clés triées et ordre des tableaux conservé.</summary>
     string HashDocument<T>(T value, JsonSerializerOptions? options = null);
+    /// <summary>Trie les associations par clé ordinale avant leur projection dans une empreinte.</summary>
+    /// <param name="mappings">Associations empruntées ; null représente une collection vide.</param>
+    /// <returns>Énumération ordonnée sans modifier la collection reçue ni normaliser ses valeurs.</returns>
+    /// <remarks>Le tri reste différé : une modification de la collection avant son énumération est observable.
+    /// L’appelant matérialise le résultat lorsqu’il veut conserver un instantané pour son empreinte.</remarks>
+    IOrderedEnumerable<KeyValuePair<string, TValue>> OrderInputMappings<TValue>(IReadOnlyDictionary<string, TValue>? mappings);
     /// <summary>Calcule le SHA-256 des octets empruntés.</summary>
     string HashBytes(ReadOnlySpan<byte> bytes);
     /// <summary>Calcule le SHA-256 d’un fichier ou dossier selon la représentation du module.</summary>

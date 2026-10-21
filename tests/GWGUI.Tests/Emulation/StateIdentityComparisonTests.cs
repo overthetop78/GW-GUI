@@ -7,7 +7,7 @@ namespace GWGUI.Tests.Emulation;
 public sealed class StateIdentityComparisonTests
 {
     [Fact]
-    public void MissingLegacyValuesMatchOnlyAnEmptyIdentity()
+    public void MissingIdentityValuesMatchOnlyAnEmptyIdentity()
     {
         Assert.True(EmulationStateFileFunctions.IdentityValuesEqual(null, new Dictionary<string, string>()));
         Assert.False(EmulationStateFileFunctions.IdentityValuesEqual(null, new Dictionary<string, string> { ["mode"] = "accurate" }));

@@ -13,7 +13,7 @@ internal static class SavedStateFunctions
         ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
-        if (!EmulationStateFileFunctions.IsCompatible(header, configuration.Model, core.Emulator, core,
+        if (!EmulationSdk.StateFiles.IsCompatible(header, configuration.Model, core.Emulator, core,
                 () => ConfigurationHash(configuration), () => ContentHash(configuration)))
             throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
     }
@@ -29,7 +29,7 @@ internal static class SavedStateFunctions
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
         Exception? innerException = null) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
         var fingerprint = new StateConfigurationFingerprint(
@@ -42,10 +42,10 @@ internal static class SavedStateFunctions
             InputFingerprint(configuration.Input),
             configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray()
         );
-        return EmulationStateFileFunctions.HashDocument(fingerprint);
+        return EmulationSdk.StateFiles.HashDocument(fingerprint);
     }
 
-    internal static string ContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(ContentEntries(configuration));
+    internal static string ContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(ContentEntries(configuration));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration) => configuration.Firmware.Images.OrderBy(image => image.Key).Select(image => new StateContentEntry(image.Key.ToString(),
         "firmware",
         HashFile(image.Value))).Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(MediaOrder).ThenBy(media => media.Path,
@@ -57,9 +57,9 @@ internal static class SavedStateFunctions
         controller.Peripheral,
         controller.DeviceId,
         controller.DeadZonePercent,
-        EmulationStateFileFunctions.OrderInputMappings(controller.Mappings).ToArray())).ToArray());
+        EmulationSdk.StateFiles.OrderInputMappings(controller.Mappings).ToArray())).ToArray());
     private static string HashPath(string path) =>
-        EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+        EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
 
     private static string HashFile(string path) => EmulationSdk.CoreDiagnostics.CalculateSha256(path);

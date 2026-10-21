@@ -22,7 +22,7 @@ internal static class SavedStateFunctions
 
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
-        if (!EmulationStateFileFunctions.IsCompatible(header, configuration.Model, core.Emulator, core,
+        if (!EmulationSdk.StateFiles.IsCompatible(header, configuration.Model, core.Emulator, core,
                 () => ConfigurationHash(configuration), () => ContentHash(configuration)))
             throw Invalid(ErrorCode.StateIncompatible, ErrorMessages.StateIncompatible);
     }
@@ -37,7 +37,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationException Invalid(ErrorCode code, string message, Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
 
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
 
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -51,11 +51,11 @@ internal static class SavedStateFunctions
             InputFingerprint(configuration.Input),
             configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray(),
             configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
-        return EmulationStateFileFunctions.HashDocument(fingerprint);
+        return EmulationSdk.StateFiles.HashDocument(fingerprint);
     }
 
 
-    internal static string ContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(ContentEntries(configuration));
+    internal static string ContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(ContentEntries(configuration));
 
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
@@ -71,14 +71,14 @@ internal static class SavedStateFunctions
 
 
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
-        EmulationStateFileFunctions.OrderInputMappings(input.KeyboardMappings).Select(pair => new KeyValuePair<string, string>(pair.Key, pair.Value.ToString())).ToArray(),
+        EmulationSdk.StateFiles.OrderInputMappings(input.KeyboardMappings).Select(pair => new KeyValuePair<string, string>(pair.Key, pair.Value.ToString())).ToArray(),
         (input.Controllers ?? []).OrderBy(controller => controller.Port)
             .Select(controller => new StateControllerFingerprint(
                 controller.Port,
                 controller.Peripheral,
                 controller.DeviceId,
                 controller.DeadZonePercent,
-                EmulationStateFileFunctions.OrderInputMappings(controller.Mappings).ToArray()))
+                EmulationSdk.StateFiles.OrderInputMappings(controller.Mappings).ToArray()))
             .ToArray(),
         input.MouseDeviceId,
         input.CaptureMouse,
@@ -89,7 +89,7 @@ internal static class SavedStateFunctions
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })
             return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulationSdk.CoreDiagnostics.CalculateSha256))));
-        return EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+        return EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
     }
 
 

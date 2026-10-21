@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Buffers.Binary;
 using System.IO;
 using System.Reflection;
@@ -27,7 +28,7 @@ public sealed class StateFingerprintContractTests
         var model = Enum.GetValues(modelType).GetValue(0)!;
         var core = Enum.GetValues(coreType).GetValue(0)!;
         var payload = new byte[] { 1, 2, 255 };
-        var hash = EmulationStateFileFunctions.HashBytes(payload);
+        var hash = EmulationSdk.StateFiles.HashBytes(payload);
         var headerType = typeof(EmulationSavedStateHeader<,>).MakeGenericType(modelType, coreType);
         var header = headerType.GetConstructors().Single().Invoke(new object[] { 1, core, "core", "version", "core-sha", model, "config-sha", "content-sha", hash });
         var expected = new { FormatVersion = 1, Core = core, CoreName = "core", CoreVersion = "version", CoreSha256 = "core-sha", Model = model, ConfigurationSha256 = "config-sha", ContentSha256 = "content-sha", StateSha256 = hash };
@@ -79,23 +80,23 @@ public sealed class StateFingerprintContractTests
             { ["z"] = "last", ["a"] = "first" }, ["media"] = new[] { "one", "two" } };
         var reordered = new Dictionary<string, object> { ["media"] = new[] { "one", "two" },
             ["options"] = new Dictionary<string, string> { ["a"] = "first", ["z"] = "last" } };
-        Assert.Equal(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+        Assert.Equal(EmulationSdk.StateFiles.HashDocument(first), EmulationSdk.StateFiles.HashDocument(reordered));
         reordered["media"] = new[] { "two", "one" };
-        Assert.NotEqual(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+        Assert.NotEqual(EmulationSdk.StateFiles.HashDocument(first), EmulationSdk.StateFiles.HashDocument(reordered));
         reordered["media"] = new[] { "one", "two" };
         reordered["options"] = new Dictionary<string, string> { ["a"] = "changed", ["z"] = "last" };
-        Assert.NotEqual(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+        Assert.NotEqual(EmulationSdk.StateFiles.HashDocument(first), EmulationSdk.StateFiles.HashDocument(reordered));
     }
 
     [Fact]
     public void MissingMappingsStillProduceAnEmptySequence()
-        => Assert.Empty(EmulationStateFileFunctions.OrderInputMappings<string>(null));
+        => Assert.Empty(EmulationSdk.StateFiles.OrderInputMappings<string>(null));
 
     [Fact]
     public void MappingOrderIsOrdinalAndValuesAreNotConverted()
     {
         var values = new Dictionary<string, EmulationKey> { ["z"] = EmulationKey.A, ["a"] = EmulationKey.B, ["A"] = EmulationKey.C, ["é"] = EmulationKey.D };
-        var sorted = EmulationStateFileFunctions.OrderInputMappings(values).ToArray();
+        var sorted = EmulationSdk.StateFiles.OrderInputMappings(values).ToArray();
         Assert.Equal(new[] { "A", "a", "z", "é" }, sorted.Select(pair => pair.Key));
         Assert.Equal(new[] { EmulationKey.C, EmulationKey.B, EmulationKey.A, EmulationKey.D }, sorted.Select(pair => pair.Value));
     }
@@ -104,7 +105,7 @@ public sealed class StateFingerprintContractTests
     public void OrderingStaysDeferredAndTheCallerOwnsMaterialization()
     {
         var values = new Dictionary<string, string> { ["z"] = "last" };
-        var ordered = EmulationStateFileFunctions.OrderInputMappings(values);
+        var ordered = EmulationSdk.StateFiles.OrderInputMappings(values);
         values.Add("A", "first");
         var snapshot = ordered.ToArray();
         values.Add("a", "later");
@@ -169,7 +170,7 @@ public sealed class StateFingerprintContractTests
         var before = JsonSerializer.SerializeToUtf8Bytes(expected, expected.GetType(), options);
         var after = JsonSerializer.SerializeToUtf8Bytes(actual, actual.GetType(), options);
         Assert.Equal(before, after);
-        Assert.Equal(EmulationStateFileFunctions.HashBytes(before), EmulationStateFileFunctions.HashBytes(after));
+        Assert.Equal(EmulationSdk.StateFiles.HashBytes(before), EmulationSdk.StateFiles.HashBytes(after));
     }
 
     private enum FirstPeripheral { None }
