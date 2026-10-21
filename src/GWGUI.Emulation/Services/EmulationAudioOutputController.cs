@@ -1,10 +1,11 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Gestion commune de la sortie audio, du volume et de la récupération après une erreur de sortie.</summary>
 /// <remarks>Une sortie reçue est empruntée ; une sortie créée par la fabrique appartient au contrôleur.</remarks>
-public class EmulationAudioOutputController : IDisposable
+public class EmulationAudioOutputController : IEmulationAudioOutputController
 {
     protected readonly object _gate = new();
     private Func<IAudioOutput?>? _factory;
@@ -51,7 +52,7 @@ public class EmulationAudioOutputController : IDisposable
             if (_stopped || _paused || _muted) return;
             if (chunk.SampleRate != _sampleRate) Restart(chunk.SampleRate);
             if (!EnsureStarted()) return;
-            var samples = EmulationAudioFunctions.ApplyVolume(chunk.InterleavedSamples.Span, _volume,
+            var samples = EmulationSdk.AudioProcessing.ApplyVolume(chunk.InterleavedSamples.Span, _volume,
                 ref _volumeBuffer);
             try { _output!.Write(samples); }
             catch
@@ -86,7 +87,7 @@ public class EmulationAudioOutputController : IDisposable
     /// <summary>Applique le bornage de volume commun au SDK.</summary>
     public void SetVolume(float volume)
     {
-        lock (_gate) _volume = EmulationAudioFunctions.NormalizeVolume(volume);
+        lock (_gate) _volume = EmulationSdk.AudioProcessing.NormalizeVolume(volume);
     }
 
     /// <summary>Suspend, vide et arrête la sortie sans détruire le contrôleur.</summary>

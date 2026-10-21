@@ -1,4 +1,4 @@
-global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
+global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
@@ -47,4 +47,4 @@ global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator>;
 
-global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;

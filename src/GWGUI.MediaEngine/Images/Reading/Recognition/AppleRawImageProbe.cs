@@ -1,6 +1,6 @@
-using AppleDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.Dos.AppleDosFileSystemLayout;
-using ProDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosFileSystemLayout;
-using ProDosVolumeHeaderReader = global::GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosVolumeHeaderReader;
+using AppleDosFileSystemLayout = GWGUI.MediaFileSystems.FileSystems.Apple.Dos.AppleDosFileSystemLayout;
+using ProDosFileSystemLayout = GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosFileSystemLayout;
+using ProDosVolumeHeaderReader = GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosVolumeHeaderReader;
 using GWGUI.MediaFileSystems.FileSystems.Apple.Lisa;
 using GWGUI.MediaFileSystems.FileSystems.Apple.Sos;
 using GWGUI.MediaEngine.Constants;

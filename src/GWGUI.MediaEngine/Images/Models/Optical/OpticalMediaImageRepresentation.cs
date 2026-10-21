@@ -2,8 +2,8 @@ using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
-using IMediaOpticalRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation;
-using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
+using IMediaOpticalRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation;
+using IMediaOpticalTrack = GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 
 namespace GWGUI.MediaEngine.Images.Models.Optical;

@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Reading.Optical;
-using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaOpticalTrack = GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Contracts;
 

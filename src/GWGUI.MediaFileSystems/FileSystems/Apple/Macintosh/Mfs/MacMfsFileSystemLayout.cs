@@ -4,7 +4,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Mfs;
 internal static class MacMfsFileSystemLayout
 {
     /// <summary>Définit la valeur MFS nommée <c>SystemName</c>.</summary>
-    public const string SystemName = global::GWGUI.MediaFileSystems.Definitions.FileSystemDisplayNames.MacMfs;
+    public const string SystemName = GWGUI.MediaFileSystems.Definitions.FileSystemDisplayNames.MacMfs;
     /// <summary>Définit la valeur MFS nommée <c>VolumeDescription</c>.</summary>
     public const string VolumeDescription = "volume";
     /// <summary>Définit la valeur MFS nommée <c>DirectoryDescription</c>.</summary>

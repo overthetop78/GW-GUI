@@ -16,7 +16,7 @@ using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading;

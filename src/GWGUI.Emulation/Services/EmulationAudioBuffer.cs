@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
@@ -19,8 +20,8 @@ internal sealed class EmulationAudioBuffer
     {
         lock (_gate)
         {
-            var maximumFrames = EmulationAudioFunctions.MaximumBufferedFrames(chunk.SampleRate);
-            var retained = EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);
+            var maximumFrames = EmulationSdk.AudioProcessing.MaximumBufferedFrames(chunk.SampleRate);
+            var retained = EmulationSdk.AudioProcessing.RetainNewestFrames(chunk, maximumFrames);
             EnqueueRetained(retained, maximumFrames, !ReferenceEquals(retained, chunk));
         }
     }
@@ -29,8 +30,8 @@ internal sealed class EmulationAudioBuffer
     {
         lock (_gate)
         {
-            var maximumFrames = EmulationAudioFunctions.MaximumBufferedFrames(readSampleRate(source));
-            var retained = EmulationAudioFunctions.RetainNativeNewestFrames(chunk, maximumFrames, multichannel);
+            var maximumFrames = EmulationSdk.AudioProcessing.MaximumBufferedFrames(readSampleRate(source));
+            var retained = EmulationSdk.AudioProcessing.RetainNativeNewestFrames(chunk, maximumFrames, multichannel);
             EnqueueRetained(retained, maximumFrames, !ReferenceEquals(retained, chunk));
         }
     }

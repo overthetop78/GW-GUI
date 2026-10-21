@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 using ReleaseConstants = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.CoreReleaseConstants;
 using EmulatorConstants = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.EmulatorConstants;
@@ -73,7 +74,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
+        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
         return await Releases(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

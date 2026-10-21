@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Nec.Common.Interfaces;
-internal interface IEmulatorAdapter : global::GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
 {
     IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
     EmulationStorageSettings DescribeStorage(MachineConfiguration configuration);

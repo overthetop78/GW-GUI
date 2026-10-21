@@ -12,7 +12,7 @@ using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.App.Localization.Extensions;
-using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
+using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
 
 namespace GWGUI.Tests.Emulation.Amiga;
 

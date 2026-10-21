@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;

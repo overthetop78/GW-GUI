@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- L’exemple est référencé par l’application ; aucun module.json ni paquet externe n’est nécessaire. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>gwgui.emulation.example</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Seule l’API publique du SDK est disponible : aucune autorisation InternalsVisibleTo. -->
+    <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+  </ItemGroup>
+</Project>

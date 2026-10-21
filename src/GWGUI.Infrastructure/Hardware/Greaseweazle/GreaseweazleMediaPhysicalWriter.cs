@@ -1,15 +1,15 @@
 using GWGUI.MediaFileSystems.Functions;
 using System.Collections.Frozen;
 using System.Globalization;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
-using MediaPhysicalWriteProgress = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
-using MediaPhysicalWriteResult = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
-using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaPhysicalDataUnit = GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using MediaPhysicalWriteProgress = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
+using MediaPhysicalWriteResult = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
+using MediaWritePlan = GWGUI.MediaEngine.Contracts.MediaWritePlan;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
-using IMediaPhysicalWriter = global::GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter;
+using IMediaPhysicalWriter = GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter;
 using GWGUI.Infrastructure.Constants;
 
 namespace GWGUI.Infrastructure.Hardware.Greaseweazle;

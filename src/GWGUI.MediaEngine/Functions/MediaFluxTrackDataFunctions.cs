@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaFluxRevolutionData = global::GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
-using MediaFluxTrackData = global::GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaFluxRevolutionData = GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
+using MediaFluxTrackData = GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
 
 namespace GWGUI.MediaEngine.Functions;
 

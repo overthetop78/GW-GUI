@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
-using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
+using IMediaBlockRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
 using GWGUI.MediaEngine.Images.Reading.Blocks;
 
 namespace GWGUI.MediaEngine.Images.Models.Blocks;

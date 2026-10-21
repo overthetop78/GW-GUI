@@ -1,6 +1,6 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.Infrastructure.Maintenance;
 using GWGUI.Infrastructure.Read;
 using GWGUI.Infrastructure.Write;

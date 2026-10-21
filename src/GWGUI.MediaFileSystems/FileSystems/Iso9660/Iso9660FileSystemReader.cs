@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using GWGUI.MediaFileSystems;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Interfaces;

@@ -1,4 +1,4 @@
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
 
 namespace GWGUI.MediaFileSystems.Interfaces.Exploration;
 

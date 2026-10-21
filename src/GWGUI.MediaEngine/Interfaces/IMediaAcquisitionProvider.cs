@@ -1,5 +1,5 @@
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Interfaces;

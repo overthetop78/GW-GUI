@@ -29,6 +29,6 @@ global using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;
 
-global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
+global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 
-global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Sega.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Sega.Common.Machines.Common.Contracts.MachineConfiguration>;

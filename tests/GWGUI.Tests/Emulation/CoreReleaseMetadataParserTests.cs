@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using System.IO;
 using System.Net;
@@ -39,7 +40,7 @@ public sealed class CoreReleaseMetadataParserTests
         try
         {
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
-            var release = global::GWGUI.Emulation.EmulationSdk.CoreReleases.ReadOfficialRelease(settings, response);
+            var release = EmulationSdk.CoreReleases.ReadOfficialRelease(settings, response);
             var expectedDate = dateSource switch { 1 => headerDate, 2 => contentDate, _ => (DateTimeOffset?)null };
             Assert.Equal(expectedDate, release.PublishedUtc);
             Assert.Same(settings.OfficialArchiveUri, release.DownloadUri);
@@ -82,7 +83,7 @@ public sealed class CoreReleaseMetadataParserTests
             var calls = 0;
             var entry = Entry();
             const string prefix = " opaque-日本語-";
-            var release = global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease(entry, response, prefix, "yyyyMMdd-HHmmss",
+            var release = EmulationSdk.CoreReleases.ParseRelease(entry, response, prefix, "yyyyMMdd-HHmmss",
                 () => { calls++; return "unused"; });
             var version = contentDate ? "20260102-060910" : "20251231-235958";
             Assert.Equal(version, release.DeclaredVersion);
@@ -103,7 +104,7 @@ public sealed class CoreReleaseMetadataParserTests
         using var response = new HttpResponseMessage();
         var calls = 0;
         var error = Assert.Throws<InvalidDataException>(() =>
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease<Emulator, Model>(null!, response, "prefix", "yyyyMMdd-HHmmss",
+            EmulationSdk.CoreReleases.ParseRelease<Emulator, Model>(null!, response, "prefix", "yyyyMMdd-HHmmss",
                 () => { calls++; return "message traduit"; }));
         Assert.Equal("message traduit", error.Message);
         Assert.Equal(1, calls);
@@ -116,7 +117,7 @@ public sealed class CoreReleaseMetadataParserTests
         using var response = new HttpResponseMessage();
         var original = new InvalidOperationException("translation failed");
         Assert.Same(original, Assert.Throws<InvalidOperationException>(() =>
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease(Entry(), response, "prefix", "yyyyMMdd-HHmmss", () => throw original)));
+            EmulationSdk.CoreReleases.ParseRelease(Entry(), response, "prefix", "yyyyMMdd-HHmmss", () => throw original)));
     }
 
     [Fact]
@@ -124,7 +125,7 @@ public sealed class CoreReleaseMetadataParserTests
     {
         using var response = new HttpResponseMessage();
         response.Headers.Date = new DateTimeOffset(2026, 1, 2, 3, 4, 5, TimeSpan.Zero);
-        var release = global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease(Entry() with { ArchiveUri = null! }, response,
+        var release = EmulationSdk.CoreReleases.ParseRelease(Entry() with { ArchiveUri = null! }, response,
             null!, "yyyyMMdd-HHmmss", null!);
         Assert.Equal("20260102-030405", release.Id);
         Assert.Null(release.DownloadUri);
@@ -136,6 +137,6 @@ public sealed class CoreReleaseMetadataParserTests
         using var response = new HttpResponseMessage();
         response.Headers.Date = new DateTimeOffset(2026, 1, 2, 3, 4, 5, TimeSpan.Zero);
         Assert.Throws<NullReferenceException>(() =>
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease<Emulator, Model>(null!, response, "prefix", "yyyyMMdd-HHmmss", null!));
+            EmulationSdk.CoreReleases.ParseRelease<Emulator, Model>(null!, response, "prefix", "yyyyMMdd-HHmmss", null!));
     }
 }

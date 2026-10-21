@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -9,7 +10,7 @@ public sealed class CoreInstallationFlowTests
     {
         var events = new List<string>();
         var manifest = new object();
-        await global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
+        await EmulationSdk.CoreReleases.InstallLibraryAsync(
             () => { events.Add("download"); return Task.FromResult(123L); },
             () => events.Add("extract"),
             size => { Assert.Equal(123L, size); events.Add("validate"); return manifest; },
@@ -38,7 +39,7 @@ public sealed class CoreInstallationFlowTests
             if (stage == failureStage) throw error;
         }
         var observed = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
+            EmulationSdk.CoreReleases.InstallLibraryAsync(
                 () => { Visit(0); return Task.FromResult(123L); },
                 () => Visit(1),
                 size => { Visit(2); return new object(); },
@@ -56,7 +57,7 @@ public sealed class CoreInstallationFlowTests
         var events = new List<string>();
         var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var release = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        var installation = global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
+        var installation = EmulationSdk.CoreReleases.InstallLibraryAsync(
             () => { events.Add("download"); return Task.FromResult(123L); },
             () => events.Add("extract"),
             size => { events.Add("validate"); return "sha256"; },
@@ -91,7 +92,7 @@ public sealed class CoreInstallationFlowTests
         var error = new InvalidOperationException("preparation failed");
         var events = new List<string>();
         var observed = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
+            EmulationSdk.CoreReleases.InstallLibraryAsync(
                 () => { events.Add("download"); return Task.FromResult(123L); },
                 () => events.Add("extract"),
                 size => { events.Add("validate"); return "sha256"; },

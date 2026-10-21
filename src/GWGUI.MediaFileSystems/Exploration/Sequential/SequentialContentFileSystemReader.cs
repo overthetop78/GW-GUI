@@ -1,6 +1,6 @@
 using System.Globalization;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Definitions;
 
 namespace GWGUI.MediaFileSystems.Exploration.Sequential;

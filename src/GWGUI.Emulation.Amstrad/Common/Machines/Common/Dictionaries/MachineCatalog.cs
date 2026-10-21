@@ -15,12 +15,12 @@ public static class MachineCatalog
 
     private static string ImageFileName(string machineId) => machineId switch
     {
-        global::GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc464 => MachineCatalogConstants.CPC464Png,
-        global::GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc664 => MachineCatalogConstants.CPC664Png,
-        global::GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc6128 => MachineCatalogConstants.CPC6128Png,
-        global::GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.ModelConstants.Cpc464Plus => MachineCatalogConstants.CPC464PLUSPng,
-        global::GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.ModelConstants.Cpc6128Plus => MachineCatalogConstants.CPC6128PLUSPng,
-        global::GWGUI.Emulation.Amstrad.Common.Machines.Gx4000.Constants.ModelConstants.Gx4000 => MachineCatalogConstants.GX4000Png,
+        GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc464 => MachineCatalogConstants.CPC464Png,
+        GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc664 => MachineCatalogConstants.CPC664Png,
+        GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants.Cpc6128 => MachineCatalogConstants.CPC6128Png,
+        GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.ModelConstants.Cpc464Plus => MachineCatalogConstants.CPC464PLUSPng,
+        GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.ModelConstants.Cpc6128Plus => MachineCatalogConstants.CPC6128PLUSPng,
+        GWGUI.Emulation.Amstrad.Common.Machines.Gx4000.Constants.ModelConstants.Gx4000 => MachineCatalogConstants.GX4000Png,
         _ => throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null)
     };
 }

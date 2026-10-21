@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -8,7 +8,7 @@ using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Models.Optical;
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 

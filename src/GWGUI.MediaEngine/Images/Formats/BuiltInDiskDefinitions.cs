@@ -1,5 +1,5 @@
 using System.IO;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 namespace GWGUI.MediaEngine.Images.Formats;
 
 public static class BuiltInDiskDefinitions

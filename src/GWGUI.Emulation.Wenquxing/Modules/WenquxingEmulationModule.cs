@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
@@ -118,8 +119,8 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
-        var output = EmulationAudioFunctions.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
-        var latency = EmulationAudioFunctions.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
+        var output = EmulationSdk.AudioProcessing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
+        var latency = EmulationSdk.AudioProcessing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,

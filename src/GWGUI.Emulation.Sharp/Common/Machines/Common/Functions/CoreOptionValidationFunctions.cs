@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
@@ -15,8 +16,8 @@ internal static class CoreOptionValidationFunctions
             var valid = option.Key switch
             {
                 SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),
-                SettingsConstants.AudioLatency => !EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value),
-                VideoAudioSettingsConstants.AudioVolumeOption => !EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent),
+                SettingsConstants.AudioLatency => !EmulationSdk.AudioProcessing.HasInvalidConfiguredLatency(option.Value),
+                VideoAudioSettingsConstants.AudioVolumeOption => !EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent),
                 _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))
             };
             if (!valid)

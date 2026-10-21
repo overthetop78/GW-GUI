@@ -1,4 +1,4 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using GWGUI.MediaFileSystems.FileSystems.Amiga;
 
 namespace GWGUI.MediaFileSystems.Definitions;

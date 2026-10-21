@@ -1,6 +1,6 @@
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
-using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorWriteBlock = GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using GWGUI.MediaFileSystems;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Migration;

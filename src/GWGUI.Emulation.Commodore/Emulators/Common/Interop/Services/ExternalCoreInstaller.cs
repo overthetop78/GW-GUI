@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 
 using System.Text.Json;
@@ -45,10 +46,10 @@ public sealed class ExternalCoreInstaller
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            global::GWGUI.Emulation.EmulationSdk.CoreReleases.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
+            EmulationSdk.CoreReleases.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
                 static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
+            var sha256 = EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
             File.Move(extracted, LibraryPath, true);
             await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;

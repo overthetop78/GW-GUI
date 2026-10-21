@@ -1,5 +1,5 @@
 using GWGUI.MediaFileSystems.Formats.Commodore;
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 /// <summary>Décrit l'organisation des secteurs système d'un volume Commodore DOS.</summary>

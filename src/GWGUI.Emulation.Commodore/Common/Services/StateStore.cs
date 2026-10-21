@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 
 
@@ -22,5 +23,5 @@ internal static class StateStore
         EmulationStateFileFunctions.HashPath(path, StateStoreConstants.AllFilesPattern, StateStoreConstants.CanonicalDirectorySeparator, StateStoreConstants.DirectoryHashBufferSize, () => MachineExceptions.MediaNotFound());
 
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
-    internal static string HashFile(string path) => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(path);
+    internal static string HashFile(string path) => EmulationSdk.CoreDiagnostics.CalculateSha256(path);
 }

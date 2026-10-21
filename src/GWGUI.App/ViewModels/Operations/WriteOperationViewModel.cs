@@ -1,5 +1,5 @@
 using GWGUI.App.ViewModels;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GWGUI.App.ViewModels.Operations.Options;
 
 namespace GWGUI.App.ViewModels.Operations;

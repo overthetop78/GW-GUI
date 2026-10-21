@@ -1,10 +1,10 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
-using ConversionPlanner = global::GWGUI.MediaEngine.Images.Conversion.ConversionPlanner;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GwOptionValidator = GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionPlanner = GWGUI.MediaEngine.Images.Conversion.ConversionPlanner;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.App.Profiles;

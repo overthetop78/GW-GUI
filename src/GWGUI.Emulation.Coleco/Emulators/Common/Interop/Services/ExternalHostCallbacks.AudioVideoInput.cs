@@ -42,7 +42,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||
             frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;
         var frameCount = checked((int)frames);
-        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);
+        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frameCount);
         AddAudio(samples, frameCount);
         return frames;
     }

@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Stockage atomique des entrées destiné aux cœurs qui interrogent leur état pendant une frame.</summary>
-public class EmulationInputFrameStore
+public class EmulationInputFrameStore : IEmulationInputFrames
 {
     private EmulationInputSnapshot _pending = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polled = EmulationInputSnapshot.Empty;

@@ -3,8 +3,8 @@ using System.Windows.Controls;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 

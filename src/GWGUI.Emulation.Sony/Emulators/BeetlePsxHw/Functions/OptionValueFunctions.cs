@@ -22,15 +22,15 @@ namespace GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Functions;
 
 internal static class OptionValueFunctions
 {
-    internal static string ToNative(GpuOverclock value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(GpuOverclock value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(CdAccessMethod value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(CdAccessMethod value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(OverrideBios value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(OverrideBios value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(Region value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(Region value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(InternalResolution value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(InternalResolution value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
     internal static string ToNative(Renderer value) => value switch
     {
@@ -105,7 +105,7 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(DitherMode value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(DitherMode value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
     internal static string ToNative(Filter value) => value switch
     {
@@ -163,35 +163,35 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(PgxpMode value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(PgxpMode value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(AnalogToggle value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(AnalogToggle value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(AnalogToggleCombo value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(AnalogToggleCombo value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(GunInputMode value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(GunInputMode value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(GunCursor value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(GunCursor value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(CrosshairColor value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(CrosshairColor value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(AnalogResponseCurve value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(AnalogResponseCurve value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(UseMednafenMemcard0Method value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(UseMednafenMemcard0Method value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(LineRender value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(LineRender value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(WidescreenHackAspectRatio value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(WidescreenHackAspectRatio value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(CpuDynarec value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(CpuDynarec value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(DynarecInvalidate value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(DynarecInvalidate value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(CoreTimingFps value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(CoreTimingFps value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(Deinterlacer value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(Deinterlacer value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(AspectRatio value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(AspectRatio value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
-    internal static string ToNative(CropOverscan value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
+    internal static string ToNative(CropOverscan value) => GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 }

@@ -1,4 +1,4 @@
-﻿using BitConstants = global::GWGUI.MediaFileSystems.Constants.BitConstants;
+﻿using BitConstants = GWGUI.MediaFileSystems.Constants.BitConstants;
 
 namespace GWGUI.MediaEngine.Functions;
 

@@ -1,8 +1,8 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using System.Collections.Frozen;
 
-using IMediaSectorBlock = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorBlock = GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 

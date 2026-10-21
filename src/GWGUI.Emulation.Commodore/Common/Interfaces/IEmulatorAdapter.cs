@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
-internal interface IEmulatorAdapter : global::GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
 {
     IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
     IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);

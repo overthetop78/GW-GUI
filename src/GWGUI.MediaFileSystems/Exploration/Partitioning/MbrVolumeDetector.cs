@@ -1,9 +1,9 @@
-using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using PartitionTableIds = global::GWGUI.MediaFileSystems.Constants.PartitionTableIds;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
-using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeOrigins = GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
+using PartitionTableIds = GWGUI.MediaFileSystems.Constants.PartitionTableIds;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using IMediaBlockRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 using System.Buffers.Binary;
 using System.Globalization;

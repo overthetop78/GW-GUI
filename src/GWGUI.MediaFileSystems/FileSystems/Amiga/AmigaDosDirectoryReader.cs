@@ -1,5 +1,5 @@
 using GWGUI.MediaFileSystems.Primitives;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 /// <summary>Parcourt les tables de hachage et sous-répertoires AmigaDOS.</summary>

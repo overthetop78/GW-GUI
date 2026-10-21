@@ -40,13 +40,13 @@ internal sealed partial class ExternalHostCallbacks
 
     private void HandleAudioSample(short left, short right)
     {
-        PublishAudio(new AudioChunk(GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right), SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(EmulationSdk.AudioProcessing.SingleFrame(left, right), SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)
     {
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
-        var samples = GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames);
+        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frames);
         PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));
         return frames;
     }

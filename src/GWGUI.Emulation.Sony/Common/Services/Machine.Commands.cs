@@ -127,7 +127,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void WriteAudio(ReadOnlySpan<short> samples)
-    => EmulationAudioFunctions.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
+    => EmulationSdk.AudioProcessing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
 
     private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
     {
@@ -171,6 +171,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void DeleteSessionDirectory()
     {
         if (_deleteSession is not null) { _deleteSession(_sessionDirectory); return; }
-        EmulationSessionDirectoryFunctions.DeleteSessionDirectory(_sessionDirectory);
+        EmulationSdk.SessionDirectories.DeleteSessionDirectory(_sessionDirectory);
     }
 }

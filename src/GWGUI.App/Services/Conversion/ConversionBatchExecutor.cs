@@ -1,6 +1,6 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Execution;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.App.Parity;
 using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Localization.Extensions;
@@ -8,7 +8,7 @@ using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Parity;
 using System.Diagnostics;
 using System.IO;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Contracts;

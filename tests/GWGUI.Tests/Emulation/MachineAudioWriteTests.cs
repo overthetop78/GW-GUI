@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
@@ -12,7 +13,7 @@ public sealed class MachineAudioWriteTests
     {
         IAudioOutput? output = null;
         var volume = 0.5f;
-        EmulationAudioFunctions.WriteVolume(ref output, ref volume, new short[] { 3 });
+        EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, new short[] { 3 });
         Assert.Null(output);
         Assert.Equal(0.5f, volume);
     }
@@ -25,7 +26,7 @@ public sealed class MachineAudioWriteTests
         short[] source = [-3, -1, 1, 3];
         using var owned = new Output { ExpectedSource = source };
         IAudioOutput? output = owned;
-        EmulationAudioFunctions.WriteVolume(ref output, ref volume, source);
+        EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, source);
         Assert.True(owned.UsedExpectedSource);
         Assert.Equal(source, Assert.Single(owned.Writes));
         Assert.Same(owned, output);
@@ -39,7 +40,7 @@ public sealed class MachineAudioWriteTests
         using var owned = new Output { ExpectedSource = source };
         IAudioOutput? output = owned;
         var volume = 0.5f;
-        EmulationAudioFunctions.WriteVolume(ref output, ref volume, source);
+        EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, source);
         Assert.Equal(new short[] { -1, 0, 0, 1, 16383, -16384 }, Assert.Single(owned.Writes));
         Assert.Equal(new short[] { -3, -1, 1, 3, short.MaxValue, short.MinValue }, source);
         Assert.False(owned.UsedExpectedSource);
@@ -54,7 +55,7 @@ public sealed class MachineAudioWriteTests
         using var owned = new Output();
         IAudioOutput? output = owned;
         var volume = 0f;
-        EmulationAudioFunctions.WriteVolume(ref output, ref volume, new short[] { short.MinValue, 3, short.MaxValue });
+        EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, new short[] { short.MinValue, 3, short.MaxValue });
         Assert.Equal(new short[] { 0, 0, 0 }, Assert.Single(owned.Writes));
         Assert.False(owned.Disposed);
     }
@@ -65,7 +66,7 @@ public sealed class MachineAudioWriteTests
         using var owned = new Output();
         IAudioOutput? output = owned;
         var volume = 0.5f;
-        EmulationAudioFunctions.WriteVolume(ref output, ref volume, ReadOnlySpan<short>.Empty);
+        EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, ReadOnlySpan<short>.Empty);
         Assert.Empty(Assert.Single(owned.Writes));
         Assert.False(owned.Disposed);
     }
@@ -78,7 +79,7 @@ public sealed class MachineAudioWriteTests
         IAudioOutput? output = owned;
         var volume = 0.5f;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationAudioFunctions.WriteVolume(ref output, ref volume, new short[] { 3 }));
+            EmulationSdk.AudioProcessing.WriteVolume(ref output, ref volume, new short[] { 3 }));
         Assert.Same(error, actual);
         Assert.Same(owned, output);
         Assert.False(owned.Disposed);

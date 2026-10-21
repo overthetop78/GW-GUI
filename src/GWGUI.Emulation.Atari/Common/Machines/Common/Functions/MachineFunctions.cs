@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Diagnostics;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -17,6 +18,6 @@ internal static class MachineFunctions
     }
 
     internal static void DeleteSessionDirectory(string sessionDirectory)
-        => EmulationSessionDirectoryFunctions.DeleteSessionDirectory(sessionDirectory);
+        => EmulationSdk.SessionDirectories.DeleteSessionDirectory(sessionDirectory);
 
 }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using GWGUI.Emulation.Snk.Emulators.Common.Constants;
@@ -16,7 +17,7 @@ internal static class EmulatorCatalogFunctions
     {
         if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
         if (string.IsNullOrWhiteSpace(version)) throw new ArgumentException(EmulatorCatalogErrors.EmptyVersion, nameof(version));
-        return global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallationPaths(Path.GetFullPath(installationRoot), entry.Id,
+        return EmulationSdk.CoreReleases.CreateInstallationPaths(Path.GetFullPath(installationRoot), entry.Id,
             version, entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
 

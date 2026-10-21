@@ -3,9 +3,9 @@ using System.Globalization;
 using System.IO;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using GWGUI.App.Enums.Services.PhysicalDiskWriting;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaPhysicalWriteProgress = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
-using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaPhysicalWriteProgress = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
+using MediaWritePlan = GWGUI.MediaEngine.Contracts.MediaWritePlan;
 using GWGUI.Infrastructure.Constants;
 using GWGUI.Infrastructure.Hardware.Media;
 

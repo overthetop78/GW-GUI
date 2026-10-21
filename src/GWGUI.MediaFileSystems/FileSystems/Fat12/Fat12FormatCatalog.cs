@@ -1,4 +1,4 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using System.Collections.Frozen;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;

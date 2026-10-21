@@ -1,4 +1,4 @@
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;

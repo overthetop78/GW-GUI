@@ -11,7 +11,7 @@ using RearmedCore = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.CoreCon
 using PceeCore = GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CoreConstants;
 using PlayCore = GWGUI.Emulation.Sony.Emulators.Play.Constants.CoreConstants;
 using RpcsCore = GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants.CoreConstants;
-using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>;
+using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>;
 
 namespace GWGUI.Tests.Emulation.Sony;
 

@@ -15,7 +15,7 @@ using GWGUI.App.Views.Dialogs.Conversion;
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;

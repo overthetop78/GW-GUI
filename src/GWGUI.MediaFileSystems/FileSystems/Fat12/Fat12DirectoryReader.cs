@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 

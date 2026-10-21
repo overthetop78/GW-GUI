@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Diagnostics;
 
@@ -18,7 +19,7 @@ internal static class MachineFunctions
     }
 
     internal static void DeleteSessionDirectory(string sessionDirectory)
-        => EmulationSessionDirectoryFunctions.DeleteGeneratedSessionDirectory(sessionDirectory);
+        => EmulationSdk.SessionDirectories.DeleteGeneratedSessionDirectory(sessionDirectory);
 
 }
 

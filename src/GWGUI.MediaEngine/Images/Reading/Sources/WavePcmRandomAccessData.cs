@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
 using System.IO;
 using System.Text;
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 
 namespace GWGUI.MediaEngine.Images.Reading.Sources;

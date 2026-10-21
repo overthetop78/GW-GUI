@@ -13,14 +13,14 @@ using GWGUI.App.Rendering.Sequential;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.Infrastructure.Settings;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-using IMediaImageRepresentation = global::GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
+using IMediaImageRepresentation = GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
 using SkiaSharp;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.Tests.Interface.ExplorerViews;

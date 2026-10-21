@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -18,7 +19,7 @@ public sealed class CoreAudioBufferTests
     [InlineData(10, 2)]
     [InlineData(int.MaxValue, 429496729)]
     public void CapacityKeepsTheOriginalMinimumAndIntegerDivision(int rate, int expected)
-        => Assert.Equal(expected, EmulationAudioFunctions.MaximumBufferedFrames(rate));
+        => Assert.Equal(expected, EmulationSdk.AudioProcessing.MaximumBufferedFrames(rate));
 
     [Theory]
     [InlineData(false)]
@@ -77,7 +78,7 @@ public sealed class CoreAudioBufferTests
     public void OrdinaryNativeTrimmingRetainsItsStereoConstructionPolicy()
     {
         var chunk = Chunk(6, layout: EmulationAudioChannelLayout.Surround51);
-        var actual = EmulationAudioFunctions.RetainNativeNewestFrames(chunk, 4, multichannel: false);
+        var actual = EmulationSdk.AudioProcessing.RetainNativeNewestFrames(chunk, 4, multichannel: false);
         Assert.Equal(EmulationAudioChannelLayout.Stereo, actual.ChannelLayout);
         Assert.Equal(chunk.InterleavedSamples.Slice(4).ToArray(), actual.InterleavedSamples.ToArray());
     }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 
@@ -19,12 +20,12 @@ public sealed class CoreNativeAudioCopyTests
         try
         {
             Marshal.Copy(samples, 0, pointer, samples.Length);
-            var result = EmulationAudioFunctions.CopyBatch(pointer, (nuint)frames, (uint)channels);
+            var result = EmulationSdk.AudioProcessing.CopyBatch(pointer, (nuint)frames, (uint)channels);
             Assert.Equal(samples[..(frames * channels)], result);
             if (channels == 2)
             {
-                Assert.Equal(result, EmulationAudioFunctions.CopyBatch(pointer, (nuint)frames));
-                Assert.Equal(result, EmulationAudioFunctions.CopyBatch(pointer, frames));
+                Assert.Equal(result, EmulationSdk.AudioProcessing.CopyBatch(pointer, (nuint)frames));
+                Assert.Equal(result, EmulationSdk.AudioProcessing.CopyBatch(pointer, frames));
             }
             Marshal.WriteInt16(pointer, short.MaxValue);
             Assert.Equal(samples[..(frames * channels)], result);
@@ -43,13 +44,13 @@ public sealed class CoreNativeAudioCopyTests
     public void NativeCountsOverflowBeforeAllocationOrPointerRead(ulong frames, uint channels)
     {
         Assert.Throws<OverflowException>(() =>
-            EmulationAudioFunctions.CopyBatch((nint)1, checked((nuint)frames), channels));
+            EmulationSdk.AudioProcessing.CopyBatch((nint)1, checked((nuint)frames), channels));
     }
 
     [Fact]
     public void BothStereoCountTypesCheckMultiplicationBeforeReading()
     {
-        Assert.Throws<OverflowException>(() => EmulationAudioFunctions.CopyBatch((nint)1, 1073741824));
-        Assert.Throws<OverflowException>(() => EmulationAudioFunctions.CopyBatch((nint)1, (nuint)1073741824));
+        Assert.Throws<OverflowException>(() => EmulationSdk.AudioProcessing.CopyBatch((nint)1, 1073741824));
+        Assert.Throws<OverflowException>(() => EmulationSdk.AudioProcessing.CopyBatch((nint)1, (nuint)1073741824));
     }
 }

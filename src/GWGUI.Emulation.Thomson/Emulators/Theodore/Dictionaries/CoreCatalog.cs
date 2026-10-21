@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 
@@ -24,7 +25,7 @@ internal static class CoreCatalog
         ArgumentException.ThrowIfNullOrWhiteSpace(version);
         if (version != Path.GetFileName(version) || version is "." or ".." || version.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             throw new ArgumentException(nameof(version));
-        return global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallationPaths(Path.GetFullPath(installationRoot), Entry.Id,
+        return EmulationSdk.CoreReleases.CreateInstallationPaths(Path.GetFullPath(installationRoot), Entry.Id,
             version, Entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
 

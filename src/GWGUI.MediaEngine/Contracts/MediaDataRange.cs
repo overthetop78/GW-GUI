@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Enums;
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Contracts;
 

@@ -1,15 +1,15 @@
 using System.Collections.Frozen;
 using System.Globalization;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
-using MediaFluxRevolutionData = global::GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
-using MediaFluxTrackData = global::GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
-using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaFluxRevolutionData = GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
+using MediaFluxTrackData = GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
+using MediaPhysicalDataUnit = GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
-using IMediaAcquisitionProvider = global::GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider;
+using IMediaAcquisitionProvider = GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider;
 using GWGUI.Infrastructure.Constants;
 
 namespace GWGUI.Infrastructure.Hardware.Greaseweazle;

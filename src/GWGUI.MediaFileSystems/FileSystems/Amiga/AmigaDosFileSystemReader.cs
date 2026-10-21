@@ -1,7 +1,7 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using GWGUI.MediaFileSystems.Primitives;
 using System.Collections.Frozen;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 /// <summary>Lit les volumes AmigaDOS OFS et FFS ainsi que leurs variantes.</summary>

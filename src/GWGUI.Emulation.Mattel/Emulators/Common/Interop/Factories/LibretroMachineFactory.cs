@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
 using GWGUI.Emulation.Mattel.Emulators.Common.Factories;
 using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
@@ -62,8 +63,8 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
 
     public override async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
-        var adapter = global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
+        var adapter = EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }

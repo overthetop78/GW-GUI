@@ -1,6 +1,6 @@
-using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeOrigins = GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using GWGUI.MediaEngine.Enums;
 
 using GWGUI.MediaEngine.Contracts;

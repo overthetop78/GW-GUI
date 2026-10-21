@@ -1,6 +1,6 @@
 using GWGUI.MediaFileSystems.Formats.Commodore;
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 /// <summary>Décrit les géométries standard créées par le Writer Commodore DOS.</summary>

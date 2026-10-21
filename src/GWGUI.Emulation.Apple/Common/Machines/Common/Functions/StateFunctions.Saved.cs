@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Buffers.Binary;
 using System.Security.Cryptography;
@@ -87,7 +88,7 @@ internal static class SavedStateFunctions
     {
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })
-            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256))));
+            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulationSdk.CoreDiagnostics.CalculateSha256))));
         return EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
     }
 

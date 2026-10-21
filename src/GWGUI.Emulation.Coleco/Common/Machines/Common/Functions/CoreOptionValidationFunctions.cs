@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
@@ -16,13 +17,13 @@ internal static class CoreOptionValidationFunctions
             }
             if (option.Key == SettingsConstants.AudioLatency)
             {
-                if (EmulationAudioFunctions.HasInvalidConfiguredLatency(option.Value))
+                if (EmulationSdk.AudioProcessing.HasInvalidConfiguredLatency(option.Value))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
             if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)
             {
-                if (EmulationAudioFunctions.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent))
+                if (EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }

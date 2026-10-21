@@ -1,7 +1,7 @@
-using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeOrigins = GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 using System.IO;

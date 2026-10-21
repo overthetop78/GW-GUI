@@ -12,7 +12,7 @@ using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Contracts;
 using GWGUI.MediaFileSystems.Definitions;
-using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
+using MediaVolumeOrigins = GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
 
 namespace GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
 

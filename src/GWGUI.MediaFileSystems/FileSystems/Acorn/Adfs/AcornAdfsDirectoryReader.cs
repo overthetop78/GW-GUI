@@ -58,12 +58,12 @@ public static class AcornAdfsDirectoryReader
             }
             else if (!isDirectory)
                 content = AcornAdfsFileReader.Read(image, indirectAddress, length, resolver, name, warnings, ref metadataValid);
-            var type = global::GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitConstants.BitsPerByte) & 0xfff : 0u;
+            var type = GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitConstants.BitsPerByte) & 0xfff : 0u;
             entries.Add(new(
                     name,
                     isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File,
                     isDirectory ? 0 : length,
-                    global::GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute),
+                    GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute),
                     Describe(load, execute, type),
                     attributes,
                     indirectAddress,
@@ -110,5 +110,5 @@ public static class AcornAdfsDirectoryReader
     }
 
     /// <summary>Construit la description technique d'une entrée.</summary>
-    public static string Describe(uint load, uint execute, uint type) => global::GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? $"RISC OS file type &{type:X3}, load &{load:X8}, execute &{execute:X8}" : $"ADFS load &{load:X8}, execute &{execute:X8}";
+    public static string Describe(uint load, uint execute, uint type) => GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? $"RISC OS file type &{type:X3}, load &{load:X8}, execute &{execute:X8}" : $"ADFS load &{load:X8}, execute &{execute:X8}";
 }

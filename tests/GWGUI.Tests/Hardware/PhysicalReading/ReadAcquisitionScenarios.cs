@@ -1,8 +1,8 @@
 using System.Globalization;
 using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.Infrastructure.Constants;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;

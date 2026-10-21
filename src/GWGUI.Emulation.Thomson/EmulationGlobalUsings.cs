@@ -31,19 +31,19 @@ global using GWGUI.Emulation.Thomson.Common.Functions;
 global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
-global using CoreActiveInstallation = global::GWGUI.Emulation.Contracts.EmulationCoreActiveInstallation;
-global using CoreDiagnosticManifest = global::GWGUI.Emulation.Contracts.EmulationCoreDiagnosticManifest;
-global using CoreInstallationPaths = global::GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;
-global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+global using CoreActiveInstallation = GWGUI.Emulation.Contracts.EmulationCoreActiveInstallation;
+global using CoreDiagnosticManifest = GWGUI.Emulation.Contracts.EmulationCoreDiagnosticManifest;
+global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;
+global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationEnabledOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel>;
-global using HostError = global::GWGUI.Emulation.Contracts.HostError;
+global using HostError = GWGUI.Emulation.Contracts.HostError;
 
-global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<global::GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
-global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
-global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.PeripheralCategory>;
-global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
+global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
+global using StateContentEntry = GWGUI.Emulation.Contracts.EmulationStateContentEntry;
+global using StateControllerFingerprint = GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.PeripheralCategory>;
+global using StateFile = GWGUI.Emulation.Contracts.EmulationSavedStateFile<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
 
-global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts.MachineConfiguration>;

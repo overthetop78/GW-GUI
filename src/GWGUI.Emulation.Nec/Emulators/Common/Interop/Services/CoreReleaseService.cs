@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
@@ -31,13 +32,13 @@ public sealed class CoreReleaseService
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        return global::GWGUI.Emulation.EmulationSdk.CoreReleases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        return EmulationSdk.CoreReleases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        return await global::GWGUI.Emulation.EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _settings.OfficialArchiveUri, response =>
-        [global::GWGUI.Emulation.EmulationSdk.CoreReleases.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
+        return await EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _settings.OfficialArchiveUri, response =>
+        [EmulationSdk.CoreReleases.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
     }
 
     public bool IsInstalled(CoreRelease release)
@@ -56,8 +57,8 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            await global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
-                () => global::GWGUI.Emulation.EmulationSdk.CoreReleases.DownloadAsync(_httpClient, release.DownloadUri, download,
+            await EmulationSdk.CoreReleases.InstallLibraryAsync(
+                () => EmulationSdk.CoreReleases.DownloadAsync(_httpClient, release.DownloadUri, download,
                     (written, total) =>
                     {
                         if (total > 0) progress?.Report(written / (double)total.Value);
@@ -66,7 +67,7 @@ public sealed class CoreReleaseService
                 {
                     if (release.IsZip)
                     {
-                        global::GWGUI.Emulation.EmulationSdk.CoreReleases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
+                        EmulationSdk.CoreReleases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
                             _ => CoreExceptions.Text(_errorResourcePrefix + ".ArchiveMissingLibrary"), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
@@ -74,7 +75,7 @@ public sealed class CoreReleaseService
                 archiveSize =>
                 {
                     VerifyWindowsX64Library(extracted, _errorResourcePrefix);
-                    return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
+                    return EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
                 sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
@@ -91,12 +92,12 @@ public sealed class CoreReleaseService
 
     internal string? FindInstalledLibraryPath()
     {
-        return global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(RequiredLibraryPath,
+        return EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(RequiredLibraryPath,
             path => VerifyWindowsX64Library(path, _errorResourcePrefix));
     }
 
     private static void VerifyWindowsX64Library(string path, string errorResourcePrefix)
-        => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.VerifyWindowsX64Library(path,
+        => EmulationSdk.CoreDiagnostics.VerifyWindowsX64Library(path,
             () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreNotPe"),
             () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreInvalidPe"),
             () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreWrongArchitecture"));

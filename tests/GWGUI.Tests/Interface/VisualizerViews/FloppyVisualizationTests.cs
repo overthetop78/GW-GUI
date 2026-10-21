@@ -2,7 +2,7 @@ using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.ViewModels.Visualization;
 using GWGUI.App.Views.Controls.Visualization;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 

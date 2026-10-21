@@ -9,7 +9,7 @@ using GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
-using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>;
+using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>;
 
 namespace GWGUI.Tests.Emulation.Nintendo;
 

@@ -1,0 +1,33 @@
+- Uniformiser tous les GWGUI.Emulation.Xxx en établissant d’abord Example comme référence à partir de leur existant.
+  - Reprendre les implémentations d’origine et réunir les traitements équivalents sous les mêmes fichiers, noms, rôles et raccordements.
+  - Appliquer le parcours suivant dans cet ordre, module après module : Acorn, Amstrad, Apple, puis les suivants par ordre alphabétique jusqu’à Wenquxing. Acorn est seulement le premier module dans cet ordre.
+    - Pour Acorn :
+      - Copier tous les dossiers et fichiers de son Common dans Example/Common.
+      - Employer des noms de machines d’exemple, comme ExampleMachineA et ExampleMachineB, dans les dossiers spécifiques, leurs fichiers et leurs références dans Machines/Common ; conserver les structures et différences de capacités pour constituer le panel d’exemples avec les apports des modules suivants.
+      - Documenter entièrement les fichiers copiés, avec les commentaires et la documentation C# nécessaires pour tout expliquer.
+      - Ensuite, parcourir ces dossiers et fichiers par ordre alphabétique, un fichier à la fois.
+        - Comparer le fichier avec ses équivalents dans tous les autres modules Emulation.xxx, Example étant le destinataire.
+        - Ajouter les éléments manquants en vérifiant qu’ils ne sont pas déjà présents sous un autre nom.
+        - Documenter les ajouts et terminer le fichier avant de passer au suivant.
+    - Pour Amstrad, puis chaque module suivant :
+      - Copier dans Example/Common les dossiers et fichiers encore absents.
+      - Traiter les fichiers copiés un par un, dans l’ordre alphabétique des dossiers et fichiers.
+        - Vérifier si le fichier ou ses données existent déjà dans un autre fichier d’Example sous un autre nom.
+        - Vérifier le placement des données : les déplacer dans le fichier approprié si nécessaire, sinon les conserver ; supprimer les fichiers devenus vides.
+        - Documenter entièrement le fichier conservé.
+        - Comparer ses versions de même nom dans les modules restant à traiter, en excluant les modules déjà parcourus et Example. Ainsi, à l’étape Amstrad, exclure Acorn, Amstrad et Example.
+        - Intégrer les données complémentaires absentes, vérifier les doublons et commenter les ajouts.
+        - Terminer ce fichier avant de passer au suivant.
+      - Terminer le module avant de passer au suivant, jusqu’à Wenquxing.
+  - Définir dans le module les constantes qui portent ses propres choix ; utiliser les interfaces pour les valeurs fournies par les services communs et supprimer les alias inutilisés vers des constantes déjà définies.
+  - Préserver le fonctionnement de toutes les fonctionnalités et les représenter dans un mock complet et utilisable.
+  - Terminer ce parcours de Common ; la suite sera définie ensuite.
+  - Fournir Example avec l’application même lors d’un build sans émulateurs (`--modules=0`) ; son cœur simulé doit fonctionner comme un vrai émulateur par les mêmes interfaces. Aligner ensuite tous les autres modules sur cette structure.
+- Faire passer les échanges de tous les composants par le Common de leur module, qui assure l’adaptation et le lien avec GWGUI.Emulation.
+  - Définir l’API par des interfaces publiques avec des implémentations internes.
+  - Rendre cette API utilisable par tout créateur de module autonome.
+- Documenter entièrement Example en français dans les commentaires de ses sources, pour expliquer le fonctionnement et l’utilisation de chaque élément à un créateur de module.
+  - Décrire le rôle, les unités et l’usage des valeurs avec des formulations génériques ; conserver les valeurs de base choisies, notamment 44 100 Hz pour la fréquence audio de repli.
+- Garder les déclarations et les appels sur une seule ligne, avec des retours seulement lorsque la ligne devient vraiment très longue ; appliquer ce style à l’ensemble des fichiers concernés.
+- Consigner les modifications de code dans le fichier de tâches et suivre leur réalisation.
+- Suivre les instructions à la lettre et limiter les lectures aux fichiers et dossiers nécessaires au travail demandé.

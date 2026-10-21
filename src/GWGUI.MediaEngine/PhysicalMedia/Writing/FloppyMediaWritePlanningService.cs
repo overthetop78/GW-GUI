@@ -1,10 +1,10 @@
 using System.Globalization;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaFluxRevolutionData = global::GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
-using MediaFluxTrackData = global::GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
-using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
-using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaFluxRevolutionData = GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
+using MediaFluxTrackData = GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
+using MediaPhysicalDataUnit = GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using MediaWritePlan = GWGUI.MediaEngine.Contracts.MediaWritePlan;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Writing.Encoding;

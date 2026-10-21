@@ -1,4 +1,4 @@
-using DiskGeometryConstants = global::GWGUI.MediaFileSystems.Constants.DiskGeometryConstants;
+using DiskGeometryConstants = GWGUI.MediaFileSystems.Constants.DiskGeometryConstants;
 
 namespace GWGUI.MediaFileSystems.Formats.Commodore;
 

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Buffers.Binary;
 using System.Security.Cryptography;
@@ -61,5 +62,5 @@ internal static class SavedStateFunctions
         EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
 
-    private static string HashFile(string path) => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(path);
+    private static string HashFile(string path) => EmulationSdk.CoreDiagnostics.CalculateSha256(path);
 }

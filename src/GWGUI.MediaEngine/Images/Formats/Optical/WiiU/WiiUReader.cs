@@ -71,7 +71,7 @@ public sealed class WiiUReader : IMediaImageReader
             throw new InvalidDataException("The Nintendo Wii U WUD image is not aligned to optical sectors.");
         }
 
-        var source = isWux ? new WiiUWuxRandomAccessData(context.Source.PrimaryPath, wux, indexTable!) as global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData : new FileRandomAccessData(context.Source.PrimaryPath);
+        var source = isWux ? new WiiUWuxRandomAccessData(context.Source.PrimaryPath, wux, indexTable!) as GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData : new FileRandomAccessData(context.Source.PrimaryPath);
         var logicalLength = isWux ? wux.UncompressedSize : context.Length;
         var logicalBlockSize = WiiUFormat.OpticalSectorSize;
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)

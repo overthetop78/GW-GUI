@@ -1,4 +1,4 @@
-using ConversionSourceCompatibility = global::GWGUI.MediaEngine.Images.Conversion.ConversionSourceCompatibility;
+using ConversionSourceCompatibility = GWGUI.MediaEngine.Images.Conversion.ConversionSourceCompatibility;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.App.Contracts.ViewModels.Conversion;

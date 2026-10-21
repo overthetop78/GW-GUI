@@ -1,4 +1,4 @@
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 
 namespace GWGUI.Tests.Hardware.PhysicalReading;

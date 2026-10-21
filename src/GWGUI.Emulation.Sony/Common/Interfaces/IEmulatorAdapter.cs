@@ -1,4 +1,4 @@
 namespace GWGUI.Emulation.Sony.Common.Interfaces;
-internal interface IEmulatorAdapter : global::GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
 {
 }

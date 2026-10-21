@@ -8,7 +8,7 @@ using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Rendering.Blocks;
 using GWGUI.App.Rendering.Optical;
 using GWGUI.App.Rendering.Sequential;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Models.Optical;

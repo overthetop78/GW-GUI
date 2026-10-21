@@ -6,7 +6,7 @@ using GWGUI.App.Services.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;

@@ -1,8 +1,8 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GwOptionValidator = GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
 using GWGUI.Infrastructure.Maintenance;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Interfaces.Services.Dialogs;

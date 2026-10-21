@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
 
@@ -23,7 +24,7 @@ internal sealed class ExternalCoreAudioCallbackHost : IDisposable
     private void OnSample(short left, short right)
     {
         if (_disposed) return;
-        try { Enqueue(EmulationAudioFunctions.SingleFrame(left, right), 1); }
+        try { Enqueue(EmulationSdk.AudioProcessing.SingleFrame(left, right), 1); }
         catch (Exception error) { Failure ??= error; }
     }
 
@@ -33,7 +34,7 @@ internal sealed class ExternalCoreAudioCallbackHost : IDisposable
         try
         {
             var count = checked((int)frames);
-            var samples = EmulationAudioFunctions.CopyBatch(data, count);
+            var samples = EmulationSdk.AudioProcessing.CopyBatch(data, count);
             Enqueue(samples, count);
             return frames;
         }
@@ -43,8 +44,8 @@ internal sealed class ExternalCoreAudioCallbackHost : IDisposable
     private void Enqueue(short[] samples, int frames)
     {
         var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);
-        var maximum = EmulationAudioFunctions.MaximumBufferedFrames(SampleRate);
-        chunk = EmulationAudioFunctions.RetainNewestFrames(chunk, maximum);
+        var maximum = EmulationSdk.AudioProcessing.MaximumBufferedFrames(SampleRate);
+        chunk = EmulationSdk.AudioProcessing.RetainNewestFrames(chunk, maximum);
         LatestChunk = chunk;
         while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }
         _chunks.Enqueue(chunk);

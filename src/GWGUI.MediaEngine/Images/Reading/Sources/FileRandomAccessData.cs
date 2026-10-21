@@ -1,4 +1,4 @@
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Reading.Sources;
 

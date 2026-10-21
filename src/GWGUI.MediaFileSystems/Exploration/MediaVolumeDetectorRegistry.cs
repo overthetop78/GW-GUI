@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaFileSystems.Exploration;

@@ -1,4 +1,4 @@
-using MediaVolumeOrigins = global::GWGUI.MediaEngine.Constants.MediaVolumeOrigins;
+using MediaVolumeOrigins = GWGUI.MediaEngine.Constants.MediaVolumeOrigins;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Explorer;
 using GWGUI.App.Enums.Explorer;

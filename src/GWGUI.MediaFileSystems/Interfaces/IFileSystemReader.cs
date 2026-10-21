@@ -1,7 +1,7 @@
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
-using IMediaSectorRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaFileSystems;

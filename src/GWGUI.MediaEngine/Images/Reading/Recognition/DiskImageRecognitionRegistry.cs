@@ -1,4 +1,4 @@
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 

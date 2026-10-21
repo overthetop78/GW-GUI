@@ -2,7 +2,7 @@ using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.Json;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Recognition;

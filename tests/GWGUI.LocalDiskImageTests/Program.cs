@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine;

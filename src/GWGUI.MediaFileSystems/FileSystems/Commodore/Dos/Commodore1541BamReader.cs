@@ -1,6 +1,6 @@
 using GWGUI.MediaFileSystems.Formats.Commodore;
 
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 

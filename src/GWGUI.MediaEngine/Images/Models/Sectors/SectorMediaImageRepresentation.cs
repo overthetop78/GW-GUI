@@ -1,7 +1,7 @@
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
-using IMediaSectorRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
 
 namespace GWGUI.MediaEngine.Images.Models.Sectors;
 

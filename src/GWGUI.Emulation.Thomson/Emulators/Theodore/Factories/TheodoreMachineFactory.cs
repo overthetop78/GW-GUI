@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Dictionaries;
@@ -40,8 +41,8 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Theodore);
-        var forwarded = global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Theodore);
+        var forwarded = EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }

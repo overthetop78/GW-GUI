@@ -1,4 +1,4 @@
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.ProDos;
 /// <summary>Valide et décode l'en-tête du volume ProDOS.</summary>

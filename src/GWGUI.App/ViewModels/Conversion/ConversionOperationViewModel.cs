@@ -1,6 +1,6 @@
 using GWGUI.App.ViewModels;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using ConversionSelection = global::GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using ConversionSelection = GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.ViewModels.Operations.Options;
 

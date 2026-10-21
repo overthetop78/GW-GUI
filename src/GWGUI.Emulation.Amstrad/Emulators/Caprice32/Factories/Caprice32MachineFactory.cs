@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 using ReleaseConstants = GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants.CoreReleaseConstants;
 using EmulatorConstants = GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants.EmulatorConstants;
@@ -51,7 +52,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapab
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
+        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
         return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

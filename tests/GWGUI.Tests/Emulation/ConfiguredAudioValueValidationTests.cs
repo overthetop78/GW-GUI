@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using GWGUI.Emulation.Functions;
 
@@ -21,7 +22,7 @@ public sealed class ConfiguredAudioValueValidationTests
     [InlineData("1,000", true)]
     public void ConfiguredLatencyMustBeAnInvariantIntegerFromTheSupportedChoices(string? value, bool invalid)
     {
-        Assert.Equal(invalid, EmulationAudioFunctions.HasInvalidConfiguredLatency(value));
+        Assert.Equal(invalid, EmulationSdk.AudioProcessing.HasInvalidConfiguredLatency(value));
     }
 
     [Theory]
@@ -39,17 +40,17 @@ public sealed class ConfiguredAudioValueValidationTests
     [InlineData("1,0", true)]
     public void VolumeBoundsAreInclusiveWithoutClamping(string? value, bool invalid)
     {
-        Assert.Equal(invalid, EmulationAudioFunctions.HasInvalidConfiguredVolume(value, 0, 100));
+        Assert.Equal(invalid, EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume(value, 0, 100));
     }
 
     [Fact]
     public void VolumeUsesTheCallersBoundsAndHandlesIntegerExtremes()
     {
-        Assert.False(EmulationAudioFunctions.HasInvalidConfiguredVolume("-25", -50, 50));
-        Assert.True(EmulationAudioFunctions.HasInvalidConfiguredVolume("75", -50, 50));
-        Assert.False(EmulationAudioFunctions.HasInvalidConfiguredVolume("-2147483648", int.MinValue, int.MaxValue));
-        Assert.False(EmulationAudioFunctions.HasInvalidConfiguredVolume("2147483647", int.MinValue, int.MaxValue));
-        Assert.True(EmulationAudioFunctions.HasInvalidConfiguredVolume("50", 100, 0));
+        Assert.False(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("-25", -50, 50));
+        Assert.True(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("75", -50, 50));
+        Assert.False(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("-2147483648", int.MinValue, int.MaxValue));
+        Assert.False(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("2147483647", int.MinValue, int.MaxValue));
+        Assert.True(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("50", 100, 0));
     }
 
     [Fact]
@@ -61,9 +62,9 @@ public sealed class ConfiguredAudioValueValidationTests
         try
         {
             CultureInfo.CurrentCulture = culture;
-            Assert.False(EmulationAudioFunctions.HasInvalidConfiguredLatency("+50"));
-            Assert.False(EmulationAudioFunctions.HasInvalidConfiguredVolume("-25", -50, 50));
-            Assert.True(EmulationAudioFunctions.HasInvalidConfiguredVolume("~25", -50, 50));
+            Assert.False(EmulationSdk.AudioProcessing.HasInvalidConfiguredLatency("+50"));
+            Assert.False(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("-25", -50, 50));
+            Assert.True(EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume("~25", -50, 50));
         }
         finally { CultureInfo.CurrentCulture = previous; }
     }

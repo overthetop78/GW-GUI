@@ -1,4 +1,4 @@
-using PartitionTableIds = global::GWGUI.MediaEngine.Constants.PartitionTableIds;
+using PartitionTableIds = GWGUI.MediaEngine.Constants.PartitionTableIds;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Rendering.Blocks;
 using GWGUI.App.Contracts.ViewModels.Visualization;

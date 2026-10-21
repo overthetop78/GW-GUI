@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using GWGUI.Emulation.Functions;
 
@@ -15,7 +16,7 @@ public sealed class RuntimeAudioSelectionTests
     public void OutputPreservesTheStoredValueExceptTheExactDefaultToken(string? stored, string? expected)
     {
         var options = new Dictionary<string, string> { ["family-output"] = stored! };
-        Assert.Equal(expected, EmulationAudioFunctions.ResolveRuntimeOutput(options, "family-output", "default"));
+        Assert.Equal(expected, EmulationSdk.AudioProcessing.ResolveRuntimeOutput(options, "family-output", "default"));
     }
 
     [Fact]
@@ -27,11 +28,11 @@ public sealed class RuntimeAudioSelectionTests
             ["Family-Latency"] = "37",
             ["other-output"] = "another-device"
         };
-        Assert.Null(EmulationAudioFunctions.ResolveRuntimeOutput(options, "family-output", "auto"));
-        Assert.Equal("auto", EmulationAudioFunctions.ResolveRuntimeOutput(options, "family-output", "default"));
-        Assert.Null(EmulationAudioFunctions.ResolveRuntimeOutput(options, "missing", "default"));
-        Assert.Equal(37, EmulationAudioFunctions.ResolveRuntimeLatency(options, "family-latency"));
-        Assert.Equal(50, EmulationAudioFunctions.ResolveRuntimeLatency(options, "missing"));
+        Assert.Null(EmulationSdk.AudioProcessing.ResolveRuntimeOutput(options, "family-output", "auto"));
+        Assert.Equal("auto", EmulationSdk.AudioProcessing.ResolveRuntimeOutput(options, "family-output", "default"));
+        Assert.Null(EmulationSdk.AudioProcessing.ResolveRuntimeOutput(options, "missing", "default"));
+        Assert.Equal(37, EmulationSdk.AudioProcessing.ResolveRuntimeLatency(options, "family-latency"));
+        Assert.Equal(50, EmulationSdk.AudioProcessing.ResolveRuntimeLatency(options, "missing"));
         Assert.Equal(3, options.Count);
     }
 
@@ -52,7 +53,7 @@ public sealed class RuntimeAudioSelectionTests
     public void LatencyKeepsInvariantIntegerParsingAndDoesNotClamp(string? stored, int expected)
     {
         var options = new Dictionary<string, string> { ["family-latency"] = stored! };
-        Assert.Equal(expected, EmulationAudioFunctions.ResolveRuntimeLatency(options, "family-latency"));
+        Assert.Equal(expected, EmulationSdk.AudioProcessing.ResolveRuntimeLatency(options, "family-latency"));
     }
 
     [Fact]
@@ -64,9 +65,9 @@ public sealed class RuntimeAudioSelectionTests
         try
         {
             CultureInfo.CurrentCulture = culture;
-            Assert.Equal(-25, EmulationAudioFunctions.ResolveRuntimeLatency(
+            Assert.Equal(-25, EmulationSdk.AudioProcessing.ResolveRuntimeLatency(
                 new Dictionary<string, string> { ["latency"] = "-25" }, "latency"));
-            Assert.Equal(50, EmulationAudioFunctions.ResolveRuntimeLatency(
+            Assert.Equal(50, EmulationSdk.AudioProcessing.ResolveRuntimeLatency(
                 new Dictionary<string, string> { ["latency"] = "~25" }, "latency"));
         }
         finally { CultureInfo.CurrentCulture = previous; }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
@@ -22,7 +23,7 @@ public sealed class ExternalCoreInstaller
 
     public string LibraryPath => Path.Combine(_directory, _definition.LibraryFile);
 
-    public bool IsInstalled => global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(LibraryPath, _definition.VerifyInstallation) is not null;
+    public bool IsInstalled => EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(LibraryPath, _definition.VerifyInstallation) is not null;
 
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {
