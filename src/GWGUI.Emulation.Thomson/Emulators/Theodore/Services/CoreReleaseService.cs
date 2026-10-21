@@ -21,9 +21,9 @@ internal sealed class CoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var entry = CoreCatalog.Get(emulator);
-        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
+        return await global::GWGUI.Emulation.EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
         {
-            return[EmulationCoreReleaseFunctions.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
+            return[global::GWGUI.Emulation.EmulationSdk.CoreReleases.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
                 CoreReleaseConstants.ReleaseVersionFormat, static () => CoreReleaseErrors.MissingPublishedDate)];
         }, cancellationToken).ConfigureAwait(false);
     }
@@ -38,7 +38,7 @@ internal sealed class CoreReleaseService
         var extracted = paths.LibraryPath + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
-            await EmulationCoreReleaseFunctions.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
+            await global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
             {
                 var manifest = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
                     archiveSize, extracted);
@@ -67,7 +67,7 @@ internal sealed class CoreReleaseService
 
     public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        return await EmulationCoreReleaseFunctions.GetActiveInstallationAsync(
+        return await global::GWGUI.Emulation.EmulationSdk.CoreReleases.GetActiveInstallationAsync(
             CoreCatalog.GetActiveManifestPath(emulator, _installationRoot),
             version => CoreCatalog.GetInstallationPaths(emulator, _installationRoot, version), cancellationToken).ConfigureAwait(false);
     }

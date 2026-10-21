@@ -45,7 +45,7 @@ public sealed class ExternalCoreInstaller
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            EmulationCoreReleaseFunctions.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
                 static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
             var sha256 = global::GWGUI.Emulation.EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);

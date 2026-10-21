@@ -39,8 +39,8 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Potator);
-        var forwarded = EmulationCoreReleaseFunctions.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Potator);
+        var forwarded = global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }

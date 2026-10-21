@@ -11,7 +11,7 @@ public sealed class CoreReleaseSelectionTests
         var expected = new Release(42);
         var releases = new Dictionary<string, Release> { ["build"] = expected };
 
-        Assert.Same(expected, EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("build")));
+        Assert.Same(expected, global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested("build")));
     }
 
     [Fact]
@@ -19,7 +19,7 @@ public sealed class CoreReleaseSelectionTests
     {
         var releases = new Dictionary<string, Release>();
         var error = Assert.Throws<ArgumentException>(() =>
-            EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("missing")));
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested("missing")));
 
         Assert.Equal("release", error.Message);
         Assert.Null(error.ParamName);
@@ -40,7 +40,7 @@ public sealed class CoreReleaseSelectionTests
         var expected = identifier == "build" ? lower : upper;
         var predicateCalls = 0;
 
-        var selected = EmulationCoreReleaseFunctions.SelectRelease(releases, Requested(identifier), value =>
+        var selected = global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested(identifier), value =>
         {
             predicateCalls++;
             Assert.Same(expected, value);
@@ -56,7 +56,7 @@ public sealed class CoreReleaseSelectionTests
     {
         var releases = new Dictionary<string, Release>();
         var error = Assert.Throws<ArgumentException>(() =>
-            EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("missing"),
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested("missing"),
                 _ => throw new InvalidOperationException("Predicate must not run.")));
         Assert.Equal("release", error.Message);
         Assert.Null(error.ParamName);
@@ -67,7 +67,7 @@ public sealed class CoreReleaseSelectionTests
     {
         var releases = new Dictionary<string, Release> { ["build"] = new(2) };
         var error = Assert.Throws<ArgumentException>(() =>
-            EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("build"),
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested("build"),
                 value => value.Emulator == 1));
         Assert.Equal("release", error.Message);
         Assert.Null(error.ParamName);
@@ -79,7 +79,7 @@ public sealed class CoreReleaseSelectionTests
         var releases = new Dictionary<string, Release> { ["build"] = new(1) };
         var expected = new InvalidOperationException("Emulator lookup failed.");
         var observed = Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("build"),
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.SelectRelease(releases, Requested("build"),
                 _ => throw expected));
         Assert.Same(expected, observed);
     }
@@ -87,7 +87,7 @@ public sealed class CoreReleaseSelectionTests
     [Fact]
     public void MissingProgressDoesNotCreateAnAdapterOrProjectValues()
     {
-        Assert.Null(EmulationCoreReleaseFunctions.CreateInstallProgress<Update>(null,
+        Assert.Null(global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallProgress<Update>(null,
             _ => throw new InvalidOperationException("Projection must not run.")));
     }
 
@@ -106,7 +106,7 @@ public sealed class CoreReleaseSelectionTests
         try
         {
             SynchronizationContext.SetSynchronizationContext(context);
-            var adapter = EmulationCoreReleaseFunctions.CreateInstallProgress<Update>(
+            var adapter = global::GWGUI.Emulation.EmulationSdk.CoreReleases.CreateInstallProgress<Update>(
                 new RecordingProgress<double>(recorded.Add), value =>
                 {
                     projections++;

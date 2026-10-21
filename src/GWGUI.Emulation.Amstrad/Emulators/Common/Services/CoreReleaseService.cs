@@ -26,12 +26,12 @@ public sealed class CoreReleaseService
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        return EmulationCoreReleaseFunctions.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        return global::GWGUI.Emulation.EmulationSdk.CoreReleases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _definition.DownloadUri, response =>
+        return await global::GWGUI.Emulation.EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _definition.DownloadUri, response =>
         {
             var published = response.Content.Headers.LastModified ?? response.Headers.Date;
             var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.ReleaseIdentifierDateFormat) ?? CoreReleaseConstants.Latest;
@@ -55,8 +55,8 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            await EmulationCoreReleaseFunctions.InstallLibraryAsync(
-                () => EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
+            await global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
+                () => global::GWGUI.Emulation.EmulationSdk.CoreReleases.DownloadAsync(_httpClient, release.DownloadUri, download,
                     (written, total) =>
                     {
                         if (total > 0) progress?.Report(written / (double)total.Value);
@@ -65,7 +65,7 @@ public sealed class CoreReleaseService
                 {
                     if (release.IsZip)
                     {
-                        EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
+                        global::GWGUI.Emulation.EmulationSdk.CoreReleases.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
                             static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);

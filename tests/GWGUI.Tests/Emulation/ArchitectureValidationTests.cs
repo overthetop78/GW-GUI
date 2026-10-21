@@ -7,6 +7,18 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void ReleaseApiExposesAnInterfaceAndKeepsItsImplementationInternal()
+    {
+        var entry = typeof(global::GWGUI.Emulation.EmulationSdk)
+            .GetProperty(nameof(global::GWGUI.Emulation.EmulationSdk.CoreReleases))!;
+        Assert.Equal(typeof(IEmulationCoreReleases), entry.PropertyType);
+        Assert.True(entry.PropertyType.IsPublic);
+        var implementation = global::GWGUI.Emulation.EmulationSdk.CoreReleases.GetType();
+        Assert.False(implementation.IsVisible);
+        Assert.Null(implementation.GetMethod("ReadJsonAsync", BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance));
+    }
+
+    [Fact]
     public void DiagnosticApiExposesAnInterfaceAndKeepsItsImplementationInternal()
     {
         var entry = typeof(global::GWGUI.Emulation.EmulationSdk)

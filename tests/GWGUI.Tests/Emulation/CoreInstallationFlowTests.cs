@@ -9,7 +9,7 @@ public sealed class CoreInstallationFlowTests
     {
         var events = new List<string>();
         var manifest = new object();
-        await EmulationCoreReleaseFunctions.InstallLibraryAsync(
+        await global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
             () => { events.Add("download"); return Task.FromResult(123L); },
             () => events.Add("extract"),
             size => { Assert.Equal(123L, size); events.Add("validate"); return manifest; },
@@ -38,7 +38,7 @@ public sealed class CoreInstallationFlowTests
             if (stage == failureStage) throw error;
         }
         var observed = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            EmulationCoreReleaseFunctions.InstallLibraryAsync(
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
                 () => { Visit(0); return Task.FromResult(123L); },
                 () => Visit(1),
                 size => { Visit(2); return new object(); },
@@ -56,7 +56,7 @@ public sealed class CoreInstallationFlowTests
         var events = new List<string>();
         var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var release = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        var installation = EmulationCoreReleaseFunctions.InstallLibraryAsync(
+        var installation = global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
             () => { events.Add("download"); return Task.FromResult(123L); },
             () => events.Add("extract"),
             size => { events.Add("validate"); return "sha256"; },
@@ -91,7 +91,7 @@ public sealed class CoreInstallationFlowTests
         var error = new InvalidOperationException("preparation failed");
         var events = new List<string>();
         var observed = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            EmulationCoreReleaseFunctions.InstallLibraryAsync(
+            global::GWGUI.Emulation.EmulationSdk.CoreReleases.InstallLibraryAsync(
                 () => { events.Add("download"); return Task.FromResult(123L); },
                 () => events.Add("extract"),
                 size => { events.Add("validate"); return "sha256"; },
