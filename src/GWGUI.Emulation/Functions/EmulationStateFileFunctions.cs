@@ -65,14 +65,6 @@ public static class EmulationStateFileFunctions
         return HashBytes(stream.GetBuffer().AsSpan(0, checked((int)stream.Length)));
     }
 
-    /// <summary>Inclut les empreintes de tous les médias dans leur ordre de montage et de tous les firmwares par clé.</summary>
-    public static string HashContent(IEnumerable<string> mediaHashes, IEnumerable<KeyValuePair<string, string>> firmwareHashes) =>
-        HashDocument(new
-        {
-            Media = mediaHashes.ToArray(),
-            Firmware = firmwareHashes.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray()
-        });
-
     private static void WriteCanonical(JsonElement element, Utf8JsonWriter writer)
     {
         if (element.ValueKind == JsonValueKind.Object)

@@ -203,11 +203,30 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             EmulationMessageCategory.Machine, EmulationMessageCode.OptionInvalid);
 
     // Projections du modèle ; les écritures, comparaisons et empreintes restent dans le SDK commun.
-    private string StateConfigurationHash() => EmulationStateFileFunctions.HashDocument(Configuration with
+    private string StateConfigurationHash() => EmulationStateFileFunctions.HashDocument(new
     {
-        Id = Guid.Empty,
-        Options = new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal)
+        Configuration = Configuration with
+        {
+            Id = Guid.Empty,
+            Options = new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal)
+        },
+        MountedMedia = _mountedCommonMedia.OrderBy(media => media.Slot)
+            .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
+            .Select(media => new
+            {
+                Slot = media.Slot.ToString(), media.Type, media.Path, media.IsReadOnly, media.IsInserted
+            }).ToArray()
     });
 
-    private string StateContentHash() => EmulationStateFileFunctions.HashContent(_mediaPaths.Select(StateStore.HashPath), FirmwareHashes());
+    private string StateContentHash()
+    {
+        IEnumerable<KeyValuePair<string, string>> firmwareHashes = FirmwareHashes();
+        var entries = firmwareHashes.OrderBy(pair => pair.Key, StringComparer.Ordinal)
+            .Select(pair => new EmulationStateContentEntry("firmware", pair.Key, pair.Value))
+            .Concat(_mountedCommonMedia.Where(media => media.IsInserted).OrderBy(media => media.Slot)
+                .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
+                .Select(media => new EmulationStateContentEntry("media", media.Type + ":" + media.Slot,
+                    StateStore.HashPath(media.Path))));
+        return EmulationStateFileFunctions.HashDocument(entries.ToArray());
+    }
 }

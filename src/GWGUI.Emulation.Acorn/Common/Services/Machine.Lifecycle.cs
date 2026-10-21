@@ -160,10 +160,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Options = _core.Options.ToDictionary(option => option.Key, option => option.CurrentValue, StringComparer.Ordinal)
     };
 
-    private static string StateContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashContent(
-        configuration.Media.Where(media => media.IsInserted).Select(media => HashStatePath(media.Path)),
-        configuration.Firmwares.Select(firmware => new KeyValuePair<string, string>(
-            firmware.Category.ToString(), HashStatePath(firmware.Path))));
+    private static string StateContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(
+        configuration.Firmwares.OrderBy(firmware => firmware.Category)
+            .Select(firmware => new EmulationStateContentEntry("firmware", firmware.Category.ToString(), HashStatePath(firmware.Path)))
+            .Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(media => media.Slot)
+                .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
+                .Select(media => new EmulationStateContentEntry("media", media.Category + ":" + media.Slot,
+                    HashStatePath(media.Path)))).ToArray());
 
     private static string HashStatePath(string path) => EmulationStateFileFunctions.HashPath(path, "*", '/', 64 * 1024,
         () => new FileNotFoundException(ErrorMessages.StateInvalid, path));
