@@ -26,6 +26,13 @@ internal sealed partial class ExternalCore
 
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot)?.RequiresExplicitSave == true;
 
-    public byte[] SaveState() => throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
-    public void LoadState(ReadOnlySpan<byte> state) => throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
+    public byte[] SaveState() => ExternalCoreLifecycleFunctions.SerializeState(RequireExports, SupportsSaveStates,
+        (nuint)Array.MaxLength,
+        static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable),
+        static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSaveFailed));
+
+    public void LoadState(ReadOnlySpan<byte> state) => ExternalCoreLifecycleFunctions.UnserializeState(RequireExports,
+        SupportsSaveStates, (nuint)Array.MaxLength, state,
+        static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSizeInvalid),
+        static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateLoadFailed));
 }

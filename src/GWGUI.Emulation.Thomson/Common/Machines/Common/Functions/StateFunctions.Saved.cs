@@ -12,15 +12,8 @@ internal static class SavedStateFunctions
         ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
-        if (header.FormatVersion != StateConstants.CurrentFormatVersion)
-            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (!EmulationStateFileFunctions.CoreIdentityMatches(header.Core == core.Emulator, header.CoreName, header.CoreVersion, header.CoreSha256, core))
-            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (header.Model != configuration.Model)
-            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (!string.Equals(header.ContentSha256, ContentHash(configuration), StringComparison.OrdinalIgnoreCase))
-            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (!IsCompatibleConfigurationHash(configuration, header.ConfigurationSha256))
+        if (!EmulationStateFileFunctions.IsCompatible(header, configuration.Model, core.Emulator, core,
+                () => ConfigurationHash(configuration), () => ContentHash(configuration)))
             throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
     }
 
@@ -48,11 +41,10 @@ internal static class SavedStateFunctions
             InputFingerprint(configuration.Input),
             configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray()
         );
-        return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, StateConstants.JsonOptions));
+        return EmulationStateFileFunctions.HashDocument(fingerprint);
     }
 
-    internal static bool IsCompatibleConfigurationHash(MachineConfiguration configuration, string hash) => string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase);
-    internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
+    internal static string ContentHash(MachineConfiguration configuration) => EmulationStateFileFunctions.HashDocument(ContentEntries(configuration));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
         var initialPaths = configuration.InitialContent is null ? Array.Empty<string>() : new[]
@@ -65,7 +57,6 @@ internal static class SavedStateFunctions
     }
 
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
-    internal static bool IsHeaderValid(SavedStateHeader header) => EmulationStateFileFunctions.IsHeaderValid(header);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
         EmulationStateFileFunctions.OrderInputMappings(input.Keyboard).ToArray(),
         (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,

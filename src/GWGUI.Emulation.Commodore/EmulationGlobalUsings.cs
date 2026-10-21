@@ -1,3 +1,4 @@
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;

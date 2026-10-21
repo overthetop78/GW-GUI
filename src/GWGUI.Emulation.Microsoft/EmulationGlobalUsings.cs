@@ -25,6 +25,6 @@ global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulat
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 
-global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationLegacySavedStateHeader;
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 
 global using EmulatorCreationContext = global::GWGUI.Emulation.Contracts.EmulatorCreationContext<global::GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts.MachineConfiguration>;

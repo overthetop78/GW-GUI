@@ -153,10 +153,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         return QueueCommand(() =>
         {
             var state = _core.SaveState();
-            var header = new SavedStateHeader(SavedStateConstants.CurrentFormatVersion,
-                Configuration.Model, _core.CoreSha256,
-                new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal),
-                _mediaPaths.Select(StateStore.HashPath).ToArray(), StateStore.HashBytes(state));
+            var header = new SavedStateHeader(EmulationSavedStateConstants.CurrentFormatVersion,
+                Configuration.EmulatorId, _core.CoreName, _core.CoreVersion, _core.CoreSha256, Configuration.Model,
+                StateConfigurationHash(),
+                StateContentHash(), StateStore.HashBytes(state));
             StateStore.Write(path, header, state);
         }, cancellationToken, EmulationMessageCategory.SavedState,
             EmulationMessageCode.SavedStateOperationFailed);
@@ -168,11 +168,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         return QueueCommand(() =>
         {
             var saved = StateStore.Read(path);
-            if (saved.Header.FormatVersion != SavedStateConstants.CurrentFormatVersion
-                || saved.Header.Model != Configuration.Model
-                || saved.Header.CoreSha256 != _core.CoreSha256
-                || !EmulationStateFileFunctions.IdentityValuesEqual(saved.Header.Options, _currentOptions)
-                || !saved.Header.MediaSha256s.SequenceEqual(_mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
+            if (!EmulationStateFileFunctions.IsCompatible(saved.Header, Configuration.Model, Configuration.EmulatorId, _core,
+                StateConfigurationHash,
+                StateContentHash))
                 throw MachineExceptions.SavedStateIncompatible();
             _core.LoadState(saved.State);
         }, cancellationToken, EmulationMessageCategory.SavedState,
@@ -182,4 +180,16 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken,
             EmulationMessageCategory.Machine, EmulationMessageCode.OptionInvalid);
+
+    // Projections du modèle ; les écritures, comparaisons et empreintes restent dans le SDK commun.
+    private string StateConfigurationHash() => EmulationStateFileFunctions.HashDocument(Configuration with
+    {
+        Id = Guid.Empty,
+        Options = new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal)
+    });
+
+    private string StateContentHash() => EmulationStateFileFunctions.HashContent(_mediaPaths.Select(StateStore.HashPath),
+            (Configuration.FirmwarePaths ?? new Dictionary<string, string>())
+                .Where(pair => !string.IsNullOrWhiteSpace(pair.Value))
+                .Select(pair => new KeyValuePair<string, string>(pair.Key, StateStore.HashPath(pair.Value))));
 }

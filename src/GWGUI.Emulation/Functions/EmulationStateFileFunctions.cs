@@ -8,9 +8,92 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Functions;
 
 /// <summary>Lecture, écriture et vérification des sauvegardes partagées par les modules indépendants.</summary>
-/// <remarks>Chaque module conserve son marqueur, son schéma et ses règles de compatibilité. Ces opérations ne modifient pas les formats existants.</remarks>
+/// <remarks>WriteState et ReadState appliquent le format commun à tous les modules. Les projections d’identité et de contenu restent définies par le modèle émulé ; aucun ancien format de famille n’est sélectionné.</remarks>
 public static class EmulationStateFileFunctions
 {
+    private static readonly JsonSerializerOptions StateJsonOptions = new(JsonSerializerDefaults.Web);
+
+    /// <summary>Écrit une sauvegarde dans le format unique du SDK, après contrôle de son en-tête et de ses octets.</summary>
+    public static void WriteState<TModel, TCore>(string path, EmulationSavedStateHeader<TModel, TCore> header,
+        ReadOnlySpan<byte> state)
+    {
+        if (!IsHeaderValid(header) || header.FormatVersion != EmulationSavedStateConstants.CurrentFormatVersion
+            || state.IsEmpty || !string.Equals(header.StateSha256, HashBytes(state), StringComparison.OrdinalIgnoreCase))
+            throw new InvalidDataException(nameof(EmulationSavedStateHeader<TModel, TCore>));
+        WriteFile(path, header, state, EmulationSavedStateConstants.Magic, "." + Guid.NewGuid().ToString("N") + ".tmp",
+            StateJsonOptions, useFileReplace: true);
+    }
+
+    /// <summary>Lit exclusivement le format commun et vérifie l’en-tête, la version et l’intégrité de l’état.</summary>
+    /// <remarks>Le module fournit son erreur localisée. Les anciens marqueurs et les en-têtes incomplets sont rejetés.</remarks>
+    public static (EmulationSavedStateHeader<TModel, TCore> Header, byte[] State) ReadState<TModel, TCore>(
+        string path, Func<Exception> invalid)
+    {
+        try
+        {
+            return ReadFile<EmulationSavedStateHeader<TModel, TCore>>(path, EmulationSavedStateConstants.Magic,
+                EmulationSavedStateConstants.MaximumHeaderLength, StateJsonOptions, static header => header.StateSha256,
+                invalid, static header => header.FormatVersion == EmulationSavedStateConstants.CurrentFormatVersion
+                    && IsHeaderValid(header), length => { if (length <= 0 || length > Array.MaxLength) throw invalid(); },
+                EmulationSavedStateConstants.ReadRetryCount, EmulationSavedStateConstants.ReadRetryDelayMilliseconds);
+        }
+        catch (EndOfStreamException) { throw invalid(); }
+        catch (JsonException) { throw invalid(); }
+    }
+
+    /// <summary>Applique les mêmes contrôles de compatibilité de cœur, modèle, contenu et configuration à tous les modules.</summary>
+    /// <remarks>Les empreintes sont calculées seulement après validation de l’identité, puis contenu avant configuration.</remarks>
+    public static bool IsCompatible<TModel, TCore, TConfiguration, TOption>(EmulationSavedStateHeader<TModel, TCore> header,
+        TModel model, TCore emulator, IEmulationCoreRuntime<TConfiguration, TOption> core,
+        Func<string> configurationHash, Func<string> contentHash) =>
+        header.FormatVersion == EmulationSavedStateConstants.CurrentFormatVersion
+        && IsHeaderValid(header)
+        && CoreIdentityMatches(EqualityComparer<TCore>.Default.Equals(header.Core, emulator),
+            header.CoreName, header.CoreVersion, header.CoreSha256, core)
+        && EqualityComparer<TModel>.Default.Equals(header.Model, model)
+        && string.Equals(header.ContentSha256, contentHash(), StringComparison.OrdinalIgnoreCase)
+        && string.Equals(header.ConfigurationSha256, configurationHash(), StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>Calcule une empreinte JSON canonique : clés triées ordinalement, ordre des tableaux conservé.</summary>
+    public static string HashDocument<T>(T value, JsonSerializerOptions? options = null)
+    {
+        var document = JsonSerializer.SerializeToElement(value, options ?? StateJsonOptions);
+        using var stream = new MemoryStream();
+        using var writer = new Utf8JsonWriter(stream);
+        WriteCanonical(document, writer);
+        writer.Flush();
+        return HashBytes(stream.GetBuffer().AsSpan(0, checked((int)stream.Length)));
+    }
+
+    /// <summary>Inclut les empreintes de tous les médias dans leur ordre de montage et de tous les firmwares par clé.</summary>
+    public static string HashContent(IEnumerable<string> mediaHashes, IEnumerable<KeyValuePair<string, string>> firmwareHashes) =>
+        HashDocument(new
+        {
+            Media = mediaHashes.ToArray(),
+            Firmware = firmwareHashes.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray()
+        });
+
+    private static void WriteCanonical(JsonElement element, Utf8JsonWriter writer)
+    {
+        if (element.ValueKind == JsonValueKind.Object)
+        {
+            writer.WriteStartObject();
+            foreach (var property in element.EnumerateObject().OrderBy(property => property.Name, StringComparer.Ordinal))
+            {
+                writer.WritePropertyName(property.Name);
+                WriteCanonical(property.Value, writer);
+            }
+            writer.WriteEndObject();
+        }
+        else if (element.ValueKind == JsonValueKind.Array)
+        {
+            writer.WriteStartArray();
+            foreach (var item in element.EnumerateArray()) WriteCanonical(item, writer);
+            writer.WriteEndArray();
+        }
+        else element.WriteTo(writer);
+    }
+
     /// <summary>Vérifie l’émulateur, le nom, la version et l’empreinte du cœur avant restauration.</summary>
     public static bool CoreIdentityMatches<TConfiguration, TOption>(bool sameEmulator,
         string? name, string? version, string? sha256, IEmulationCoreRuntime<TConfiguration, TOption> core) =>
@@ -135,18 +218,20 @@ public static class EmulationStateFileFunctions
         IReadOnlyDictionary<string, TValue>? mappings) =>
         (mappings ?? new Dictionary<string, TValue>()).OrderBy(pair => pair.Key, StringComparer.Ordinal);
 
-    /// <summary>Vérifie les champs obligatoires de l’enveloppe et les valeurs des enums du module.</summary>
+    /// <summary>Vérifie les champs obligatoires et les identifiants du module, sous forme d’enums définis ou de texte non vide.</summary>
     /// <remarks>Le module doit aussi vérifier la version exacte et la correspondance des identités avec la machine courante.</remarks>
-    public static bool IsHeaderValid<TModel, TCore>(EmulationSavedStateHeader<TModel, TCore> header)
-        where TModel : struct, Enum
-        where TCore : struct, Enum =>
+    public static bool IsHeaderValid<TModel, TCore>(EmulationSavedStateHeader<TModel, TCore> header) =>
         header.FormatVersion > 0
-        && Enum.IsDefined(header.Core)
-        && Enum.IsDefined(header.Model)
+        && IsIdentityValid(header.Core)
+        && IsIdentityValid(header.Model)
         && !string.IsNullOrWhiteSpace(header.CoreName)
         && !string.IsNullOrWhiteSpace(header.CoreVersion)
         && !string.IsNullOrWhiteSpace(header.CoreSha256)
         && !string.IsNullOrWhiteSpace(header.ConfigurationSha256)
         && !string.IsNullOrWhiteSpace(header.ContentSha256)
         && !string.IsNullOrWhiteSpace(header.StateSha256);
+
+    private static bool IsIdentityValid<T>(T value) => value is Enum enumeration
+        ? Enum.IsDefined(enumeration.GetType(), enumeration)
+        : value is string text && !string.IsNullOrWhiteSpace(text);
 }

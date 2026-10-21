@@ -1,10 +1,46 @@
 using GWGUI.Emulation.Contracts;
+using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Functions;
 
 /// <summary>Opérations de cycle de vie communes aux modules d’émulation indépendants.</summary>
 public static class ExternalCoreLifecycleFunctions
 {
+    /// <summary>Sérialise le cœur avec les contrôles et la copie native partagés ; l’appelant possède le tableau retourné.</summary>
+    /// <remarks>La bibliothèque et ses exports restent empruntés. Le buffer natif est toujours libéré dans finally.</remarks>
+    public static byte[] SerializeState(Func<ExternalCoreExports> requireExports, bool supported, nuint maximumSize,
+        Func<Exception> unavailable, Func<Exception> saveFailed)
+    {
+        var exports = requireExports();
+        var size = exports.GetSerializedSize();
+        if (!supported || size == nuint.Zero || size > maximumSize) throw unavailable();
+        var length = checked((int)size);
+        var buffer = Marshal.AllocHGlobal(length);
+        try
+        {
+            if (!exports.Serialize(buffer, size)) throw saveFailed();
+            var state = new byte[length];
+            Marshal.Copy(buffer, state, 0, length);
+            return state;
+        }
+        finally { Marshal.FreeHGlobal(buffer); }
+    }
+
+    /// <summary>Restaure les octets d’état empruntés avec un buffer natif libéré après l’appel, même en cas d’échec.</summary>
+    public static void UnserializeState(Func<ExternalCoreExports> requireExports, bool supported, nuint maximumSize,
+        ReadOnlySpan<byte> state, Func<Exception> invalidSize, Func<Exception> loadFailed)
+    {
+        if (!supported || state.IsEmpty || (nuint)state.Length > maximumSize) throw invalidSize();
+        var exports = requireExports();
+        var buffer = Marshal.AllocHGlobal(state.Length);
+        try
+        {
+            Marshal.Copy(state.ToArray(), 0, buffer, state.Length);
+            if (!exports.Unserialize(buffer, checked((nuint)state.Length))) throw loadFailed();
+        }
+        finally { Marshal.FreeHGlobal(buffer); }
+    }
+
     internal static void DisposeCallbackResources(IDisposable? systemDirectory, IDisposable? contentDirectory,
         IDisposable? saveDirectory, IDisposable? assetsDirectory, IDisposable? virtualFileSystem,
         IDisposable? videoBuffers, IDisposable optionHost)

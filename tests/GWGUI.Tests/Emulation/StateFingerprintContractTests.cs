@@ -53,20 +53,39 @@ public sealed class StateFingerprintContractTests
         AssertSameJson(new { Port = 2, Peripheral = peripheral, DeviceId = (string?)null, DeadZonePercent = 23, Mappings = mappings }, actual);
     }
 
-    [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void LegacyHeadersKeepTheirSixFieldSchemaAndNullableOptions(bool hasOptions)
+    [Fact]
+    public void TextIdentitiesUseTheSameCompleteHeaderAsEnumIdentities()
     {
-        IReadOnlyDictionary<string, string>? options = hasOptions ? new Dictionary<string, string> { ["mode"] = "value" } : null;
-        var media = new[] { "media-sha" };
-        var actual = new EmulationLegacySavedStateHeader(1, "model", "core-sha", options, media, "state-sha");
-        AssertSameJson(new { FormatVersion = 1, Model = "model", CoreSha256 = "core-sha", Options = options, MediaSha256s = media, StateSha256 = "state-sha" }, actual);
+        var actual = new EmulationSavedStateHeader<string, string>(1, "core", "core-name", "core-version",
+            "core-sha", "model", "configuration-sha", "content-sha", "state-sha");
+        AssertSameJson(new { FormatVersion = 1, Core = "core", CoreName = "core-name", CoreVersion = "core-version",
+            CoreSha256 = "core-sha", Model = "model", ConfigurationSha256 = "configuration-sha",
+            ContentSha256 = "content-sha", StateSha256 = "state-sha" }, actual);
+        Assert.True(EmulationStateFileFunctions.IsHeaderValid(actual));
+        Assert.False(EmulationStateFileFunctions.IsHeaderValid(actual with { CoreName = "" }));
+        var incomplete = JsonSerializer.Deserialize<EmulationSavedStateHeader<string, string>>(
+            "{\"FormatVersion\":1,\"Model\":\"model\",\"CoreSha256\":\"core-sha\",\"StateSha256\":\"state-sha\"}");
+        Assert.False(EmulationStateFileFunctions.IsHeaderValid(incomplete!));
     }
 
     [Fact]
     public void ContentEntriesKeepTheirOriginalThreeFields()
         => AssertSameJson(new { Slot = "slot", Category = "media", Hash = "hash" }, new EmulationStateContentEntry("slot", "media", "hash"));
+
+    [Fact]
+    public void CanonicalFingerprintIgnoresKeyOrderButKeepsValuesAndArrayOrder()
+    {
+        var first = new Dictionary<string, object> { ["options"] = new Dictionary<string, string>
+            { ["z"] = "last", ["a"] = "first" }, ["media"] = new[] { "one", "two" } };
+        var reordered = new Dictionary<string, object> { ["media"] = new[] { "one", "two" },
+            ["options"] = new Dictionary<string, string> { ["a"] = "first", ["z"] = "last" } };
+        Assert.Equal(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+        reordered["media"] = new[] { "two", "one" };
+        Assert.NotEqual(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+        reordered["media"] = new[] { "one", "two" };
+        reordered["options"] = new Dictionary<string, string> { ["a"] = "changed", ["z"] = "last" };
+        Assert.NotEqual(EmulationStateFileFunctions.HashDocument(first), EmulationStateFileFunctions.HashDocument(reordered));
+    }
 
     [Fact]
     public void MissingMappingsStillProduceAnEmptySequence()

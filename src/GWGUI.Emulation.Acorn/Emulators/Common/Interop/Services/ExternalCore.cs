@@ -20,6 +20,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private string? _sessionDirectory;
     private bool _nativeInitialized;
     private bool _gameLoaded;
+    private bool _supportsSaveStates;
     private bool _disposed;
     private readonly List<SessionMedia> _sessionMedia = [];
 
@@ -41,7 +42,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public string CoreVersion => _info.LibraryVersion;
     public string CoreSha256 { get; }
     public IReadOnlySet<string> SupportedContentExtensions => _info.Extensions;
-    public bool SupportsSaveStates => false;
+    public bool SupportsSaveStates => _gameLoaded && _supportsSaveStates;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
     public EmulationVideoStandard? Region { get; private set; }
@@ -92,6 +93,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
             if (!_exports.LoadGame(_content?.GameInfo ?? nint.Zero))
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
+            var stateSize = _exports.GetSerializedSize();
+            _supportsSaveStates = stateSize > nuint.Zero && stateSize <= (nuint)Array.MaxLength;
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
