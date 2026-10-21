@@ -52,6 +52,25 @@ Ce fichier contient des modifications de code. La documentation pédagogique ser
   - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Contracts/EmulatorContracts.cs : retirer uniquement le record local de contexte après raccordement de tous ses consommateurs au contexte SDK, qui conserve aussi son sixième argument obligatoire.
   - [x] Modifier tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs : vérifier le contrat SDK hérité des 23 adaptateurs et rechercher les membres dans ce contrat ; vérifier que NEC utilise le même contexte générique tout en conservant son constructeur à six arguments avec FirmwareDirectory obligatoire. Garder les vérifications des fonctionnalités supplémentaires et les tests des autres familles.
 
+## Contrats de cœur, entrées et sauvegardes accessibles aux modules indépendants
+
+- [x] Ouvrir les contrats déjà consommés par les modules, sans changer leur fonctionnement
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreRuntime.cs : rendre public le contrat existant ; commenter initialisation, images, son, diagnostics, entrées et destruction du cœur sur son thread propriétaire.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreStateCommands.cs : rendre public le contrat existant et commenter réinitialisation, arrêt, états, options et sélection de disque, sans ajouter de capacité à un cœur qui ne la possède pas.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreCommands.cs : rendre public le contrat typé existant et commenter les médias, le statut du lecteur et le périphérique de chaque port.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCorePathMediaCommands.cs : rendre public le contrat existant des cœurs recevant un chemin et commenter sélection, insertion et éjection.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreRuntimeStatus.cs : rendre public le contrat existant et commenter capacités, région et compteurs audio.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputAccumulator.cs : rendre publics le service existant et Update, Consume, Reset ; commenter accumulation des déplacements, maintien des touches et responsabilité des collections empruntées. Conserver tous les corps.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputFrameStore.cs : rendre publics le service existant et Update, Poll, Polled ; commenter copie des collections et consommation des mouvements relatifs. Conserver les deux points d’extension protégés et tous les corps.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/DiskImageStatus.cs : rendre public le record existant et commenter index, chemin et libellé, sans changer sa forme.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/DiskStatus.cs : rendre public le record existant et commenter nombre, sélection et éjection, sans changer sa forme.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationSavedStateHeader.cs : rendre public le record existant et commenter format, identités et empreintes, sans modifier les noms JSON ni la compatibilité des états.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationLegacySavedStateHeader.cs : rendre public le record existant et commenter son usage par les formats historiques, sans les convertir ni les remplacer.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationSavedStateFile.cs : rendre public le record existant et commenter la propriété du tableau d’état.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationStateContentEntry.cs : rendre public le record existant et commenter l’identité du média dans l’empreinte de sauvegarde.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationStateControllerFingerprint.cs : rendre public le record existant et commenter l’identité du port, du périphérique et des associations déjà triées.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs : rendre publiques les opérations existantes d’identité, lecture, écriture et empreintes utilisées par les modules ; commenter flux empruntés, contrôles et politiques de fichiers, sans changer les corps ni le format.
+
 ## Module de référence complet
 
 - [ ] Créer le mock réutilisable après raccordement du socle commun

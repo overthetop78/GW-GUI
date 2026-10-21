@@ -2,10 +2,15 @@ using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Interfaces;
 
-internal interface IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus> : IEmulationCoreStateCommands
+/// <summary>Commandes typées d’un cœur dont le module décrit les médias et les périphériques.</summary>
+public interface IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus> : IEmulationCoreStateCommands
 {
+    /// <summary>Insère le média décrit par la configuration propre au module.</summary>
     void InsertMedia(TMedia media);
+    /// <summary>Éjecte le média du lecteur désigné par le slot commun.</summary>
     void EjectMedia(EmulationMediaSlot slot);
+    /// <summary>Lit l’état et la sélection des images du lecteur.</summary>
     TDiskStatus GetDiskStatus();
+    /// <summary>Raccorde au port indiqué un périphérique reconnu par le module.</summary>
     void SetControllerPortDevice(int port, TPeripheral peripheral);
 }

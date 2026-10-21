@@ -1,11 +1,14 @@
 namespace GWGUI.Emulation.Services;
 
-internal sealed class EmulationInputAccumulator
+/// <summary>Conserve les entrées absolues les plus récentes et accumule les mouvements relatifs entre deux frames.</summary>
+/// <remarks>Les collections du snapshot sont empruntées et doivent rester stables ; utiliser EmulationInputFrameStore pour copier les collections reçues.</remarks>
+public sealed class EmulationInputAccumulator
 {
     private readonly object _gate = new();
     private EmulationInputSnapshot _current = EmulationInputSnapshot.Empty;
 
-    internal void Update(EmulationInputSnapshot? snapshot)
+    /// <summary>Remplace touches et boutons, additionne les déplacements avec saturation ; null équivaut à un état vide.</summary>
+    public void Update(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;
         lock (_gate)
@@ -23,7 +26,8 @@ internal sealed class EmulationInputAccumulator
         }
     }
 
-    internal EmulationInputSnapshot Consume()
+    /// <summary>Renvoie les entrées accumulées puis remet les seuls mouvements relatifs à zéro.</summary>
+    public EmulationInputSnapshot Consume()
     {
         lock (_gate)
         {
@@ -42,7 +46,8 @@ internal sealed class EmulationInputAccumulator
         }
     }
 
-    internal void Reset()
+    /// <summary>Efface toutes les entrées, notamment lors d’une réinitialisation du cœur.</summary>
+    public void Reset()
     {
         lock (_gate) _current = EmulationInputSnapshot.Empty;
     }

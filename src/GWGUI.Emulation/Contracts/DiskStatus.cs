@@ -1,6 +1,7 @@
 namespace GWGUI.Emulation.Contracts;
 
-internal sealed record DiskStatus(
+/// <summary>État du lecteur : nombre d’images, index sélectionné, éjection et description des images.</summary>
+public sealed record DiskStatus(
     int ImageCount,
     int CurrentIndex,
     bool IsEjected,
