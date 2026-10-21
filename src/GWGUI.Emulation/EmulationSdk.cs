@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace GWGUI.Emulation;
 
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
@@ -26,10 +28,46 @@ public static class EmulationSdk
     /// <summary>Persistance par contrat, avec les propriétaires d’écriture et de verrouillage existants.</summary>
     public static IEmulationConfigurationFiles ConfigurationFiles { get; } = new EmulationConfigurationFileService();
 
+    /// <summary>Échanges binaires entre Common et son hôte par leur contrat public, avec les codecs internes existants.</summary>
+    public static IEmulationHostProtocol HostProtocol { get; } = new EmulationHostProtocolService();
+
+    /// <summary>Copie stable des entrées par contrat public, sans accès aux fonctions internes de mappage.</summary>
+    public static IEmulationInputProcessing InputProcessing { get; } = new EmulationInputProcessingService();
+
+    /// <summary>Cycle de vie, commandes et publication des machines sous leur contrat d’exécution commun.</summary>
+    public static IEmulationMachineExecution MachineExecution { get; } = new EmulationMachineExecutionService();
+
+    /// <summary>Contextualisation des messages sans accès aux services d’implémentation.</summary>
+    public static IEmulationMessages Messages { get; } = new EmulationMessageService();
+
+    /// <summary>Crée le timer existant sous son interface, sans modifier ses règles d’attente et d’annulation.</summary>
+    /// <param name="cancellationToken">Annulation de la session propriétaire du timer.</param>
+    /// <returns>Timer possédé par l’appelant, à libérer dans son finally après la dernière attente.</returns>
+    public static IEmulationFrameTimer CreateFrameTimer(CancellationToken cancellationToken) => new EmulationFrameTimer(cancellationToken);
+
     /// <summary>Crée un stockage indépendant des entrées sous son contrat public.</summary>
     public static IEmulationInputFrames CreateInputFrames() => new EmulationInputFrameStore();
+
+    /// <summary>Crée le tampon audio borné existant sous son interface, sans accès à sa classe interne.</summary>
+    /// <returns>Tampon indépendant dont la session propriétaire vide les blocs lors de son nettoyage.</returns>
+    public static IEmulationAudioBuffer CreateAudioBuffer() => new EmulationAudioBuffer();
 
     /// <summary>Fournit le contrôleur existant sous son contrat ; la sortie reçue reste empruntée.</summary>
     public static IEmulationAudioOutputController CreateAudioOutputController(IAudioOutput? output = null,
         Func<IAudioOutput?>? factory = null) => new EmulationAudioOutputController(output, factory);
+
+    /// <summary>Crée le propriétaire de mémoire vidéo partagée existant sous son interface publique.</summary>
+    /// <param name="namePrefix">Préfixe unique de la session fourni par le module.</param>
+    /// <param name="capacity">Règle empruntée calculant la capacité d’un emplacement à partir d’une longueur d’image en octets.</param>
+    /// <param name="separator">Séparateur invariant entre le préfixe et l’identité d’une génération de segment.</param>
+    /// <param name="nameFormat">Format du GUID employé pour nommer les générations.</param>
+    /// <returns>Rédacteur possédé par l’appelant, à libérer après la fin des écritures de session.</returns>
+    public static IEmulationSharedVideoWriter CreateSharedVideoWriter(string namePrefix, Func<int, int> capacity, string separator, string nameFormat) =>
+        new EmulationSharedVideoWriter(namePrefix, capacity, separator, nameFormat);
+
+    /// <summary>Crée le jeu tournant de buffers vidéo existant sous son interface publique.</summary>
+    /// <param name="bufferCount">Nombre d’emplacements de roulement choisi par le module.</param>
+    /// <param name="pool">Pool emprunté, ou null pour le pool partagé ; le jeu possède ses locations et non le pool.</param>
+    /// <returns>Jeu possédé par l’appelant, à libérer pour restituer les tableaux loués.</returns>
+    public static IEmulationVideoBufferSet CreateVideoBufferSet(int bufferCount, ArrayPool<byte>? pool = null) => new EmulationVideoBufferSet(bufferCount, pool);
 }

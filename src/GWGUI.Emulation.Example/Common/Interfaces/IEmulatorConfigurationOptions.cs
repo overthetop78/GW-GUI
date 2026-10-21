@@ -9,6 +9,11 @@ internal interface IEmulatorConfigurationOptions
     /// <param name="model">Modèle avant application des éventuelles options de variante matérielle.</param>
     /// <returns>Dictionnaire de clés et valeurs techniques utilisé pour préparer une nouvelle configuration.</returns>
     IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model);
+    /// <summary>Complète les options préparées avec les valeurs dépendant de la configuration complète.</summary>
+    /// <param name="configuration">Configuration empruntée, incluant médias et firmwares.</param>
+    /// <param name="options">Dictionnaire de préparation modifiable appartenant à l’appelant.</param>
+    /// <remarks>Cette étape complète les valeurs par modèle ; elle ne remplace ni la validation ni l’application des réglages utilisateur.</remarks>
+    void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options);
     /// <summary>Vérifie les valeurs et combinaisons d’options d’une configuration.</summary>
     /// <param name="configuration">Configuration empruntée ; la validation ne la remplace pas.</param>
     /// <remarks>L’implémentation signale les options refusées par les diagnostics du module.</remarks>

@@ -2,70 +2,83 @@ using System.Globalization;
 
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Décrit les réglages matériels et audio sans construire de contrôles graphiques.</summary>
-/// <remarks>L’application choisit les contrôles à partir des descriptions du contrat public ; le module fournit valeurs et clés de ressources.</remarks>
+/// <summary>Projection des réglages de matériel, d’audio et de cœur vers les éditeurs communs.</summary>
 internal static class SettingsDescriptionFunctions
 {
-    /// <summary>Assemble les blocs du modèle puis place devant eux les réglages propres à l’adaptateur.</summary>
-    /// <param name="configuration">Configuration du modèle et de son cœur sélectionné.</param>
-    /// <returns>Blocs CPU, mémoire, vidéo et audio, précédés des éventuels blocs de l’adaptateur.</returns>
-    /// <remarks>La fréquence CPU est affichée en MHz et la mémoire en Kio. Les informations matérielles sont en lecture seule.</remarks>
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
+    /// <summary>Décrit le profil et les options annoncées par l’adaptateur sélectionné.</summary>
+    /// <param name="configuration">Configuration dont les valeurs courantes sont présentées.</param>
+    /// <param name="coreOptions">Options fournies par le cœur ou son catalogue, ou null sans options natives.</param>
+    /// <returns>Blocs de données descriptives ; leur création ne charge ni cœur ni sortie audio.</returns>
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        var cpuResource = SettingsConstants.CpuResourcePrefix + hardware.DefaultCpu;
         var blocks = new List<EmulationSettingsBlock>
         {
-            Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
-                new EmulationSettingsField(SettingsConstants.Cpu, EmulationMachineTab.Cpu, EmulationMachineTab.Cpu.ToString(), SettingsConstants.ResourceCpu, EmulationSettingsEditor.Information, cpuResource, [new(cpuResource, cpuResource)]),
-                Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, EmulationHardwareSettingsFunctions.FormatMegahertz(hardware.DefaultCpuFrequencyHz, "0.##"))),
-            Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
-            Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo,
-                Information(SettingsConstants.Video + "_controller", EmulationMachineTab.Video, SettingsConstants.ResourceVideoController, "Motorola MC6845"),
-                Information(SettingsConstants.Video + "_pixels", EmulationMachineTab.Video, SettingsConstants.ResourceVideoPixels, "Acorn Video ULA"),
-                Information(SettingsConstants.Video + "_teletext", EmulationMachineTab.Video, SettingsConstants.ResourceTeletext, "Mullard SAA5050")),
-            Audio(configuration)
+            new("hardware", EmulationMachineTab.General, "Emulation.Tab.General",
+            [
+                new(SettingsConstants.Cpu, EmulationMachineTab.General, "hardware", "Emulation.Cpu.Model", EmulationSettingsEditor.Information, hardware.DefaultCpu.ToString()),
+                new(SettingsConstants.CpuFrequency, EmulationMachineTab.General, "hardware", "Emulation.Cpu.SpeedOriginal", EmulationSettingsEditor.Information, hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture) + " Hz"),
+                new(SettingsConstants.MainMemory, EmulationMachineTab.General, "hardware", "Emulation.Memory.Main", EmulationSettingsEditor.Information, hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture) + " B")
+            ]),
+            new("audio", EmulationMachineTab.Audio, "Emulation.Audio",
+            [
+                new(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, "audio", "Emulation.Audio.Enabled", EmulationSettingsEditor.Toggle, configuration.AudioEnabled.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString),
+                new(SettingsConstants.AudioOutput, EmulationMachineTab.Audio, "audio", "Emulation.Audio.Output", EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, "Emulation.Audio.DefaultOutput")]),
+                new(SettingsConstants.AudioLatency, EmulationMachineTab.Audio, "audio", "Emulation.Audio.Latency", EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(SettingsConstants.AudioLatency, AudioConstants.DefaultLatencyMilliseconds.ToString(CultureInfo.InvariantCulture)), AudioConstants.LatencyChoicesMilliseconds.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, value.ToString(CultureInfo.InvariantCulture) + " ms")).ToArray()),
+                new(VideoAudioSettingsConstants.AudioVolumeOption, EmulationMachineTab.Audio, "audio", "Explorer.Volume", EmulationSettingsEditor.Percentage, configuration.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioVolumeOption, AudioConstants.DefaultVolumePercent.ToString(CultureInfo.InvariantCulture)))
+            ])
         };
-        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
-            blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.DescribeSettings(configuration));
+        foreach (var group in (coreOptions ?? []).Where(option => option.IsVisible).GroupBy(option => option.Tab))
+        {
+            var blockId = "core-" + group.Key;
+            var fields = group.Select(option => new EmulationSettingsField(option.Key, option.Tab, blockId, option.ResourceKey ?? option.Name,
+                option.NumericRange is null ? EmulationSettingsEditor.Selection : EmulationSettingsEditor.Number,
+                configuration.Options.GetValueOrDefault(option.Key, option.CurrentValue),
+                option.Values.Select(value => new EmulationSettingsChoice(value.Value, value.ResourceKey ?? string.Empty, value.ResourceKey is null || value.FrameSkipRatio is not null ? ChoiceLabel(value) : null)).ToArray(),
+                IsEnabled: option.IsEnabled, ExplanationResourceKey: option.ExplanationResourceKey, RequiresRestart: option.RequiresRestart, NumericRange: option.NumericRange)).ToArray();
+            blocks.Add(new(blockId, group.Key, "Emulation.Tab." + group.Key, fields));
+        }
         return blocks;
     }
 
-    /// <summary>Décrit le bloc audio compact : activation, périphérique de sortie, latence et volume.</summary>
-    /// <param name="configuration">Configuration fournissant l’activation et les options audio enregistrées.</param>
-    /// <returns>Bloc utilisant les choix communs de latence en millisecondes et de volume en pourcentage.</returns>
-    private static EmulationSettingsBlock Audio(MachineConfiguration configuration) =>
-        Block(EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,
-            EmulationHardwareSettingsFunctions.Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioEnabled, configuration.AudioEnabled, null, null),
-            EmulationHardwareSettingsFunctions.AudioOutput(SettingsConstants.AudioOutput, EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioOutput, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], null, null),
-            Selection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, EmulationSettingConstants.DefaultAudioLatencyMilliseconds, EmulationSettingConstants.AudioLatencyMillisecondsChoices, "ms"),
-            Selection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, EmulationSettingConstants.DefaultAudioVolumePercent, EmulationSettingConstants.AudioVolumePercentChoices, "%")) with { IsCompact = true };
+    /// <summary>Conserve le libellé de choix fourni par le cœur ou représente son rapport de saut d’images.</summary>
+    /// <param name="value">Choix natif et ses métadonnées de présentation.</param>
+    /// <returns>Libellé technique invariant ou rapport numérique explicite.</returns>
+    internal static string ChoiceLabel(CoreOptionValue value) => value.FrameSkipRatio switch
+    {
+        FrameSkipRatio.OneOfTwo => "1/2",
+        FrameSkipRatio.TwoOfThree => "2/3",
+        FrameSkipRatio.ThreeOfFour => "3/4",
+        FrameSkipRatio.FourOfFive => "4/5",
+        FrameSkipRatio.FiveOfSix => "5/6",
+        _ => value.Label
+    };
+}
 
-    /// <summary>Construit une sélection audio numérique à partir des options de la configuration.</summary>
-    /// <param name="configuration">Configuration contenant les valeurs textuelles des options.</param>
-    /// <param name="id">Identifiant de l’option et du champ.</param>
-    /// <param name="resource">Clé de traduction du libellé.</param>
-    /// <param name="defaultValue">Valeur de repli employée par le service commun.</param>
-    /// <param name="values">Choix numériques proposés.</param>
-    /// <param name="unit">Unité affichée, par exemple ms ou %.</param>
-    /// <returns>Description du champ de sélection dans l’onglet audio.</returns>
-    private static EmulationSettingsField Selection(MachineConfiguration configuration, string id, string resource, int defaultValue, IReadOnlyList<int> values, string unit) =>
-        EmulationHardwareSettingsFunctions.AudioSelection(configuration.Options, id, EmulationMachineTab.Audio.ToString(), resource, defaultValue, values, unit, null);
-
-
-    /// <summary>Construit une information matérielle affichée en lecture seule.</summary>
-    /// <param name="id">Identifiant stable du champ.</param>
-    /// <param name="tab">Onglet de destination, également utilisé comme groupe.</param>
-    /// <param name="resource">Clé de traduction du libellé.</param>
-    /// <param name="value">Texte de la valeur déjà formatée.</param>
-    /// <returns>Champ utilisant l’éditeur Information.</returns>
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) => new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value);
-
-    /// <summary>Regroupe des champs dans un bloc de réglages.</summary>
-    /// <param name="tab">Onglet recevant le bloc.</param>
-    /// <param name="resource">Clé utilisée pour l’identité du bloc et son titre traduit.</param>
-    /// <param name="fields">Descriptions des champs, dans leur ordre d’affichage.</param>
-    /// <returns>Bloc descriptif transmis à l’application.</returns>
-    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
+/// <summary>Application des valeurs d’éditeurs à une nouvelle configuration du profil.</summary>
+internal static class SettingsApplicationFunctions
+{
+    /// <summary>Conserve les valeurs techniques du cœur et traite séparément l’autorisation audio.</summary>
+    /// <param name="configuration">Configuration initiale à conserver immuable.</param>
+    /// <param name="values">Valeurs proposées par l’hôte ; null retire une option.</param>
+    /// <returns>Configuration validée par les mêmes règles que les montages et le magasin.</returns>
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
+    {
+        var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
+        var audioEnabled = configuration.AudioEnabled;
+        foreach (var value in values)
+        {
+            if (value.Key == SettingsConstants.AudioEnabled)
+            {
+                if (!bool.TryParse(value.Value, out audioEnabled)) throw new ArgumentException(nameof(values));
+                continue;
+            }
+            // Les trois informations matérielles sont descriptives : les valeurs renvoyées par l’éditeur ne deviennent pas des options natives.
+            if (value.Key == SettingsConstants.Cpu || value.Key == SettingsConstants.CpuFrequency || value.Key == SettingsConstants.MainMemory) continue;
+            if (value.Value is null) options.Remove(value.Key); else options[value.Key] = value.Value;
+        }
+        var result = configuration with { Options = options, AudioEnabled = audioEnabled };
+        ConfigurationFunctions.Validate(result);
+        return result;
+    }
 }

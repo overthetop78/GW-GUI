@@ -1,27 +1,22 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Constants;
 
-
-/// <summary>Bornes, durées et identifiants utilisés par le propriétaire Common de la machine.</summary>
-/// <remarks>Les cadences sont exprimées en images par seconde, l’attente de pause en millisecondes.
-/// Les diagnostics et le nom de thread identifient la session sans modifier les contrats du cœur.</remarks>
+/// <summary>Règles de planification et de diagnostic des sessions fictives.</summary>
 internal static class MachineConstants
 {
-    /// <summary>Cadence minimale retenue pour produire un intervalle de calcul valide.</summary>
-    internal const double MinimumFramesPerSecond = 1;
-    /// <summary>Cadence maximale retenue pour borner le rythme de la boucle.</summary>
-    internal const double MaximumFramesPerSecond = 1000;
-    /// <summary>Durée d’attente en millisecondes utilisée lorsque la machine est en pause.</summary>
+    /// <summary>Intervalle d’attente en pause, en millisecondes, pour vérifier les commandes et l’arrêt.</summary>
     internal const int PauseWaitMilliseconds = 100;
-    /// <summary>Nombre maximal de derniers messages conservés dans le détail d’un diagnostic.</summary>
+    /// <summary>Durée d’une impulsion de bascule du pointeur, en millisecondes.</summary>
+    internal const int ControllerPointerPulseMilliseconds = 20;
+    /// <summary>Nombre maximal de diagnostics récents ajoutés au contexte d’un échec.</summary>
     internal const int DiagnosticTailCount = 100;
-    /// <summary>Quantité indiquant l’absence d’éléments à traiter.</summary>
+    /// <summary>Nombre d’éléments d’une collection vide lors du contrôle des diagnostics.</summary>
     internal const int EmptyCount = 0;
-    /// <summary>Seuil nul utilisé lorsqu’aucun tick d’attente ne reste avant le calcul suivant.</summary>
+    /// <summary>Absence de temps restant avant la prochaine échéance.</summary>
     internal const long NoRemainingTicks = 0;
-    /// <summary>Seuil nul : une fréquence audio exploitable doit être strictement positive.</summary>
+    /// <summary>Fréquence indiquant l’absence d’un format audio exploitable.</summary>
     internal const int InvalidSampleRate = 0;
-    /// <summary>Préfixe du nom de thread permettant d’identifier le travail de la machine dans les diagnostics.</summary>
+    /// <summary>Préfixe des threads de session, complété par le cœur et l’identité de l’instance.</summary>
     internal const string ThreadNamePrefix = "gwgui Example";
-    /// <summary>Clé des détails de diagnostic du module ajoutés aux données d’une exception.</summary>
+    /// <summary>Clé technique du contexte d’exception contenant les diagnostics du cœur.</summary>
     internal const string DiagnosticDataKey = "ExampleDiagnostics";
 }

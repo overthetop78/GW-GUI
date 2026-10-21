@@ -48,6 +48,16 @@ public sealed class ExampleEmulationModule : IEmulationModule, IEmulationEmulato
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default) => _engine.DeleteConfigurationAsync(configurationId, cancellationToken);
     /// <summary>Décrit le cœur intégré via Common.</summary>
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationAsync(machineId, cancellationToken);
+    /// <summary>Décrit l’installation de l’adaptateur choisi dans la configuration.</summary>
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationAsync(configuration, cancellationToken);
+    /// <summary>Présente les trois adaptateurs compatibles avec le profil courant.</summary>
+    public ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationsAsync(configuration, cancellationToken);
+    /// <summary>Transmet au Common le choix explicite d’un émulateur.</summary>
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default) => _engine.UseEmulatorAsync(configuration, emulatorId, cancellationToken);
+    /// <summary>Demande les versions du cœur choisi, sans revenir au cœur préféré du modèle.</summary>
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.FindEmulatorReleasesAsync(configuration, cancellationToken);
+    /// <summary>Transmet la version au service du cœur effectivement choisi.</summary>
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.InstallEmulatorAsync(configuration, release, progress, cancellationToken);
     /// <summary>Demande les versions proposées par Common ; le backend intégré n’en télécharge aucune.</summary>
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => _engine.FindEmulatorReleasesAsync(machineId, cancellationToken);
     /// <summary>Transmet une demande d’installation au Common, seul responsable de sa politique.</summary>

@@ -27,6 +27,21 @@ public static class EmulationInputMappingFunctions
             ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;
     }
 
+    /// <summary>Joint les commandes étendues au masque natif sans redéfinir la table de boutons commune.</summary>
+    internal static short NativeJoypadState(EmulationControllerState controller, uint id, uint maximumButtonCount)
+    {
+        var buttons = controller.Buttons;
+        foreach (var control in controller.Controls)
+        {
+            var name = control.Key == EmulationControllerCommandIds.Fire1 ? EmulationInputMappingConstants.A
+                : control.Key == EmulationControllerCommandIds.Fire2 ? EmulationInputMappingConstants.B : control.Key;
+            if (!ControllerButtons.TryGetValue(name, out var bit)) continue;
+            var mask = 1u << bit;
+            if (float.IsFinite(control.Value) && control.Value > .5f) buttons |= mask; else buttons &= ~mask;
+        }
+        return NativeJoypadState(buttons, id, maximumButtonCount);
+    }
+
     internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id) =>
         (index, id) switch
         {

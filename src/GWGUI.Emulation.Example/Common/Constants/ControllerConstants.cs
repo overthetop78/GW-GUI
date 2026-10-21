@@ -19,5 +19,21 @@ public static class ControllerConstants
     internal const int PercentageDivisor = 100;
     /// <summary>Valeur d’un axe au repos ou neutralisé par la zone morte.</summary>
     internal const short NeutralAxis = 0;
+    /// <summary>Index analogique du protocole utilisé pour interroger les gâchettes.</summary>
+    internal const uint TriggerAnalogIndex = 2;
+    /// <summary>Identifiant de la gâchette gauche dans le protocole d’entrée.</summary>
+    internal const uint LeftTriggerId = 12;
+    /// <summary>Identifiant de la gâchette droite dans le protocole d’entrée.</summary>
+    internal const uint RightTriggerId = 13;
+    /// <summary>Masque du premier bouton de tir : seul le bit de poids faible est activé.</summary>
+    public const uint FireButtonMask = 1u;
+    /// <summary>Capacité d’un joystick proposant un seul bouton de tir.</summary>
+    public const int SingleButtonJoystickButtonCount = 1;
+    /// <summary>Capacité du joystick à deux boutons.</summary>
+    public const int JoystickButtonCount = 2;
+    /// <summary>Capacité de la variante de joystick à quatre boutons.</summary>
+    public const int FourButtonJoystickButtonCount = 4;
+    /// <summary>Capacité des contrôleurs étendus à huit boutons.</summary>
+    public const int ExtendedJoystickButtonCount = 8;
 }
 

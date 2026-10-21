@@ -20,6 +20,8 @@ internal static class ConfigurationStoreConstants
     /// <summary>Capacité en octets du tampon d’écriture du document de configuration.</summary>
     internal const int WriteBufferSize = 4096;
     /// <summary>Version du schéma des documents de configuration produits et reconnus par ce magasin.</summary>
+    /// <remarks>Ce numéro correspond à la structure sérialisée et à ses contrôles de lecture. Un numéro plus élevé
+    /// dans un autre magasin n’ajoute aucune capacité : le numéro doit rester cohérent avec le contrat utilisé ici.</remarks>
     internal const int CurrentSchemaVersion = 1;
     /// <summary>Séparateur placé entre le chemin du document cible et l’identifiant de son fichier temporaire.</summary>
     internal const string TemporaryNameSeparator = ".";

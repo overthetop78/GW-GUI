@@ -31,7 +31,7 @@ internal static partial class EmulationHostProtocolFunctions
 
     /// <summary>Écrit une image dans l’écrivain vidéo emprunté et transmet le nom et les dimensions du slot.</summary>
     [SupportedOSPlatform("windows")]
-    public static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, EmulationSharedVideoWriter video)
+    public static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, IEmulationSharedVideoWriter video)
     {
         writer.Write(frame is not null);
         if (frame is null) return;

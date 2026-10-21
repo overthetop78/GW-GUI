@@ -1,13 +1,10 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Enums;
 
-
-
-/// <summary>Disponibilité déclarée d’un raccourci pour la machine et ses capacités.</summary>
+/// <summary>Disponibilité d’une commande de la machine pour son état courant.</summary>
 public enum ShortcutAvailability
 {
-    /// <summary>Le raccourci est pris en charge dans la combinaison considérée.</summary>
+    /// <summary>La commande peut être exécutée.</summary>
     Available,
-    /// <summary>Le raccourci n’est pas pris en charge dans la combinaison considérée.</summary>
-    Unavailable
+    /// <summary>La commande ne peut pas être exécutée dans cet état.</summary>
+    Unavailable,
 }
-

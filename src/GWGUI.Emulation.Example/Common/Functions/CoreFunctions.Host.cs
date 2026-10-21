@@ -94,31 +94,31 @@ internal static class CoreHostFunctions
     /// <summary>Lit un booléen de présence, puis une chaîne uniquement lorsque ce marqueur vaut true.</summary>
     /// <param name="reader">Lecteur emprunté d’une valeur texte facultative.</param>
     /// <returns>Chaîne reçue ou null lorsque le marqueur indique une absence.</returns>
-    internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
+    internal static string? ReadString(BinaryReader reader) => EmulationSdk.HostProtocol.ReadString(reader);
     /// <summary>Écrit la longueur du bloc sur quatre octets, puis ses octets.</summary>
     /// <param name="writer">Rédacteur emprunté du bloc.</param>
     /// <param name="value">Octets empruntés pendant l’appel, sans transfert de propriété.</param>
-    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => EmulationHostProtocolFunctions.WriteBytes(writer, value);
+    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => EmulationSdk.HostProtocol.WriteBytes(writer, value);
     /// <summary>Lit un bloc binaire en contrôlant la longueur annoncée et la présence de tous ses octets.</summary>
     /// <param name="reader">Lecteur emprunté, positionné sur la longueur du bloc.</param>
     /// <returns>Nouveau tableau possédé par l’appelant.</returns>
     /// <exception cref="InvalidDataException">La longueur est négative ou dépasse la limite du transport.</exception>
     /// <exception cref="EndOfStreamException">Le flux se termine avant la fin du bloc annoncé.</exception>
-    internal static byte[] ReadBytes(BinaryReader reader) => EmulationHostProtocolFunctions.ReadBytes(reader, CoreHostConstants.HostName);
+    internal static byte[] ReadBytes(BinaryReader reader) => EmulationSdk.HostProtocol.ReadBytes(reader, CoreHostConstants.HostName);
     /// <summary>Écrit les touches, le pointeur et les contrôleurs selon le format d’entrée commun.</summary>
     /// <param name="writer">Rédacteur emprunté de la requête.</param>
     /// <param name="input">Instantané emprunté, dont les collections doivent rester stables pendant l’appel.</param>
-    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => EmulationHostProtocolFunctions.WriteInput(writer, input);
+    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => EmulationSdk.HostProtocol.WriteInput(writer, input);
     /// <summary>Reconstruit les entrées en contrôlant les nombres de touches, contrôleurs et commandes.</summary>
     /// <param name="reader">Lecteur emprunté, positionné au début des données d’entrée.</param>
     /// <returns>Instantané composé des valeurs et collections lues dans le transport.</returns>
     /// <exception cref="InvalidDataException">Une quantité annoncée est hors des limites du protocole.</exception>
-    internal static EmulationInputSnapshot ReadInput(BinaryReader reader) => EmulationHostProtocolFunctions.ReadInput(reader, CoreHostConstants.HostName);
+    internal static EmulationInputSnapshot ReadInput(BinaryReader reader) => EmulationSdk.HostProtocol.ReadInput(reader, CoreHostConstants.HostName);
     /// <summary>Calcule la capacité en octets d’un emplacement vidéo, arrondie à une puissance de deux.</summary>
     /// <param name="frameLength">Nombre d’octets de l’image à transporter.</param>
     /// <returns>Capacité au moins égale à l’image et au minimum du module.</returns>
     /// <exception cref="InvalidDataException">La longueur est nulle, négative ou supérieure au maximum du transport.</exception>
-    internal static int CalculateVideoSlotCapacity(int frameLength) => EmulationHostProtocolFunctions.CalculateVideoSlotCapacity(
+    internal static int CalculateVideoSlotCapacity(int frameLength) => EmulationSdk.HostProtocol.CalculateVideoSlotCapacity(
         frameLength, CoreHostConstants.MinimumVideoSlotCapacity, CoreHostConstants.HostName);
 
     /// <summary>Copie l’image dans le bloc partagé redimensionnable et écrit ses métadonnées dans la réponse.</summary>
@@ -127,7 +127,7 @@ internal static class CoreHostFunctions
     /// <param name="video">Propriétaire vidéo emprunté, conservé entre les frames et libéré par le propriétaire de session.</param>
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video) =>
-        EmulationHostProtocolFunctions.WriteResizableSharedFrame(writer, frame, video);
+        EmulationSdk.HostProtocol.WriteResizableSharedFrame(writer, frame, video);
 
     /// <summary>Lit les métadonnées de vidéo partagée puis copie les pixels dans une nouvelle image.</summary>
     /// <param name="reader">Lecteur emprunté des métadonnées reçues.</param>
@@ -138,19 +138,19 @@ internal static class CoreHostFunctions
     /// <remarks>L’appelant libère la vue et le bloc conservés dans son finally, même après erreur de lecture.</remarks>
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName) =>
-        EmulationHostProtocolFunctions.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
+        EmulationSdk.HostProtocol.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
     /// <summary>Lit les blocs audio annoncés et contrôle leurs dimensions et leur disposition de canaux.</summary>
     /// <param name="reader">Lecteur emprunté, positionné sur le nombre de blocs audio.</param>
     /// <returns>Blocs dont les échantillons sont contenus dans de nouveaux tableaux.</returns>
-    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudio(reader, CoreHostConstants.HostName);
+    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => EmulationSdk.HostProtocol.ReadAudio(reader, CoreHostConstants.HostName);
     /// <summary>Écrit le nombre de témoins d’activité puis leurs paires indice et état.</summary>
     /// <param name="writer">Rédacteur emprunté des statuts.</param>
     /// <param name="states">Dictionnaire emprunté, stable pendant l’appel.</param>
-    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
+    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationSdk.HostProtocol.WriteLedStates(writer, states);
     /// <summary>Lit les témoins d’activité en contrôlant la quantité annoncée.</summary>
     /// <param name="reader">Lecteur emprunté, positionné sur le nombre de témoins.</param>
     /// <returns>Nouveau dictionnaire associant chaque indice de témoin à son état.</returns>
-    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => EmulationHostProtocolFunctions.ReadLedStates(reader, CoreHostConstants.HostName);
+    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => EmulationSdk.HostProtocol.ReadLedStates(reader, CoreHostConstants.HostName);
 
     /// <summary>Écrit le statut multidisque sous forme de chaîne JSON.</summary>
     /// <param name="writer">Rédacteur emprunté de la réponse.</param>

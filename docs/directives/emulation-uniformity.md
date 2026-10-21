@@ -1,4 +1,5 @@
 - Uniformiser tous les GWGUI.Emulation.Xxx en établissant d’abord Example comme référence à partir de leur existant.
+  - Pour l’étape actuelle, compléter uniquement Common hors Machines et conserver les fichiers Machine inchangés ; les machines fictives seront traitées séparément ensuite.
   - Reprendre les implémentations d’origine et réunir les traitements équivalents sous les mêmes fichiers, noms, rôles et raccordements.
   - Appliquer le parcours suivant dans cet ordre, module après module : Acorn, Amstrad, Apple, puis les suivants par ordre alphabétique jusqu’à Wenquxing. Acorn est seulement le premier module dans cet ordre.
     - Pour Acorn :
@@ -21,7 +22,9 @@
       - Terminer le module avant de passer au suivant, jusqu’à Wenquxing.
   - Définir dans le module les constantes qui portent ses propres choix ; utiliser les interfaces pour les valeurs fournies par les services communs et supprimer les alias inutilisés vers des constantes déjà définies.
   - Préserver le fonctionnement de toutes les fonctionnalités et les représenter dans un mock complet et utilisable.
-  - Terminer ce parcours de Common ; la suite sera définie ensuite.
+  - Terminer ce parcours de Common, puis créer deux machines fictives : une avec disquette, cassette et disque dur ; une avec cartouche et carte mémoire.
+    - Présenter un périphérique générique complet par catégorie existante : manette, joystick, volant, souris, pistolet, clavier, tapis de danse, stylet optique et autres catégories prises en charge ; réunir pour chacun le maximum de boutons, axes et commandes disponibles dans les interfaces.
+    - Créer ensuite trois émulateurs fictifs capables chacun de gérer ces deux machines, par les mêmes interfaces Common : un cœur libretro, un émulateur externe dont les appels de DLL sont simulés sans créer de DLL externe, et un émulateur interne.
   - Fournir Example avec l’application même lors d’un build sans émulateurs (`--modules=0`) ; son cœur simulé doit fonctionner comme un vrai émulateur par les mêmes interfaces. Aligner ensuite tous les autres modules sur cette structure.
 - Faire passer les échanges de tous les composants par le Common de leur module, qui assure l’adaptation et le lien avec GWGUI.Emulation.
   - Définir l’API par des interfaces publiques avec des implémentations internes.

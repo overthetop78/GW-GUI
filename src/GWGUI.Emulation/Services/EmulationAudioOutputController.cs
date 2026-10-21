@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
@@ -13,6 +14,8 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
     private bool _ownsOutput;
     private short[] _volumeBuffer = [];
     private int _sampleRate;
+    private EmulationAudioChannelLayout _channelLayout = EmulationAudioChannelLayout.Stereo;
+    private int _minimumLatencyMilliseconds;
     private float _volume = 1f;
     protected bool _muted;
     protected bool _paused;
@@ -32,12 +35,57 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
     /// <summary>Volume appliqué aux échantillons avant leur écriture.</summary>
     public float Volume { get { lock (_gate) return _volume; } }
 
-    /// <summary>Définit la fréquence et démarre la sortie si son état le permet.</summary>
-    public void Start(int sampleRate)
+    /// <summary>Expose le tampon de la sortie en tenant compte de l’état effectif du contrôleur.</summary>
+    /// <remarks>L’instantané reste consultable quand la sortie est inactive. Une erreur détache la sortie
+    /// selon sa propriété et marque le contrôleur indisponible jusqu’à sa prochaine reprise.</remarks>
+    public AudioOutputBufferStatus? BufferStatus
+    {
+        get
+        {
+            lock (_gate)
+            {
+                try { return _output?.BufferStatus is { } status ? status with { IsActive = status.IsActive && _started && !_stopped && !_paused && !_muted && !_unavailable } : null; }
+                catch { DropOutput(); _unavailable = true; return null; }
+            }
+        }
+    }
+
+    /// <summary>Applique et mémorise la latence minimale demandée, en millisecondes.</summary>
+    /// <param name="latencyMilliseconds">Valeur positive ou nulle ; zéro retire la demande minimale.</param>
+    /// <returns>True si la valeur est mémorisée, false si elle est négative ou si la sortie la refuse.</returns>
+    /// <remarks>Sans sortie physique, la valeur est conservée et sera appliquée avant son démarrage.
+    /// Une erreur suit la même règle de détachement et de récupération que les autres opérations audio.</remarks>
+    public bool TrySetMinimumLatency(int latencyMilliseconds)
     {
         lock (_gate)
         {
+            if (latencyMilliseconds < 0) return false;
+            if (_minimumLatencyMilliseconds == latencyMilliseconds) return true;
+            try
+            {
+                if (_output is not null && !_output.TrySetMinimumLatency(latencyMilliseconds)) return false;
+                _minimumLatencyMilliseconds = latencyMilliseconds;
+                return true;
+            }
+            catch { DropOutput(); _unavailable = true; return false; }
+        }
+    }
+
+    /// <summary>Définit la fréquence et démarre la sortie si son état le permet.</summary>
+    public void Start(int sampleRate) => Start(sampleRate, EmulationAudioChannelLayout.Stereo);
+
+    /// <summary>Démarre la sortie avec la disposition des canaux fournie par le cœur.</summary>
+    /// <param name="sampleRate">Fréquence des frames audio en hertz.</param>
+    /// <param name="channelLayout">Disposition des échantillons entrelacés dans chaque frame.</param>
+    /// <remarks>Un changement de format arrête la lecture précédente avant de redémarrer la même sortie.
+    /// Le contrôleur conserve ses règles de pause, coupure, propriété et récupération.</remarks>
+    public void Start(int sampleRate, EmulationAudioChannelLayout channelLayout)
+    {
+        lock (_gate)
+        {
+            if (_started && (sampleRate != _sampleRate || channelLayout != _channelLayout)) StopOutput();
             _sampleRate = sampleRate;
+            _channelLayout = channelLayout;
             _stopped = false;
             _unavailable = false;
             EnsureStarted();
@@ -50,7 +98,7 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         lock (_gate)
         {
             if (_stopped || _paused || _muted) return;
-            if (chunk.SampleRate != _sampleRate) Restart(chunk.SampleRate);
+            if (chunk.SampleRate != _sampleRate || chunk.ChannelLayout != _channelLayout) Restart(chunk.SampleRate, chunk.ChannelLayout);
             if (!EnsureStarted()) return;
             var samples = EmulationSdk.AudioProcessing.ApplyVolume(chunk.InterleavedSamples.Span, _volume,
                 ref _volumeBuffer);
@@ -137,9 +185,10 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         }
     }
 
-    private void Restart(int sampleRate)
+    private void Restart(int sampleRate, EmulationAudioChannelLayout channelLayout)
     {
         _sampleRate = sampleRate;
+        _channelLayout = channelLayout;
         StopOutput();
     }
 
@@ -156,8 +205,11 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         if (_started) return true;
         try
         {
+            if (_minimumLatencyMilliseconds > 0) _output.TrySetMinimumLatency(_minimumLatencyMilliseconds);
             BeforeStart(_output);
-            _output.Start(_sampleRate);
+            if (_output is IMultichannelAudioOutput multichannel) multichannel.Start(_sampleRate, _channelLayout);
+            else if (_channelLayout == EmulationAudioChannelLayout.Stereo) _output.Start(_sampleRate);
+            else throw new NotSupportedException(nameof(IMultichannelAudioOutput));
             _started = true;
             return true;
         }

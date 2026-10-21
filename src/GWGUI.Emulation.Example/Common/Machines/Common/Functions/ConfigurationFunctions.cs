@@ -1,76 +1,70 @@
+using System.IO;
 
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Résolution des capacités et validation structurelle d’une configuration de machine.</summary>
-/// <remarks>Le catalogue matériel définit les ports ; les adaptateurs définissent les backends et lecteurs.
-/// La validation conserve la configuration reçue et signale les incohérences par les diagnostics du module.</remarks>
+/// <summary>Validation des identités, des montages et des associations des deux machines fictives.</summary>
+/// <remarks>Les contrôles descriptifs ne lisent pas les fichiers. Leur présence est contrôlée séparément
+/// au moment d’enregistrer ou de préparer le runtime, afin qu’une configuration puisse être éditée hors session.</remarks>
 internal static class ConfigurationFunctions
 {
-    /// <summary>Indique si au moins un adaptateur du catalogue déclare prendre en charge le modèle.</summary>
-    /// <param name="model">Modèle dont le nom technique est comparé aux identifiants acceptés par les adaptateurs.</param>
-    /// <returns>True lorsqu’une description compatible existe ; cette présence ne vérifie pas l’installation du cœur.</returns>
-    internal static bool SupportsRuntime(MachineModel model) => EmulatorCatalog.GetAll(model.ToString()).Count > 0;
+    /// <summary>Indique si le catalogue propose un cœur compatible avec ce profil.</summary>
+    /// <param name="model">Profil matériel déclaré par le module.</param>
+    /// <returns>True si au moins une définition de cœur accepte son identifiant.</returns>
+    internal static bool SupportsRuntime(MachineModel model) => EmulatorCatalog.GetAll(HardwareModelCatalog.Get(model).StableModelId).Count > 0;
 
-    /// <summary>Compte les ports de joysticks analogiques déclarés dans le matériel du modèle.</summary>
-    /// <param name="model">Modèle à rechercher dans le catalogue matériel.</param>
-    /// <returns>Somme des quantités de ports analogiques, sans compter les ports clavier.</returns>
-    internal static int ControllerPortCount(MachineModel model) => HardwareModelCatalog.Get(model).Ports.Where(port => port.Capability == HardwarePortCapability.AnalogJoystick).Sum(port => port.Count);
+    /// <summary>Retourne la préférence déclarée dans le catalogue, sans modifier une configuration existante.</summary>
+    /// <param name="model">Profil dont le cœur initial est demandé.</param>
+    /// <returns>Identité du premier cœur recommandé et compatible.</returns>
+    internal static Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
 
-    /// <summary>Choisit le premier backend compatible dans l’ordre des identifiants du catalogue.</summary>
-    /// <param name="model">Modèle déclaré par l’énumération du module.</param>
-    /// <returns>Identité du backend sélectionné, ou Emulator.None lorsqu’aucun adaptateur ne correspond.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">La valeur de modèle n’est pas déclarée.</exception>
-    internal static Emulator DefaultEmulator(MachineModel model)
-    {
-        if (!Enum.IsDefined(model)) throw new ArgumentOutOfRangeException(nameof(model));
-        var definition = EmulatorCatalog.GetAll(model.ToString()).FirstOrDefault();
-        return definition is null ? Emulator.None : Enum.Parse<Emulator>(new Engine().Adapter(definition.Id).EmulatorKey);
-    }
+    /// <summary>Calcule la quantité de ports de jeu du profil.</summary>
+    /// <param name="model">Profil matériel dont les ports sont décrits.</param>
+    /// <returns>Nombre de ports acceptant les contrôleurs configurables.</returns>
+    internal static int ControllerPortCount(MachineModel model) => HardwareModelCatalog.Get(model).Ports.Where(item => item.Capability == HardwarePortCapability.AnalogJoystick).Sum(item => item.Count);
 
-    /// <summary>Contrôle schéma, modèle, backend, options, montages et associations de contrôleurs.</summary>
-    /// <param name="configuration">Configuration empruntée, non modifiée par cette méthode.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Version de schéma, identité, port ou zone morte hors des valeurs admises.</exception>
-    /// <exception cref="ArgumentException">Firmware externe, montage ou association de périphérique refusés.</exception>
-    /// <remarks>Dans ce parcours, la liste de firmwares externes doit être vide. L’adaptateur contrôle ses options
-    /// et décrit les lecteurs acceptés. Chaque média exige un chemin non vide et un slot unique compatible avec
-    /// son type. Chaque association de contrôleur exige un port unique, une zone morte valide et une catégorie
-    /// de périphérique admise par le modèle. Les fichiers des médias ne sont pas ouverts par ces contrôles de montage.</remarks>
+    /// <summary>Contrôle les données du module sans démarrer ni installer l’émulateur sélectionné.</summary>
+    /// <param name="configuration">Configuration empruntée à vérifier.</param>
+    /// <exception cref="ArgumentException">Un type de contenu, un emplacement ou une association est incompatible.</exception>
     internal static void Validate(MachineConfiguration configuration)
     {
-        if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
-            throw new ArgumentOutOfRangeException(nameof(configuration), ErrorMessages.UnsupportedSchema);
-        if (!Enum.IsDefined(configuration.Model) || !Enum.IsDefined(configuration.Core)
-            || configuration.Core != Emulator.None && !EmulatorCatalog.Get(configuration.Core).MachineIds.Contains(configuration.MachineId))
-            throw new ArgumentOutOfRangeException(nameof(configuration));
-        if (configuration.Firmwares.Count > 0)
-            throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
-        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorConfigurationOptions options)
-            options.ValidateOptions(configuration);
-        var devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeMediaDevices(configuration) : [];
-        var mediaSlots = new HashSet<EmulationMediaSlot>();
+        ArgumentNullException.ThrowIfNull(configuration);
+        if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion || configuration.Id == Guid.Empty
+            || !Enum.IsDefined(configuration.Model) || !Enum.IsDefined(configuration.Core))
+            throw new ArgumentException(nameof(configuration));
+        var model = HardwareModelCatalog.Get(configuration.Model);
+        if (configuration.Firmwares.Any(firmware => !model.Firmware.Contains(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))) throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
+        if (configuration.Core != Emulator.None && !EmulatorCatalog.Get(configuration.Core).MachineIds.Contains(model.StableModelId))
+            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
+        var slots = new HashSet<EmulationMediaSlot>();
         foreach (var media in configuration.Media)
         {
-            if (string.IsNullOrWhiteSpace(media.Path))
-                throw new ArgumentException(ErrorMessages.EmptyMediaPath, nameof(configuration));
-            if (!mediaSlots.Add(media.Slot))
-                throw new ArgumentException(ErrorMessages.DuplicateMediaSlot, nameof(configuration));
-            var mounted = EmulationMediaConversionFunctions.ToCommon(media);
-            if (!devices.Any(device => device.Slot == media.Slot && device.MediaType == mounted.Type))
+            if (string.IsNullOrWhiteSpace(media.Path) || !model.Media.Contains(media.Category) || !slots.Add(media.Slot)
+                || !StorageSettingsFunctions.DescribeDevices(configuration.Model).Any(device => device.Slot == media.Slot && device.MediaType == EmulationMediaConversionFunctions.ToType(media.Category)))
                 throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         }
         var ports = new HashSet<int>();
-        foreach (var controller in configuration.Input.Controllers ?? [])
+        foreach (var binding in configuration.Input.Controllers ?? [])
         {
-            if (controller.Port < ControllerPortConstants.MinimumControllerPort
-                || controller.Port >= ControllerPortCount(configuration.Model))
-                throw new ArgumentOutOfRangeException(nameof(configuration), ErrorMessages.InvalidControllerPort);
-            if (!ports.Add(controller.Port))
-                throw new ArgumentException(ErrorMessages.DuplicateControllerPort, nameof(configuration));
-            if (controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent
-                or > ControllerConstants.MaximumDeadZonePercent)
-                throw new ArgumentOutOfRangeException(nameof(configuration), ErrorMessages.InvalidControllerDeadZone);
-            if (!ControllerFunctions.Peripherals(configuration.Model).Contains(controller.Peripheral))
-                throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(configuration));
+            if (binding.Port < 0 || binding.Port >= ControllerPortCount(configuration.Model) || !ports.Add(binding.Port)
+                || !Enum.IsDefined(binding.Peripheral) || binding.DeadZonePercent is < 0 or > 100)
+                throw new ArgumentException(ErrorMessages.InvalidControllerPort, nameof(configuration));
+            foreach (var output in binding.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>())
+                if (string.IsNullOrWhiteSpace(output.Key) || string.IsNullOrWhiteSpace(output.Value.DeviceId) || !Enum.IsDefined(output.Value.Motor)) throw new ArgumentException(nameof(configuration));
         }
+        if (configuration.Core != Emulator.None) new Engine().Adapter(configuration).ValidateOptions(configuration);
+    }
+
+    /// <summary>Ajoute les contrôles nécessaires à une configuration persistante utilisable.</summary>
+    /// <param name="configuration">Configuration à enregistrer sous le verrou du magasin.</param>
+    /// <remarks>Le choix du cœur doit être explicite et chaque contenu inséré doit être accessible.
+    /// Les contenus éjectés conservent leur chemin sans imposer leur présence au moment d’enregistrer.</remarks>
+    internal static void ValidateForSave(MachineConfiguration configuration)
+    {
+        Validate(configuration);
+        if (configuration.Core == Emulator.None) throw new InvalidDataException();
+        foreach (var media in configuration.Media.Where(item => item.IsInserted))
+            if (!File.Exists(media.Path) && !Directory.Exists(media.Path)) throw new FileNotFoundException(media.Path);
+        foreach (var firmware in configuration.Firmwares.Where(item => item.IsRequired))
+            if (!File.Exists(firmware.Path)) throw new FileNotFoundException(firmware.Path);
     }
 }

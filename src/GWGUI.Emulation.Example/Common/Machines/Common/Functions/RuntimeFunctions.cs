@@ -2,77 +2,65 @@ using System.Diagnostics;
 
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Construit les informations de fonctionnement présentées par la machine.</summary>
-/// <remarks>Ces fonctions consultent un cœur ou un processus emprunté ; elles n’en prennent pas possession.</remarks>
+/// <summary>Projection des mesures du cœur vers le statut public de la machine.</summary>
 internal static class RuntimeFunctions
 {
-    /// <summary>Interprète le code de région annoncé par le protocole du cœur.</summary>
-    /// <param name="value">Code entier du standard vidéo.</param>
-    /// <returns>Standard PAL ou NTSC reconnu, sinon aucune valeur.</returns>
-    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
+    /// <summary>Décode le standard vidéo reçu par le protocole commun.</summary>
+    /// <param name="value">Valeur numérique du champ de région.</param>
+    /// <returns>Standard reconnu, ou null pour une valeur non définie.</returns>
+    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationSdk.HostProtocol.ReadRegion(value, allowAllDefinedStandards: true);
 
-    /// <summary>Traduit l’état du processus et de sa connexion vers les états internes de la machine.</summary>
-    /// <param name="process">Processus emprunté, ou null avant son lancement.</param>
-    /// <param name="connectionFailed">Indique un échec de communication, prioritaire sur les autres états.</param>
-    /// <param name="disposed">Indique que l’hôte a déjà été libéré.</param>
-    /// <returns>Faulted en cas d’échec, NotStarted sans processus, Exited après libération ou sortie, sinon Running.</returns>
-    internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
-        =>
-            EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed,
-                HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
+    /// <summary>Consulte le processus emprunté sans en modifier la durée de vie.</summary>
+    /// <param name="process">Processus possédé par le cœur déporté, ou null avant son lancement.</param>
+    /// <param name="connectionFailed">Indique une rupture du transport.</param>
+    /// <param name="disposed">Indique la libération de la session.</param>
+    /// <returns>Statut déterminé par les règles communes du SDK.</returns>
+    internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed) => EmulationSdk.HostProtocol.GetProcessState(process, connectionFailed, disposed, HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
 
-    /// <summary>Assemble un instantané du statut à partir des dernières valeurs disponibles.</summary>
-    /// <param name="configuration">Configuration fournissant l’identité du modèle.</param>
-    /// <param name="core">Cœur emprunté fournissant les mesures, les LED et la dernière image.</param>
-    /// <returns>Statut contenant une géométrie si une image existe, une copie des LED et les compteurs audio.</returns>
-    /// <remarks>La géométrie exprime largeur et hauteur en pixels, pas mémoire en octets et rapport d’aspect.
-    /// La fréquence audio est en Hz et la cadence vidéo en images par seconde. Le dictionnaire d’activité des médias est vide ici.</remarks>
+    /// <summary>Construit l’instantané des sorties et activités actuellement annoncées par le cœur.</summary>
+    /// <param name="configuration">Configuration portant le modèle et les lecteurs à décrire.</param>
+    /// <param name="core">Cœur emprunté sur son thread propriétaire ou après publication de ses données.</param>
+    /// <returns>Mesures et copies des dictionnaires de statut ; aucune ressource native n’est transférée.</returns>
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
-        // Les LED et l’activité des lecteurs restent deux informations distinctes : aucune activité n’est déduite des LED.
-        return new RuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate,
-            geometry, core.CoreName, new Dictionary<EmulationMediaSlot, bool>(),
-            new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount,
-            core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
+        var activity = new Engine().SelectedAdapter(configuration)?.MediaActivity(configuration, core.LedStates) ?? new Dictionary<EmulationMediaSlot, bool>();
+        return new(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate, geometry, core.CoreName,
+            new Dictionary<EmulationMediaSlot, bool>(activity), new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames,
+            core.AudioOverrunCount, core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
     }
 }
 
-/// <summary>Consulte les contraintes de redémarrage déclarées par l’adaptateur.</summary>
+/// <summary>Consultation des options dont l’adaptateur exige la recréation du cœur.</summary>
 internal static class RuntimeOptionFunctions
 {
-    /// <summary>Recherche une option exigeant un redémarrage du cœur.</summary>
-    /// <param name="emulator">Adaptateur sélectionné, éventuellement None.</param>
-    /// <param name="key">Identifiant exact de l’option.</param>
-    /// <returns>Vrai si l’adaptateur expose les réglages et déclare cette contrainte pour la clé ; faux sinon.</returns>
-    internal static bool RequiresRestart(Emulator emulator, string key) => emulator != Emulator.None && new Engine().Adapter(emulator) is IEmulatorSettings settings && settings.GetSettingsOptions().Any(option => option.Key == key && option.RequiresRestart);
+    /// <summary>Consulte les descriptions de réglages du cœur sélectionné.</summary>
+    /// <param name="emulator">Émulateur dont les règles doivent être consultées.</param>
+    /// <param name="key">Identifiant technique de l’option.</param>
+    /// <returns>True si la description courante de l’option exige un redémarrage.</returns>
+    internal static bool RequiresRestart(Emulator emulator, string key) => emulator != Emulator.None && new Engine().Adapter(emulator).GetSettingsOptions().Any(option => option.Key == key && option.RequiresRestart);
 }
 
-/// <summary>Adapte les erreurs internes aux messages publics contextualisés pour l’application.</summary>
+/// <summary>Adaptation des erreurs locales aux messages publics reconnus par l’application.</summary>
 internal static class MessageFunctions
 {
-    /// <summary>Traduit une erreur en conservant son origine et en lui associant la machine concernée.</summary>
-    /// <param name="error">Erreur originale, conservée par le service de traduction.</param>
-    /// <param name="configuration">Configuration fournissant l’identifiant de machine.</param>
-    /// <returns>Exception adaptée au contrat de messages de l’application.</returns>
-    /// <remarks>Une erreur déjà localisée conserve son texte. Une demande de contenu est ici traduite en demande de disquette.
-    /// Une exception extérieure au modèle interne devient une erreur de démarrage.</remarks>
+    /// <summary>Conserve l’annulation ou contextualise la cause avec l’identité du profil.</summary>
+    /// <param name="error">Cause à transmettre sans perdre son exception interne.</param>
+    /// <param name="configuration">Configuration du profil concerné.</param>
+    /// <returns>Erreur conforme au contrat commun de messages.</returns>
     internal static Exception Translate(Exception error, MachineConfiguration configuration)
     {
         var context = new EmulationMachineMessageContext(configuration.MachineId);
-        if (error is not EmulationException coreError)
-            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, context);
-        if (coreError.IsLocalized)
-            return EmulationErrorService.TranslateLocalized(error, Category(coreError.Category), context);
-        if (coreError.Code == ErrorCode.ContentRequired)
-            return EmulationErrorService.RequiredMediaMissing(configuration.MachineId, [EmulationMediaCategory.FloppyDrive], error);
-        return EmulationErrorService.Translate(error, Category(coreError.Category), MessageCode(coreError.Code), context);
+        if (error is not EmulationException coreError) return EmulationSdk.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, context);
+        if (coreError.IsLocalized) return EmulationSdk.Messages.TranslateLocalized(error, Category(coreError.Category), context);
+        if (coreError.Code == ErrorCode.ContentRequired) return EmulationSdk.Messages.RequiredMediaMissing(configuration.MachineId, StorageSettingsFunctions.DescribeDevices(configuration.Model).Select(device => device.Slot.Category).Distinct().ToArray(), error);
+        return EmulationSdk.Messages.Translate(error, Category(coreError.Category), Code(coreError.Code), context);
     }
 
-    /// <summary>Associe une catégorie interne à celle du contrat de messages.</summary>
-    /// <param name="category">Catégorie de l’erreur interne.</param>
-    /// <returns>Catégorie publique correspondante, ou Machine pour les autres valeurs.</returns>
+    /// <summary>Convertit la catégorie interne vers son domaine public de diagnostic.</summary>
+    /// <param name="category">Catégorie conservée par l’exception du module.</param>
+    /// <returns>Domaine public employé par la traduction de l’hôte.</returns>
     private static EmulationMessageCategory Category(ErrorCategory category) => category switch
     {
         ErrorCategory.Core or ErrorCategory.Host => EmulationMessageCategory.Emulator,
@@ -82,10 +70,10 @@ internal static class MessageFunctions
         _ => EmulationMessageCategory.Machine
     };
 
-    /// <summary>Associe un code interne à un message compréhensible par l’application.</summary>
-    /// <param name="code">Code décrivant l’échec du cœur, du contenu, du firmware ou de l’état.</param>
-    /// <returns>Code public correspondant, ou MachineStartFailed en l’absence de correspondance.</returns>
-    private static EmulationMessageCode MessageCode(ErrorCode code) => code switch
+    /// <summary>Convertit le motif interne vers le code public de message correspondant.</summary>
+    /// <param name="code">Motif de l’échec décrit par le module.</param>
+    /// <returns>Code public conservant la distinction entre contenu, firmware, état et protocole.</returns>
+    private static EmulationMessageCode Code(ErrorCode code) => code switch
     {
         ErrorCode.CoreNotFound => EmulationMessageCode.EmulatorNotInstalled,
         ErrorCode.CoreRejected => EmulationMessageCode.EmulatorRejected,

@@ -1,11 +1,8 @@
-using GWGUI.Emulation;
-
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Constants;
 
-
-/// <summary>Valeurs sentinelles utilisées pour projeter le statut du cœur vers les contrats du module.</summary>
+/// <summary>Codage des valeurs facultatives dans les instantanés du runtime.</summary>
 internal static class RuntimeConstants
 {
-    /// <summary>Valeur indiquant que le cœur n’a annoncé aucune région vidéo ; distincte des régions valides.</summary>
+    /// <summary>Valeur de protocole indiquant qu’aucun standard vidéo n’a été annoncé.</summary>
     internal const int MissingRegionValue = -1;
 }

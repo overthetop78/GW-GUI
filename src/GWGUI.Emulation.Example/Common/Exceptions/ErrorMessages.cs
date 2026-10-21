@@ -6,9 +6,16 @@ namespace GWGUI.Emulation.Example.Common.Exceptions;
 /// La résolution se fait à chaque accès avec la culture d’interface courante, sans figer un texte lors du chargement.</remarks>
 internal static class ErrorMessages
 {
-    // Catalogue des ressources embarquées de cet assembly ; ses règles de repli restent celles du service commun.
-    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Example.Resources.Emulation");
-
+    /// <summary>Message associé à un répertoire d’installation non renseigné.</summary>
+    internal static string EmptyInstallationRoot => CoreNotFound();
+    /// <summary>Message associé à une version de cœur non renseignée.</summary>
+    internal static string EmptyVersion => CoreNotFound();
+    /// <summary>Message associé à une identité de cœur déclarée plusieurs fois.</summary>
+    internal static string DuplicateCore => CoreRejected();
+    /// <summary>Message associé à une association de modèle déclarée plusieurs fois.</summary>
+    internal static string DuplicateModel => CoreRejected();
+    /// <summary>Message associé à un modèle absent du catalogue d’adaptateurs.</summary>
+    internal static string MissingModel => CoreNotFound();
     /// <summary>Message associé à une identité de firmware non reconnue.</summary>
     internal static string UnknownFirmware => FirmwareInvalid();
     /// <summary>Message associé à un firmware obligatoire non sélectionné.</summary>
@@ -94,35 +101,28 @@ internal static class ErrorMessages
     /// <summary>Message associé à un échec de restauration d’une sauvegarde d’état.</summary>
     internal static string StateLoadFailed => StateInvalidText();
     /// <summary>Message associé à une identité de sauvegarde incompatible avec la machine courante.</summary>
-    internal static string StateIncompatible => Text("Emulation.Example.Error.StateIncompatible");
+    internal static string StateIncompatible => ExceptionText.Get("Emulation.Example.Error.StateIncompatible");
     /// <summary>Message associé à une commande incompatible avec l’état courant de la machine.</summary>
-    internal static string MachineInvalidState => Text("Emulation.Example.Error.Unexpected");
+    internal static string MachineInvalidState => ExceptionText.Get("Emulation.Example.Error.Unexpected");
     /// <summary>Message associé à une commande qui ne peut plus être exécutée après l’arrêt de la session.</summary>
-    internal static string MachineStopped => Text("Emulation.Example.Error.Unexpected");
+    internal static string MachineStopped => ExceptionText.Get("Emulation.Example.Error.Unexpected");
 
     /// <summary>Résout le message de catégorie indiquant l’absence d’un firmware.</summary>
-    private static string FirmwareMissing() => Text("Emulation.Example.Error.FirmwareMissing");
+    private static string FirmwareMissing() => ExceptionText.Get("Emulation.Example.Error.FirmwareMissing");
     /// <summary>Résout le message de catégorie indiquant un firmware invalide.</summary>
-    private static string FirmwareInvalid() => Text("Emulation.Example.Error.FirmwareInvalid");
+    private static string FirmwareInvalid() => ExceptionText.Get("Emulation.Example.Error.FirmwareInvalid");
     /// <summary>Résout le message de catégorie indiquant un contenu introuvable.</summary>
-    private static string ContentNotFound() => Text("Emulation.Example.Error.ContentNotFound");
+    private static string ContentNotFound() => ExceptionText.Get("Emulation.Example.Error.ContentNotFound");
     /// <summary>Résout le message de catégorie indiquant un contenu non pris en charge.</summary>
-    private static string ContentUnsupported() => Text("Emulation.Example.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Example.Error.ContentUnsupported");
     /// <summary>Résout le message de catégorie indiquant un réglage invalide.</summary>
-    private static string OptionInvalid() => Text("Emulation.Example.Error.OptionInvalid");
+    private static string OptionInvalid() => ExceptionText.Get("Emulation.Example.Error.OptionInvalid");
     /// <summary>Résout le message de catégorie indiquant un cœur introuvable.</summary>
-    private static string CoreNotFound() => Text("Emulation.Example.Error.CoreNotFound");
+    private static string CoreNotFound() => ExceptionText.Get("Emulation.Example.Error.CoreNotFound");
     /// <summary>Résout le message de catégorie indiquant un cœur refusé.</summary>
-    private static string CoreRejected() => Text("Emulation.Example.Error.CoreRejected");
+    private static string CoreRejected() => ExceptionText.Get("Emulation.Example.Error.CoreRejected");
     /// <summary>Résout le message de catégorie indiquant un état invalide.</summary>
-    private static string StateInvalidText() => Text("Emulation.Example.Error.StateInvalid");
+    private static string StateInvalidText() => ExceptionText.Get("Emulation.Example.Error.StateInvalid");
 
-    /// <summary>Recherche un message dans le catalogue avec la culture d’interface au moment de l’appel.</summary>
-    /// <param name="resourceKey">Clé technique exacte de la ressource recherchée.</param>
-    /// <returns>Texte traduit selon les règles de repli du catalogue ; clé d’origine si aucune valeur n’est disponible.</returns>
-    private static string Text(string resourceKey)
-    {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
-    }
 }
 

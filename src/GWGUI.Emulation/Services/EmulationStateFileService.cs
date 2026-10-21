@@ -10,6 +10,9 @@ internal sealed class EmulationStateFileService : IEmulationStateFiles
     public (EmulationSavedStateHeader<TModel, TCore> Header, byte[] State) ReadState<TModel, TCore>(string path, Func<Exception> invalid)
         => EmulationStateFileFunctions.ReadState<TModel, TCore>(path, invalid);
     public string HashDocument<T>(T value, JsonSerializerOptions? options = null) => EmulationStateFileFunctions.HashDocument(value, options);
+    public bool IsCompatible<TModel, TCore, TConfiguration, TOption>(EmulationSavedStateHeader<TModel, TCore> header,
+        TModel model, TCore emulator, IEmulationCoreRuntime<TConfiguration, TOption> core, Func<string> configurationHash, Func<string> contentHash)
+        => EmulationStateFileFunctions.IsCompatible(header, model, emulator, core, configurationHash, contentHash);
     public string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
     public string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing)
         => EmulationStateFileFunctions.HashPath(path, pattern, separator, bufferSize, missing);

@@ -113,6 +113,17 @@ function New-GwGuiBuild {
             [StringComparison]::OrdinalIgnoreCase)
     })
     $applicationHashes = Get-GwGuiFileHashes -Files $applicationFiles
+    # Example accompagne toujours l’application, même avec --modules=0. Il utilise le contrat
+    # de fabrique normal, mais suit la version de l’application et ne constitue pas un paquet à télécharger.
+    $exampleProject = Join-Path $repository 'src\GWGUI.Emulation.Example\GWGUI.Emulation.Example.csproj'
+    $examplePublish = Join-Path $staging 'example'
+    dotnet publish $exampleProject `
+        -c $BuildConfiguration -r win-x64 --self-contained false -p:Version=$Version -o $examplePublish --disable-build-servers
+    if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration integrated Example publish failed." }
+    $integratedOutput = Join-Path $applicationPublish 'BuiltIn\Emulation\example'
+    New-Item -ItemType Directory -Path $integratedOutput -Force | Out-Null
+    Copy-GwGuiComponentFiles -SourceDirectory $examplePublish -DestinationDirectory $integratedOutput `
+        -SharedHashes $applicationHashes -RequiredFiles @('gwgui.emulation.example.dll', 'gwgui.emulation.example.pdb', 'gwgui.emulation.example.deps.json')
     if ($SelectedModules.Count -gt 0) {
         foreach ($moduleDefinition in $SelectedModules) {
             $project = $moduleDefinition.ProjectPath
@@ -159,6 +170,9 @@ function New-GwGuiBuild {
     $executable = Join-Path $output 'gwgui.exe'
     if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
         throw "$BuildConfiguration executable was not produced: $executable"
+    }
+    if (-not (Test-Path -LiteralPath (Join-Path $output 'BuiltIn\Emulation\example\gwgui.emulation.example.dll') -PathType Leaf)) {
+        throw "$BuildConfiguration integrated Example was not produced."
     }
     $moduleSummary = if ($SelectedModules.Count -eq 0) {
         'without emulation modules'

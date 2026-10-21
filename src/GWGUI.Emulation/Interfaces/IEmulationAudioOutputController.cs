@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Enums;
+
 namespace GWGUI.Emulation.Interfaces;
 
 /// <summary>Contrat du contrôleur audio commun existant, utilisable par une famille indépendante.</summary>
@@ -9,8 +11,18 @@ public interface IEmulationAudioOutputController : IDisposable
     bool IsMuted { get; }
     /// <summary>Gain normalisé actuellement appliqué aux échantillons.</summary>
     float Volume { get; }
+    /// <summary>Instantané du tampon physique, ou null s’il est absent ou inaccessible.</summary>
+    /// <remarks>IsActive tient compte du démarrage, de l’arrêt, de la pause, de la coupure et de la disponibilité du contrôleur.</remarks>
+    AudioOutputBufferStatus? BufferStatus { get; }
+    /// <summary>Demande une latence minimale en millisecondes, mémorisée pour les prochains démarrages.</summary>
+    /// <returns>False pour une valeur négative, un refus de la sortie ou une erreur ; true lorsque la demande est acceptée.</returns>
+    bool TrySetMinimumLatency(int latencyMilliseconds);
     /// <summary>Démarre ou redémarre la sortie à la fréquence fournie en Hz.</summary>
     void Start(int sampleRate);
+    /// <summary>Démarre la sortie avec la fréquence en Hz et la disposition de canaux annoncées par le cœur.</summary>
+    /// <remarks>Une sortie multicanale reçoit la disposition complète ; une sortie simple accepte la stéréo.
+    /// Le contrôleur applique sa récupération habituelle si la sortie ne prend pas en charge cette disposition.</remarks>
+    void Start(int sampleRate, EmulationAudioChannelLayout channelLayout);
     /// <summary>Écrit le bloc emprunté avec la politique commune de volume et de reprise sur erreur.</summary>
     void Write(AudioChunk chunk);
     /// <summary>Coupe ou rétablit la sortie ; une coupure vide ses échantillons en attente.</summary>

@@ -1,15 +1,20 @@
+using System.Globalization;
+
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Projection concise d’une configuration vers les informations présentées dans la liste des machines.</summary>
+/// <summary>Résumé compact du profil et de son émulateur, sans duplication de libellés traduits.</summary>
 internal static class ConfigurationSummaryFunctions
 {
-    /// <summary>Associe le nom traduit du modèle à ses informations de processeur, mémoire et backend.</summary>
-    /// <param name="configuration">Configuration empruntée dont le modèle et le cœur sont déjà sélectionnés.</param>
-    /// <returns>Résumé avec une clé de nom de modèle et trois détails techniques ; la mémoire est convertie des octets en Kio.</returns>
-    /// <remarks>Les valeurs matérielles proviennent du catalogue, sans démarrer un cœur ni ouvrir un média.</remarks>
+    /// <summary>Présente les données matérielles invariantes du profil choisi.</summary>
+    /// <param name="configuration">Configuration dont le profil et le cœur doivent être résumés.</param>
+    /// <returns>Clé de nom de machine et valeurs techniques de CPU, fréquence, RAM et cœur.</returns>
+    /// <remarks>CPU, RAM, unités et identités de produits sont des données invariantes. Les libellés
+    /// d’éditeurs restent fournis par les ressources communes de l’application.</remarks>
     internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        return new EmulationConfigurationSummary(hardware.DisplayNameResourceKey, [$"CPU {hardware.DefaultCpu}", $"RAM {hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB", $"Core {configuration.Core}"]);
+        return new(hardware.DisplayNameResourceKey,
+            [$"CPU {hardware.DefaultCpu} · {hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture)} Hz",
+             $"RAM {hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture)} B", configuration.Core.ToString()]);
     }
 }

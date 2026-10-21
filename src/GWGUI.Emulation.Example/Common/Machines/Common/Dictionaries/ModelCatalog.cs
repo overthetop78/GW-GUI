@@ -1,19 +1,11 @@
-using GWGUI.Emulation;
-
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries;
 
-/// <summary>Projection des modèles matériels vers les identifiants et clés de présentation du contrat public.</summary>
-/// <remarks>L’identifiant utilisé ici est le nom de MachineModel, également exposé par la configuration.
-/// La traduction du libellé ne modifie donc pas l’identité du modèle.</remarks>
+/// <summary>Conversion des identifiants publics des profils vers leur identité typée.</summary>
 public static class ModelCatalog
 {
-    /// <summary>Descriptions publiques des modèles, dans l’ordre du catalogue matériel.</summary>
-    public static IReadOnlyList<EmulationMachineDefinition> All { get; } =
-        HardwareModelCatalog.All.Select(definition => new EmulationMachineDefinition(definition.Model.ToString(), definition.DisplayNameResourceKey)).ToArray();
-
-    /// <summary>Convertit un identifiant textuel vers une valeur déclarée de MachineModel.</summary>
-    /// <param name="id">Nom exact du modèle, ou représentation numérique d’une valeur déclarée dans l’énumération.</param>
-    /// <returns>Valeur typée reconnue ; la conversion des noms distingue majuscules et minuscules.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">L’identifiant ne désigne aucune valeur déclarée.</exception>
-    public static MachineModel Parse(string id) => GWGUI.Emulation.Functions.EmulationMachineModelFunctions.Parse<MachineModel>(id);
+    /// <summary>Recherche un profil par son identifiant technique exact, indépendant de sa traduction.</summary>
+    /// <param name="id">Identifiant annoncé dans la liste des machines du module.</param>
+    /// <returns>Identité typée du profil correspondant.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Aucun des deux profils ne possède cet identifiant.</exception>
+    public static MachineModel Parse(string id) => HardwareModelCatalog.All.FirstOrDefault(item => string.Equals(item.StableModelId, id, StringComparison.Ordinal))?.Model ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
 }

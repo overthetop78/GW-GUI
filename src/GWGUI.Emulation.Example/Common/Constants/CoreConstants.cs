@@ -23,7 +23,7 @@ public static class CoreHostConstants
     /// <summary>Format .NET d’un GUID sans séparateurs pour les noms de ressources de session.</summary>
     internal const string UniqueNameFormat = "N";
     /// <summary>Version du format binaire des échanges, contrôlée lors de la lecture de leur en-tête.</summary>
-    internal const int ProtocolVersion = 3;
+    internal const int ProtocolVersion = 5;
     /// <summary>Nombre maximal de clients raccordés au canal d’une même session.</summary>
     internal const int MaximumPipeInstances = 1;
     /// <summary>Capacité en octets des tampons de transport du canal nommé.</summary>
@@ -76,6 +76,8 @@ public static class CoreHostConstants
     internal const byte HasUnsavedMediaChangesCommand = 14;
     /// <summary>Commande affectant un périphérique émulé à un port de contrôleur.</summary>
     internal const byte SetControllerPortDeviceCommand = 15;
+    /// <summary>Commande de réinitialisation logicielle du cœur, distincte de la remise à zéro matérielle.</summary>
+    internal const byte SoftResetCommand = 16;
     /// <summary>Statut précédant les données d’une réponse réussie.</summary>
     internal const byte SuccessResponse = 1;
     /// <summary>Statut précédant le diagnostic d’une réponse en échec.</summary>

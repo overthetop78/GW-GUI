@@ -3,7 +3,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class EmulationAudioBuffer
+internal sealed class EmulationAudioBuffer : IEmulationAudioBuffer
 {
     private readonly object _gate = new();
     private readonly Queue<AudioChunk> _chunks = new();
@@ -11,12 +11,17 @@ internal sealed class EmulationAudioBuffer
     private long _overrunCount;
     private long _underrunCount;
 
-    internal int BufferedFrames { get { lock (_gate) return _bufferedFrames; } }
-    internal long OverrunCount { get { lock (_gate) return _overrunCount; } }
-    internal long UnderrunCount { get { lock (_gate) return _underrunCount; } }
-    internal long NativeOverrunCount => _overrunCount;
+    /// <inheritdoc/>
+    public int BufferedFrames { get { lock (_gate) return _bufferedFrames; } }
+    /// <inheritdoc/>
+    public long OverrunCount { get { lock (_gate) return _overrunCount; } }
+    /// <inheritdoc/>
+    public long UnderrunCount { get { lock (_gate) return _underrunCount; } }
+    /// <inheritdoc/>
+    public long NativeOverrunCount => _overrunCount;
 
-    internal void Enqueue(AudioChunk chunk)
+    /// <inheritdoc/>
+    public void Enqueue(AudioChunk chunk)
     {
         lock (_gate)
         {
@@ -26,7 +31,8 @@ internal sealed class EmulationAudioBuffer
         }
     }
 
-    internal void EnqueueNative<TSource>(AudioChunk chunk, TSource source, Func<TSource, int> readSampleRate, bool multichannel = false)
+    /// <inheritdoc/>
+    public void EnqueueNative<TSource>(AudioChunk chunk, TSource source, Func<TSource, int> readSampleRate, bool multichannel = false)
     {
         lock (_gate)
         {
@@ -48,8 +54,10 @@ internal sealed class EmulationAudioBuffer
         }
     }
 
-    internal bool TryDequeue(out AudioChunk? chunk) => TryDequeue(out chunk, countUnderrun: true);
-    internal bool TryDequeueNative(out AudioChunk? chunk) => TryDequeue(out chunk, countUnderrun: false);
+    /// <inheritdoc/>
+    public bool TryDequeue(out AudioChunk? chunk) => TryDequeue(out chunk, countUnderrun: true);
+    /// <inheritdoc/>
+    public bool TryDequeueNative(out AudioChunk? chunk) => TryDequeue(out chunk, countUnderrun: false);
 
     private bool TryDequeue(out AudioChunk? chunk, bool countUnderrun)
     {
@@ -65,7 +73,8 @@ internal sealed class EmulationAudioBuffer
         }
     }
 
-    internal void ClearNative(Action clearLatest)
+    /// <inheritdoc/>
+    public void ClearNative(Action clearLatest)
     {
         lock (_gate)
         {

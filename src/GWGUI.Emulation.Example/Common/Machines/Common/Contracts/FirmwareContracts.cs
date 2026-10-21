@@ -1,12 +1,54 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 
-/// <summary>Firmware sélectionné pour une fonction matérielle de la machine.</summary>
-/// <param name="Category">Emplacement fonctionnel du firmware, comme le système ou l’interpréteur BASIC.</param>
-/// <param name="Path">Chemin du fichier fourni ; le contrat ne l’ouvre pas et ne le prend pas en propriété.</param>
-/// <param name="IsRequired">Indique si ce firmware est obligatoire pour la configuration.</param>
-/// <param name="IsOriginalFirmware">Distingue un firmware d’origine d’une autre implémentation compatible.</param>
-/// <remarks>Le modèle déclare les catégories acceptées. La validation et les fonctions de préparation vérifient
-/// la sélection avant de présenter les fichiers au cœur ; la destruction d’une configuration ne supprime pas ces fichiers.</remarks>
-public sealed record FirmwareConfiguration(FirmwareCategory Category, string Path, bool IsRequired, bool IsOriginalFirmware = true);
+/// <summary>Choix d’un fichier de firmware pour un rôle de la machine.</summary>
+/// <param name="Category">Rôle auquel le fichier est affecté.</param>
+/// <param name="Path">Chemin du fichier utilisateur emprunté.</param>
+/// <param name="IsRequired">Indique si le profil exige ce fichier.</param>
+/// <param name="IsOriginalFirmware">Indique si le candidat conserve son contenu original.</param>
+/// <param name="FieldId">Identifiant du champ lorsqu’un même rôle possède plusieurs emplacements.</param>
+public sealed record FirmwareConfiguration(FirmwareCategory Category, string Path, bool IsRequired, bool IsOriginalFirmware = true, string? FieldId = null);
 
+/// <summary>Empreinte du catalogue utilisée pour reconnaître un candidat.</summary>
+/// <param name="Algorithm">Algorithme appliqué aux octets du candidat.</param>
+/// <param name="Value">Représentation textuelle de l’empreinte.</param>
+/// <param name="Region">Région précisée par cette empreinte, ou null pour toutes les régions.</param>
+public sealed record FirmwareFingerprint(FirmwareHashAlgorithm Algorithm, string Value, HardwareRegion? Region = null);
 
+/// <summary>Métadonnées de reconnaissance d’un rôle de firmware.</summary>
+/// <param name="Id">Identifiant stable de la définition.</param>
+/// <param name="Category">Rôle reconnu, ou null si non déterminé.</param>
+/// <param name="Version">Version reconnue du contenu.</param>
+/// <param name="ExpectedFileName">Nom de fichier attendu lorsqu’il est imposé.</param>
+/// <param name="ExpectedSizeBytes">Taille attendue en octets, ou null sans contrainte.</param>
+/// <param name="Provision">Politique de fourniture du rôle.</param>
+/// <param name="Distribution">Origine du contenu et conditions de fourniture.</param>
+/// <param name="Evidence">Origine des données de reconnaissance.</param>
+/// <param name="Models">Profils compatibles avec la définition.</param>
+/// <param name="Regions">Régions compatibles.</param>
+/// <param name="Fingerprints">Empreintes connues du contenu.</param>
+public sealed record FirmwareDefinition(string Id, FirmwareCategory? Category, string? Version, string? ExpectedFileName, long? ExpectedSizeBytes, FirmwareProvision Provision, FirmwareDistribution Distribution, FirmwareEvidence Evidence, IReadOnlyList<MachineModel> Models, IReadOnlyList<HardwareRegion> Regions, IReadOnlyList<FirmwareFingerprint> Fingerprints)
+{
+    /// <summary>Indique que le démarrage exige un fichier externe pour ce rôle.</summary>
+    public bool RequiresExternalFile => Provision == FirmwareProvision.RequiredExternal;
+    /// <summary>Indique que les règles de distribution autorisent la fourniture du contenu par le module.</summary>
+    public bool CanBePackaged => Distribution != FirmwareDistribution.UserSuppliedCopyrighted;
+}
+
+/// <summary>Résultat d’inspection d’un fichier, sans conserver de flux ouvert.</summary>
+/// <param name="Path">Chemin du candidat inspecté.</param>
+/// <param name="SizeBytes">Taille observée en octets.</param>
+/// <param name="Md5">Empreinte observée, ou null après un échec de lecture.</param>
+/// <param name="Detection">Résultat de reconnaissance.</param>
+/// <param name="Definition">Définition reconnue dans le catalogue, ou null.</param>
+/// <param name="Compatibility">Compatibilité avec le profil demandé.</param>
+/// <param name="IsDuplicate">Indique si un autre candidat possède la même empreinte.</param>
+/// <param name="ReadError">Diagnostic de lecture, ou null lorsque la lecture a réussi.</param>
+public sealed record ScannedFirmware(string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection, FirmwareDefinition? Definition, FirmwareCompatibility Compatibility, bool IsDuplicate, string? ReadError);
+
+/// <summary>Exigence d’un rôle de firmware décrite par un adaptateur.</summary>
+/// <param name="Role">Rôle du firmware attendu.</param>
+/// <param name="FieldId">Identifiant de son champ de sélection.</param>
+/// <param name="DisplayResourceKey">Clé du libellé de présentation.</param>
+/// <param name="FileNames">Noms de fichiers candidats annoncés par le backend.</param>
+/// <param name="IsRequired">Indique si l’absence du rôle empêche le démarrage.</param>
+public sealed record FirmwareRequirement(FirmwareCategory Role, string FieldId, string DisplayResourceKey, IReadOnlyList<string> FileNames, bool IsRequired);

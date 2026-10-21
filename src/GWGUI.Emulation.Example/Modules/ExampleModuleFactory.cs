@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Example.Modules;
 
-/// <summary>Fabrique intégrée appelée par l’application ; respecte le même contrat que les fabriques externes.</summary>
+/// <summary>Fabrique intégrée chargée par son interface publique, identique à celles des modules externes.</summary>
 /// <remarks>L’absence de module.json est volontaire : Example suit la version et la distribution de l’application.</remarks>
 public sealed class ExampleModuleFactory : IEmulationModuleFactory
 {

@@ -1,21 +1,25 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Enums;
 
-/// <summary>Disponibilité déclarée d’un média dans les capacités de la machine.</summary>
+/// <summary>Disponibilité d’un contenu lors de la préparation de la configuration.</summary>
 public enum MediaAvailability
 {
-    /// <summary>La capacité considérée permet l’utilisation du média.</summary>
+    /// <summary>Le contenu demandé est accessible.</summary>
     Available,
-    /// <summary>La capacité considérée ne permet pas l’utilisation du média.</summary>
-    Unavailable
+    /// <summary>Le contenu demandé n’est pas accessible.</summary>
+    Unavailable,
 }
 
-/// <summary>Catégories de contenu utilisées pour vérifier et projeter les montages de la configuration.</summary>
+/// <summary>Types de contenus montables par les deux machines fictives.</summary>
 public enum MediaCategory
 {
-    /// <summary>Image de disquette destinée à un lecteur de disquettes.</summary>
+    /// <summary>Image de disquette montée dans un lecteur.</summary>
     Floppy,
-    /// <summary>Image ou contenu de cassette destiné au transport correspondant.</summary>
+    /// <summary>Image de cassette utilisée par le transport de bande.</summary>
     Cassette,
-    /// <summary>Contenu de cartouche présenté au connecteur de cartouche.</summary>
-    Cartridge
+    /// <summary>Image de disque dur.</summary>
+    HardDisk,
+    /// <summary>Image de cartouche.</summary>
+    Cartridge,
+    /// <summary>Image ou répertoire de carte mémoire.</summary>
+    MemoryCard,
 }

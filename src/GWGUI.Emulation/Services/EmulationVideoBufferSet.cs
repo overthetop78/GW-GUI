@@ -2,7 +2,7 @@ using System.Buffers;
 
 namespace GWGUI.Emulation.Services;
 
-internal class EmulationVideoBufferSet : IDisposable
+internal class EmulationVideoBufferSet : IEmulationVideoBufferSet
 {
     private readonly ArrayPool<byte> _pool;
     private readonly byte[]?[] _buffers;
@@ -14,7 +14,7 @@ internal class EmulationVideoBufferSet : IDisposable
         _buffers = new byte[bufferCount][];
     }
 
-    internal byte[] Rent(int length)
+    public byte[] Rent(int length)
     {
         var index = _nextBuffer;
         _nextBuffer = (_nextBuffer + 1) % _buffers.Length;
@@ -38,5 +38,16 @@ internal class EmulationVideoBufferSet : IDisposable
             catch (Exception exception) { failure ??= exception; }
         }
         if (failure is not null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
+    }
+
+    /// <inheritdoc/>
+    public byte[] CopyFramePixels(nint data, uint height, nuint pitch)
+    {
+        if (data == nint.Zero || height == 0 || pitch == 0) throw new ArgumentException(nameof(data));
+        var rows = checked((int)height);
+        var rowBytes = checked((int)pitch);
+        var buffer = Rent(EmulationVideoFunctions.FrameLength(height, pitch));
+        EmulationVideoFunctions.CopyRows(data, buffer, rows, rowBytes);
+        return buffer;
     }
 }

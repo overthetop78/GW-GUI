@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Services;
 
 /// <summary>Mémoire vidéo partagée redimensionnable, possédée par l’hôte de cœur qui crée cet écrivain.</summary>
 /// <remarks>Le propriétaire appelle Dispose dans son finally après la fin des écritures ; le remplacement de capacité libère aussi la mémoire précédente.</remarks>
-internal class EmulationSharedVideoWriter(string namePrefix, Func<int, int> capacity, string separator, string nameFormat) : IDisposable
+internal class EmulationSharedVideoWriter(string namePrefix, Func<int, int> capacity, string separator, string nameFormat) : IEmulationSharedVideoWriter
 {
     private MemoryMappedFile? _memory;
 

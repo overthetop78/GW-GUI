@@ -34,7 +34,9 @@ internal enum HostCommand : byte
     /// <summary>Demander si des changements de médias restent à enregistrer.</summary>
     HasUnsavedMediaChanges = CoreHostConstants.HasUnsavedMediaChangesCommand,
     /// <summary>Affecter le périphérique émulé à un port de contrôleur.</summary>
-    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand
+    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand,
+    /// <summary>Demander la réinitialisation logicielle mise en œuvre par le cœur.</summary>
+    SoftReset = CoreHostConstants.SoftResetCommand
 }
 
 /// <summary>État d’hébergement du cœur, distinct du cycle de vie de la machine émulée.</summary>

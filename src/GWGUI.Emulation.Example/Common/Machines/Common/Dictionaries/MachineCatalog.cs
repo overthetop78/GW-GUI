@@ -1,16 +1,9 @@
-using GWGUI.Emulation;
-
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries;
 
-/// <summary>Descriptions de machines présentées à l’application, incluant leur ressource d’image.</summary>
-/// <remarks>ModelCatalog fournit l’identité et le nom traduit. Cette projection ajoute le nom logique
-/// de l’image embarquée, sans charger ni posséder de ressource graphique.</remarks>
+/// <summary>Projection publique des deux profils matériels proposés à l’application.</summary>
 public static class MachineCatalog
 {
-    /// <summary>Descriptions construites une fois dans l’ordre de ModelCatalog.</summary>
-    /// <remarks>Les modèles partagent l’image déclarée du groupe, sauf ExampleMachineC dont le nom de ressource
-    /// est construit depuis son identifiant. La résolution et l’affichage des images appartiennent à l’hôte.</remarks>
-    public static IReadOnlyList<EmulationMachineDefinition> All { get; } = ModelCatalog.All
-        .Select(model => new EmulationMachineDefinition(model.Id, model.DisplayResourceKey,
-            ModelCatalog.Parse(model.Id) != MachineModel.ExampleMachineC ? EmulationModuleConstants.ExampleMachineAImageResourceName : $"{EmulationModuleConstants.AssetResourcePrefix}.Machines.{model.Id}.png")).ToArray();
+    /// <summary>Identifiants et clés de présentation transmis par la façade de module.</summary>
+    /// <remarks>Les images facultatives seront résolues par l’hôte ; cette déclaration n’acquiert aucune surface graphique.</remarks>
+    public static IReadOnlyList<EmulationMachineDefinition> All { get; } = Array.AsReadOnly(HardwareModelCatalog.All.Select(item => new EmulationMachineDefinition(item.StableModelId, item.DisplayNameResourceKey)).ToArray());
 }
