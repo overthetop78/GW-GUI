@@ -1,6 +1,8 @@
 namespace GWGUI.Emulation.Contracts;
 
-internal sealed record EmulationCoreReleaseSettings(
+/// <summary>Paramètres d’une distribution de cœur : archive officielle, bibliothèque dans l’archive, nom installé et nom affiché.</summary>
+/// <remarks>Le module fournit ces métadonnées ; le SDK ne déduit pas de fournisseur à partir du nom de l’assembly.</remarks>
+public sealed record EmulationCoreReleaseSettings(
     Uri OfficialArchiveUri,
     string ArchiveLibraryName,
     string InstalledLibraryName,
