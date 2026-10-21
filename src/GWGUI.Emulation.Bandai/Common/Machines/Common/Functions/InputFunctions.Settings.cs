@@ -66,20 +66,20 @@ internal static class InputSettingsFunctions
     {
         if (model == MachineModel.TamagotchiP1) return new Dictionary<EmulationControllerVisualControl, string>
         {
-            [EmulationControllerVisualControl.Option] = EmulationInputMappingConstants.Select,
+            [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select,
             [EmulationControllerVisualControl.PrimaryAction] = InputSnapshotFunctionsConstants.Execute,
             [EmulationControllerVisualControl.SecondaryAction] = InputSnapshotFunctionsConstants.Cancel
         };
         if (model == MachineModel.Playdia) return new Dictionary<EmulationControllerVisualControl, string>
         {
-            [EmulationControllerVisualControl.DirectionUp] = EmulationInputMappingConstants.Up,
-            [EmulationControllerVisualControl.DirectionDown] = EmulationInputMappingConstants.Down,
-            [EmulationControllerVisualControl.DirectionLeft] = EmulationInputMappingConstants.Left,
-            [EmulationControllerVisualControl.DirectionRight] = EmulationInputMappingConstants.Right,
-            [EmulationControllerVisualControl.PrimaryAction] = EmulationInputMappingConstants.B,
-            [EmulationControllerVisualControl.SecondaryAction] = EmulationInputMappingConstants.A,
-            [EmulationControllerVisualControl.Start] = EmulationInputMappingConstants.Start,
-            [EmulationControllerVisualControl.Option] = EmulationInputMappingConstants.Select
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
+            [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select
         };
         return new Dictionary<EmulationControllerVisualControl, string>
         {
@@ -91,9 +91,9 @@ internal static class InputSettingsFunctions
             [EmulationControllerVisualControl.CRight] = InputSnapshotFunctionsConstants.Y2,
             [EmulationControllerVisualControl.CDown] = InputSnapshotFunctionsConstants.Y3,
             [EmulationControllerVisualControl.CLeft] = InputSnapshotFunctionsConstants.Y4,
-            [EmulationControllerVisualControl.PrimaryAction] = EmulationInputMappingConstants.A,
-            [EmulationControllerVisualControl.SecondaryAction] = EmulationInputMappingConstants.B,
-            [EmulationControllerVisualControl.Start] = EmulationInputMappingConstants.Start
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.A,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.B,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
     }
 }

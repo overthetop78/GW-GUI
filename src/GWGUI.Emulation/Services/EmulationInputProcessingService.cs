@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Services;
 /// <remarks>Le service ne conserve aucune référence aux instantanés reçus.</remarks>
 internal sealed class EmulationInputProcessingService : IEmulationInputProcessing
 {
+    /// <inheritdoc/>
+    public int ControllerButtonIndex(string commandId) => EmulationInputMappingFunctions.ControllerButtonIndex(commandId);
+
     /// <summary>Index de codes natifs construit à partir de la table clavier existante, sans conserver de touches appuyées.</summary>
     private readonly IReadOnlyDictionary<uint, EmulationKey[]> _nativeKeys = ExternalCoreKeyboardFunctions.CreateKeyMap().GroupBy(item => item.Value).ToDictionary(group => group.Key, group => group.Select(item => item.Key).ToArray());
 

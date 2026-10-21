@@ -39,9 +39,9 @@ internal static class InputSettingsFunctions
         var mouse = SupportsPointer(configuration)
             ? new EmulationInputBindingSet(
             configuration.Family == MachineFamily.Macintosh
-                ? [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft)]
-                : [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
-                   new InputBindingDefinition(InputSnapshotFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)],
+                ? [new InputBindingDefinition(EmulationControllerCommandIds.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft)]
+                : [new InputBindingDefinition(EmulationControllerCommandIds.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
+                   new InputBindingDefinition(EmulationControllerCommandIds.Right, InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)],
             input.MouseMappings ?? new Dictionary<string, string>(),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller
         )
@@ -72,7 +72,7 @@ internal static class InputSettingsFunctions
                 KeyboardBindings = keyboardBindings,
                 Controllers = controllers,
                 MouseMappings = settings.Mouse is null ? configuration.Input.MouseMappings : settings.Mouse.Values
-                    .Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left || configuration.Family == MachineFamily.AppleII && pair.Key == InputSnapshotFunctionsConstants.Right)
+                    .Where(pair => pair.Key == EmulationControllerCommandIds.Left || configuration.Family == MachineFamily.AppleII && pair.Key == EmulationControllerCommandIds.Right)
                     .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
             }
         };

@@ -11,6 +11,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.AudioProcessing), typeof(IEmulationAudioProcessing))]
     [InlineData(nameof(EmulationSdk.SessionDirectories), typeof(IEmulationSessionDirectories))]
     [InlineData(nameof(EmulationSdk.StateFiles), typeof(IEmulationStateFiles))]
+    [InlineData(nameof(EmulationSdk.InputProcessing), typeof(IEmulationInputProcessing))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
         var entry = typeof(EmulationSdk).GetProperty(serviceName)!;

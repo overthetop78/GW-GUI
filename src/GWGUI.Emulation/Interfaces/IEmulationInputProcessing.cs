@@ -5,6 +5,13 @@ namespace GWGUI.Emulation.Interfaces;
 /// L’accumulation des mouvements entre deux frames appartient au contrat IEmulationInputFrames.</remarks>
 public interface IEmulationInputProcessing
 {
+    /// <summary>Résout une commande dans la table de boutons commune utilisée par les adaptations natives.</summary>
+    /// <param name="commandId">Identifiant technique de commande, comparé sans distinction de casse.</param>
+    /// <returns>Index du bouton à partir de zéro, ou −1 si la commande n’appartient pas à cette table.</returns>
+    /// <remarks>L’index désigne un bit du masque de boutons, pas une touche clavier ni un numéro de port.
+    /// Les adaptations conservent leurs associations propres et résolvent leur commande native par ce contrat.</remarks>
+    int ControllerButtonIndex(string commandId);
+
     /// <summary>Copie les collections d’un instantané pour les stabiliser pendant son utilisation par un cœur.</summary>
     /// <param name="snapshot">Entrées empruntées ; null représente un ensemble d’entrées vide.</param>
     /// <returns>Instantané dont les touches, le pointeur et la collection de contrôleurs sont copiés.</returns>

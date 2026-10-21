@@ -12,7 +12,6 @@ internal static class EmulationMediaSlotConstants
     internal const int CassetteProtocolValue = 7;
     internal const int SecondCartridgeProtocolValue = 8;
     internal const int MemoryCardProtocolValue = 9;
-    internal const int DiskChangeDelayMilliseconds = 500;
     internal const string FloppyPrefix = "Floppy";
     internal const string HardDiskPrefix = "HardDisk";
     internal const string CompactDiscPrefix = "Cd";

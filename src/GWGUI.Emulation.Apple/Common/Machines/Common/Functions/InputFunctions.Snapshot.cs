@@ -21,7 +21,7 @@ internal static class InputSnapshotFunctions
             keys.Remove(EmulationKey.RightAlt);
             mapped = mapped with { Keys = keys };
         }
-        if (configuration?.MouseMappings?.TryGetValue(InputSnapshotFunctionsConstants.Left, out var mouseSource) == true)
+        if (configuration?.MouseMappings?.TryGetValue(EmulationControllerCommandIds.Left, out var mouseSource) == true)
         {
             var controller = EmulationInputMappingFunctions.ResolveSourceController(mouseSource, snapshot.Controllers, EmulationControllerState.Empty);
             mapped = mapped with
@@ -29,7 +29,7 @@ internal static class InputSnapshotFunctions
                 Pointer = mapped.Pointer with { Left = IsPressed(mouseSource, controller, snapshot) }
             };
         }
-        if (configuration?.MouseMappings?.TryGetValue(InputSnapshotFunctionsConstants.Right, out var rightSource) == true)
+        if (configuration?.MouseMappings?.TryGetValue(EmulationControllerCommandIds.Right, out var rightSource) == true)
         {
             var controller = EmulationInputMappingFunctions.ResolveSourceController(rightSource, snapshot.Controllers, EmulationControllerState.Empty);
             mapped = mapped with { Pointer = mapped.Pointer with { Right = IsPressed(rightSource, controller, snapshot) } };
@@ -58,22 +58,22 @@ internal static class InputSnapshotFunctions
                 if (target < 0) continue;
                 if (IsPressed(mapping.Value, controller, snapshot)) buttons |= 1u << target;
                 var magnitude = Magnitude(mapping.Value, controller, snapshot);
-                if (string.Equals(mapping.Key, InputSnapshotFunctionsConstants.Left, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(mapping.Key, EmulationControllerCommandIds.Left, StringComparison.OrdinalIgnoreCase))
                 {
                     horizontalMapped = true;
                     horizontal -= magnitude;
                 }
-                else if (string.Equals(mapping.Key, InputSnapshotFunctionsConstants.Right, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(mapping.Key, EmulationControllerCommandIds.Right, StringComparison.OrdinalIgnoreCase))
                 {
                     horizontalMapped = true;
                     horizontal += magnitude;
                 }
-                else if (string.Equals(mapping.Key, InputSnapshotFunctionsConstants.Up, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(mapping.Key, EmulationControllerCommandIds.Up, StringComparison.OrdinalIgnoreCase))
                 {
                     verticalMapped = true;
                     vertical -= magnitude;
                 }
-                else if (string.Equals(mapping.Key, InputSnapshotFunctionsConstants.Down, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(mapping.Key, EmulationControllerCommandIds.Down, StringComparison.OrdinalIgnoreCase))
                 {
                     verticalMapped = true;
                     vertical += magnitude;
@@ -109,8 +109,8 @@ internal static class InputSnapshotFunctions
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Mouse, out var mouse))
             return mouse switch
             {
-                InputSnapshotFunctionsConstants.Left => snapshot.Pointer.Left,
-                InputSnapshotFunctionsConstants.Right => snapshot.Pointer.Right,
+                EmulationControllerCommandIds.Left => snapshot.Pointer.Left,
+                EmulationControllerCommandIds.Right => snapshot.Pointer.Right,
                 InputSnapshotFunctionsConstants.Middle => snapshot.Pointer.Middle,
                 InputSnapshotFunctionsConstants.XButton1 => snapshot.Pointer.ExtendedButton1,
                 InputSnapshotFunctionsConstants.XButton2 => snapshot.Pointer.ExtendedButton2,

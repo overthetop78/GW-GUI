@@ -144,7 +144,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         if (_currentDiskPath is not null)
         {
             await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
-            await Task.Delay(EmulationMediaSlotConstants.DiskChangeDelayMilliseconds, cancellationToken).ConfigureAwait(false);
+            await Task.Delay(MachineConstants.DiskChangeDelayMilliseconds, cancellationToken).ConfigureAwait(false);
         }
 
         await QueueCommand(() =>

@@ -2,11 +2,6 @@ namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Constants;
 
 internal static class InputSnapshotFunctionsConstants
 {
-    internal const string Fire1 = "Fire1";
-    internal const string Up = EmulationInputMappingConstants.Up;
-    internal const string Down = EmulationInputMappingConstants.Down;
-    internal const string Left = EmulationInputMappingConstants.Left;
-    internal const string Right = EmulationInputMappingConstants.Right;
     internal const string Keyboard = "Keyboard:";
     internal const string Mouse = "Mouse:";
     internal const string Middle = "Middle";

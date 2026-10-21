@@ -5,23 +5,23 @@ internal static class InputSnapshotDictionary
     internal static readonly IReadOnlyDictionary<string, int> CommonButtons =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
-            [InputSnapshotFunctionsConstants.Fire1] = EmulationInputMappingConstants.AIndex,
-            [EmulationControllerCommandIds.Fire2] = EmulationInputMappingConstants.BIndex,
-            [EmulationInputMappingConstants.B] = EmulationInputMappingConstants.BIndex,
-            [EmulationInputMappingConstants.Y] = EmulationInputMappingConstants.YIndex,
-            [EmulationInputMappingConstants.Select] = EmulationInputMappingConstants.SelectIndex,
-            [EmulationInputMappingConstants.Start] = EmulationInputMappingConstants.StartIndex,
-            [EmulationInputMappingConstants.Up] = EmulationInputMappingConstants.UpIndex,
-            [EmulationInputMappingConstants.Down] = EmulationInputMappingConstants.DownIndex,
-            [EmulationInputMappingConstants.Left] = EmulationInputMappingConstants.LeftIndex,
-            [EmulationInputMappingConstants.Right] = EmulationInputMappingConstants.RightIndex,
-            [EmulationInputMappingConstants.A] = EmulationInputMappingConstants.AIndex,
-            [EmulationInputMappingConstants.X] = EmulationInputMappingConstants.XIndex,
-            [EmulationInputMappingConstants.L] = EmulationInputMappingConstants.LIndex,
-            [EmulationInputMappingConstants.R] = EmulationInputMappingConstants.RIndex,
-            [EmulationInputMappingConstants.L2] = EmulationInputMappingConstants.L2Index,
-            [EmulationInputMappingConstants.R2] = EmulationInputMappingConstants.R2Index,
-            [EmulationInputMappingConstants.L3] = EmulationInputMappingConstants.L3Index,
-            [EmulationInputMappingConstants.R3] = EmulationInputMappingConstants.R3Index
+            [EmulationControllerCommandIds.Fire1] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.A),
+            [EmulationControllerCommandIds.Fire2] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.B),
+            [EmulationControllerCommandIds.B] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.B),
+            [EmulationControllerCommandIds.Y] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Y),
+            [EmulationControllerCommandIds.Select] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Select),
+            [EmulationControllerCommandIds.Start] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Start),
+            [EmulationControllerCommandIds.Up] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Up),
+            [EmulationControllerCommandIds.Down] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Down),
+            [EmulationControllerCommandIds.Left] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Left),
+            [EmulationControllerCommandIds.Right] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.Right),
+            [EmulationControllerCommandIds.A] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.A),
+            [EmulationControllerCommandIds.X] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.X),
+            [EmulationControllerCommandIds.L] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.L),
+            [EmulationControllerCommandIds.R] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.R),
+            [EmulationControllerCommandIds.L2] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.L2),
+            [EmulationControllerCommandIds.R2] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.R2),
+            [EmulationControllerCommandIds.L3] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.L3),
+            [EmulationControllerCommandIds.R3] = EmulationSdk.InputProcessing.ControllerButtonIndex(EmulationControllerCommandIds.R3)
         };
 }

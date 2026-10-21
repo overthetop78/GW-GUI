@@ -36,8 +36,8 @@ internal static class InputSnapshotFunctions
         if (source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return source[InputSnapshotFunctionsConstants.Mouse.Length..] switch
             {
-                InputSnapshotFunctionsConstants.Left => snapshot.Pointer.Left,
-                InputSnapshotFunctionsConstants.Right => snapshot.Pointer.Right,
+                EmulationControllerCommandIds.Left => snapshot.Pointer.Left,
+                EmulationControllerCommandIds.Right => snapshot.Pointer.Right,
                 InputSnapshotFunctionsConstants.Middle => snapshot.Pointer.Middle,
                 InputSnapshotFunctionsConstants.XButton1 => snapshot.Pointer.ExtendedButton1,
                 InputSnapshotFunctionsConstants.XButton2 => snapshot.Pointer.ExtendedButton2,

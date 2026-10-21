@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationInputMappingFunctions
 {
+    /// <summary>Consulte l’unique table de boutons sans exposer ses constantes ni sa collection mutable.</summary>
+    internal static int ControllerButtonIndex(string commandId) => ControllerButtons.GetValueOrDefault(commandId, -1);
+
     internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id)
     {
         if (port != ExternalCoreApiConstants.PrimaryPort || index != ExternalCoreApiConstants.LeftAnalogIndex)

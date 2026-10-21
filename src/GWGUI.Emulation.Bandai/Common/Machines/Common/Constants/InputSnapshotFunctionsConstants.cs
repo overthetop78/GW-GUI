@@ -13,10 +13,6 @@ internal static class InputSnapshotFunctionsConstants
     internal const string Rotate = "Rotate";
     internal const string Execute = "Execute";
     internal const string Cancel = "Cancel";
-    internal const string Up = EmulationInputMappingConstants.Up;
-    internal const string Down = EmulationInputMappingConstants.Down;
-    internal const string Left = EmulationInputMappingConstants.Left;
-    internal const string Right = EmulationInputMappingConstants.Right;
     internal const string Keyboard = "Keyboard:";
     internal const string Mouse = "Mouse:";
     internal const string Middle = "Middle";
