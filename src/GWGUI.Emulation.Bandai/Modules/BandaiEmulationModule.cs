@@ -166,14 +166,8 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
         if (current.Model != MachineModel.TamagotchiP1) return [];
         var directory = GetFirmwareDirectory(machineId);
-        Directory.CreateDirectory(directory);
-        var candidates = new List<EmulationFirmwareCandidate>();
-        foreach (var path in Directory.EnumerateFiles(directory).Order(StringComparer.OrdinalIgnoreCase))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            candidates.Add(await FirmwareFunctions.ScanFileAsync(path, cancellationToken).ConfigureAwait(false));
-        }
-        return candidates;
+        return await GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanDirectoryAsync(directory,
+            (path, token) => FirmwareFunctions.ScanFileAsync(path, token), cancellationToken).ConfigureAwait(false);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

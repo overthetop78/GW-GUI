@@ -40,16 +40,14 @@ internal static class FirmwareFunctions
         if (capabilities is null)
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
         var requirements = capabilities.DescribeFirmware(configuration);
-        Directory.CreateDirectory(directory);
-        foreach (var path in Directory.EnumerateFiles(directory, "*", new EnumerationOptions { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint }).Order(StringComparer.OrdinalIgnoreCase))
+        GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanRecursive(directory, path =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
             var matches = requirements.Where(requirement => capabilities.IsFirmwareCompatible(configuration, requirement.Role, path)).ToArray();
             if (matches.Length == 0)
                 result.Add(new(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Unknown));
             foreach (var requirement in matches)
                 result.Add(new(requirement.Role + ":" + path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Compatible, requirement.FieldId));
-        }
+        }, cancellationToken);
 
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
     }

@@ -162,14 +162,8 @@ public sealed class FairchildEmulationModule : IEmulationModule, IEmulationEmula
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
 
         var directory = GetFirmwareDirectory(machineId);
-        Directory.CreateDirectory(directory);
-        var candidates = new List<EmulationFirmwareCandidate>();
-        foreach (var path in Directory.EnumerateFiles(directory).Order(StringComparer.OrdinalIgnoreCase))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            candidates.Add(await FirmwareFunctions.ScanFileAsync(path, current.Model, cancellationToken).ConfigureAwait(false));
-        }
-        return candidates;
+        return await GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanDirectoryAsync(directory,
+            (path, token) => FirmwareFunctions.ScanFileAsync(path, current.Model, token), cancellationToken).ConfigureAwait(false);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
