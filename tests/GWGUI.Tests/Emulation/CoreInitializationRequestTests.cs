@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -16,7 +17,7 @@ public sealed class CoreInitializationRequestTests
     {
         WithWriter((stream, writer) =>
         {
-            EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 17,
+            EmulationSdk.HostProtocol.WriteInitializationRequest(writer, "core.dll", 17,
                 "session", saveDirectory, new Configuration("Cœur", 3), new(JsonSerializerDefaults.Web));
             writer.Write("writer still open");
             Inspect(stream, reader =>
@@ -48,7 +49,7 @@ public sealed class CoreInitializationRequestTests
         WithWriter((stream, writer) =>
         {
             Assert.Throws<ArgumentException>(() =>
-                EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 8,
+                EmulationSdk.HostProtocol.WriteInitializationRequest(writer, "core.dll", 8,
                     invalidSavePath ? "session" : "\0", invalidSavePath ? "\0" : null,
                     new Configuration("unused", 0), new(JsonSerializerDefaults.Web)));
             Inspect(stream, reader =>
@@ -69,7 +70,7 @@ public sealed class CoreInitializationRequestTests
         {
             Action unsupportedConfiguration = static () => { };
             Assert.Throws<NotSupportedException>(() =>
-                EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 4,
+                EmulationSdk.HostProtocol.WriteInitializationRequest(writer, "core.dll", 4,
                     "session", null, unsupportedConfiguration, new(JsonSerializerDefaults.Web)));
             Inspect(stream, reader =>
             {
@@ -89,16 +90,16 @@ public sealed class CoreInitializationRequestTests
     {
         WithWriter((stream, writer) =>
         {
-            EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 17,
+            EmulationSdk.HostProtocol.WriteInitializationRequest(writer, "core.dll", 17,
                 "session", saves, new Configuration("Cœur", 3), new(JsonSerializerDefaults.Web));
             writer.Write("reader still open");
             writer.Flush();
             Inspect(stream, reader =>
             {
                 var calls = new List<string>();
-                var request = EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                var request = EmulationSdk.HostProtocol.ReadInitializationRequest(reader,
                     input => { calls.Add("emulator"); return input.ReadInt32(); },
-                    input => { calls.Add("saves"); return EmulationHostProtocolFunctions.ReadString(input); },
+                    input => { calls.Add("saves"); return EmulationSdk.HostProtocol.ReadString(input); },
                     input =>
                     {
                         calls.Add("configuration");
@@ -123,7 +124,7 @@ public sealed class CoreInitializationRequestTests
     {
         WithWriter((stream, writer) =>
         {
-            EmulationHostProtocolFunctions.WriteInitializationRequest(writer, "core.dll", 17,
+            EmulationSdk.HostProtocol.WriteInitializationRequest(writer, "core.dll", 17,
                 "session", null, new Configuration("unused", 0), new(JsonSerializerDefaults.Web));
             writer.Flush();
             Inspect(stream, reader =>
@@ -132,9 +133,9 @@ public sealed class CoreInitializationRequestTests
                 var savesCalled = false;
                 var configurationCalled = false;
                 Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-                    EmulationHostProtocolFunctions.ReadInitializationRequest<int, Configuration>(reader,
+                    EmulationSdk.HostProtocol.ReadInitializationRequest<int, Configuration>(reader,
                         input => failOnConfiguration ? input.ReadInt32() : throw error,
-                        input => { savesCalled = true; return EmulationHostProtocolFunctions.ReadString(input); },
+                        input => { savesCalled = true; return EmulationSdk.HostProtocol.ReadString(input); },
                         _ => { configurationCalled = true; throw error; })));
                 Assert.Equal(failOnConfiguration, savesCalled);
                 Assert.Equal(failOnConfiguration, configurationCalled);
@@ -155,15 +156,15 @@ public sealed class CoreInitializationRequestTests
         {
             writer.Write("core.dll");
             writer.Write("legacy-session");
-            EmulationHostProtocolFunctions.WriteString(writer, saves);
+            EmulationSdk.HostProtocol.WriteString(writer, saves);
             writer.Write(JsonSerializer.Serialize(new Configuration("legacy", 4)));
             writer.Write("remaining");
             writer.Flush();
             Inspect(stream, reader =>
             {
                 var calls = new List<string>();
-                var request = EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
-                    input => { calls.Add("saves"); return EmulationHostProtocolFunctions.ReadString(input); },
+                var request = EmulationSdk.HostProtocol.ReadInitializationRequest(reader,
+                    input => { calls.Add("saves"); return EmulationSdk.HostProtocol.ReadString(input); },
                     input => { calls.Add("configuration"); return JsonSerializer.Deserialize<Configuration>(input.ReadString())!; });
                 Assert.Equal(new[] { "saves", "configuration" }, calls);
                 Assert.Equal(("core.dll", "legacy-session", saves, new Configuration("legacy", 4)), request);
@@ -187,8 +188,8 @@ public sealed class CoreInitializationRequestTests
             {
                 var error = new InvalidDataException("invalid configuration");
                 Assert.Same(error, Assert.Throws<InvalidDataException>(() =>
-                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
-                        EmulationHostProtocolFunctions.ReadString,
+                    EmulationSdk.HostProtocol.ReadInitializationRequest(reader,
+                        EmulationSdk.HostProtocol.ReadString,
                         input => JsonSerializer.Deserialize<Configuration>(input.ReadString()) ?? throw error)));
                 Assert.Equal("remaining", reader.ReadString());
             });
@@ -204,10 +205,10 @@ public sealed class CoreInitializationRequestTests
         {
             BinaryWriter? slot = writer;
             var calls = new List<string>();
-            EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
+            EmulationSdk.HostProtocol.WriteInitializationRequest(ref slot, "core.dll",
                 () => { Assert.True(stream.Position > 0); calls.Add("session"); return "legacy-session"; },
                 () => { calls.Add("saves"); return saves; },
-                (output, value) => { calls.Add("save-codec"); EmulationHostProtocolFunctions.WriteString(output, value); },
+                (output, value) => { calls.Add("save-codec"); EmulationSdk.HostProtocol.WriteString(output, value); },
                 () => { calls.Add("configuration"); return JsonSerializer.Serialize(new Configuration("legacy", 4)); });
             Assert.Same(writer, slot);
             Assert.Equal(new[] { "session", "saves", "save-codec", "configuration" }, calls);
@@ -217,7 +218,7 @@ public sealed class CoreInitializationRequestTests
             {
                 Assert.Equal("core.dll", reader.ReadString());
                 Assert.Equal("legacy-session", reader.ReadString());
-                Assert.Equal(saves, EmulationHostProtocolFunctions.ReadString(reader));
+                Assert.Equal(saves, EmulationSdk.HostProtocol.ReadString(reader));
                 Assert.Equal(new Configuration("legacy", 4), JsonSerializer.Deserialize<Configuration>(reader.ReadString()));
                 Assert.Equal("remaining", reader.ReadString());
             });
@@ -231,7 +232,7 @@ public sealed class CoreInitializationRequestTests
         using var second = new RecordingWriter();
         BinaryWriter? slot = first;
         first.AfterWrite = () => slot = second;
-        EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
+        EmulationSdk.HostProtocol.WriteInitializationRequest(ref slot, "core.dll",
             () => "session", () => "saves", (output, value) => output.Write(value!), () => "json");
         Assert.Equal(new[] { "core.dll" }, first.Values);
         Assert.Equal(new[] { "session", "saves", "json" }, second.Values);
@@ -246,8 +247,8 @@ public sealed class CoreInitializationRequestTests
             BinaryWriter? slot = writer;
             var error = new InvalidOperationException("serialization failure");
             Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-                EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
-                    () => "session", () => null, EmulationHostProtocolFunctions.WriteString, () => throw error)));
+                EmulationSdk.HostProtocol.WriteInitializationRequest(ref slot, "core.dll",
+                    () => "session", () => null, EmulationSdk.HostProtocol.WriteString, () => throw error)));
             Assert.Same(writer, slot);
             writer.Write("remaining");
             writer.Flush();
@@ -301,7 +302,7 @@ public sealed class CoreInitializationRequestTests
         request.Write("core.dll");
         request.Write(17);
         request.Write("session");
-        EmulationHostProtocolFunctions.WriteString(request, saves);
+        EmulationSdk.HostProtocol.WriteString(request, saves);
         request.Write(JsonSerializer.Serialize(new Configuration("configured", 3), options));
         request.Write("remaining");
         request.Flush();
@@ -320,7 +321,7 @@ public sealed class CoreInitializationRequestTests
 
         try
         {
-            void Initialize() => EmulationHostProtocolFunctions.InitializeCore<InitializationCore, int, Configuration, string>(
+            void Initialize() => EmulationSdk.HostProtocol.InitializeCore<InitializationCore, int, Configuration, string>(
                 reader, writer,
                 (path, emulator) =>
                 {
@@ -331,7 +332,7 @@ public sealed class CoreInitializationRequestTests
                     return created;
                 }, ref slot, ref diagnosticCount,
                 value => { Assert.Null(slot); Step("emulator"); return value.ReadInt32(); },
-                value => { Step("saves"); return EmulationHostProtocolFunctions.ReadString(value); },
+                value => { Step("saves"); return EmulationSdk.HostProtocol.ReadString(value); },
                 value => { Step("configuration"); return JsonSerializer.Deserialize<Configuration>(value.ReadString(), options)!; },
                 () => { Step("json"); return options; }, '|',
                 (response, core) =>
@@ -345,7 +346,7 @@ public sealed class CoreInitializationRequestTests
                 {
                     Assert.Equal(1, diagnosticCount);
                     Step("led");
-                    EmulationHostProtocolFunctions.WriteLedStates(response, states);
+                    EmulationSdk.HostProtocol.WriteLedStates(response, states);
                 });
 
             if (failure is null) Initialize();
@@ -373,7 +374,7 @@ public sealed class CoreInitializationRequestTests
                 Assert.Equal("core", response.ReadString());
                 Assert.Equal("1", response.ReadString());
                 Assert.Equal("a|b", response.ReadString());
-                Assert.True(EmulationHostProtocolFunctions.ReadLedStates(response, "test")[1]);
+                Assert.True(EmulationSdk.HostProtocol.ReadLedStates(response, "test")[1]);
                 Assert.Equal(output.Length, output.Position);
             }
             Assert.True(input.CanRead);
@@ -381,7 +382,7 @@ public sealed class CoreInitializationRequestTests
         }
         finally
         {
-            try { EmulationHostProtocolFunctions.DisposePreviousCore(ref slot); }
+            try { EmulationSdk.HostProtocol.DisposePreviousCore(ref slot); }
             finally
             {
                 try { if (previous.DisposeCount == 0) previous.Dispose(); }

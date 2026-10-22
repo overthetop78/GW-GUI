@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 using System.IO;
 
@@ -61,11 +62,11 @@ public sealed class TransportDisposalTests
 
     [Fact]
     public void MissingTransportNeedsNoDisposal()
-        => EmulationHostProtocolFunctions.DisposeTransport(null);
+        => EmulationSdk.HostProtocol.DisposeTransport(null);
 
     [Fact]
     public void MissingQuietTransportNeedsNoDisposal()
-        => EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(null);
+        => EmulationSdk.HostProtocol.DisposeTransportIgnoringErrors(null);
 
     [Theory]
     [InlineData("none")]
@@ -84,7 +85,7 @@ public sealed class TransportDisposalTests
             _ => null
         };
         var transport = new Transport(error);
-        EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(transport);
+        EmulationSdk.HostProtocol.DisposeTransportIgnoringErrors(transport);
         Assert.Equal(1, transport.DisposeCount);
     }
 
@@ -107,12 +108,12 @@ public sealed class TransportDisposalTests
         var transport = new Transport(error);
         if (failure is "unexpected" or "canceled")
         {
-            var actual = Record.Exception(() => EmulationHostProtocolFunctions.DisposeTransport(transport));
+            var actual = Record.Exception(() => EmulationSdk.HostProtocol.DisposeTransport(transport));
             Assert.Same(error, actual);
         }
         else
         {
-            EmulationHostProtocolFunctions.DisposeTransport(transport);
+            EmulationSdk.HostProtocol.DisposeTransport(transport);
         }
         Assert.Equal(1, transport.DisposeCount);
     }

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -24,7 +25,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             height == ExternalCoreInteropConstants.EmptyFrameDimension ||
             pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;
         var length = VideoFunctions.FrameLength(height, pitch);
-        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
+        if (length > CommonCoreHostFunctions.Protocol.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
         if (_emulator is Emulator.Hatari or Emulator.Hatari2014 && !_usesNativeLedInterface)

@@ -13,6 +13,119 @@ namespace GWGUI.Emulation.Interfaces;
 /// Le propriétaire de session ferme ses ressources dans son bloc finally après la fin effective des échanges.</remarks>
 public interface IEmulationHostProtocol
 {
+
+    /// <summary>Capacité maximale en octets d’un emplacement du transport vidéo fixe.</summary>
+    int VideoSlotCapacity { get; }
+
+    /// <summary>Capacité totale en octets du segment vidéo fixe partagé entre les deux extrémités.</summary>
+    long VideoMapCapacity { get; }
+
+    /// <summary>Nombre maximal de voyants admis par le codec de statut ; leurs indices commencent à zéro.</summary>
+    int MaximumLedStateCount { get; }
+
+    /// <summary>Écrit le booléen de présence puis la chaîne facultative selon le codec existant.</summary>
+    /// <param name="writer">Rédacteur emprunté ; sa fermeture appartient au propriétaire du transport.</param>
+    /// <param name="value">Chaîne à transmettre ; null écrit uniquement le booléen de présence.</param>
+    void WriteString(BinaryWriter writer, string? value);
+
+    /// <summary>Libère une ressource de transport suivant la politique existante qui ignore les erreurs de fermeture.</summary>
+    /// <param name="value">Ressource possédée par l’appelant et remise à cette opération pour sa libération ; null est accepté.</param>
+    /// <remarks>Cette opération complète le finally du propriétaire ; les objets simplement empruntés ne lui sont pas transmis.</remarks>
+    void DisposeTransportIgnoringErrors(IDisposable? value);
+
+    /// <summary>Écrit une image dans le transport vidéo à deux emplacements fixes et publie ses métadonnées.</summary>
+    /// <param name="writer">Rédacteur binaire emprunté pour les métadonnées de réponse.</param>
+    /// <param name="frame">Image empruntée, ou null pour signaler l’absence de nouvelle image.</param>
+    /// <param name="videoMap">Vue de mémoire partagée empruntée ; le propriétaire de session la ferme dans son finally.</param>
+    /// <param name="hostName">Nom employé dans les erreurs de capacité du protocole.</param>
+    void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap, string hostName);
+
+    /// <summary>Lit les métadonnées et copie les pixels de l’emplacement partagé indiqué.</summary>
+    /// <param name="reader">Lecteur binaire emprunté, positionné sur la présence d’une image.</param>
+    /// <param name="videoMap">Vue empruntée qui reste sous la responsabilité de son propriétaire.</param>
+    /// <param name="hostName">Nom employé dans les erreurs de métadonnées et de lecture.</param>
+    /// <returns>Image dont les pixels sont copiés, ou null si aucune image n’est annoncée.</returns>
+    VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap, string hostName);
+
+    /// <summary>Remplace le cœur, initialise sa session et écrit sa description selon les codecs du module.</summary>
+    /// <typeparam name="TCore">Cœur implémentant le contrat commun de runtime.</typeparam>
+    /// <typeparam name="TEmulator">Identité d’adaptateur définie par le module.</typeparam>
+    /// <typeparam name="TConfiguration">Configuration opaque reçue par le cœur.</typeparam>
+    /// <typeparam name="TOption">Description des options annoncées par ce cœur.</typeparam>
+    /// <param name="reader">Lecteur de requête emprunté.</param>
+    /// <param name="writer">Rédacteur de réponse emprunté.</param>
+    /// <param name="createCore">Fabrique du cœur adaptée à son chemin et à son identité.</param>
+    /// <param name="core">Emplacement possédé par la session ; l’ancien cœur est libéré et le nouveau y est publié avant Initialize.</param>
+    /// <param name="lastDiagnosticCount">Compteur de diagnostics mis à jour après leur transmission.</param>
+    /// <param name="readEmulator">Codec de l’identité d’adaptateur.</param>
+    /// <param name="readSaves">Codec du chemin de sauvegarde facultatif.</param>
+    /// <param name="readConfiguration">Codec de la configuration du module.</param>
+    /// <param name="jsonOptions">Options JSON empruntées pour la description des options et diagnostics.</param>
+    /// <param name="extensionSeparator">Séparateur des extensions prises en charge.</param>
+    /// <param name="writeStatus">Écriture des statuts propres au module.</param>
+    /// <param name="writeLedStates">Écriture des états des voyants.</param>
+    /// <remarks>Le propriétaire garde le cœur publié accessible à son finally, même si son initialisation échoue.
+    /// Le service ne conserve aucun cœur ni flux après l’appel.</remarks>
+    void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
+        ref TCore? core, ref int lastDiagnosticCount, Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
+        Func<BinaryReader, TConfiguration> readConfiguration, Func<JsonSerializerOptions> jsonOptions, char extensionSeparator,
+        Action<BinaryWriter, TCore> writeStatus, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates)
+        where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>;
+
+    /// <summary>Applique les entrées, exécute une frame et publie vidéo, audio et statuts dans leur ordre existant.</summary>
+    /// <typeparam name="TCore">Cœur emprunté implémentant le contrat de runtime.</typeparam>
+    /// <typeparam name="TConfiguration">Configuration du runtime.</typeparam>
+    /// <typeparam name="TOption">Description de ses options.</typeparam>
+    /// <param name="reader">Lecteur emprunté des entrées de la frame.</param>
+    /// <param name="writer">Rédacteur emprunté de la réponse.</param>
+    /// <param name="core">Cœur possédé et libéré par la session, jamais par cette opération.</param>
+    /// <param name="readInput">Codec des entrées.</param>
+    /// <param name="writeFrame">Publication de la vidéo propre au transport choisi.</param>
+    /// <param name="writeMediaStatus">Écriture des statuts des médias.</param>
+    /// <param name="writeLedStates">Écriture des voyants.</param>
+    /// <param name="jsonOptions">Options JSON de sérialisation des diagnostics.</param>
+    /// <param name="lastVideoSequence">Dernière séquence publiée, actualisée après écriture.</param>
+    /// <param name="lastDiagnosticCount">Nombre de diagnostics déjà transmis, actualisé après écriture.</param>
+    void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
+        Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
+        Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>;
+
+    /// <summary>Écrit le disque sélectionné et le nombre de disques selon le protocole des médias par chemin.</summary>
+    /// <param name="writer">Rédacteur binaire emprunté.</param>
+    /// <param name="core">Contrat de commandes de médias emprunté au cœur de la session.</param>
+    void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core);
+
+    /// <summary>Exécute une commande existante de média par chemin ou indique qu’elle appartient à un autre traitement.</summary>
+    /// <param name="command">Code de commande reçu dans l’en-tête du protocole.</param>
+    /// <param name="reader">Lecteur emprunté des paramètres.</param>
+    /// <param name="writer">Rédacteur emprunté de la réponse.</param>
+    /// <param name="ensureCore">Accès au cœur courant validé par le propriétaire.</param>
+    /// <param name="readBytes">Codec des données binaires nécessaires aux commandes d’état.</param>
+    /// <param name="writeSuccess">Écriture du succès selon l’enveloppe du module.</param>
+    /// <returns>True si la commande a été traitée ; false pour laisser le propriétaire choisir le traitement suivant.</returns>
+    bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
+        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess);
+
+    /// <summary>Convertit le code de région du cœur natif en standard vidéo.</summary>
+    /// <param name="nativeRegion">Code natif : zéro pour NTSC et un pour PAL.</param>
+    /// <returns>Standard correspondant, ou null pour une autre valeur.</returns>
+    EmulationVideoStandard? Region(uint nativeRegion);
+
+    /// <summary>Ouvre la mémoire vidéo fixe existante et possède sa vue pendant le callback fourni.</summary>
+    /// <param name="videoMapName">Nom du segment créé par l’autre extrémité de la session.</param>
+    /// <param name="viewOffset">Début de la vue dans le segment, en octets.</param>
+    /// <param name="run">Callback qui emprunte la vue uniquement pendant son exécution.</param>
+    /// <remarks>La vue puis le segment sont libérés après le callback, y compris si celui-ci échoue.
+    /// Le callback ne détruit pas les objets empruntés et ne les conserve pas après son retour.</remarks>
+    [SupportedOSPlatform("windows")]
+    void WithSharedVideoMap(string videoMapName, long viewOffset, Action<MemoryMappedViewAccessor> run);
+
+    /// <summary>Exécute le callback avec le mode existant de suppression des boîtes d’erreur Windows.</summary>
+    /// <param name="run">Action de l’hôte à exécuter sans conserver sa référence.</param>
+    /// <remarks>Le mode d’erreur précédent est restauré dans finally, même après une exception du callback.</remarks>
+    [SupportedOSPlatform("windows")]
+    void WithSuppressedErrorDialogs(Action run);
     /// <summary>Convertit une valeur de protocole vers un standard vidéo connu.</summary>
     /// <param name="value">Valeur reçue dans le bloc de statut du cœur.</param>
     /// <param name="allowAllDefinedStandards">True admet tous les standards déclarés ; false conserve la restriction PAL et NTSC.</param>

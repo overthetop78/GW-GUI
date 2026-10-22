@@ -203,10 +203,10 @@ internal static class BindingsAndFeedbackScenarios
         }
         using var stream = new MemoryStream();
         using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
-            EmulationHostProtocolFunctions.WriteInput(writer, EmulationInputSnapshot.Empty with { Keys = physicalKeys });
+            EmulationSdk.HostProtocol.WriteInput(writer, EmulationInputSnapshot.Empty with { Keys = physicalKeys });
         stream.Position = 0;
         using (var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, true))
-            Assert.True(physicalKeys.SetEquals(EmulationHostProtocolFunctions.ReadInput(reader, "keyboard").Keys));
+            Assert.True(physicalKeys.SetEquals(EmulationSdk.HostProtocol.ReadInput(reader, "keyboard").Keys));
         Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.OemPipe, out var pipe));
         Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.Oem102, out var iso));
         Assert.NotEqual(pipe, iso);

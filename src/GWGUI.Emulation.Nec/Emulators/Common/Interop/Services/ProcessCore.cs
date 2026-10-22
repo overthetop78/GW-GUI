@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Enums;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
@@ -85,18 +86,18 @@ internal sealed class ProcessCore : IEmulatorCore
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         var pipeName = $"{_pipePrefix}{Guid.NewGuid():N}";
         var videoMapName = $"{_videoMapPrefix}{Guid.NewGuid():N}";
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
-            _videoMap = _videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _videoMap = _videoMemory.CreateViewAccessor(0, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
-            var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+            var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
-            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(Error("ProcessStartFailed")));
-            EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(15));
+            _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(Error("ProcessStartFailed")));
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(15));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
-            EmulationHostProtocolFunctions.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
+            CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
                 () => _sessionDirectory,
                 () => _saveDirectory,
                 CoreHostProtocol.WriteString,
@@ -112,7 +113,7 @@ internal sealed class ProcessCore : IEmulatorCore
             SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
-            LedStates = EmulationHostProtocolFunctions.ReadLedStates(Response, _displayName);
+            LedStates = CommonCoreHostFunctions.Protocol.ReadLedStates(Response, _displayName);
             _initialized = true;
         }
         finally
@@ -126,9 +127,9 @@ internal sealed class ProcessCore : IEmulatorCore
         Begin(HostCommand.RunFrame);
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
-        LatestVideoFrame = EmulationHostProtocolFunctions.ReadSharedFrame(Response,
+        LatestVideoFrame = CommonCoreHostFunctions.Protocol.ReadSharedFrame(Response,
             _videoMap ?? throw new InvalidOperationException(Error("VideoBufferUnavailable")), _displayName) ?? LatestVideoFrame;
-        foreach (var chunk in EmulationHostProtocolFunctions.ReadAudio(Response, _displayName))
+        foreach (var chunk in CommonCoreHostFunctions.Protocol.ReadAudio(Response, _displayName))
         {
             LatestAudioChunk = chunk;
             _audio.Enqueue(chunk);
@@ -139,7 +140,7 @@ internal sealed class ProcessCore : IEmulatorCore
         CurrentDiskIndex = Response.ReadInt32();
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
-        LedStates = EmulationHostProtocolFunctions.ReadLedStates(Response, _displayName);
+        LedStates = CommonCoreHostFunctions.Protocol.ReadLedStates(Response, _displayName);
     }
 
     public void HardReset()
@@ -168,7 +169,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         Begin(HostCommand.SaveState);
         CompleteRequest();
-        return EmulationHostProtocolFunctions.ReadBytes(Response, _displayName);
+        return CommonCoreHostFunctions.Protocol.ReadBytes(Response, _displayName);
     }
 
     public void LoadState(ReadOnlySpan<byte> state)
@@ -209,21 +210,21 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         finally
         {
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_responseReader); _responseReader = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_writer); _writer = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe); _pipe = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMap); _videoMap = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMemory); _videoMemory = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_responseReader); _responseReader = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_writer); _writer = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_pipe); _pipe = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_videoMap); _videoMap = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_videoMemory); _videoMemory = null;
             var process = _process;
             _process = null;
             if (process is not null)
             {
                 try
                 {
-                    EmulationChildProcessLifetime.WaitForExit(process, graceful: true, 5_000);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: true, 5_000);
                 }
                 catch (Exception) { }
-                finally { EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(process); }
+                finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
             }
             while (_audio.TryDequeue(out _)) { }
             LatestVideoFrame = null;
@@ -286,22 +287,22 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private Task<byte[]> ReadResponseAsync() =>
-        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(30),
+        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(30),
             CancellationToken.None, length => Error("InvalidResponseLength", length));
 
     private void TerminateProcess()
     {
-        EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe);
+        CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_pipe);
         _pipe = null;
         var process = _process;
         _process = null;
         if (process is null) return;
         try
         {
-            EmulationChildProcessLifetime.WaitForExit(process, graceful: false, 5_000);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: false, 5_000);
         }
         catch (Exception) { }
-        finally { EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(process); }
+        finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
     }
 
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(Error("HostResponseUnavailable"));

@@ -1,12 +1,13 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.Diagnostics;
 
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 internal static class RuntimeFunctions
 {
-    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: true);
+    internal static EmulationVideoStandard? ReadRegion(int value) => CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: true);
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
         =>
-            EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed,
+            CommonCoreHostFunctions.Protocol.GetProcessState(process, connectionFailed, disposed,
                 HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
 
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)

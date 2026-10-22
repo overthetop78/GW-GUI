@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -18,9 +19,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
 {
     private Process StartHostProcess(string pipeName, string videoMapName)
     {
-        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+        var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
             Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
-        return EmulationChildProcessLifetime.Start(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
+        return CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
     }
 
     private void ReadInitialization(BinaryReader reader)
@@ -30,18 +31,18 @@ internal sealed partial class ProcessCore : IEmulatorCore
         SampleRate = reader.ReadInt32();
         SupportsSaveStates = reader.ReadBoolean();
         ReadRuntimeStatus(reader);
-        Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
-        Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
+        Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
+        Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
         CoreName = reader.ReadString();
         CoreVersion = reader.ReadString();
         SupportedContentExtensions = reader.ReadString().Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        LedStates = CoreHostFunctions.ReadLedStates(reader);
+        LedStates = CommonCoreHostFunctions.ReadLedStates(reader);
     }
 
     private void ReadFrame(BinaryReader reader)
     {
-        LatestVideoFrame = CoreHostFunctions.ReadResizableSharedFrame(reader, ref _videoMemory, ref _videoMap, ref _activeVideoMapName) ?? LatestVideoFrame;
-        foreach (var chunk in CoreHostFunctions.ReadAudio(reader))
+        LatestVideoFrame = CommonCoreHostFunctions.ReadResizableSharedFrame(reader, ref _videoMemory, ref _videoMap, ref _activeVideoMapName) ?? LatestVideoFrame;
+        foreach (var chunk in CommonCoreHostFunctions.ReadAudio(reader))
         {
             LatestAudioChunk = chunk;
             _audio.Enqueue(chunk);
@@ -50,12 +51,12 @@ internal sealed partial class ProcessCore : IEmulatorCore
         SampleRate = reader.ReadInt32();
         ReadRuntimeStatus(reader);
         if (reader.ReadBoolean())
-            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
-        LedStates = CoreHostFunctions.ReadLedStates(reader);
+            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
+        LedStates = CommonCoreHostFunctions.ReadLedStates(reader);
     }
 
     private void ReadRuntimeStatus(BinaryReader reader)
-    => EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+    => CommonCoreHostFunctions.Protocol.ReadRuntimeStatus(reader,
         value => Region = RuntimeFunctions.ReadRegion(value),
         value => BufferedAudioFrames = value,
         value => AudioOverrunCount = value,

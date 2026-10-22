@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Functions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
@@ -75,18 +76,18 @@ internal sealed class ProcessCore : IEmulatorCore
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         var pipeName = $"{ProcessCoreConstants.PipePrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
         var videoMapName = $"{ProcessCoreConstants.VideoMapPrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
-            _videoMap = _videoMemory.CreateViewAccessor(BufferConstants.FirstBufferIndex, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _videoMap = _videoMemory.CreateViewAccessor(BufferConstants.FirstBufferIndex, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
-            var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+            var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
-            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CommonExceptions.ProcessStartFailed()));
-            EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.HostConnectTimeoutSeconds));
+            _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(CommonExceptions.ProcessStartFailed()));
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.HostConnectTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
-            EmulationHostProtocolFunctions.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
+            CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
                 () => _sessionDirectory,
                 () => _saveDirectory,
                 CoreHostProtocol.WriteString,
@@ -202,21 +203,21 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         finally
         {
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_responseReader); _responseReader = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_writer); _writer = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe); _pipe = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMap); _videoMap = null;
-            EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_videoMemory); _videoMemory = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_responseReader); _responseReader = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_writer); _writer = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_pipe); _pipe = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_videoMap); _videoMap = null;
+            CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_videoMemory); _videoMemory = null;
             var process = _process;
             _process = null;
             if (process is not null)
             {
                 try
                 {
-                    EmulationChildProcessLifetime.WaitForExit(process, graceful: true, ProcessCoreConstants.HostExitTimeoutMilliseconds);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: true, ProcessCoreConstants.HostExitTimeoutMilliseconds);
                 }
                 catch (Exception) { }
-                finally { EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(process); }
+                finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
             }
             while (_audio.TryDequeue(out _)) { }
             LatestVideoFrame = null;
@@ -274,22 +275,22 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private Task<byte[]> ReadResponseAsync() =>
-        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(ProcessCoreConstants.HostResponseTimeoutSeconds),
+        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(ProcessCoreConstants.HostResponseTimeoutSeconds),
             CancellationToken.None, length => CommonExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
     {
-        EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_pipe);
+        CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_pipe);
         _pipe = null;
         var process = _process;
         _process = null;
         if (process is null) return;
         try
         {
-            EmulationChildProcessLifetime.WaitForExit(process, graceful: false, ProcessCoreConstants.HostExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: false, ProcessCoreConstants.HostExitTimeoutMilliseconds);
         }
         catch (Exception) { }
-        finally { EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(process); }
+        finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
     }
 
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(CommonExceptions.HostResponseUnavailable());

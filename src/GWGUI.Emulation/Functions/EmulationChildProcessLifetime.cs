@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationChildProcessLifetime
+internal static class EmulationChildProcessLifetime
 {
     private static readonly EmulationChildProcessJob Job = new();
 
-    public static void Attach(Process process) => Job.Attach(process);
+    internal static void Attach(Process process) => Job.Attach(process);
 
-    public static Process Start(ProcessStartInfo startInfo, Func<Exception> startFailed)
+    internal static Process Start(ProcessStartInfo startInfo, Func<Exception> startFailed)
     {
         var process = Process.Start(startInfo) ?? throw startFailed();
         var transferred = false;
@@ -34,7 +34,7 @@ public static class EmulationChildProcessLifetime
         }
     }
 
-    public static void WaitForExit(Process process, bool graceful, int gracefulTimeoutMilliseconds)
+    internal static void WaitForExit(Process process, bool graceful, int gracefulTimeoutMilliseconds)
     {
         try
         {

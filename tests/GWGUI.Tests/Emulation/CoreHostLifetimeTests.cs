@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text;
 using GWGUI.Emulation.Functions;
@@ -10,7 +11,7 @@ public sealed class CoreHostLifetimeTests
     public void MissingPreviousCoreNeedsNoDisposal()
     {
         Core? slot = null;
-        EmulationHostProtocolFunctions.DisposePreviousCore(ref slot);
+        EmulationSdk.HostProtocol.DisposePreviousCore(ref slot);
         Assert.Null(slot);
     }
 
@@ -32,9 +33,9 @@ public sealed class CoreHostLifetimeTests
 
         if (fail)
             Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-                EmulationHostProtocolFunctions.DisposePreviousCore(ref slot)));
+                EmulationSdk.HostProtocol.DisposePreviousCore(ref slot)));
         else
-            EmulationHostProtocolFunctions.DisposePreviousCore(ref slot);
+            EmulationSdk.HostProtocol.DisposePreviousCore(ref slot);
 
         Assert.Null(slot);
         Assert.Equal(1, previous.DisposeCount);
@@ -56,11 +57,11 @@ public sealed class CoreHostLifetimeTests
         using var writer = new BinaryWriter(output, Encoding.UTF8, leaveOpen: true);
         try
         {
-            EmulationHostProtocolFunctions.RunCommandLoop<Command>(
+            EmulationSdk.HostProtocol.RunCommandLoop<Command>(
                 reader, writer, static request => (Command)request.ReadByte(), Command.Dispose,
                 (_, response) =>
                 {
-                    EmulationHostProtocolFunctions.DisposePreviousCore(ref slot);
+                    EmulationSdk.HostProtocol.DisposePreviousCore(ref slot);
                     response.Write(true);
                 },
                 (response, error) =>
@@ -72,7 +73,7 @@ public sealed class CoreHostLifetimeTests
         }
         finally
         {
-            EmulationHostProtocolFunctions.DisposePreviousCore(ref slot);
+            EmulationSdk.HostProtocol.DisposePreviousCore(ref slot);
         }
 
         Assert.Null(slot);

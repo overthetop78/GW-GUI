@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text;
 using GWGUI.Emulation.Contracts;
@@ -229,7 +230,7 @@ public sealed class CoreHostCommandTests
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);
+        EmulationSdk.HostProtocol.WriteDiskSelection(writer, core);
         Assert.Equal(new[] { "DiskCount", "CurrentDiskIndex" }, core.Calls);
         response.Position = 0;
         using var reader = new BinaryReader(response);
@@ -240,11 +241,11 @@ public sealed class CoreHostCommandTests
 
     private static bool HandlePathMedia(byte command, BinaryReader reader, BinaryWriter writer,
         Func<Core> acquire) =>
-        EmulationHostProtocolFunctions.TryExecutePathMediaCommand(command, reader, writer, () => acquire(),
+        EmulationSdk.HostProtocol.TryExecutePathMediaCommand(command, reader, writer, () => acquire(),
             static input => EmulationHostProtocolFunctions.ReadBytes(input, "test"),
             static output => output.Write(true));
     private static bool Handle(byte command, BinaryReader reader, BinaryWriter writer, Func<Core> acquire) =>
-        EmulationHostProtocolFunctions.TryExecuteCoreCommand<string, TestPeripheral, string>(
+        EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral, string>(
             command, reader, writer, () => acquire(), static input => input.ReadString(),
             static input => EmulationHostProtocolFunctions.ReadBytes(input, "test"),
             static (output, status) => output.Write(status), static value => (TestPeripheral)value);

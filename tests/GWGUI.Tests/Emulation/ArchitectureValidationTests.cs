@@ -12,6 +12,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.SessionDirectories), typeof(IEmulationSessionDirectories))]
     [InlineData(nameof(EmulationSdk.StateFiles), typeof(IEmulationStateFiles))]
     [InlineData(nameof(EmulationSdk.InputProcessing), typeof(IEmulationInputProcessing))]
+    [InlineData(nameof(EmulationSdk.HostProtocol), typeof(IEmulationHostProtocol))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
         var entry = typeof(EmulationSdk).GetProperty(serviceName)!;
@@ -24,7 +25,9 @@ public sealed class ArchitectureValidationTests
     [Theory]
     [InlineData("EmulationInputMappingFunctions")]
     [InlineData("ExternalCoreKeyboardFunctions")]
-    public void InputAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
+    [InlineData("EmulationHostProtocolFunctions")]
+    [InlineData("EmulationChildProcessLifetime")]
+    public void SharedAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
     {
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
         Assert.False(owner.IsVisible);

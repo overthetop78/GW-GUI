@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
@@ -138,7 +139,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         {
             foreach (var pointer in _nativeStrings.Values)
             {
-                GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(pointer);
+                CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
             }
         }
         finally

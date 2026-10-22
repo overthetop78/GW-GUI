@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text;
 using GWGUI.Emulation.Contracts;
@@ -63,7 +64,7 @@ public sealed class FrameTransmissionTests
         Assert.Empty(queue);
         stream.Position = 0;
         using var reader = new BinaryReader(stream, Encoding.UTF8, leaveOpen: true);
-        var received = EmulationHostProtocolFunctions.ReadAudio(reader, "test");
+        var received = EmulationSdk.HostProtocol.ReadAudio(reader, "test");
         Assert.Equal(2, received.Count);
         foreach (var pair in new[] { (first, received[0]), (second, received[1]) })
         {

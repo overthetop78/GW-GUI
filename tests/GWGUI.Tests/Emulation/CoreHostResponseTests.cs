@@ -19,7 +19,7 @@ public sealed class CoreHostResponseTests
     public void HostStartInfoPreservesDirectoriesFlagsAndSeparateArguments(
         string executable, string workingDirectory, string command, string pipe, string videoMap)
     {
-        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(
+        var startInfo = EmulationSdk.HostProtocol.CreateHostStartInfo(
             executable, workingDirectory, command, pipe, videoMap);
 
         Assert.Equal(executable, startInfo.FileName);
@@ -39,7 +39,7 @@ public sealed class CoreHostResponseTests
         using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
         using var core = new Core();
         var count = 99;
-        EmulationHostProtocolFunctions.WriteCoreInitialization<Core, Configuration, Option>(
+        EmulationSdk.HostProtocol.WriteCoreInitialization<Core, Configuration, Option>(
             writer, core, new JsonSerializerOptions(JsonSerializerDefaults.Web), ref count, ';',
             withStatus ? static (output, source) =>
             {
@@ -79,7 +79,7 @@ public sealed class CoreHostResponseTests
         using var core = new Core();
         var count = 42;
         var error = Assert.Throws<InvalidOperationException>(() =>
-            EmulationHostProtocolFunctions.WriteCoreInitialization<Core, Configuration, Option>(
+            EmulationSdk.HostProtocol.WriteCoreInitialization<Core, Configuration, Option>(
                 writer, core, new JsonSerializerOptions(), ref count, '|', static (_, source) =>
                 {
                     source.Trace.Add("status");
@@ -108,7 +108,7 @@ public sealed class CoreHostResponseTests
         stream.Dispose();
         var count = 42;
         Assert.Throws<ObjectDisposedException>(() =>
-            EmulationHostProtocolFunctions.WriteCoreInitialization<Core, Configuration, Option>(
+            EmulationSdk.HostProtocol.WriteCoreInitialization<Core, Configuration, Option>(
                 writer, core, new JsonSerializerOptions(), ref count, '|'));
         Assert.Equal(42, count);
         Assert.Equal(new[] { "hash" }, core.Trace);
@@ -131,7 +131,7 @@ public sealed class CoreHostResponseTests
         Assert.Empty(core.Chunks);
         stream.Position = 0;
         using var reader = new BinaryReader(stream, Encoding.UTF8, leaveOpen: true);
-        var chunks = EmulationHostProtocolFunctions.ReadAudio(reader, "response-test");
+        var chunks = EmulationSdk.HostProtocol.ReadAudio(reader, "response-test");
         if (withAudio)
         {
             var chunk = Assert.Single(chunks);
@@ -158,7 +158,7 @@ public sealed class CoreHostResponseTests
         using var core = new Core();
         long sequence = 17;
         var count = changed ? 0 : 1;
-        EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
+        EmulationSdk.HostProtocol.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
             writer, core, (output, frame) =>
             {
                 core.Trace.Add("frame");
@@ -193,7 +193,7 @@ public sealed class CoreHostResponseTests
         stream.Position = 0;
         using var reader = new BinaryReader(stream, Encoding.UTF8, leaveOpen: true);
         Assert.Equal(12345678, reader.ReadInt32()); // No legacy success boolean precedes the frame.
-        Assert.Empty(EmulationHostProtocolFunctions.ReadAudio(reader, "native-response-test"));
+        Assert.Empty(EmulationSdk.HostProtocol.ReadAudio(reader, "native-response-test"));
         Assert.Equal(72.5, reader.ReadDouble());
         Assert.Equal(22050, reader.ReadInt32());
         if (latency) Assert.Equal(33, reader.ReadInt32());
@@ -222,7 +222,7 @@ public sealed class CoreHostResponseTests
         var count = 42;
         var failure = new InvalidOperationException("frame");
         Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
-            EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
+            EmulationSdk.HostProtocol.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
                 writer, core, (_, _) => throw failure,
                 (_, _) => throw new Xunit.Sdk.XunitException("LED writer must not run"),
                 () => throw new Xunit.Sdk.XunitException("JSON getter must not run"), ref sequence, ref count)));

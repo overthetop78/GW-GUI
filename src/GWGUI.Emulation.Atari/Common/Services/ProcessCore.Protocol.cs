@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -24,22 +25,22 @@ internal sealed partial class ProcessCore : IEmulatorCore
             FailConnection(new OperationCanceledException(_cancellationToken));
         if (!allowUninitialized && !_initialized)
             throw new InvalidOperationException(CoreHostErrors.ProcessNotInitialized);
-        EmulationHostProtocolFunctions.ExecuteRequest(_requestGate,
+        CommonCoreHostFunctions.Protocol.ExecuteRequest(_requestGate,
             () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), ReadResponse,
             writer =>
             {
-                CoreHostFunctions.WriteRequestHeader(writer, command);
+                CommonCoreHostFunctions.WriteRequestHeader(writer, command);
                 write?.Invoke(writer);
             }, reader =>
             {
-                var status = CoreHostFunctions.ReadResponseHeader(reader);
-                if (status == HostResponseStatus.Failure) ThrowRemoteError(CoreHostFunctions.ReadError(reader));
+                var status = CommonCoreHostFunctions.ReadResponseHeader(reader);
+                if (status == HostResponseStatus.Failure) ThrowRemoteError(CommonCoreHostFunctions.ReadError(reader));
                 if (status != HostResponseStatus.Success) throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
                 read?.Invoke(reader);
             }, FailConnection);
     }
 
-    private byte[] ReadResponse() => EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, _responseTimeout,
+    private byte[] ReadResponse() => CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, _responseTimeout,
         _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
         .GetAwaiter().GetResult();
 
@@ -67,7 +68,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (_process is null) return;
         try
         {
-            EmulationChildProcessLifetime.WaitForExit(_process, graceful: false, CoreHostConstants.GracefulExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: false, CoreHostConstants.GracefulExitTimeoutMilliseconds);
         }
         catch (Exception)
         {
@@ -93,15 +94,15 @@ internal sealed partial class ProcessCore : IEmulatorCore
         finally
         {
             _disposed = true;
-            EmulationHostProtocolFunctions.DisposeTransport(_writer);
-            EmulationHostProtocolFunctions.DisposeTransport(_pipe);
+            CommonCoreHostFunctions.Protocol.DisposeTransport(_writer);
+            CommonCoreHostFunctions.Protocol.DisposeTransport(_pipe);
             _videoMap?.Dispose();
             _videoMemory?.Dispose();
             if (_process is not null)
             {
                 try
                 {
-                    EmulationChildProcessLifetime.WaitForExit(_process, graceful: true, CoreHostConstants.GracefulExitTimeoutMilliseconds);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: true, CoreHostConstants.GracefulExitTimeoutMilliseconds);
                 }
                 catch (Exception)
                 {

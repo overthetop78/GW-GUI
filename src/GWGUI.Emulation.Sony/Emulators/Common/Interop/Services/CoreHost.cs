@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -19,40 +20,40 @@ public static class CoreHost
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
-        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>
-            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, checked((int)TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds).TotalMilliseconds), (reader, transportWriter) =>
+        CommonCoreHostFunctions.Protocol.WithSharedVideoMap(videoMapName, 0, videoMap =>
+            CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, checked((int)TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds).TotalMilliseconds), (reader, transportWriter) =>
             {
                 ExternalCore? core = null;
                 var lastVideoSequence = 0L;
                 var lastDiagnosticCount = 0;
                 try
                 {
-                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
+                    CommonCoreHostFunctions.Protocol.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
                     {
                         switch (command)
                         {
                             case HostCommand.Initialize:
                                 var (corePath, session, saves, configuration) =
-                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                                    CommonCoreHostFunctions.Protocol.ReadInitializationRequest(reader,
                                         CoreHostProtocol.ReadString,
                                         static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
-                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
+                                CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 core = new ExternalCore(CoreCatalog.Get(configuration.EmulatorId), corePath);
                                 core.Initialize(configuration, session, saves);
                                 writer.Write(true);
-                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
+                                CommonCoreHostFunctions.Protocol.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
                                     writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');
-                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);
+                                CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                                 writer.Write(core.ShutdownRequested);
                                 ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);
                                 break;
                             case HostCommand.RunFrame:
                                 var activeCore = EnsureCore(core);
-                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
+                                CommonCoreHostFunctions.Protocol.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
                                     reader, writer, activeCore, CoreHostProtocol.ReadInput,
                                     (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
-                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                    CommonCoreHostFunctions.Protocol.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
                                 writer.Write(activeCore.ShutdownRequested);
                                 ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);
@@ -66,11 +67,11 @@ public static class CoreHost
                                 WriteSuccess(writer);
                                 break;
                             case HostCommand.Dispose:
-                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
+                                CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 WriteSuccess(writer);
                                 break;
                             default:
-                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,
+                                if (!CommonCoreHostFunctions.Protocol.TryExecutePathMediaCommand((byte)command, reader, writer,
                                         () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
                                     throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                                 break;
@@ -83,7 +84,7 @@ public static class CoreHost
                 }
                 finally
                 {
-                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
+                    CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                 }
             }));
     }

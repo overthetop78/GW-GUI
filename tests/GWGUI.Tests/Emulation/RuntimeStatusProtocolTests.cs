@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Buffers.Binary;
 using System.IO;
 using System.Text;
@@ -20,7 +21,7 @@ public sealed class RuntimeStatusProtocolTests
     {
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
-        EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, standard, BufferedFrames, Overruns, Underruns);
+        EmulationSdk.HostProtocol.WriteRuntimeStatus(writer, standard, BufferedFrames, Overruns, Underruns);
         writer.Flush();
         var expectedRegion = standard is null ? -1 : (int)standard.Value;
         Assert.Equal(GoldenPacket(expectedRegion), stream.ToArray());
@@ -29,7 +30,7 @@ public sealed class RuntimeStatusProtocolTests
         long overruns = -99, underruns = -99;
         stream.Position = 0;
         using var reader = new BinaryReader(stream, Encoding.UTF8, leaveOpen: true);
-        EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+        EmulationSdk.HostProtocol.ReadRuntimeStatus(reader,
             value => region = value, value => buffered = value,
             value => overruns = value, value => underruns = value);
         Assert.Equal(expectedRegion, region);
@@ -54,7 +55,7 @@ public sealed class RuntimeStatusProtocolTests
         using var reader = new BinaryReader(stream);
         var calls = new List<string>();
         Assert.Throws<EndOfStreamException>(() =>
-            EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+            EmulationSdk.HostProtocol.ReadRuntimeStatus(reader,
                 value => { Assert.Equal(-1, value); calls.Add("region"); },
                 value => { Assert.Equal(BufferedFrames, value); calls.Add("buffered"); },
                 value => { Assert.Equal(Overruns, value); calls.Add("overruns"); },
@@ -70,7 +71,7 @@ public sealed class RuntimeStatusProtocolTests
         var expected = new InvalidOperationException("region decoder failed");
         var laterAssignment = false;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+            EmulationSdk.HostProtocol.ReadRuntimeStatus(reader,
                 _ => throw expected,
                 _ => laterAssignment = true,
                 _ => laterAssignment = true,

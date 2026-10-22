@@ -11,7 +11,7 @@ internal static partial class EmulationHostProtocolFunctions
 
     /// <summary>Rétablit dans finally le mode d’erreur Windows après exécution du callback.</summary>
     [SupportedOSPlatform("windows")]
-    public static void WithSuppressedErrorDialogs(Action run)
+    internal static void WithSuppressedErrorDialogs(Action run)
     {
         var previousErrorMode = GetErrorMode();
         SetErrorMode(previousErrorMode | SuppressCriticalErrorDialogs | SuppressFaultDialogs);

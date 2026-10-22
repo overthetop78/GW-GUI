@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
@@ -137,7 +138,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         {
             foreach (var pointer in _nativeStrings.Values)
             {
-                GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(pointer);
+                CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
             }
         }
         finally

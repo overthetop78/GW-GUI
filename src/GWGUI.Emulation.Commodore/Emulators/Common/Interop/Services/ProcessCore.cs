@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 using System.Collections.Concurrent;
@@ -61,18 +62,18 @@ internal sealed class ProcessCore : IEmulatorCore
         Directory.CreateDirectory(sessionDirectory);
         var pipeName = string.Concat(ProcessCoreConstants.PipeNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
         var videoMapName = string.Concat(ProcessCoreConstants.VideoMapNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
-            _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
-            var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+            var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetFullPath(sessionDirectory), ProcessCoreConstants.CoreHost, pipeName, videoMapName);
-            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
-            EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
+            _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
-            EmulationHostProtocolFunctions.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
+            CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
                 () => Path.GetFullPath(sessionDirectory),
                 () => saveDirectory is null ? null : Path.GetFullPath(saveDirectory),
                 CoreHostProtocol.WriteString,
@@ -182,7 +183,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    EmulationChildProcessLifetime.WaitForExit(_process, graceful: true, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: true, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
                 }
                 finally { _process.Dispose(); }
             }
@@ -232,7 +233,7 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private Task<byte[]> ReadResponseAsync() =>
-        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(ProcessCoreConstants.CommandTimeoutSeconds),
+        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(ProcessCoreConstants.CommandTimeoutSeconds),
             CancellationToken.None, length => CoreExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
@@ -241,7 +242,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (_process is null) return;
         try
         {
-            EmulationChildProcessLifetime.WaitForExit(_process, graceful: false, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: false, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
         }
         catch (Exception) { }
     }

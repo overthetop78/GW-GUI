@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sinclair.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -22,7 +23,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (_connectionFailed) throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable);
         if (_cancellationToken.IsCancellationRequested) FailConnection(new OperationCanceledException(_cancellationToken));
         if (!allowUninitialized && !_initialized) throw new InvalidOperationException(CoreHostErrors.ProcessNotInitialized);
-        EmulationHostProtocolFunctions.ExecuteRequest(_requestGate,
+        CommonCoreHostFunctions.Protocol.ExecuteRequest(_requestGate,
             () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), ReadResponse,
             writer =>
             {
@@ -37,7 +38,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             }, FailConnection);
     }
 
-    private byte[] ReadResponse() => EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, _responseTimeout,
+    private byte[] ReadResponse() => CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, _responseTimeout,
         _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
         .GetAwaiter().GetResult();
 
@@ -60,14 +61,14 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     private void TerminateHostProcess()
     {
-        try { EmulationHostProtocolFunctions.DisposeTransport(_pipe); }
+        try { CommonCoreHostFunctions.Protocol.DisposeTransport(_pipe); }
         finally { WaitForHostExit(graceful: false); }
     }
 
     private void WaitForHostExit(bool graceful)
     {
         if (_process is { } process)
-            EmulationChildProcessLifetime.WaitForExit(process, graceful, CoreHostConstants.GracefulExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful, CoreHostConstants.GracefulExitTimeoutMilliseconds);
     }
 
     public void Dispose()
@@ -97,8 +98,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    try { EmulationHostProtocolFunctions.DisposeTransport(_writer); }
-                    finally { EmulationHostProtocolFunctions.DisposeTransport(_pipe); }
+                    try { CommonCoreHostFunctions.Protocol.DisposeTransport(_writer); }
+                    finally { CommonCoreHostFunctions.Protocol.DisposeTransport(_pipe); }
                 }
                 finally { WaitForHostExit(graceful: true); }
             }

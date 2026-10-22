@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Nintendo.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
@@ -136,7 +137,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
             foreach (var pointer in _nativeStrings.Values)
             {
-                GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(pointer);
+                CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
             }
             }
         }

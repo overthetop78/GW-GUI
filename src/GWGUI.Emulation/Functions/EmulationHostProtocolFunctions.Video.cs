@@ -12,7 +12,7 @@ internal static partial class EmulationHostProtocolFunctions
 {
     /// <summary>Ouvre et libère la mémoire vidéo et sa vue autour du callback qui les emprunte.</summary>
     [SupportedOSPlatform("windows")]
-    public static void WithSharedVideoMap(string videoMapName, long viewOffset, Action<MemoryMappedViewAccessor> run)
+    internal static void WithSharedVideoMap(string videoMapName, long viewOffset, Action<MemoryMappedViewAccessor> run)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(viewOffset, EmulationHostProtocolConstants.VideoMapCapacity,
@@ -21,7 +21,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Calcule une capacité de slot bornée et arrondie à une puissance de deux.</summary>
-    public static int CalculateVideoSlotCapacity(int frameLength, int minimumSlotCapacity, string hostName)
+    internal static int CalculateVideoSlotCapacity(int frameLength, int minimumSlotCapacity, string hostName)
     {
         if (frameLength <= 0 || frameLength > EmulationHostProtocolConstants.VideoSlotCapacity)
             throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, EmulationHostProtocolConstants.InvalidVideoFrameLengthFormat, hostName, frameLength, EmulationHostProtocolConstants.VideoSlotCapacity));
@@ -31,7 +31,7 @@ internal static partial class EmulationHostProtocolFunctions
 
     /// <summary>Écrit une image dans l’écrivain vidéo emprunté et transmet le nom et les dimensions du slot.</summary>
     [SupportedOSPlatform("windows")]
-    public static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, IEmulationSharedVideoWriter video)
+    internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, IEmulationSharedVideoWriter video)
     {
         writer.Write(frame is not null);
         if (frame is null) return;
@@ -55,7 +55,7 @@ internal static partial class EmulationHostProtocolFunctions
 
     /// <summary>Remplace si nécessaire les références de mémoire possédées par l’appelant, puis lit et valide l’image.</summary>
     [SupportedOSPlatform("windows")]
-    public static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName, int minimumSlotCapacity)
+    internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName, int minimumSlotCapacity)
     {
         if (!reader.ReadBoolean()) return null;
         var mapName = reader.ReadString();

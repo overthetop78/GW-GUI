@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Globalization;
 using System.IO.Pipes;
@@ -15,16 +16,16 @@ public static class CoreHost
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
-        EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
+        CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
         {
             IEmulatorCore? core = null;
             var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
             var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
             try
             {
-                EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => CoreHostFunctions.ReadRequestHeader(commandReader), HostCommand.Dispose, (command, writer) =>
+                CommonCoreHostFunctions.Protocol.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => CommonCoreHostFunctions.ReadRequestHeader(commandReader), HostCommand.Dispose, (command, writer) =>
                 {
-                    CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
+                    CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                     switch (command)
                     {
                         case HostCommand.Initialize:
@@ -41,55 +42,55 @@ public static class CoreHost
                             writer.Write(EnsureCore(core).HasUnsavedMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
                             break;
                         case HostCommand.Dispose:
-                            EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
+                            CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                             break;
                         default:
-                            if (!EmulationHostProtocolFunctions.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
+                            if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
                                 (byte)command, reader, writer, () => EnsureCore(core), ReadMedia,
-                                CoreHostFunctions.ReadBytes, CoreHostFunctions.WriteDiskStatus,
+                                CommonCoreHostFunctions.ReadBytes, CommonCoreHostFunctions.WriteDiskStatus,
                                 static value => (PeripheralCategory)value))
                                 throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
                             break;
                     }
                 }, (writer, error) =>
                 {
-                    CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
-                    CoreHostFunctions.WriteError(writer, error);
+                    CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
+                    CommonCoreHostFunctions.WriteError(writer, error);
                 });
             }
             finally
             {
-                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
+                CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
             }
         });
     }
 
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
-        EmulationHostProtocolFunctions.InitializeCore<IEmulatorCore, Emulator, MachineConfiguration, CoreOption>(
+        CommonCoreHostFunctions.Protocol.InitializeCore<IEmulatorCore, Emulator, MachineConfiguration, CoreOption>(
             reader, writer, createCore, ref core, ref lastDiagnosticCount,
-            static requestReader => (Emulator)requestReader.ReadInt32(), CoreHostFunctions.ReadString,
-            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration),
-            static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
+            static requestReader => (Emulator)requestReader.ReadInt32(), CommonCoreHostFunctions.ReadString,
+            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration),
+            static () => CommonCoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
                 statusWriter.Write(currentCore.SupportsSaveStates);
-                EmulationHostProtocolFunctions.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
-            }, CoreHostFunctions.WriteLedStates);
+                CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
+            }, CommonCoreHostFunctions.WriteLedStates);
     }
 
     [SupportedOSPlatform(CoreHostValues.Windows)]
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
-        core.SetInput(CoreHostFunctions.ReadInput(reader));
+        core.SetInput(CommonCoreHostFunctions.ReadInput(reader));
         core.RunFrame();
-        EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
-            writer, core, (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),
-            CoreHostFunctions.WriteLedStates, static () => CoreHostFunctions.JsonOptions,
+        CommonCoreHostFunctions.Protocol.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
+            writer, core, (frameWriter, pendingFrame) => CommonCoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),
+            CommonCoreHostFunctions.WriteLedStates, static () => CommonCoreHostFunctions.JsonOptions,
             ref lastVideoSequence, ref lastDiagnosticCount);
     }
 
-    private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+    private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
 
     private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreHostErrors.NotInitialized);
 }

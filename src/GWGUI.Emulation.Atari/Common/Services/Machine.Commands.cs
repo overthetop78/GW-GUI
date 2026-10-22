@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
@@ -56,7 +57,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (initialized) MachineFunctions.TryReleaseInput(_core);
                 if (initialized)
                     try { _core.Stop(); } catch (Exception) { }
-                EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(_core);
+                CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(_core);
                 try { _audio.Stop(); } catch (Exception) { }
                 MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
                 FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));

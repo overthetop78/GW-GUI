@@ -23,7 +23,7 @@ public sealed class LegacyHostFrameResponseTests
         var diagnosticCount = 0;
         var mediaWritten = false;
         var optionsRead = 0;
-        EmulationHostProtocolFunctions.RunCoreFrame<Core, object, string>(
+        EmulationSdk.HostProtocol.RunCoreFrame<Core, object, string>(
             reader, writer, core,
             _ => { core.Events.Add("input"); return EmulationInputSnapshot.Empty; },
             (frameWriter, frame) =>
@@ -46,7 +46,7 @@ public sealed class LegacyHostFrameResponseTests
             {
                 Assert.Equal(1, diagnosticCount);
                 core.Events.Add("led");
-                EmulationHostProtocolFunctions.WriteLedStates(ledWriter, states);
+                EmulationSdk.HostProtocol.WriteLedStates(ledWriter, states);
             },
             () =>
             {
@@ -67,7 +67,7 @@ public sealed class LegacyHostFrameResponseTests
         using var response = new BinaryReader(output, Encoding.UTF8, leaveOpen: true);
         Assert.True(response.ReadBoolean());
         Assert.Equal(7, response.ReadInt64());
-        var audio = Assert.Single(EmulationHostProtocolFunctions.ReadAudio(response, "test"));
+        var audio = Assert.Single(EmulationSdk.HostProtocol.ReadAudio(response, "test"));
         Assert.Equal(3, audio.Sequence);
         Assert.Equal(50d, response.ReadDouble());
         Assert.Equal(44100, response.ReadInt32());
@@ -75,7 +75,7 @@ public sealed class LegacyHostFrameResponseTests
         Assert.Equal(1, response.ReadInt32());
         Assert.True(response.ReadBoolean());
         Assert.Equal("[\"ready\"]", response.ReadString());
-        Assert.True(EmulationHostProtocolFunctions.ReadLedStates(response, "test")[1]);
+        Assert.True(EmulationSdk.HostProtocol.ReadLedStates(response, "test")[1]);
         Assert.Equal(output.Length, output.Position);
         Assert.True(reader.BaseStream.CanRead);
         Assert.True(writer.BaseStream.CanWrite);
@@ -96,7 +96,7 @@ public sealed class LegacyHostFrameResponseTests
         long sequence = 6;
         var diagnosticCount = 1;
         var frameWrites = 0;
-        EmulationHostProtocolFunctions.RunCoreFrame<Core, object, string>(
+        EmulationSdk.HostProtocol.RunCoreFrame<Core, object, string>(
             reader, writer, core, _ => EmulationInputSnapshot.Empty,
             (_, frame) => { Assert.Null(frame); frameWrites++; },
             static (_, _) => { }, static (_, _) => { },
@@ -126,7 +126,7 @@ public sealed class LegacyHostFrameResponseTests
         long sequence = 6;
         var diagnosticCount = 0;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationHostProtocolFunctions.RunCoreFrame<Core, object, string>(
+            EmulationSdk.HostProtocol.RunCoreFrame<Core, object, string>(
                 reader, writer, core, _ => EmulationInputSnapshot.Empty,
                 (_, _) => { if (stage == "video") throw expected; },
                 staticWriter(stage, expected), ledWriter(stage, expected),

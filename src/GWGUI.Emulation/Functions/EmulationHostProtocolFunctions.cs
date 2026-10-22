@@ -11,7 +11,7 @@ namespace GWGUI.Emulation.Functions;
 internal static partial class EmulationHostProtocolFunctions
 {
     /// <summary>Construit une réponse isolée, remplace un résultat partiel par une erreur si nécessaire, puis écrit son enveloppe.</summary>
-    public static void WriteResponse(BinaryWriter transportWriter, Action<BinaryWriter> execute,
+    internal static void WriteResponse(BinaryWriter transportWriter, Action<BinaryWriter> execute,
         Action<BinaryWriter, Exception> writeFailure)
     {
         using var responseStream = new MemoryStream();
@@ -31,7 +31,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Sérialise une requête sous le verrou emprunté et signale les échecs de connexion selon la politique fournie.</summary>
-    public static void ExecuteRequest(SemaphoreSlim gate, Func<BinaryWriter> getWriter, Func<byte[]> getResponse,
+    internal static void ExecuteRequest(SemaphoreSlim gate, Func<BinaryWriter> getWriter, Func<byte[]> getResponse,
         Action<BinaryWriter> write, Action<BinaryReader> read, Action<Exception> failConnection)
     {
         gate.Wait();
@@ -51,7 +51,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit la réponse bornée avec délai et annulation, sans prendre possession du flux de transport.</summary>
-    public static async Task<byte[]> ReadResponseAsync(Stream pipe, TimeSpan responseTimeout,
+    internal static async Task<byte[]> ReadResponseAsync(Stream pipe, TimeSpan responseTimeout,
         CancellationToken cancellationToken, Func<int, string> invalidLength)
     {
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
@@ -67,24 +67,24 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit la présence puis la chaîne facultative dans le flux emprunté.</summary>
-    public static void WriteString(BinaryWriter writer, string? value)
+    internal static void WriteString(BinaryWriter writer, string? value)
     {
         writer.Write(value is not null);
         if (value is not null) writer.Write(value);
     }
 
     /// <summary>Lit une chaîne facultative selon son marqueur de présence.</summary>
-    public static string? ReadString(BinaryReader reader) => reader.ReadBoolean() ? reader.ReadString() : null;
+    internal static string? ReadString(BinaryReader reader) => reader.ReadBoolean() ? reader.ReadString() : null;
 
     /// <summary>Écrit la longueur puis les octets empruntés.</summary>
-    public static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> bytes)
+    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> bytes)
     {
         writer.Write(bytes.Length);
         writer.Write(bytes);
     }
 
     /// <summary>Lit un bloc binaire borné et refuse les données tronquées.</summary>
-    public static byte[] ReadBytes(BinaryReader reader, string hostName)
+    internal static byte[] ReadBytes(BinaryReader reader, string hostName)
     {
         var length = reader.ReadInt32();
         if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
@@ -95,7 +95,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit les touches, le pointeur et les manettes selon le protocole commun.</summary>
-    public static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input)
+    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input)
     {
         writer.Write(input.Keys.Count);
         foreach (var key in input.Keys) writer.Write((int)key);
@@ -120,7 +120,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit les entrées en contrôlant les nombres de touches, manettes et contrôles.</summary>
-    public static EmulationInputSnapshot ReadInput(BinaryReader reader, string hostName)
+    internal static EmulationInputSnapshot ReadInput(BinaryReader reader, string hostName)
     {
         var keyCount = reader.ReadInt32();
         if (keyCount is < 0 or > EmulationHostProtocolConstants.MaximumInputKeyCount)
@@ -148,7 +148,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit une image facultative et ses métadonnées.</summary>
-    public static void WriteFrame(BinaryWriter writer, VideoFrame? frame)
+    internal static void WriteFrame(BinaryWriter writer, VideoFrame? frame)
     {
         writer.Write(frame is not null);
         if (frame is null) return;
@@ -158,7 +158,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit une image et contrôle la cohérence de ses dimensions, pitch et octets.</summary>
-    public static VideoFrame? ReadFrame(BinaryReader reader, string hostName)
+    internal static VideoFrame? ReadFrame(BinaryReader reader, string hostName)
     {
         if (!reader.ReadBoolean()) return null;
         var width = reader.ReadInt32(); var height = reader.ReadInt32(); var pitch = reader.ReadInt32();
@@ -171,7 +171,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Copie une image dans la vue vidéo empruntée puis écrit les métadonnées du slot.</summary>
-    public static void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap, string hostName)
+    internal static void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap, string hostName)
     {
         writer.Write(frame is not null);
         if (frame is null) return;
@@ -187,7 +187,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit les métadonnées et copie le slot de mémoire vidéo emprunté dans le résultat.</summary>
-    public static VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap, string hostName)
+    internal static VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap, string hostName)
     {
         if (!reader.ReadBoolean()) return null;
         var width = reader.ReadInt32(); var height = reader.ReadInt32(); var pitch = reader.ReadInt32();
@@ -205,7 +205,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit les blocs audio après validation de leurs échantillons et de leur disposition de canaux.</summary>
-    public static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks)
+    internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks)
     {
         writer.Write(chunks.Count);
         foreach (var chunk in chunks)
@@ -218,7 +218,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit et valide les blocs audio du protocole commun.</summary>
-    public static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader, string hostName)
+    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader, string hostName)
     {
         var count = reader.ReadInt32();
         if (count is < 0 or > EmulationHostProtocolConstants.MaximumAudioChunkCount)
@@ -242,7 +242,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit les activités des lecteurs dans l’ordre de leurs identifiants.</summary>
-    public static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states)
+    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states)
     {
         writer.Write(states.Count);
         foreach (var state in states.OrderBy(pair => pair.Key))
@@ -253,7 +253,7 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit la liste bornée des activités de lecteurs.</summary>
-    public static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader, string hostName)
+    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader, string hostName)
     {
         var count = reader.ReadInt32();
         if (count is < 0 or > EmulationHostProtocolConstants.MaximumLedStateCount)

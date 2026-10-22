@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -18,9 +19,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
 {
     private Process StartHostProcess(string pipeName, string videoMapName)
     {
-        var startInfo = EmulationHostProtocolFunctions.CreateHostStartInfo(_hostExecutablePath,
+        var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
             Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
-        return EmulationChildProcessLifetime.Start(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
+        return CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
     }
 
     private void ReadInitialization(BinaryReader reader)
@@ -55,7 +56,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     }
 
     private void ReadRuntimeStatus(BinaryReader reader)
-    => EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+    => CommonCoreHostFunctions.Protocol.ReadRuntimeStatus(reader,
         value => Region = RuntimeFunctions.ReadRegion(value),
         value => BufferedAudioFrames = value,
         value => AudioOverrunCount = value,

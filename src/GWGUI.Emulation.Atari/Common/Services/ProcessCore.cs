@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -88,8 +89,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (!File.Exists(_hostExecutablePath))
             throw new FileNotFoundException(CoreHostErrors.ExecutableMissing, _hostExecutablePath);
 
-        var pipeName = CoreHostFunctions.CreatePipeName();
-        var videoMapName = CoreHostFunctions.CreateVideoMapName();
+        var pipeName = CommonCoreHostFunctions.CreatePipeName();
+        var videoMapName = CommonCoreHostFunctions.CreateVideoMapName();
         _pipeName = pipeName;
         _videoMapName = videoMapName;
         try
@@ -100,10 +101,10 @@ internal sealed partial class ProcessCore : IEmulatorCore
                 CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             _process = StartHostProcess(pipeName, videoMapName);
             _hostProcessId = _process.Id;
-            EmulationHostProtocolFunctions.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
-            Request(HostCommand.Initialize, writer => EmulationHostProtocolFunctions.WriteInitializationRequest(writer, _corePath, (int)_emulator,
-                sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
+            Request(HostCommand.Initialize, writer => CommonCoreHostFunctions.Protocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
+                sessionDirectory, saveDirectory, configuration, CommonCoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
             _initialized = true;
         }
         finally
@@ -112,7 +113,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => Request(HostCommand.RunFrame, writer => CoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
+    public void RunFrame() => Request(HostCommand.RunFrame, writer => CommonCoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);
     public void Stop()
@@ -126,14 +127,14 @@ internal sealed partial class ProcessCore : IEmulatorCore
             writer.Write(port);
             writer.Write((int)peripheral);
         });
-    public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
+    public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CommonCoreHostFunctions.JsonOptions)));
     public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
     public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => writer.Write(slot.ProtocolValue));
     public DiskStatus GetDiskStatus()
     {
         DiskStatus? status = null;
-        Request(HostCommand.GetDiskStatus, read: reader => status = CoreHostFunctions.ReadDiskStatus(reader));
+        Request(HostCommand.GetDiskStatus, read: reader => status = CommonCoreHostFunctions.ReadDiskStatus(reader));
         return status ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
     }
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
@@ -145,13 +146,13 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public byte[] SaveState()
     {
         byte[]? state = null;
-        Request(HostCommand.SaveState, read: reader => state = CoreHostFunctions.ReadBytes(reader));
+        Request(HostCommand.SaveState, read: reader => state = CommonCoreHostFunctions.ReadBytes(reader));
         return state ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
     }
     public void LoadState(ReadOnlySpan<byte> state)
     {
         var copy = state.ToArray();
-        Request(HostCommand.LoadState, writer => CoreHostFunctions.WriteBytes(writer, copy));
+        Request(HostCommand.LoadState, writer => CommonCoreHostFunctions.WriteBytes(writer, copy));
     }
     public void SetOption(string key, string value) => Request(HostCommand.SetOption, writer =>
     {

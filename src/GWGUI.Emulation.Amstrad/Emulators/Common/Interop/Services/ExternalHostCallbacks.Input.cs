@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
@@ -23,10 +24,10 @@ internal sealed partial class ExternalHostCallbacks
             {
                 Pointer = _pendingInput.Pointer with
                 {
-                    DeltaX = EmulationHostProtocolConstants.EmptyPointerDelta,
-                    DeltaY = EmulationHostProtocolConstants.EmptyPointerDelta,
-                    Wheel = EmulationHostProtocolConstants.EmptyPointerDelta,
-                    HorizontalWheel = EmulationHostProtocolConstants.EmptyPointerDelta
+                    DeltaX = 0,
+                    DeltaY = 0,
+                    Wheel = 0,
+                    HorizontalWheel = 0
                 }
             };
         }
@@ -103,7 +104,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private void HandleLed(int led, int state)
     {
-        if (led is not (>= BufferConstants.FirstCollectionIndex and < EmulationHostProtocolConstants.MaximumLedStateCount))
+        if (led < BufferConstants.FirstCollectionIndex || led >= CommonCoreHostFunctions.Protocol.MaximumLedStateCount)
             return;
         _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
         if (state != ExternalCoreInteropConstants.InactiveState)
@@ -129,8 +130,8 @@ internal sealed partial class ExternalHostCallbacks
                 MouseY => ClampToShort(input.Pointer.DeltaY),
                 MouseLeftButton => Bool(input.Pointer.Left),
                 MouseRightButton => Bool(input.Pointer.Right),
-                MouseWheelUp => Bool(input.Pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta),
-                MouseWheelDown => Bool(input.Pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta),
+                MouseWheelUp => Bool(input.Pointer.Wheel > 0),
+                MouseWheelDown => Bool(input.Pointer.Wheel < 0),
                 MouseMiddleButton => Bool(input.Pointer.Middle),
                 _ => ExternalCoreInteropConstants.ReleasedInputState
             };

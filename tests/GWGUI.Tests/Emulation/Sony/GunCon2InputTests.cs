@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using ControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Reflection;
@@ -93,9 +94,9 @@ public sealed class GunCon2InputTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(InputSettingsFunctions.Apply(configuration, settings)))!;
         var mapped = InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.C, EmulationKey.D } }, restored.Input, false, 10);
         using var stream = new MemoryStream();
-        using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true)) EmulationHostProtocolFunctions.WriteInput(writer, mapped);
+        using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true)) EmulationSdk.HostProtocol.WriteInput(writer, mapped);
         stream.Position = 0;
-        using (var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, true)) mapped = EmulationHostProtocolFunctions.ReadInput(reader, Core.DisplayName);
+        using (var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, true)) mapped = EmulationSdk.HostProtocol.ReadInput(reader, Core.DisplayName);
         Assert.Equal(10, mapped.Controllers.Count);
         using var host = Host(restored);
         host.Input = mapped;

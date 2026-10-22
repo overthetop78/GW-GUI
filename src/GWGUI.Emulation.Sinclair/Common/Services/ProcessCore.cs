@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sinclair.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -93,9 +94,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             _process = StartHostProcess(pipeName, videoMapName);
             _hostProcessId = _process.Id;
-            EmulationHostProtocolFunctions.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
-            Request(HostCommand.Initialize, writer => EmulationHostProtocolFunctions.WriteInitializationRequest(writer, _corePath, (int)_emulator,
+            Request(HostCommand.Initialize, writer => CommonCoreHostFunctions.Protocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
                 sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
             _initialized = true;
         }

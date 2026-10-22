@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -155,7 +156,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 foreach (var pointer in _nativeStrings.Values)
                 {
-                    GWGUI.Emulation.Functions.EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(pointer);
+                    CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
                 }
             }
         }

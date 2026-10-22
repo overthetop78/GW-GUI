@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Contracts;
@@ -79,7 +80,7 @@ public sealed class MultichannelAudioTests
             using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true)) EmulationHostProtocolFunctions.WriteAudio(writer, [chunk]);
             stream.Position = 0;
             using var reader = new BinaryReader(stream);
-            var restored = Assert.Single(EmulationHostProtocolFunctions.ReadAudio(reader, "test"));
+            var restored = Assert.Single(EmulationSdk.HostProtocol.ReadAudio(reader, "test"));
             Assert.Equal(layout, restored.ChannelLayout);
             Assert.Equal(expected, restored.InterleavedSamples.ToArray());
             Assert.Equal(chunk.FrameCount, restored.FrameCount);
@@ -157,7 +158,7 @@ public sealed class MultichannelAudioTests
         writer.Write(1L); writer.Write(0L); writer.Write(12); writer.Write(new byte[12]); writer.Flush();
         stream.Position = 0;
         using var reader = new BinaryReader(stream);
-        Assert.Throws<InvalidDataException>(() => EmulationHostProtocolFunctions.ReadAudio(reader, "test"));
+        Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.ReadAudio(reader, "test"));
     }
 
     private static ExternalHostCallbacks Callbacks() => new(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);

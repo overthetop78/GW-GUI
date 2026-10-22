@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using System.IO;
 using System.Globalization;
 using System.IO.MemoryMappedFiles;
@@ -10,6 +11,16 @@ namespace GWGUI.Emulation.Fairchild.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit le contrat commun de transport, de statut et de durée de vie des hôtes.</summary>
+    /// <value>Service emprunté du SDK, indépendant du nom du module et de son adaptateur.</value>
+    /// <remarks>Les adaptateurs passent par cet accès Common pour appeler les codecs et les opérations de session.
+    /// Le service expose uniquement son interface publique ; il conserve les implémentations et limites du protocole
+    /// dans Emulation. Les flux, vues, processus et cœurs restent possédés par la session appelante, qui les ferme
+    /// dans son finally et attend l’arrêt effectif du cœur et de son hôte. Cet accès ne crée aucune session,
+    /// ne mémorise aucune ressource reçue et ne requiert aucun enregistrement du nom de module dans le SDK.
+    /// Les codecs propres au module conservent leur configuration et leurs diagnostics.</remarks>
+    internal static IEmulationHostProtocol Protocol => EmulationSdk.HostProtocol;
+
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
     internal static string CreatePipeName() => CoreHostConstants.PipePrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
@@ -52,24 +63,24 @@ internal static class CoreHostFunctions
     internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
 
     internal static HostError ReadError(BinaryReader reader) => JsonSerializer.Deserialize<HostError>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
-    internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
-    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => EmulationHostProtocolFunctions.WriteBytes(writer, value);
-    internal static byte[] ReadBytes(BinaryReader reader) => EmulationHostProtocolFunctions.ReadBytes(reader, CoreHostConstants.HostName);
-    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => EmulationHostProtocolFunctions.WriteInput(writer, input);
-    internal static EmulationInputSnapshot ReadInput(BinaryReader reader) => EmulationHostProtocolFunctions.ReadInput(reader, CoreHostConstants.HostName);
-    internal static int CalculateVideoSlotCapacity(int frameLength) => EmulationHostProtocolFunctions.CalculateVideoSlotCapacity(
+    internal static string? ReadString(BinaryReader reader) => CoreHostFunctions.Protocol.ReadString(reader);
+    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => CoreHostFunctions.Protocol.WriteBytes(writer, value);
+    internal static byte[] ReadBytes(BinaryReader reader) => CoreHostFunctions.Protocol.ReadBytes(reader, CoreHostConstants.HostName);
+    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => CoreHostFunctions.Protocol.WriteInput(writer, input);
+    internal static EmulationInputSnapshot ReadInput(BinaryReader reader) => CoreHostFunctions.Protocol.ReadInput(reader, CoreHostConstants.HostName);
+    internal static int CalculateVideoSlotCapacity(int frameLength) => CoreHostFunctions.Protocol.CalculateVideoSlotCapacity(
         frameLength, CoreHostConstants.MinimumVideoSlotCapacity, CoreHostConstants.HostName);
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video) =>
-        EmulationHostProtocolFunctions.WriteResizableSharedFrame(writer, frame, video);
+        CoreHostFunctions.Protocol.WriteResizableSharedFrame(writer, frame, video);
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName) =>
-        EmulationHostProtocolFunctions.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
-    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudio(reader, CoreHostConstants.HostName);
-    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
-    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => EmulationHostProtocolFunctions.ReadLedStates(reader, CoreHostConstants.HostName);
+        CoreHostFunctions.Protocol.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
+    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => CoreHostFunctions.Protocol.ReadAudio(reader, CoreHostConstants.HostName);
+    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => CoreHostFunctions.Protocol.WriteLedStates(writer, states);
+    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => CoreHostFunctions.Protocol.ReadLedStates(reader, CoreHostConstants.HostName);
 
     internal static void WriteDiskStatus(BinaryWriter writer, DiskStatus status) => writer.Write(JsonSerializer.Serialize(status, JsonOptions));
 

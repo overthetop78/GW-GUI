@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using System.Diagnostics;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
@@ -5,11 +6,11 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 internal static class RuntimeFunctions
 {
 
-    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
+    internal static EmulationVideoStandard? ReadRegion(int value) => CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: false);
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
         =>
-            EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed,
+            CommonCoreHostFunctions.Protocol.GetProcessState(process, connectionFailed, disposed,
                 HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
 
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)

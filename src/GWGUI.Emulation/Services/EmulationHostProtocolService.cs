@@ -11,6 +11,69 @@ namespace GWGUI.Emulation.Services;
 /// <remarks>Ce service ne conserve aucun état de session et ne modifie ni l’ordre des champs ni les règles de transport.</remarks>
 internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
 {
+
+    /// <inheritdoc/>
+    public int VideoSlotCapacity => EmulationHostProtocolConstants.VideoSlotCapacity;
+
+    /// <inheritdoc/>
+    public long VideoMapCapacity => EmulationHostProtocolConstants.VideoMapCapacity;
+
+    /// <inheritdoc/>
+    public int MaximumLedStateCount => EmulationHostProtocolConstants.MaximumLedStateCount;
+
+    /// <inheritdoc/>
+    public void WriteString(BinaryWriter writer, string? value)
+        => EmulationHostProtocolFunctions.WriteString(writer, value);
+
+    /// <inheritdoc/>
+    public void DisposeTransportIgnoringErrors(IDisposable? value)
+        => EmulationHostProtocolFunctions.DisposeTransportIgnoringErrors(value);
+
+    /// <inheritdoc/>
+    public void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap, string hostName)
+        => EmulationHostProtocolFunctions.WriteSharedFrame(writer, frame, videoMap, hostName);
+
+    /// <inheritdoc/>
+    public VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap, string hostName)
+        => EmulationHostProtocolFunctions.ReadSharedFrame(reader, videoMap, hostName);
+
+    /// <inheritdoc/>
+    public void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
+        ref TCore? core, ref int lastDiagnosticCount, Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
+        Func<BinaryReader, TConfiguration> readConfiguration, Func<JsonSerializerOptions> jsonOptions, char extensionSeparator,
+        Action<BinaryWriter, TCore> writeStatus, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates)
+        where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>
+        => EmulationHostProtocolFunctions.InitializeCore<TCore, TEmulator, TConfiguration, TOption>(reader, writer, createCore, ref core, ref lastDiagnosticCount, readEmulator, readSaves, readConfiguration, jsonOptions, extensionSeparator, writeStatus, writeLedStates);
+
+    /// <inheritdoc/>
+    public void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
+        Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
+        Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
+        => EmulationHostProtocolFunctions.RunCoreFrame<TCore, TConfiguration, TOption>(reader, writer, core, readInput, writeFrame, writeMediaStatus, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount);
+
+    /// <inheritdoc/>
+    public void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core)
+        => EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);
+
+    /// <inheritdoc/>
+    public bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
+        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess)
+        => EmulationHostProtocolFunctions.TryExecutePathMediaCommand(command, reader, writer, ensureCore, readBytes, writeSuccess);
+
+    /// <inheritdoc/>
+    public EmulationVideoStandard? Region(uint nativeRegion)
+        => EmulationHostProtocolFunctions.Region(nativeRegion);
+
+    /// <inheritdoc/>
+    [SupportedOSPlatform("windows")]
+    public void WithSharedVideoMap(string videoMapName, long viewOffset, Action<MemoryMappedViewAccessor> run)
+        => EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, viewOffset, run);
+
+    /// <inheritdoc/>
+    [SupportedOSPlatform("windows")]
+    public void WithSuppressedErrorDialogs(Action run)
+        => EmulationHostProtocolFunctions.WithSuppressedErrorDialogs(run);
     /// <inheritdoc/>
     public EmulationVideoStandard? ReadRegion(int value, bool allowAllDefinedStandards) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards);
 

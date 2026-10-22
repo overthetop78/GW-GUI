@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Services;
+using GWGUI.Emulation.Atari.Common.Functions;
 
 namespace GWGUI.Emulation.Atari.Common.Services;
 

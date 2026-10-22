@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 using System.Diagnostics;
 
@@ -5,13 +6,13 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static EmulationVideoStandard? Region(uint nativeRegion) => EmulationHostProtocolFunctions.Region(nativeRegion);
+    internal static EmulationVideoStandard? Region(uint nativeRegion) => CommonCoreHostFunctions.Protocol.Region(nativeRegion);
 
-    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
+    internal static EmulationVideoStandard? ReadRegion(int value) => CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: false);
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
         =>
-            EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed,
+            CommonCoreHostFunctions.Protocol.GetProcessState(process, connectionFailed, disposed,
                 HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
 
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)

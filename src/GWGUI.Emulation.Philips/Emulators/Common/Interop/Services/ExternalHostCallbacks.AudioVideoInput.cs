@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
 using System.IO;
@@ -26,7 +27,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             height == ExternalCoreInteropConstants.EmptyFrameDimension ||
             pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;
         var length = VideoFunctions.FrameLength(height, pitch);
-        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
+        if (length > CommonCoreHostFunctions.Protocol.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
         LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
