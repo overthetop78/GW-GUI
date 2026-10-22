@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
-    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorStorageSettings, IEmulatorVideoSettings
+    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings
 {
     /// <summary>Nom technique de la bibliothèque de cœur utilisée par l’adaptateur.</summary>
     /// <remarks>Ce membre conserve la métadonnée LibraryName des catalogues internes, sans dupliquer
@@ -35,12 +35,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <param name="ledStates">États des LED du cœur, empruntés pendant la projection.</param>
     /// <returns>Activité indexée par emplacement de média ; les LED ne correspondant pas à un lecteur ne deviennent pas de l’activité média.</returns>
     IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
-
-    /// <summary>Applique les champs de réglages propres au backend.</summary>
-    /// <param name="configuration">Configuration de départ, conservée immuable.</param>
-    /// <param name="values">Valeurs d’éditeurs indexées par identifiant de champ ; null représente une valeur non renseignée.</param>
-    /// <returns>Configuration résultant des règles de ce backend.</returns>
-    MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values);
 
     /// <summary>Produit le résumé de configuration propre au cœur sélectionné.</summary>
     /// <param name="configuration">Configuration à présenter sans démarrer son runtime.</param>

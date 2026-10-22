@@ -72,17 +72,29 @@ public sealed class Engine
     /// <summary>Crée une configuration neuve sans fichier ni ressource d’exécution.</summary>
     public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));
     /// <summary>Change le profil en conservant l’identité et les données compatibles avec ses lecteurs.</summary>
+    /// <remarks>Un nouveau profil active ses lecteurs initiaux. Reprendre le même profil conserve la sélection
+    /// explicite de ses lecteurs, y compris lorsqu’elle est vide.</remarks>
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
         var current = Require(configuration);
         var model = ModelCatalog.Parse(machineId);
         var hardware = HardwareModelCatalog.Get(model);
-        var result = current with { Model = model, Media = current.Media.Where(media => hardware.Media.Contains(media.Category)).ToArray(), Firmwares = current.Firmwares.Where(firmware => hardware.Firmware.Contains(firmware.Category)).ToArray() };
+        var result = current with
+        {
+            Model = model,
+            ConfiguredSlots = model == current.Model ? current.ConfiguredSlots : ConfigurationFunctions.DefaultSlots(model),
+            Media = current.Media.Where(media => hardware.Media.Contains(media.Category)).ToArray(),
+            Firmwares = current.Firmwares.Where(firmware => hardware.Firmware.Contains(firmware.Category)).ToArray()
+        };
         ConfigurationFunctions.Validate(result);
         return result;
     }
     /// <summary>Applique et valide les champs par leur propriétaire Common.</summary>
-    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values) => SettingsApplicationFunctions.Apply(Require(configuration), values);
+    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
+    {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.ApplySettings(current, values) ?? SettingsApplicationFunctions.Apply(current, values);
+    }
     /// <summary>Demande les options de runtime à l’adaptateur choisi, sans sélectionner un autre émulateur.</summary>
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
     /// <summary>Produit le résumé de la configuration par le catalogue matériel Common.</summary>

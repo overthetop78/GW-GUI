@@ -167,7 +167,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public void ValidateConfiguration(MachineConfiguration configuration) => ConfigurationFunctions.Validate(configuration);
     /// <inheritdoc/>
-    public MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => SettingsApplicationFunctions.Apply(configuration, values);
+    public MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => SettingsApplicationFunctions.Apply(configuration, values);
     /// <inheritdoc/>
     public EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration);
     /// <inheritdoc/>

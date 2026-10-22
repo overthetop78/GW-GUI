@@ -12,6 +12,33 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void SettingsApplicationUsesTheSameContractInAppleAndExample()
+    {
+        foreach (var family in new[] { "Apple", "Example" })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorSettingsApplication", throwOnError: true)!;
+            var method = Assert.Single(contract.GetMethods());
+            Assert.Equal("ApplySettings", method.Name);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.ReturnType));
+            var parameters = method.GetParameters();
+            Assert.Equal(new[] { "configuration", "values" }, parameters.Select(parameter => parameter.Name));
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[0].ParameterType));
+            Assert.Equal(typeof(IReadOnlyDictionary<string, string>), parameters[1].ParameterType);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+            if (family == "Example")
+            {
+                Assert.Equal(3, implementations.Length);
+                Assert.Contains(contract, assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!.GetInterfaces());
+                Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetMethods()), candidate => candidate.Name == "ApplyBackendSettings");
+            }
+        }
+    }
+
     [Theory]
     [InlineData("Apple", "PrepareFirmware")]
     [InlineData("Nec", "GetFirmwareSlots")]

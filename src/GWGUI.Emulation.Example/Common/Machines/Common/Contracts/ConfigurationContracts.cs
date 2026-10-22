@@ -36,7 +36,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Core = core;
         Firmwares = Array.AsReadOnly(firmwares?.ToArray() ?? []);
         Media = Array.AsReadOnly(media?.ToArray() ?? []);
-        ConfiguredSlots = Array.AsReadOnly(configuredSlots?.ToArray() ?? (Enum.IsDefined(model) ? StorageSettingsFunctions.DescribeDevices(model).Select(device => device.Slot).ToArray() : []));
+        ConfiguredSlots = configuredSlots is not null ? Array.AsReadOnly(configuredSlots.ToArray()) : Enum.IsDefined(model) ? ConfigurationFunctions.DefaultSlots(model) : [];
         Options = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(options is null
             ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal));
         Input = input ?? new InputConfiguration();

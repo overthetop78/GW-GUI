@@ -6081,3 +6081,23 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat Apple de sélection des lecteurs par rapport à celui d’Example, en conservant les contrôles des autres rôles ; exécuter les contrôles locaux concernés puis le build Debug avec les 23 modules.
 
   - Validation : 79 contrôles ciblés réussis ; sélections partielles et vides conservées pour les deux profils et les trois adaptateurs, y compris après document JSON en mémoire ; listes copiées et emplacements incompatibles ou dupliqués refusés ; contrat SDK de document à lecteurs configurés réutilisé sans nouveau type ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.
+
+## Changement de profil et application des réglages par le contrat Common d’Example
+
+- [x] Préserver le changement de profil après la conservation des lecteurs et raccorder les réglages à leur contrat existant.
+  - [x] Corriger la transition entre les deux profils fictifs.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : reproduire le changement de profil avec les lecteurs du profil précédent, pour les trois adaptateurs et sans cœur choisi ; vérifier les lecteurs par défaut du nouveau profil et la conservation du choix lorsque le profil reste identique.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.cs : reprendre DefaultSlots(model) comme propriétaire de la sélection initiale des lecteurs du profil.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/ConfigurationContracts.cs : réutiliser DefaultSlots pour la sélection initiale, en conservant le traitement du modèle invalide par la validation existante.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : conserver les lecteurs choisis si le profil est identique et utiliser les lecteurs initiaux du nouveau profil lors du changement, avec les mêmes filtres de médias et de firmwares.
+  - [x] Employer le contrat d’application des réglages déjà présent dans Apple.
+    - [x] Créer src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettingsApplication.cs : reprendre ApplySettings(configuration, values) et commenter ses paramètres, son résultat et la propriété des données.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorSettingsApplication et supprimer la déclaration ApplyBackendSettings remplacée par ce contrat.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : renommer ApplyBackendSettings en ApplySettings et conserver son traitement Common existant.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : appliquer les réglages par l’interface du backend choisi et conserver le traitement Common lorsque le cœur n’est pas choisi.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorSettingsApplication.cs : documenter ApplySettings sous le même nom et avec les mêmes responsabilités d’interface.
+  - [x] Vérifier les raccordements et les transitions conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : comparer le contrat d’application des réglages Apple avec celui d’Example et vérifier les trois implémentations d’Example.
+    - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleSettingsApplicationTests.cs : vérifier l’application effective des champs depuis Engine et depuis les trois adaptateurs, la conservation de la configuration initiale et le parcours sans cœur ; exécuter les contrôles locaux concernés puis le build Debug avec les 23 modules.
+
+  - Validation : régression du changement de profil reproduite par un test en échec puis corrigée ; lecteurs initiaux du nouveau profil et sélection du même profil vérifiés pour les deux profils et chaque choix de cœur ; 84 contrôles ciblés réussis ; contrat ApplySettings commun à Apple et Example avec trois implémentations d’Example effectivement appelables, sans ApplyBackendSettings restant ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.

@@ -15,6 +15,31 @@ public sealed class ExampleStorageSettingsTests
     private static readonly Type Storage = Module.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
 
     [Fact]
+    public void ChangingProfileUsesItsDefaultReadersAndKeepsSelectionsWhenTheProfileIsUnchanged()
+    {
+        var engine = new GWGUI.Emulation.Example.Common.Services.Engine();
+        foreach (var profile in HardwareModelCatalog.All)
+        foreach (var core in Enum.GetValues<Emulator>())
+        {
+            var original = new MachineConfiguration(profile.Model, core: core);
+            foreach (var selected in new[] { original.ConfiguredSlots.Take(1).ToArray(), Array.Empty<EmulationMediaSlot>() })
+            {
+                var configuration = original with { ConfiguredSlots = selected };
+                var same = Assert.IsType<MachineConfiguration>(engine.ChangeMachine(configuration, profile.StableModelId));
+                Assert.Equal(selected, same.ConfiguredSlots);
+                var target = HardwareModelCatalog.All.Single(model => model.Model != profile.Model);
+                var changed = Assert.IsType<MachineConfiguration>(engine.ChangeMachine(configuration, target.StableModelId));
+                Assert.Equal(target.Model, changed.Model);
+                Assert.Equal(engine.DescribeStorageSettings(changed).AvailableDevices.Select(device => device.Slot), changed.ConfiguredSlots);
+                Assert.Equal(configuration.Id, changed.Id);
+                Assert.Equal(configuration.Core, changed.Core);
+                Assert.Equal(profile.Model, configuration.Model);
+                Assert.Equal(selected, configuration.ConfiguredSlots);
+            }
+        }
+    }
+
+    [Fact]
     public void BothProfilesAndAllThreeBackendsKeepPartialAndEmptySelectionsAfterDocumentRoundTrip()
     {
         var adapters = Adapters();

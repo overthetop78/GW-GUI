@@ -17,6 +17,13 @@ internal static class ConfigurationFunctions
     /// <returns>Identité du premier cœur recommandé et compatible.</returns>
     internal static Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
 
+    /// <summary>Décrit la sélection initiale de lecteurs du profil matériel.</summary>
+    /// <param name="model">Profil dont les emplacements disponibles doivent être activés initialement.</param>
+    /// <returns>Nouvelle liste protégée contre les modifications, dans l’ordre du catalogue matériel.</returns>
+    /// <remarks>La création d’une configuration et le changement de profil utilisent cette même sélection.
+    /// Les choix explicites d’une configuration restent distincts de ces valeurs initiales.</remarks>
+    internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Array.AsReadOnly(StorageSettingsFunctions.DescribeDevices(model).Select(device => device.Slot).ToArray());
+
     /// <summary>Calcule la quantité de ports de jeu du profil.</summary>
     /// <param name="model">Profil matériel dont les ports sont décrits.</param>
     /// <returns>Nombre de ports acceptant les contrôleurs configurables.</returns>
