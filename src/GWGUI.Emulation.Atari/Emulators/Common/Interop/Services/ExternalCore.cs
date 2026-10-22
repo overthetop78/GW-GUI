@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -11,7 +13,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private readonly IEmulatorAdapter _adapter;
     private readonly MachineFactory _mediaAdapter;
     private ExternalCoreInfo _info;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalCoreExports? _exports;
     private ExternalHostCallbacks? _callbacks;
     private LoadedContent? _content;
@@ -77,7 +79,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             var systemDirectory = Path.Combine(absoluteSession, CoreDirectoryConstants.SystemDirectoryName);
             var media = _mediaAdapter.SelectPrimaryMedia(configuration);
             _mediaAdapter.PrepareSystemDirectory(configuration, systemDirectory);
-            _library = new ExternalCoreLibrary(_corePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var configuredOptions = _mediaAdapter.PrepareOptions(_mediaAdapter.GetConfiguredOptions(configuration));
             _callbacks = new ExternalHostCallbacks(Emulator,

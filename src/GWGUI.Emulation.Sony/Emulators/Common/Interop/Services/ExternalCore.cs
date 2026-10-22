@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -14,7 +16,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly CoreDefinition _definition;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
     private ExternalCoreApi.VoidCall? _unloadGame;
@@ -111,7 +113,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
         try
         {
-            _library = new ExternalCoreLibrary(isolatedCorePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(isolatedCorePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(Error(CoreExceptionsResourceConstants.UnsupportedApiVersion, apiVersion));
@@ -123,7 +125,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(fullPathError());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);
+            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(info.ValidExtensions);
             ValidateExtension(contentPath);
             foreach (var path in contentPlan?.Paths ?? []) ValidateExtension(path);
 

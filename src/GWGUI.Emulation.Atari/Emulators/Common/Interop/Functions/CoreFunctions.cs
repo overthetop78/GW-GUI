@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using System.Runtime.InteropServices;
 
@@ -12,7 +14,7 @@ internal static class CoreFunctions
     }
 
     internal static ExternalCoreInfo ReadInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemInfo nativeInfo, Emulator expectedEmulator)
-        => ExternalCoreLibrary.ReadInfo(nativeInfo, expectedEmulator, ExpectedLibraryName, ExternalCoreLibrary.ParseExtensions,
+        => CommonCoreHostFunctions.NativeResources.ReadInfo(nativeInfo, expectedEmulator, ExpectedLibraryName, CommonCoreHostFunctions.NativeResources.ParseExtensions,
             static (expectedName, libraryName) => new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
                 ErrorMessages.CoreIdentityMismatch,
                 new Dictionary<string, string>
@@ -25,7 +27,7 @@ internal static class CoreFunctions
     internal static string CreateInvalidOptionValueMessage(string key, string value) => string.Format(CultureInfo.InvariantCulture, ErrorMessages.OptionValueInvalidFormat, key, value);
     internal static string ExpectedLibraryName(Emulator emulator) => CoreCatalog.Get(emulator).LibraryName;
 
-    internal static ExternalCoreExports ResolveExports(ExternalCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: false);
+    internal static ExternalCoreExports ResolveExports(IEmulationCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: false);
 
     internal static void InstallCallbacks(ExternalCoreExports exports, ExternalHostCallbacks callbacks)
     => ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks);

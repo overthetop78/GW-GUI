@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
@@ -12,7 +14,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalCoreExports? _exports;
     private ExternalHostCallbacks? _callbacks;
     private LoadedContent? _content;
@@ -70,7 +72,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             _configuration = configuration;
             _sessionDirectory = Path.GetFullPath(sessionDirectory);
-            _library = new ExternalCoreLibrary(_corePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             _callbacks = new ExternalHostCallbacks(Emulator,
                 Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName),

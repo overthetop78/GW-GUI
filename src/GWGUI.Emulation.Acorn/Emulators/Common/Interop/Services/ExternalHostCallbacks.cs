@@ -35,7 +35,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private IReadOnlyList<ControllerBinding>? _controllerBindings;
     private readonly DiskControl _diskControl = new();
-    private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
+    private readonly IEmulationVirtualFileSystem _virtualFileSystem;
 
     internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)
     {
@@ -49,7 +49,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
         IEmulationNativeString? save = null;
         IEmulationNativeString? assets = null;
         CoreOptionHost? optionHost = null;
-        ExternalCoreVirtualFileSystem? virtualFileSystem = null;
+        IEmulationVirtualFileSystem? virtualFileSystem = null;
         var completed = false;
         try
         {
@@ -58,7 +58,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             _saveDirectory = save = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory));
             _assetsDirectory = assets = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory));
             _optionHost = optionHost = new CoreOptionHost(configuredOptions, (new Engine().Adapter(emulator) as IEmulatorSettings)?.GetSettingsOptions());
-            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();
+            _virtualFileSystem = virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem();
             Environment = OnEnvironment;
             Video = OnVideo;
             AudioSample = OnAudioSample;

@@ -15,7 +15,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
     private readonly VideoCallbackHost _video;
     private readonly AudioCallbackHost _audio;
     private readonly OptionCallbackHost _options;
-    private readonly ExternalCoreVirtualFileSystem _files;
+    private readonly IEmulationVirtualFileSystem _files;
     private readonly Dictionary<uint, IEmulationNativeString> _directories = [];
     private readonly ExternalCoreApi.LogCallback _log;
     private bool _disposed;
@@ -24,7 +24,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
         _video = video;
         _audio = audio;
         _options = new OptionCallbackHost(options);
-        _files = new ExternalCoreVirtualFileSystem();
+        _files = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem();
         Callback = OnEnvironment;
         _log = OnLog;
         var completed = false;

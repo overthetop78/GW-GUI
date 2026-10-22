@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -20,7 +20,7 @@ public sealed class CoreInformationReadingTests
         {
             info.NeedFullPath = fullPath;
             info.BlockExtract = blockExtract;
-            result = ExternalCoreLibrary.ReadInfo(info, Profile.Sample,
+            result = EmulationSdk.NativeResources.ReadInfo(info, Profile.Sample,
                 profile => { Assert.Equal(Profile.Sample, profile); calls.Add("expected"); return "core"; },
                 pointer => { Assert.Equal(info.ValidExtensions, pointer); calls.Add("extensions"); return extensions; },
                 (_, _) => throw new InvalidOperationException("wrong identity"),
@@ -45,7 +45,7 @@ public sealed class CoreInformationReadingTests
     {
         WithInfo("core", null, null, info =>
         {
-            var result = ExternalCoreLibrary.ReadInfo(info, Profile.Sample,
+            var result = EmulationSdk.NativeResources.ReadInfo(info, Profile.Sample,
                 static _ => "core",
                 pointer => { Assert.Equal(nint.Zero, pointer); return new HashSet<string>(); },
                 static (_, _) => throw new InvalidOperationException("wrong identity"),
@@ -67,7 +67,7 @@ public sealed class CoreInformationReadingTests
         {
             var observed = Assert.Throws<InvalidOperationException>(() =>
             {
-                _ = ExternalCoreLibrary.ReadInfo<Profile, object>(info, Profile.Sample,
+                _ = EmulationSdk.NativeResources.ReadInfo<Profile, object>(info, Profile.Sample,
                     _ => { calls.Add("expected"); return "core"; },
                     _ => throw new InvalidOperationException("extensions read too early"),
                     (name, actual) =>
@@ -101,7 +101,7 @@ public sealed class CoreInformationReadingTests
         {
             var observed = Assert.Throws<InvalidOperationException>(() =>
             {
-                _ = ExternalCoreLibrary.ReadInfo<Profile, object>(info, Profile.Sample,
+                _ = EmulationSdk.NativeResources.ReadInfo<Profile, object>(info, Profile.Sample,
                     _ => { Visit("expected"); return "core"; },
                     _ => { Visit("extensions"); return new HashSet<string>(); },
                     static (_, _) => throw new InvalidOperationException("wrong identity"),
@@ -126,7 +126,7 @@ public sealed class CoreInformationReadingTests
     public void CopiesNormalizedExtensionsAndPreservesOrdinalCaseComparison(string? source, string[] expected)
     {
         HashSet<string>? result = null;
-        WithInfo(null, null, source, info => result = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
+        WithInfo(null, null, source, info => result = EmulationSdk.NativeResources.ParseExtensions(info.ValidExtensions));
 
         Assert.NotNull(result);
         Assert.Equal(expected.Length, result.Count);
@@ -141,8 +141,8 @@ public sealed class CoreInformationReadingTests
     {
         HashSet<string>? first = null;
         HashSet<string>? second = null;
-        WithInfo(null, null, null, info => first = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
-        WithInfo(null, null, null, info => second = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
+        WithInfo(null, null, null, info => first = EmulationSdk.NativeResources.ParseExtensions(info.ValidExtensions));
+        WithInfo(null, null, null, info => second = EmulationSdk.NativeResources.ParseExtensions(info.ValidExtensions));
 
         Assert.NotNull(first);
         Assert.NotNull(second);

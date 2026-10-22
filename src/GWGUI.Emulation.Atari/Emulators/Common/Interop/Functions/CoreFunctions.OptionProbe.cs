@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
@@ -18,7 +19,7 @@ public static class CoreOptionProbe
         Directory.CreateDirectory(session);
         try
         {
-            using var library = new ExternalCoreLibrary(absoluteCore);
+            using var library = CommonCoreHostFunctions.NativeResources.CreateLibrary(absoluteCore);
             var exports = CoreFunctions.ResolveExports(library);
             using var callbacks = new ExternalHostCallbacks(category,
                 Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName),

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -10,7 +11,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
     private ExternalCoreApi.VoidCall? _unloadGame;
@@ -83,7 +84,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
         try
         {
-            _library = new ExternalCoreLibrary(corePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(corePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));
@@ -95,7 +96,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(CoreExceptions.FullContentPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(systemInfo.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(systemInfo.ValidExtensions);
+            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(systemInfo.ValidExtensions);
             if (contentPath is not null && !Directory.Exists(contentPath))
             {
                 var extension = Path.GetExtension(contentPath).TrimStart(MediaConstants.ExtensionPrefix);

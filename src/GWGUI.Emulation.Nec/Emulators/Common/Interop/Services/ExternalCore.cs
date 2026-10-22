@@ -22,7 +22,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private readonly string _corePath;
     private string _errorResourcePrefix = "Emulation.Error.Core";
     private readonly List<nint> _contentBuffers = [];
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
     private ExternalCoreApi.VoidCall? _unloadGame;
@@ -102,7 +102,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
         try
         {
-            _library = new ExternalCoreLibrary(isolatedCorePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(isolatedCorePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(Error("UnsupportedApiVersion", apiVersion));
@@ -114,7 +114,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(fullPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);
+            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(info.ValidExtensions);
             ValidateExtension(contentPath);
 
             Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);

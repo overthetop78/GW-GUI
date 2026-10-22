@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -15,7 +15,7 @@ public sealed class CoreLibraryPathValidationTests
         var expected = new ArgumentException("absolute path required", "absolutePath");
         var reads = 0;
         var missingRead = false;
-        var observed = Assert.Throws<ArgumentException>(() => ExternalCoreLibrary.ValidatePath(path,
+        var observed = Assert.Throws<ArgumentException>(() => EmulationSdk.NativeResources.ValidateLibraryPath(path,
             () => { reads++; return expected; },
             _ => { missingRead = true; throw new InvalidOperationException("wrong factory"); }));
         Assert.Same(expected, observed);
@@ -29,7 +29,7 @@ public sealed class CoreLibraryPathValidationTests
         var root = Root();
         var expected = new FileNotFoundException("missing core", root);
         var reads = 0;
-        var observed = Assert.Throws<FileNotFoundException>(() => ExternalCoreLibrary.ValidatePath(root,
+        var observed = Assert.Throws<FileNotFoundException>(() => EmulationSdk.NativeResources.ValidateLibraryPath(root,
             () => throw new InvalidOperationException("wrong factory"),
             path =>
             {
@@ -49,7 +49,7 @@ public sealed class CoreLibraryPathValidationTests
     {
         var expected = new InvalidOperationException("factory failed");
         var visited = new List<string>();
-        var observed = Assert.Throws<InvalidOperationException>(() => ExternalCoreLibrary.ValidatePath(
+        var observed = Assert.Throws<InvalidOperationException>(() => EmulationSdk.NativeResources.ValidateLibraryPath(
             relative ? "relative.dll" : Root(),
             () => { visited.Add("absolute"); throw expected; },
             _ => { visited.Add("missing"); throw expected; }));

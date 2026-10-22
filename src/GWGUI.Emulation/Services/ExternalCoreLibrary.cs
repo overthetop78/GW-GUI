@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreLibrary : IDisposable
+internal sealed class ExternalCoreLibrary : IEmulationCoreLibrary
 {
     private nint _handle;
 
@@ -29,7 +29,7 @@ internal sealed class ExternalCoreLibrary : IDisposable
     }
 
     internal static T Inspect<T>(string absolutePath, uint expectedApiVersion,
-        Action<ExternalCoreLibrary> validateExports, Func<uint, Exception> unsupportedApi,
+        Action<IEmulationCoreLibrary> validateExports, Func<uint, Exception> unsupportedApi,
         Func<ExternalCoreApi.SystemInfo, T> readInfo,
         Func<EntryPointNotFoundException, Exception> missingExport,
         Func<BadImageFormatException, Exception> invalidLibrary)
@@ -72,7 +72,7 @@ internal sealed class ExternalCoreLibrary : IDisposable
         _handle = NativeLibrary.Load(absolutePath);
     }
 
-    internal T Resolve<T>(string exportName) where T : Delegate
+    public T Resolve<T>(string exportName) where T : Delegate
     {
         ObjectDisposedException.ThrowIf(_handle == 0, this);
         return Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(_handle, exportName));
@@ -85,7 +85,7 @@ internal sealed class ExternalCoreLibrary : IDisposable
         _handle = 0;
     }
 
-    internal ExternalCoreExports ResolveExports(bool requireLoadGameSpecial) => new(
+    public ExternalCoreExports ResolveExports(bool requireLoadGameSpecial) => new(
         Resolve<ExternalCoreApi.SetEnvironment>(ExternalCoreExportNames.SetEnvironment),
         Resolve<ExternalCoreApi.SetVideo>(ExternalCoreExportNames.SetVideoRefresh),
         Resolve<ExternalCoreApi.SetAudioSample>(ExternalCoreExportNames.SetAudioSample),

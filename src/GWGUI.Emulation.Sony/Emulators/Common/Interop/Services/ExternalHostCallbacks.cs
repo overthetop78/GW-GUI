@@ -33,7 +33,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly string? _emulatorId;
     private readonly bool _legacyCallbacks;
     private readonly bool _pspCallbacks;
-    private readonly ExternalCoreVirtualFileSystem? _virtualFileSystem;
+    private readonly IEmulationVirtualFileSystem? _virtualFileSystem;
     private volatile bool _shutdownRequested;
     internal bool ShutdownRequested => _shutdownRequested;
     internal NativeControllerFeedback Feedback { get; } = new();
@@ -84,7 +84,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         Log = HandleLog;
         Led = HandleLed;
         if (emulatorId == Emulators.Pcsx2.Constants.Pcsx2Constants.Id)
-            _virtualFileSystem = new ExternalCoreVirtualFileSystem(readObserver: null, pathResolver: pathResolver);
+            _virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem(readObserver: null, pathResolver: pathResolver);
     }
 
     internal string SystemDirectory { get; }

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -19,7 +21,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
 
     private readonly string _path;
     private readonly ExternalCoreInfo _info;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalCoreExports? _exports;
     private VideoCallbackHost? _video;
     private AudioCallbackHost? _audio;
@@ -61,7 +63,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         var completed = false;
         try
         {
-            _library = new ExternalCoreLibrary(_path);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_path);
             _exports = CoreFunctions.ResolveExports(_library);
             _video = new VideoCallbackHost();
             _audio = new AudioCallbackHost();

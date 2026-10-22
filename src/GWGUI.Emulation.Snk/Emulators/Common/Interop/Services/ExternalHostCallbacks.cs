@@ -36,7 +36,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
     private bool _disposed;
-    private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
+    private readonly IEmulationVirtualFileSystem _virtualFileSystem;
     internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(
         configuration.Core,
         systemDirectory,
@@ -75,7 +75,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
         IEmulationNativeString? save = null;
         IEmulationNativeString? assets = null;
         CoreOptionHost? optionHost = null;
-        ExternalCoreVirtualFileSystem? virtualFileSystem = null;
+        IEmulationVirtualFileSystem? virtualFileSystem = null;
         var completed = false;
         try
         {
@@ -84,7 +84,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             _saveDirectory = save = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory), directoryStringBufferCapacity);
             _assetsDirectory = assets = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory), directoryStringBufferCapacity);
             _optionHost = optionHost = new CoreOptionHost(configuredOptions);
-            _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();
+            _virtualFileSystem = virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem();
             Environment = OnEnvironment;
             Video = OnVideo;
             AudioSample = OnAudioSample;

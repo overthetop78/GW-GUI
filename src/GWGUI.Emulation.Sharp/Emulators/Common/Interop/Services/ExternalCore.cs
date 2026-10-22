@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Functions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
@@ -10,7 +12,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalCoreExports? _exports;
     private ExternalHostCallbacks? _callbacks;
     private LoadedContent? _content;
@@ -71,7 +73,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
             FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
-            _library = new ExternalCoreLibrary(_corePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = NativeRuntimeOptionFunctions.Prepare(configuration);
             _callbacks = new ExternalHostCallbacks(Emulator, systemDirectory, Path.Combine(_sessionDirectory, CoreDirectoryConstants.ContentDirectoryName), _saveDirectory, Path.Combine(_sessionDirectory, CoreDirectoryConstants.AssetsDirectoryName), runtimeOptions);

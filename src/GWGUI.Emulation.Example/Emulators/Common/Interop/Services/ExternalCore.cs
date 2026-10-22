@@ -37,7 +37,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     /// <summary>Signale une destruction définitive, y compris après une initialisation interrompue.</summary>
     private bool _disposed;
     /// <summary>Allocations UTF-8 des métadonnées ABI, possédées jusqu’à Dispose.</summary>
-    private readonly List<nint> _strings = [];
+    private readonly List<IEmulationNativeString> _strings = [];
 
     /// <summary>Crée les exports du mode choisi sans ouvrir le chemin d’assembly reçu.</summary>
     /// <param name="libraryPath">Chemin d’identité utilisé par les hôtes habituels ; aucun chargement natif.</param>
@@ -141,12 +141,22 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     /// <summary>Expose des métadonnées ABI dont les chaînes restent possédées par ce cœur.</summary>
     private void ReadSystemInfo(out ExternalCoreApi.SystemInfo info) => info = new() { LibraryName = OwnString(CoreName), LibraryVersion = OwnString(CoreVersion), ValidExtensions = OwnString(string.Join('|', SupportedContentExtensions)), NeedFullPath = true };
-    /// <summary>Alloue une chaîne native et l’inscrit immédiatement dans la liste de libération.</summary>
+    /// <summary>Demande une chaîne UTF-8 au Common et en transfère la propriété à la liste du cœur.</summary>
+    /// <param name="text">Métadonnée copiée, dont l’adresse est empruntée par le destinataire des exports.</param>
+    /// <returns>Pointeur valide jusqu’à Dispose du cœur ; le destinataire ne le libère pas.</returns>
+    /// <remarks>Si l’inscription échoue, le finally libère la chaîne qui n’a pas pu être transférée.
+    /// Le nettoyage du cœur libère les chaînes inscrites après le détachement des callbacks.</remarks>
     private nint OwnString(string text)
     {
-        var pointer = Marshal.StringToCoTaskMemUTF8(text);
-        _strings.Add(pointer);
-        return pointer;
+        var value = CoreHostFunctions.NativeResources.CreateString(text);
+        var transferred = false;
+        try
+        {
+            _strings.Add(value);
+            transferred = true;
+            return value.Pointer;
+        }
+        finally { if (!transferred) value.Dispose(); }
     }
     /// <summary>Expose la géométrie et les unités temporelles du même calcul pour tous les adaptateurs.</summary>
     private void ReadAvInfo(out ExternalCoreApi.SystemAvInfo info)
@@ -172,7 +182,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             {
                 _environment = null; _videoCallback = null; _sampleCallback = null; _batchCallback = null; _pollCallback = null; _inputCallback = null;
                 if (_memoryPin.IsAllocated) _memoryPin.Free();
-                foreach (var pointer in _strings) Marshal.FreeCoTaskMem(pointer);
+                foreach (var value in _strings) value.Dispose();
                 _strings.Clear();
                 _memory = []; _bootMemory = []; _mounted.Clear(); _ports.Clear(); _initialized = false;
             }

@@ -5,7 +5,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed partial class ExternalCoreVirtualFileSystem : IDisposable
+internal sealed partial class ExternalCoreVirtualFileSystem : IEmulationVirtualFileSystem
 {
     private const uint InterfaceVersion = 3;
     private const uint ReadAccess = 1;
@@ -87,7 +87,7 @@ internal sealed partial class ExternalCoreVirtualFileSystem : IDisposable
         Marshal.StructureToPtr(descriptor, _interface, false);
     }
 
-    internal bool Provide(nint data)
+    public bool Provide(nint data)
     {
         if (_disposed || data == nint.Zero) return false;
         var request = Marshal.PtrToStructure<ExternalCoreApi.VfsInterfaceInfo>(data);

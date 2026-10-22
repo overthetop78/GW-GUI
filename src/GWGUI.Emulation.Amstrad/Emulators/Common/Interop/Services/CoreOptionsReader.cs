@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using System.IO;
 
@@ -9,12 +11,12 @@ internal static class CoreOptionsReader
     {
         if (!File.Exists(libraryPath)) return [];
         var directory = Path.GetDirectoryName(Path.GetFullPath(libraryPath))!;
-        ExternalCoreLibrary? library = null;
+        IEmulationCoreLibrary? library = null;
         ExternalHostCallbacks? callbacks = null;
         try
         {
             callbacks = new ExternalHostCallbacks(directory, directory, directory, null, createDirectories: false);
-            library = new ExternalCoreLibrary(libraryPath);
+            library = CommonCoreHostFunctions.NativeResources.CreateLibrary(libraryPath);
             library.Resolve<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(callbacks.Environment);
             return callbacks.OptionCatalog.ToArray();
         }

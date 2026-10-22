@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Epoch.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
@@ -11,7 +13,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalCoreExports? _exports;
     private ExternalHostCallbacks? _callbacks;
     private LoadedContent? _content;
@@ -72,7 +74,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
             FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
-            _library = new ExternalCoreLibrary(_corePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
             if (configuration.Core == Emulator.EmuSCV)

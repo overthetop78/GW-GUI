@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 using System.IO;
@@ -19,7 +20,7 @@ public static class CoreOptionProbe
         try
         {
             Directory.CreateDirectory(session);
-            using var library = new ExternalCoreLibrary(absolutePath);
+            using var library = CommonCoreHostFunctions.NativeResources.CreateLibrary(absolutePath);
             var exports = CoreFunctions.ResolveExports(library);
             using var callbacks = new ExternalHostCallbacks(
                 emulator,

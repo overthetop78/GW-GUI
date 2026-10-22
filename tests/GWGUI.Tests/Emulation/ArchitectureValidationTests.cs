@@ -10,6 +10,73 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Theory]
+    [InlineData(nameof(IEmulationNativeResources.CreateString), typeof(IEmulationNativeString), "ExternalCoreUtf8String")]
+    [InlineData(nameof(IEmulationNativeResources.AddString), typeof(IEmulationNativeString), "ExternalCoreUtf8String")]
+    [InlineData(nameof(IEmulationNativeResources.CreateLoadedContent), typeof(IEmulationLoadedContent), "ExternalCoreLoadedContent")]
+    [InlineData(nameof(IEmulationNativeResources.CreateVirtualFileSystem), typeof(IEmulationVirtualFileSystem), "ExternalCoreVirtualFileSystem")]
+    [InlineData(nameof(IEmulationNativeResources.CreateLibrary), typeof(IEmulationCoreLibrary), "ExternalCoreLibrary")]
+    public void NativeResourceFactoriesExposeInterfacesAndKeepOwnersInternal(string methodName, Type contract, string implementationName)
+    {
+        var methods = typeof(IEmulationNativeResources).GetMethods().Where(method => method.Name == methodName).ToArray();
+        Assert.NotEmpty(methods);
+        Assert.True(contract.IsPublic);
+        Assert.True(contract.IsInterface);
+        Assert.All(methods, method => Assert.Equal(contract, method.ReturnType));
+        var implementation = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Services." + implementationName, throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        Assert.True(contract.IsAssignableFrom(implementation));
+    }
+
+    [Theory]
+    [InlineData(0u, true)]
+    [InlineData(1u, true)]
+    [InlineData(2u, true)]
+    [InlineData(3u, true)]
+    [InlineData(4u, false)]
+    public void VirtualFileSystemNegotiatesTheExistingNativeContract(uint requestedVersion, bool accepted)
+    {
+        var files = EmulationSdk.NativeResources.CreateVirtualFileSystem();
+        nint request = 0;
+        try
+        {
+            Assert.False(files.GetType().IsVisible);
+            Assert.False(files.Provide(nint.Zero));
+            request = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.VfsInterfaceInfo>());
+            var initial = new ExternalCoreApi.VfsInterfaceInfo { RequiredInterfaceVersion = requestedVersion, Interface = (nint)123 };
+            Marshal.StructureToPtr(initial, request, false);
+            Assert.Equal(accepted, files.Provide(request));
+            var negotiated = Marshal.PtrToStructure<ExternalCoreApi.VfsInterfaceInfo>(request);
+            if (accepted)
+            {
+                Assert.Equal(3u, negotiated.RequiredInterfaceVersion);
+                Assert.NotEqual(nint.Zero, negotiated.Interface);
+                var callbacks = Marshal.PtrToStructure<ExternalCoreApi.VfsInterface>(negotiated.Interface);
+                Assert.NotEqual(nint.Zero, callbacks.Open);
+                Assert.NotEqual(nint.Zero, callbacks.Read);
+                Assert.NotEqual(nint.Zero, callbacks.Write);
+                Assert.NotEqual(nint.Zero, callbacks.Close);
+                Assert.NotEqual(nint.Zero, callbacks.OpenDirectory);
+                Assert.NotEqual(nint.Zero, callbacks.CloseDirectory);
+            }
+            else
+            {
+                Assert.Equal(initial.RequiredInterfaceVersion, negotiated.RequiredInterfaceVersion);
+                Assert.Equal(initial.Interface, negotiated.Interface);
+            }
+            files.Dispose();
+            Assert.False(files.Provide(request));
+            var afterDisposal = Marshal.PtrToStructure<ExternalCoreApi.VfsInterfaceInfo>(request);
+            Assert.Equal(negotiated.RequiredInterfaceVersion, afterDisposal.RequiredInterfaceVersion);
+            Assert.Equal(negotiated.Interface, afterDisposal.Interface);
+        }
+        finally
+        {
+            try { files.Dispose(); }
+            finally { if (request != nint.Zero) Marshal.FreeHGlobal(request); }
+        }
+    }
+
+    [Theory]
     [InlineData(nameof(EmulationSdk.CreateAudioBuffer), typeof(IEmulationAudioBuffer))]
     [InlineData(nameof(EmulationSdk.CreateVideoBufferSet), typeof(IEmulationVideoBufferSet))]
     [InlineData(nameof(EmulationSdk.CreateSharedVideoWriter), typeof(IEmulationSharedVideoWriter))]

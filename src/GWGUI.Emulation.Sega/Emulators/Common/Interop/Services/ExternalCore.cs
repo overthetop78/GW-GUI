@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -11,7 +12,7 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
-    private ExternalCoreLibrary? _library;
+    private IEmulationCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
     private ExternalCoreApi.VoidCall? _unloadGame;
@@ -85,7 +86,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var initializationCompleted = false;
         try
         {
-            _library = new ExternalCoreLibrary(isolatedCorePath);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(isolatedCorePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));
@@ -95,7 +96,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);
+            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(info.ValidExtensions);
             ValidateExtension(contentPath);
 
             Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);
