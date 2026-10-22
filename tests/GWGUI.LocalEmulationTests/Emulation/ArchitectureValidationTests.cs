@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Enums;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -12,6 +13,57 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void EveryCommonCreatesIndependentFrameStoresWithBothExistingPolicies()
+    {
+        var implementation = typeof(IEmulationInputFrames).Assembly.GetType("GWGUI.Emulation.Services.EmulationInputFrameStore", throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
+            var create = common.GetMethod("CreateInputFrames", BindingFlags.NonPublic | BindingFlags.Static, [typeof(bool)])!;
+            Assert.Equal(typeof(IEmulationInputFrames), create.ReturnType);
+            Assert.Equal(true, Assert.Single(create.GetParameters()).DefaultValue);
+            foreach (var relative in new[] { true, false })
+            {
+                var first = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, [relative]));
+                var second = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, [relative]));
+                Assert.NotSame(first, second);
+                var keys = new HashSet<EmulationKey> { EmulationKey.A };
+                var input = EmulationInputSnapshot.Empty with { Keys = keys, Pointer = new(3, -4, 2, true, false, false) { HorizontalWheel = -2 } };
+                first.Update(input);
+                first.Update(input);
+                keys.Clear();
+                first.Poll();
+                Assert.Contains(EmulationKey.A, first.Polled.Keys);
+                Assert.Equal(relative ? 6 : 3, first.Polled.Pointer.DeltaX);
+                Assert.Equal(relative ? -8 : -4, first.Polled.Pointer.DeltaY);
+                Assert.Equal(relative ? 4 : 2, first.Polled.Pointer.Wheel);
+                Assert.Equal(relative ? -4 : -2, first.Polled.Pointer.HorizontalWheel);
+                first.Poll();
+                Assert.Equal(relative ? 0 : 3, first.Polled.Pointer.DeltaX);
+                Assert.Equal(relative ? 0 : -4, first.Polled.Pointer.DeltaY);
+                Assert.Equal(relative ? 0 : 2, first.Polled.Pointer.Wheel);
+                Assert.Equal(relative ? 0 : -2, first.Polled.Pointer.HorizontalWheel);
+                Assert.True(first.Polled.Pointer.Left);
+                second.Poll();
+                Assert.Empty(second.Polled.Keys);
+                Assert.Equal(0, second.Polled.Pointer.DeltaX);
+                first.Update(null);
+                first.Poll();
+                Assert.Empty(first.Polled.Keys);
+                Assert.False(first.Polled.Pointer.Left);
+            }
+        }
+    }
+
     [Fact]
     public void EveryCommonExposesFrameTimingThroughTheSameExecutionContract()
     {

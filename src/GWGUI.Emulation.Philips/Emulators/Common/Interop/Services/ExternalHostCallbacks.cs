@@ -22,7 +22,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly int _inputDescriptorLimit;
     private readonly Emulator _emulator;
     private readonly VideoBufferSet _videoBuffers = new();
-    private readonly InputFrameStore _input = new();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
     private readonly KeyboardState _keyboard = new();
     private readonly DiskControl _diskControl = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();

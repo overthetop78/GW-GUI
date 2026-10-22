@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Conserve les entrées absolues les plus récentes et accumule les mouvements relatifs entre deux frames.</summary>
-/// <remarks>Les collections du snapshot sont empruntées et doivent rester stables ; utiliser EmulationInputFrameStore pour copier les collections reçues.</remarks>
+/// <remarks>Les collections du snapshot sont empruntées et doivent rester stables ; utiliser IEmulationInputFrames pour copier les collections reçues.</remarks>
 internal sealed class EmulationInputAccumulator : IEmulationInputAccumulator
 {
     private readonly object _gate = new();

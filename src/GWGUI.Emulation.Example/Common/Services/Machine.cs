@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
@@ -53,7 +54,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <summary>Contrôleur possédé de la sortie audio, avec distinction des sorties empruntées et créées.</summary>
     private readonly AudioOutputController _audio;
     /// <summary>Accumulation des entrées reçues entre deux images du cœur.</summary>
-    private readonly IEmulationInputFrames _input = EmulationSdk.CreateInputFrames();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
     /// <summary>Projection des entrées physiques vers les commandes du cœur, empruntée au backend Common.</summary>
     private readonly IEmulatorInputMapper? _inputMapper;
     /// <summary>Contrôleur facultatif des impulsions de cassette, sans ressource physique possédée.</summary>

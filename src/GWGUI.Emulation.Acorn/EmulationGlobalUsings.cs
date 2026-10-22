@@ -47,7 +47,6 @@ global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Acorn.Common.Enums.ErrorCategory, GWGUI.Emulation.Acorn.Common.Enums.ErrorCode>;
 
-global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;
 
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationDocument<GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts.FolderConfiguration>;
 

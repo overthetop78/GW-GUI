@@ -61,7 +61,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _input.Poll();
         _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);
     }
-    private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
+    private short OnInputState(uint port, uint device, uint index, uint id) => InputFunctions.State(_input.Polled, port, device, index, id);
     private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
     private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;

@@ -61,9 +61,6 @@ public static class EmulationSdk
     /// <summary>Contextualisation des messages sans accès aux services d’implémentation.</summary>
     public static IEmulationMessages Messages { get; } = new EmulationMessageService();
 
-    /// <summary>Crée un stockage indépendant des entrées sous son contrat public.</summary>
-    public static IEmulationInputFrames CreateInputFrames() => new EmulationInputFrameStore();
-
     /// <summary>Crée le tampon audio borné existant sous son interface, sans accès à sa classe interne.</summary>
     /// <returns>Tampon indépendant dont la session propriétaire vide les blocs lors de son nettoyage.</returns>
     public static IEmulationAudioBuffer CreateAudioBuffer() => new EmulationAudioBuffer();

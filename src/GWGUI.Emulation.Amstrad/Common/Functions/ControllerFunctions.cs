@@ -14,6 +14,12 @@ internal static class ControllerFunctions
     /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
     internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
 
+    /// <summary>Crée un stockage indépendant qui copie les entrées reçues et publie un instantané stable par frame.</summary>
+    /// <param name="accumulateRelativePointer">True pour additionner les mouvements puis les consommer au Poll ; false pour conserver le dernier état complet, mouvements compris.</param>
+    /// <returns>Contrat possédé par le consommateur, avec des collections copiées et sans ressource native.</returns>
+    /// <remarks>Common transmet la politique de session au contrat SDK. Update copie les collections ; Poll publie les entrées et Polled reste stable jusqu’au Poll suivant. Le mode accumulé protège les mises à jour concurrentes par échange atomique et sature les quatre composantes relatives. Le mode de remplacement conserve les valeurs natives sans les additionner ni les consommer.</remarks>
+    internal static IEmulationInputFrames CreateInputFrames(bool accumulateRelativePointer = true) => EmulationSdk.InputProcessing.CreateInputFrames(accumulateRelativePointer);
+
     /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
     internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id) => EmulationSdk.InputProcessing.NativeMouseState(pointer, port, index, id);

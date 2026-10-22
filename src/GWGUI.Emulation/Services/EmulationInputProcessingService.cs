@@ -7,6 +7,9 @@ internal sealed class EmulationInputProcessingService : IEmulationInputProcessin
     /// <inheritdoc/>
     public IEmulationInputAccumulator CreateInputAccumulator() => new EmulationInputAccumulator();
 
+    /// <inheritdoc/>
+    public IEmulationInputFrames CreateInputFrames(bool accumulateRelativePointer = true) => new EmulationInputFrameStore(accumulateRelativePointer);
+
     public IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => EmulationKeyboardBindingFunctions.ToKeys(values);
     public IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values, IEqualityComparer<string>? emptyComparer = null) => EmulationKeyboardBindingFunctions.ToStrings(values, emptyComparer);
     public bool IsValidSourcePrefix(string? source) => EmulationKeyboardBindingFunctions.IsValidSourcePrefix(source);

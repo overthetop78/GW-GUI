@@ -18,7 +18,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
 {
     private readonly CoreOptionHost _optionHost;
     private readonly VideoBufferSet _videoBuffers = new();
-    private readonly InputFrameStore _input = new();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
     private readonly KeyboardState _keyboard = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
     private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();

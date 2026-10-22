@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
@@ -47,7 +48,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Blocs audio reçus et pas encore consommés par la machine.</summary>
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     /// <summary>Entrées accumulées puis consommées lors de la requête d’image suivante.</summary>
-    private readonly IEmulationInputFrames _input = EmulationSdk.CreateInputFrames();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
     /// <summary>Verrou possédé sérialisant les requêtes et leurs réponses sur le tube unique.</summary>
     private readonly SemaphoreSlim _requestGate = new(CoreHostConstants.MaximumPipeInstances, CoreHostConstants.MaximumPipeInstances);
     /// <summary>Tube bidirectionnel possédé, limité à l’utilisateur courant.</summary>

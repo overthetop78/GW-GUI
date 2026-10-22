@@ -18,7 +18,7 @@ public sealed class AtomicInputFrameStoreTests
             Keys = keys, Controllers = controllers,
             Pointer = EmulationInputSnapshot.Empty.Pointer with { Left = true, DeltaX = 3, DeltaY = -4, Wheel = 2, HorizontalWheel = -2 }
         };
-        var store = new EmulationInputFrameStore();
+        var store = EmulationSdk.InputProcessing.CreateInputFrames();
         store.Update(snapshot);
         keys.Clear();
         controllers[0] = EmulationControllerState.Empty;
@@ -38,7 +38,7 @@ public sealed class AtomicInputFrameStoreTests
     [Fact]
     public void AccumulationUsesTheLatestAbsoluteStateAndAllFourRelativeComponents()
     {
-        var store = new EmulationInputFrameStore();
+        var store = EmulationSdk.InputProcessing.CreateInputFrames();
         store.Update(EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.A },
@@ -58,31 +58,31 @@ public sealed class AtomicInputFrameStoreTests
     }
 
     [Fact]
-    public void BandaiKeepsReplacementAndDoesNotConsumeRelativeComponents()
+    public void BandaiUsesTheSameAccumulationAndConsumptionAsExample()
     {
-        var store = new GWGUI.Emulation.Bandai.Common.Services.InputFrameStore();
+        var store = GWGUI.Emulation.Bandai.Common.Functions.ControllerFunctions.CreateInputFrames();
         store.Update(EmulationInputSnapshot.Empty with { Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 3, Wheel = 2 } });
         store.Update(EmulationInputSnapshot.Empty with { Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 5, Wheel = 4 } });
         store.Poll();
-        Assert.Equal((5, 0, 4, 0), Relative(store.Polled));
+        Assert.Equal((8, 0, 6, 0), Relative(store.Polled));
         store.Poll();
-        Assert.Equal((5, 0, 4, 0), Relative(store.Polled));
+        Assert.Equal((0, 0, 0, 0), Relative(store.Polled));
     }
 
     [Fact]
     public void NativeAppleAndAtariDecodersReadTheSharedPolledSnapshot()
     {
-        var apple = new GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.InputFrameStore();
-        var atari = new GWGUI.Emulation.Atari.Common.Services.InputFrameStore();
+        var apple = GWGUI.Emulation.Apple.Common.Functions.ControllerFunctions.CreateInputFrames();
+        var atari = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions.CreateInputFrames();
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [EmulationControllerState.Empty with { Buttons = 1 }] };
         apple.Update(snapshot);
         atari.Update(snapshot);
-        Assert.Equal((short)0, apple.State(0, 1, 0, 0));
-        Assert.Equal((short)0, atari.State(0, 1, 0, 0));
+        Assert.Equal((short)0, GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.InputFunctions.State(apple.Polled, 0, 1, 0, 0));
+        Assert.Equal((short)0, GWGUI.Emulation.Atari.Emulators.Common.Functions.InputFunctions.State(atari.Polled, 0, 1, 0, 0));
         apple.Poll();
         atari.Poll();
-        Assert.Equal((short)1, apple.State(0, 1, 0, 0));
-        Assert.Equal((short)1, atari.State(0, 1, 0, 0));
+        Assert.Equal((short)1, GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.InputFunctions.State(apple.Polled, 0, 1, 0, 0));
+        Assert.Equal((short)1, GWGUI.Emulation.Atari.Emulators.Common.Functions.InputFunctions.State(atari.Polled, 0, 1, 0, 0));
     }
 
     [Theory]
@@ -96,7 +96,7 @@ public sealed class AtomicInputFrameStoreTests
     [Fact]
     public async Task ConcurrentUpdatesAndPollingDoNotLoseRelativeMovement()
     {
-        var store = new EmulationInputFrameStore();
+        var store = EmulationSdk.InputProcessing.CreateInputFrames();
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 1, DeltaY = -1, Wheel = 1, HorizontalWheel = -1 }

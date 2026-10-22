@@ -1,12 +1,16 @@
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Stockage atomique des entrées destiné aux cœurs qui interrogent leur état pendant une frame.</summary>
-public class EmulationInputFrameStore : IEmulationInputFrames
+internal sealed class EmulationInputFrameStore : IEmulationInputFrames
 {
+    private readonly bool _accumulateRelativePointer;
     private EmulationInputSnapshot _pending = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polled = EmulationInputSnapshot.Empty;
 
-    /// <summary>Copie les collections empruntées et accumule les mouvements jusqu’au prochain Poll.</summary>
+    /// <summary>Choisit la politique fixe de la session : mouvements accumulés ou dernier instantané complet.</summary>
+    internal EmulationInputFrameStore(bool accumulateRelativePointer = true) => _accumulateRelativePointer = accumulateRelativePointer;
+
+    /// <summary>Copie les collections empruntées puis accumule les mouvements ou remplace le dernier état selon la politique de session.</summary>
     public void Update(EmulationInputSnapshot? snapshot)
     {
         var frozen = EmulationInputMappingFunctions.Freeze(snapshot);
@@ -17,7 +21,7 @@ public class EmulationInputFrameStore : IEmulationInputFrames
         } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending, Accumulate(current, frozen), current), current));
     }
 
-    /// <summary>Fige les entrées de la frame et consomme les seuls mouvements relatifs en attente.</summary>
+    /// <summary>Fige les entrées de la frame et consomme les seuls mouvements relatifs lorsque la politique le demande.</summary>
     public void Poll()
     {
         EmulationInputSnapshot current;
@@ -32,8 +36,8 @@ public class EmulationInputFrameStore : IEmulationInputFrames
 
     /// <summary>Snapshot figé au dernier Poll, stable jusqu’au Poll suivant.</summary>
     public EmulationInputSnapshot Polled => Volatile.Read(ref _polled);
-    /// <summary>Point d’adaptation des règles matérielles d’accumulation ; conserve par défaut le dernier état absolu.</summary>
-    protected virtual EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
+    /// <summary>Conserve le dernier état absolu et applique la politique relative choisie à la création.</summary>
+    private EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => !_accumulateRelativePointer ? EmulationInputMappingFunctions.Freeze(update) : new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
     {
         DeltaX = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
         DeltaY = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
@@ -41,9 +45,9 @@ public class EmulationInputFrameStore : IEmulationInputFrames
         HorizontalWheel = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.HorizontalWheel, update.Pointer.HorizontalWheel)
     }, update.Controllers.ToArray());
 
-    /// <summary>Point d’adaptation de la consommation ; remet par défaut les quatre composantes relatives à zéro.</summary>
-    protected virtual EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>
-        snapshot with
+    /// <summary>Remet les quatre composantes relatives à zéro dans le mode accumulé ; conserve le mode instantané.</summary>
+    private EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>
+        !_accumulateRelativePointer ? snapshot : snapshot with
         {
             Pointer = snapshot.Pointer with
             {

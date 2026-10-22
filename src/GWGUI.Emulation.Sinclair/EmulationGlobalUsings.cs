@@ -43,7 +43,6 @@ global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory, GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode>;
 
-global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator>;
 global using StateContentEntry = GWGUI.Emulation.Contracts.EmulationStateContentEntry;
