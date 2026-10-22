@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Atari.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using System.IO;
@@ -20,10 +22,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];
-    private readonly ExternalCoreUtf8String _systemDirectory;
-    private readonly ExternalCoreUtf8String _contentDirectory;
-    private readonly ExternalCoreUtf8String _saveDirectory;
-    private readonly ExternalCoreUtf8String _assetsDirectory;
+    private readonly IEmulationNativeString _systemDirectory;
+    private readonly IEmulationNativeString _contentDirectory;
+    private readonly IEmulationNativeString _saveDirectory;
+    private readonly IEmulationNativeString _assetsDirectory;
     private long _videoSequence;
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
@@ -42,10 +44,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         Directory.CreateDirectory(assetsDirectory);
-        _systemDirectory = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));
-        _contentDirectory = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));
-        _saveDirectory = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
-        _assetsDirectory = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
+        _systemDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(systemDirectory));
+        _contentDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory));
+        _saveDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory));
+        _assetsDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory));
         _optionHost = new CoreOptionHost(configuredOptions);
         _virtualFileSystem = new ExternalCoreVirtualFileSystem(OnFileRead);
         Environment = OnEnvironment;

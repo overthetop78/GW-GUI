@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
@@ -10,7 +12,7 @@ internal sealed class LoadedContent : IDisposable
     private readonly string _runtime;
     private readonly bool _writeBack;
     private bool _loaded;
-    private ExternalCoreUtf8String? _path;
+    private IEmulationNativeString? _path;
     internal nint GameInfo { get; private set; }
 
     internal LoadedContent(string original, string sessionDirectory, bool readOnly)
@@ -25,7 +27,7 @@ internal sealed class LoadedContent : IDisposable
         {
             File.Copy(_original, _runtime, overwrite: true);
             File.SetAttributes(_runtime, File.GetAttributes(_runtime) & ~FileAttributes.ReadOnly);
-            _path = new ExternalCoreUtf8String(_runtime);
+            _path = CommonCoreHostFunctions.NativeResources.CreateString(_runtime);
             GameInfo = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
             Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = _path.Pointer }, GameInfo, false);
             completed = true;

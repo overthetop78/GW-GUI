@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Sharp.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
@@ -24,10 +26,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];
-    private readonly ExternalCoreUtf8String _systemDirectory;
-    private readonly ExternalCoreUtf8String _contentDirectory;
-    private readonly ExternalCoreUtf8String _saveDirectory;
-    private readonly ExternalCoreUtf8String _assetsDirectory;
+    private readonly IEmulationNativeString _systemDirectory;
+    private readonly IEmulationNativeString _contentDirectory;
+    private readonly IEmulationNativeString _saveDirectory;
+    private readonly IEmulationNativeString _assetsDirectory;
     private long _videoSequence;
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
@@ -44,19 +46,19 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         Directory.CreateDirectory(assetsDirectory);
-        ExternalCoreUtf8String? system = null;
-        ExternalCoreUtf8String? content = null;
-        ExternalCoreUtf8String? save = null;
-        ExternalCoreUtf8String? assets = null;
+        IEmulationNativeString? system = null;
+        IEmulationNativeString? content = null;
+        IEmulationNativeString? save = null;
+        IEmulationNativeString? assets = null;
         CoreOptionHost? optionHost = null;
         ExternalCoreVirtualFileSystem? virtualFileSystem = null;
         var completed = false;
         try
         {
-            _systemDirectory = system = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));
-            _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));
-            _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
-            _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
+            _systemDirectory = system = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(systemDirectory));
+            _contentDirectory = content = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory));
+            _saveDirectory = save = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory));
+            _assetsDirectory = assets = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory));
             var settings = new Engine().Adapter(emulator) as IEmulatorSettings;
             _optionHost = optionHost = new CoreOptionHost(configuredOptions, settings?.GetSettingsOptions());
             _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();

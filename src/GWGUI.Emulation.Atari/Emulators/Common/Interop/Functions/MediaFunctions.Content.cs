@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation;
 using System.Globalization;
@@ -24,5 +25,5 @@ internal static class ContentFunctions
     }
 
     internal static LoadedContent Create(string contentPath, bool needsFullPath, IReadOnlySet<string> supportedExtensions, bool useWindowsAnsiPath = false)
-    => GWGUI.Emulation.Services.ExternalCoreLoadedContent.Create(Validate(contentPath, supportedExtensions), needsFullPath, useWindowsAnsiPath);
+    => CommonCoreHostFunctions.NativeResources.CreateLoadedContent(Validate(contentPath, supportedExtensions), needsFullPath, useWindowsAnsiPath);
 }

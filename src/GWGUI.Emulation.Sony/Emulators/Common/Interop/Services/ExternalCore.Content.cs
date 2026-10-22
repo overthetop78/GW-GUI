@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -7,11 +9,11 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalCore
 {
     private readonly List<nint> _contentBuffers = [];
-    private readonly List<ExternalCoreUtf8String> _contentPaths = [];
+    private readonly List<IEmulationNativeString> _contentPaths = [];
 
-    private ExternalCoreUtf8String AllocateContentPath(string path)
+    private IEmulationNativeString AllocateContentPath(string path)
     {
-        var native = new ExternalCoreUtf8String(path);
+        var native = CommonCoreHostFunctions.NativeResources.CreateString(path);
         var owned = false;
         try { _contentPaths.Add(native); owned = true; return native; }
         finally { if (!owned) native.Dispose(); }

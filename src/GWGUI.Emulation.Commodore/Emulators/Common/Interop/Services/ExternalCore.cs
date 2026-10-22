@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 using System.Runtime.InteropServices;
@@ -198,7 +199,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
     {
-        using var nativePath = new ExternalCoreUtf8String(path);
+        using var nativePath = CommonCoreHostFunctions.NativeResources.CreateString(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {

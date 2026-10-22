@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
@@ -6,7 +8,7 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 
 internal sealed class LoadedContent : IDisposable
 {
-    private ExternalCoreUtf8String? _path;
+    private IEmulationNativeString? _path;
     private nint _data;
     internal nint GameInfo { get; private set; }
 
@@ -18,7 +20,7 @@ internal sealed class LoadedContent : IDisposable
             var path = Path.GetFullPath(original);
             var bytes = File.ReadAllBytes(path);
             if (bytes.Length == 0) throw new InvalidDataException("The cartridge is empty.");
-            _path = new ExternalCoreUtf8String(path);
+            _path = CommonCoreHostFunctions.NativeResources.CreateString(path);
             _data = Marshal.AllocHGlobal(bytes.Length);
             Marshal.Copy(bytes, 0, _data, bytes.Length);
             GameInfo = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());

@@ -5,6 +5,9 @@ namespace GWGUI.Emulation;
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
 public static class EmulationSdk
 {
+    /// <summary>Allocations natives par contrat public ; le service est emprunté, les résultats sont possédés par leurs appelants.</summary>
+    public static IEmulationNativeResources NativeResources { get; } = new EmulationNativeResourceService();
+
     /// <summary>Découverte des adaptateurs et fabriques d’un module par leurs contrats, sans liste de modules connus.</summary>
     public static IEmulationAdapters Adapters { get; } = new EmulationAdapterService();
 

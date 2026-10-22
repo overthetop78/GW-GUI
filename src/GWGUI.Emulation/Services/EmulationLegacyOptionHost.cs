@@ -13,7 +13,7 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
     private const char ValueSeparator = '|';
     private readonly Dictionary<string, string> _values;
     private readonly Dictionary<string, TOption> _options = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, ExternalCoreUtf8String> _strings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, IEmulationNativeString> _strings = new(StringComparer.Ordinal);
     private bool _updated;
     private readonly Func<string, string, string, string, IReadOnlyList<string>, TOption> _createOption;
     private readonly Func<TOption, string, bool> _accepts;

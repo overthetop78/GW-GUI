@@ -6,6 +6,16 @@ namespace GWGUI.Emulation.Amstrad.Common.Functions;
 /// <summary>Accès commun au contrat de transport et de durée de vie des hôtes de cœur.</summary>
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit les allocations natives communes sous leur contrat public.</summary>
+    /// <value>Service emprunté du SDK ; il ne possède aucune ressource de session et ne doit pas être détruit.</value>
+    /// <remarks>Les adaptateurs demandent ici leurs chaînes et descripteurs de contenu, au lieu de construire
+    /// les classes internes du SDK. Chaque résultat appartient à l’appelant jusqu’à un transfert explicite.
+    /// La session libère ses résultats dans son finally, après le dernier emprunt par le cœur.
+    /// AddString transfère la chaîne au dictionnaire uniquement si son ajout réussit ; les autres créations
+    /// laissent la propriété au code appelant. Les pointeurs exposés restent des emprunts et ne sont pas libérés
+    /// directement par l’adaptateur. Capacités, encodages et mode chemin seul restent choisis par le module.</remarks>
+    internal static IEmulationNativeResources NativeResources => EmulationSdk.NativeResources;
+
     /// <summary>Crée le jeu tournant de tableaux vidéo de la session par le contrat public du SDK.</summary>
     /// <param name="bufferCount">Nombre d’emplacements choisi par le module ; chaque emplacement peut retenir un tableau loué.</param>
     /// <param name="pool">Pool emprunté, ou null pour le pool partagé ; le propriétaire du jeu ne détruit pas ce pool.</param>

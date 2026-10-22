@@ -28,7 +28,7 @@ global using GWGUI.Emulation.Coleco.Common.Functions;
 
 global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
-global using LoadedContent = GWGUI.Emulation.Services.ExternalCoreLoadedContent;
+global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 
 global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
 

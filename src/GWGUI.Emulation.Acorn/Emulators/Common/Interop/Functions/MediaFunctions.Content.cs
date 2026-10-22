@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
 using System.IO;
 using GWGUI.Emulation;
@@ -25,6 +26,6 @@ internal static class ContentFunctions
     }
 
     internal static LoadedContent Create(string contentPath, bool needsFullPath, IReadOnlySet<string> supportedExtensions, bool useWindowsAnsiPath = false)
-    => GWGUI.Emulation.Services.ExternalCoreLoadedContent.Create(Validate(contentPath, supportedExtensions), needsFullPath, useWindowsAnsiPath);
+    => CommonCoreHostFunctions.NativeResources.CreateLoadedContent(Validate(contentPath, supportedExtensions), needsFullPath, useWindowsAnsiPath);
 }
 

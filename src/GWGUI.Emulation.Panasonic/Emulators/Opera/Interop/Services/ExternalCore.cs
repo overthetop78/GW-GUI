@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -128,7 +129,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             var path = Path.GetFullPath(content.Path);
             if (!File.Exists(path))
                 throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, null);
-            using var filename = new ExternalCoreUtf8String(path);
+            using var filename = CommonCoreHostFunctions.NativeResources.CreateString(path);
             var info = new ExternalCoreApi.GameInfo
             {
                 Path = filename.Pointer

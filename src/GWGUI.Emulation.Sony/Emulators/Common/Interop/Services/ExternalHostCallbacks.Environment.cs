@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -245,7 +246,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     private nint NativeString(string value)
     {
         if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;
-        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;
+        return CommonCoreHostFunctions.NativeResources.AddString(_nativeStrings, value, value).Pointer;
     }
 
 }

@@ -3,9 +3,9 @@ using System.Text;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreUtf8String : IDisposable
+internal sealed class ExternalCoreUtf8String : IEmulationNativeString
 {
-    internal nint Pointer { get; private set; }
+    public nint Pointer { get; private set; }
 
     internal ExternalCoreUtf8String(string value, int minimumByteCapacity = 0)
         : this(value, minimumByteCapacity, useWindowsAnsi: false)
@@ -43,7 +43,7 @@ internal sealed class ExternalCoreUtf8String : IDisposable
         }
     }
 
-    internal static ExternalCoreUtf8String AddTo(IDictionary<string, ExternalCoreUtf8String> owner, string key, string value)
+    internal static IEmulationNativeString AddTo(IDictionary<string, IEmulationNativeString> owner, string key, string value)
     {
         var text = new ExternalCoreUtf8String(value);
         var registered = false;

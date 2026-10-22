@@ -4,7 +4,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreLoadedContent : IDisposable
+internal sealed class ExternalCoreLoadedContent : IEmulationLoadedContent
 {
     private ExternalCoreUtf8String? _path;
     private nint _data;
@@ -16,7 +16,7 @@ internal sealed class ExternalCoreLoadedContent : IDisposable
         _data = data;
     }
 
-    internal nint GameInfo { get; private set; }
+    public nint GameInfo { get; private set; }
 
     internal static ExternalCoreLoadedContent Create(string absolutePath, bool needsFullPath, bool useWindowsAnsiPath)
     {

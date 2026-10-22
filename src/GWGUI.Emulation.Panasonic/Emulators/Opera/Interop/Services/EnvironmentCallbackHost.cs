@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Globalization;
 using System.Runtime.InteropServices;
@@ -14,7 +16,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
     private readonly AudioCallbackHost _audio;
     private readonly OptionCallbackHost _options;
     private readonly ExternalCoreVirtualFileSystem _files;
-    private readonly Dictionary<uint, ExternalCoreUtf8String> _directories = [];
+    private readonly Dictionary<uint, IEmulationNativeString> _directories = [];
     private readonly ExternalCoreApi.LogCallback _log;
     private bool _disposed;
     internal EnvironmentCallbackHost(VideoCallbackHost video, AudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory)
@@ -29,9 +31,9 @@ internal sealed class EnvironmentCallbackHost : IDisposable
         try
         {
             foreach (var directory in new[] { systemDirectory, contentDirectory, saveDirectory, assetsDirectory }) Directory.CreateDirectory(directory);
-            _directories.Add(ExternalCoreApiConstants.GetSystemDirectory, new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory)));
-            _directories.Add(ExternalCoreApiConstants.GetContentDirectory, new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory)));
-            _directories.Add(ExternalCoreApiConstants.GetSaveDirectory, new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory)));
+            _directories.Add(ExternalCoreApiConstants.GetSystemDirectory, CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(systemDirectory)));
+            _directories.Add(ExternalCoreApiConstants.GetContentDirectory, CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory)));
+            _directories.Add(ExternalCoreApiConstants.GetSaveDirectory, CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory)));
             completed = true;
         }
         finally { if (!completed) Dispose(); }

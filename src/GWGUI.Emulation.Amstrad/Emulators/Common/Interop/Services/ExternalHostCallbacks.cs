@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Amstrad.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
@@ -19,7 +20,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly IReadOnlyDictionary<uint, EmulationKey> _keyboardMap;
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, IEmulationNativeString> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;

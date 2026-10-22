@@ -7,7 +7,7 @@ internal sealed class EmulationCoreOptionHost<TOption, TValue> : IDisposable whe
 {
     private readonly Dictionary<string, string> _values;
     private readonly HashSet<string> _configuredKeys;
-    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeValues = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, IEmulationNativeString> _nativeValues = new(StringComparer.Ordinal);
     private readonly Dictionary<string, bool> _visibility = new(StringComparer.Ordinal);
     private readonly Func<TOption, string> _keyFor;
     private readonly Func<TOption, string> _defaultFor;

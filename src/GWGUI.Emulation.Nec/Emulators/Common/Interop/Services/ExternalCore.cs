@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Dictionaries;
 using System.IO;
@@ -275,7 +277,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
     {
-        using var nativePath = new ExternalCoreUtf8String(path);
+        using var nativePath = CommonCoreHostFunctions.NativeResources.CreateString(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         nint content = nint.Zero;
         try
@@ -304,14 +306,14 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private bool LoadSpecial(uint type, IReadOnlyList<MediaConfiguration> media)
     {
-        var paths = new List<ExternalCoreUtf8String>();
+        var paths = new List<IEmulationNativeString>();
         var itemSize = Marshal.SizeOf<ExternalCoreApi.GameInfo>();
         var games = Marshal.AllocHGlobal(checked(itemSize * media.Count));
         try
         {
             for (var index = BufferConstants.FirstBufferIndex; index < media.Count; index++)
             {
-                var path = new ExternalCoreUtf8String(Path.GetFullPath(media[index].Path));
+                var path = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(media[index].Path));
                 paths.Add(path);
                 Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer }, games + index * itemSize, false);
             }

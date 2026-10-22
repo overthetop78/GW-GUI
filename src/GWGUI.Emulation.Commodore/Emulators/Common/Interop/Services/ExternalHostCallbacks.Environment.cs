@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
@@ -223,7 +224,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     private nint NativeString(string value)
     {
         if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;
-        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;
+        return CommonCoreHostFunctions.NativeResources.AddString(_nativeStrings, value, value).Pointer;
     }
 
 }

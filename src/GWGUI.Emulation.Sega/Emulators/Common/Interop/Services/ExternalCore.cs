@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -277,7 +278,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
     {
-        using var nativePath = new ExternalCoreUtf8String(path);
+        using var nativePath = CommonCoreHostFunctions.NativeResources.CreateString(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {

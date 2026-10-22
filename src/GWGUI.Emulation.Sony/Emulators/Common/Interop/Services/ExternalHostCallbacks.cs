@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Sony.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
@@ -22,7 +23,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal CoreDiagnosticMonitor DiagnosticMonitor { get; }
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, IEmulationNativeString> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;

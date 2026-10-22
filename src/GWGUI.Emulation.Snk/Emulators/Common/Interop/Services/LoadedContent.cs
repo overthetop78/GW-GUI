@@ -1,14 +1,16 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
 internal sealed class LoadedContent : IDisposable
 {
-    private ExternalCoreLoadedContent? _content;
+    private IEmulationLoadedContent? _content;
     private readonly string _contentFilePath;
     private SessionContentDirectory? _contentDirectory;
 
-    private LoadedContent(ExternalCoreLoadedContent content, string contentFilePath)
+    private LoadedContent(IEmulationLoadedContent content, string contentFilePath)
     {
         _content = content;
         _contentFilePath = contentFilePath;
@@ -19,7 +21,7 @@ internal sealed class LoadedContent : IDisposable
 
     internal static LoadedContent Create(string absolutePath, bool needsFullPath, bool useWindowsAnsiPath)
     {
-        var content = ExternalCoreLoadedContent.Create(absolutePath, needsFullPath, useWindowsAnsiPath);
+        var content = CommonCoreHostFunctions.NativeResources.CreateLoadedContent(absolutePath, needsFullPath, useWindowsAnsiPath);
         var transferred = false;
         try
         {

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
@@ -6,7 +7,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
-internal sealed class DiskControl : GWGUI.Emulation.Services.ExternalRichDiskControl<GWGUI.Emulation.Services.ExternalCoreLoadedContent>
+internal sealed class DiskControl : GWGUI.Emulation.Services.ExternalRichDiskControl<IEmulationLoadedContent>
 {
     protected override string UnavailableMessage => DiskControlErrors.Unavailable;
     protected override string IncompleteMessage => DiskControlErrors.Incomplete;
@@ -17,13 +18,13 @@ internal sealed class DiskControl : GWGUI.Emulation.Services.ExternalRichDiskCon
     protected override string ReplaceFailedMessage => DiskControlErrors.ReplaceFailed;
     protected override string MediaMissingMessage => DiskControlErrors.MediaMissing;
 
-    protected override GWGUI.Emulation.Services.ExternalCoreLoadedContent CreateContent(string path)
+    protected override IEmulationLoadedContent CreateContent(string path)
         => ContentFunctions.Create(path, true,
             new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix)
             });
-    protected override nint GetGameInfo(GWGUI.Emulation.Services.ExternalCoreLoadedContent content) => content.GameInfo;
+    protected override nint GetGameInfo(IEmulationLoadedContent content) => content.GameInfo;
 
     internal void InsertAt(int index, string path)
     {

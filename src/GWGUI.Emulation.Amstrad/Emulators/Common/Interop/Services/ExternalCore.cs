@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -216,7 +217,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
     {
-        using var nativePath = new ExternalCoreUtf8String(path);
+        using var nativePath = CommonCoreHostFunctions.NativeResources.CreateString(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {

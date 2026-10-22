@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
@@ -229,7 +230,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     private nint NativeString(string value)
     {
         if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;
-        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;
+        return CommonCoreHostFunctions.NativeResources.AddString(_nativeStrings, value, value).Pointer;
     }
 
 }
