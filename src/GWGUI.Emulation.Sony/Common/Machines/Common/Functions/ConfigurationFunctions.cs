@@ -28,7 +28,7 @@ internal static class ConfigurationValidationFunctions
         (adapter as IEmulatorSettingsAdapter)?.ValidateConfiguration(configuration);
         var slots = FirmwareConfigurationFunctions.Slots(configuration, adapter);
         var paths = configuration.FirmwarePaths ?? new Dictionary<string, string>();
-        if (adapter is IEmulatorFirmwareAdapter { RequiresExternalFirmware: true } && !slots.Any(slot => paths.ContainsKey(slot.FieldId)))
+        if (adapter is IEmulatorFirmwareSettings { RequiresExternalFirmware: true } && !slots.Any(slot => paths.ContainsKey(slot.FieldId)))
             throw new InvalidDataException(nameof(configuration.FirmwarePaths));
         foreach (var slot in slots)
             if (slot.IsRequired && !paths.ContainsKey(slot.FieldId))

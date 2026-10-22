@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
@@ -26,9 +26,9 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken) =>
-        new Engine().Adapter(core) is IEmulatorFirmwareSettings firmware
-            ? firmware.ScanFirmwareAsync(path, model, cancellationToken)
+    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) =>
+        new Engine().Adapter(configuration.Core) is IEmulatorFirmwareAdapter firmware
+            ? firmware.ScanFirmwareFileAsync(configuration, path, cancellationToken)
             : ValueTask.FromResult(new EmulationFirmwareCandidate(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Incompatible, null));
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate)

@@ -85,7 +85,7 @@ internal static class FirmwareRuntimeFunctions
 
         if (!File.Exists(firmware.Path))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.FirmwareFileMissing);
-        var candidate = FirmwareFunctions.ScanFileAsync(firmware.Path, configuration.Model, configuration.Core, CancellationToken.None).AsTask().GetAwaiter().GetResult();
+        var candidate = FirmwareFunctions.ScanFileAsync(configuration, firmware.Path, CancellationToken.None).AsTask().GetAwaiter().GetResult();
         if (candidate.Compatibility is not (EmulationFirmwareCompatibility.Official or EmulationFirmwareCompatibility.Compatible or EmulationFirmwareCompatibility.PartiallyCompatible) || candidate.DestinationFieldId != FirmwareFunctions.Field(role))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
         var source = Path.GetFullPath(firmware.Path);

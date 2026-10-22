@@ -3,7 +3,7 @@ using GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants;
 
 namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Factories;
 
-internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorConfiguration, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter
+internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorConfiguration, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings
 {
     public bool SupportsPointer(MachineConfiguration configuration) => true;
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.SettingsDescriptionFunctions.Create(configuration);

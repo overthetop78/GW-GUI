@@ -187,13 +187,13 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
             throw new ArgumentException(nameof(machineId));
         var directory = GetFirmwareDirectory(machineId);
         return await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
-            (path, token) => FirmwareFunctions.ScanFileAsync(path, current.Model, current.Core, token), cancellationToken).ConfigureAwait(false);
+            (path, token) => FirmwareFunctions.ScanFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
-        var scanned = FirmwareFunctions.ScanFileAsync(firmware.Path, current.Model, current.Core, CancellationToken.None).GetAwaiter().GetResult();
+        var scanned = FirmwareFunctions.ScanFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
         var selected = FirmwareFunctions.Select(scanned, current.Model, current.Core);
         var result = current with
         {

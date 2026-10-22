@@ -11,9 +11,9 @@ using System.IO;
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper, IEmulatorFirmwareSettings
+    : GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper, IEmulatorFirmwareAdapter
 {
-    public ValueTask<EmulationFirmwareCandidate> ScanFirmwareAsync(string path, MachineModel model, CancellationToken cancellationToken) => FirmwareIdentificationFunctions.ScanFileAsync(path, model, Emulator, cancellationToken);
+    public ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => FirmwareIdentificationFunctions.ScanFileAsync(path, configuration.Model, Emulator, cancellationToken);
 
     public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ConfigurationFunctions.Family(model) switch
     {

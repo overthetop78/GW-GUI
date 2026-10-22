@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <remarks>Ce contrat reprend IdentifyFirmware en utilisant le résultat d’analyse unique ScannedFirmware.
 /// L’adaptateur consulte ses règles et données de reconnaissance sans recevoir de flux ni posséder le fichier.
 /// Il peut fournir l’identité, la version, les modèles compatibles et les autres informations du catalogue.</remarks>
-internal interface IEmulatorFirmwareInspection
+internal interface IEmulatorFirmwareInspection : IEmulatorFirmwareAdapter
 {
     /// <summary>Recherche une identité connue pour les données observées du candidat.</summary>
     /// <param name="firmware">Chemin, taille et empreintes observés ; Detection peut encore indiquer Unknown et la compatibilité reste à établir.</param>
@@ -14,14 +14,6 @@ internal interface IEmulatorFirmwareInspection
     /// <remarks>Le résultat conserve les données observées. Les informations reconnues appartiennent à
     /// Definition ; aucun second objet Firmware parallèle ne transporte une autre copie de ces mêmes données.</remarks>
     ScannedFirmware? IdentifyFirmware(ScannedFirmware firmware);
-
-    /// <summary>Inspecte un fichier candidat suivant les règles du modèle et de ses options.</summary>
-    /// <param name="configuration">Configuration empruntée déterminant les contraintes de firmware.</param>
-    /// <param name="path">Fichier utilisateur à lire sans le modifier.</param>
-    /// <param name="cancellationToken">Annulation de la lecture et du calcul des empreintes.</param>
-    /// <returns>Candidat identifié et informations de compatibilité ; les flux ouverts sont libérés avant le retour.</returns>
-    /// <remarks>Ce nom unique réunit les opérations InspectFirmwareAsync, ScanFirmwareAsync et ScanFirmwareFileAsync des variantes existantes.</remarks>
-    ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
 
     /// <summary>Contrôle la compatibilité d’un fichier avec un rôle de firmware et la configuration.</summary>
     /// <param name="configuration">Configuration du modèle et du cœur retenus.</param>

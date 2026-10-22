@@ -103,6 +103,45 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void EveryCommonUsesTheSameFirmwareFileInspectionContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly)
+            .Distinct().OrderBy(assembly => assembly.GetName().Name, StringComparer.Ordinal).ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var scan = Assert.Single(contract.GetMethods());
+            Assert.Equal("ScanFirmwareFileAsync", scan.Name);
+            Assert.True(scan.IsAbstract);
+            Assert.Equal(typeof(ValueTask<EmulationFirmwareCandidate>), scan.ReturnType);
+            var parameters = scan.GetParameters();
+            Assert.Equal(3, parameters.Length);
+            Assert.Equal(assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration"), parameters[0].ParameterType);
+            Assert.Equal(typeof(string), parameters[1].ParameterType);
+            Assert.Equal(typeof(CancellationToken), parameters[2].ParameterType);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            foreach (var implementation in implementations)
+            {
+                Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+                Assert.Null(implementation.GetMethod("InspectFirmwareAsync"));
+                Assert.Null(implementation.GetMethod("ScanFirmwareAsync"));
+            }
+            if (root is "GWGUI.Emulation.Apple" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Philips" or "GWGUI.Emulation.Snk")
+                Assert.NotEmpty(implementations);
+            if (root == "GWGUI.Emulation.Example")
+                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection")!.GetInterfaces());
+        }
+    }
+
+    [Fact]
     public void SdkGrantsInternalAccessOnlyToTheExistingTestAssemblies()
     {
         var grants = typeof(EmulationSdk).Assembly.GetCustomAttributes<InternalsVisibleToAttribute>()

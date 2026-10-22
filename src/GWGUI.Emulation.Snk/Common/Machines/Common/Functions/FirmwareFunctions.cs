@@ -5,8 +5,8 @@ internal static class FirmwareFunctions
 {
     internal static string Field(FirmwareCategory role) => FirmwareConstants.FieldPrefix + role;
     internal static bool IsField(string field) => Enum.GetValues<FirmwareCategory>().Any(role => field == Field(role));
-    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model, Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareAdapter adapter ? adapter.FirmwareRoles(model) : [];
-    internal static bool IsRequired(MachineModel model, Emulator core, FirmwareCategory role) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareAdapter adapter && adapter.IsFirmwareRequired(model, role);
+    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model, Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareSettings adapter ? adapter.FirmwareRoles(model) : [];
+    internal static bool IsRequired(MachineModel model, Emulator core, FirmwareCategory role) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareSettings adapter && adapter.IsFirmwareRequired(model, role);
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();
@@ -22,14 +22,16 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken)
+    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
+        var model = configuration.Model;
+        var core = configuration.Core;
         if (!ConfigurationFunctions.IsCompatible(model, core))
             throw new ArgumentOutOfRangeException(nameof(core));
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
         return core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareAdapter adapter 
-            ? adapter.InspectFirmwareAsync(absolute, model, cancellationToken) 
+            ? adapter.ScanFirmwareFileAsync(configuration, absolute, cancellationToken)
             : ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown));
     }
 

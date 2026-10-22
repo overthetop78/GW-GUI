@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class FirmwareConfigurationFunctions
 {
-    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration, IEmulatorAdapter adapter) => (adapter as IEmulatorFirmwareAdapter)?.GetFirmwareSlots(configuration) ?? [];
+    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration, IEmulatorAdapter adapter) => (adapter as IEmulatorFirmwareSettings)?.GetFirmwareSlots(configuration) ?? [];
 
     internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration, IEmulatorAdapter adapter) =>
         Slots(configuration, adapter).Select(slot => new EmulationSettingsField(slot.FieldId,
