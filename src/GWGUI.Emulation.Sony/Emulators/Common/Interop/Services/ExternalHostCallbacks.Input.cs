@@ -27,7 +27,7 @@ internal sealed partial class ExternalHostCallbacks
             _pointerY = AccumulatePointerCoordinate(_pointerY, _polledInput.Pointer.DeltaY);
 
         }
-        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None) ? _polledInput.Keys : new HashSet<EmulationKey>());
+        PublishKeyboardTransitions(_controllerTypes.Any(type => (PeripheralCategory)type != PeripheralCategory.None) ? _polledInput.Keys : new HashSet<EmulationKey>());
     }
 
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
@@ -86,7 +86,7 @@ internal sealed partial class ExternalHostCallbacks
             port = checked((uint)route.ConfigurationPort);
         }
         if (port >= _controllerTypes.Length
-            || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
+            || (PeripheralCategory)Volatile.Read(ref _controllerTypes[(int)port]) == PeripheralCategory.None)
             return default;
         var input = _polledInput;
         var controller = port < input.Controllers.Count ? input.Controllers[(int)port] : EmulationControllerState.Empty;
@@ -154,7 +154,7 @@ internal sealed partial class ExternalHostCallbacks
         if (port >= input.Controllers.Count) return 0;
         if (device == JoypadDevice)
         {
-            var buttons = _legacyCallbacks ? controller.Buttons : AnalogToggleFunctions.ButtonMask(controller, (ControllerType)_controllerTypes[(int)port]);
+            var buttons = _legacyCallbacks ? controller.Buttons : AnalogToggleFunctions.ButtonMask(controller, (PeripheralCategory)_controllerTypes[(int)port]);
             if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
             return id < ControllerButtonMaskWidth && (buttons & (1u << (int)id)) != EmptyButtonMask ? Bool(true) : default;
         }

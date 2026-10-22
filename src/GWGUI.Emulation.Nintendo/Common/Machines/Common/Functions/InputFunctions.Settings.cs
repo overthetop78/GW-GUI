@@ -31,7 +31,7 @@ internal static partial class InputSettingsFunctions
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - 1,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None,
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None,
             port.PhysicalDeviceId,
             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId)).ToArray();
@@ -55,7 +55,7 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model) => type is ControllerType.None ? []
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type, Model model) => type is PeripheralCategory.None ? []
         : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
             ? NintendoControllerDefinitions(false, nes: true)
         : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true)
@@ -173,10 +173,10 @@ internal static partial class InputSettingsFunctions
             }
         };
 
-    private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
+    private static EmulationControllerChoice Choice(PeripheralCategory type, Model model) => new(
         type.ToString(), ControllerResourceKey(type, model),
         BindingDefinitions: ControllerDefinitions(type, model),
         CompatibleVisualIds: CompatibleVisualIds(type, model),
         DefaultVisualId: DefaultVisualId(type, model),
-        VisualCommandIds: VisualCommandIds(type, model)) { Category = type == ControllerType.None ? EmulationControllerCategory.None : EmulationControllerCategory.Gamepad };
+        VisualCommandIds: VisualCommandIds(type, model)) { Category = type == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Gamepad };
 }

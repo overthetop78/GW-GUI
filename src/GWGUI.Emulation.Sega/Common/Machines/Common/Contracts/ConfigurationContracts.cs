@@ -6,7 +6,7 @@ public sealed record MachineConfiguration(
     IReadOnlyDictionary<string, string>? Options = null,
     Guid Id = default,
     bool AudioEnabled = true,
-    IReadOnlyList<ControllerType>? Controllers = null,
+    IReadOnlyList<PeripheralCategory>? Controllers = null,
     InputConfiguration? Input = null,
     int SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion,
     IReadOnlyList<MediaConfiguration>? Media = null,

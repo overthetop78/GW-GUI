@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type, Model model) => type != ControllerType.Joystick ? null : model.Id switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(PeripheralCategory type, Model model) => type != PeripheralCategory.Joystick ? null : model.Id switch
         {
             ModelConstants.Nes =>
                 [EmulationControllerVisualIds.NintendoNesPad,
@@ -27,10 +27,10 @@ internal static partial class InputSettingsFunctions
                 EmulationControllerVisualIds.ZipstikSuperPro]
         };
 
-    private static string? DefaultVisualId(ControllerType type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
+    private static string? DefaultVisualId(PeripheralCategory type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
+        VisualCommandIds(PeripheralCategory type, Model model) => type != PeripheralCategory.Joystick
             ? null : model.Id == ModelConstants.Nintendo64
             ? Nintendo64VisualCommandIds() : model.Id == ModelConstants.GameCube
             ? GameCubeVisualCommandIds() : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
@@ -126,8 +126,8 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
 
-    private static string ControllerResourceKey(ControllerType type, Model model) =>
-        type == ControllerType.Joystick ? model.Id switch
+    private static string ControllerResourceKey(PeripheralCategory type, Model model) =>
+        type == PeripheralCategory.Joystick ? model.Id switch
         {
             ModelConstants.Nes or ModelConstants.FamicomDisk =>
                 InputSettingsFunctionsConstants.ResourceNesPad,
@@ -140,8 +140,8 @@ internal static partial class InputSettingsFunctions
             _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
         } : type switch
     {
-        ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
-        ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
+        PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"
     };
 }

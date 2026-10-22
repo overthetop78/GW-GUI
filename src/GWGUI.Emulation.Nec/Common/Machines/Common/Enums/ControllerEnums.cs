@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Enums;
 
-public enum ControllerType
+public enum PeripheralCategory
 {
     Automatic, Joystick, None, Mouse,
     PcEnginePad, PcEngineTurboPad, CoreGrafxTurboPad, CoreGrafxIITurboPad,

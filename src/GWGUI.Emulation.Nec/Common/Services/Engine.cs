@@ -83,7 +83,7 @@ public sealed class Engine
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
             Controllers: Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, model.ControllerPortCount)
-                .Select(index => index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : ControllerType.None).ToArray(),
+                .Select(index => index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : PeripheralCategory.None).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 

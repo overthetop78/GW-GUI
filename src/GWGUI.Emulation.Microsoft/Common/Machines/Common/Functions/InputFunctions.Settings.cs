@@ -30,7 +30,7 @@ internal static partial class InputSettingsFunctions
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - 1,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None,
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None,
             port.PhysicalDeviceId,
             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId)).ToArray();
@@ -54,8 +54,8 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
-        type is ControllerType.None ? [] :
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type) =>
+        type is PeripheralCategory.None ? [] :
         [
             Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
             Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
@@ -67,8 +67,8 @@ internal static partial class InputSettingsFunctions
 
     private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey, invariant));
 
-    private static EmulationControllerChoice Choice(ControllerType type) => new(
+    private static EmulationControllerChoice Choice(PeripheralCategory type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
         CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type)) { Category = type == ControllerType.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
+        VisualCommandIds: VisualCommandIds(type)) { Category = type == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
 }

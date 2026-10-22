@@ -19,9 +19,9 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None, ControllerType.GunCon2],
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None, PeripheralCategory.GunCon2],
         StartupFailureDiagnostics: [InitializationFailureDiagnostic],
-        FeedbackControllerTypes: [ControllerType.Joystick],
+        FeedbackControllerTypes: [PeripheralCategory.Joystick],
         CreateControllerPorts: ControllerConfigurationFunctions.CreatePorts,
         FirmwarePersistence: FirmwareConstants.Persistence,
         PrepareSystemFiles: NetworkFunctions.Prepare);

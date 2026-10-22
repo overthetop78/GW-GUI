@@ -1,6 +1,6 @@
 ﻿namespace GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
 
-public enum ControllerType
+public enum PeripheralCategory
 {
     Automatic,
     Joystick,

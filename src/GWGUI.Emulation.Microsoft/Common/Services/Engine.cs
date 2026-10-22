@@ -80,7 +80,7 @@ public sealed class Engine
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, EmulatorCatalog.GetAll(model.Id).FirstOrDefault()?.Id ?? string.Empty,
             Options: new Dictionary<string, string>(StringComparer.Ordinal),
-            Id: Guid.NewGuid(), Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(), Input: new InputConfiguration(), Media: []);
+            Id: Guid.NewGuid(), Controllers: Enumerable.Repeat(PeripheralCategory.Joystick, model.ControllerPortCount).ToArray(), Input: new InputConfiguration(), Media: []);
     }
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)

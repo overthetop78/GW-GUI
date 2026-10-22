@@ -49,7 +49,7 @@ internal static class InputSnapshotFunctions
         for (var port = 0; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
-            if (binding?.Type == ControllerType.None || binding is null
+            if (binding?.Type == PeripheralCategory.None || binding is null
                 && port > InputSettingsFunctionsConstants.FirstPortIndex)
             {
                 result[port] = EmulationControllerState.Empty;

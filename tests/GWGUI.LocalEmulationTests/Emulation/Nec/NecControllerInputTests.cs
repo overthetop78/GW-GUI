@@ -8,9 +8,9 @@ namespace GWGUI.Tests.Emulation.Nec;
 public sealed class NecControllerInputTests
 {
     [Theory]
-    [InlineData(ControllerType.PcFxPad)]
-    [InlineData(ControllerType.PcEnginePad)]
-    public void ExplicitControllerMappingsUseTheirDeviceInsteadOfTheFirstConnectedController(ControllerType controllerType)
+    [InlineData(PeripheralCategory.PcFxPad)]
+    [InlineData(PeripheralCategory.PcEnginePad)]
+    public void ExplicitControllerMappingsUseTheirDeviceInsteadOfTheFirstConnectedController(PeripheralCategory controllerType)
     {
         var xbox360 = new EmulationControllerState(1u << 4, 0, 0, 0, 0, 0, 0)
         {
@@ -37,9 +37,9 @@ public sealed class NecControllerInputTests
     }
 
     [Theory]
-    [InlineData(ControllerType.PcFxPad)]
-    [InlineData(ControllerType.PcEnginePad)]
-    public void DisconnectedSelectedControllerDoesNotFallBackToAnotherController(ControllerType controllerType)
+    [InlineData(PeripheralCategory.PcFxPad)]
+    [InlineData(PeripheralCategory.PcEnginePad)]
+    public void DisconnectedSelectedControllerDoesNotFallBackToAnotherController(PeripheralCategory controllerType)
     {
         var xbox360 = new EmulationControllerState(1u << 4, 0, 0, 0, 0, 0, 0)
         {

@@ -23,7 +23,7 @@ public sealed record AmigaModel(
         (int)ChipMemory + (int)SlowMemory + (int)FastMemory,
         FloppyDriveCapacity, SupportsHardDrives ? HardDriveCapacity : DriveCapacity.None,
         MouseButtonCount, ControllerPortCount, HasCdDrive, HasBuiltInFloppyDrive,
-        HasKeyboard, SupportsCd32Controller ? [ControllerType.Cd32Pad, ControllerType.Joystick, ControllerType.AnalogJoystick, ControllerType.None] : [ControllerType.Joystick, ControllerType.AnalogJoystick, ControllerType.None])
+        HasKeyboard, SupportsCd32Controller ? [PeripheralCategory.Cd32Pad, PeripheralCategory.Joystick, PeripheralCategory.AnalogJoystick, PeripheralCategory.None] : [PeripheralCategory.Joystick, PeripheralCategory.AnalogJoystick, PeripheralCategory.None])
 {
     public int ChipMemoryKib => (int)ChipMemory;
     public int SlowMemoryKib => (int)SlowMemory;

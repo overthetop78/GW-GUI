@@ -13,14 +13,14 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class LightGunInputTests
 {
     [Theory]
-    [InlineData("swanstation", ControllerType.GunCon)]
-    [InlineData("mednafen_psx", ControllerType.GunCon)]
-    [InlineData("mednafen_psx", ControllerType.Justifier)]
-    [InlineData("mednafen_psx_hw", ControllerType.GunCon)]
-    [InlineData("mednafen_psx_hw", ControllerType.Justifier)]
-    [InlineData("pcsx_rearmed", ControllerType.GunCon)]
-    [InlineData("pcsx_rearmed", ControllerType.Justifier)]
-    public void ReloadCanBeConfiguredAndPersistedIndependentlyForBothPorts(string emulator, ControllerType type)
+    [InlineData("swanstation", PeripheralCategory.GunCon)]
+    [InlineData("mednafen_psx", PeripheralCategory.GunCon)]
+    [InlineData("mednafen_psx", PeripheralCategory.Justifier)]
+    [InlineData("mednafen_psx_hw", PeripheralCategory.GunCon)]
+    [InlineData("mednafen_psx_hw", PeripheralCategory.Justifier)]
+    [InlineData("pcsx_rearmed", PeripheralCategory.GunCon)]
+    [InlineData("pcsx_rearmed", PeripheralCategory.Justifier)]
+    public void ReloadCanBeConfiguredAndPersistedIndependentlyForBothPorts(string emulator, PeripheralCategory type)
     {
         var configuration = new MachineConfiguration("PlayStation", emulator, Controllers: [type, type]);
         var settings = InputSettingsFunctions.Describe(configuration);
@@ -79,7 +79,7 @@ public sealed class LightGunInputTests
     {
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(0, ControllerType.GunCon, ButtonMappings: new Dictionary<string, string>
+            new(0, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string>
             {
                 [EmulationControllerCommandIds.B] = "Mouse:Left",
                 [EmulationControllerCommandIds.A] = "Mouse:Right",
@@ -115,8 +115,8 @@ public sealed class LightGunInputTests
     {
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(0, ControllerType.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:A" }),
-            new(1, ControllerType.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:S" })
+            new(0, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:A" }),
+            new(1, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:S" })
         ]);
         var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
         var mapped = InputSnapshotFunctions.Apply(physical, configuration, false, 2);

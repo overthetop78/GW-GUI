@@ -42,7 +42,7 @@ public sealed class PspControllerTests
         };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick,
+            new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
                 ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })
         ]);
         var controls = InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[IntegratedPortIndex].Controls;
@@ -66,7 +66,7 @@ public sealed class PspControllerTests
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(IntegratedPortIndex, ControllerType.Joystick, "pad", new Dictionary<string, string>
+            new(IntegratedPortIndex, PeripheralCategory.Joystick, "pad", new Dictionary<string, string>
             {
                 [InputSettingsFunctionsConstants.PspStickRight] = "Controller:pad:Axis0Positive",
                 [InputSettingsFunctionsConstants.PspStickLeft] = "Controller:pad:Axis0Negative"
@@ -81,7 +81,7 @@ public sealed class PspControllerTests
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Psp, GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Id));
 
         var port = Assert.Single(settings.ControllerPorts);
-        var choice = Assert.Single(port.ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var choice = Assert.Single(port.ControllerChoices, item => item.Id == PeripheralCategory.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.SonyPsp1000, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.All(choice.BindingDefinitions!.Where(item => item.OppositeDirectionId is not null), item =>
@@ -115,7 +115,7 @@ public sealed class PspControllerTests
             [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardJ,
             [InputSettingsFunctionsConstants.PspStickUp] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick, ButtonMappings: bindings)]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick, ButtonMappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -145,7 +145,7 @@ public sealed class PspControllerTests
         };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick,
+            new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
                 ButtonMappings: new Dictionary<string, string>
                 {
                     [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardA,

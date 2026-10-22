@@ -6,13 +6,13 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static uint Resolve(ControllerType type, int port, IReadOnlyList<IReadOnlyList<ControllerDevice>> ports)
+    internal static uint Resolve(PeripheralCategory type, int port, IReadOnlyList<IReadOnlyList<ControllerDevice>> ports)
     {
         if (port < SemanticPortConstants.MinimumControllerPort
             || port >= SemanticPortConstants.MaximumGamepadPortCount)
             throw new ArgumentOutOfRangeException(nameof(port), port, null);
-        if (type == ControllerType.None) return NativeControllerConstants.NoneDevice;
-        if (type is ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick)
+        if (type == PeripheralCategory.None) return NativeControllerConstants.NoneDevice;
+        if (type is PeripheralCategory.Joystick or PeripheralCategory.DanceMat or PeripheralCategory.ArcadeStick)
         {
             if (!ports.Any()) return NativeControllerConstants.JoypadDevice;
             if (port >= ports.Count)

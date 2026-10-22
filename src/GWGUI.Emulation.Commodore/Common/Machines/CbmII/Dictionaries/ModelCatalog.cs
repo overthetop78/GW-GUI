@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.CbmII510JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model CbmII610 { get; } = new(
         ModelConstants.CbmII610, ModelConstants.CbmII610DisplayName,
@@ -19,7 +19,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model CbmII620 { get; } = new(
         ModelConstants.CbmII620, ModelConstants.CbmII620DisplayName,
@@ -27,7 +27,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model CbmII620Plus { get; } = new(
         ModelConstants.CbmII620Plus, ModelConstants.CbmII620PlusDisplayName,
@@ -35,7 +35,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model CbmII710 { get; } = new(
         ModelConstants.CbmII710, ModelConstants.CbmII710DisplayName,
@@ -43,7 +43,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model CbmII720 { get; } = new(
         ModelConstants.CbmII720, ModelConstants.CbmII720DisplayName,
@@ -51,7 +51,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model CbmII720Plus { get; } = new(
         ModelConstants.CbmII720Plus, ModelConstants.CbmII720PlusDisplayName,
@@ -59,7 +59,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.BusinessMachineJoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static IReadOnlyList<Model> All { get; } =
     [

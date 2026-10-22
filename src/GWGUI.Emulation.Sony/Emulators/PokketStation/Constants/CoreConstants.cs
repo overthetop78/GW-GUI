@@ -19,7 +19,7 @@ internal static class CoreConstants
         Dictionaries.OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PocketStation }),
         RequiresExternalFirmware: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None],
         PreviousLibraryNames: [PreviousLibraryName],
         CreateContentLoadPlan: Functions.LinkFunctions.CreateLoadPlan);
 }

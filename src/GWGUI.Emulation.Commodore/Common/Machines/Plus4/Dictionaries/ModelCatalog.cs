@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model Plus4 { get; } = new(
         ModelConstants.Plus4, ModelConstants.Plus4DisplayName,
@@ -19,7 +19,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model V364 { get; } = new(
         ModelConstants.V364, ModelConstants.V364DisplayName,
@@ -27,7 +27,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model C232 { get; } = new(
         ModelConstants.C232, ModelConstants.C232DisplayName,
@@ -35,7 +35,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static IReadOnlyList<Model> All { get; } =
     [

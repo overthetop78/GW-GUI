@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model C128D { get; } = C128 with
     {

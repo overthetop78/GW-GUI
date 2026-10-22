@@ -63,7 +63,7 @@ public static class CoreHost
                                 WriteSuccess(writer);
                                 break;
                             case HostCommand.SetControllerPortDevice:
-                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());
+                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (PeripheralCategory)reader.ReadInt32());
                                 WriteSuccess(writer);
                                 break;
                             case HostCommand.Dispose:

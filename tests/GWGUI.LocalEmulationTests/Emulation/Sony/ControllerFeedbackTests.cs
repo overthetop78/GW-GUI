@@ -21,19 +21,19 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class ControllerFeedbackTests
 {
     [Theory]
-    [InlineData("rpcs3", "PlayStation3", ControllerType.Joystick, true)]
-    [InlineData("pcee2", "PlayStation2", ControllerType.Joystick, true)]
-    [InlineData("pcsx2", "PlayStation2", ControllerType.Joystick, true)]
-    [InlineData("mednafen_psx", "PlayStation", ControllerType.DualShock, true)]
-    [InlineData("mednafen_psx_hw", "PlayStation", ControllerType.DualShock, true)]
-    [InlineData("pcsx_rearmed", "PlayStation", ControllerType.DualShock, true)]
-    [InlineData("swanstation", "PlayStation", ControllerType.DualShock, true)]
-    [InlineData("mednafen_psx", "PlayStation", ControllerType.Joystick, false)]
-    [InlineData("mednafen_psx", "PlayStation", ControllerType.AnalogController, false)]
-    [InlineData("mednafen_psx", "PlayStation", ControllerType.NeGcon, false)]
-    [InlineData("play", "PlayStation2", ControllerType.Joystick, false)]
-    [InlineData("ppsspp", "Psp", ControllerType.Joystick, false)]
-    public void CapabilitiesBelongToTheSelectedCoreAndPeripheral(string emulator, string model, ControllerType type, bool expected)
+    [InlineData("rpcs3", "PlayStation3", PeripheralCategory.Joystick, true)]
+    [InlineData("pcee2", "PlayStation2", PeripheralCategory.Joystick, true)]
+    [InlineData("pcsx2", "PlayStation2", PeripheralCategory.Joystick, true)]
+    [InlineData("mednafen_psx", "PlayStation", PeripheralCategory.DualShock, true)]
+    [InlineData("mednafen_psx_hw", "PlayStation", PeripheralCategory.DualShock, true)]
+    [InlineData("pcsx_rearmed", "PlayStation", PeripheralCategory.DualShock, true)]
+    [InlineData("swanstation", "PlayStation", PeripheralCategory.DualShock, true)]
+    [InlineData("mednafen_psx", "PlayStation", PeripheralCategory.Joystick, false)]
+    [InlineData("mednafen_psx", "PlayStation", PeripheralCategory.AnalogController, false)]
+    [InlineData("mednafen_psx", "PlayStation", PeripheralCategory.NeGcon, false)]
+    [InlineData("play", "PlayStation2", PeripheralCategory.Joystick, false)]
+    [InlineData("ppsspp", "Psp", PeripheralCategory.Joystick, false)]
+    public void CapabilitiesBelongToTheSelectedCoreAndPeripheral(string emulator, string model, PeripheralCategory type, bool expected)
     {
         var configuration = new MachineConfiguration(model, emulator);
         var settings = InputSettingsFunctions.Describe(configuration);
@@ -55,7 +55,7 @@ public sealed class ControllerFeedbackTests
         var settings = InputSettingsFunctions.Describe(configuration);
         var port = settings.ControllerPorts[0] with
         {
-            SelectedControllerId = nameof(ControllerType.Joystick),
+            SelectedControllerId = nameof(PeripheralCategory.Joystick),
             VisualId = EmulationControllerVisualIds.SonyDualShock3,
             OutputBindings = new Dictionary<string, EmulationControllerOutputBinding>
             {
@@ -143,7 +143,7 @@ public sealed class ControllerFeedbackTests
     {
         var outputs = assigned ? new Dictionary<string, EmulationControllerOutputBinding> { [EmulationControllerFeedbackCommands.Strong] = new("device", EmulationControllerMotor.LowFrequency) } : null;
         var configuration = new MachineConfiguration("PlayStation3", "rpcs3", AudioEnabled: false,
-            Input: new InputConfiguration(ControllerBindings: [new(0, ControllerType.Joystick, VisualId: EmulationControllerVisualIds.SonyDualShock3, OutputBindings: outputs)]));
+            Input: new InputConfiguration(ControllerBindings: [new(0, PeripheralCategory.Joystick, VisualId: EmulationControllerVisualIds.SonyDualShock3, OutputBindings: outputs)]));
         var core = new FeedbackCore();
         var machine = new Machine(Guid.NewGuid(), configuration, core, [], "unused-session");
         try
@@ -189,7 +189,7 @@ public sealed class ControllerFeedbackTests
         public void HardReset() { }
         public void SoftReset() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void SetControllerPortDevice(int port, ControllerType type) { }
+        public void SetControllerPortDevice(int port, PeripheralCategory type) { }
         public void InsertMedia(string path) => throw new NotSupportedException();
         public void EjectMedia() => throw new NotSupportedException();
         public void SelectDisk(int index) => throw new NotSupportedException();

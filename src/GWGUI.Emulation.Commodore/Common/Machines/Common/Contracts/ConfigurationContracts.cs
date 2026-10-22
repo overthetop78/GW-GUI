@@ -8,7 +8,7 @@ public sealed record MachineConfiguration(
     IReadOnlyDictionary<string, string>? Options = null,
     Guid Id = default,
     bool AudioEnabled = true,
-    IReadOnlyList<ControllerType>? Controllers = null,
+    IReadOnlyList<PeripheralCategory>? Controllers = null,
     InputConfiguration? Input = null,
     IReadOnlyList<FloppyConfiguration>? Floppies = null,
     bool MountFloppiesInSeparateDrives = false,

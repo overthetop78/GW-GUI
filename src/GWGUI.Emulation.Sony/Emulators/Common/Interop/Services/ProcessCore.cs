@@ -185,7 +185,7 @@ internal sealed class ProcessCore : IEmulatorCore
         CompleteRequest();
     }
 
-    public void SetControllerPortDevice(int port, ControllerType type)
+    public void SetControllerPortDevice(int port, PeripheralCategory type)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.ProcessNotInitialized));
         CommonControllerFunctions.Validate(configuration, port, type);

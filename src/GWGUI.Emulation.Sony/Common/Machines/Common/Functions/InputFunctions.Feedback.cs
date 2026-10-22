@@ -8,7 +8,7 @@ internal static partial class InputSettingsFunctions
         new(EmulationControllerFeedbackCommands.Weak, EmulationControllerFeedbackCommands.WeakResourceKey)
     ];
 
-    private static IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputs(MachineConfiguration configuration, ControllerType type, Model model)
+    private static IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputs(MachineConfiguration configuration, PeripheralCategory type, Model model)
     {
         if (new Engine().Adapter(configuration) is not IEmulatorControllerFeedbackAdapter adapter) return null;
         var outputs = adapter.GetControllerOutputs(configuration, type);
@@ -16,7 +16,7 @@ internal static partial class InputSettingsFunctions
         return outputs.Count == 0 || visuals is null ? null : visuals.ToDictionary(id => id, _ => outputs, StringComparer.Ordinal);
     }
 
-    internal static IReadOnlyDictionary<string, EmulationControllerOutputBinding> ValidOutputBindings(MachineConfiguration configuration, ControllerType type, string? visualId,
+    internal static IReadOnlyDictionary<string, EmulationControllerOutputBinding> ValidOutputBindings(MachineConfiguration configuration, PeripheralCategory type, string? visualId,
         IReadOnlyDictionary<string, EmulationControllerOutputBinding>? bindings)
     {
         if (bindings is null || bindings.Count == 0) return new Dictionary<string, EmulationControllerOutputBinding>();

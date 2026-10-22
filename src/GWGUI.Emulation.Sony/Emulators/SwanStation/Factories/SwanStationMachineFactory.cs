@@ -8,10 +8,10 @@ namespace GWGUI.Emulation.Sony.Emulators.SwanStation.Factories;
 internal sealed class SwanStationMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
-    public override IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration, int port) =>
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) =>
         base.GetPeripherals(configuration, port).Where(type =>
-            (type != ControllerType.GunCon || port < CoreConstants.LightGunPortCount)
-            && (type is not (ControllerType.NeGcon or ControllerType.NeGconRumble)
+            (type != PeripheralCategory.GunCon || port < CoreConstants.LightGunPortCount)
+            && (type is not (PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble)
                 || port < CoreConstants.SteeringControllerPortCount)).ToArray();
     public override int GetControllerPortCount(MachineConfiguration configuration) =>
         configuration.Options?.GetValueOrDefault(OptionConstants.ControllerPortsMultitapModeKey) switch

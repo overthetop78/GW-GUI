@@ -5,5 +5,5 @@ internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRunt
     bool ShutdownRequested => false;
     IReadOnlyList<ControllerFeedbackState> ControllerFeedback => [];
     void SoftReset();
-    void SetControllerPortDevice(int port, ControllerType type);
+    void SetControllerPortDevice(int port, PeripheralCategory type);
 }

@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model Vic21 { get; } = new(
         ModelConstants.Vic21, ModelConstants.Vic21DisplayName,
@@ -19,7 +19,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static IReadOnlyList<Model> All { get; } =
     [

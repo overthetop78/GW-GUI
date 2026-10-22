@@ -16,9 +16,9 @@ internal static partial class InputSettingsFunctions
 
     internal static string DefaultKey(EmulationKey key, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) => defaults.GetValueOrDefault(key, key).ToString();
 
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(PeripheralCategory type) => type switch
     {
-        ControllerType.Joystick =>
+        PeripheralCategory.Joystick =>
         [
             EmulationControllerVisualIds.QuickShot,
             EmulationControllerVisualIds.QuickShotDeluxe,
@@ -32,23 +32,23 @@ internal static partial class InputSettingsFunctions
             EmulationControllerVisualIds.SuzoTheArcadeTurbo,
             EmulationControllerVisualIds.AdvancedGravisGamepad
         ],
-        ControllerType.AnalogJoystick => [EmulationControllerVisualIds.KonixSpeedkingAnalog],
-        ControllerType.Cd32Pad =>
+        PeripheralCategory.AnalogJoystick => [EmulationControllerVisualIds.KonixSpeedkingAnalog],
+        PeripheralCategory.Cd32Pad =>
             [EmulationControllerVisualIds.CommodoreCd32, EmulationControllerVisualIds.CompetitionProCd32],
         _ => null
     };
 
-    private static string? DefaultVisualId(ControllerType type) => type switch
+    private static string? DefaultVisualId(PeripheralCategory type) => type switch
     {
-        ControllerType.Joystick => EmulationControllerVisualIds.QuickShot,
-        ControllerType.AnalogJoystick => EmulationControllerVisualIds.KonixSpeedkingAnalog,
-        ControllerType.Cd32Pad => EmulationControllerVisualIds.CommodoreCd32,
+        PeripheralCategory.Joystick => EmulationControllerVisualIds.QuickShot,
+        PeripheralCategory.AnalogJoystick => EmulationControllerVisualIds.KonixSpeedkingAnalog,
+        PeripheralCategory.Cd32Pad => EmulationControllerVisualIds.CommodoreCd32,
         _ => null
     };
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(ControllerType type) => type switch
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(PeripheralCategory type) => type switch
     {
-        ControllerType.Joystick or ControllerType.AnalogJoystick =>
+        PeripheralCategory.Joystick or PeripheralCategory.AnalogJoystick =>
             new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -59,7 +59,7 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
                 [EmulationControllerVisualControl.Turbo] = EmulationControllerCommandIds.L2
             },
-        ControllerType.Cd32Pad => new Dictionary<EmulationControllerVisualControl, string>
+        PeripheralCategory.Cd32Pad => new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
             [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
@@ -77,15 +77,15 @@ internal static partial class InputSettingsFunctions
         _ => null
     };
 
-    private static string ControllerResourceKey(ControllerType type) => type switch
+    private static string ControllerResourceKey(PeripheralCategory type) => type switch
     {
-        ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceAmigaControllerJoystick,
-        ControllerType.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
-        ControllerType.Cd32Pad => InputSettingsFunctionsConstants.ResourceAmigaControllerCd32,
-        ControllerType.RetroPad => InputSnapshotFunctionsConstants.GamepadResourceKey,
-        ControllerType.Keyboard => InputSnapshotFunctionsConstants.KeyboardResourceKey,
-        ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
-        ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
+        PeripheralCategory.Joystick => InputSettingsFunctionsConstants.ResourceAmigaControllerJoystick,
+        PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
+        PeripheralCategory.Cd32Pad => InputSettingsFunctionsConstants.ResourceAmigaControllerCd32,
+        PeripheralCategory.RetroPad => InputSnapshotFunctionsConstants.GamepadResourceKey,
+        PeripheralCategory.Keyboard => InputSnapshotFunctionsConstants.KeyboardResourceKey,
+        PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => string.Format(System.Globalization.CultureInfo.InvariantCulture, InputSnapshotFunctionsConstants.ControllerResourceFormat, type)
     };
 }

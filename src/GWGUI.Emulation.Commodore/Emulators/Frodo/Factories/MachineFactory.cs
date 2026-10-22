@@ -24,7 +24,7 @@ internal sealed class MachineFactory : GWGUI.Emulation.Commodore.Emulators.Commo
             if (!string.IsNullOrWhiteSpace(path)) File.Copy(path, Path.Combine(session, rom.FileName), true);
         }
     }
-    internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => type == ControllerType.None ? EmulatorConstants.NoControllerDevice : EmulatorConstants.JoypadDevice;
+    internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, PeripheralCategory type) => type == PeripheralCategory.None ? EmulatorConstants.NoControllerDevice : EmulatorConstants.JoypadDevice;
     internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media) =>
         (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(EmulatorConstants.OptionPrefix, StringComparison.Ordinal)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
     internal override string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media)

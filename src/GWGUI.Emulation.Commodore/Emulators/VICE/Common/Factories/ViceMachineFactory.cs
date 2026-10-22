@@ -36,7 +36,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
         ContentConstants.DriveCount).Select(index => new EmulationMediaDevice(new(EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy, ContentConstants.DiskExtensions, IsPermanent: index == ContentConstants.PrimaryMediaIndex)).Concat([new EmulationMediaDevice(new(EmulationMediaCategory.CassetteDrive, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cassette, ContentConstants.CassetteExtensions)]).Concat(CartridgeExtensions.Count != BufferConstants.EmptyCollectionCount
             ? [new EmulationMediaDevice(new(EmulationMediaCategory.CartridgeSlot, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cartridge, CartridgeExtensions, RequiresMachineRecreation: true)]
             : []).ToArray();
-    internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => type == ControllerType.None ? ContentConstants.NoControllerDevice : ContentConstants.JoypadDevice;
+    internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, PeripheralCategory type) => type == PeripheralCategory.None ? ContentConstants.NoControllerDevice : ContentConstants.JoypadDevice;
     internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media)
     {
         var options = (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(ContentConstants.OptionPrefix, StringComparison.Ordinal)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);

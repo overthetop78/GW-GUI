@@ -2,56 +2,56 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(PeripheralCategory type) => type switch
     {
-        ControllerType.PcEnginePad => [EmulationControllerVisualIds.NecPcEnginePad],
-        ControllerType.PcEngineTurboPad => [EmulationControllerVisualIds.NecPcEngineTurboPad],
-        ControllerType.TurboGrafxTurboPad => [EmulationControllerVisualIds.NecTurboGrafxTurboPad],
-        ControllerType.CoreGrafxTurboPad => [EmulationControllerVisualIds.NecCoreGrafxTurboPad],
-        ControllerType.CoreGrafxIITurboPad => [EmulationControllerVisualIds.NecCoreGrafxIiTurboPad],
-        ControllerType.DuoRTurboPad => [EmulationControllerVisualIds.NecDuoRTurboPad],
-        ControllerType.PcEngineTurboPadII => [EmulationControllerVisualIds.NecPcEngineTurboPadIi],
-        ControllerType.PcEngineTurboStick => [EmulationControllerVisualIds.NecPcEngineTurboStick],
-        ControllerType.AvenuePad3 => [EmulationControllerVisualIds.NecAvenuePad3],
-        ControllerType.AvenuePad6 => [EmulationControllerVisualIds.NecAvenuePad6],
-        ControllerType.ArcadePad6 => [EmulationControllerVisualIds.NecArcadePad6],
-        ControllerType.TurboGrafxTurboStick => [EmulationControllerVisualIds.NecTurboGrafxTurboStick],
-        ControllerType.DuoPad => [EmulationControllerVisualIds.NecDuoPad],
-        ControllerType.CordlessPad => [EmulationControllerVisualIds.NecCordlessPad],
-        ControllerType.PcEngineMouse => [EmulationControllerVisualIds.NecPcEngineMouse],
-        ControllerType.TurboExpressControls => [EmulationControllerVisualIds.NecTurboExpressControls],
-        ControllerType.PcEngineLtControls => [EmulationControllerVisualIds.NecPcEngineLtControls],
-        ControllerType.PcFxPad => [EmulationControllerVisualIds.NecPcFxPad],
-        ControllerType.PcFxMouse => [EmulationControllerVisualIds.NecPcFxMouse],
+        PeripheralCategory.PcEnginePad => [EmulationControllerVisualIds.NecPcEnginePad],
+        PeripheralCategory.PcEngineTurboPad => [EmulationControllerVisualIds.NecPcEngineTurboPad],
+        PeripheralCategory.TurboGrafxTurboPad => [EmulationControllerVisualIds.NecTurboGrafxTurboPad],
+        PeripheralCategory.CoreGrafxTurboPad => [EmulationControllerVisualIds.NecCoreGrafxTurboPad],
+        PeripheralCategory.CoreGrafxIITurboPad => [EmulationControllerVisualIds.NecCoreGrafxIiTurboPad],
+        PeripheralCategory.DuoRTurboPad => [EmulationControllerVisualIds.NecDuoRTurboPad],
+        PeripheralCategory.PcEngineTurboPadII => [EmulationControllerVisualIds.NecPcEngineTurboPadIi],
+        PeripheralCategory.PcEngineTurboStick => [EmulationControllerVisualIds.NecPcEngineTurboStick],
+        PeripheralCategory.AvenuePad3 => [EmulationControllerVisualIds.NecAvenuePad3],
+        PeripheralCategory.AvenuePad6 => [EmulationControllerVisualIds.NecAvenuePad6],
+        PeripheralCategory.ArcadePad6 => [EmulationControllerVisualIds.NecArcadePad6],
+        PeripheralCategory.TurboGrafxTurboStick => [EmulationControllerVisualIds.NecTurboGrafxTurboStick],
+        PeripheralCategory.DuoPad => [EmulationControllerVisualIds.NecDuoPad],
+        PeripheralCategory.CordlessPad => [EmulationControllerVisualIds.NecCordlessPad],
+        PeripheralCategory.PcEngineMouse => [EmulationControllerVisualIds.NecPcEngineMouse],
+        PeripheralCategory.TurboExpressControls => [EmulationControllerVisualIds.NecTurboExpressControls],
+        PeripheralCategory.PcEngineLtControls => [EmulationControllerVisualIds.NecPcEngineLtControls],
+        PeripheralCategory.PcFxPad => [EmulationControllerVisualIds.NecPcFxPad],
+        PeripheralCategory.PcFxMouse => [EmulationControllerVisualIds.NecPcFxMouse],
         _ => null
     };
 
-    private static string? DefaultVisualId(ControllerType type) => type switch
+    private static string? DefaultVisualId(PeripheralCategory type) => type switch
     {
-        ControllerType.PcEnginePad => EmulationControllerVisualIds.NecPcEnginePad,
-        ControllerType.PcEngineTurboPad => EmulationControllerVisualIds.NecPcEngineTurboPad,
-        ControllerType.TurboGrafxTurboPad => EmulationControllerVisualIds.NecTurboGrafxTurboPad,
-        ControllerType.CoreGrafxTurboPad => EmulationControllerVisualIds.NecCoreGrafxTurboPad,
-        ControllerType.CoreGrafxIITurboPad => EmulationControllerVisualIds.NecCoreGrafxIiTurboPad,
-        ControllerType.DuoRTurboPad => EmulationControllerVisualIds.NecDuoRTurboPad,
-        ControllerType.PcEngineTurboPadII => EmulationControllerVisualIds.NecPcEngineTurboPadIi,
-        ControllerType.PcEngineTurboStick => EmulationControllerVisualIds.NecPcEngineTurboStick,
-        ControllerType.AvenuePad3 => EmulationControllerVisualIds.NecAvenuePad3,
-        ControllerType.AvenuePad6 => EmulationControllerVisualIds.NecAvenuePad6,
-        ControllerType.ArcadePad6 => EmulationControllerVisualIds.NecArcadePad6,
-        ControllerType.TurboGrafxTurboStick => EmulationControllerVisualIds.NecTurboGrafxTurboStick,
-        ControllerType.DuoPad => EmulationControllerVisualIds.NecDuoPad,
-        ControllerType.CordlessPad => EmulationControllerVisualIds.NecCordlessPad,
-        ControllerType.PcEngineMouse => EmulationControllerVisualIds.NecPcEngineMouse,
-        ControllerType.TurboExpressControls => EmulationControllerVisualIds.NecTurboExpressControls,
-        ControllerType.PcEngineLtControls => EmulationControllerVisualIds.NecPcEngineLtControls,
-        ControllerType.PcFxPad => EmulationControllerVisualIds.NecPcFxPad,
-        ControllerType.PcFxMouse => EmulationControllerVisualIds.NecPcFxMouse,
+        PeripheralCategory.PcEnginePad => EmulationControllerVisualIds.NecPcEnginePad,
+        PeripheralCategory.PcEngineTurboPad => EmulationControllerVisualIds.NecPcEngineTurboPad,
+        PeripheralCategory.TurboGrafxTurboPad => EmulationControllerVisualIds.NecTurboGrafxTurboPad,
+        PeripheralCategory.CoreGrafxTurboPad => EmulationControllerVisualIds.NecCoreGrafxTurboPad,
+        PeripheralCategory.CoreGrafxIITurboPad => EmulationControllerVisualIds.NecCoreGrafxIiTurboPad,
+        PeripheralCategory.DuoRTurboPad => EmulationControllerVisualIds.NecDuoRTurboPad,
+        PeripheralCategory.PcEngineTurboPadII => EmulationControllerVisualIds.NecPcEngineTurboPadIi,
+        PeripheralCategory.PcEngineTurboStick => EmulationControllerVisualIds.NecPcEngineTurboStick,
+        PeripheralCategory.AvenuePad3 => EmulationControllerVisualIds.NecAvenuePad3,
+        PeripheralCategory.AvenuePad6 => EmulationControllerVisualIds.NecAvenuePad6,
+        PeripheralCategory.ArcadePad6 => EmulationControllerVisualIds.NecArcadePad6,
+        PeripheralCategory.TurboGrafxTurboStick => EmulationControllerVisualIds.NecTurboGrafxTurboStick,
+        PeripheralCategory.DuoPad => EmulationControllerVisualIds.NecDuoPad,
+        PeripheralCategory.CordlessPad => EmulationControllerVisualIds.NecCordlessPad,
+        PeripheralCategory.PcEngineMouse => EmulationControllerVisualIds.NecPcEngineMouse,
+        PeripheralCategory.TurboExpressControls => EmulationControllerVisualIds.NecTurboExpressControls,
+        PeripheralCategory.PcEngineLtControls => EmulationControllerVisualIds.NecPcEngineLtControls,
+        PeripheralCategory.PcFxPad => EmulationControllerVisualIds.NecPcFxPad,
+        PeripheralCategory.PcFxMouse => EmulationControllerVisualIds.NecPcFxMouse,
         _ => null
     };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type)
+        VisualCommandIds(PeripheralCategory type)
     {
         if (ControllerCatalog.IsMouse(type))
             return new Dictionary<EmulationControllerVisualControl, string>
@@ -59,15 +59,15 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.MouseLeftButton] = nameof(MouseAction.LeftButton),
                 [EmulationControllerVisualControl.MouseRightButton] = nameof(MouseAction.RightButton)
             };
-        if (type is not (ControllerType.PcEnginePad or ControllerType.PcEngineTurboPad
-            or ControllerType.TurboGrafxTurboPad or ControllerType.CoreGrafxTurboPad
-            or ControllerType.CoreGrafxIITurboPad or ControllerType.DuoRTurboPad
-            or ControllerType.PcEngineTurboPadII or ControllerType.PcEngineTurboStick
-            or ControllerType.AvenuePad3 or ControllerType.AvenuePad6
-            or ControllerType.ArcadePad6 or ControllerType.TurboGrafxTurboStick
-            or ControllerType.DuoPad or ControllerType.CordlessPad
-            or ControllerType.TurboExpressControls or ControllerType.PcEngineLtControls
-            or ControllerType.PcFxPad)) return null;
+        if (type is not (PeripheralCategory.PcEnginePad or PeripheralCategory.PcEngineTurboPad
+            or PeripheralCategory.TurboGrafxTurboPad or PeripheralCategory.CoreGrafxTurboPad
+            or PeripheralCategory.CoreGrafxIITurboPad or PeripheralCategory.DuoRTurboPad
+            or PeripheralCategory.PcEngineTurboPadII or PeripheralCategory.PcEngineTurboStick
+            or PeripheralCategory.AvenuePad3 or PeripheralCategory.AvenuePad6
+            or PeripheralCategory.ArcadePad6 or PeripheralCategory.TurboGrafxTurboStick
+            or PeripheralCategory.DuoPad or PeripheralCategory.CordlessPad
+            or PeripheralCategory.TurboExpressControls or PeripheralCategory.PcEngineLtControls
+            or PeripheralCategory.PcFxPad)) return null;
 
         var commands = new Dictionary<EmulationControllerVisualControl, string>
         {
@@ -80,7 +80,7 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Option,
             [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
-        if (type == ControllerType.AvenuePad3)
+        if (type == PeripheralCategory.AvenuePad3)
             commands[EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Start;
         if (ControllerCatalog.HasSixButtons(type))
         {
@@ -88,18 +88,18 @@ internal static partial class InputSettingsFunctions
             commands[EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X;
             commands[EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L;
             commands[EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R;
-            if (type == ControllerType.PcFxPad)
+            if (type == PeripheralCategory.PcFxPad)
                 commands[EmulationControllerVisualControl.Turbo] = EmulationControllerCommandIds.L2;
         }
         return commands;
     }
 
-    private static string ControllerResourceKey(ControllerType type) => type switch
+    private static string ControllerResourceKey(PeripheralCategory type) => type switch
     {
-        ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
-        ControllerType.Mouse => InputSettingsFunctionsConstants.ResourceControllerMouse,
-        ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
-        ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
+        PeripheralCategory.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
+        PeripheralCategory.Mouse => InputSettingsFunctionsConstants.ResourceControllerMouse,
+        PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => InputSettingsFunctionsConstants.ResourceControllerPrefix + type
     };
 }

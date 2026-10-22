@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model C64Dtv { get; } = new(
         ModelConstants.C64Dtv, ModelConstants.C64DtvDisplayName,
@@ -19,7 +19,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static Model C64SuperCpu { get; } = new(
         ModelConstants.C64SuperCpu, ModelConstants.C64SuperCpuDisplayName,
@@ -27,7 +27,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None]);
 
     internal static IReadOnlyList<Model> All { get; } =
     [

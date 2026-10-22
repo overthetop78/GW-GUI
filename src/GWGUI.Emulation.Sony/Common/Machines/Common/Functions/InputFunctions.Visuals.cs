@@ -2,22 +2,22 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type, Model model) => type == ControllerType.DanceMat
+    private static IReadOnlyList<string>? CompatibleVisualIds(PeripheralCategory type, Model model) => type == PeripheralCategory.DanceMat
         ? [EmulationControllerVisualIds.SonyDanceMat, EmulationControllerVisualIds.SonyKonamiDdr] : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? type switch
         {
-            ControllerType.Joystick => model.Id == ModelConstants.PlayStation2
+            PeripheralCategory.Joystick => model.Id == ModelConstants.PlayStation2
                 ? [EmulationControllerVisualIds.SonyDualShock2, EmulationControllerVisualIds.SonyDualShock1, EmulationControllerVisualIds.SonyPlayStationController, EmulationControllerVisualIds.SonyDualAnalog, EmulationControllerVisualIds.SonyAnalogJoystick, EmulationControllerVisualIds.SonyAsciiSpecializedPad, EmulationControllerVisualIds.SonyAsciiEnhancedPad, EmulationControllerVisualIds.SonyHoriFightingCommander2Way, EmulationControllerVisualIds.SonyHoriFightingCommander10B, EmulationControllerVisualIds.SonyLogitechCordless, EmulationControllerVisualIds.SonyLogitechCordlessAction, EmulationControllerVisualIds.SonySegaSaturnPs2]
                 : [EmulationControllerVisualIds.SonyPlayStationController, EmulationControllerVisualIds.SonyAsciiSpecializedPad, EmulationControllerVisualIds.SonyAsciiEnhancedPad, EmulationControllerVisualIds.SonyHoriFightingCommander2Way, EmulationControllerVisualIds.SonyHoriFightingCommander10B, EmulationControllerVisualIds.SonyLogitechCordless, EmulationControllerVisualIds.SonySegaSaturnPs2],
-            ControllerType.DualShock => [EmulationControllerVisualIds.SonyDualShock1],
-            ControllerType.AnalogController => [EmulationControllerVisualIds.SonyDualAnalog],
-            ControllerType.AnalogJoystick => [EmulationControllerVisualIds.SonyAnalogJoystick],
-            ControllerType.Mouse => [EmulationControllerVisualIds.SonyPlayStationMouse],
-            ControllerType.GunCon2 => [EmulationControllerVisualIds.SonyGunCon2],
-            ControllerType.NeGcon or ControllerType.NeGconRumble => [EmulationControllerVisualIds.SonyNeGcon],
-            ControllerType.GunCon => [EmulationControllerVisualIds.SonyGunCon],
-            ControllerType.Justifier => [EmulationControllerVisualIds.SonyJustifier],
+            PeripheralCategory.DualShock => [EmulationControllerVisualIds.SonyDualShock1],
+            PeripheralCategory.AnalogController => [EmulationControllerVisualIds.SonyDualAnalog],
+            PeripheralCategory.AnalogJoystick => [EmulationControllerVisualIds.SonyAnalogJoystick],
+            PeripheralCategory.Mouse => [EmulationControllerVisualIds.SonyPlayStationMouse],
+            PeripheralCategory.GunCon2 => [EmulationControllerVisualIds.SonyGunCon2],
+            PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble => [EmulationControllerVisualIds.SonyNeGcon],
+            PeripheralCategory.GunCon => [EmulationControllerVisualIds.SonyGunCon],
+            PeripheralCategory.Justifier => [EmulationControllerVisualIds.SonyJustifier],
             _ => null
-        } : type is not (ControllerType.Joystick or ControllerType.DualShock)
+        } : type is not (PeripheralCategory.Joystick or PeripheralCategory.DualShock)
             ? null : model.Id switch
         {
             ModelConstants.PlayStation3 => [EmulationControllerVisualIds.SonyDualShock3],
@@ -28,10 +28,10 @@ internal static partial class InputSettingsFunctions
             _ => null
         };
 
-    private static string? DefaultVisualId(ControllerType type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
+    private static string? DefaultVisualId(PeripheralCategory type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type, Model model) =>
+        VisualCommandIds(PeripheralCategory type, Model model) =>
             SpecializedVisualCommands(type, model) is { } specialized ? specialized
             : SpecialControllerVisualCommands(type, model) is { } specialController ? specialController
             : RemoteAndFishingVisualCommands(type, model) is { } remoteAndFishing ? remoteAndFishing
@@ -39,23 +39,23 @@ internal static partial class InputSettingsFunctions
             : RarePeripheralVisualCommands(type) is { } rarePeripheral ? rarePeripheral
             : InstrumentVisualCommands(type) is { } instrument ? instrument
             : MusicVisualCommands(type) is { } music ? music
-            : type == ControllerType.BuzzBuzzers ? BuzzVisualCommands()
-            : type == ControllerType.Seamic ? SeamicVisualCommands()
-            : type == ControllerType.VolumeController ? VolumeVisualCommands()
-            : type == ControllerType.Guitar ? GuitarVisualCommands()
-            : type == ControllerType.SerialWheel ? SerialWheelVisualCommands()
-            : type == ControllerType.UsbWheel ? WheelVisualCommands()
-            : type == ControllerType.ArcadeStick ? ArcadeVisualCommands(model)
-            : type == ControllerType.NetPlayController ? new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!)
+            : type == PeripheralCategory.BuzzBuzzers ? BuzzVisualCommands()
+            : type == PeripheralCategory.Seamic ? SeamicVisualCommands()
+            : type == PeripheralCategory.VolumeController ? VolumeVisualCommands()
+            : type == PeripheralCategory.Guitar ? GuitarVisualCommands()
+            : type == PeripheralCategory.SerialWheel ? SerialWheelVisualCommands()
+            : type == PeripheralCategory.UsbWheel ? WheelVisualCommands()
+            : type == PeripheralCategory.ArcadeStick ? ArcadeVisualCommands(model)
+            : type == PeripheralCategory.NetPlayController ? new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!)
             {
                 [EmulationControllerVisualControl.Guide] = "NetPlay.Vibration"
             }
-            : type == ControllerType.JogCon ? new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!)
+            : type == PeripheralCategory.JogCon ? new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!)
             {
                 [EmulationControllerVisualControl.AnalogMode] = "JogCon.Mode",
                 [EmulationControllerVisualControl.Steering] = "JogCon.Left"
             }
-            : type == ControllerType.DanceMat ? new Dictionary<EmulationControllerVisualControl, string>
+            : type == PeripheralCategory.DanceMat ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
                 [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
@@ -67,24 +67,24 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X,
                 [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
                 [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select
-            } : type is ControllerType.Mouse or ControllerType.SerialMouse ? new Dictionary<EmulationControllerVisualControl, string>
+            } : type is PeripheralCategory.Mouse or PeripheralCategory.SerialMouse ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.MouseLeftButton] = nameof(MouseAction.LeftButton),
                 [EmulationControllerVisualControl.MouseRightButton] = nameof(MouseAction.RightButton)
-            } : type == ControllerType.GunCon2 ? new Dictionary<EmulationControllerVisualControl, string>
+            } : type == PeripheralCategory.GunCon2 ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
                 [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.X,
                 [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.Y,
                 [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
                 [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select
-            } : type is ControllerType.GunCon or ControllerType.Justifier ? new Dictionary<EmulationControllerVisualControl, string>
+            } : type is PeripheralCategory.GunCon or PeripheralCategory.Justifier ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
                 [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
                 [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.X,
                 [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
-            } : type is ControllerType.NeGcon or ControllerType.NeGconRumble ? new Dictionary<EmulationControllerVisualControl, string>
+            } : type is PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
                 [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
@@ -98,8 +98,8 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R,
                 [EmulationControllerVisualControl.Steering] = InputSettingsFunctionsConstants.LeftStickLeft,
                 [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
-            } : type is not (ControllerType.Joystick or ControllerType.DualShock or ControllerType.ArcadeStick
-                or ControllerType.AnalogController or ControllerType.AnalogJoystick)
+            } : type is not (PeripheralCategory.Joystick or PeripheralCategory.DualShock or PeripheralCategory.ArcadeStick
+                or PeripheralCategory.AnalogController or PeripheralCategory.AnalogJoystick)
             ? null : model.Id == ModelConstants.PocketStation ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -170,8 +170,8 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
         };
 
-    private static string ControllerResourceKey(ControllerType type, Model model) =>
-        type == ControllerType.Joystick ? model.Id switch
+    private static string ControllerResourceKey(PeripheralCategory type, Model model) =>
+        type == PeripheralCategory.Joystick ? model.Id switch
         {
             ModelConstants.PlayStation => InputSettingsFunctionsConstants.ResourcePlayStationController,
             ModelConstants.PlayStation2 => InputSettingsFunctionsConstants.ResourceDualShock2,
@@ -183,20 +183,20 @@ internal static partial class InputSettingsFunctions
             _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
         } : type switch
     {
-        ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
-        ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        ControllerType.DanceMat => "Emulation.Sony.Controller.DanceMat",
-        ControllerType.DualShock => InputSettingsFunctionsConstants.ResourceDualShock,
-        ControllerType.AnalogController => InputSettingsFunctionsConstants.ResourceDualAnalog,
-        ControllerType.AnalogJoystick => InputSettingsFunctionsConstants.ResourceAnalogJoystick,
-        ControllerType.GunCon => InputSettingsFunctionsConstants.ResourceGunCon,
-        ControllerType.GunCon2 => InputSettingsFunctionsConstants.ResourceGunCon2,
-        ControllerType.Justifier => InputSettingsFunctionsConstants.ResourceJustifier,
-        ControllerType.Mouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
-        ControllerType.Keyboard => InputSettingsFunctionsConstants.ResourceControllerKeyboard,
-        ControllerType.NeGcon or ControllerType.NeGconRumble or ControllerType.KeyboardAndMouse
+        PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
+        PeripheralCategory.DanceMat => "Emulation.Sony.Controller.DanceMat",
+        PeripheralCategory.DualShock => InputSettingsFunctionsConstants.ResourceDualShock,
+        PeripheralCategory.AnalogController => InputSettingsFunctionsConstants.ResourceDualAnalog,
+        PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceAnalogJoystick,
+        PeripheralCategory.GunCon => InputSettingsFunctionsConstants.ResourceGunCon,
+        PeripheralCategory.GunCon2 => InputSettingsFunctionsConstants.ResourceGunCon2,
+        PeripheralCategory.Justifier => InputSettingsFunctionsConstants.ResourceJustifier,
+        PeripheralCategory.Mouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
+        PeripheralCategory.Keyboard => InputSettingsFunctionsConstants.ResourceControllerKeyboard,
+        PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble or PeripheralCategory.KeyboardAndMouse
             => string.Empty,
-        ControllerType.SerialMouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
+        PeripheralCategory.SerialMouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
         _ => "Emulation.Sony.Controller." + type
     };
 }

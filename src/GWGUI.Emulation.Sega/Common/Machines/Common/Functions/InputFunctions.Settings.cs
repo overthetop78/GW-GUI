@@ -13,7 +13,7 @@ internal static partial class InputSettingsFunctions
         var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = ControllerCatalog.Normalize(model, current?.Type ?? ControllerType.Automatic);
+            var type = ControllerCatalog.Normalize(model, current?.Type ?? PeripheralCategory.Automatic);
             var visualId = NormalizeVisualId(type, current?.VisualId);
             return new EmulationControllerPort(index + 1,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
@@ -32,7 +32,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - 1,
-            ControllerCatalog.Normalize(model, Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None),
+            ControllerCatalog.Normalize(model, Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None),
             port.PhysicalDeviceId,
             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId)).ToArray();
@@ -56,50 +56,50 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type)
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type)
     {
         var definitions = DigitalControllerDefinitions(type);
-        if (type is ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer)
-            definitions = DigitalControllerDefinitions(ControllerType.SegaSaturnController)
+        if (type is PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaSaturnArcadeRacer)
+            definitions = DigitalControllerDefinitions(PeripheralCategory.SegaSaturnController)
                 .Where(item => item.Id is not EmulationControllerCommandIds.Up and not EmulationControllerCommandIds.Down
                     and not EmulationControllerCommandIds.Left and not EmulationControllerCommandIds.Right).ToArray();
-        if (type == ControllerType.SegaDreamcastFishingController)
-            definitions = DigitalControllerDefinitions(ControllerType.SegaDreamcastController)
+        if (type == PeripheralCategory.SegaDreamcastFishingController)
+            definitions = DigitalControllerDefinitions(PeripheralCategory.SegaDreamcastController)
                 .Where(item => item.Id is not EmulationControllerCommandIds.Up and not EmulationControllerCommandIds.Down
                     and not EmulationControllerCommandIds.Left and not EmulationControllerCommandIds.Right).ToArray();
-        if (type is not ControllerType.SegaSaturnThreeDControlPad and not ControllerType.SegaDreamcastController and not ControllerType.SegaPaddleControl
-            and not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaSaturnArcadeRacer and not ControllerType.SegaXe1Ap and not ControllerType.SegaSportsPad
-            and not ControllerType.SegaDreamcastFishingController and not ControllerType.SegaDreamcastMaracas)
+        if (type is not PeripheralCategory.SegaSaturnThreeDControlPad and not PeripheralCategory.SegaDreamcastController and not PeripheralCategory.SegaPaddleControl
+            and not PeripheralCategory.SegaSaturnMissionStick and not PeripheralCategory.SegaSaturnArcadeRacer and not PeripheralCategory.SegaXe1Ap and not PeripheralCategory.SegaSportsPad
+            and not PeripheralCategory.SegaDreamcastFishingController and not PeripheralCategory.SegaDreamcastMaracas)
             return definitions;
         var horizontal = new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickLeft, string.Empty, string.Empty, "X−") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickRight },
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickRight, string.Empty, string.Empty, "X+") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickLeft }
         };
-        if (type is ControllerType.SegaPaddleControl or ControllerType.SegaSaturnArcadeRacer) return definitions.Concat(horizontal).ToArray();
+        if (type is PeripheralCategory.SegaPaddleControl or PeripheralCategory.SegaSaturnArcadeRacer) return definitions.Concat(horizontal).ToArray();
         var axes = definitions.Concat(horizontal).Concat(new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickUp, string.Empty, string.Empty, "Y−") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickDown },
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickDown, string.Empty, string.Empty, "Y+") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickUp }
         }).ToArray();
-        if (type is not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaXe1Ap
-            and not ControllerType.SegaDreamcastFishingController and not ControllerType.SegaDreamcastMaracas) return axes;
+        if (type is not PeripheralCategory.SegaSaturnMissionStick and not PeripheralCategory.SegaXe1Ap
+            and not PeripheralCategory.SegaDreamcastFishingController and not PeripheralCategory.SegaDreamcastMaracas) return axes;
         return axes.Concat(new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickUp, string.Empty, string.Empty, "RY−") { OppositeDirectionId = EmulationControllerCommandIds.RightStickDown },
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickDown, string.Empty, string.Empty, "RY+") { OppositeDirectionId = EmulationControllerCommandIds.RightStickUp }
-        }).Concat(type is ControllerType.SegaXe1Ap or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas ? new[]
+        }).Concat(type is PeripheralCategory.SegaXe1Ap or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas ? new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickLeft, string.Empty, string.Empty, "RX−") { OppositeDirectionId = EmulationControllerCommandIds.RightStickRight },
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickRight, string.Empty, string.Empty, "RX+") { OppositeDirectionId = EmulationControllerCommandIds.RightStickLeft }
         } : Array.Empty<InputBindingDefinition>()).ToArray();
     }
 
-    private static IReadOnlyList<InputBindingDefinition> DigitalControllerDefinitions(ControllerType type) =>
+    private static IReadOnlyList<InputBindingDefinition> DigitalControllerDefinitions(PeripheralCategory type) =>
         type switch
         {
-            ControllerType.None => [],
-            ControllerType.SegaMasterSystemController or ControllerType.SegaControlStick =>
+            PeripheralCategory.None => [],
+            PeripheralCategory.SegaMasterSystemController or PeripheralCategory.SegaControlStick =>
             [
                 Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
                 Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
@@ -108,7 +108,7 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ButtonOne, string.Empty),
                 Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ButtonTwo, string.Empty)
             ],
-            ControllerType.SegaGameGearController =>
+            PeripheralCategory.SegaGameGearController =>
             [
                 Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
                 Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
@@ -118,10 +118,10 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ButtonTwo, string.Empty),
                 Definition(InputSettingsFunctionsConstants.Start, InputSettingsFunctionsConstants.ButtonStart, string.Empty)
             ],
-            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
-                or ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton =>
-                MegaDriveDefinitions(type is ControllerType.SegaMegaDriveSixButton or ControllerType.SegaArcadePowerStickSixButton),
-            ControllerType.SegaXe1Ap =>
+            PeripheralCategory.SegaMegaDriveThreeButton or PeripheralCategory.SegaMegaDriveSixButton
+                or PeripheralCategory.SegaArcadePowerStick or PeripheralCategory.SegaArcadePowerStickSixButton =>
+                MegaDriveDefinitions(type is PeripheralCategory.SegaMegaDriveSixButton or PeripheralCategory.SegaArcadePowerStickSixButton),
+            PeripheralCategory.SegaXe1Ap =>
             [
                 Definition(EmulationControllerCommandIds.R, string.Empty, string.Empty, "A"),
                 Definition(EmulationControllerCommandIds.R2, string.Empty, string.Empty, "B"),
@@ -132,8 +132,8 @@ internal static partial class InputSettingsFunctions
                 Definition(EmulationControllerCommandIds.Select, string.Empty, string.Empty, "SELECT"),
                 Definition(EmulationControllerCommandIds.Start, string.Empty, string.Empty, "START")
             ],
-            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad
-                or ControllerType.SegaSaturnVirtuaStick =>
+            PeripheralCategory.SegaSaturnController or PeripheralCategory.SegaSaturnThreeDControlPad
+                or PeripheralCategory.SegaSaturnVirtuaStick =>
             [
                 Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
                 Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
@@ -149,7 +149,7 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.L2, InputSettingsFunctionsConstants.TriggerLeft, string.Empty),
                 Definition(InputSettingsFunctionsConstants.R2, InputSettingsFunctionsConstants.TriggerRight, string.Empty)
             ],
-            ControllerType.SegaDreamcastMaracas =>
+            PeripheralCategory.SegaDreamcastMaracas =>
             [
                 Definition(EmulationControllerCommandIds.B, string.Empty, string.Empty, "A"),
                 Definition(EmulationControllerCommandIds.A, string.Empty, string.Empty, "B"),
@@ -158,7 +158,7 @@ internal static partial class InputSettingsFunctions
                 Definition(EmulationControllerCommandIds.R, string.Empty, string.Empty, "Z"),
                 Definition(EmulationControllerCommandIds.Start, string.Empty, string.Empty, "START")
             ],
-            ControllerType.SegaDreamcastController =>
+            PeripheralCategory.SegaDreamcastController =>
             [
                 Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
                 Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
@@ -208,25 +208,25 @@ internal static partial class InputSettingsFunctions
 
     private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey, invariant));
 
-    private static EmulationControllerChoice Choice(ControllerType type) => new(
+    private static EmulationControllerChoice Choice(PeripheralCategory type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
         CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
         VisualCommandIds: VisualCommandIds(type))
     {
         Category = type switch
         {
-            ControllerType.None => EmulationControllerCategory.None,
-            ControllerType.Automatic => EmulationControllerCategory.Unspecified,
-            ControllerType.SegaSg1000Joystick or ControllerType.SegaControlStick or ControllerType.SegaArcadePowerStick
-                or ControllerType.SegaArcadePowerStickSixButton or ControllerType.SegaSaturnTwinStick or ControllerType.SegaSaturnVirtuaStick
-                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick or ControllerType.SegaPaddleControl => EmulationControllerCategory.Joystick,
-            ControllerType.SegaXe1Ap or ControllerType.SegaSaturnMissionStick => EmulationControllerCategory.FlightSimulation,
-            ControllerType.SegaHandleController or ControllerType.SegaSaturnArcadeRacer => EmulationControllerCategory.RacingSimulation,
-            ControllerType.SegaLightPhaser or ControllerType.SegaMegaMouse or ControllerType.SegaMenacer or ControllerType.SegaSportsPad
-                or ControllerType.SegaSaturnVirtuaGun or ControllerType.SegaSaturnShuttleMouse or ControllerType.SegaDreamcastMouse
-                or ControllerType.SegaDreamcastLightGun => EmulationControllerCategory.PointingDevice,
-            ControllerType.SegaSc3000Keyboard or ControllerType.SegaDreamcastKeyboard or ControllerType.SegaActivator
-                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas => EmulationControllerCategory.OtherSimulation,
+            PeripheralCategory.None => EmulationControllerCategory.None,
+            PeripheralCategory.Automatic => EmulationControllerCategory.Unspecified,
+            PeripheralCategory.SegaSg1000Joystick or PeripheralCategory.SegaControlStick or PeripheralCategory.SegaArcadePowerStick
+                or PeripheralCategory.SegaArcadePowerStickSixButton or PeripheralCategory.SegaSaturnTwinStick or PeripheralCategory.SegaSaturnVirtuaStick
+                or PeripheralCategory.SegaDreamcastArcadeStick or PeripheralCategory.SegaDreamcastTwinStick or PeripheralCategory.SegaPaddleControl => EmulationControllerCategory.Joystick,
+            PeripheralCategory.SegaXe1Ap or PeripheralCategory.SegaSaturnMissionStick => EmulationControllerCategory.FlightSimulation,
+            PeripheralCategory.SegaHandleController or PeripheralCategory.SegaSaturnArcadeRacer => EmulationControllerCategory.RacingSimulation,
+            PeripheralCategory.SegaLightPhaser or PeripheralCategory.SegaMegaMouse or PeripheralCategory.SegaMenacer or PeripheralCategory.SegaSportsPad
+                or PeripheralCategory.SegaSaturnVirtuaGun or PeripheralCategory.SegaSaturnShuttleMouse or PeripheralCategory.SegaDreamcastMouse
+                or PeripheralCategory.SegaDreamcastLightGun => EmulationControllerCategory.PointingDevice,
+            PeripheralCategory.SegaSc3000Keyboard or PeripheralCategory.SegaDreamcastKeyboard or PeripheralCategory.SegaActivator
+                or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas => EmulationControllerCategory.OtherSimulation,
             _ => EmulationControllerCategory.Gamepad
         }
     };

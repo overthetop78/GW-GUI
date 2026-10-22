@@ -197,7 +197,7 @@ internal static class CoreSettingsFunctions
                 EnabledValue: enabled?.Value ?? EmulationSettingConstants.Enabled,
                 DisabledValue: disabled?.Value ?? EmulationSettingConstants.Disabled,
                 AppliesToControllerIds: configuration.Model == ModelConstants.PlayStation2 && option.Key.Contains("crosshair", StringComparison.OrdinalIgnoreCase)
-                    ? [ControllerType.GunCon2.ToString()] : ControllerOptionFunctions.Types(option),
+                    ? [PeripheralCategory.GunCon2.ToString()] : ControllerOptionFunctions.Types(option),
                 ControllerPortNumber: ControllerOptionFunctions.PortNumber(option),
                 RefreshSettingsOnChange: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase)
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.PspModelKey || option.GraphicsApiValues is not null,

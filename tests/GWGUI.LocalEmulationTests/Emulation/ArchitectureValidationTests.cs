@@ -436,17 +436,27 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void EveryModulePlacesItsCoreContractInCommon()
+    public void EveryModulePlacesItsCoreAndPeripheralContractsInCommon()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
             .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
         Assert.Equal(24, modules.Length);
+        var peripheralCategories = 0;
         foreach (var assembly in modules)
         {
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.ControllerType"));
+            var peripheral = assembly.GetType(root + ".Common.Machines.Common.Enums.PeripheralCategory");
+            if (peripheral is not null)
+            {
+                Assert.True(peripheral.IsEnum);
+                Assert.True(peripheral.IsPublic);
+                Assert.NotEmpty(Enum.GetNames(peripheral));
+                peripheralCategories++;
+            }
             var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
             Assert.True(core.IsInterface);
             Assert.False(core.IsVisible);
@@ -457,6 +467,7 @@ public sealed class ArchitectureValidationTests
             foreach (var implementation in implementations)
                 Assert.All(implementation.GetInterfaceMap(core).TargetMethods, method => Assert.False(method.IsAbstract));
         }
+        Assert.Equal(23, peripheralCategories);
     }
 
     [Theory]

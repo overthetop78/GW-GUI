@@ -20,20 +20,20 @@ internal static class ControllerConfigurationFunctions
         ? Controllers.UsbPortPrefix + (port + 1).ToString(CultureInfo.InvariantCulture)
         : null;
 
-    internal static ControllerType UsbType(MachineConfiguration configuration, int port)
+    internal static PeripheralCategory UsbType(MachineConfiguration configuration, int port)
     {
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerType.Automatic;
-        if (type != ControllerType.Automatic) return type;
+        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
+        if (type != PeripheralCategory.Automatic) return type;
         var native = configuration.Options?.GetValueOrDefault(OptionConstants.LightgunKey);
         var enabled = native == OptionConstants.LightgunBoth || native == (port == Controllers.FirstUsbPort ? OptionConstants.LightgunUsb1 : OptionConstants.LightgunUsb2);
-        return enabled ? ControllerType.GunCon2 : ControllerType.None;
+        return enabled ? PeripheralCategory.GunCon2 : PeripheralCategory.None;
     }
 
     internal static MachineConfiguration Configure(MachineConfiguration configuration)
     {
-        var first = UsbType(configuration, Controllers.FirstUsbPort) == ControllerType.GunCon2;
-        var second = UsbType(configuration, Controllers.SecondUsbPort) == ControllerType.GunCon2;
+        var first = UsbType(configuration, Controllers.FirstUsbPort) == PeripheralCategory.GunCon2;
+        var second = UsbType(configuration, Controllers.SecondUsbPort) == PeripheralCategory.GunCon2;
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
             [OptionConstants.LightgunKey] = (first, second) switch

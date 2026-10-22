@@ -34,11 +34,11 @@ internal static partial class InputSettingsFunctions
         new("Fishing.Cast", "Emulation.Sony.Input.Fishing.Cast", string.Empty)
     ];
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? RemoteAndFishingVisualCommands(ControllerType type, Model model)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? RemoteAndFishingVisualCommands(PeripheralCategory type, Model model)
     {
-        if (type is not (ControllerType.DvdRemote or ControllerType.FishingController)) return null;
-        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!);
-        if (type == ControllerType.FishingController)
+        if (type is not (PeripheralCategory.DvdRemote or PeripheralCategory.FishingController)) return null;
+        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!);
+        if (type == PeripheralCategory.FishingController)
         {
             commands[EmulationControllerVisualControl.LeftStick] = "Fishing.Center";
             commands[EmulationControllerVisualControl.RotaryRight] = "Fishing.Reel";

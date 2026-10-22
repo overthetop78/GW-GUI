@@ -24,28 +24,28 @@ internal static class ControllerFunctions
     internal static IEmulationInputFrames CreateInputFrames(bool accumulateRelativePointer = true) => EmulationSdk.InputProcessing.CreateInputFrames(accumulateRelativePointer);
 
     internal static int PortCount(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ModelCatalog.Get(configuration.Model).ControllerPortCount;
-    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration) => WithCompatibleDevices(configuration,
+    internal static IReadOnlyList<PeripheralCategory> Supported(MachineConfiguration configuration) => WithCompatibleDevices(configuration,
         new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetPeripherals(configuration) : []);
-    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration, int port) => WithCompatibleDevices(configuration,
+    internal static IReadOnlyList<PeripheralCategory> Supported(MachineConfiguration configuration, int port) => WithCompatibleDevices(configuration,
         new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetPeripherals(configuration, port) : []);
 
-    private static IReadOnlyList<ControllerType> WithCompatibleDevices(MachineConfiguration configuration, IReadOnlyList<ControllerType> types) =>
-        configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 && types.Contains(ControllerType.Joystick)
-            ? types.Concat(new[] { ControllerType.DanceMat, ControllerType.ArcadeStick }).Distinct().ToArray() : types;
+    private static IReadOnlyList<PeripheralCategory> WithCompatibleDevices(MachineConfiguration configuration, IReadOnlyList<PeripheralCategory> types) =>
+        configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 && types.Contains(PeripheralCategory.Joystick)
+            ? types.Concat(new[] { PeripheralCategory.DanceMat, PeripheralCategory.ArcadeStick }).Distinct().ToArray() : types;
 
-    internal static ControllerType Selected(MachineConfiguration configuration, int port)
+    internal static PeripheralCategory Selected(MachineConfiguration configuration, int port)
     {
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerType.Automatic;
-        return type == ControllerType.Automatic ? Supported(configuration, port).FirstOrDefault() : type;
+        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
+        return type == PeripheralCategory.Automatic ? Supported(configuration, port).FirstOrDefault() : type;
     }
 
-    internal static ControllerType Resolve(MachineConfiguration configuration, int port)
+    internal static PeripheralCategory Resolve(MachineConfiguration configuration, int port)
     {
         ValidatePort(configuration, port);
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerType.Automatic;
-        if (type == ControllerType.Automatic || type == ControllerType.None && !Supported(configuration, port).Contains(ControllerType.None)) type = Supported(configuration, port).FirstOrDefault();
+        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
+        if (type == PeripheralCategory.Automatic || type == PeripheralCategory.None && !Supported(configuration, port).Contains(PeripheralCategory.None)) type = Supported(configuration, port).FirstOrDefault();
         Validate(configuration, port, type);
         return type;
     }
@@ -57,14 +57,14 @@ internal static class ControllerFunctions
             throw new ArgumentOutOfRangeException(nameof(port), port, null);
     }
 
-    internal static void Validate(MachineConfiguration configuration, int port, ControllerType type)
+    internal static void Validate(MachineConfiguration configuration, int port, PeripheralCategory type)
     {
         ValidatePort(configuration, port);
         if (!Supported(configuration, port).Contains(type))
             throw new ArgumentOutOfRangeException(nameof(type), type, null);
     }
 
-    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration, int port, ControllerType type)
+    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration, int port, PeripheralCategory type)
     {
         Validate(configuration, port, type);
         var input = configuration.Input ?? new InputConfiguration();
@@ -79,19 +79,19 @@ internal static class ControllerFunctions
         };
     }
 
-    internal static ControllerType FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration)
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration)
     {
         var types = Supported(configuration);
         var type = peripheral switch
         {
-            EmulationPeripheralCategory.None => ControllerType.None,
+            EmulationPeripheralCategory.None => PeripheralCategory.None,
             EmulationPeripheralCategory.Automatic => ControllerCatalog.Default(configuration),
-            EmulationPeripheralCategory.RetroPad or EmulationPeripheralCategory.Joystick => ControllerType.Joystick,
-            EmulationPeripheralCategory.AnalogJoystick => types.Contains(ControllerType.AnalogJoystick) ? ControllerType.AnalogJoystick : ControllerType.Joystick,
-            EmulationPeripheralCategory.Keyboard => ControllerType.Keyboard,
-            EmulationPeripheralCategory.Mouse => ControllerType.Mouse,
-            EmulationPeripheralCategory.LightGun => types.Contains(ControllerType.GunCon2) ? ControllerType.GunCon2 : types.Contains(ControllerType.GunCon) ? ControllerType.GunCon : ControllerType.Justifier,
-            EmulationPeripheralCategory.DrivingController => ControllerType.NeGcon,
+            EmulationPeripheralCategory.RetroPad or EmulationPeripheralCategory.Joystick => PeripheralCategory.Joystick,
+            EmulationPeripheralCategory.AnalogJoystick => types.Contains(PeripheralCategory.AnalogJoystick) ? PeripheralCategory.AnalogJoystick : PeripheralCategory.Joystick,
+            EmulationPeripheralCategory.Keyboard => PeripheralCategory.Keyboard,
+            EmulationPeripheralCategory.Mouse => PeripheralCategory.Mouse,
+            EmulationPeripheralCategory.LightGun => types.Contains(PeripheralCategory.GunCon2) ? PeripheralCategory.GunCon2 : types.Contains(PeripheralCategory.GunCon) ? PeripheralCategory.GunCon : PeripheralCategory.Justifier,
+            EmulationPeripheralCategory.DrivingController => PeripheralCategory.NeGcon,
             _ => throw new ArgumentOutOfRangeException(nameof(peripheral), peripheral, null)
         };
         if (!types.Contains(type))

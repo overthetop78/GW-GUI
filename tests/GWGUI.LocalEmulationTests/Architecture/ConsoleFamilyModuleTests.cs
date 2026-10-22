@@ -992,11 +992,11 @@ public sealed class ConsoleFamilyModuleTests
     {
         var model = ModelCatalog.Get("MegaDrive");
         var types = ControllerCatalog.Types(model);
-        Assert.Contains(ControllerType.SegaMegaDriveThreeButton, types);
-        Assert.Contains(ControllerType.SegaMegaDriveSixButton, types);
-        Assert.Contains(ControllerType.SegaMegaMouse, types);
-        Assert.Contains(ControllerType.SegaMenacer, types);
-        Assert.Contains(ControllerType.SegaActivator, types);
+        Assert.Contains(PeripheralCategory.SegaMegaDriveThreeButton, types);
+        Assert.Contains(PeripheralCategory.SegaMegaDriveSixButton, types);
+        Assert.Contains(PeripheralCategory.SegaMegaMouse, types);
+        Assert.Contains(PeripheralCategory.SegaMenacer, types);
+        Assert.Contains(PeripheralCategory.SegaActivator, types);
     }
 
     [Fact]
@@ -1252,31 +1252,31 @@ public sealed class ConsoleFamilyModuleTests
             var megaDrive = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive"));
             var configured = megaDrive with
             {
-                Input = new InputConfiguration(ControllerBindings: [new ControllerBinding(0, ControllerType.SegaMegaDriveThreeButton, VisualId: EmulationControllerVisualIds.MegaDrive6)])
+                Input = new InputConfiguration(ControllerBindings: [new ControllerBinding(0, PeripheralCategory.SegaMegaDriveThreeButton, VisualId: EmulationControllerVisualIds.MegaDrive6)])
             };
             var described = module.DescribeInputSettings(configured);
             Assert.Equal(2, described.ControllerPorts.Count);
             var port = described.ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.MegaDrive3, port.VisualId);
-            Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.SegaMegaDriveThreeButton.ToString());
-            Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.SegaMegaDriveSixButton.ToString());
+            Assert.Contains(port.ControllerChoices, choice => choice.Id == PeripheralCategory.SegaMegaDriveThreeButton.ToString());
+            Assert.Contains(port.ControllerChoices, choice => choice.Id == PeripheralCategory.SegaMegaDriveSixButton.ToString());
 
             var masterSystem = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MasterSystem"));
             var masterPorts = module.DescribeInputSettings(masterSystem).ControllerPorts;
             Assert.Equal(2, masterPorts.Count);
             var masterPort = masterPorts[0];
-            Assert.Contains(masterPort.ControllerChoices, choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
-            Assert.Equal(EmulationControllerVisualIds.MasterSystem, masterPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaMasterSystemController.ToString()).DefaultVisualId);
+            Assert.Contains(masterPort.ControllerChoices, choice => choice.Id == PeripheralCategory.SegaLightPhaser.ToString());
+            Assert.Equal(EmulationControllerVisualIds.MasterSystem, masterPort.ControllerChoices.Single(choice => choice.Id == PeripheralCategory.SegaMasterSystemController.ToString()).DefaultVisualId);
 
             var saturn = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration(ModelConstants.Saturn));
             var saturnPort = module.DescribeInputSettings(saturn).ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.VisualId);
-            Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaSaturnController.ToString()).DefaultVisualId);
+            Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.ControllerChoices.Single(choice => choice.Id == PeripheralCategory.SegaSaturnController.ToString()).DefaultVisualId);
 
             var dreamcast = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration(ModelConstants.Dreamcast));
             var dreamcastPort = module.DescribeInputSettings(dreamcast).ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.VisualId);
-            Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaDreamcastController.ToString()).DefaultVisualId);
+            Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.ControllerChoices.Single(choice => choice.Id == PeripheralCategory.SegaDreamcastController.ToString()).DefaultVisualId);
         }
         finally
         {
@@ -1322,7 +1322,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 Input = new InputConfiguration(ControllerBindings:
                 [
-                    new ControllerBinding(0, ControllerType.SegaMegaDriveSixButton,
+                    new ControllerBinding(0, PeripheralCategory.SegaMegaDriveSixButton,
                         DeviceId: "gameinput:pad-0",
                         ButtonMappings: new Dictionary<string, string>
                         {
@@ -1336,7 +1336,7 @@ public sealed class ConsoleFamilyModuleTests
             var described = module.DescribeInputSettings(original);
             var applied = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(original, described));
             var appliedBinding = Assert.Single(applied.Input!.ControllerBindings!, binding => binding.Port == 0);
-            Assert.Equal(ControllerType.SegaMegaDriveSixButton, appliedBinding.Type);
+            Assert.Equal(PeripheralCategory.SegaMegaDriveSixButton, appliedBinding.Type);
             Assert.Equal("gameinput:pad-0", appliedBinding.DeviceId);
             Assert.Equal(EmulationControllerVisualIds.MegaDrive6, appliedBinding.VisualId);
             Assert.Equal(original.Input!.ControllerBindings![0].ButtonMappings, appliedBinding.ButtonMappings);
@@ -1370,9 +1370,9 @@ public sealed class ConsoleFamilyModuleTests
         {
             [new ControllerDevice("Joypad", 1), new ControllerDevice("Mouse", 2)]
         };
-        Assert.Equal(1u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaMegaDriveThreeButton));
-        Assert.Equal(2u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaMegaMouse));
-        Assert.Equal(0u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaLightPhaser));
+        Assert.Equal(1u, ExternalCore.ResolveControllerDevice(devices[0], PeripheralCategory.SegaMegaDriveThreeButton));
+        Assert.Equal(2u, ExternalCore.ResolveControllerDevice(devices[0], PeripheralCategory.SegaMegaMouse));
+        Assert.Equal(0u, ExternalCore.ResolveControllerDevice(devices[0], PeripheralCategory.SegaLightPhaser));
 
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-lightgun-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);

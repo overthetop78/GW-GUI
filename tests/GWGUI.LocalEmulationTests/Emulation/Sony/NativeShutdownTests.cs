@@ -140,7 +140,7 @@ public sealed class NativeShutdownTests
         public void HardReset() => throw new NotSupportedException();
         public void SoftReset() => throw new NotSupportedException();
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void SetControllerPortDevice(int port, ControllerType type) { }
+        public void SetControllerPortDevice(int port, PeripheralCategory type) { }
         public void InsertMedia(string path) => throw new NotSupportedException();
         public void EjectMedia() => throw new NotSupportedException();
         public void SelectDisk(int index) => throw new NotSupportedException();

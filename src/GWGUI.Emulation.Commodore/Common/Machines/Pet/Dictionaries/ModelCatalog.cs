@@ -11,7 +11,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet3008 { get; } = new(
         ModelConstants.Pet3008, ModelConstants.Pet3008DisplayName,
@@ -19,7 +19,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet3016 { get; } = new(
         ModelConstants.Pet3016, ModelConstants.Pet3016DisplayName,
@@ -27,7 +27,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet3032 { get; } = new(
         ModelConstants.Pet3032, ModelConstants.Pet3032DisplayName,
@@ -35,7 +35,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet3032B { get; } = new(
         ModelConstants.Pet3032B, ModelConstants.Pet3032BDisplayName,
@@ -43,7 +43,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet4016 { get; } = new(
         ModelConstants.Pet4016, ModelConstants.Pet4016DisplayName,
@@ -51,7 +51,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet4032 { get; } = new(
         ModelConstants.Pet4032, ModelConstants.Pet4032DisplayName,
@@ -59,7 +59,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet4032B { get; } = new(
         ModelConstants.Pet4032B, ModelConstants.Pet4032BDisplayName,
@@ -67,7 +67,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet8032 { get; } = new(
         ModelConstants.Pet8032, ModelConstants.Pet8032DisplayName,
@@ -75,7 +75,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet8096 { get; } = new(
         ModelConstants.Pet8096, ModelConstants.Pet8096DisplayName,
@@ -83,7 +83,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model Pet8296 { get; } = new(
         ModelConstants.Pet8296, ModelConstants.Pet8296DisplayName,
@@ -91,7 +91,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static Model SuperPet { get; } = new(
         ModelConstants.SuperPet, ModelConstants.SuperPetDisplayName,
@@ -99,7 +99,7 @@ internal static class ModelCatalog
         FloppyDriveCapacity: DriveCapacity.DualDrives, HardDriveCapacity: DriveCapacity.None,
         MouseButtonCount: ModelConstants.MouseButtonCount, ControllerPortCount: ModelConstants.JoystickPortCount,
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
-        ControllerTypes: [ControllerType.None]);
+        ControllerTypes: [PeripheralCategory.None]);
 
     internal static IReadOnlyList<Model> All { get; } =
     [

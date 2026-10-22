@@ -19,9 +19,9 @@ internal sealed class PokketStationMachineFactory : CoreMachineFactory
         GWGUI.Emulation.Sony.Common.Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions,
         RequiresMachineRecreation: true, DisplayLabel: LinkConstants.SecondaryCardLabel)];
 
-    public override IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port)
+    public override IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, PeripheralCategory type, int port)
     {
-        if (type == ControllerType.None) return [];
+        if (type == PeripheralCategory.None) return [];
         return LinkFunctions.IsLinked(configuration) && port == 0
             ? [.. PocketInputs.Definitions,
                 new(EmulationControllerCommandIds.L, LinkConstants.SelectUnitALabel, string.Empty),

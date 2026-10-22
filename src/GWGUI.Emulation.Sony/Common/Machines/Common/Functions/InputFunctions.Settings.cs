@@ -37,7 +37,7 @@ internal static partial class InputSettingsFunctions
         var controllers = settings.ControllerPorts.Where(port => port.Number <= CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var index = port.Number - ControllerPortConstants.OneControllerPort;
-            if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type))
+            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type))
                 throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
             var usb = ControllerCatalog.IsUsbPort(configuration, index);
             if (!ControllerCatalog.Available(configuration, index, usb).Contains(type))
@@ -60,7 +60,7 @@ internal static partial class InputSettingsFunctions
                 UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"
                     ? settings.ControllerPorts.Where(port => port.IsUsb).Select(port =>
                     {
-                        if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, out var type)
+                        if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var type)
                             || !ControllerCatalog.Available(configuration, port.Number - 1, true).Contains(type))
                             throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
                         return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
@@ -77,9 +77,9 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model) => type is ControllerType.None ? []
-        : type == ControllerType.Mouse ? MouseDefinitions()
-        : type == ControllerType.Keyboard ? []
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type, Model model) => type is PeripheralCategory.None ? []
+        : type == PeripheralCategory.Mouse ? MouseDefinitions()
+        : type == PeripheralCategory.Keyboard ? []
         : model.Id == ModelConstants.PocketStation ? Machines.PocketStation.Functions.ControllerFunctions.Definitions
         : model.Id == ModelConstants.Psp ? PspControllerDefinitions()
         : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
@@ -94,7 +94,7 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model, MachineConfiguration configuration, int port) =>
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type, Model model, MachineConfiguration configuration, int port) =>
         (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetControllerBindingDefinitions(configuration, type, port) ?? ControllerDefinitions(type, model);
 
     private static IReadOnlyList<InputBindingDefinition> PspControllerDefinitions() =>
@@ -117,26 +117,26 @@ internal static partial class InputSettingsFunctions
         Definition(InputSettingsFunctionsConstants.PspStickRight, InputSettingsFunctionsConstants.PspStickRightLabel, string.Empty)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(ControllerType type, Model model)
+    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(PeripheralCategory type, Model model)
     {
         var buttons = PlayStationButtonDefinitions();
-        if (type == ControllerType.DanceMat)
+        if (type == PeripheralCategory.DanceMat)
             return buttons.Where(definition => definition.Id is EmulationControllerCommandIds.Up or EmulationControllerCommandIds.Down
                 or EmulationControllerCommandIds.Left or EmulationControllerCommandIds.Right
                 or EmulationControllerCommandIds.Start or EmulationControllerCommandIds.Select
                 or EmulationControllerCommandIds.B or EmulationControllerCommandIds.A
                 or EmulationControllerCommandIds.Y or EmulationControllerCommandIds.X).ToArray();
-        if (type == ControllerType.ArcadeStick)
+        if (type == PeripheralCategory.ArcadeStick)
             return buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
-        if (type is ControllerType.GunCon or ControllerType.Justifier)
+        if (type is PeripheralCategory.GunCon or PeripheralCategory.Justifier)
             return
             [
                 Definition(EmulationControllerCommandIds.B, InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
                 Definition(EmulationControllerCommandIds.Reload, InputSettingsFunctionsConstants.ResourceControllerActionReload, string.Empty),
                 Definition(EmulationControllerCommandIds.A, EmulationControllerCommandIds.A, string.Empty),
-                type == ControllerType.Justifier ? Definition(EmulationControllerCommandIds.Start, InputSettingsFunctionsConstants.ControllerStart, string.Empty) : Definition(EmulationControllerCommandIds.X, EmulationControllerCommandIds.B, string.Empty)
+                type == PeripheralCategory.Justifier ? Definition(EmulationControllerCommandIds.Start, InputSettingsFunctionsConstants.ControllerStart, string.Empty) : Definition(EmulationControllerCommandIds.X, EmulationControllerCommandIds.B, string.Empty)
             ];
-        if (type is ControllerType.NeGcon or ControllerType.NeGconRumble)
+        if (type is PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble)
             return buttons.Where(definition => definition.Id is
                 EmulationControllerCommandIds.Up or EmulationControllerCommandIds.Down
                 or EmulationControllerCommandIds.Left or EmulationControllerCommandIds.Right
@@ -152,11 +152,11 @@ internal static partial class InputSettingsFunctions
                     Definition(InputSettingsFunctionsConstants.LeftStickLeft, InputSettingsFunctionsConstants.ResourceSteeringLeft, string.Empty),
                     Definition(InputSettingsFunctionsConstants.LeftStickRight, InputSettingsFunctionsConstants.ResourceSteeringRight, string.Empty)
                 }).ToArray();
-        if (model.Id == ModelConstants.PlayStation && type == ControllerType.Joystick)
+        if (model.Id == ModelConstants.PlayStation && type == PeripheralCategory.Joystick)
             return buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
-        if (type is ControllerType.AnalogController or ControllerType.AnalogJoystick)
+        if (type is PeripheralCategory.AnalogController or PeripheralCategory.AnalogJoystick)
             buttons = buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
-        var analogButtons = model.Id == ModelConstants.PlayStation && type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick ? new[] { Definition(InputSettingsFunctionsConstants.Analog, InputSettingsFunctionsConstants.Analog, string.Empty) } : [];
+        var analogButtons = model.Id == ModelConstants.PlayStation && type is PeripheralCategory.DualShock or PeripheralCategory.AnalogController or PeripheralCategory.AnalogJoystick ? new[] { Definition(InputSettingsFunctionsConstants.Analog, InputSettingsFunctionsConstants.Analog, string.Empty) } : [];
         return buttons.Concat(analogButtons).Concat(AnalogStickDefinitions()).ToArray();
     }
 
@@ -213,42 +213,42 @@ internal static partial class InputSettingsFunctions
             }
         };
 
-    private static EmulationControllerChoice Choice(ControllerType type, Model model, MachineConfiguration configuration, int port) => new(
-        type.ToString(), ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Mouse ? "Emulation.Sony.Controller.UsbMouse"
-            : ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Keyboard ? "Emulation.Sony.Controller.UsbKeyboard"
+    private static EmulationControllerChoice Choice(PeripheralCategory type, Model model, MachineConfiguration configuration, int port) => new(
+        type.ToString(), ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Mouse ? "Emulation.Sony.Controller.UsbMouse"
+            : ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Keyboard ? "Emulation.Sony.Controller.UsbKeyboard"
             : ControllerResourceKey(type, model),
         InvariantDisplayValue: type switch
         {
-            ControllerType.NeGcon => InputSettingsFunctionsConstants.NeGcon,
-            ControllerType.NeGconRumble => InputSettingsFunctionsConstants.NeGconRumble,
-            ControllerType.KeyboardAndMouse => InputSettingsFunctionsConstants.KeyboardAndMouseGlyphs,
+            PeripheralCategory.NeGcon => InputSettingsFunctionsConstants.NeGcon,
+            PeripheralCategory.NeGconRumble => InputSettingsFunctionsConstants.NeGconRumble,
+            PeripheralCategory.KeyboardAndMouse => InputSettingsFunctionsConstants.KeyboardAndMouseGlyphs,
             _ => null
         },
         BindingDefinitions: PortDefinitions(type, model, configuration, port),
         CompatibleVisualIds: ChoiceVisuals(type, model, configuration, port),
         DefaultVisualId: ChoiceVisuals(type, model, configuration, port)?.FirstOrDefault(),
-        VisualCommandIds: ControllerCatalog.IsUsbPort(configuration, port) && type is ControllerType.Keyboard or ControllerType.Mouse or ControllerType.NetPlayController ? null : VisualCommandIds(type, model),
+        VisualCommandIds: ControllerCatalog.IsUsbPort(configuration, port) && type is PeripheralCategory.Keyboard or PeripheralCategory.Mouse or PeripheralCategory.NetPlayController ? null : VisualCommandIds(type, model),
         VisualBindingDefinitions: PeripheralVisualDefinitions(type))
     {
         IsSupportedByEmulator = ControllerCatalog.IsSupported(configuration, type, port, ControllerCatalog.IsUsbPort(configuration, port)),
         VisualOutputDefinitions = VisualOutputs(configuration, type, model),
         Category = type switch
         {
-            ControllerType.None => EmulationControllerCategory.None,
-            ControllerType.Automatic => EmulationControllerCategory.Unspecified,
-            ControllerType.AnalogJoystick => EmulationControllerCategory.Joystick,
-            ControllerType.DanceMat => EmulationControllerCategory.DanceSimulation,
-            ControllerType.ArcadeStick => EmulationControllerCategory.Joystick,
-            ControllerType.NeGcon or ControllerType.NeGconRumble => EmulationControllerCategory.RacingSimulation,
-            ControllerType.GunCon or ControllerType.GunCon2 or ControllerType.Justifier or ControllerType.Mouse => EmulationControllerCategory.PointingDevice,
-            ControllerType.Keyboard or ControllerType.KeyboardAndMouse => EmulationControllerCategory.OtherSimulation,
+            PeripheralCategory.None => EmulationControllerCategory.None,
+            PeripheralCategory.Automatic => EmulationControllerCategory.Unspecified,
+            PeripheralCategory.AnalogJoystick => EmulationControllerCategory.Joystick,
+            PeripheralCategory.DanceMat => EmulationControllerCategory.DanceSimulation,
+            PeripheralCategory.ArcadeStick => EmulationControllerCategory.Joystick,
+            PeripheralCategory.NeGcon or PeripheralCategory.NeGconRumble => EmulationControllerCategory.RacingSimulation,
+            PeripheralCategory.GunCon or PeripheralCategory.GunCon2 or PeripheralCategory.Justifier or PeripheralCategory.Mouse => EmulationControllerCategory.PointingDevice,
+            PeripheralCategory.Keyboard or PeripheralCategory.KeyboardAndMouse => EmulationControllerCategory.OtherSimulation,
             _ => ControllerCatalog.Visuals(type, model.Id == ModelConstants.PlayStation2) is not null
                 ? EmulationControllerCategory.Unspecified : EmulationControllerCategory.Gamepad
         }
     };
 
-    private static IReadOnlyList<string>? ChoiceVisuals(ControllerType type, Model model, MachineConfiguration configuration, int port) =>
-        ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Keyboard ? [EmulationControllerVisualIds.SonyUsbKeyboard]
-        : ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Mouse ? [EmulationControllerVisualIds.SonyUsbMouse]
+    private static IReadOnlyList<string>? ChoiceVisuals(PeripheralCategory type, Model model, MachineConfiguration configuration, int port) =>
+        ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Keyboard ? [EmulationControllerVisualIds.SonyUsbKeyboard]
+        : ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Mouse ? [EmulationControllerVisualIds.SonyUsbMouse]
         : ControllerCatalog.Visuals(type, model.Id == ModelConstants.PlayStation2) ?? CompatibleVisualIds(type, model);
 }

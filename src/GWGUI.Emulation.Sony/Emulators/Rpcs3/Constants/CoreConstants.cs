@@ -19,10 +19,10 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation3 }),
         RequiresExternalFirmware: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None],
         StartupTimeout: TimeSpan.FromMinutes(FirmwareInstallationTimeoutMinutes),
         ShutdownTimeout: TimeSpan.FromMinutes(CacheShutdownTimeoutMinutes),
         PersistentDataDirectories: true,
         SupportsSavedStates: false,
-        FeedbackControllerTypes: [ControllerType.Joystick]);
+        FeedbackControllerTypes: [PeripheralCategory.Joystick]);
 }

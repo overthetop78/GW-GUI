@@ -37,8 +37,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     }
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
     public virtual IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => [];
-    public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
-        type == ControllerType.Keyboard ? ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
+    public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, PeripheralCategory type, int port) =>
+        type == PeripheralCategory.Keyboard ? ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
             .Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Sony.Keyboard.Key." + key, key.ToString())).ToArray() : null;
     public virtual IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
     {
@@ -57,13 +57,13 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public virtual AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
     public virtual MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         GraphicsSettingsFunctions.Configure(configuration with { GraphicsApi = graphicsApi }, CoreDefinition.Options);
-    public virtual IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
-    public virtual IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
-    public virtual IReadOnlyList<ControllerType> GetUsbPeripherals(MachineConfiguration configuration, int port) => [ControllerType.None];
+    public virtual IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
+    public virtual IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
+    public virtual IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port) => [PeripheralCategory.None];
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
-    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
+    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory type) =>
         CoreDefinition.FeedbackControllerTypes?.Contains(type) == true ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public virtual bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);

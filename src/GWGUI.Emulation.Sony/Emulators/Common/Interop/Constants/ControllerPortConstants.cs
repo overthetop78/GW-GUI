@@ -6,18 +6,18 @@ internal static class ControllerPortConstants
     internal const uint JoypadDevice = 1;
     internal const uint DeviceBaseMask = 0xff;
 
-    internal static IReadOnlyDictionary<ControllerType, IReadOnlyList<string>> NativeNames { get; } =
-        new Dictionary<ControllerType, IReadOnlyList<string>>
+    internal static IReadOnlyDictionary<PeripheralCategory, IReadOnlyList<string>> NativeNames { get; } =
+        new Dictionary<PeripheralCategory, IReadOnlyList<string>>
         {
-            [ControllerType.DualShock] = ["DualShock", "Analog Controller (DualShock)"],
-            [ControllerType.AnalogController] = ["Analog Controller"],
-            [ControllerType.AnalogJoystick] = ["Analog Joystick"],
-            [ControllerType.GunCon] = ["Guncon / G-Con 45", "Namco GunCon", "Guncon", "GunCon"],
-            [ControllerType.Justifier] = ["Justifier"],
-            [ControllerType.Mouse] = ["Mouse", "PlayStation Mouse", "USB Mouse"],
-            [ControllerType.Keyboard] = ["USB Keyboard"],
-            [ControllerType.KeyboardAndMouse] = ["USB Keyboard + Mouse"],
-            [ControllerType.NeGcon] = ["neGcon"],
-            [ControllerType.NeGconRumble] = ["neGcon Rumble"]
+            [PeripheralCategory.DualShock] = ["DualShock", "Analog Controller (DualShock)"],
+            [PeripheralCategory.AnalogController] = ["Analog Controller"],
+            [PeripheralCategory.AnalogJoystick] = ["Analog Joystick"],
+            [PeripheralCategory.GunCon] = ["Guncon / G-Con 45", "Namco GunCon", "Guncon", "GunCon"],
+            [PeripheralCategory.Justifier] = ["Justifier"],
+            [PeripheralCategory.Mouse] = ["Mouse", "PlayStation Mouse", "USB Mouse"],
+            [PeripheralCategory.Keyboard] = ["USB Keyboard"],
+            [PeripheralCategory.KeyboardAndMouse] = ["USB Keyboard + Mouse"],
+            [PeripheralCategory.NeGcon] = ["neGcon"],
+            [PeripheralCategory.NeGconRumble] = ["neGcon Rumble"]
         };
 }

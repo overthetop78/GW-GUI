@@ -135,7 +135,7 @@ internal sealed class ExternalCore : IEmulatorCore
                  port < adapter.ControllerPortCount(configuration); port++)
             {
                 var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port] : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type ?? defaultController;
-                if (controller == ControllerType.Automatic) controller = defaultController;
+                if (controller == PeripheralCategory.Automatic) controller = defaultController;
                 setController((uint)port, adapter.ControllerDevice(_host.ControllerPorts, port, controller));
             }
 
@@ -261,23 +261,23 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
 
-    internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType controller)
+    internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, PeripheralCategory controller)
     {
-        if (controller == ControllerType.None) return ExternalCoreConstants.NoControllerDevice;
+        if (controller == PeripheralCategory.None) return ExternalCoreConstants.NoControllerDevice;
         var requestedName = controller switch
         {
-            ControllerType.Automatic => ExternalCoreConstants.Automatic,
-            ControllerType.RetroPad => ExternalCoreConstants.RetroPad,
-            ControllerType.Cd32Pad => ExternalCoreConstants.CD32Pad,
-            ControllerType.AnalogJoystick => ExternalCoreConstants.AnalogJoystick,
-            ControllerType.Joystick => ExternalCoreConstants.Joystick,
-            ControllerType.Keyboard => ExternalCoreConstants.Keyboard,
+            PeripheralCategory.Automatic => ExternalCoreConstants.Automatic,
+            PeripheralCategory.RetroPad => ExternalCoreConstants.RetroPad,
+            PeripheralCategory.Cd32Pad => ExternalCoreConstants.CD32Pad,
+            PeripheralCategory.AnalogJoystick => ExternalCoreConstants.AnalogJoystick,
+            PeripheralCategory.Joystick => ExternalCoreConstants.Joystick,
+            PeripheralCategory.Keyboard => ExternalCoreConstants.Keyboard,
             _ => throw new ArgumentOutOfRangeException(nameof(controller))
         };
         var devices = port < ports.Count ? ports[port] : [];
         var selected = devices.FirstOrDefault(device => device.Name.Equals(requestedName, StringComparison.OrdinalIgnoreCase));
         if (selected is not null) return selected.Id;
-        if (controller == ControllerType.Automatic)
+        if (controller == PeripheralCategory.Automatic)
             return devices.FirstOrDefault(device => device.Name.Equals(ExternalCoreConstants.RetroPad, StringComparison.OrdinalIgnoreCase))?.Id ?? ExternalCoreConstants.DefaultJoypadDevice;
         throw new InvalidDataException(CoreExceptions.UnsupportedController(requestedName, port + ExternalCoreConstants.DisplayPortNumberOffset));
     }

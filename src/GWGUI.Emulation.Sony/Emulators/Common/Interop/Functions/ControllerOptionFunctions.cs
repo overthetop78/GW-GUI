@@ -9,29 +9,29 @@ internal static class ControllerOptionFunctions
         if (option.Tab != EmulationMachineTab.Controllers) return null;
         if (option.Key.StartsWith("pcsx2_", StringComparison.Ordinal)
             || option.Key.StartsWith("ppsspp_", StringComparison.Ordinal))
-            return [ControllerType.Joystick.ToString(), ControllerType.DualShock.ToString()];
+            return [PeripheralCategory.Joystick.ToString(), PeripheralCategory.DualShock.ToString()];
         if (Contains(ControllerOptionConstants.Multitap)) return null;
-        ControllerType[] types = ControllerOptionConstants.IsAnalogCalibration(option.Key)
-            ? [ControllerType.DualShock, ControllerType.AnalogController, ControllerType.AnalogJoystick,
-                ControllerType.NeGcon, ControllerType.NeGconRumble]
+        PeripheralCategory[] types = ControllerOptionConstants.IsAnalogCalibration(option.Key)
+            ? [PeripheralCategory.DualShock, PeripheralCategory.AnalogController, PeripheralCategory.AnalogJoystick,
+                PeripheralCategory.NeGcon, PeripheralCategory.NeGconRumble]
             : Contains(ControllerOptionConstants.NeGcon)
             || option.Key.EndsWith(ControllerOptionConstants.SteeringDeadzoneSuffix, StringComparison.Ordinal)
             || option.Key.EndsWith(ControllerOptionConstants.TwistResponseSuffix, StringComparison.Ordinal)
-                ? [ControllerType.NeGcon, ControllerType.NeGconRumble]
-            : Contains(ControllerOptionConstants.KonamiGun) ? [ControllerType.Justifier]
+                ? [PeripheralCategory.NeGcon, PeripheralCategory.NeGconRumble]
+            : Contains(ControllerOptionConstants.KonamiGun) ? [PeripheralCategory.Justifier]
             : Contains(ControllerOptionConstants.GunCon)
                 || option.Key.EndsWith(ControllerOptionConstants.XScaleSuffix, StringComparison.Ordinal)
                 || option.Key.EndsWith(ControllerOptionConstants.YScaleSuffix, StringComparison.Ordinal)
-                ? [ControllerType.GunCon]
+                ? [PeripheralCategory.GunCon]
             : Contains(ControllerOptionConstants.Gun) || Contains(ControllerOptionConstants.Crosshair)
-                ? [ControllerType.GunCon, ControllerType.Justifier]
-            : Contains(ControllerOptionConstants.Mouse) ? [ControllerType.Mouse]
+                ? [PeripheralCategory.GunCon, PeripheralCategory.Justifier]
+            : Contains(ControllerOptionConstants.Mouse) ? [PeripheralCategory.Mouse]
             : Contains(ControllerOptionConstants.Rumble) || Contains(ControllerOptionConstants.Vibration)
-                ? [ControllerType.DualShock, ControllerType.NeGconRumble]
+                ? [PeripheralCategory.DualShock, PeripheralCategory.NeGconRumble]
             : Contains(ControllerOptionConstants.Analog) || Contains(ControllerOptionConstants.Axis)
                 || Contains(ControllerOptionConstants.Deadzone)
-                ? [ControllerType.DualShock, ControllerType.AnalogController, ControllerType.AnalogJoystick]
-            : Enum.GetValues<ControllerType>().Where(type => type != ControllerType.None).ToArray();
+                ? [PeripheralCategory.DualShock, PeripheralCategory.AnalogController, PeripheralCategory.AnalogJoystick]
+            : Enum.GetValues<PeripheralCategory>().Where(type => type != PeripheralCategory.None).ToArray();
         return types.Select(type => type.ToString()).ToArray();
 
         bool Contains(string value) => option.Key.Contains(value, StringComparison.OrdinalIgnoreCase);

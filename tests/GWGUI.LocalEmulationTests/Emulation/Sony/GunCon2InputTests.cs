@@ -148,15 +148,15 @@ public sealed class GunCon2InputTests
         Set(core, "_controllerPorts", ControllerConfigurationFunctions.CreatePorts(configuration));
         var nativePorts = new List<uint>();
         Set(core, "_setControllerPortDevice", new ExternalCoreApi.SetControllerPortDevice((port, _) => nativePorts.Add(port)));
-        core.SetControllerPortDevice(0, ControllerType.GunCon2);
-        core.SetControllerPortDevice(2, ControllerType.Joystick);
-        core.SetControllerPortDevice(9, ControllerType.Joystick);
+        core.SetControllerPortDevice(0, PeripheralCategory.GunCon2);
+        core.SetControllerPortDevice(2, PeripheralCategory.Joystick);
+        core.SetControllerPortDevice(9, PeripheralCategory.Joystick);
         Assert.Equal(new uint[] { 0, 7 }, nativePorts);
         Assert.True(host.Feedback.SetState(0, 0, ushort.MaxValue));
         Assert.True(host.Feedback.SetState(7, 1, ushort.MaxValue));
         Assert.Equal(new[] { 2, 9 }, core.ControllerFeedback.Select(state => state.Port));
         Set(core, "_gameLoaded", true);
-        try { Assert.Throws<NotSupportedException>(() => core.SetControllerPortDevice(0, ControllerType.None)); }
+        try { Assert.Throws<NotSupportedException>(() => core.SetControllerPortDevice(0, PeripheralCategory.None)); }
         finally { Set(core, "_gameLoaded", false); }
     }
 

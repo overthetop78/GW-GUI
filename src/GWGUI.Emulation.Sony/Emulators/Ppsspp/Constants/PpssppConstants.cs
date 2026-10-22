@@ -30,7 +30,7 @@ internal static class PpssppConstants
         Dictionaries.OptionCatalog.All, [],
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Psp }),
         RequiresExternalFirmware: false,
-        ControllerTypes: [ControllerType.Joystick],
+        ControllerTypes: [PeripheralCategory.Joystick],
         ResolveSaveDirectory: StorageFunctions.ResolveSaveDirectory,
         ResolveSystemDirectory: SystemFilesFunctions.DirectoryForCore,
         FullContentPathsRequired: PpssppExceptions.FullContentPathsRequired,

@@ -24,7 +24,7 @@ public sealed class NesMaxControllerTests
     public void NesMaxExposesDistinctTurboButtons()
     {
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Nes, string.Empty));
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == PeripheralCategory.Joystick.ToString());
 
         Assert.Contains(EmulationControllerVisualIds.NintendoNesMax, choice.CompatibleVisualIds!);
         Assert.Contains(EmulationControllerVisualIds.NintendoNesAdvantage, choice.CompatibleVisualIds!);
@@ -36,7 +36,7 @@ public sealed class NesMaxControllerTests
         Assert.All(choice.VisualCommandIds, item => Assert.Contains(item.Value, bindingIds));
 
         var famicomSettings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.FamicomDisk, string.Empty));
-        var famicomChoice = Assert.Single(famicomSettings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var famicomChoice = Assert.Single(famicomSettings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == PeripheralCategory.Joystick.ToString());
         Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesMax, famicomChoice.CompatibleVisualIds!);
         Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesAdvantage, famicomChoice.CompatibleVisualIds!);
     }
@@ -46,7 +46,7 @@ public sealed class NesMaxControllerTests
     {
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(FirstPortIndex, ControllerType.Joystick,
+            new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
                 ButtonMappings: new Dictionary<string, string>
                 {
                     [EmulationControllerCommandIds.A] = KeyboardA,

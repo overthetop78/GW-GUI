@@ -138,7 +138,7 @@ public sealed class SettingsPresentationTests
     public void Rpcs3ControllerCountPreservesHiddenAssignments()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3",
-            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, ControllerType.Joystick,
+            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, PeripheralCategory.Joystick,
                 ButtonMappings: new Dictionary<string, string> { ["B"] = "Keyboard:A" })]));
         var one = InputSettingsFunctions.Describe(configuration);
         Assert.Single(one.ControllerPorts);
@@ -212,7 +212,7 @@ public sealed class SettingsPresentationTests
             Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == "BuzzBuzzers");
             Assert.All(port.ControllerChoices, choice => Assert.True(
                 GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries.ControllerCatalog.IsSupported(
-                    configuration, Enum.Parse<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType>(choice.Id),
+                    configuration, Enum.Parse<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory>(choice.Id),
                     port.Number - 1, port.IsUsb)));
             Assert.Contains(port.ControllerChoices, choice => choice.Id == port.SelectedControllerId);
         });
@@ -234,8 +234,8 @@ public sealed class SettingsPresentationTests
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
             Input: new InputConfiguration(ControllerBindings:
-                [new ControllerBinding(0, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.GunCon2),
-                 new ControllerBinding(1, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.None)]));
+                [new ControllerBinding(0, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.GunCon2),
+                 new ControllerBinding(1, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.None)]));
         var native = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.Configure(configuration);
         Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunUsb1,
             native.Options![GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunKey]);
@@ -246,15 +246,15 @@ public sealed class SettingsPresentationTests
     }
 
     [Theory]
-    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Keyboard, "USB Keyboard", 3u)]
-    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Mouse, "USB Mouse", 2u)]
+    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.Keyboard, "USB Keyboard", 3u)]
+    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.Mouse, "USB Mouse", 2u)]
     public void SelectedLrps2UsbDeviceIsSentAsTheAdvertisedNativeType(
-        GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType type, string name, uint id)
+        GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory type, string name, uint id)
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2",
             Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, type)]));
         var native = InputSettingsFunctions.NativeUsbType(configuration, 0,
-            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Joystick);
+            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.Joystick);
         Assert.Equal(type, native);
         IReadOnlyList<IReadOnlyList<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice>> devices =
             [[new GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice(name, id)]];
@@ -318,7 +318,7 @@ public sealed class SettingsPresentationTests
         foreach (var key in new[] { "Up", "Down", "Left", "Right" })
             Assert.Null(Assert.Single(mat.BindingDefinitions, binding => binding.Id == key).OppositeDirectionId);
         Assert.Equal(1u, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions.Resolve(
-            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.DanceMat, 0, []));
+            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.DanceMat, 0, []));
     }
 
     [Theory]

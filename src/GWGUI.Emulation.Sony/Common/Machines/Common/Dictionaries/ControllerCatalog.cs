@@ -3,14 +3,14 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;
 
 public static class ControllerCatalog
 {
-    internal static IReadOnlyList<ControllerType> Available(MachineConfiguration configuration, int port, bool usb = false)
+    internal static IReadOnlyList<PeripheralCategory> Available(MachineConfiguration configuration, int port, bool usb = false)
     {
         if (configuration.Model is not (ModelConstants.PlayStation or ModelConstants.PlayStation2))
             return CommonControllerFunctions.Supported(configuration, port);
         if (usb) return UsbTypes(configuration, port);
         var native = CommonControllerFunctions.Supported(configuration, port)
             .Where(type => configuration.Model != ModelConstants.PlayStation2
-                || type is not (ControllerType.Keyboard or ControllerType.Mouse or ControllerType.KeyboardAndMouse or ControllerType.GunCon2));
+                || type is not (PeripheralCategory.Keyboard or PeripheralCategory.Mouse or PeripheralCategory.KeyboardAndMouse or PeripheralCategory.GunCon2));
         return native.ToArray();
     }
 
@@ -18,65 +18,65 @@ public static class ControllerCatalog
         configuration.Model == ModelConstants.PlayStation2
         && (configuration.EmulatorId == "pcee2" ? port < 2 : port is 8 or 9);
 
-    internal static bool IsSupported(MachineConfiguration configuration, ControllerType type, int port, bool usb)
+    internal static bool IsSupported(MachineConfiguration configuration, PeripheralCategory type, int port, bool usb)
     {
         if (!usb) return CommonControllerFunctions.Supported(configuration, port).Contains(type);
         return UsbTypes(configuration, port).Contains(type);
     }
 
-    private static IReadOnlyList<ControllerType> UsbTypes(MachineConfiguration configuration, int port) =>
+    private static IReadOnlyList<PeripheralCategory> UsbTypes(MachineConfiguration configuration, int port) =>
         (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetUsbPeripherals(configuration,
             configuration.EmulatorId == "pcee2" ? port : port is 8 or 9 ? port - 8 : port)
-            ?? [ControllerType.None];
+            ?? [PeripheralCategory.None];
 
-    internal static IReadOnlyList<string>? Visuals(ControllerType type, bool ps2) => type switch
+    internal static IReadOnlyList<string>? Visuals(PeripheralCategory type, bool ps2) => type switch
     {
-        ControllerType.ArcadeStick => [EmulationControllerVisualIds.SonyHoriFightingStickPs, EmulationControllerVisualIds.SonyHoriFightingStick2, EmulationControllerVisualIds.SonyHoriRealArcadePro, EmulationControllerVisualIds.SonyNamcoArcadeStick, EmulationControllerVisualIds.SonyAsciiArcadeStick, EmulationControllerVisualIds.SonyAsciiFighterStickV],
-        ControllerType.SerialWheel => [EmulationControllerVisualIds.SonyMadCatzWheel, EmulationControllerVisualIds.SonyInteractV3, EmulationControllerVisualIds.SonyFanatecSpeedster2, EmulationControllerVisualIds.SonyFanatecSpeedster3],
-        ControllerType.JogCon => [EmulationControllerVisualIds.SonyJogCon],
-        ControllerType.Grip => [EmulationControllerVisualIds.SonyAsciiGrip],
-        ControllerType.BiohazardPad => [EmulationControllerVisualIds.SonyBiohazardPad],
-        ControllerType.SphereController => [EmulationControllerVisualIds.SonyAsciiSphere360],
-        ControllerType.Glove => [EmulationControllerVisualIds.SonyRealityQuestGlove],
-        ControllerType.VolumeController => [EmulationControllerVisualIds.SonyVolumeController],
-        ControllerType.Guitar => ps2 ? [EmulationControllerVisualIds.SonyGuitarHeroSg, EmulationControllerVisualIds.SonyKramerStriker, EmulationControllerVisualIds.SonyGuitarFreaks] : [EmulationControllerVisualIds.SonyGuitarFreaks],
-        ControllerType.Beatmania => [EmulationControllerVisualIds.SonyBeatmania],
-        ControllerType.BeatmaniaIidx => [EmulationControllerVisualIds.SonyBeatmaniaIidx, EmulationControllerVisualIds.SonyBeatmaniaIidxArcade],
-        ControllerType.PopnMusic => ps2 ? [EmulationControllerVisualIds.SonyPopnMusic, EmulationControllerVisualIds.SonyPopnMusicArcade] : [EmulationControllerVisualIds.SonyPopnMusic],
-        ControllerType.TaikoDrum => [EmulationControllerVisualIds.SonyTaikoDrum],
-        ControllerType.TrainController => [EmulationControllerVisualIds.SonyDenshaController, EmulationControllerVisualIds.SonyDenshaOneHandle, EmulationControllerVisualIds.SonyDenshaMamecon],
-        ControllerType.JetController => [EmulationControllerVisualIds.SonyJetController],
-        ControllerType.FishingController => [EmulationControllerVisualIds.SonyFishingController],
-        ControllerType.KidsStation => [EmulationControllerVisualIds.SonyKidsStation],
-        ControllerType.MaestroBaton => [EmulationControllerVisualIds.SonyMaestroBaton],
-        ControllerType.Tambourine => [EmulationControllerVisualIds.SonyTambourine],
-        ControllerType.DvdRemote => [EmulationControllerVisualIds.SonyDvdRemote],
-        ControllerType.Katana => [EmulationControllerVisualIds.SonyOnimushaKatana],
-        ControllerType.Chainsaw => [EmulationControllerVisualIds.SonyRe4Chainsaw],
-        ControllerType.SerialMouse => [EmulationControllerVisualIds.SonyPlayStationMouse],
-        ControllerType.NetPlayController => [EmulationControllerVisualIds.SonyNetPlay],
-        ControllerType.EyeToy => [EmulationControllerVisualIds.SonyEyeToy],
-        ControllerType.SingStarMicrophones => [EmulationControllerVisualIds.SonySingStar, EmulationControllerVisualIds.SonySingStarWireless],
-        ControllerType.BuzzBuzzers => [EmulationControllerVisualIds.SonyBuzz, EmulationControllerVisualIds.SonyBuzzWireless],
-        ControllerType.UsbHeadset => [EmulationControllerVisualIds.SonySocomHeadset],
-        ControllerType.UsbMicrophone => [EmulationControllerVisualIds.SonyLogitechVantage, EmulationControllerVisualIds.SonyRockBandMicrophone, EmulationControllerVisualIds.SonyGuitarHeroMicrophone],
-        ControllerType.Seamic => [EmulationControllerVisualIds.SonySeamic],
-        ControllerType.UsbWheel => [EmulationControllerVisualIds.SonyGtForce, EmulationControllerVisualIds.SonyDrivingForce, EmulationControllerVisualIds.SonyDrivingForcePro, EmulationControllerVisualIds.SonyDrivingForceGt],
-        ControllerType.UsbFlightStick => [EmulationControllerVisualIds.SonyHoriFlightStick2],
-        ControllerType.UsbTrainController => [EmulationControllerVisualIds.SonyDenshaUsb, EmulationControllerVisualIds.SonyDenshaShinkansen, EmulationControllerVisualIds.SonyDenshaRyojohen, EmulationControllerVisualIds.SonyTrainMascon, EmulationControllerVisualIds.SonyMultiTrain],
-        ControllerType.KeyboardMania => [EmulationControllerVisualIds.SonyKeyboardMania],
-        ControllerType.DrumMania => [EmulationControllerVisualIds.SonyDrumMania],
-        ControllerType.ParaParaController => [EmulationControllerVisualIds.SonyParaPara],
-        ControllerType.RockBandGuitar => [EmulationControllerVisualIds.SonyRockBandGuitar],
-        ControllerType.RockBandDrums => [EmulationControllerVisualIds.SonyRockBandDrums],
-        ControllerType.GuitarHeroDrums => [EmulationControllerVisualIds.SonyGuitarHeroDrums],
-        ControllerType.DjHero => [EmulationControllerVisualIds.SonyDjHero],
-        ControllerType.GameTrak => [EmulationControllerVisualIds.SonyGameTrak],
+        PeripheralCategory.ArcadeStick => [EmulationControllerVisualIds.SonyHoriFightingStickPs, EmulationControllerVisualIds.SonyHoriFightingStick2, EmulationControllerVisualIds.SonyHoriRealArcadePro, EmulationControllerVisualIds.SonyNamcoArcadeStick, EmulationControllerVisualIds.SonyAsciiArcadeStick, EmulationControllerVisualIds.SonyAsciiFighterStickV],
+        PeripheralCategory.SerialWheel => [EmulationControllerVisualIds.SonyMadCatzWheel, EmulationControllerVisualIds.SonyInteractV3, EmulationControllerVisualIds.SonyFanatecSpeedster2, EmulationControllerVisualIds.SonyFanatecSpeedster3],
+        PeripheralCategory.JogCon => [EmulationControllerVisualIds.SonyJogCon],
+        PeripheralCategory.Grip => [EmulationControllerVisualIds.SonyAsciiGrip],
+        PeripheralCategory.BiohazardPad => [EmulationControllerVisualIds.SonyBiohazardPad],
+        PeripheralCategory.SphereController => [EmulationControllerVisualIds.SonyAsciiSphere360],
+        PeripheralCategory.Glove => [EmulationControllerVisualIds.SonyRealityQuestGlove],
+        PeripheralCategory.VolumeController => [EmulationControllerVisualIds.SonyVolumeController],
+        PeripheralCategory.Guitar => ps2 ? [EmulationControllerVisualIds.SonyGuitarHeroSg, EmulationControllerVisualIds.SonyKramerStriker, EmulationControllerVisualIds.SonyGuitarFreaks] : [EmulationControllerVisualIds.SonyGuitarFreaks],
+        PeripheralCategory.Beatmania => [EmulationControllerVisualIds.SonyBeatmania],
+        PeripheralCategory.BeatmaniaIidx => [EmulationControllerVisualIds.SonyBeatmaniaIidx, EmulationControllerVisualIds.SonyBeatmaniaIidxArcade],
+        PeripheralCategory.PopnMusic => ps2 ? [EmulationControllerVisualIds.SonyPopnMusic, EmulationControllerVisualIds.SonyPopnMusicArcade] : [EmulationControllerVisualIds.SonyPopnMusic],
+        PeripheralCategory.TaikoDrum => [EmulationControllerVisualIds.SonyTaikoDrum],
+        PeripheralCategory.TrainController => [EmulationControllerVisualIds.SonyDenshaController, EmulationControllerVisualIds.SonyDenshaOneHandle, EmulationControllerVisualIds.SonyDenshaMamecon],
+        PeripheralCategory.JetController => [EmulationControllerVisualIds.SonyJetController],
+        PeripheralCategory.FishingController => [EmulationControllerVisualIds.SonyFishingController],
+        PeripheralCategory.KidsStation => [EmulationControllerVisualIds.SonyKidsStation],
+        PeripheralCategory.MaestroBaton => [EmulationControllerVisualIds.SonyMaestroBaton],
+        PeripheralCategory.Tambourine => [EmulationControllerVisualIds.SonyTambourine],
+        PeripheralCategory.DvdRemote => [EmulationControllerVisualIds.SonyDvdRemote],
+        PeripheralCategory.Katana => [EmulationControllerVisualIds.SonyOnimushaKatana],
+        PeripheralCategory.Chainsaw => [EmulationControllerVisualIds.SonyRe4Chainsaw],
+        PeripheralCategory.SerialMouse => [EmulationControllerVisualIds.SonyPlayStationMouse],
+        PeripheralCategory.NetPlayController => [EmulationControllerVisualIds.SonyNetPlay],
+        PeripheralCategory.EyeToy => [EmulationControllerVisualIds.SonyEyeToy],
+        PeripheralCategory.SingStarMicrophones => [EmulationControllerVisualIds.SonySingStar, EmulationControllerVisualIds.SonySingStarWireless],
+        PeripheralCategory.BuzzBuzzers => [EmulationControllerVisualIds.SonyBuzz, EmulationControllerVisualIds.SonyBuzzWireless],
+        PeripheralCategory.UsbHeadset => [EmulationControllerVisualIds.SonySocomHeadset],
+        PeripheralCategory.UsbMicrophone => [EmulationControllerVisualIds.SonyLogitechVantage, EmulationControllerVisualIds.SonyRockBandMicrophone, EmulationControllerVisualIds.SonyGuitarHeroMicrophone],
+        PeripheralCategory.Seamic => [EmulationControllerVisualIds.SonySeamic],
+        PeripheralCategory.UsbWheel => [EmulationControllerVisualIds.SonyGtForce, EmulationControllerVisualIds.SonyDrivingForce, EmulationControllerVisualIds.SonyDrivingForcePro, EmulationControllerVisualIds.SonyDrivingForceGt],
+        PeripheralCategory.UsbFlightStick => [EmulationControllerVisualIds.SonyHoriFlightStick2],
+        PeripheralCategory.UsbTrainController => [EmulationControllerVisualIds.SonyDenshaUsb, EmulationControllerVisualIds.SonyDenshaShinkansen, EmulationControllerVisualIds.SonyDenshaRyojohen, EmulationControllerVisualIds.SonyTrainMascon, EmulationControllerVisualIds.SonyMultiTrain],
+        PeripheralCategory.KeyboardMania => [EmulationControllerVisualIds.SonyKeyboardMania],
+        PeripheralCategory.DrumMania => [EmulationControllerVisualIds.SonyDrumMania],
+        PeripheralCategory.ParaParaController => [EmulationControllerVisualIds.SonyParaPara],
+        PeripheralCategory.RockBandGuitar => [EmulationControllerVisualIds.SonyRockBandGuitar],
+        PeripheralCategory.RockBandDrums => [EmulationControllerVisualIds.SonyRockBandDrums],
+        PeripheralCategory.GuitarHeroDrums => [EmulationControllerVisualIds.SonyGuitarHeroDrums],
+        PeripheralCategory.DjHero => [EmulationControllerVisualIds.SonyDjHero],
+        PeripheralCategory.GameTrak => [EmulationControllerVisualIds.SonyGameTrak],
         _ => null
     };
 
-    public static IReadOnlyList<ControllerType> Types(MachineConfiguration configuration) => CommonControllerFunctions.Supported(configuration);
+    public static IReadOnlyList<PeripheralCategory> Types(MachineConfiguration configuration) => CommonControllerFunctions.Supported(configuration);
 
-    public static ControllerType Default(MachineConfiguration configuration) => Types(configuration).FirstOrDefault(type => type != ControllerType.None, ControllerType.None);
+    public static PeripheralCategory Default(MachineConfiguration configuration) => Types(configuration).FirstOrDefault(type => type != PeripheralCategory.None, PeripheralCategory.None);
 
 }

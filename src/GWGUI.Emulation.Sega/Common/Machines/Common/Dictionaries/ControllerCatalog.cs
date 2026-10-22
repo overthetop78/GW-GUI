@@ -2,67 +2,67 @@ namespace GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 
 public static class ControllerCatalog
 {
-    public static IReadOnlyList<ControllerType> Types(Model model)
+    public static IReadOnlyList<PeripheralCategory> Types(Model model)
     {
         var types = model.Id switch
         {
             ModelConstants.Sg1000 => new[]
             {
-                ControllerType.SegaSg1000Joystick, ControllerType.SegaSg1000IiJoypad
+                PeripheralCategory.SegaSg1000Joystick, PeripheralCategory.SegaSg1000IiJoypad
             },
-            ModelConstants.Sc3000 or ModelConstants.Sf7000 => new[] { ControllerType.SegaSc3000Keyboard },
+            ModelConstants.Sc3000 or ModelConstants.Sf7000 => new[] { PeripheralCategory.SegaSc3000Keyboard },
             ModelConstants.MarkIII => new[]
             {
-                ControllerType.SegaMasterSystemController, ControllerType.SegaControlStick,
-                ControllerType.SegaLightPhaser
+                PeripheralCategory.SegaMasterSystemController, PeripheralCategory.SegaControlStick,
+                PeripheralCategory.SegaLightPhaser
             },
             ModelConstants.MasterSystem => new[]
             {
-                ControllerType.SegaMasterSystemController, ControllerType.SegaControlStick,
-                ControllerType.SegaLightPhaser
+                PeripheralCategory.SegaMasterSystemController, PeripheralCategory.SegaControlStick,
+                PeripheralCategory.SegaLightPhaser
             },
             ModelConstants.MegaDrive or ModelConstants.MegaCd or ModelConstants.ThirtyTwoX => new[]
             {
-                ControllerType.SegaMegaDriveThreeButton, ControllerType.SegaMegaDriveSixButton,
-                ControllerType.SegaMegaMouse, ControllerType.SegaMenacer,
-                ControllerType.SegaSportsPad, ControllerType.SegaPaddleControl,
-                ControllerType.SegaHandleController, ControllerType.SegaArcadePowerStick,
-                ControllerType.SegaArcadePowerStickSixButton, ControllerType.SegaXe1Ap,
-                ControllerType.SegaActivator
+                PeripheralCategory.SegaMegaDriveThreeButton, PeripheralCategory.SegaMegaDriveSixButton,
+                PeripheralCategory.SegaMegaMouse, PeripheralCategory.SegaMenacer,
+                PeripheralCategory.SegaSportsPad, PeripheralCategory.SegaPaddleControl,
+                PeripheralCategory.SegaHandleController, PeripheralCategory.SegaArcadePowerStick,
+                PeripheralCategory.SegaArcadePowerStickSixButton, PeripheralCategory.SegaXe1Ap,
+                PeripheralCategory.SegaActivator
             },
-            ModelConstants.GameGear => new[] { ControllerType.SegaGameGearController },
+            ModelConstants.GameGear => new[] { PeripheralCategory.SegaGameGearController },
             ModelConstants.Saturn or ModelConstants.StV => new[]
             {
-                ControllerType.SegaSaturnController, ControllerType.SegaSaturnThreeDControlPad,
-                ControllerType.SegaSaturnVirtuaGun, ControllerType.SegaSaturnShuttleMouse,
-                ControllerType.SegaSaturnMissionStick, ControllerType.SegaSaturnArcadeRacer,
-                ControllerType.SegaSaturnTwinStick, ControllerType.SegaSaturnVirtuaStick
+                PeripheralCategory.SegaSaturnController, PeripheralCategory.SegaSaturnThreeDControlPad,
+                PeripheralCategory.SegaSaturnVirtuaGun, PeripheralCategory.SegaSaturnShuttleMouse,
+                PeripheralCategory.SegaSaturnMissionStick, PeripheralCategory.SegaSaturnArcadeRacer,
+                PeripheralCategory.SegaSaturnTwinStick, PeripheralCategory.SegaSaturnVirtuaStick
             },
             ModelConstants.Dreamcast => new[]
             {
-                ControllerType.SegaDreamcastController, ControllerType.SegaDreamcastMouse,
-                ControllerType.SegaDreamcastKeyboard, ControllerType.SegaDreamcastLightGun,
-                ControllerType.SegaDreamcastFishingController,
-                ControllerType.SegaDreamcastArcadeStick, ControllerType.SegaDreamcastTwinStick,
-                ControllerType.SegaDreamcastMaracas
+                PeripheralCategory.SegaDreamcastController, PeripheralCategory.SegaDreamcastMouse,
+                PeripheralCategory.SegaDreamcastKeyboard, PeripheralCategory.SegaDreamcastLightGun,
+                PeripheralCategory.SegaDreamcastFishingController,
+                PeripheralCategory.SegaDreamcastArcadeStick, PeripheralCategory.SegaDreamcastTwinStick,
+                PeripheralCategory.SegaDreamcastMaracas
             },
             ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave or ModelConstants.SystemSp or ModelConstants.Model3 => new[]
             {
-                ControllerType.SegaDreamcastController, ControllerType.SegaDreamcastLightGun,
-                ControllerType.SegaDreamcastArcadeStick
+                PeripheralCategory.SegaDreamcastController, PeripheralCategory.SegaDreamcastLightGun,
+                PeripheralCategory.SegaDreamcastArcadeStick
             },
-            _ => Array.Empty<ControllerType>()
+            _ => Array.Empty<PeripheralCategory>()
         };
-        var result = new List<ControllerType>(types);
+        var result = new List<PeripheralCategory>(types);
         if (model.ControllerPortCount <= 0) result.Clear();
-        result.Add(ControllerType.None);
+        result.Add(PeripheralCategory.None);
         return result;
     }
 
-    public static ControllerType Default(Model model) => model.ControllerPortCount > 0 ? Types(model).FirstOrDefault(type => type != ControllerType.None, ControllerType.None) : ControllerType.None;
+    public static PeripheralCategory Default(Model model) => model.ControllerPortCount > 0 ? Types(model).FirstOrDefault(type => type != PeripheralCategory.None, PeripheralCategory.None) : PeripheralCategory.None;
 
-    public static ControllerType Normalize(Model model, ControllerType type) => type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
+    public static PeripheralCategory Normalize(Model model, PeripheralCategory type) => type != PeripheralCategory.Automatic && Types(model).Contains(type) ? type : Default(model);
 
-    public static IReadOnlyList<ControllerType> ParallelPortTypes { get; } =
-        [ControllerType.Joypad, ControllerType.None];
+    public static IReadOnlyList<PeripheralCategory> ParallelPortTypes { get; } =
+        [PeripheralCategory.Joypad, PeripheralCategory.None];
 }

@@ -34,7 +34,7 @@ public sealed class GameCubeControllerTests
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.GameCube, string.Empty));
 
         Assert.Equal(ModelConstants.GameCubeControllerPortCount, settings.ControllerPorts.Count);
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == PeripheralCategory.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.NintendoGameCubePad, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.GameCubeZ, ids);
@@ -51,7 +51,7 @@ public sealed class GameCubeControllerTests
     public void WaveBirdUsesTheGameCubeCommandProfile()
     {
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.GameCube, string.Empty));
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == PeripheralCategory.Joystick.ToString());
 
         Assert.Contains(EmulationControllerVisualIds.NintendoGameCubeWaveBird, choice.CompatibleVisualIds!);
         var bindingIds = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
@@ -79,7 +79,7 @@ public sealed class GameCubeControllerTests
             [InputSettingsFunctionsConstants.GameCubeCLeft] = KeyboardN,
             [InputSettingsFunctionsConstants.GameCubeCDown] = KeyboardO
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, ControllerType.Joystick, ButtonMappings: mappings)]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, ButtonMappings: mappings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -110,7 +110,7 @@ public sealed class GameCubeControllerTests
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(FirstPortIndex, ControllerType.Joystick, "pad", new Dictionary<string, string>
+            new(FirstPortIndex, PeripheralCategory.Joystick, "pad", new Dictionary<string, string>
             {
                 [InputSettingsFunctionsConstants.GameCubeStickLeft] = "Controller:pad:Axis0Negative",
                 [InputSettingsFunctionsConstants.GameCubeStickRight] = "Controller:pad:Axis0Positive"
@@ -136,7 +136,7 @@ public sealed class GameCubeControllerTests
         };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(FirstPortIndex, ControllerType.Joystick,
+            new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
                 ButtonMappings: new Dictionary<string, string>
                 {
                     [InputSettingsFunctionsConstants.GameCubeCLeft] = KeyboardA,

@@ -147,60 +147,60 @@ internal sealed class ExternalCore : IEmulatorCore
         return Path.GetFullPath(media[0].Path);
     }
 
-    internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices, ControllerType type)
+    internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices, PeripheralCategory type)
     {
-        if (type == ControllerType.None) return 0;
+        if (type == PeripheralCategory.None) return 0;
         if (devices.Count == 0)
-            return type is ControllerType.SegaXe1Ap or ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer
-                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas
+            return type is PeripheralCategory.SegaXe1Ap or PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaSaturnArcadeRacer
+                or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas
                 ? 0 : ExternalHostCallbacksConstants.JoypadDevice;
         var exactName = type switch
         {
-            ControllerType.SegaSg1000Joystick or ControllerType.SegaSg1000IiJoypad
-                or ControllerType.SegaMasterSystemController or ControllerType.SegaGameGearController
-                or ControllerType.SegaControlStick =>
+            PeripheralCategory.SegaSg1000Joystick or PeripheralCategory.SegaSg1000IiJoypad
+                or PeripheralCategory.SegaMasterSystemController or PeripheralCategory.SegaGameGearController
+                or PeripheralCategory.SegaControlStick =>
                 ExternalCoreConstants.MasterSystemJoypadName,
-            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaArcadePowerStick =>
+            PeripheralCategory.SegaMegaDriveThreeButton or PeripheralCategory.SegaArcadePowerStick =>
                 ExternalCoreConstants.MegaDriveThreeButtonName,
-            ControllerType.SegaMegaDriveSixButton or ControllerType.SegaArcadePowerStickSixButton =>
+            PeripheralCategory.SegaMegaDriveSixButton or PeripheralCategory.SegaArcadePowerStickSixButton =>
                 ExternalCoreConstants.MegaDriveSixButtonName,
-            ControllerType.SegaXe1Ap => ExternalCoreConstants.ControllerXe1Ap,
-            ControllerType.SegaSaturnThreeDControlPad => ExternalCoreConstants.ControllerThreeDPad,
-            ControllerType.SegaSaturnMissionStick => ExternalCoreConstants.ControllerMissionStick,
-            ControllerType.SegaSaturnArcadeRacer => ExternalCoreConstants.ControllerArcadeRacer,
-            ControllerType.SegaDreamcastFishingController => ExternalCoreConstants.ControllerFishing,
-            ControllerType.SegaDreamcastMaracas => ExternalCoreConstants.ControllerMaracas,
+            PeripheralCategory.SegaXe1Ap => ExternalCoreConstants.ControllerXe1Ap,
+            PeripheralCategory.SegaSaturnThreeDControlPad => ExternalCoreConstants.ControllerThreeDPad,
+            PeripheralCategory.SegaSaturnMissionStick => ExternalCoreConstants.ControllerMissionStick,
+            PeripheralCategory.SegaSaturnArcadeRacer => ExternalCoreConstants.ControllerArcadeRacer,
+            PeripheralCategory.SegaDreamcastFishingController => ExternalCoreConstants.ControllerFishing,
+            PeripheralCategory.SegaDreamcastMaracas => ExternalCoreConstants.ControllerMaracas,
             _ => null
         };
         if (exactName is not null)
         {
             var exactDevice = devices.FirstOrDefault(device => device.Name.Equals(exactName, StringComparison.OrdinalIgnoreCase))
                 ?? devices.FirstOrDefault(device => device.Name.Contains(exactName, StringComparison.OrdinalIgnoreCase)
-                    && (type != ControllerType.SegaSaturnMissionStick || device.Name.EndsWith(exactName, StringComparison.OrdinalIgnoreCase)));
+                    && (type != PeripheralCategory.SegaSaturnMissionStick || device.Name.EndsWith(exactName, StringComparison.OrdinalIgnoreCase)));
             if (exactDevice is not null) return exactDevice.Id;
         }
         var aliases = ControllerAliases(type);
         return devices.FirstOrDefault(device => aliases.Any(alias => device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)
-            && (type != ControllerType.SegaSaturnMissionStick || device.Name.EndsWith(alias, StringComparison.OrdinalIgnoreCase))))?.Id ?? 0;
+            && (type != PeripheralCategory.SegaSaturnMissionStick || device.Name.EndsWith(alias, StringComparison.OrdinalIgnoreCase))))?.Id ?? 0;
     }
 
-    private static IReadOnlyList<string> ControllerAliases(ControllerType type) => type switch
+    private static IReadOnlyList<string> ControllerAliases(PeripheralCategory type) => type switch
     {
-        ControllerType.SegaLightPhaser => [ExternalCoreConstants.ControllerLightPhaser, ExternalCoreConstants.ControllerLightgun, ExternalCoreConstants.ControllerLightGun],
-        ControllerType.SegaMegaMouse or ControllerType.SegaSaturnShuttleMouse
-            or ControllerType.SegaDreamcastMouse => [ExternalCoreConstants.ControllerMouse],
-        ControllerType.SegaMenacer or ControllerType.SegaSaturnVirtuaGun
-            or ControllerType.SegaDreamcastLightGun => [ExternalCoreConstants.ControllerMenacer, ExternalCoreConstants.ControllerLightGun, ExternalCoreConstants.ControllerLightgun],
-        ControllerType.SegaPaddleControl => [ExternalCoreConstants.ControllerPaddle],
-        ControllerType.SegaSportsPad => [ExternalCoreConstants.ControllerSports],
-        ControllerType.SegaSc3000Keyboard or ControllerType.SegaDreamcastKeyboard => [ExternalCoreConstants.ControllerKeyboard],
-        ControllerType.SegaActivator => [ExternalCoreConstants.ControllerActivator],
-        ControllerType.SegaXe1Ap => [ExternalCoreConstants.ControllerXe1Ap],
-        ControllerType.SegaSaturnThreeDControlPad => [ExternalCoreConstants.ControllerThreeDPad],
-        ControllerType.SegaSaturnMissionStick => [ExternalCoreConstants.ControllerMissionStick],
-        ControllerType.SegaSaturnArcadeRacer => [ExternalCoreConstants.ControllerArcadeRacer],
-        ControllerType.SegaDreamcastFishingController => [ExternalCoreConstants.ControllerFishing],
-        ControllerType.SegaDreamcastMaracas => [ExternalCoreConstants.ControllerMaracas],
+        PeripheralCategory.SegaLightPhaser => [ExternalCoreConstants.ControllerLightPhaser, ExternalCoreConstants.ControllerLightgun, ExternalCoreConstants.ControllerLightGun],
+        PeripheralCategory.SegaMegaMouse or PeripheralCategory.SegaSaturnShuttleMouse
+            or PeripheralCategory.SegaDreamcastMouse => [ExternalCoreConstants.ControllerMouse],
+        PeripheralCategory.SegaMenacer or PeripheralCategory.SegaSaturnVirtuaGun
+            or PeripheralCategory.SegaDreamcastLightGun => [ExternalCoreConstants.ControllerMenacer, ExternalCoreConstants.ControllerLightGun, ExternalCoreConstants.ControllerLightgun],
+        PeripheralCategory.SegaPaddleControl => [ExternalCoreConstants.ControllerPaddle],
+        PeripheralCategory.SegaSportsPad => [ExternalCoreConstants.ControllerSports],
+        PeripheralCategory.SegaSc3000Keyboard or PeripheralCategory.SegaDreamcastKeyboard => [ExternalCoreConstants.ControllerKeyboard],
+        PeripheralCategory.SegaActivator => [ExternalCoreConstants.ControllerActivator],
+        PeripheralCategory.SegaXe1Ap => [ExternalCoreConstants.ControllerXe1Ap],
+        PeripheralCategory.SegaSaturnThreeDControlPad => [ExternalCoreConstants.ControllerThreeDPad],
+        PeripheralCategory.SegaSaturnMissionStick => [ExternalCoreConstants.ControllerMissionStick],
+        PeripheralCategory.SegaSaturnArcadeRacer => [ExternalCoreConstants.ControllerArcadeRacer],
+        PeripheralCategory.SegaDreamcastFishingController => [ExternalCoreConstants.ControllerFishing],
+        PeripheralCategory.SegaDreamcastMaracas => [ExternalCoreConstants.ControllerMaracas],
         _ => [ExternalCoreConstants.ControllerJoypad, ExternalCoreConstants.ControllerController, ExternalCoreConstants.ControllerGamepad]
     };
 

@@ -17,9 +17,9 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation }),
         RequiresExternalFirmware: false,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.DualShock,
-            ControllerType.AnalogJoystick, ControllerType.GunCon,
-            ControllerType.Justifier, ControllerType.Mouse, ControllerType.NeGcon,
-            ControllerType.None],
-        FeedbackControllerTypes: [ControllerType.DualShock]);
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.DualShock,
+            PeripheralCategory.AnalogJoystick, PeripheralCategory.GunCon,
+            PeripheralCategory.Justifier, PeripheralCategory.Mouse, PeripheralCategory.NeGcon,
+            PeripheralCategory.None],
+        FeedbackControllerTypes: [PeripheralCategory.DualShock]);
 }

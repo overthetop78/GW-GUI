@@ -20,7 +20,7 @@ internal static partial class InputSettingsFunctions
         {
             var number = index + ControllerPortConstants.OneControllerPort;
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = current?.Type ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : ControllerType.Joystick);
+            var type = current?.Type ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : PeripheralCategory.Joystick);
             var choices = index < model.ControllerPortCount ? ControllerCatalog.Types(model) : ControllerCatalog.ParallelPortTypes;
             return new EmulationControllerPort(number,
                 choices.Select(Choice).ToArray(), type.ToString(),
@@ -37,7 +37,7 @@ internal static partial class InputSettingsFunctions
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None)
             ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None, port.PhysicalDeviceId, port.Bindings.Values,
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
             port.VisualId)).ToArray();
         var input = current with
         {
@@ -64,9 +64,9 @@ internal static partial class InputSettingsFunctions
         return definitions;
     }
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type)
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type)
     {
-        if (type is ControllerType.None or ControllerType.Keyboard) return [];
+        if (type is PeripheralCategory.None or PeripheralCategory.Keyboard) return [];
         var definitions = new List<InputBindingDefinition>
         {
             Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -74,7 +74,7 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
             Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty)
         };
-        if (type == ControllerType.Cd32Pad)
+        if (type == PeripheralCategory.Cd32Pad)
         {
             definitions.AddRange([
                 Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Red, string.Empty),
@@ -92,7 +92,7 @@ internal static partial class InputSettingsFunctions
             definitions.Add(Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty));
         }
         definitions.Add(Definition(InputSettingsFunctionsConstants.L2, InputSettingsFunctionsConstants.ResourceControllerActionTurboFire, string.Empty));
-        return definitions.Select(definition => type == ControllerType.AnalogJoystick ? definition with
+        return definitions.Select(definition => type == PeripheralCategory.AnalogJoystick ? definition with
         {
             OppositeDirectionId = definition.Id switch
             {
@@ -107,15 +107,15 @@ internal static partial class InputSettingsFunctions
 
     internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey));
 
-    private static EmulationControllerChoice Choice(ControllerType type) =>
+    private static EmulationControllerChoice Choice(PeripheralCategory type) =>
         new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type))
         {
             Category = type switch
             {
-                ControllerType.None => EmulationControllerCategory.None,
-                ControllerType.RetroPad or ControllerType.Cd32Pad => EmulationControllerCategory.Gamepad,
-                ControllerType.Keyboard => EmulationControllerCategory.OtherSimulation,
-                ControllerType.AnalogJoystick or ControllerType.Joystick => EmulationControllerCategory.Joystick,
+                PeripheralCategory.None => EmulationControllerCategory.None,
+                PeripheralCategory.RetroPad or PeripheralCategory.Cd32Pad => EmulationControllerCategory.Gamepad,
+                PeripheralCategory.Keyboard => EmulationControllerCategory.OtherSimulation,
+                PeripheralCategory.AnalogJoystick or PeripheralCategory.Joystick => EmulationControllerCategory.Joystick,
                 _ => EmulationControllerCategory.Unspecified
             }
         };

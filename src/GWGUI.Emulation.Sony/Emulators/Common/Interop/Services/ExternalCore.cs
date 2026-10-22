@@ -207,7 +207,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void SetControllerPortDevice(int port, ControllerType type)
+    public void SetControllerPortDevice(int port, PeripheralCategory type)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
         var host = _host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
@@ -235,7 +235,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             var type = SemanticControllerFunctions.Resolve(configuration, port);
             if (!requireAdvertised && !_host!.ControllerPorts.Any()
-                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick or ControllerType.None))
+                && type is not (PeripheralCategory.Joystick or PeripheralCategory.DanceMat or PeripheralCategory.ArcadeStick or PeripheralCategory.None))
                 continue;
             SetControllerPortDevice(port, type);
         }
@@ -243,7 +243,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             for (var port = SemanticControllerFunctions.PortCount(configuration); port < 7; port++)
             {
                 _setControllerPortDevice!((uint)port, 0u);
-                _host!.SetControllerType(port, ControllerType.None);
+                _host!.SetControllerType(port, PeripheralCategory.None);
             }
     }
     public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Insert(path);

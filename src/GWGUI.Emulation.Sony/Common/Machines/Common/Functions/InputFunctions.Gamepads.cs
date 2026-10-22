@@ -45,7 +45,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string> ArcadeVisualCommands(Model model)
     {
-        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!)
+        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!)
         {
             [EmulationControllerVisualControl.Turbo] = "Turbo",
             [EmulationControllerVisualControl.RepeatRate] = "Hori.Speed",

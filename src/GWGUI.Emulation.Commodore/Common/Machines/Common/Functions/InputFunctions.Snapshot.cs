@@ -69,9 +69,9 @@ internal static class InputSnapshotFunctions
             result[port] = source with
             {
                 Buttons = buttons,
-                LeftX = binding.Type == ControllerType.AnalogJoystick
+                LeftX = binding.Type == PeripheralCategory.AnalogJoystick
                     ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
-                LeftY = binding.Type == ControllerType.AnalogJoystick
+                LeftY = binding.Type == PeripheralCategory.AnalogJoystick
                     ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
             };
         }

@@ -14,7 +14,7 @@ internal static class ControllerConstants
     internal const string AimDown = "⊕ ↓";
     internal const string UsbPortPrefix = "USB ";
     internal const string GamepadPortPrefix = "DUALSHOCK 2 · ";
-    internal static IReadOnlyList<ControllerType> GamepadTypes { get; } = [ControllerType.Joystick, ControllerType.None];
-    internal static IReadOnlyList<ControllerType> DisabledUsbTypes { get; } = [ControllerType.None, ControllerType.GunCon2];
-    internal static IReadOnlyList<ControllerType> EnabledUsbTypes { get; } = [ControllerType.GunCon2, ControllerType.None];
+    internal static IReadOnlyList<PeripheralCategory> GamepadTypes { get; } = [PeripheralCategory.Joystick, PeripheralCategory.None];
+    internal static IReadOnlyList<PeripheralCategory> DisabledUsbTypes { get; } = [PeripheralCategory.None, PeripheralCategory.GunCon2];
+    internal static IReadOnlyList<PeripheralCategory> EnabledUsbTypes { get; } = [PeripheralCategory.GunCon2, PeripheralCategory.None];
 }

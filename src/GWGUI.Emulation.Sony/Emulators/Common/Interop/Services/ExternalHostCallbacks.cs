@@ -40,7 +40,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal NativeControllerFeedback Feedback { get; } = new();
     private int _optionsUpdated;
     private readonly object _inputGate = new();
-    private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
+    private readonly int[] _controllerTypes = Enumerable.Repeat((int)PeripheralCategory.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
     private readonly IReadOnlyList<CoreControllerPort>? _controllerPorts;
     private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
@@ -104,7 +104,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         set { lock (_inputGate) _input.Update(value); }
     }
     internal ExternalCoreApi.EnvironmentCallback Environment { get; }
-    internal void SetControllerType(int port, ControllerType type)
+    internal void SetControllerType(int port, PeripheralCategory type)
     {
         if (port < GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MinimumControllerPort
             || port >= _controllerTypes.Length)

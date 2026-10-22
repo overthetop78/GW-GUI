@@ -13,7 +13,7 @@ public record Model(
     bool HasCdDrive,
     bool HasBuiltInFloppyDrive,
     bool HasKeyboard,
-    IReadOnlyList<ControllerType> ControllerTypes)
+    IReadOnlyList<PeripheralCategory> ControllerTypes)
 {
     public string Chipset => string.Join(ChipsetDisplayConstants.ComponentSeparator, Chipsets.Select(component => component == ChipsetModel.VICII ? ChipsetDisplayConstants.VicII : component.ToString()));
     public CpuModel DefaultCpu => CpuModels[BufferConstants.FirstCollectionIndex];

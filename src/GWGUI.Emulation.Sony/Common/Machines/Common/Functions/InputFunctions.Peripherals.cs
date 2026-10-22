@@ -39,23 +39,23 @@ internal static partial class InputSettingsFunctions
             string.Empty, string.Empty, "MODE " + mode))
     ];
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? SpecializedVisualCommands(ControllerType type, Model model)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? SpecializedVisualCommands(PeripheralCategory type, Model model)
     {
-        if (type is not (ControllerType.Grip or ControllerType.BiohazardPad or ControllerType.SphereController or ControllerType.Glove)) return null;
-        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!);
-        if (type == ControllerType.Grip)
+        if (type is not (PeripheralCategory.Grip or PeripheralCategory.BiohazardPad or PeripheralCategory.SphereController or PeripheralCategory.Glove)) return null;
+        var commands = new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!);
+        if (type == PeripheralCategory.Grip)
         {
             commands[EmulationControllerVisualControl.FaceX] = "Grip.TriangleLeft";
             commands[EmulationControllerVisualControl.FaceY] = "Grip.TriangleRight";
             commands[EmulationControllerVisualControl.FaceA] = "Grip.SquareLeft";
             commands[EmulationControllerVisualControl.FaceB] = "Grip.SquareRight";
         }
-        if (type == ControllerType.Glove)
+        if (type == PeripheralCategory.Glove)
         {
             commands[EmulationControllerVisualControl.Reset] = "Glove.Reset";
             commands[EmulationControllerVisualControl.Guide] = "Glove.RealityQuest";
         }
-        if (type == ControllerType.SphereController)
+        if (type == PeripheralCategory.SphereController)
             for (var mode = 0; mode <= 3; mode++)
                 commands[Enum.Parse<EmulationControllerVisualControl>("Key" + mode)] = "Sphere.Mode" + mode;
         return commands;
@@ -108,16 +108,16 @@ internal static partial class InputSettingsFunctions
         Definition(EmulationControllerCommandIds.Select, InputSettingsFunctionsConstants.ControllerSelect, string.Empty)
     ];
 
-    private static IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? PeripheralVisualDefinitions(ControllerType type) => type switch
+    private static IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? PeripheralVisualDefinitions(PeripheralCategory type) => type switch
     {
-        ControllerType.SerialWheel => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.SerialWheel => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyMadCatzWheel] = MadCatzWheelDefinitions(),
             [EmulationControllerVisualIds.SonyInteractV3] = InteractV3Definitions(),
             [EmulationControllerVisualIds.SonyFanatecSpeedster2] = Speedster2Definitions(),
             [EmulationControllerVisualIds.SonyFanatecSpeedster3] = Speedster3Definitions()
         },
-        ControllerType.UsbTrainController => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.UsbTrainController => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyDenshaUsb] = UsbTrainDefinitions(),
             [EmulationControllerVisualIds.SonyDenshaShinkansen] = UsbTrainDefinitions(),
@@ -125,13 +125,13 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualIds.SonyTrainMascon] = TrainMasconDefinitions(false),
             [EmulationControllerVisualIds.SonyMultiTrain] = TrainMasconDefinitions(true)
         },
-        ControllerType.TrainController => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.TrainController => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyDenshaController] = TrainTwoHandleDefinitions(),
             [EmulationControllerVisualIds.SonyDenshaOneHandle] = TrainOneHandleDefinitions(),
             [EmulationControllerVisualIds.SonyDenshaMamecon] = TrainTwoHandleDefinitions()
         },
-        ControllerType.Joystick => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.Joystick => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyLogitechCordless] = LogitechCordlessDefinitions(),
             [EmulationControllerVisualIds.SonyLogitechCordlessAction] = LogitechCordlessDefinitions(),
@@ -141,27 +141,27 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualIds.SonyHoriFightingCommander10B] = DigitalDefinitionsWithSlow(),
             [EmulationControllerVisualIds.SonyHoriFightingCommander2Way] = PlayStationButtonDefinitions().Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray()
         },
-        ControllerType.ArcadeStick => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.ArcadeStick => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyHoriFightingStick2] = HoriFightingStick2Definitions(),
             [EmulationControllerVisualIds.SonyHoriRealArcadePro] = HoriRealArcadeProDefinitions(),
             [EmulationControllerVisualIds.SonyAsciiArcadeStick] = DigitalDefinitionsWithSlow(),
             [EmulationControllerVisualIds.SonyAsciiFighterStickV] = DigitalDefinitionsWithSlow()
         },
-        ControllerType.Guitar => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.Guitar => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyGuitarHeroSg] = GuitarDefinitions(),
             [EmulationControllerVisualIds.SonyKramerStriker] = GuitarDefinitions(),
             [EmulationControllerVisualIds.SonyGuitarFreaks] = GuitarFreaksDefinitions()
         },
-        ControllerType.UsbWheel => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.UsbWheel => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyGtForce] = GtForceDefinitions(),
             [EmulationControllerVisualIds.SonyDrivingForce] = DrivingForceDefinitions(),
             [EmulationControllerVisualIds.SonyDrivingForcePro] = DrivingForceProDefinitions(),
             [EmulationControllerVisualIds.SonyDrivingForceGt] = DrivingForceGtDefinitions()
         },
-        ControllerType.DanceMat => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        PeripheralCategory.DanceMat => new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
         {
             [EmulationControllerVisualIds.SonyKonamiDdr] = KonamiDdrDefinitions()
         },

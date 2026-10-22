@@ -33,10 +33,10 @@ public sealed class ControllerConfigurationTests
     {
         var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id);
         var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
-        Assert.Equal(nameof(ControllerType.Joystick), Assert.Single(port.ControllerChoices).Id);
-        Assert.Equal(nameof(ControllerType.Joystick), port.SelectedControllerId);
+        Assert.Equal(nameof(PeripheralCategory.Joystick), Assert.Single(port.ControllerChoices).Id);
+        Assert.Equal(nameof(PeripheralCategory.Joystick), port.SelectedControllerId);
         Assert.Empty(port.Bindings.Values);
-        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.None));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.None));
     }
 
     [Theory]
@@ -45,13 +45,13 @@ public sealed class ControllerConfigurationTests
     public void PspPreviouslyDisconnectedControllerCanBeOpened(bool usesBindings)
     {
         var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id,
-            Controllers: usesBindings ? null : [ControllerType.None],
-            Input: usesBindings ? new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.None)]) : null);
+            Controllers: usesBindings ? null : [PeripheralCategory.None],
+            Input: usesBindings ? new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.None)]) : null);
         var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
-        Assert.Equal(nameof(ControllerType.Joystick), port.SelectedControllerId);
-        Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == nameof(ControllerType.None));
+        Assert.Equal(nameof(PeripheralCategory.Joystick), port.SelectedControllerId);
+        Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.None));
         Assert.Empty(port.Bindings.Values);
-        Assert.Equal(ControllerType.Joystick, ControllerFunctions.Resolve(configuration, FirstPort));
+        Assert.Equal(PeripheralCategory.Joystick, ControllerFunctions.Resolve(configuration, FirstPort));
     }
 
     private const int FirstPort = 0;
@@ -135,13 +135,13 @@ public sealed class ControllerConfigurationTests
         foreach (var port in Enumerable.Range(PortCounts.MinimumControllerPort, settings.ControllerPorts.Count))
         {
             var choices = settings.ControllerPorts[port].ControllerChoices.Select(choice => choice.Id).ToHashSet();
-            Assert.Equal(port < SwanCore.LightGunPortCount, choices.Contains(nameof(ControllerType.GunCon)));
-            Assert.Equal(port < SwanCore.SteeringControllerPortCount, choices.Contains(nameof(ControllerType.NeGcon)));
-            Assert.Contains(nameof(ControllerType.DualShock), choices);
-            Assert.Contains(nameof(ControllerType.None), choices);
+            Assert.Equal(port < SwanCore.LightGunPortCount, choices.Contains(nameof(PeripheralCategory.GunCon)));
+            Assert.Equal(port < SwanCore.SteeringControllerPortCount, choices.Contains(nameof(PeripheralCategory.NeGcon)));
+            Assert.Contains(nameof(PeripheralCategory.DualShock), choices);
+            Assert.Contains(nameof(PeripheralCategory.None), choices);
         }
-        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.LightGunPortCount, ControllerType.GunCon));
-        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.SteeringControllerPortCount, ControllerType.NeGcon));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.LightGunPortCount, PeripheralCategory.GunCon));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.SteeringControllerPortCount, PeripheralCategory.NeGcon));
     }
 
     [Fact]
@@ -174,7 +174,7 @@ public sealed class ControllerConfigurationTests
             Controllers = [EmulationControllerState.Empty with
                 { Buttons = uint.MaxValue, LeftX = short.MaxValue, RightY = short.MinValue }]
         };
-        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.None, ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.None, ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false, Ps3Hardware.ControllerPortCount);
         Assert.Equal(Ps3Hardware.ControllerPortCount, mapped.Controllers.Count);
         Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[FirstPort]);
@@ -191,7 +191,7 @@ public sealed class ControllerConfigurationTests
         };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [controller] };
         var input = new InputConfiguration(ControllerBindings:
-        [new ControllerBinding(FirstPort, ControllerType.DualShock, PhysicalDevice, new Dictionary<string, string> { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
+        [new ControllerBinding(FirstPort, PeripheralCategory.DualShock, PhysicalDevice, new Dictionary<string, string> { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
         Assert.Equal((short)0, mapped.LeftX);
         Assert.Equal((short)0, mapped.LeftY);
@@ -204,14 +204,14 @@ public sealed class ControllerConfigurationTests
     {
         var mappings = new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA };
         var configuration = new MachineConfiguration(ModelConstants.PlayStation, SwanCore.Id,
-            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.Joystick, PhysicalDevice, mappings, EmulationControllerVisualIds.SonyPlayStationController)]));
-        var updated = ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.DualShock);
+            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Joystick, PhysicalDevice, mappings, EmulationControllerVisualIds.SonyPlayStationController)]));
+        var updated = ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.DualShock);
         var binding = Assert.Single(updated.Input!.ControllerBindings!);
-        Assert.Equal(ControllerType.DualShock, binding.Type);
+        Assert.Equal(PeripheralCategory.DualShock, binding.Type);
         Assert.Equal(PhysicalDevice, binding.DeviceId);
         Assert.Same(mappings, binding.ButtonMappings);
         Assert.Equal(EmulationControllerVisualIds.SonyPlayStationController, binding.VisualId);
-        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.Keyboard));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.Keyboard));
     }
 
     [Fact]
@@ -219,25 +219,25 @@ public sealed class ControllerConfigurationTests
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, Pcsx2Core.Id, Input: new InputConfiguration(
             KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.A)] = nameof(EmulationKey.F10) },
-            UsbBindings: [new ControllerBinding(FirstPort, ControllerType.Keyboard)]));
+            UsbBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Keyboard)]));
         var settings = InputSettingsFunctions.Describe(configuration);
         Assert.NotNull(settings.Keyboard);
         Assert.NotEmpty(settings.Keyboard.Definitions);
         Assert.All(settings.Keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out _)));
         Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
-        Assert.Equal(ControllerType.Keyboard.ToString(), settings.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
-        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb), port => Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
-        Assert.All(settings.ControllerPorts.Where(port => !port.IsUsb), port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
+        Assert.Equal(PeripheralCategory.Keyboard.ToString(), settings.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
+        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb), port => Assert.Contains(port.ControllerChoices, choice => choice.Id == PeripheralCategory.Keyboard.ToString()));
+        Assert.All(settings.ControllerPorts.Where(port => !port.IsUsb), port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == PeripheralCategory.Keyboard.ToString()));
         var restored = InputSettingsFunctions.Describe(InputSettingsFunctions.Apply(configuration, settings));
         Assert.Equal(nameof(EmulationKey.F10), restored.Keyboard!.Values[nameof(EmulationKey.A)]);
-        Assert.Equal(ControllerType.Keyboard.ToString(), restored.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
+        Assert.Equal(PeripheralCategory.Keyboard.ToString(), restored.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
     }
 
     [Fact]
     public void MouseMappingsReachPerPortControls()
     {
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
-        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.Mouse, ButtonMappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Mouse, ButtonMappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
         Assert.Equal(InputSnapshotFunctionsConstants.FullPressure, mapped.Controls[nameof(MouseAction.LeftButton)]);
     }

@@ -258,7 +258,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void ACoreWithoutControllerMetadataReceivesTheStandardJoypad()
     {
-        Assert.Equal(1u, ExternalCore.ResolveControllerDevice([], ControllerType.SegaMegaDriveThreeButton));
-        Assert.Equal(0u, ExternalCore.ResolveControllerDevice([], ControllerType.None));
+        Assert.Equal(1u, ExternalCore.ResolveControllerDevice([], PeripheralCategory.SegaMegaDriveThreeButton));
+        Assert.Equal(0u, ExternalCore.ResolveControllerDevice([], PeripheralCategory.None));
     }
 }

@@ -74,16 +74,16 @@ internal static partial class InputSettingsFunctions
         RareDefinition("GameTrak.Pedal")
     ];
 
-    private static IReadOnlyList<InputBindingDefinition>? InstrumentDefinitions(ControllerType type) => type switch
+    private static IReadOnlyList<InputBindingDefinition>? InstrumentDefinitions(PeripheralCategory type) => type switch
     {
-        ControllerType.KeyboardMania => KeyboardManiaDefinitions(),
-        ControllerType.DrumMania => DrumManiaDefinitions(),
-        ControllerType.ParaParaController => ParaParaDefinitions(),
-        ControllerType.RockBandGuitar => RockBandGuitarDefinitions(),
-        ControllerType.RockBandDrums => BandDrumDefinitions(false),
-        ControllerType.GuitarHeroDrums => BandDrumDefinitions(true),
-        ControllerType.DjHero => DjHeroDefinitions(),
-        ControllerType.GameTrak => GameTrakDefinitions(),
+        PeripheralCategory.KeyboardMania => KeyboardManiaDefinitions(),
+        PeripheralCategory.DrumMania => DrumManiaDefinitions(),
+        PeripheralCategory.ParaParaController => ParaParaDefinitions(),
+        PeripheralCategory.RockBandGuitar => RockBandGuitarDefinitions(),
+        PeripheralCategory.RockBandDrums => BandDrumDefinitions(false),
+        PeripheralCategory.GuitarHeroDrums => BandDrumDefinitions(true),
+        PeripheralCategory.DjHero => DjHeroDefinitions(),
+        PeripheralCategory.GameTrak => GameTrakDefinitions(),
         _ => null
     };
 
@@ -102,35 +102,35 @@ internal static partial class InputSettingsFunctions
         [EmulationControllerVisualControl.Guide] = "Instrument.PS"
     };
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? InstrumentVisualCommands(ControllerType type)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? InstrumentVisualCommands(PeripheralCategory type)
     {
         if (InstrumentDefinitions(type) is null) return null;
         var commands = InstrumentMenuVisualCommands();
         switch (type)
         {
-            case ControllerType.KeyboardMania:
+            case PeripheralCategory.KeyboardMania:
                 for (var key = 1; key <= 24; key++) commands[Enum.Parse<EmulationControllerVisualControl>("Key" + key)] = "Piano.Key" + key;
                 commands[EmulationControllerVisualControl.RotaryLeft] = "Piano.WheelUp";
                 commands[EmulationControllerVisualControl.RotaryRight] = "Piano.WheelDown";
                 break;
-            case ControllerType.DrumMania:
+            case PeripheralCategory.DrumMania:
                 foreach (var pad in new[] { "HiHat", "Snare", "HighTom", "LowTom", "Cymbal", "Kick" })
                     commands[Enum.Parse<EmulationControllerVisualControl>("Drum" + pad)] = "Drum." + pad;
                 break;
-            case ControllerType.ParaParaController:
+            case PeripheralCategory.ParaParaController:
                 for (var sensor = 1; sensor <= 5; sensor++) commands[Enum.Parse<EmulationControllerVisualControl>("OpticalSensor" + sensor)] = "ParaPara.Sensor" + sensor;
                 break;
-            case ControllerType.RockBandGuitar:
+            case PeripheralCategory.RockBandGuitar:
                 foreach (var pair in GuitarVisualCommands()) commands[pair.Key] = pair.Value;
                 foreach (var color in InstrumentColors) commands[Enum.Parse<EmulationControllerVisualControl>("SoloFret" + color)] = "Guitar.Solo" + color;
                 for (var position = 1; position <= 5; position++) commands[Enum.Parse<EmulationControllerVisualControl>("EffectPosition" + position)] = "Guitar.Effect" + position;
                 break;
-            case ControllerType.RockBandDrums:
-            case ControllerType.GuitarHeroDrums:
+            case PeripheralCategory.RockBandDrums:
+            case PeripheralCategory.GuitarHeroDrums:
                 foreach (var color in InstrumentColors) commands[Enum.Parse<EmulationControllerVisualControl>("Drum" + color)] = "Drum." + color;
                 commands[EmulationControllerVisualControl.DrumKick] = "Drum.Kick";
                 break;
-            case ControllerType.DjHero:
+            case PeripheralCategory.DjHero:
                 commands[EmulationControllerVisualControl.FretGreen] = "DJ.Green";
                 commands[EmulationControllerVisualControl.FretRed] = "DJ.Red";
                 commands[EmulationControllerVisualControl.FretBlue] = "DJ.Blue";
@@ -143,7 +143,7 @@ internal static partial class InputSettingsFunctions
                 // Euphoria and the triangle menu button are the same hardware input.
                 commands[EmulationControllerVisualControl.AnalogMode] = EmulationControllerCommandIds.X;
                 break;
-            case ControllerType.GameTrak:
+            case PeripheralCategory.GameTrak:
                 foreach (var hand in new[] { "Left", "Right" })
                     foreach (var direction in TetherDirections)
                         commands[Enum.Parse<EmulationControllerVisualControl>(hand + "Tether" + direction)] = "GameTrak." + hand + direction;

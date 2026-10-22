@@ -29,7 +29,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }, cancellationToken);
     }
 
-    private void SetControllerPortDevice(int port, ControllerType type)
+    private void SetControllerPortDevice(int port, PeripheralCategory type)
     {
         CommonControllerFunctions.Validate(Configuration, port, type);
         QueueCommand(() =>

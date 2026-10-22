@@ -52,7 +52,7 @@ internal static class InputSnapshotFunctions
         for (var port = ControllerPortConstants.MinimumControllerPort; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
-            if (binding?.Type == ControllerType.None)
+            if (binding?.Type == PeripheralCategory.None)
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;

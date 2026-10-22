@@ -60,7 +60,7 @@ public sealed class AdapterPresentationPolicyTests
     public void UsbKeyboardUsesTheSameNativeKeysAndOrdering()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2",
-            Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, ControllerType.Keyboard)]));
+            Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, PeripheralCategory.Keyboard)]));
         var keyboard = InputSettingsFunctions.Describe(configuration).Keyboard;
         Assert.NotNull(keyboard);
         var expected = EmulationSdk.InputProcessing.CreateKeyMap().Keys
@@ -74,8 +74,8 @@ public sealed class AdapterPresentationPolicyTests
     public void GunCon2UsesExistingAdapterDefinitions()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
-            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(0, ControllerType.GunCon2)]));
-        var expected = new Pcee2MachineFactory().GetControllerBindingDefinitions(configuration, ControllerType.GunCon2, 0);
+            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(0, PeripheralCategory.GunCon2)]));
+        var expected = new Pcee2MachineFactory().GetControllerBindingDefinitions(configuration, PeripheralCategory.GunCon2, 0);
         var port = InputSettingsFunctions.Describe(configuration).ControllerPorts.Single(port => port.Number == 1);
         Assert.NotNull(expected);
         Assert.Same(expected, port.Bindings.Definitions);

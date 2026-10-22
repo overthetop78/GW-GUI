@@ -18,6 +18,6 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: false,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        ControllerTypes: [PeripheralCategory.Joystick, PeripheralCategory.None],
         DisposalTimeout: TimeSpan.FromSeconds(DisposalTimeoutSeconds));
 }

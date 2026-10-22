@@ -44,27 +44,27 @@ internal static partial class InputSettingsFunctions
             .Select(direction => new InputBindingDefinition("Flight.DPad3" + direction.Item1, string.Empty, string.Empty, "D-PAD 3 " + direction.Item2))
     ];
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? RarePeripheralVisualCommands(ControllerType type)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? RarePeripheralVisualCommands(PeripheralCategory type)
     {
-        if (type == ControllerType.KidsStation) return new Dictionary<EmulationControllerVisualControl, string>
+        if (type == PeripheralCategory.KidsStation) return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
             [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y,
             [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X
         };
-        if (type == ControllerType.MaestroBaton) return new Dictionary<EmulationControllerVisualControl, string>
+        if (type == PeripheralCategory.MaestroBaton) return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.PrimaryAction] = "Maestro.Button1",
             [EmulationControllerVisualControl.SecondaryAction] = "Maestro.Button2"
         };
-        if (type == ControllerType.Tambourine) return new Dictionary<EmulationControllerVisualControl, string>
+        if (type == PeripheralCategory.Tambourine) return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.PrimaryAction] = "Tambourine.LeftButton",
             [EmulationControllerVisualControl.SecondaryAction] = "Tambourine.RightButton",
             [EmulationControllerVisualControl.TertiaryAction] = "Tambourine.Hit"
         };
-        if (type != ControllerType.UsbFlightStick) return null;
+        if (type != PeripheralCategory.UsbFlightStick) return null;
         return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = "Flight.DPad1Up",

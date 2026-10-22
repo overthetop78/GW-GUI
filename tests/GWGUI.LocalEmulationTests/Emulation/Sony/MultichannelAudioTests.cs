@@ -201,7 +201,7 @@ public sealed class MultichannelAudioTests
         public void Stop() { }
         public void Dispose() => Disposed = true;
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void SetControllerPortDevice(int port, ControllerType type) { }
+        public void SetControllerPortDevice(int port, PeripheralCategory type) { }
         public void SetOption(string key, string value) => throw new NotSupportedException();
         public void HardReset() => throw new NotSupportedException();
         public void SoftReset() => throw new NotSupportedException();

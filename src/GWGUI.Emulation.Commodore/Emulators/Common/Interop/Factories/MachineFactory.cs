@@ -20,7 +20,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     internal abstract string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media);
     internal virtual string ConvertMediaPath(string path, string conversionDirectory) => path;
     internal virtual int ControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
-    internal virtual uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => ExternalCore.ControllerDevice(ports, port, type);
+    internal virtual uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, PeripheralCategory type) => ExternalCore.ControllerDevice(ports, port, type);
     internal virtual MediaCategory InferMediaCategory(MachineConfiguration configuration, string path)
     {
         var extension = Path.GetExtension(path);

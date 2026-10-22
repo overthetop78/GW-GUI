@@ -61,7 +61,7 @@ public sealed class AmstradEmulatorAdapterTests
         Assert.Equal(2, settings.ControllerPorts.Count);
         foreach (var port in settings.ControllerPorts)
         {
-            var gamepad = Assert.Single(port.ControllerChoices, choice => choice.Id == nameof(ControllerType.Gamepad));
+            var gamepad = Assert.Single(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.Gamepad));
             Assert.Equal(EmulationControllerCategory.Gamepad, gamepad.Category);
             Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, gamepad.DefaultVisualId);
             Assert.Contains(gamepad.DefaultVisualId, gamepad.CompatibleVisualIds!);
@@ -75,14 +75,14 @@ public sealed class AmstradEmulatorAdapterTests
         {
             ControllerPorts = settings.ControllerPorts.Select(port => port with
             {
-                SelectedControllerId = nameof(ControllerType.Gamepad),
+                SelectedControllerId = nameof(PeripheralCategory.Gamepad),
                 VisualId = GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller
             }).ToArray()
         };
         var restored = module.DescribeInputSettings(module.ApplyInputSettings(configuration, selected));
         Assert.All(restored.ControllerPorts, port =>
         {
-            Assert.Equal(nameof(ControllerType.Gamepad), port.SelectedControllerId);
+            Assert.Equal(nameof(PeripheralCategory.Gamepad), port.SelectedControllerId);
             Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, port.VisualId);
             Assert.Empty(port.Bindings.Values);
         });
@@ -476,9 +476,9 @@ public sealed class AmstradEmulatorAdapterTests
         }
     }
     [Theory]
-    [InlineData(ControllerType.Joystick)]
-    [InlineData(ControllerType.Gamepad)]
-    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral(ControllerType controllerType)
+    [InlineData(PeripheralCategory.Joystick)]
+    [InlineData(PeripheralCategory.Gamepad)]
+    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral(PeripheralCategory controllerType)
     {
         const uint buttons = (1u << 4) | (1u << 0);
         var configuration = new InputConfiguration(ControllerBindings:

@@ -193,11 +193,11 @@ public sealed class ConfigurationPresentationTests
         var fields = Fields(Rearmed.Id).Where(field => field.Tab == EmulationMachineTab.Controllers).ToArray();
         Assert.DoesNotContain(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.OptionConstants.ShowInputSettingsKey);
         var negcon = fields.First(field => field.Id.Contains("negcon", StringComparison.Ordinal));
-        Assert.Contains(nameof(ControllerType.NeGcon), negcon.AppliesToControllerIds!);
-        Assert.DoesNotContain(nameof(ControllerType.DualShock), negcon.AppliesToControllerIds!);
+        Assert.Contains(nameof(PeripheralCategory.NeGcon), negcon.AppliesToControllerIds!);
+        Assert.DoesNotContain(nameof(PeripheralCategory.DualShock), negcon.AppliesToControllerIds!);
         var gun = fields.First(field => field.Id.Contains("guncon", StringComparison.Ordinal));
-        Assert.Contains(nameof(ControllerType.GunCon), gun.AppliesToControllerIds!);
-        Assert.DoesNotContain(nameof(ControllerType.Joystick), gun.AppliesToControllerIds!);
+        Assert.Contains(nameof(PeripheralCategory.GunCon), gun.AppliesToControllerIds!);
+        Assert.DoesNotContain(nameof(PeripheralCategory.Joystick), gun.AppliesToControllerIds!);
     }
 
     [Fact]
@@ -205,17 +205,17 @@ public sealed class ConfigurationPresentationTests
     {
         var input = InputSettingsFunctions.Describe(Configuration(Beetle.Id));
         var choices = input.ControllerPorts.First().ControllerChoices;
-        var dualShock = choices.Single(choice => choice.Id == nameof(ControllerType.DualShock));
+        var dualShock = choices.Single(choice => choice.Id == nameof(PeripheralCategory.DualShock));
         Assert.Equal(EmulationControllerVisualIds.SonyDualShock1, dualShock.DefaultVisualId);
-        foreach (var type in new[] { ControllerType.AnalogController, ControllerType.AnalogJoystick,
-                     ControllerType.Mouse, ControllerType.NeGcon, ControllerType.GunCon, ControllerType.Justifier })
+        foreach (var type in new[] { PeripheralCategory.AnalogController, PeripheralCategory.AnalogJoystick,
+                     PeripheralCategory.Mouse, PeripheralCategory.NeGcon, PeripheralCategory.GunCon, PeripheralCategory.Justifier })
             Assert.NotEmpty(choices.Single(choice => choice.Id == type.ToString()).CompatibleVisualIds!);
         var state = EmulationControllerState.Empty with
         {
             Controls = new EmulationControllerControls(new Dictionary<string, float> { [InputSettingsFunctionsConstants.Analog] = 1f })
         };
-        Assert.NotEqual(0u, AnalogToggleFunctions.ButtonMask(state, ControllerType.DualShock));
-        Assert.Equal(0u, AnalogToggleFunctions.ButtonMask(state, ControllerType.Joystick));
+        Assert.NotEqual(0u, AnalogToggleFunctions.ButtonMask(state, PeripheralCategory.DualShock));
+        Assert.Equal(0u, AnalogToggleFunctions.ButtonMask(state, PeripheralCategory.Joystick));
     }
 
     [Theory]
@@ -268,10 +268,10 @@ public sealed class ConfigurationPresentationTests
     {
         var fields = Fields(Swan.Id);
         var gun = fields.Single(field => field.Id == SwanOptions.Controller1XScaleKey);
-        Assert.Equal([nameof(ControllerType.GunCon)], gun.AppliesToControllerIds);
+        Assert.Equal([nameof(PeripheralCategory.GunCon)], gun.AppliesToControllerIds);
         var steering = fields.Single(field => field.Id == SwanOptions.Controller1SteeringDeadzoneKey);
-        Assert.DoesNotContain(nameof(ControllerType.DualShock), steering.AppliesToControllerIds!);
-        Assert.DoesNotContain(nameof(ControllerType.AnalogJoystick), steering.AppliesToControllerIds!);
+        Assert.DoesNotContain(nameof(PeripheralCategory.DualShock), steering.AppliesToControllerIds!);
+        Assert.DoesNotContain(nameof(PeripheralCategory.AnalogJoystick), steering.AppliesToControllerIds!);
         var multitaps = fields.Where(field => field.Id.StartsWith(SwanOptions.ControllerPortsMultitapModeKey + ".port", StringComparison.Ordinal)).ToArray();
         Assert.Equal(new[] { SwanOptions.ControllerPortsMultitapModeKey + ".port1", SwanOptions.ControllerPortsMultitapModeKey + ".port2" }, multitaps.Select(field => field.Id));
         Assert.All(multitaps, multitap =>
@@ -307,9 +307,9 @@ public sealed class ConfigurationPresentationTests
         Assert.DoesNotContain(fields, field => field.Id.EndsWith("_analog_toggle", StringComparison.Ordinal));
         var calibration = fields.Single(field => field.Id.EndsWith("_analog_calibration", StringComparison.Ordinal));
         Assert.Equal("Emulation.Option.Sony.Controller.AnalogCalibration.Short", calibration.ExplanationResourceKey);
-        Assert.Contains(nameof(ControllerType.DualShock), calibration.AppliesToControllerIds!);
-        Assert.Contains(nameof(ControllerType.NeGcon), calibration.AppliesToControllerIds!);
-        Assert.DoesNotContain(nameof(ControllerType.Joystick), calibration.AppliesToControllerIds!);
+        Assert.Contains(nameof(PeripheralCategory.DualShock), calibration.AppliesToControllerIds!);
+        Assert.Contains(nameof(PeripheralCategory.NeGcon), calibration.AppliesToControllerIds!);
+        Assert.DoesNotContain(nameof(PeripheralCategory.Joystick), calibration.AppliesToControllerIds!);
     }
 
     private static MachineConfiguration Configuration(string emulator) => new(ModelConstants.PlayStation, emulator);

@@ -48,9 +48,9 @@ internal static partial class InputSettingsFunctions
         Definition(EmulationControllerCommandIds.Start, InputSettingsFunctionsConstants.ControllerStart, string.Empty)
     ];
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? MusicVisualCommands(ControllerType type)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? MusicVisualCommands(PeripheralCategory type)
     {
-        if (type == ControllerType.TaikoDrum) return new Dictionary<EmulationControllerVisualControl, string>
+        if (type == PeripheralCategory.TaikoDrum) return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.PrimaryAction] = "Taiko.LeftHead",
             [EmulationControllerVisualControl.SecondaryAction] = "Taiko.RightHead",
@@ -59,13 +59,13 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select,
             [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
-        if (type is not (ControllerType.Beatmania or ControllerType.BeatmaniaIidx or ControllerType.PopnMusic)) return null;
-        var count = type == ControllerType.Beatmania ? 5 : type == ControllerType.BeatmaniaIidx ? 7 : 9;
-        var prefix = type == ControllerType.PopnMusic ? "Popn." : "Beatmania.Key";
+        if (type is not (PeripheralCategory.Beatmania or PeripheralCategory.BeatmaniaIidx or PeripheralCategory.PopnMusic)) return null;
+        var count = type == PeripheralCategory.Beatmania ? 5 : type == PeripheralCategory.BeatmaniaIidx ? 7 : 9;
+        var prefix = type == PeripheralCategory.PopnMusic ? "Popn." : "Beatmania.Key";
         var commands = Enumerable.Range(1, count).ToDictionary(key => Enum.Parse<EmulationControllerVisualControl>("Key" + key), key => prefix + key);
         commands[EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select;
         commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
-        if (type != ControllerType.PopnMusic)
+        if (type != PeripheralCategory.PopnMusic)
         {
             commands[EmulationControllerVisualControl.RotaryLeft] = "Beatmania.ScratchLeft";
             commands[EmulationControllerVisualControl.RotaryRight] = "Beatmania.ScratchRight";

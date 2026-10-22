@@ -12,8 +12,8 @@ internal static class AnalogToggleFunctions
     private const string NoHoldDelay = "0";
     private const uint L1R1SelectMask = (1u << 10) | (1u << 11) | (1u << 2);
 
-    internal static uint ButtonMask(EmulationControllerState controller, ControllerType type) =>
-        type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick && ControllerInputFunctions.PortButton(controller, InputSettingsFunctionsConstants.Analog) ? controller.Buttons | L1R1SelectMask : controller.Buttons;
+    internal static uint ButtonMask(EmulationControllerState controller, PeripheralCategory type) =>
+        type is PeripheralCategory.DualShock or PeripheralCategory.AnalogController or PeripheralCategory.AnalogJoystick && ControllerInputFunctions.PortButton(controller, InputSettingsFunctionsConstants.Analog) ? controller.Buttons | L1R1SelectMask : controller.Buttons;
 
     internal static MachineConfiguration Configure(MachineConfiguration configuration)
     {

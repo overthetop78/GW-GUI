@@ -15,18 +15,18 @@ public sealed class LegacyAnalogAxisTests
     public void SingleMissionStickDoesNotSelectTheDualPeripheral()
     {
         var devices = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts.ControllerDevice[] { new("Dual Mission Sticks", 1029), new("Mission Stick", 773) };
-        Assert.Equal(773u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice(devices, SegaEnums.ControllerType.SegaSaturnMissionStick));
-        Assert.Equal(0u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice([devices[0]], SegaEnums.ControllerType.SegaSaturnMissionStick));
+        Assert.Equal(773u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice(devices, SegaEnums.PeripheralCategory.SegaSaturnMissionStick));
+        Assert.Equal(0u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice([devices[0]], SegaEnums.PeripheralCategory.SegaSaturnMissionStick));
     }
 
     [Theory]
-    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MegaDrive", 8)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, "Dreamcast", 8)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, "Dreamcast", 8)]
-    [InlineData(SegaEnums.ControllerType.SegaSportsPad, "MegaDrive", 4)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Saturn", 6)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Saturn", 2)]
-    public void SpecialControllerAxesArePairedUnassignedAndPersisted(SegaEnums.ControllerType type, string model, int count)
+    [InlineData(SegaEnums.PeripheralCategory.SegaXe1Ap, "MegaDrive", 8)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastFishingController, "Dreamcast", 8)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastMaracas, "Dreamcast", 8)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSportsPad, "MegaDrive", 4)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnMissionStick, "Saturn", 6)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnArcadeRacer, "Saturn", 2)]
+    public void SpecialControllerAxesArePairedUnassignedAndPersisted(SegaEnums.PeripheralCategory type, string model, int count)
     {
         var input = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", new Dictionary<string, string>())]);
         var configuration = new SegaInput.MachineConfiguration(model, string.Empty, Input: input);
@@ -46,13 +46,13 @@ public sealed class LegacyAnalogAxisTests
     }
 
     [Theory]
-    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, true, true)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, true, true)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, true, true)]
-    [InlineData(SegaEnums.ControllerType.SegaSportsPad, false, false)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, false, true)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, false, false)]
-    public void SpecialControllerAxesKeepTheirOwnExplicitCourse(SegaEnums.ControllerType type, bool rightX, bool rightY)
+    [InlineData(SegaEnums.PeripheralCategory.SegaXe1Ap, true, true)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastFishingController, true, true)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastMaracas, true, true)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSportsPad, false, false)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnMissionStick, false, true)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnArcadeRacer, false, false)]
+    public void SpecialControllerAxesKeepTheirOwnExplicitCourse(SegaEnums.PeripheralCategory type, bool rightX, bool rightY)
     {
         var physical = EmulationControllerState.Empty with { DeviceId = "pad", LeftY = short.MaxValue, RightX = short.MaxValue, RightY = short.MaxValue };
         var mappings = new Dictionary<string, string>
@@ -73,15 +73,15 @@ public sealed class LegacyAnalogAxisTests
     }
 
     [Theory]
-    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MD XE-1AP", 773u)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, "Fishing Controller", 1537u)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, "Maracas", 1281u)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Mission Stick", 773u)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Arcade Racer", 517u)]
-    [InlineData(SegaEnums.ControllerType.SegaSaturnThreeDControlPad, "3D Control Pad", 261u)]
-    [InlineData(SegaEnums.ControllerType.SegaSportsPad, "MS Sports Pad", 517u)]
-    [InlineData(SegaEnums.ControllerType.SegaPaddleControl, "MS Paddle Control", 261u)]
-    public void NativePeripheralSelectionDoesNotSubstituteTheDigitalPad(SegaEnums.ControllerType type, string name, uint id)
+    [InlineData(SegaEnums.PeripheralCategory.SegaXe1Ap, "MD XE-1AP", 773u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastFishingController, "Fishing Controller", 1537u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastMaracas, "Maracas", 1281u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnMissionStick, "Mission Stick", 773u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnArcadeRacer, "Arcade Racer", 517u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSaturnThreeDControlPad, "3D Control Pad", 261u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaSportsPad, "MS Sports Pad", 517u)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaPaddleControl, "MS Paddle Control", 261u)]
+    public void NativePeripheralSelectionDoesNotSubstituteTheDigitalPad(SegaEnums.PeripheralCategory type, string name, uint id)
     {
         var devices = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts.ControllerDevice[] { new("Control Pad", 1), new(name, id) };
         Assert.Equal(id, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice(devices, type));
@@ -89,9 +89,9 @@ public sealed class LegacyAnalogAxisTests
     }
 
     [Theory]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastController)]
-    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController)]
-    public void TriggerReassignmentKeepsPressureAndDoesNotInheritAnotherTrigger(SegaEnums.ControllerType type)
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastController)]
+    [InlineData(SegaEnums.PeripheralCategory.SegaDreamcastFishingController)]
+    public void TriggerReassignmentKeepsPressureAndDoesNotInheritAnotherTrigger(SegaEnums.PeripheralCategory type)
     {
         var source = EmulationControllerState.Empty with { DeviceId = "pad", LeftTrigger = short.MaxValue, RightTrigger = 8192 };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
@@ -154,10 +154,10 @@ public sealed class LegacyAnalogAxisTests
         var mappings = new Dictionary<string, string> { ["Left"] = negative, ["Right"] = positive };
         var atari = new AtariInput.InputConfiguration(Controllers: [new(0, AtariEnums.PeripheralCategory.AnalogJoystick, "pad", mappings)]);
         var atariState = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, atari, AtariEnums.MachineModel.Atari5200).Controllers[0];
-        var commodore = new CommodoreInput.InputConfiguration(ControllerBindings: [new(0, CommodoreEnums.ControllerType.AnalogJoystick, "pad", mappings)]);
+        var commodore = new CommodoreInput.InputConfiguration(ControllerBindings: [new(0, CommodoreEnums.PeripheralCategory.AnalogJoystick, "pad", mappings)]);
         var commodoreState = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, commodore, false).Controllers[0];
         var segaMappings = new Dictionary<string, string> { ["LeftStickLeft"] = negative, ["LeftStickRight"] = positive };
-        var sega = new SegaInput.InputConfiguration(ControllerBindings: [new(0, SegaEnums.ControllerType.SegaDreamcastController, "pad", segaMappings)]);
+        var sega = new SegaInput.InputConfiguration(ControllerBindings: [new(0, SegaEnums.PeripheralCategory.SegaDreamcastController, "pad", segaMappings)]);
         var segaState = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, sega, false).Controllers[0];
         foreach (var state in new[] { atariState, commodoreState, segaState })
         {

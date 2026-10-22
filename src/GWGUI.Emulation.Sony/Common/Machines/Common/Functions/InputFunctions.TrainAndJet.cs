@@ -41,9 +41,9 @@ internal static partial class InputSettingsFunctions
         new("Jet.ThrottleDecrease", "Emulation.Sony.Input.Jet.ThrottleDecrease", string.Empty) { OppositeDirectionId = "Jet.ThrottleIncrease" }
     ];
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? TrainAndJetVisualCommands(ControllerType type, Model model)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? TrainAndJetVisualCommands(PeripheralCategory type, Model model)
     {
-        if (type is ControllerType.TrainController or ControllerType.UsbTrainController) return new Dictionary<EmulationControllerVisualControl, string>
+        if (type is PeripheralCategory.TrainController or PeripheralCategory.UsbTrainController) return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.FaceA] = "Train.A",
             [EmulationControllerVisualControl.FaceB] = "Train.B",
@@ -73,8 +73,8 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.CombinedLeverForward] = "Train.CombinedForward",
             [EmulationControllerVisualControl.CombinedLeverBackward] = "Train.CombinedBackward"
         };
-        if (type != ControllerType.JetController) return null;
-        return new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(ControllerType.Joystick, model)!)
+        if (type != PeripheralCategory.JetController) return null;
+        return new Dictionary<EmulationControllerVisualControl, string>(VisualCommandIds(PeripheralCategory.Joystick, model)!)
         {
             [EmulationControllerVisualControl.StickLeft] = "Jet.RollLeft",
             [EmulationControllerVisualControl.StickRight] = "Jet.RollRight",
