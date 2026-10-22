@@ -30,6 +30,22 @@ namespace GWGUI.Tests.Emulation.Amstrad;
 public sealed class AmstradEmulatorAdapterTests
 {
     [Theory]
+    [InlineData("caprice32", "cpc-6128", true, true)]
+    [InlineData("caprice32", "gx4000", true, false)]
+    [InlineData("crocods", "cpc-6128", false, false)]
+    public async Task PointerCapabilityKeepsBackendAndModelRestrictions(string emulatorId, string model, bool backendSupportsPointer, bool mouseVisible)
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(module.CreateConfiguration(model), emulatorId));
+        var adapter = new Engine().Adapter(configuration);
+        var pointer = Assert.IsAssignableFrom<GWGUI.Emulation.Amstrad.Common.Interfaces.IEmulatorPointerCapabilities>(adapter);
+        Assert.Equal(backendSupportsPointer, pointer.SupportsPointer(configuration));
+        Assert.Equal(mouseVisible, module.Describe(model, configuration).Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.Equal(mouseVisible, module.DescribeInputSettings(configuration).Mouse is not null);
+    }
+
+    [Theory]
     [InlineData("cpc-464")]
     [InlineData("cpc-664")]
     [InlineData("cpc-6128")]

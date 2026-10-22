@@ -12,7 +12,7 @@ internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants
         .Where(action => action.Id is not (ControllerActionConstants.SpinnerLeft or ControllerActionConstants.SpinnerRight)).ToArray();
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.BlueMSX, DescribeInput);
 
-    public IReadOnlySet<string> SupportedContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
+    public IReadOnlySet<string> ResolveContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
     {
         var extensions = new HashSet<string>(declaredExtensions, StringComparer.OrdinalIgnoreCase);
         // In the forced ColecoVision mode, the native file loader treats unknown suffixes as cartridges.

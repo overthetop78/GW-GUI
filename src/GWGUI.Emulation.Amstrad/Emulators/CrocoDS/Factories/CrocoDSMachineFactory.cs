@@ -32,7 +32,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
         Options = (configuration.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
             .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
     };
-    public bool SupportsMouse => false;
+    public bool SupportsPointer(MachineConfiguration configuration) => false;
     public bool SupportsVideoSettings => false;
     private static readonly CoreDefinition Core = new(EmulatorConstants.Id,
         EmulatorConstants.LibraryName, ReleaseConstants.LibraryFile, EmulatorConstants.CoreHostCommand,
@@ -110,7 +110,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
             Options = (configuration.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
                 .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
         };
-        return new Machine(id, native, new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: false),
+        return new Machine(id, native, new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: SupportsPointer(configuration)),
             native.Media ?? [], Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));

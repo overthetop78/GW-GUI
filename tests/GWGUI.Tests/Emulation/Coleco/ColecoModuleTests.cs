@@ -185,7 +185,7 @@ public sealed class ColecoModuleTests
         var engine = new GWGUI.Emulation.Coleco.Common.Services.Engine();
         var formats = Assert.IsAssignableFrom<GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats>(engine.Adapter(Emulator.BlueMSX));
         var declared = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "col", "rom" };
-        var supported = formats.SupportedContentExtensions(declared, requiresFilePath);
+        var supported = formats.ResolveContentExtensions(declared, requiresFilePath);
         Assert.Contains("bin", supported);
         Assert.Contains("col", supported);
         Assert.DoesNotContain("bin", declared);

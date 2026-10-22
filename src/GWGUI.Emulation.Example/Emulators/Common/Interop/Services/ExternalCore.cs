@@ -16,6 +16,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     /// <summary>Table d’exports gérés conservée vivante pendant toute la session simulée.</summary>
     private readonly ExternalCoreExports _exports;
+    /// <summary>Contrat descriptif Common qui adapte les extensions ; cette instance ne possède aucune ressource de cœur.</summary>
+    private readonly IEmulatorContentFormats _contentFormats;
     /// <summary>Tampons vidéo possédés ; les frames publiées en empruntent les tableaux tournants.</summary>
     private readonly VideoBufferSet _video = new();
     /// <summary>File audio indépendante obtenue par le relais Common, avec les compteurs du SDK.</summary>
@@ -47,6 +49,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         ArgumentException.ThrowIfNullOrWhiteSpace(libraryPath);
         if (emulator == Emulator.None || !Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
         Emulator = emulator;
+        _contentFormats = EmulatorCatalog.CreateAdapter(emulator);
         _exports = new ExternalCoreExports(callback => _environment = callback, callback => _videoCallback = callback,
             callback => _sampleCallback = callback, callback => _batchCallback = callback, callback => _pollCallback = callback,
             callback => _inputCallback = callback, () => { }, Stop, ReadSystemInfo, ReadAvInfo,
@@ -94,7 +97,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     /// <inheritdoc/>
     public IReadOnlyList<string> Diagnostics => [];
     /// <inheritdoc/>
-    public IReadOnlySet<string> SupportedContentExtensions => _configuration is null ? new HashSet<string>() : StorageSettingsFunctions.DescribeDevices(_configuration.Model).SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase);
+    public IReadOnlySet<string> SupportedContentExtensions => _configuration is null ? new HashSet<string>() : _contentFormats.ResolveContentExtensions(StorageSettingsFunctions.DescribeDevices(_configuration.Model).SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase), requiresFilePath: true);
 
     /// <summary>Valide le profil, alloue la RAM et raccorde les callbacks avant de rendre le cœur exécutable.</summary>
     /// <remarks>Le firmware facultatif préparé par Common est lu sans écriture. En cas d’échec, finally

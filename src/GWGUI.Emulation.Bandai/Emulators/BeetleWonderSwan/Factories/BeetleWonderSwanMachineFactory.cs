@@ -8,7 +8,7 @@ internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(Emulator
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
         GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.PaletteFunctions.RuntimeOptions(configuration);
 
-    public IReadOnlySet<string> SupportedContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
+    public IReadOnlySet<string> ResolveContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
     {
         var extensions = new HashSet<string>(declaredExtensions, StringComparer.OrdinalIgnoreCase);
         // The native loader consumes ROM bytes rather than selecting a parser by filename.

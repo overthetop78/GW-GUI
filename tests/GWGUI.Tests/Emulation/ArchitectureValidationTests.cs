@@ -12,6 +12,21 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Theory]
+    [InlineData("Bandai")]
+    [InlineData("Coleco")]
+    [InlineData("Example")]
+    public void ContentFormatsUseTheSameResolutionContract(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorContentFormats", throwOnError: true)!;
+        var method = Assert.Single(contract.GetMethods());
+        Assert.Equal("ResolveContentExtensions", method.Name);
+        Assert.Equal(typeof(IReadOnlySet<string>), method.ReturnType);
+        Assert.Equal(new[] { typeof(IReadOnlySet<string>), typeof(bool) }, method.GetParameters().Select(parameter => parameter.ParameterType));
+        Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
+    }
+
     [Fact]
     public void ExampleBackendsPreservePreloadedOptionsAndExplicitHardware()
     {
@@ -105,6 +120,13 @@ public sealed class ArchitectureValidationTests
             }
             if (contractName == "IEmulatorPointerCapabilities")
             {
+                if (root == "GWGUI.Emulation.Amstrad")
+                {
+                    var capabilities = assembly.GetType(root + ".Common.Interfaces.IEmulatorCapabilities")!;
+                    Assert.Contains(contract, capabilities.GetInterfaces());
+                    Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetProperties()), property => property.Name == "SupportsMouse");
+                    Assert.Equal(2, assembly.GetTypes().Count(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)));
+                }
                 if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
                 {
                     var runtime = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimeCapabilities")!;

@@ -40,7 +40,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         {
             EmulationMachineTab.Video => capabilities?.SupportsVideoSettings != false || blocks.Any(block => block.Tab == EmulationMachineTab.Video),
             EmulationMachineTab.Keyboard => model.HasKeyboard,
-            EmulationMachineTab.Mouse => capabilities?.SupportsMouse != false && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
+            EmulationMachineTab.Mouse => capabilities?.SupportsPointer(current) != false && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > BufferConstants.EmptyCollectionCount
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
             _ => item.Value
@@ -101,7 +101,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     private EmulationInputSettings DescribeInput(MachineConfiguration configuration)
     {
         var settings = InputSettingsFunctions.Describe(configuration);
-        return _engine.Adapter(configuration) is IEmulatorCapabilities { SupportsMouse: false } ? settings with { Mouse = null } : settings;
+        return _engine.Adapter(configuration) is IEmulatorPointerCapabilities capabilities && !capabilities.SupportsPointer(configuration) ? settings with { Mouse = null } : settings;
     }
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
@@ -205,7 +205,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             media => _engine.CreateMachine(WithMedia(amstrad, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + amstrad.Model,
-            SupportsPointerCapture: adapter is not IEmulatorCapabilities { SupportsMouse: false } && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
+            SupportsPointerCapture: (adapter is not IEmulatorPointerCapabilities capabilities || capabilities.SupportsPointer(amstrad)) && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
