@@ -211,6 +211,8 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.OptionProcessing), typeof(IEmulationCoreOptionProcessing))]
     [InlineData(nameof(EmulationSdk.EnvironmentProcessing), typeof(IEmulationCoreEnvironmentProcessing))]
     [InlineData(nameof(EmulationSdk.HardwareSettings), typeof(IEmulationHardwareSettings))]
+    [InlineData(nameof(EmulationSdk.FirmwareProcessing), typeof(IEmulationFirmwareProcessing))]
+    [InlineData(nameof(EmulationSdk.MediaRules), typeof(IEmulationMediaRules))]
     [InlineData(nameof(EmulationSdk.VideoProcessing), typeof(IEmulationVideoProcessing))]
     [InlineData(nameof(EmulationSdk.MachineExecution), typeof(IEmulationMachineExecution))]
     [InlineData(nameof(EmulationSdk.Messages), typeof(IEmulationMessages))]

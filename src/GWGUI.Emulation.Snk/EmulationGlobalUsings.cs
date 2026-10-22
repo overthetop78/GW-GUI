@@ -32,7 +32,6 @@ global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
 
-global using VideoFunctions = GWGUI.Emulation.Functions.EmulationVideoFunctions;
 global using CoreActiveInstallation = GWGUI.Emulation.Contracts.EmulationCoreActiveInstallation;
 global using CoreDiagnosticManifest = GWGUI.Emulation.Contracts.EmulationCoreDiagnosticManifest;
 global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;

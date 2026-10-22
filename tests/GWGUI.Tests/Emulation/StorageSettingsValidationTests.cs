@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -24,7 +25,7 @@ public sealed class StorageSettingsValidationTests
         };
         EmulationMedia[] mounted = scenario == 3 ? [Disk, Disk] : [Disk];
         var settings = new EmulationStorageSettings([Drive], slots, mounted);
-        Assert.Equal(invalid, EmulationMediaRules.HasInvalidStorageSlots(settings, [Drive]));
+        Assert.Equal(invalid, EmulationSdk.MediaRules.HasInvalidStorageSlots(settings, [Drive]));
     }
 
     [Theory]
@@ -34,21 +35,21 @@ public sealed class StorageSettingsValidationTests
     [InlineData("disk", true)]
     public void MountValidationUsesTheDeviceExtensionsIgnoringCase(string path, bool invalid)
     {
-        Assert.Equal(invalid, EmulationMediaRules.IsInvalidMountedMedia(Disk with { Path = path }, [Drive], [Drive.Slot]));
+        Assert.Equal(invalid, EmulationSdk.MediaRules.IsInvalidMountedMedia(Disk with { Path = path }, [Drive], [Drive.Slot]));
     }
 
     [Fact]
     public void MountValidationRequiresADeviceConfiguredSlotAndMatchingType()
     {
-        Assert.True(EmulationMediaRules.IsInvalidMountedMedia(Disk, [], [Drive.Slot]));
-        Assert.True(EmulationMediaRules.IsInvalidMountedMedia(Disk, [Drive], []));
-        Assert.True(EmulationMediaRules.IsInvalidMountedMedia(Disk with { Type = EmulationMediaType.Cartridge }, [Drive], [Drive.Slot]));
+        Assert.True(EmulationSdk.MediaRules.IsInvalidMountedMedia(Disk, [], [Drive.Slot]));
+        Assert.True(EmulationSdk.MediaRules.IsInvalidMountedMedia(Disk, [Drive], []));
+        Assert.True(EmulationSdk.MediaRules.IsInvalidMountedMedia(Disk with { Type = EmulationMediaType.Cartridge }, [Drive], [Drive.Slot]));
     }
 
     [Fact]
     public void AmbiguousDeviceDescriptionsKeepTheOriginalSingleOrDefaultFailure()
     {
-        Assert.Throws<InvalidOperationException>(() => EmulationMediaRules.IsInvalidMountedMedia(Disk, [Drive, Drive], [Drive.Slot]));
+        Assert.Throws<InvalidOperationException>(() => EmulationSdk.MediaRules.IsInvalidMountedMedia(Disk, [Drive, Drive], [Drive.Slot]));
     }
 
     [Fact]
@@ -57,8 +58,8 @@ public sealed class StorageSettingsValidationTests
         var cartridge = new EmulationMedia("game.img", EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, false, false);
         var device = new EmulationMediaDevice(cartridge.Slot, cartridge.Type, [".img"]);
         var settings = new EmulationStorageSettings([device], [device.Slot], [cartridge], [new(device.Slot)]);
-        Assert.False(EmulationMediaRules.HasInvalidStorageSlots(settings, [device]));
-        Assert.False(EmulationMediaRules.IsInvalidMountedMedia(cartridge, [device], [device.Slot]));
-        Assert.Throws<ArgumentException>(() => EmulationMediaRules.Validate([cartridge]));
+        Assert.False(EmulationSdk.MediaRules.HasInvalidStorageSlots(settings, [device]));
+        Assert.False(EmulationSdk.MediaRules.IsInvalidMountedMedia(cartridge, [device], [device.Slot]));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.MediaRules.Validate([cartridge]));
     }
 }

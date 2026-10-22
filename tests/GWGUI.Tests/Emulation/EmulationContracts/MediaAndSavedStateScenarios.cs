@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -36,26 +37,26 @@ internal static class MediaAndSavedStateScenarios
         var first=new EmulationMedia("virtual-a",EmulationMediaSlot.Floppy0,EmulationMediaType.Floppy,false,true);
         var second=new EmulationMedia("virtual-b",EmulationMediaSlot.Floppy1,EmulationMediaType.Floppy,false,true);
         var replacement=first with{Path="virtual-c"};
-        var result=EmulationMediaRules.Replace([first,second],replacement);
+        var result=EmulationSdk.MediaRules.Replace([first,second],replacement);
         Assert.Contains(second,result);Assert.Contains(replacement,result);Assert.DoesNotContain(first,result);
-        var ejected=EmulationMediaRules.Eject(result,EmulationMediaSlot.Floppy0);
+        var ejected=EmulationSdk.MediaRules.Eject(result,EmulationMediaSlot.Floppy0);
         Assert.False(ejected.Single(x=>x.Slot==EmulationMediaSlot.Floppy0).IsInserted);
         Assert.True(ejected.Single(x=>x.Slot==EmulationMediaSlot.Floppy1).IsInserted);
-        var bytes=EmulationMediaProtocol.Serialize(ejected);
-        var restored=EmulationMediaProtocol.Deserialize(bytes);
+        var bytes=EmulationSdk.MediaRules.Serialize(ejected);
+        var restored=EmulationSdk.MediaRules.Deserialize(bytes);
         Assert.Equal(ejected,restored);
         Assert.Equal("virtual-c",restored.Single(x=>x.Slot==EmulationMediaSlot.Floppy0).Path);
     }
     public static void Invalid()
     {
         var floppy=new EmulationMedia("virtual",EmulationMediaSlot.Floppy0,EmulationMediaType.Floppy,false,true);
-        Assert.Throws<ArgumentException>(()=>EmulationMediaRules.Validate([floppy,floppy]));
-        Assert.Throws<ArgumentException>(()=>EmulationMediaRules.Validate([floppy with{Type=EmulationMediaType.CompactDisc}]));
-        Assert.Throws<ArgumentException>(()=>EmulationMediaRules.Validate([floppy with{Path=""}]));
+        Assert.Throws<ArgumentException>(()=>EmulationSdk.MediaRules.Validate([floppy,floppy]));
+        Assert.Throws<ArgumentException>(()=>EmulationSdk.MediaRules.Validate([floppy with{Type=EmulationMediaType.CompactDisc}]));
+        Assert.Throws<ArgumentException>(()=>EmulationSdk.MediaRules.Validate([floppy with{Path=""}]));
         var cd=floppy with {Slot=EmulationMediaSlot.Cd0,Type=EmulationMediaType.CompactDisc};
-        Assert.Throws<ArgumentException>(()=>EmulationMediaRules.Validate([cd]));
-        Assert.Single(EmulationMediaRules.Validate([cd with{IsReadOnly=true}]));
+        Assert.Throws<ArgumentException>(()=>EmulationSdk.MediaRules.Validate([cd]));
+        Assert.Single(EmulationSdk.MediaRules.Validate([cd with{IsReadOnly=true}]));
         var disk=floppy with {Slot=EmulationMediaSlot.HardDisk0,Type=EmulationMediaType.HardDisk};
-        Assert.Throws<InvalidOperationException>(()=>EmulationMediaRules.Eject([disk],disk.Slot));
+        Assert.Throws<InvalidOperationException>(()=>EmulationSdk.MediaRules.Eject([disk],disk.Slot));
     }
 }

@@ -2,14 +2,18 @@ using System.IO;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationMediaRules
+/// <summary>Implémentation interne des règles de médias existantes, accessible par le contrat commun.</summary>
+internal sealed class EmulationMediaRules : IEmulationMediaRules
 {
-    public static bool HasInvalidStorageSlots(EmulationStorageSettings settings, IReadOnlyList<EmulationMediaDevice> devices) =>
+    public byte[] Serialize(IReadOnlyList<EmulationMedia> media) => EmulationMediaProtocol.Serialize(media);
+    public IReadOnlyList<EmulationMedia> Deserialize(ReadOnlySpan<byte> payload) => EmulationMediaProtocol.Deserialize(payload);
+
+    public bool HasInvalidStorageSlots(EmulationStorageSettings settings, IReadOnlyList<EmulationMediaDevice> devices) =>
         settings.ConfiguredSlots.Distinct().Count() != settings.ConfiguredSlots.Count
         || settings.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot))
         || settings.MountedMedia.Select(media => media.Slot).Distinct().Count() != settings.MountedMedia.Count;
 
-    public static bool IsInvalidMountedMedia(EmulationMedia media, IReadOnlyList<EmulationMediaDevice> devices, IReadOnlyList<EmulationMediaSlot> configuredSlots)
+    public bool IsInvalidMountedMedia(EmulationMedia media, IReadOnlyList<EmulationMediaDevice> devices, IReadOnlyList<EmulationMediaSlot> configuredSlots)
     {
         var device = devices.SingleOrDefault(device => device.Slot == media.Slot);
         return device is null || !configuredSlots.Contains(media.Slot) || media.Type != device.MediaType
@@ -31,7 +35,7 @@ public static class EmulationMediaRules
         return activity;
     }
 
-    public static bool IsCompatible(EmulationMediaSlot slot, EmulationMediaType type) => slot.Category switch
+    public bool IsCompatible(EmulationMediaSlot slot, EmulationMediaType type) => slot.Category switch
     {
         EmulationMediaCategory.FloppyDrive => type == EmulationMediaType.Floppy,
         EmulationMediaCategory.HardDisk => type == EmulationMediaType.HardDisk,
@@ -41,11 +45,11 @@ public static class EmulationMediaRules
         _ => false
     };
 
-    public static bool SupportsEjection(EmulationMediaType type) => type is EmulationMediaType.Floppy or EmulationMediaType.CompactDisc or EmulationMediaType.Cartridge or EmulationMediaType.Cassette;
+    public bool SupportsEjection(EmulationMediaType type) => type is EmulationMediaType.Floppy or EmulationMediaType.CompactDisc or EmulationMediaType.Cartridge or EmulationMediaType.Cassette;
 
-    public static bool RequiresReadOnly(EmulationMediaType type) => type is EmulationMediaType.CompactDisc or EmulationMediaType.Cartridge;
+    public bool RequiresReadOnly(EmulationMediaType type) => type is EmulationMediaType.CompactDisc or EmulationMediaType.Cartridge;
 
-    public static IReadOnlyList<EmulationMedia> Validate(IReadOnlyList<EmulationMedia> media)
+    public IReadOnlyList<EmulationMedia> Validate(IReadOnlyList<EmulationMedia> media)
     {
         ArgumentNullException.ThrowIfNull(media);
         var occupied = new HashSet<EmulationMediaSlot>();
@@ -66,7 +70,7 @@ public static class EmulationMediaRules
         return media;
     }
 
-    public static IReadOnlyList<EmulationMedia> Replace(IReadOnlyList<EmulationMedia> media, EmulationMedia replacement)
+    public IReadOnlyList<EmulationMedia> Replace(IReadOnlyList<EmulationMedia> media, EmulationMedia replacement)
     {
         ArgumentNullException.ThrowIfNull(media);
         Validate([replacement]);
@@ -75,7 +79,7 @@ public static class EmulationMediaRules
         return Validate(result);
     }
 
-    public static IReadOnlyList<EmulationMedia> Eject(IReadOnlyList<EmulationMedia> media, EmulationMediaSlot slot)
+    public IReadOnlyList<EmulationMedia> Eject(IReadOnlyList<EmulationMedia> media, EmulationMediaSlot slot)
     {
         ArgumentNullException.ThrowIfNull(media);
         var existing = media.SingleOrDefault(item => item.Slot == slot);

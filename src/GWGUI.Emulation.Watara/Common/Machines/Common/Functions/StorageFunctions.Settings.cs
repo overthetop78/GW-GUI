@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Functions;
@@ -14,13 +15,13 @@ internal static class StorageSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var devices = Describe(configuration).AvailableDevices;
-        if (EmulationMediaRules.HasInvalidStorageSlots(settings, devices)
+        if (CommonCoreHostFunctions.MediaRules.HasInvalidStorageSlots(settings, devices)
             || settings.DeviceSettings?.Count 
             > 0)
             throw new ArgumentException(nameof(settings));
         foreach (var media in settings.MountedMedia)
         {
-            if (EmulationMediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots))
+            if (CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots))
                 throw new ArgumentException(nameof(settings));
         }
 

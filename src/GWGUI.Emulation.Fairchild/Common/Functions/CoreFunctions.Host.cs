@@ -12,6 +12,14 @@ namespace GWGUI.Emulation.Fairchild.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit les règles communes de lecteurs, montages et documents de médias par leur interface publique.</summary>
+    /// <remarks>Les lecteurs et chemins restent décrits par Common. Ce service ne possède ni fichier ni lecteur physique et ne remplace pas les contraintes spécifiques du module.</remarks>
+    internal static IEmulationMediaRules MediaRules => EmulationSdk.MediaRules;
+
+    /// <summary>Fournit les parcours de firmware par le contrat public commun.</summary>
+    /// <remarks>Le module fournit son inspecteur et conserve ses candidats ; le service conserve les parcours, tris et annulations existants.</remarks>
+    internal static IEmulationFirmwareProcessing FirmwareProcessing => EmulationSdk.FirmwareProcessing;
+
     /// <summary>Fournit la découverte des adaptateurs et la projection des catalogues par leur contrat public.</summary>
     /// <remarks>Les définitions et les identités restent déclarées par le module ; aucun registre de modules connus n’est nécessaire.</remarks>
     internal static IEmulationAdapters Adapters => EmulationSdk.Adapters;

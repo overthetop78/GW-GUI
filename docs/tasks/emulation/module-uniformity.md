@@ -4577,3 +4577,107 @@ Validation des contrôles de disques : les 17 adaptations utilisent les interfac
   - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : contrôler le contrat vidéo, les services publics et le propriétaire graphique interne ; exécuter toute la suite Emulation et le build Debug avec tous les modules, puis vérifier leurs fichiers livrés.
 
 Validation de ce lot : 3 266 tests Emulation réussis, aucun échec ni test ignoré ; scripts/local-building.cmd --building=debug --modules=A terminé avec le code 0. Exécutable build/Debug/GW GUI/gwgui.exe, Example intégré et les 23 manifestes avec leur DLL d’entrée vérifiés.
+
+- [x] Raccorder les parcours de firmware aux interfaces publiques et au Common.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationFirmwareProcessing.cs : déclarer les deux parcours existants, leur annulation, leur ordre et les responsabilités de l’inspecteur.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationFirmwareFunctions.cs : implémenter ce contrat dans la classe interne existante, sans changer les corps des parcours.
+  - [x] Modifier src/GWGUI.Emulation/EmulationSdk.cs : exposer FirmwareProcessing par son interface publique.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer FirmwareProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/FirmwareFunctions.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/FirmwareFunctions.cs : appeler FirmwareProcessing du Common avec les inspecteurs, jetons et politiques existants.
+
+- [x] Raccorder les règles et documents de médias à un contrat public avec implémentations internes.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationMediaRules.cs : déclarer les huit règles de médias existantes et les deux opérations de document, avec leurs retours et politiques actuels.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationMediaRules.cs : implémenter le contrat dans la classe interne existante, conserver les corps des règles et les projections de voyants internes, relayer le document existant.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationMediaProtocol.cs : conserver le codec interne existant et valider ses documents par le contrat de règles.
+  - [x] Modifier src/GWGUI.Emulation/EmulationSdk.cs : exposer MediaRules sous son interface publique.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer MediaRules par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler MediaRules depuis Common sans modifier la validation des lecteurs, extensions ou montages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/StorageSettingsValidationTests.cs : exécuter les mêmes scénarios de médias et documents par le contrat public, avec les mêmes assertions.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/EmulationContracts/MediaAndSavedStateScenarios.cs : exécuter les mêmes scénarios de médias et documents par le contrat public, avec les mêmes assertions.
+
+- [x] Retirer les alias vidéo devenus inutilisés après raccordement aux interfaces.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+  - [x] Modifier src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs : supprimer uniquement l’alias VideoFunctions sans référence restante dans le module.
+
+- [x] Supprimer les constantes de port devenues sans consommateur dans Common.
+  - [x] Supprimer src/GWGUI.Emulation.Amstrad/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la constante Automatic sans référence dans ce module ; conserver les constantes réellement utilisées par les autres modules.
+  - [x] Supprimer src/GWGUI.Emulation.Commodore/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la constante Automatic sans référence dans ce module ; conserver les constantes réellement utilisées par les autres modules.
+  - [x] Supprimer src/GWGUI.Emulation.Microsoft/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la constante Automatic sans référence dans ce module ; conserver les constantes réellement utilisées par les autres modules.
+  - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la constante Automatic sans référence dans ce module ; conserver les constantes réellement utilisées par les autres modules.
+
+- [x] Valider les contrats firmware et médias et les raccordements des 24 Common.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier que FirmwareProcessing et MediaRules exposent leurs interfaces publiques et gardent leurs classes internes ; exécuter toute la suite Emulation puis le build Debug avec les 23 modules et Example.
+
+Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni test ignoré. Build Debug avec --modules=A terminé avec le code 0 ; exécutable, Example intégré et 23 manifestes avec leurs DLL d’entrée vérifiés.

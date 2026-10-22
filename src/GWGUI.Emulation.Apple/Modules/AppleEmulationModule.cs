@@ -169,7 +169,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
         if (_engine.SelectedAdapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
         var directory = GetFirmwareDirectory(machineId);
-        return await GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanDirectoryAsync(directory,
+        return await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
             (path, token) => FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, path, token), cancellationToken).ConfigureAwait(false);
     }
 

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
@@ -40,7 +41,7 @@ internal static class FirmwareFunctions
         if (capabilities is null)
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
         var requirements = capabilities.DescribeFirmware(configuration);
-        GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanRecursive(directory, path =>
+        CommonCoreHostFunctions.FirmwareProcessing.ScanRecursive(directory, path =>
         {
             var matches = requirements.Where(requirement => capabilities.IsFirmwareCompatible(configuration, requirement.Role, path)).ToArray();
             if (matches.Length == 0)

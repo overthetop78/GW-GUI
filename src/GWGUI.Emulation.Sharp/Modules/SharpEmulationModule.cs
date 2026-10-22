@@ -188,7 +188,7 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (current.Model != ModelCatalog.Parse(machineId))
             throw new ArgumentException(nameof(machineId));
         var directory = GetFirmwareDirectory(machineId);
-        return await GWGUI.Emulation.Functions.EmulationFirmwareFunctions.ScanDirectoryAsync(directory,
+        return await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
             (path, token) => FirmwareFunctions.ScanFileAsync(path, current.Model, current.Core, token), cancellationToken).ConfigureAwait(false);
     }
 

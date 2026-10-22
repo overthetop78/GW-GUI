@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
@@ -15,13 +16,13 @@ internal static class StorageSettingsFunctions
     {
         var devices = Describe(configuration).AvailableDevices;
         if (!settings.ConfiguredSlots.SequenceEqual(new[] { EmulationMediaSlot.Cd0 }) 
-            || EmulationMediaRules.HasInvalidStorageSlots(settings, devices)
+            || CommonCoreHostFunctions.MediaRules.HasInvalidStorageSlots(settings, devices)
             || settings.DeviceSettings?.Count 
             > 0)
             throw new ArgumentException(nameof(settings));
         foreach (var media in settings.MountedMedia)
         {
-            if (EmulationMediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots))
+            if (CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots))
                 throw new ArgumentException(nameof(settings));
         }
 

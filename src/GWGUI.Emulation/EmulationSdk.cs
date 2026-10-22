@@ -5,6 +5,12 @@ namespace GWGUI.Emulation;
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
 public static class EmulationSdk
 {
+    /// <summary>Règles et documents de montages par contrat public, sans accès aux implémentations internes.</summary>
+    public static IEmulationMediaRules MediaRules { get; } = new EmulationMediaRules();
+
+    /// <summary>Parcours des fichiers de firmware sous leur contrat public, avec identification laissée au module.</summary>
+    public static IEmulationFirmwareProcessing FirmwareProcessing { get; } = new EmulationFirmwareFunctions();
+
     /// <summary>Copie, géométrie et métadonnées vidéo par contrat public, sans état de surface partagé.</summary>
     public static IEmulationVideoProcessing VideoProcessing { get; } = new EmulationVideoProcessingService();
 
