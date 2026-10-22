@@ -30,7 +30,6 @@ global using GWGUI.Emulation.Mattel.Common.Exceptions;
 
 global using GWGUI.Emulation.Mattel.Common.Functions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 

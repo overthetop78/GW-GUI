@@ -26,7 +26,6 @@ global using GWGUI.Emulation.Bandai.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Bandai.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 

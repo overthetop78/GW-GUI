@@ -61,11 +61,6 @@ public static class EmulationSdk
     /// <summary>Contextualisation des messages sans accès aux services d’implémentation.</summary>
     public static IEmulationMessages Messages { get; } = new EmulationMessageService();
 
-    /// <summary>Crée le timer existant sous son interface, sans modifier ses règles d’attente et d’annulation.</summary>
-    /// <param name="cancellationToken">Annulation de la session propriétaire du timer.</param>
-    /// <returns>Timer possédé par l’appelant, à libérer dans son finally après la dernière attente.</returns>
-    public static IEmulationFrameTimer CreateFrameTimer(CancellationToken cancellationToken) => new EmulationFrameTimer(cancellationToken);
-
     /// <summary>Crée un stockage indépendant des entrées sous son contrat public.</summary>
     public static IEmulationInputFrames CreateInputFrames() => new EmulationInputFrameStore();
 

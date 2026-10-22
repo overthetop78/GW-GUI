@@ -60,7 +60,6 @@ global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Exceptions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 

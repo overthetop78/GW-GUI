@@ -60,7 +60,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     machine.AudioChunkReady?.Invoke(machine, audio);
                 };
 
-                EmulationFrameTimer.RunLoop(_gate, _commands, () => _pauseRequested,
+                CommonCoreHostFunctions.MachineExecution.RunLoop(_gate, _commands, () => _pauseRequested,
                     () => {
                         _core.RunFrame();
                         if (_core.ShutdownRequested)
@@ -71,7 +71,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                             static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
                             publishAudio);
 
-                        nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
+                        nextFrame = CommonCoreHostFunctions.MachineExecution.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
                         return true;
                     },
                     () => !cancellationToken.IsCancellationRequested && !_core.ShutdownRequested, cancellationToken, 100);

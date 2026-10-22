@@ -8,6 +8,19 @@ namespace GWGUI.Emulation.Interfaces;
 /// leur arrêt puis attend leur destruction effective dans son finally avant de libérer ses autres ressources.</remarks>
 public interface IEmulationMachineExecution
 {
+    /// <summary>Crée un minuteur indépendant pour les échéances absolues de la session.</summary>
+    /// <param name="cancellationToken">Annulation de la session propriétaire du minuteur.</param>
+    /// <returns>Minuteur possédé par l’appelant, à libérer dans son finally après la dernière attente, notamment avec using.</returns>
+    IEmulationFrameTimer CreateFrameTimer(CancellationToken cancellationToken);
+
+    /// <summary>Calcule la prochaine échéance et attend sa date avec la politique fournie.</summary>
+    /// <param name="nextFrame">Échéance précédente en ticks de la même horloge.</param>
+    /// <param name="framesPerSecond">Cadence du cœur, bornée entre 1 et 1 000 images par seconde.</param>
+    /// <param name="clock">Horloge empruntée pour les dates et la fréquence des ticks.</param>
+    /// <param name="sleep">Attente empruntée, appelée uniquement pour une échéance future.</param>
+    /// <returns>Échéance calculée, ou date courante si elle était déjà dépassée.</returns>
+    long WaitForNextFrame(long nextFrame, double framesPerSecond, TimeProvider clock, Action<TimeSpan> sleep);
+
     /// <summary>Projette les voyants de disquette, cassette et cartouche vers leurs emplacements communs.</summary>
     Dictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds);
     /// <summary>Projette les mêmes voyants avec l’activité du lecteur de disque compact.</summary>
@@ -69,6 +82,7 @@ public interface IEmulationMachineExecution
     bool TryDisposeCore(IDisposable core, Action<Exception> reportFailure);
 
     /// <summary>Exécute les commandes et les frames dans la boucle commune avec attente par échéance.</summary>
+    /// <remarks>Les erreurs de commandes sont signalées à leurs appelants puis propagées au traitement d’échec de la session.</remarks>
     /// <param name="nextFrame">Première échéance, en ticks de Stopwatch.</param>
     /// <param name="gate">Verrou emprunté protégeant l’état et les commandes de la machine.</param>
     /// <param name="commands">File de commandes possédée par la machine.</param>
@@ -80,6 +94,17 @@ public interface IEmulationMachineExecution
     /// <param name="cancellationToken">Signal d’annulation de l’opération ou de la session.</param>
     /// <param name="pauseWaitMilliseconds">Intervalle de vérification des commandes pendant une pause, en millisecondes.</param>
     void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds);
+
+    /// <summary>Exécute la boucle avec les conditions de poursuite et la cadence fournies par la machine.</summary>
+    /// <param name="gate">Verrou emprunté protégeant la pause et les commandes.</param>
+    /// <param name="commands">File de commandes possédée par la machine.</param>
+    /// <param name="isPaused">Consultation de la pause sous le verrou de la machine.</param>
+    /// <param name="runFrame">Calcul et attente d’une frame ; false termine la boucle.</param>
+    /// <param name="keepRunning">Condition de poursuite évaluée avant chaque tour.</param>
+    /// <param name="cancellationToken">Annulation de la session et des attentes pendant la pause.</param>
+    /// <param name="pauseWaitMilliseconds">Intervalle de vérification des commandes pendant la pause, en millisecondes.</param>
+    /// <remarks>Les erreurs de commandes sont signalées à leurs appelants sans interrompre la boucle. Les erreurs de frame ou d’attente restent propagées. Les délégués, le verrou et la file sont empruntés pendant cet appel synchrone.</remarks>
+    void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning, CancellationToken cancellationToken, int pauseWaitMilliseconds);
 
     /// <summary>Publie chaque nouvelle image puis consomme l’audio dans son ordre de production.</summary>
     /// <typeparam name="TMachine">Type de la machine empruntée pendant la publication.</typeparam>

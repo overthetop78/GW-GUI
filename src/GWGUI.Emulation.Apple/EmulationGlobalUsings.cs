@@ -27,7 +27,6 @@ global using GWGUI.Emulation.Apple.Common.Enums;
 global using GWGUI.Emulation.Apple.Common.Exceptions;
 global using GWGUI.Emulation.Apple.Common.Functions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 

@@ -27,7 +27,6 @@ global using GWGUI.Emulation.Snk.Common.Dictionaries;
 global using GWGUI.Emulation.Snk.Common.Exceptions;
 global using GWGUI.Emulation.Snk.Common.Functions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 
 global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;

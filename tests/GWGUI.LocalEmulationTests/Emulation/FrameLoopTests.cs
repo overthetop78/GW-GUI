@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Services;
@@ -11,7 +12,7 @@ public sealed class FrameLoopTests
     {
         using var stop = new CancellationTokenSource();
         stop.Cancel();
-        EmulationFrameTimer.RunLoop(0, new object(), new(),
+        EmulationSdk.MachineExecution.RunLoop(0, new object(), new(),
             () => throw new InvalidOperationException(), () => throw new InvalidOperationException(),
             () => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException(),
             (_, _) => throw new InvalidOperationException(), stop.Token, 100);
@@ -27,7 +28,7 @@ public sealed class FrameLoopTests
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var commands = new ConcurrentQueue<EmulationMachineCommand>();
         commands.Enqueue(new(() => { events.Add("command"); paused = false; }, completion));
-        EmulationFrameTimer.RunLoop(123, gate, commands,
+        EmulationSdk.MachineExecution.RunLoop(123, gate, commands,
             () => { Assert.True(Monitor.IsEntered(gate)); return paused; },
             () => events.Add("frame"),
             () => { events.Add("frequency"); return 50; },
@@ -57,7 +58,7 @@ public sealed class FrameLoopTests
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var commands = new ConcurrentQueue<EmulationMachineCommand>();
         commands.Enqueue(new(stop.Cancel, completion));
-        EmulationFrameTimer.RunLoop(0, new object(), commands, () => true,
+        EmulationSdk.MachineExecution.RunLoop(0, new object(), commands, () => true,
             () => throw new InvalidOperationException(), () => throw new InvalidOperationException(),
             (_, _) => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException(),
             stop.Token, 100);
@@ -73,7 +74,7 @@ public sealed class FrameLoopTests
         var commands = new ConcurrentQueue<EmulationMachineCommand>();
         commands.Enqueue(new(() => throw error, completion));
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationFrameTimer.RunLoop(0, new object(), commands, () => false,
+            EmulationSdk.MachineExecution.RunLoop(0, new object(), commands, () => false,
                 () => throw new NotSupportedException(), () => throw new NotSupportedException(),
                 (_, _) => throw new NotSupportedException(), (_, _) => throw new NotSupportedException(),
                 CancellationToken.None, 100)));
@@ -86,7 +87,7 @@ public sealed class FrameLoopTests
     {
         var error = new InvalidOperationException("frame failed");
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationFrameTimer.RunLoop(0, new object(), new(), () => false,
+            EmulationSdk.MachineExecution.RunLoop(0, new object(), new(), () => false,
                 () => throw error, () => throw new NotSupportedException(),
                 (_, _) => throw new NotSupportedException(), (_, _) => throw new NotSupportedException(),
                 CancellationToken.None, 100)));
@@ -95,7 +96,7 @@ public sealed class FrameLoopTests
     [Fact]
     public void HistoricalOwnerGuardStopsBeforePauseOrFrame()
     {
-        EmulationFrameTimer.RunLoop(new object(), new(),
+        EmulationSdk.MachineExecution.RunLoop(new object(), new(),
             () => throw new InvalidOperationException("pause must not run"),
             () => throw new InvalidOperationException("frame must not run"),
             () => false, CancellationToken.None, 100);
@@ -110,7 +111,7 @@ public sealed class FrameLoopTests
         var commands = new ConcurrentQueue<EmulationMachineCommand>();
         commands.Enqueue(new(() => { Assert.False(Monitor.IsEntered(gate)); throw error; }, completion));
         var frames = 0;
-        EmulationFrameTimer.RunLoop(gate, commands,
+        EmulationSdk.MachineExecution.RunLoop(gate, commands,
             () => { Assert.True(Monitor.IsEntered(gate)); return false; },
             () => { Assert.False(Monitor.IsEntered(gate)); frames++; return false; },
             () => true, CancellationToken.None, 100);
@@ -129,7 +130,7 @@ public sealed class FrameLoopTests
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var commands = new ConcurrentQueue<EmulationMachineCommand>();
         commands.Enqueue(new(() => { events.Add("command"); paused = false; }, completion));
-        EmulationFrameTimer.RunLoop(gate, commands, () => paused,
+        EmulationSdk.MachineExecution.RunLoop(gate, commands, () => paused,
             () => { events.Add("frame"); return false; }, () => true, CancellationToken.None, 100);
         Assert.Equal(new[] { "command", "frame" }, events);
         Assert.True(completion.Task.IsCompletedSuccessfully);
@@ -140,7 +141,7 @@ public sealed class FrameLoopTests
     {
         var guardCalls = 0;
         var frames = 0;
-        EmulationFrameTimer.RunLoop(new object(), new(), () => false,
+        EmulationSdk.MachineExecution.RunLoop(new object(), new(), () => false,
             () => { frames++; return false; },
             () => { Assert.Equal(1, ++guardCalls); return true; }, CancellationToken.None, 100);
         Assert.Equal(1, frames);
@@ -153,7 +154,7 @@ public sealed class FrameLoopTests
         var error = new InvalidOperationException("frame failed");
         var guardCalls = 0;
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationFrameTimer.RunLoop(new object(), new(), () => false,
+            EmulationSdk.MachineExecution.RunLoop(new object(), new(), () => false,
                 () => throw error, () => { guardCalls++; return true; }, CancellationToken.None, 100)));
         Assert.Equal(1, guardCalls);
     }

@@ -27,7 +27,6 @@ global using GWGUI.Emulation.Watara.Common.Functions;
 global using GWGUI.Emulation.Watara.Common.Services;
 global using GWGUI.Emulation.Watara.Common.Machines.Common.Dictionaries;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
 global using CoreActiveInstallation = GWGUI.Emulation.Contracts.EmulationCoreActiveInstallation;

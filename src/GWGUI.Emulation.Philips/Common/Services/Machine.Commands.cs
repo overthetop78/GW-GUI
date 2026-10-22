@@ -35,9 +35,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     _started?.TrySetResult();
                 }
                 var nextFrame = Stopwatch.GetTimestamp();
-                using var frameTimer = new FrameTimer(cancellationToken);
+                using var frameTimer = CommonCoreHostFunctions.MachineExecution.CreateFrameTimer(cancellationToken);
                 long videoSequence = default;
-                EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
+                CommonCoreHostFunctions.MachineExecution.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
                     () => {
                         _core.SetInput(_input.Consume());
                         _core.RunFrame();

@@ -7,7 +7,7 @@ using Microsoft.Win32.SafeHandles;
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Cadence et boucles de frames communes aux modules d’émulation.</summary>
-public sealed class EmulationFrameTimer : IEmulationFrameTimer
+internal sealed class EmulationFrameTimer : IEmulationFrameTimer
 {
     /// <summary>Calcule la prochaine échéance avec l’horloge fournie et attend avec la fonction du module.</summary>
     public static long WaitForNextFrame(long nextFrame, double framesPerSecond,

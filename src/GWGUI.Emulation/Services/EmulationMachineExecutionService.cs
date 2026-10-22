@@ -6,6 +6,12 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Relais interne vers les opérations de durée de vie, de commandes et de publication existantes.</summary>
 internal sealed class EmulationMachineExecutionService : IEmulationMachineExecution
 {
+    /// <inheritdoc/>
+    public IEmulationFrameTimer CreateFrameTimer(CancellationToken cancellationToken) => new EmulationFrameTimer(cancellationToken);
+
+    /// <inheritdoc/>
+    public long WaitForNextFrame(long nextFrame, double framesPerSecond, TimeProvider clock, Action<TimeSpan> sleep) => EmulationFrameTimer.WaitForNextFrame(nextFrame, framesPerSecond, clock, sleep);
+
     public Dictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => EmulationMediaRules.FromLedStates(leds);
     public IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStatesWithCd(IReadOnlyDictionary<int, bool> leds) => EmulationMediaRules.FromLedStatesWithCd(leds);
 
@@ -42,6 +48,10 @@ internal sealed class EmulationMachineExecutionService : IEmulationMachineExecut
     /// <inheritdoc/>
     public void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds)
         => EmulationFrameTimer.RunLoop(nextFrame, gate, commands, isPaused, runFrame, framesPerSecond, nextFrameTimestamp, waitUntil, cancellationToken, pauseWaitMilliseconds);
+
+    /// <inheritdoc/>
+    public void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning, CancellationToken cancellationToken, int pauseWaitMilliseconds)
+        => EmulationFrameTimer.RunLoop(gate, commands, isPaused, runFrame, keepRunning, cancellationToken, pauseWaitMilliseconds);
 
     /// <inheritdoc/>
     public void PublishOutputs<TMachine>(TMachine machine, ref long videoSequence, Func<TMachine, VideoFrame?> latestVideo, Func<TMachine, AudioChunk?> dequeueAudio, Action<TMachine, VideoFrame> publishVideo, Action<TMachine, AudioChunk> publishAudio)

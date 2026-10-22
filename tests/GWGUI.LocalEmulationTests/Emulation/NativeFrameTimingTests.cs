@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Services;
 
 namespace GWGUI.Tests.Emulation;
@@ -9,7 +10,7 @@ public sealed class NativeFrameTimingTests
     {
         var clock = new Clock(110);
         var waits = new List<TimeSpan>();
-        Assert.Equal(120, EmulationFrameTimer.WaitForNextFrame(100, 50, clock, waits.Add));
+        Assert.Equal(120, EmulationSdk.MachineExecution.WaitForNextFrame(100, 50, clock, waits.Add));
         Assert.Equal(TimeSpan.FromMilliseconds(10), Assert.Single(waits));
         Assert.Equal(1, clock.Reads);
     }
@@ -20,7 +21,7 @@ public sealed class NativeFrameTimingTests
     public void ReachedOrMissedDeadlineResetsFromASecondTimestampWithoutSleeping(long now)
     {
         var clock = new Clock(now, now + 7);
-        Assert.Equal(now + 7, EmulationFrameTimer.WaitForNextFrame(100, 50, clock,
+        Assert.Equal(now + 7, EmulationSdk.MachineExecution.WaitForNextFrame(100, 50, clock,
             _ => throw new InvalidOperationException("Unexpected wait")));
         Assert.Equal(2, clock.Reads);
     }
@@ -36,7 +37,7 @@ public sealed class NativeFrameTimingTests
     {
         var clock = new Clock(0);
         var waits = new List<TimeSpan>();
-        Assert.Equal(interval, EmulationFrameTimer.WaitForNextFrame(0, frequency, clock, waits.Add));
+        Assert.Equal(interval, EmulationSdk.MachineExecution.WaitForNextFrame(0, frequency, clock, waits.Add));
         Assert.Equal(TimeSpan.FromMilliseconds(interval), Assert.Single(waits));
     }
 
@@ -46,7 +47,7 @@ public sealed class NativeFrameTimingTests
         var clock = new Clock(110);
         var error = new InvalidOperationException("wait failed");
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationFrameTimer.WaitForNextFrame(100, 50, clock, _ => throw error)));
+            EmulationSdk.MachineExecution.WaitForNextFrame(100, 50, clock, _ => throw error)));
         Assert.Equal(1, clock.Reads);
     }
 

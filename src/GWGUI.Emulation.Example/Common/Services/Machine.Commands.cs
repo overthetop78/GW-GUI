@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using System.Diagnostics;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.Emulation.Contracts;
@@ -73,9 +74,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     _started?.TrySetResult();
                 }
                 var nextFrame = Stopwatch.GetTimestamp();
-                using var frameTimer = EmulationSdk.CreateFrameTimer(cancellationToken);
+                using var frameTimer = CommonCoreHostFunctions.MachineExecution.CreateFrameTimer(cancellationToken);
                 long videoSequence = default;
-                EmulationSdk.MachineExecution.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
+                CommonCoreHostFunctions.MachineExecution.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
                     () =>
                     {
                         _input.Poll();

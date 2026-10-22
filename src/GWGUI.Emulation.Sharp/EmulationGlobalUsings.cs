@@ -30,7 +30,6 @@ global using GWGUI.Emulation.Sharp.Common.Exceptions;
 
 global using GWGUI.Emulation.Sharp.Common.Functions;
 
-global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
 
 global using LoadedContent = GWGUI.Emulation.Interfaces.IEmulationLoadedContent;
 

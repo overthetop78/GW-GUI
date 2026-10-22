@@ -13,6 +13,29 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonExposesFrameTimingThroughTheSameExecutionContract()
+    {
+        var implementation = typeof(IEmulationFrameTimer).Assembly.GetType("GWGUI.Emulation.Services.EmulationFrameTimer", throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        var create = typeof(IEmulationMachineExecution).GetMethod("CreateFrameTimer", [typeof(CancellationToken)])!;
+        Assert.Equal(typeof(IEmulationFrameTimer), create.ReturnType);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = assembly.GetType(root + ".Common.Functions.CoreHostFunctions", throwOnError: true)!;
+            var execution = common.GetProperty("MachineExecution", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.Equal(typeof(IEmulationMachineExecution), execution.PropertyType);
+            Assert.Same(EmulationSdk.MachineExecution, execution.GetValue(null));
+        }
+    }
+
+    [Fact]
     public void EveryCommonCreatesIndependentInputAccumulatorsThroughThePublicContract()
     {
         var implementation = typeof(IEmulationInputAccumulator).Assembly.GetType("GWGUI.Emulation.Services.EmulationInputAccumulator", throwOnError: true)!;
