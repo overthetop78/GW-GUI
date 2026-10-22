@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Atari.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Diagnostics;
@@ -14,7 +15,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly InputFrameStore _input = new();
     private readonly KeyboardState _keyboard = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly AudioBuffer _audio = new();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
     private readonly Emulator _emulator;
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];

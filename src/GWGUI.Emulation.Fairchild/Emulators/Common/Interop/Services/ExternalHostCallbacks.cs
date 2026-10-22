@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Fairchild.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Fairchild.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
 using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;
@@ -17,7 +18,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly InputFrameStore _input = new();
     private readonly DiskControl _diskControl = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly AudioBuffer _audio = new();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];

@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Nec.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
@@ -74,7 +75,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    private readonly GWGUI.Emulation.Services.EmulationAudioBuffer _audioBuffer = new();
+    private readonly GWGUI.Emulation.Interfaces.IEmulationAudioBuffer _audioBuffer = AudioFunctions.CreateBuffer();
     private readonly ConcurrentQueue<string> _diagnostics = new();
     private readonly ConcurrentDictionary<int, bool> _ledStates = new();
     private readonly ConcurrentDictionary<int, long> _ledActivityUntil = new();

@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Sega.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
@@ -69,7 +70,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    private readonly GWGUI.Emulation.Services.EmulationAudioBuffer _audioBuffer = new();
+    private readonly GWGUI.Emulation.Interfaces.IEmulationAudioBuffer _audioBuffer = AudioFunctions.CreateBuffer();
     private readonly ConcurrentQueue<string> _diagnostics = new();
     private readonly ConcurrentDictionary<int, bool> _ledStates = new();
     private readonly ConcurrentDictionary<int, long> _ledActivityUntil = new();

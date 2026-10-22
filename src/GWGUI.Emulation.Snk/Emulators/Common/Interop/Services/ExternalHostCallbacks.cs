@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
@@ -21,7 +22,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly InputFrameStore _input = new();
     private readonly DiskControl _diskControl = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly AudioBuffer _audio = new();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];

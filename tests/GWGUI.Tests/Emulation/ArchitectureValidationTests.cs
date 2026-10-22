@@ -8,6 +8,19 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Theory]
+    [InlineData(nameof(EmulationSdk.CreateAudioBuffer), typeof(IEmulationAudioBuffer))]
+    [InlineData(nameof(EmulationSdk.CreateVideoBufferSet), typeof(IEmulationVideoBufferSet))]
+    [InlineData(nameof(EmulationSdk.CreateSharedVideoWriter), typeof(IEmulationSharedVideoWriter))]
+    public void BufferFactoriesExposePublicInterfaces(string factoryName, Type contract)
+    {
+        var factory = typeof(EmulationSdk).GetMethod(factoryName)!;
+        Assert.True(factory.IsPublic);
+        Assert.Equal(contract, factory.ReturnType);
+        Assert.True(contract.IsPublic);
+        Assert.True(contract.IsInterface);
+    }
+
+    [Theory]
     [InlineData(nameof(EmulationSdk.AudioProcessing), typeof(IEmulationAudioProcessing))]
     [InlineData(nameof(EmulationSdk.SessionDirectories), typeof(IEmulationSessionDirectories))]
     [InlineData(nameof(EmulationSdk.StateFiles), typeof(IEmulationStateFiles))]

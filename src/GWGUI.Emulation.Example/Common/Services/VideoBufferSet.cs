@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Example.Common.Functions;
 using System.Buffers;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
@@ -13,7 +14,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 internal sealed class VideoBufferSet(ArrayPool<byte>? pool = null) : IEmulationVideoBufferSet
 {
     /// <summary>Jeu possédé de tableaux vidéo ; seule son interface traverse la frontière du SDK.</summary>
-    private readonly IEmulationVideoBufferSet _buffers = EmulationSdk.CreateVideoBufferSet(VideoConstants.BufferCount, pool);
+    private readonly IEmulationVideoBufferSet _buffers = CoreHostFunctions.CreateVideoBufferSet(VideoConstants.BufferCount, pool);
 
     /// <summary>Obtient le tableau du prochain emplacement de roulement.</summary>
     /// <param name="length">Longueur minimale nécessaire aux pixels, en octets.</param>

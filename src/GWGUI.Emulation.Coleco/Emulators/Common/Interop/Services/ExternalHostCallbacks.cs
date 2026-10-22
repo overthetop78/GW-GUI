@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Coleco.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
@@ -19,7 +20,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private readonly DiskControl _diskControl = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly AudioBuffer _audio = new();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];

@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Apple.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Apple.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
@@ -18,7 +19,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private readonly InputFrameStore _input = new();
     private readonly KeyboardState _keyboard = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly AudioBuffer _audio = new();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];

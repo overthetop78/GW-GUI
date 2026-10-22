@@ -15,7 +15,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 internal sealed class SharedVideoWriter(string namePrefix) : IEmulationSharedVideoWriter
 {
     /// <summary>Rédacteur possédé qui gère les segments et les vues successives de la session.</summary>
-    private readonly IEmulationSharedVideoWriter _writer = EmulationSdk.CreateSharedVideoWriter(namePrefix,
+    private readonly IEmulationSharedVideoWriter _writer = CoreHostFunctions.CreateSharedVideoWriter(namePrefix,
         CoreHostFunctions.CalculateVideoSlotCapacity, CoreHostConstants.VideoMapGenerationSeparator, CoreHostConstants.UniqueNameFormat);
 
     /// <summary>Vue courante empruntée par le codec pendant l’écriture, ou null sans segment alloué.</summary>

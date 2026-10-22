@@ -1,14 +1,13 @@
 using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
-using SharedKeyboardFunctions = GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class KeyboardFunctions
 {
-    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap() => SharedKeyboardFunctions.CreateKeyMap();
+    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap() => CommonControllerFunctions.CreateNativeKeyMap();
 
-    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => SharedKeyboardFunctions.Modifiers(keys);
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => CommonControllerFunctions.Modifiers(keys);
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
         => CommonControllerFunctions.Character(code, keys);
