@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Example.Common.Services;
 namespace GWGUI.Emulation.Example.Modules;
 
 /// <summary>Fabrique intégrée chargée par son interface publique, identique à celles des modules externes.</summary>
@@ -7,5 +8,5 @@ public sealed class ExampleModuleFactory : IEmulationModuleFactory
     /// <summary>Identifiant invariant commun à la fabrique et à la façade du mock.</summary>
     public string Id => "example";
     /// <summary>Construit la façade ; le contexte est emprunté et le cœur ne démarre qu’au lancement d’une machine.</summary>
-    public IEmulationModule Create(EmulationModuleContext context) => new ExampleEmulationModule(context);
+    public IEmulationModule Create(EmulationModuleContext context) => Engine.Create(context);
 }

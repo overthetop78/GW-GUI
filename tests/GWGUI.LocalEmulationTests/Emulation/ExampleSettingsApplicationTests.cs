@@ -1,8 +1,8 @@
+using System.Net.Http;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
-using GWGUI.Emulation.Example.Common.Services;
 using GWGUI.Emulation.Example.Modules;
 
 namespace GWGUI.Tests.Emulation;
@@ -10,16 +10,17 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ExampleSettingsApplicationTests
 {
     [Fact]
-    public void EngineAppliesEditorValuesForEveryProfileAndCoreWithoutChangingTheInput()
+    public void ModuleAppliesEditorValuesForEveryProfileAndCoreWithoutChangingTheInput()
     {
-        var engine = new Engine();
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
         foreach (var profile in HardwareModelCatalog.All)
         foreach (var core in Enum.GetValues<Emulator>())
         {
             var configuration = new MachineConfiguration(profile.Model, core: core);
             var field = AudioEnabledField(configuration);
             var values = new Dictionary<string, string?> { [field] = bool.FalseString };
-            var updated = Assert.IsType<MachineConfiguration>(engine.ApplySettings(configuration, values));
+            var updated = Assert.IsType<MachineConfiguration>(module.ApplySettings(configuration, values));
             Assert.False(updated.AudioEnabled);
             Assert.True(configuration.AudioEnabled);
             Assert.Equal(configuration.Id, updated.Id);
@@ -57,12 +58,13 @@ public sealed class ExampleSettingsApplicationTests
     [Fact]
     public void InvalidAudioValuesAreRejectedWithOrWithoutASelectedCore()
     {
-        var engine = new Engine();
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
         foreach (var core in new[] { Emulator.None, Emulator.Internal })
         {
             var configuration = new MachineConfiguration(MachineModel.ExampleMachineA, core: core);
             var values = new Dictionary<string, string?> { [AudioEnabledField(configuration)] = "invalid" };
-            Assert.Throws<ArgumentException>(() => engine.ApplySettings(configuration, values));
+            Assert.Throws<ArgumentException>(() => module.ApplySettings(configuration, values));
             Assert.True(configuration.AudioEnabled);
             Assert.Empty(configuration.Options);
         }

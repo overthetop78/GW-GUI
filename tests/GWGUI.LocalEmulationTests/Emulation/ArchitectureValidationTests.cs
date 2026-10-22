@@ -449,6 +449,17 @@ public sealed class ArchitectureValidationTests
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.ControllerType"));
+            var constructionEngine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            Assert.False(constructionEngine.IsVisible);
+            var construct = constructionEngine.GetMethod("Create", BindingFlags.Public | BindingFlags.Static, [typeof(EmulationModuleContext)])!;
+            Assert.NotNull(construct);
+            Assert.Equal(typeof(IEmulationModule), construct.ReturnType);
+            Assert.Equal("context", Assert.Single(construct.GetParameters()).Name);
+            var factoryCode = factory.GetMethod("Create")!.GetMethodBody()!.GetILAsByteArray()!;
+            byte[] commonCall = [(byte)System.Reflection.Emit.OpCodes.Call.Value, .. BitConverter.GetBytes(construct.MetadataToken)];
+            Assert.True(factoryCode.AsSpan().IndexOf(commonCall) >= 0, factory.FullName);
+            var moduleFactory = Assert.IsAssignableFrom<IEmulationModuleFactory>(Activator.CreateInstance(factory));
+            Assert.Equal("context", Assert.Throws<ArgumentNullException>(() => moduleFactory.Create(null!)).ParamName);
             var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             var runtimeOptions = adapterContract.GetMethod("GetRuntimeOptions")!;
             Assert.NotNull(runtimeOptions);

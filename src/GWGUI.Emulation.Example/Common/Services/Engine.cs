@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Example.Modules;
 using EmulatorCatalogFunctions = GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions;
 using System.Globalization;
 using System.IO;
@@ -16,8 +17,16 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// <summary>Résout les adaptateurs du module et leur confie la création des machines et les commandes d’hôte.</summary>
 /// <remarks>Le catalogue associe les identifiants aux adaptateurs. La création d’une machine reste une opération de
 /// l’adaptateur sélectionné ; ce service ne lance pas lui-même la boucle d’émulation.</remarks>
-public sealed class Engine
+internal sealed class Engine
 {
+    /// <summary>Construit le module depuis le contexte fourni par l’hôte.</summary>
+    /// <param name="context">Racine des données, dossier du module et client HTTP emprunté.</param>
+    /// <returns>Façade utilisant les services Common, prête à décrire les machines sans démarrer de cœur.</returns>
+    /// <remarks>La construction conserve les emplacements de configuration et de firmware ainsi que
+    /// leur ordre de préparation. Le client HTTP reste sous la responsabilité de son propriétaire.
+    /// La machine et les ressources du cœur sont créées séparément lors du lancement du runtime.</remarks>
+    public static IEmulationModule Create(EmulationModuleContext context) => new ExampleEmulationModule(context);
+
     /// <summary>Chemin de l’assembly qui contient les trois simulations, sans bibliothèque externe à créer.</summary>
     internal static string CoreImplementationPath => typeof(Engine).Assembly.Location;
     /// <summary>Version d’implémentation commune aux trois cœurs livrés dans ce même assembly.</summary>

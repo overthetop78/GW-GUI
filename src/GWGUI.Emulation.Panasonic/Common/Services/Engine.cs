@@ -11,8 +11,19 @@ using GWGUI.Emulation.Panasonic.Modules;
 
 namespace GWGUI.Emulation.Panasonic.Common.Services;
 
-public sealed class Engine
+internal sealed class Engine
 {
+    /// <summary>Construit le module depuis le contexte fourni par l’hôte.</summary>
+    /// <param name="context">Racine des données, dossier du module et client HTTP emprunté.</param>
+    /// <returns>Façade utilisant les services Common, prête à décrire les machines sans démarrer de cœur.</returns>
+    /// <remarks>La construction conserve les emplacements de configuration et de firmware ainsi que
+    /// leur ordre de préparation. Le client HTTP reste sous la responsabilité de son propriétaire.
+    /// La machine et les ressources du cœur sont créées séparément lors du lancement du runtime.</remarks>
+    public static IEmulationModule Create(EmulationModuleContext context) {
+        ArgumentNullException.ThrowIfNull(context);
+        return new PanasonicEmulationModule(Path.Combine(context.ModuleDirectory, EmulationModuleConstants.ConfigurationsDirectoryName), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
+    }
+
     /// <summary>Conserve la construction du catalogue sans services de persistance configurés.</summary>
     public Engine() { }
 

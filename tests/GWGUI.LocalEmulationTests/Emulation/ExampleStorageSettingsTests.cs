@@ -1,3 +1,5 @@
+using System.Net.Http;
+using GWGUI.Emulation.Interfaces;
 using System.Reflection;
 using System.Text.Json;
 using GWGUI.Emulation.Contracts;
@@ -17,7 +19,9 @@ public sealed class ExampleStorageSettingsTests
     [Fact]
     public void ChangingProfileUsesItsDefaultReadersAndKeepsSelectionsWhenTheProfileIsUnchanged()
     {
-        var engine = new GWGUI.Emulation.Example.Common.Services.Engine();
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
+        var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
         foreach (var profile in HardwareModelCatalog.All)
         foreach (var core in Enum.GetValues<Emulator>())
         {
@@ -25,12 +29,12 @@ public sealed class ExampleStorageSettingsTests
             foreach (var selected in new[] { original.ConfiguredSlots.Take(1).ToArray(), Array.Empty<EmulationMediaSlot>() })
             {
                 var configuration = original with { ConfiguredSlots = selected };
-                var same = Assert.IsType<MachineConfiguration>(engine.ChangeMachine(configuration, profile.StableModelId));
+                var same = Assert.IsType<MachineConfiguration>(module.ChangeMachine(configuration, profile.StableModelId));
                 Assert.Equal(selected, same.ConfiguredSlots);
                 var target = HardwareModelCatalog.All.Single(model => model.Model != profile.Model);
-                var changed = Assert.IsType<MachineConfiguration>(engine.ChangeMachine(configuration, target.StableModelId));
+                var changed = Assert.IsType<MachineConfiguration>(module.ChangeMachine(configuration, target.StableModelId));
                 Assert.Equal(target.Model, changed.Model);
-                Assert.Equal(engine.DescribeStorageSettings(changed).AvailableDevices.Select(device => device.Slot), changed.ConfiguredSlots);
+                Assert.Equal(storage.DescribeStorageSettings(changed).AvailableDevices.Select(device => device.Slot), changed.ConfiguredSlots);
                 Assert.Equal(configuration.Id, changed.Id);
                 Assert.Equal(configuration.Core, changed.Core);
                 Assert.Equal(profile.Model, configuration.Model);
