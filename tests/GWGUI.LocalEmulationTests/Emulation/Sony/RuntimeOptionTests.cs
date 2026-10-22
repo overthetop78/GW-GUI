@@ -37,7 +37,7 @@ public sealed class RuntimeOptionTests
     {
         var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == core));
         var configuration = new MachineConfiguration(model, core, Options: new Dictionary<string, string> { [key] = value });
-        Assert.Equal(expected, adapter.GetRuntimeOptions(configuration)[key]);
+        Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         Assert.Equal(value, configuration.Options![key]);
     }
 

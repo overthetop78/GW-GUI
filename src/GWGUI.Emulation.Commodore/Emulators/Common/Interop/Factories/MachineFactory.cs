@@ -54,7 +54,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(Model model, MachineConfiguration configuration) => SettingsDescriptionFunctions.CreateBasic(model, configuration);
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeBasic(configuration);
     public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.ApplyBasic(configuration, settings);
-    public virtual MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => configuration;
+    public virtual MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => configuration;
     public virtual EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.CreateBasic(configuration);
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
     public virtual IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => InputSettingsFunctions.GenericKeyboardDefinitions();

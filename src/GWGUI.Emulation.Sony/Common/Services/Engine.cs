@@ -141,7 +141,7 @@ public sealed class Engine
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
     {
         var sony = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId) as IEmulatorSettingsAdapter;
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
         return adapter?.GetRuntimeOptions(sony) ?? sony.Options ?? new Dictionary<string, string>();
     }
 

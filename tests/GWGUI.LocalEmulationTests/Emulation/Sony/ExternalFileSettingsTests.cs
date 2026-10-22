@@ -80,7 +80,7 @@ public sealed class ExternalFileSettingsTests
         Assert.Equal(toggle.BlockId, folder.BlockId);
         Assert.Equal(EmulationMachineTab.Cheats, folder.Tab);
         Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsHelpResource, folder.ExplanationResourceKey);
-        Assert.Equal(enabled ? "enabled" : "disabled", ((GWGUI.Emulation.Sony.Common.Interfaces.IEmulatorSettingsAdapter)adapter).GetRuntimeOptions(restored)[toggle.Id]);
+        Assert.Equal(enabled ? "enabled" : "disabled", ((GWGUI.Emulation.Sony.Common.Interfaces.IEmulatorAdapter)adapter).GetRuntimeOptions(restored)[toggle.Id]);
         Assert.Equal("disabled", Assert.Single(new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory()
             .DescribeSettings(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields), field => field.Id == toggle.Id).Value);
     }

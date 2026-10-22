@@ -113,7 +113,7 @@ public sealed class Engine
                 StereoSeparation = stereo
             },
         };
-        return this.Adapter(updated).ApplyBackendSettings(updated, values);
+        return this.Adapter(updated).ApplySettings(updated, values);
     }
 
 

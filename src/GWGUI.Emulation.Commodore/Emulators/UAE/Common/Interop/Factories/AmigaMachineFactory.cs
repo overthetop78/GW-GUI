@@ -21,7 +21,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(Model model, MachineConfiguration configuration) => AmigaSettingsDescriptionFunctions.Create((AmigaModel)model, configuration).Where(block => block.Tab != EmulationMachineTab.Rom).ToArray();
     public override EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration);
     public override MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => AmigaStorageSettingsFunctions.Apply(configuration, settings);
-    public override MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => AmigaSettingsApplicationFunctions.Apply(configuration, values);
+    public override MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => AmigaSettingsApplicationFunctions.Apply(configuration, values);
     public override EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => AmigaConfigurationSummaryFunctions.Create(configuration);
     public override void ValidateConfiguration(MachineConfiguration configuration) => AmigaConfigurationValidationFunctions.ValidateForSave(configuration);
     public override IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => AmigaInputSettingsFunctions.KeyboardDefinitions(configuration);

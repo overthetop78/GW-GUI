@@ -6808,3 +6808,24 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Renommer src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/InputFunctions.Conversion.cs en src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : conserver la classe et son contenu comme dans Example.
   - [x] Vérifier les noms fixes et les conversions conservées.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les noms ToModule des convertisseurs unitaires de médias et périphériques présents dans les 24 familles et les noms génériques des catégories ; exécuter les contrôles de médias et de stockage concernés, construire le Debug avec les 23 modules et vérifier les DLL livrées.
+
+## Contrats Common de validation, d’application et d’options du runtime
+
+- [x] Raccorder les opérations existantes aux mêmes responsabilités que dans Example.
+  - [x] Raccorder la validation Sony au contrat Common de validation.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : déclarer IEmulatorConfigurationValidation sur la fabrique commune ; conserver la méthode virtuelle et ses spécialisations.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer ValidateConfiguration et GetRuntimeOptions du contrat de présentation des réglages.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions avec la signature et le rôle du contrat Example, sans traitement de repli supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/ConfigurationFunctions.cs : appeler IEmulatorConfigurationValidation pour les contrôles spécifiques, au même emplacement dans la validation.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : demander GetRuntimeOptions par IEmulatorAdapter en conservant la sélection et le repli actuels.
+  - [x] Raccorder les opérations Commodore aux contrats déjà présents dans Example.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorSettingsApplication.cs : reprendre le contrat ApplySettings existant dans Example avec son modèle local et ses commentaires génériques.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorConfigurationValidation et IEmulatorSettingsApplication ; retirer les déclarations redondantes ValidateConfiguration et ApplyBackendSettings.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : renommer ApplyBackendSettings en ApplySettings avec les mêmes paramètres et le même résultat.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : renommer la surcharge ApplyBackendSettings en ApplySettings en conservant le traitement Amiga existant.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : appeler ApplySettings sur l’adaptateur après la préparation commune, avec les mêmes arguments.
+  - [x] Vérifier les raccordements et les comportements conservés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : couvrir Commodore pour le contrat d’application ; vérifier les implémentations réelles de validation Sony et Commodore et l’absence de validation ou d’options runtime redéclarées dans les réglages Sony.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/RuntimeOptionTests.cs : demander les options d’exécution par IEmulatorAdapter avec les mêmes assertions de conversion.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ExternalFileSettingsTests.cs : demander les options d’exécution par IEmulatorAdapter en conservant les contrôles de réglages des cheats.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : utiliser IEmulatorAdapter pour les options d’exécution tout en conservant les assertions des réglages ; exécuter les contrôles concernés puis construire et vérifier le Debug avec les 23 modules.

@@ -262,9 +262,9 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void SettingsApplicationUsesTheSameContractInAppleAndExample()
+    public void SettingsApplicationUsesTheSameContractInAppleCommodoreAndExample()
     {
-        foreach (var family in new[] { "Apple", "Example" })
+        foreach (var family in new[] { "Apple", "Commodore", "Example" })
         {
             var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
             var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorSettingsApplication", throwOnError: true)!;
@@ -279,11 +279,11 @@ public sealed class ArchitectureValidationTests
             Assert.NotEmpty(implementations);
             foreach (var implementation in implementations)
                 Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+            Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetMethods()), candidate => candidate.Name == "ApplyBackendSettings");
             if (family == "Example")
             {
                 Assert.Equal(3, implementations.Length);
                 Assert.Contains(contract, assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!.GetInterfaces());
-                Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetMethods()), candidate => candidate.Name == "ApplyBackendSettings");
             }
         }
     }
@@ -619,6 +619,29 @@ public sealed class ArchitectureValidationTests
             }
             if (root == "GWGUI.Emulation.Apple" && contractName == "IEmulatorConfigurationValidation")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions")!.GetInterfaces());
+            if (contractName == "IEmulatorConfigurationValidation" && root is "GWGUI.Emulation.Sony" or "GWGUI.Emulation.Commodore")
+            {
+                var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+                var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+                Assert.NotEmpty(implementations);
+                foreach (var implementation in implementations)
+                {
+                    Assert.True(contract.IsAssignableFrom(implementation));
+                    Assert.Equal(implementation.GetMethod("ValidateConfiguration"), Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
+                }
+                if (root == "GWGUI.Emulation.Sony")
+                {
+                    var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
+                    Assert.Null(settings.GetMethod("ValidateConfiguration"));
+                    Assert.Null(settings.GetMethod("GetRuntimeOptions"));
+                    var runtime = adapter.GetMethod("GetRuntimeOptions")!;
+                    Assert.Equal(typeof(IReadOnlyDictionary<string, string>), runtime.ReturnType);
+                    foreach (var implementation in implementations)
+                        Assert.Equal(implementation.GetMethod("GetRuntimeOptions"), implementation.GetInterfaceMap(adapter).TargetMethods.Single(target => target.Name == "GetRuntimeOptions"));
+                }
+                else
+                    Assert.Contains(contract, adapter.GetInterfaces());
+            }
             if (root == "GWGUI.Emulation.Example")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
             if (contractName == "IEmulatorMediaCapabilities")

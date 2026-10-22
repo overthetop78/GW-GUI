@@ -7,8 +7,6 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
         SettingsDescriptionFunctions.StorageFields(this, configuration, category);
     void ApplySettingsOptions(Dictionary<string, string> options, IReadOnlyDictionary<string, string?> values) { }
-    void ValidateConfiguration(MachineConfiguration configuration) { }
-    IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
     int GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;
     IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConstants.LatencyMilliseconds;
     AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();

@@ -97,7 +97,7 @@ public sealed class EmulatorCatalogTests
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, PceeCore.Id,
             Options: selected is null ? null : new Dictionary<string, string> { [key] = selected });
         var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == PceeCore.Id));
-        Assert.Equal(expected, adapter.GetRuntimeOptions(configuration)[key]);
+        Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         var option = Assert.Single(PceeCore.Definition.Options, item => item.Key == key);
         Assert.Equal(new[] { "vulkan", "opengl", "software" }, option.Values.Select(item => item.Value));
         Assert.Equal("vulkan", option.DefaultValue);
@@ -123,7 +123,7 @@ public sealed class EmulatorCatalogTests
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id,
             Options: selected is null ? null : new Dictionary<string, string> { [key] = selected });
         var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == RpcsCore.Id));
-        Assert.Equal(expected, adapter.GetRuntimeOptions(configuration)[key]);
+        Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         var option = Assert.Single(RpcsCore.Definition.Options, item => item.Key == key);
         Assert.Equal(new[] { "opengl", "vulkan", "null" }, option.Values.Select(item => item.Value));
         Assert.Equal("vulkan", option.DefaultValue);

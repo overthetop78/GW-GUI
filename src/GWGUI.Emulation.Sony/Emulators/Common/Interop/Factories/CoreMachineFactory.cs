@@ -10,7 +10,7 @@ using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Con
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
