@@ -5,6 +5,10 @@ internal static class EmulationInputMappingFunctions
     /// <summary>Consulte l’unique table de boutons sans exposer ses constantes ni sa collection mutable.</summary>
     internal static int ControllerButtonIndex(string commandId) => ControllerButtons.GetValueOrDefault(commandId, -1);
 
+    /// <summary>Lit les déplacements, les cinq boutons et les deux molettes du pointeur suivant les identifiants natifs communs.</summary>
+    /// <remarks>Les déplacements sont bornés sur seize bits signés ; boutons et directions de molette retournent zéro ou un.
+    /// La molette horizontale positive correspond à la droite, comme dans les associations de souris ; les requêtes
+    /// visant un autre port, un autre index ou un identifiant inconnu restent inactives.</remarks>
     internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id)
     {
         if (port != ExternalCoreApiConstants.PrimaryPort || index != ExternalCoreApiConstants.LeftAnalogIndex)
@@ -18,6 +22,10 @@ internal static class EmulationInputMappingFunctions
             ExternalCoreApiConstants.MouseWheelUpId => Boolean(pointer.Wheel > ExternalCoreApiConstants.ConsumedRelativeValue),
             ExternalCoreApiConstants.MouseWheelDownId => Boolean(pointer.Wheel < ExternalCoreApiConstants.ConsumedRelativeValue),
             ExternalCoreApiConstants.MouseMiddleId => Boolean(pointer.Middle),
+            ExternalCoreApiConstants.MouseHorizontalWheelUpId => Boolean(pointer.HorizontalWheel > ExternalCoreApiConstants.ConsumedRelativeValue),
+            ExternalCoreApiConstants.MouseHorizontalWheelDownId => Boolean(pointer.HorizontalWheel < ExternalCoreApiConstants.ConsumedRelativeValue),
+            ExternalCoreApiConstants.MouseButton4Id => Boolean(pointer.ExtendedButton1),
+            ExternalCoreApiConstants.MouseButton5Id => Boolean(pointer.ExtendedButton2),
             _ => ExternalCoreApiConstants.InactiveState
         };
     }

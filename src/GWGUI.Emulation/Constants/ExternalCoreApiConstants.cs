@@ -113,6 +113,14 @@ public static class ExternalCoreApiConstants
     public const uint MouseWheelUpId = 4;
     public const uint MouseWheelDownId = 5;
     public const uint MouseMiddleId = 6;
+    /// <summary>Identifiant natif du défilement horizontal positif (vers la droite).</summary>
+    public const uint MouseHorizontalWheelUpId = 7;
+    /// <summary>Identifiant natif du défilement horizontal négatif (vers la gauche).</summary>
+    public const uint MouseHorizontalWheelDownId = 8;
+    /// <summary>Identifiant natif du quatrième bouton, correspondant au premier bouton supplémentaire.</summary>
+    public const uint MouseButton4Id = 9;
+    /// <summary>Identifiant natif du cinquième bouton, correspondant au deuxième bouton supplémentaire.</summary>
+    public const uint MouseButton5Id = 10;
     public const uint JoypadMaskId = 256;
     public const short ActiveState = 1;
     public const short InactiveState = 0;

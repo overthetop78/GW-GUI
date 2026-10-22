@@ -6101,3 +6101,15 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleSettingsApplicationTests.cs : vérifier l’application effective des champs depuis Engine et depuis les trois adaptateurs, la conservation de la configuration initiale et le parcours sans cœur ; exécuter les contrôles locaux concernés puis le build Debug avec les 23 modules.
 
   - Validation : régression du changement de profil reproduite par un test en échec puis corrigée ; lecteurs initiaux du nouveau profil et sélection du même profil vérifiés pour les deux profils et chaque choix de cœur ; 84 contrôles ciblés réussis ; contrat ApplySettings commun à Apple et Example avec trois implémentations d’Example effectivement appelables, sans ApplyBackendSettings restant ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.
+
+## Souris générique : lecture native des cinq boutons et des deux molettes
+
+- [x] Transmettre les entrées déjà présentes par le service commun de lecture native.
+  - [x] Compléter les identifiants et leur lecture dans le SDK existant.
+    - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : ajouter les identifiants natifs de molette horizontale et de boutons 4 et 5, avec leurs commentaires.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs : lire HorizontalWheel, ExtendedButton1 et ExtendedButton2 dans NativeMouseState, en conservant les contrôles de port et les lectures actuelles.
+  - [x] Vérifier le raccordement depuis Example et les limites de lecture.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/NativeInputStateTests.cs : vérifier les deux directions horizontales, les boutons supplémentaires indépendants, leur relâchement et les requêtes hors plage.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleMouseInputTests.cs : vérifier les cinq boutons et les deux molettes après application des associations génériques ; exécuter les contrôles locaux concernés puis scripts/local-building.cmd --building=debug --modules=A et vérifier les assemblages livrés.
+
+  - Validation : 31 contrôles locaux réussis ; cinq boutons et deux molettes transmis depuis les associations génériques ; 24 Common raccordés au même service de lecture native ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.

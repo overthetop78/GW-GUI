@@ -45,6 +45,37 @@ public sealed class NativeInputStateTests
     }
 
     [Theory]
+    [InlineData(int.MinValue, 0, 1)]
+    [InlineData(0, 0, 0)]
+    [InlineData(int.MaxValue, 1, 0)]
+    public void HorizontalWheelDirectionIsIndependentFromVerticalWheel(int wheel, short right, short left)
+    {
+        var pointer = new EmulationPointerState(0, 0, 17, false, false, false, HorizontalWheel: wheel);
+        Assert.Equal(right, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 7));
+        Assert.Equal(left, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 8));
+        Assert.Equal((short)1, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 4));
+        Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 5));
+    }
+
+    [Fact]
+    public void ExtraMouseButtonsRemainIndependentAndRespectNativeRequestBounds()
+    {
+        foreach (var button4 in new[] { false, true })
+        foreach (var button5 in new[] { false, true })
+        {
+            var pointer = new EmulationPointerState(0, 0, 0, false, false, false, button4, button5, 1);
+            Assert.Equal(button4 ? (short)1 : (short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 9));
+            Assert.Equal(button5 ? (short)1 : (short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 10));
+            foreach (var id in new uint[] { 7, 8, 9, 10 })
+            {
+                Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 1, 0, id));
+                Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 1, id));
+            }
+            Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeMouseState(pointer, 0, 0, 11));
+        }
+    }
+
+    [Theory]
     [InlineData(16u)]
     [InlineData(32u)]
     public void JoypadMaskExcludesUpperCarrierBits(uint limit)

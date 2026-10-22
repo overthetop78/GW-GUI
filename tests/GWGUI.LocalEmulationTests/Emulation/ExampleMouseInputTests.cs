@@ -28,9 +28,13 @@ public sealed class ExampleMouseInputTests
 
         Assert.Equal(new EmulationPointerState(23, -17, 1, true, true, true, true, true, -1), result.Pointer);
         Assert.Equal(EmulationControllerState.Empty, result.Controllers[0]);
-        Assert.Equal(1, EmulationSdk.InputProcessing.ReadNativeInput(result, 0, 2, 0, 2));
-        Assert.Equal(1, EmulationSdk.InputProcessing.ReadNativeInput(result, 0, 2, 0, 4));
-        Assert.Equal(23, EmulationSdk.InputProcessing.ReadNativeInput(result, 0, 2, 0, 0));
+        var expected = new short[] { 23, -17, 1, 1, 1, 0, 1, 0, 1, 1, 1 };
+        for (uint id = 0; id < expected.Length; id++)
+            Assert.Equal(expected[id], EmulationSdk.InputProcessing.ReadNativeInput(result, 0, 2, 0, id));
+        var reversed = Apply(snapshot with { Keys = new HashSet<EmulationKey> { EmulationKey.G, EmulationKey.I } }, new InputConfiguration(Controllers: [new ControllerBinding(0, PeripheralCategory.Mouse, Mappings: mappings)]));
+        var reversedExpected = new short[] { 23, -17, 0, 0, 0, 1, 0, 1, 0, 0, 0 };
+        for (uint id = 0; id < reversedExpected.Length; id++)
+            Assert.Equal(reversedExpected[id], EmulationSdk.InputProcessing.ReadNativeInput(reversed, 0, 2, 0, id));
         Assert.False(snapshot.Pointer.Left);
         Assert.Equal(4, snapshot.Pointer.Wheel);
     }
