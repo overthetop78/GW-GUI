@@ -6,7 +6,7 @@ using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Factories;
 
-internal sealed class FreeChaFMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorStorageSettings
+internal sealed class FreeChaFMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorStorageSettings
 {
     public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port) => ControllerProtocolDictionary.Actions(model, Emulator.FreeChaF, port).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.FreeChaF);

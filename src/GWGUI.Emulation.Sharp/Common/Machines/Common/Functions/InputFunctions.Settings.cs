@@ -2,7 +2,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? ControllerCatalog.Peripherals(model) : new Engine().Adapter(core) is IEmulatorInputMapper mapper ? mapper.GetPeripherals(model) : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? ControllerCatalog.Peripherals(model) : new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals(model) : [];
     internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     private static string ControllerResource(PeripheralCategory peripheral) => peripheral switch
     {

@@ -27,7 +27,7 @@ public sealed class ArchitectureValidationTests
         Assert.DoesNotContain(contract.GetMethods(), method => method.Name is "ControllerPortCount" or "GetControllerTypes" or "GetUsbControllerTypes");
         if (family != "Snk")
         {
-            Assert.Equal(2, contract.GetMethods().Count(method => method.Name == "GetPeripherals"));
+            Assert.Equal(2, contract.GetMethods().Count(method => method.Name == "GetPeripherals" && typeof(IEmulationConfiguration).IsAssignableFrom(method.GetParameters()[0].ParameterType)));
             var usb = contract.GetMethod("GetUsbPeripherals")!;
             Assert.NotNull(usb);
             Assert.Equal(typeof(int), usb.GetParameters()[1].ParameterType);
@@ -79,7 +79,8 @@ public sealed class ArchitectureValidationTests
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
         var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorInputMapper", throwOnError: true)!;
-        var method = Assert.Single(contract.GetMethods(), method => method.Name == "MapInput");
+        var method = Assert.Single(contract.GetMethods());
+        Assert.Equal("MapInput", method.Name);
         Assert.Equal(typeof(EmulationInputSnapshot), method.ReturnType);
         var parameters = method.GetParameters();
         Assert.Equal(2, parameters.Length);
@@ -89,6 +90,13 @@ public sealed class ArchitectureValidationTests
         Assert.Equal("configuration", parameters[1].Name);
         var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
         Assert.NotEmpty(implementations);
+        if (family is not ("Sinclair" or "Snk"))
+        {
+            var controllers = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+            Assert.Contains(contract, controllers.GetInterfaces());
+            Assert.Contains(controllers.GetMethods(), method => method.Name is "GetPeripherals" or "DescribeInput");
+            Assert.All(implementations, implementation => Assert.True(controllers.IsAssignableFrom(implementation)));
+        }
         foreach (var implementation in implementations)
         {
             Assert.DoesNotContain(implementation.GetMethods(), method => method.Name == "MapInput" && method.GetParameters().Length != 2);

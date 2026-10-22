@@ -10,7 +10,7 @@ using System.IO;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
+    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorControllerAdapter
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ControllerCatalog.Peripherals(model);
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);

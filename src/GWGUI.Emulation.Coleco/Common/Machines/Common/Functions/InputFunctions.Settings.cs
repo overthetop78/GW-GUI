@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => new Engine().Adapter(core) is IEmulatorInputMapper mapper ? mapper.GetPeripherals() : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals() : [];
 
     internal static IReadOnlyDictionary<string, EmulationKey> KeyboardDefaults { get; } = new Dictionary<string, EmulationKey>
     {
@@ -131,7 +131,7 @@ internal static class InputSettingsFunctions
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
             KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
             configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
-        var mapper = new Engine().Adapter(configuration.Core) as IEmulatorInputMapper;
+        var mapper = new Engine().Adapter(configuration.Core) as IEmulatorControllerAdapter;
         var ports = Enumerable.Range(0, ControllerConstants.PortCount).Select(index =>
         {
             var choices = (mapper?.GetPeripherals() ?? []).Select(category =>

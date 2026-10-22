@@ -6,7 +6,7 @@ using Settings = GWGUI.Emulation.Epoch.Emulators.PD777.Functions.SettingsDescrip
 
 namespace GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
 
-internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorStorageSettings
+internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorStorageSettings
 {
     public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port)
     {

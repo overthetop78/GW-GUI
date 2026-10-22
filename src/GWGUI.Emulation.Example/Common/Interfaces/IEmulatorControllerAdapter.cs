@@ -9,6 +9,18 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// et de port à la description par modèle ; elles conservent les mêmes catégories de périphériques.</remarks>
 internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
 {
+    /// <summary>Décrit les périphériques émulés pris en charge pour le modèle.</summary>
+    /// <param name="model">Modèle matériel dont les périphériques doivent être décrits.</param>
+    /// <returns>Catégories proposées par cet adaptateur pour ce modèle, dans leur ordre de présentation.</returns>
+    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+
+    /// <summary>Décrit les commandes configurables d’un périphérique raccordé à un port.</summary>
+    /// <param name="model">Modèle matériel concerné par la description.</param>
+    /// <param name="port">Indice du port émulé, commençant à zéro ; les limites sont celles du modèle.</param>
+    /// <param name="peripheral">Catégorie de périphérique sélectionnée pour ce port.</param>
+    /// <returns>Actions accompagnées des libellés, associations initiales et touches émulées éventuelles.</returns>
+    IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
+
     /// <summary>Décrit les périphériques possibles pour les options courantes de la machine.</summary>
     /// <param name="configuration">Configuration empruntée fournissant modèle et options.</param>
     /// <returns>Choix du modèle par défaut ; un backend peut les restreindre ou les compléter selon ses options.</returns>
