@@ -22,6 +22,14 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void InputAlgorithmsRemainInternalBehindThePublicProcessingContract()
+    {
+        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationInputMappingFunctions", throwOnError: true)!;
+        Assert.False(owner.IsVisible);
+        Assert.Empty(owner.GetMethods(BindingFlags.Public | BindingFlags.Static));
+    }
+
+    [Fact]
     public void SavedStateBinaryAlgorithmsRemainInternalBehindThePublicInterface()
     {
         var implementation = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationStateFileFunctions", throwOnError: true)!;

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
@@ -74,7 +75,7 @@ internal static class InputSettingsFunctions
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || binding.DeadZonePercent < ControllerConstants.MinimumDeadZonePercent || binding.DeadZonePercent > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));
             var commands = ControllerCatalog.Commands(binding.Peripheral).Select(command => command.ToString()).ToHashSet(StringComparer.Ordinal);
-            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, commands, IsSource))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, commands, IsSource))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Dictionaries;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
@@ -11,7 +12,7 @@ internal static class NativeInputSnapshotFunctions
         if (model == MachineModel.Adam)
         {
             var bindings = InputSettingsFunctions.KeyboardBindings(input, model).ToDictionary(pair => InputMappingConstants.AdamPrefix + pair.Key, pair => pair.Value, StringComparer.Ordinal);
-            keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, bindings);
+            keys = CommonControllerFunctions.MapKeyboard(snapshot, bindings);
         }
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
         var pointer = EmulationInputSnapshot.Empty.Pointer;
@@ -19,12 +20,12 @@ internal static class NativeInputSnapshotFunctions
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new(port, PeripheralCategory.Standard);
             if (binding.Peripheral == PeripheralCategory.None) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = CommonControllerFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             var pressed = new HashSet<string>();
             foreach (var definition in definitions(binding.Peripheral, port))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
+                var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
                 if (IsPressed(mapping, physical, snapshot)) pressed.Add(definition.Id);
             }
             uint buttons = 0;
@@ -70,7 +71,7 @@ internal static class NativeInputSnapshotFunctions
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
-        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
+        if (source.Contains('+' ) && !source.EndsWith('+')) return CommonControllerFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
         if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
         if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return source[InputMappingConstants.MousePrefix.Length..] switch
@@ -81,6 +82,6 @@ internal static class NativeInputSnapshotFunctions
             "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0,
             _ => false
         };
-        return EmulationInputMappingFunctions.IsControllerSourcePressed(source, controller);
+        return CommonControllerFunctions.IsControllerSourcePressed(source, controller);
     }
 }

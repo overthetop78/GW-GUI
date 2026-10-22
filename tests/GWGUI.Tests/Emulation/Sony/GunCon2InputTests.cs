@@ -1,3 +1,4 @@
+using ControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;

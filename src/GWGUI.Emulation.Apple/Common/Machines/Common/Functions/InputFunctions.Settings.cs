@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Apple.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Apple.Common.Machines.AppleII.Dictionaries;
 using GWGUI.Emulation.Apple.Common.Machines.Macintosh.Dictionaries;
 
@@ -20,7 +21,7 @@ internal static class InputSettingsFunctions
         var definitions = KeyboardDefinitions(configuration);
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
-        var choices = configuration.Family == MachineFamily.AppleII ? ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
+        var choices = configuration.Family == MachineFamily.AppleII ? CommonControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
         {
             var current = configured.FirstOrDefault(binding => binding.Port == index);

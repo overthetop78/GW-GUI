@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Dictionaries;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 internal static class NativeInputMappingFunctions
@@ -8,7 +9,7 @@ internal static class NativeInputMappingFunctions
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = CommonControllerFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0, throttle = 0;
             foreach (var action in ControllerProtocolDictionary.Actions(model, binding.Peripheral))
@@ -16,10 +17,10 @@ internal static class NativeInputMappingFunctions
                 var mapping = binding.Mappings?.GetValueOrDefault(action.Id) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(mapping))
                     continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot))
+                var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
+                if (CommonControllerFunctions.IsMappedInputPressed(mapping, physical, snapshot))
                     buttons |= action.ButtonMask;
-                var magnitude = EmulationInputMappingFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
+                var magnitude = CommonControllerFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
                 switch (action.Command)
                 {
                     case ControllerCommand.Left:
@@ -47,24 +48,24 @@ internal static class NativeInputMappingFunctions
             {
                 DeviceId = source.DeviceId,
                 Buttons = buttons,
-                LeftX = EmulationInputMappingFunctions.NormalizedAxis(horizontal),
-                LeftY = EmulationInputMappingFunctions.NormalizedAxis(vertical),
-                RightY = EmulationInputMappingFunctions.NormalizedAxis(throttle)
+                LeftX = CommonControllerFunctions.NormalizedAxis(horizontal),
+                LeftY = CommonControllerFunctions.NormalizedAxis(vertical),
+                RightY = CommonControllerFunctions.NormalizedAxis(throttle)
             };
         }
 
         var pointer = EmulationInputSnapshot.Empty.Pointer;
         if (core == Emulator.Px68k)
         {
-            var physical = EmulationInputMappingFunctions.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
+            var physical = CommonControllerFunctions.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
             var left = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
             var right = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
             pointer = pointer with
             {
                 DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),
                 DeltaY = Scale(snapshot.Pointer.DeltaY, input.MouseSpeedPercent),
-                Left = EmulationInputMappingFunctions.IsMappedInputPressed(left, EmulationInputMappingFunctions.ResolveSourceController(left, snapshot.Controllers, physical), snapshot),
-                Right = EmulationInputMappingFunctions.IsMappedInputPressed(right, EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physical), snapshot)
+                Left = CommonControllerFunctions.IsMappedInputPressed(left, CommonControllerFunctions.ResolveSourceController(left, snapshot.Controllers, physical), snapshot),
+                Right = CommonControllerFunctions.IsMappedInputPressed(right, CommonControllerFunctions.ResolveSourceController(right, snapshot.Controllers, physical), snapshot)
             };
         }
 

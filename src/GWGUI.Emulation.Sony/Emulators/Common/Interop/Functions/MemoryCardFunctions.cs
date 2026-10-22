@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using Swan = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.OptionConstants;
 using Rearmed = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.OptionConstants;
@@ -11,7 +12,7 @@ internal static class MemoryCardFunctions
 {
     internal static int Count(MachineConfiguration configuration) => configuration.EmulatorId == Emulators.Pcee2.Constants.CoreConstants.Id ? Emulators.Pcee2.Functions.MemoryCardFunctions.ActiveSlots(configuration).Count
         : configuration.Model == ModelConstants.Psp ? 1
-        : configuration.EmulatorId is Emulators.BeetlePsx.Constants.CoreConstants.Id or Emulators.BeetlePsxHw.Constants.CoreConstants.Id ? ControllerFunctions.PortCount(configuration) : StorageSettingsFunctionsConstants.MemoryCardCount;
+        : configuration.EmulatorId is Emulators.BeetlePsx.Constants.CoreConstants.Id or Emulators.BeetlePsxHw.Constants.CoreConstants.Id ? CommonControllerFunctions.PortCount(configuration) : StorageSettingsFunctionsConstants.MemoryCardCount;
 
     internal static IReadOnlyList<string> NativeFileNames(MachineConfiguration configuration) => configuration.EmulatorId == Emulators.Pcee2.Constants.CoreConstants.Id
         ? Emulators.Pcee2.Functions.MemoryCardFunctions.ActiveSlots(configuration).Select(Emulators.Pcee2.Functions.MemoryCardFunctions.NativeFileName).ToArray()

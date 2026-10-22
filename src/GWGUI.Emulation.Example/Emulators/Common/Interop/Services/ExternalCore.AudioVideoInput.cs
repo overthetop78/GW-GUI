@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
@@ -52,7 +53,7 @@ internal sealed partial class ExternalCore
         else _exports.SetControllerPortDevice((uint)port, device);
     }
     /// <summary>Relie la lecture ABI au même interpréteur de boutons, axes, souris et clavier que Common.</summary>
-    private short ControllerInput(uint port, uint device, uint index, uint id) => ControllerFunctions.ReadNativeInput(_input, port, device, index, id);
+    private short ControllerInput(uint port, uint device, uint index, uint id) => CommonControllerFunctions.ReadNativeInput(_input, port, device, index, id);
 
     /// <summary>Exécute une frame par le chemin annoncé par l’adaptateur.</summary>
     /// <remarks>Les chemins interne et externe lisent le résultat du calcul ; Libretro reçoit ce même

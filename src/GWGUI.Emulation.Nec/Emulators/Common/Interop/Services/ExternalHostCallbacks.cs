@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
@@ -85,9 +86,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 var pointer = value.Pointer with
                 {
-                    DeltaX = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
-                    DeltaY = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                    DeltaX = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
+                    DeltaY = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
+                    Wheel = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
                 };
                 _pendingInput = value with { Pointer = pointer };
             }

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;
 
 public static class ControllerCatalog
@@ -5,9 +6,9 @@ public static class ControllerCatalog
     internal static IReadOnlyList<ControllerType> Available(MachineConfiguration configuration, int port, bool usb = false)
     {
         if (configuration.Model is not (ModelConstants.PlayStation or ModelConstants.PlayStation2))
-            return ControllerFunctions.Supported(configuration, port);
+            return CommonControllerFunctions.Supported(configuration, port);
         if (usb) return UsbTypes(configuration, port);
-        var native = ControllerFunctions.Supported(configuration, port)
+        var native = CommonControllerFunctions.Supported(configuration, port)
             .Where(type => configuration.Model != ModelConstants.PlayStation2
                 || type is not (ControllerType.Keyboard or ControllerType.Mouse or ControllerType.KeyboardAndMouse or ControllerType.GunCon2));
         return native.ToArray();
@@ -19,7 +20,7 @@ public static class ControllerCatalog
 
     internal static bool IsSupported(MachineConfiguration configuration, ControllerType type, int port, bool usb)
     {
-        if (!usb) return ControllerFunctions.Supported(configuration, port).Contains(type);
+        if (!usb) return CommonControllerFunctions.Supported(configuration, port).Contains(type);
         return UsbTypes(configuration, port).Contains(type);
     }
 
@@ -74,7 +75,7 @@ public static class ControllerCatalog
         _ => null
     };
 
-    public static IReadOnlyList<ControllerType> Types(MachineConfiguration configuration) => ControllerFunctions.Supported(configuration);
+    public static IReadOnlyList<ControllerType> Types(MachineConfiguration configuration) => CommonControllerFunctions.Supported(configuration);
 
     public static ControllerType Default(MachineConfiguration configuration) => Types(configuration).FirstOrDefault(type => type != ControllerType.None, ControllerType.None);
 

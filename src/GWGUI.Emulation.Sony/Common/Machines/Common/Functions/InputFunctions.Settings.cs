@@ -1,3 +1,5 @@
+using GWGUI.Emulation;
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
@@ -12,14 +14,14 @@ internal static partial class InputSettingsFunctions
         var usbMouse = HasUsbMouse(configuration);
         var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions(configuration) : [], input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
             CompatibleVisualIds: usbKeyboard ? [UsbKeyboardVisualId(configuration)] : null, DefaultVisualId: usbKeyboard ? UsbKeyboardVisualId(configuration) : null) : null;
-        var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+        var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         if (usbMouse && mouse is not null) mouse = mouse with
         {
             CompatibleVisualIds = [EmulationControllerVisualIds.SonyUsbMouse],
             DefaultVisualId = EmulationControllerVisualIds.SonyUsbMouse,
             VisualCommandIds = UsbMouseVisualCommands()
         };
-        var indexes = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ControllerFunctions.PortCount(configuration));
+        var indexes = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, CommonControllerFunctions.PortCount(configuration));
         if (model.Id == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2") indexes = new[] { 8, 9 }.Concat(indexes);
         var ports = indexes.Select(index => DescribePort(configuration, model, index)).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
@@ -31,8 +33,8 @@ internal static partial class InputSettingsFunctions
             return configuration;
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(current.KeyboardMappings);
-        var mouse = GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
-        var controllers = settings.ControllerPorts.Where(port => port.Number <= ControllerFunctions.PortCount(configuration)).Select(port =>
+        var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
+        var controllers = settings.ControllerPorts.Where(port => port.Number <= CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var index = port.Number - ControllerPortConstants.OneControllerPort;
             if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type))
@@ -41,7 +43,7 @@ internal static partial class InputSettingsFunctions
             if (!ControllerCatalog.Available(configuration, index, usb).Contains(type))
                 throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
             return new ControllerBinding(index, type, port.PhysicalDeviceId,
-                GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
+                EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
                 port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
         }).ToArray();
         if (configuration.Model == ModelConstants.PlayStation3)
@@ -62,7 +64,7 @@ internal static partial class InputSettingsFunctions
                             || !ControllerCatalog.Available(configuration, port.Number - 1, true).Contains(type))
                             throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
                         return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
-                            GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
+                            EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
                             port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
                     }).ToArray() : current.UsbBindings
             }
@@ -191,7 +193,7 @@ internal static partial class InputSettingsFunctions
     ];
 
     private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) =>
-        new(id, resourceKey, defaultBinding, GWGUI.Emulation.Functions.EmulationInputMappingFunctions.BindingDisplayValue(resourceKey, invariant))
+        new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey, invariant))
         {
             OppositeDirectionId = id switch
             {

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
@@ -9,7 +10,7 @@ internal static class InputSettingsFunctions
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
-        var choices = ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
+        var choices = CommonControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
         {
             var current = configured.FirstOrDefault(binding => binding.Port == index);

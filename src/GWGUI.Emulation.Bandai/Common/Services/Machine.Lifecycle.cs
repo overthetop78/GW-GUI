@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Bandai.Common.Functions.ControllerFunctions;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
@@ -99,7 +100,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
         QueueCommand(() =>
         {
-            if (port != ControllerConstants.FirstPort || !ControllerFunctions.Peripherals(Configuration.Model).Contains(peripheral))
+            if (port != ControllerConstants.FirstPort || !CommonControllerFunctions.Peripherals(Configuration.Model).Contains(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
             var previous = _inputConfiguration.Controllers?.FirstOrDefault(binding => binding.Port == port);
             var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };

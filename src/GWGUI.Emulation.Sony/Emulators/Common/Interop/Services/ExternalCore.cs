@@ -5,7 +5,7 @@ using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
-using SemanticControllerFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.ControllerFunctions;
+using SemanticControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using SemanticPortConstants = GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;

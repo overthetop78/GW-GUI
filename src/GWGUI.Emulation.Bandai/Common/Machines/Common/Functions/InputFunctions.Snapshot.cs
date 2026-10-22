@@ -1,16 +1,17 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
-        if (configuration?.Controllers is not { Count: > 0 }) return EmulationInputMappingFunctions.Freeze(snapshot with { Controllers = [] });
+        if (configuration?.Controllers is not { Count: > 0 }) return EmulationSdk.InputProcessing.Freeze(snapshot with { Controllers = [] });
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
         var targets = InputSnapshotDictionary.ForModel(model);
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port != ControllerConstants.FirstPort || binding.Peripheral == PeripheralCategory.None) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -20,7 +21,7 @@ internal static class InputSnapshotFunctions
             foreach (var mapping in binding.Mappings)
             {
                 if (!targets.TryGetValue(mapping.Key, out var target)) continue;
-                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
+                var controller = EmulationSdk.InputProcessing.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
                 if (IsPressed(mapping.Value, controller, snapshot)) buttons |= 1u << target;
             }
             controllers[binding.Port] = source with { Buttons = buttons };
@@ -30,7 +31,7 @@ internal static class InputSnapshotFunctions
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
-        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(source, controller, snapshot) > .5f;
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(source[InputSnapshotFunctionsConstants.Keyboard.Length..], true, out var key) && snapshot.Keys.Contains(key);
         if (source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
@@ -47,6 +48,6 @@ internal static class InputSnapshotFunctions
                 InputSnapshotFunctionsConstants.WheelRight => snapshot.Pointer.HorizontalWheel > 0,
                 _ => false
             };
-        return EmulationInputMappingFunctions.IsControllerSourcePressed(source, controller);
+        return EmulationSdk.InputProcessing.IsControllerSourcePressed(source, controller);
     }
 }

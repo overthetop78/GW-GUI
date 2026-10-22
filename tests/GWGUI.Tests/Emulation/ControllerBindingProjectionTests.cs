@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -21,7 +22,7 @@ public sealed class ControllerBindingProjectionTests
         var ports = numbers.Select(number => Port(number, "Joystick")).ToArray();
         var settings = new EmulationInputSettings(null, null, ports);
 
-        Assert.Equal(invalid, EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count));
+        Assert.Equal(invalid, EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count));
         Assert.Same(ports, settings.ControllerPorts);
         Assert.Equal(numbers, ports.Select(port => port.Number));
         Assert.All(ports, port => Assert.Equal("physical-" + port.Number, port.PhysicalDeviceId));
@@ -36,7 +37,7 @@ public sealed class ControllerBindingProjectionTests
         };
         var ports = new[] { Port(2, "Joystick", values), Port(1, "None", values) };
         var visited = new List<int>();
-        var result = EmulationInputMappingFunctions.CreateControllerBindings<Peripheral, EmulationControllerPort>(
+        var result = EmulationSdk.InputProcessing.CreateControllerBindings<Peripheral, EmulationControllerPort>(
             new(null, null, ports),
             (index, _) => { visited.Add(index); return true; },
             static (port, peripheral, mappings) => port with
@@ -73,7 +74,7 @@ public sealed class ControllerBindingProjectionTests
         var compatibilityCalls = 0;
         var factoryCalls = 0;
         var error = Assert.Throws<ArgumentException>(() =>
-            EmulationInputMappingFunctions.CreateControllerBindings<Peripheral, int>(
+            EmulationSdk.InputProcessing.CreateControllerBindings<Peripheral, int>(
                 new(null, null, [Port(1, selected)]),
                 (_, _) => { compatibilityCalls++; return false; },
                 (_, _, _) => { factoryCalls++; return 0; }));
@@ -90,7 +91,7 @@ public sealed class ControllerBindingProjectionTests
         var visited = new List<int>();
         var created = new List<int>();
         Assert.Throws<ArgumentException>(() =>
-            EmulationInputMappingFunctions.CreateControllerBindings<Peripheral, int>(
+            EmulationSdk.InputProcessing.CreateControllerBindings<Peripheral, int>(
                 new(null, null, [Port(3, "Joystick"), Port(1, "Joystick"), Port(2, "Joystick")]),
                 (index, _) => { visited.Add(index); return index != 0; },
                 (port, _, _) => { created.Add(port.Number); return port.Number; }));
@@ -101,7 +102,7 @@ public sealed class ControllerBindingProjectionTests
     [Fact]
     public void EmptyPortsDoNotInvokeCallbacks()
     {
-        var result = EmulationInputMappingFunctions.CreateControllerBindings<Peripheral, int>(
+        var result = EmulationSdk.InputProcessing.CreateControllerBindings<Peripheral, int>(
             new(null, null, []),
             (_, _) => throw new InvalidOperationException(),
             (_, _, _) => throw new InvalidOperationException());

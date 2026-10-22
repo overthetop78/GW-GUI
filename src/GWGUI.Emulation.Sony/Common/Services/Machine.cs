@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -143,6 +144,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     bool IEmulationSavedStates.IsSupported => _supportsSavedStates;
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, ControllerFunctions.FromCommon(peripheral, Configuration));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, Configuration));
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => SwitchControllerPointerAsync(cancellationToken);
 }

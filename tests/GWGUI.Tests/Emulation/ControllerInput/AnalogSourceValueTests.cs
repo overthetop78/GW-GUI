@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 
@@ -11,8 +12,8 @@ public sealed class AnalogSourceValueTests
     public void OneRawStickUnitRemainsOneUnit(short position, string direction, string opposite)
     {
         var state = EmulationControllerState.Empty with { LeftX = position };
-        Assert.Equal(1f / short.MaxValue, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:" + direction, state));
-        Assert.Equal(0f, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:" + opposite, state));
+        Assert.Equal(1f / short.MaxValue, EmulationSdk.InputProcessing.ControllerSourcePressure("Controller:pad:" + direction, state));
+        Assert.Equal(0f, EmulationSdk.InputProcessing.ControllerSourcePressure("Controller:pad:" + opposite, state));
     }
 
     [Theory]
@@ -26,7 +27,7 @@ public sealed class AnalogSourceValueTests
             LeftX = short.MaxValue,
             Controls = new(new Dictionary<string, float> { ["LeftStickRight"] = pressure })
         };
-        Assert.Equal(pressure, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:LeftStickRight", state));
+        Assert.Equal(pressure, EmulationSdk.InputProcessing.ControllerSourcePressure("Controller:pad:LeftStickRight", state));
     }
 
     [Theory]
@@ -35,8 +36,8 @@ public sealed class AnalogSourceValueTests
     public void TriggerKeepsIntermediatePressure(string source)
     {
         var state = EmulationControllerState.Empty with { LeftTrigger = 8192, Buttons = 1u << 12 };
-        Assert.Equal(8192f / short.MaxValue, EmulationInputMappingFunctions.ControllerSourceValue(source, state));
-        Assert.False(EmulationInputMappingFunctions.IsControllerSourcePressed(source, state));
+        Assert.Equal(8192f / short.MaxValue, EmulationSdk.InputProcessing.ControllerSourceValue(source, state));
+        Assert.False(EmulationSdk.InputProcessing.IsControllerSourcePressed(source, state));
     }
 
     [Theory]
@@ -48,10 +49,10 @@ public sealed class AnalogSourceValueTests
     public void GenericAxisKeepsBothHalfCourses(float physical, float positive, float negative)
     {
         var state = EmulationControllerState.Empty with { Controls = new(new Dictionary<string, float> { ["Axis0"] = physical }) };
-        Assert.Equal(positive, EmulationInputMappingFunctions.ControllerSourceValue("Controller:pad:Axis0Positive", state));
-        Assert.Equal(negative, EmulationInputMappingFunctions.ControllerSourceValue("Controller:pad:Axis0Negative", state));
-        Assert.Equal(positive > .5f, EmulationInputMappingFunctions.IsControllerSourcePressed("Controller:pad:Axis0Positive", state));
-        Assert.Equal(negative > .5f, EmulationInputMappingFunctions.IsControllerSourcePressed("Controller:pad:Axis0Negative", state));
+        Assert.Equal(positive, EmulationSdk.InputProcessing.ControllerSourceValue("Controller:pad:Axis0Positive", state));
+        Assert.Equal(negative, EmulationSdk.InputProcessing.ControllerSourceValue("Controller:pad:Axis0Negative", state));
+        Assert.Equal(positive > .5f, EmulationSdk.InputProcessing.IsControllerSourcePressed("Controller:pad:Axis0Positive", state));
+        Assert.Equal(negative > .5f, EmulationSdk.InputProcessing.IsControllerSourcePressed("Controller:pad:Axis0Negative", state));
     }
 
     [Theory]
@@ -64,14 +65,14 @@ public sealed class AnalogSourceValueTests
     [InlineData("Controller:pad:LeftTrigger", null)]
     public void OppositeAxisKeepsDeviceAndDoesNotPairButtons(string source, string? opposite)
     {
-        Assert.Equal(opposite, EmulationInputMappingFunctions.OppositeControllerAxisSource(source));
-        if (opposite is not null) Assert.Equal(source, EmulationInputMappingFunctions.OppositeControllerAxisSource(opposite));
+        Assert.Equal(opposite, EmulationSdk.InputProcessing.OppositeControllerAxisSource(source));
+        if (opposite is not null) Assert.Equal(source, EmulationSdk.InputProcessing.OppositeControllerAxisSource(opposite));
     }
 
     [Fact]
     public void DigitalTriggerRemainsUsable()
     {
         var state = EmulationControllerState.Empty with { Buttons = 1u << 12 };
-        Assert.Equal(1f, EmulationInputMappingFunctions.ControllerSourceValue("Controller:pad:LeftTrigger", state));
+        Assert.Equal(1f, EmulationSdk.InputProcessing.ControllerSourceValue("Controller:pad:LeftTrigger", state));
     }
 }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Services;
 using GWGUI.Emulation.Contracts;
 using GWGUI.App.Functions.Input.Bindings;
@@ -42,23 +43,23 @@ internal static class BindingsAndFeedbackScenarios
             Assert.Equal(0f, (float)method.Invoke(null, [analogBinding, halfway, analogSnapshot with { Keys = new HashSet<EmulationKey>(), Controllers = new[] { halfway } }, 20])!);
         }
         var keys=new HashSet<GWGUI.Emulation.Enums.EmulationKey>{GWGUI.Emulation.Enums.EmulationKey.A,GWGUI.Emulation.Enums.EmulationKey.B};
-        var mapped=GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MapKeyboard(keys,new Dictionary<string,GWGUI.Emulation.Enums.EmulationKey>{{"F1",GWGUI.Emulation.Enums.EmulationKey.A}});
+        var mapped=EmulationSdk.InputProcessing.MapKeyboard(keys,new Dictionary<string,GWGUI.Emulation.Enums.EmulationKey>{{"F1",GWGUI.Emulation.Enums.EmulationKey.A}});
         Assert.Equal(new[]{GWGUI.Emulation.Enums.EmulationKey.B,GWGUI.Emulation.Enums.EmulationKey.F1}.Order(),mapped.Order()); Assert.Contains(GWGUI.Emulation.Enums.EmulationKey.A,keys);
         var first=EmulationControllerState.Empty with{DeviceId="one"}; var second=new EmulationControllerState(1u<<8,short.MinValue,short.MaxValue,0,0,0,0){DeviceId="two"};
-        Assert.Same(second,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController("TWO",[first,second],0));
-        Assert.Same(EmulationControllerState.Empty,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController("missing",[first,second],0));
-        Assert.Same(EmulationControllerState.Empty,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController(null,[],0));
-        Assert.Equal("device:identifier",GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ParseControllerDeviceId("Controller:device:identifier:ButtonA"));
-        Assert.Null(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ParseControllerDeviceId("Keyboard:A"));
-        Assert.Equal(1,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ControllerSourceValue("Controller:two:ButtonA",second));
-        Assert.True(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("ButtonA",second));
-        Assert.False(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("ButtonB",second));
-        Assert.Equal(32768,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ControllerSourceValue("LeftStickLeft",second));
-        Assert.Equal(-32767,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ControllerSourceValue("LeftStickUp",second));
-        Assert.False(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("LeftStickRight",second,14000));
-        Assert.True(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("LeftStickRight",second,14001));
-        Assert.False(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("AxisPositive",second,.75f));
-        Assert.True(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.IsControllerSourcePressed("AxisPositive",second,.76f));
+        Assert.Same(second,EmulationSdk.InputProcessing.ResolveController("TWO",[first,second],0));
+        Assert.Same(EmulationControllerState.Empty,EmulationSdk.InputProcessing.ResolveController("missing",[first,second],0));
+        Assert.Same(EmulationControllerState.Empty,EmulationSdk.InputProcessing.ResolveController(null,[],0));
+        Assert.Equal("device:identifier",EmulationSdk.InputProcessing.ParseControllerDeviceId("Controller:device:identifier:ButtonA"));
+        Assert.Null(EmulationSdk.InputProcessing.ParseControllerDeviceId("Keyboard:A"));
+        Assert.Equal(1,EmulationSdk.InputProcessing.ControllerSourceValue("Controller:two:ButtonA",second));
+        Assert.True(EmulationSdk.InputProcessing.IsControllerSourcePressed("ButtonA",second));
+        Assert.False(EmulationSdk.InputProcessing.IsControllerSourcePressed("ButtonB",second));
+        Assert.Equal(32768,EmulationSdk.InputProcessing.ControllerSourceValue("LeftStickLeft",second));
+        Assert.Equal(-32767,EmulationSdk.InputProcessing.ControllerSourceValue("LeftStickUp",second));
+        Assert.False(EmulationSdk.InputProcessing.IsControllerSourcePressed("LeftStickRight",second,14000));
+        Assert.True(EmulationSdk.InputProcessing.IsControllerSourcePressed("LeftStickRight",second,14001));
+        Assert.False(EmulationSdk.InputProcessing.IsControllerSourcePressed("AxisPositive",second,.75f));
+        Assert.True(EmulationSdk.InputProcessing.IsControllerSourcePressed("AxisPositive",second,.76f));
         var mixed = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.LeftControl, EmulationKey.A },
@@ -67,9 +68,9 @@ internal static class BindingsAndFeedbackScenarios
         };
         const string combined = "Keyboard:LeftControl+Keyboard:A+Mouse:Left+Mouse:Middle+Controller:two:ButtonA+Controller:two:ButtonX";
         Assert.True(EmulationKeyboardBindingFunctions.IsValid(combined));
-        Assert.Equal(1f, EmulationInputMappingFunctions.InputSourcePressure(combined, EmulationControllerState.Empty, mixed));
-        Assert.Equal(0f, EmulationInputMappingFunctions.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Pointer = mixed.Pointer with { Middle = false } }));
-        Assert.Equal(0f, EmulationInputMappingFunctions.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }));
+        Assert.Equal(1f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed));
+        Assert.Equal(0f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Pointer = mixed.Pointer with { Middle = false } }));
+        Assert.Equal(0f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }));
     }
     private sealed class Pointer : GWGUI.App.Input.Mouse.IRelativeMouseCapture
     {

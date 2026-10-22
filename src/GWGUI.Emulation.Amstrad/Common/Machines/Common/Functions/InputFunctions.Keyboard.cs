@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class KeyboardBindingFunctions
@@ -25,7 +26,7 @@ internal static class KeyboardBindingFunctions
         return result;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Normalize(input));
+    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input) => EmulationSdk.InputProcessing.MapKeyboard(snapshot, Normalize(input));
 
     internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> hostKeys, InputConfiguration input) => Apply(EmulationInputSnapshot.Empty with { Keys = hostKeys }, input);
 }

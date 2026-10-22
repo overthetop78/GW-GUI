@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 internal static class InputSnapshotFunctions
 {
@@ -16,14 +17,14 @@ internal static class InputSnapshotFunctions
                 continue;
             }
 
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             var values = new Dictionary<string, float>(StringComparer.Ordinal);
             foreach (var command in ControllerCatalog.Commands(binding.Peripheral))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(command.ToString()) ?? string.Empty;
                 if (string.IsNullOrEmpty(mapping))
                     continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
+                var physical = EmulationSdk.InputProcessing.ResolveSourceController(mapping, snapshot.Controllers, source);
                 var value = Value(mapping, physical, snapshot, binding.DeadZonePercent);
                 var relative = IsMotion(command) && mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) && mapping[InputMappingConstants.MousePrefix.Length..] is "X+" or "X−" or "Y+" or "Y−";
                 values[command.ToString() + (relative ? InputMappingConstants.RelativeMotionSuffix : string.Empty)] = value;
@@ -51,7 +52,7 @@ internal static class InputSnapshotFunctions
     {
         if (mapping.Contains('+') && !mapping.EndsWith('+'))
         {
-            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
+            var combined = EmulationSdk.InputProcessing.InputSourcePressure(mapping, controller, snapshot);
             return combined <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(combined, 0f, 1f);
         }
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
@@ -76,7 +77,7 @@ internal static class InputSnapshotFunctions
             };
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return 0;
-        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
+        var value = EmulationSdk.InputProcessing.ControllerSourcePressure(mapping, controller);
         return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0 : Math.Clamp(value, 0, 1);
     }
 }

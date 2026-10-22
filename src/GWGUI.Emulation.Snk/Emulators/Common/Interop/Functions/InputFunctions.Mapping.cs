@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Dictionaries;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
@@ -11,7 +12,7 @@ internal static class NativeInputMappingFunctions
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = CommonControllerFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0;
             foreach (var action in ControllerProtocolDictionary.Actions(model, binding.Peripheral))
@@ -19,10 +20,10 @@ internal static class NativeInputMappingFunctions
                 var mapping = binding.Mappings?.GetValueOrDefault(action.Id) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(mapping))
                     continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot))
+                var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
+                if (CommonControllerFunctions.IsMappedInputPressed(mapping, physical, snapshot))
                     buttons |= action.ButtonMask;
-                var magnitude = EmulationInputMappingFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
+                var magnitude = CommonControllerFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
                 switch (action.Command)
                 {
                     case ControllerCommand.Left:
@@ -44,8 +45,8 @@ internal static class NativeInputMappingFunctions
             {
                 DeviceId = source.DeviceId,
                 Buttons = buttons,
-                LeftX = EmulationInputMappingFunctions.NormalizedAxis(horizontal),
-                LeftY = EmulationInputMappingFunctions.NormalizedAxis(vertical)
+                LeftX = CommonControllerFunctions.NormalizedAxis(horizontal),
+                LeftY = CommonControllerFunctions.NormalizedAxis(vertical)
             };
         }
 

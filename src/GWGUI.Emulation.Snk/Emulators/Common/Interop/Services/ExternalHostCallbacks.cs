@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
@@ -120,7 +121,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal ExternalCoreApi.SetSensorState SetSensorState { get; }
     internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
-    internal EmulationInputSnapshot Input { set => _input.Update(ControllerFunctions.FreezeMappedInput(value)); }
+    internal EmulationInputSnapshot Input { set => _input.Update(CommonControllerFunctions.FreezeMappedInput(value)); }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
     internal IReadOnlyList<CoreOption> Options => _optionHost.Catalog;

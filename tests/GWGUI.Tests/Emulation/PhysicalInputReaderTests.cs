@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -19,7 +20,7 @@ public sealed class PhysicalInputReaderTests
     {
         var controller = EmulationControllerState.Empty with { DeviceId = "pad", LeftX = short.MaxValue };
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A }, Controllers = [controller] };
-        Assert.Equal(expected, EmulationInputMappingFunctions.IsMappedInputPressed(mapping, controller, snapshot));
+        Assert.Equal(expected, EmulationSdk.InputProcessing.IsMappedInputPressed(mapping, controller, snapshot));
     }
 
     [Theory]
@@ -37,7 +38,7 @@ public sealed class PhysicalInputReaderTests
     public void MouseNamesAndWheelDirectionsKeepTheirOriginalMeaning(string control, bool expected)
     {
         var snapshot = EmulationInputSnapshot.Empty with { Pointer = new(0, 0, 1, true, true, true, true, true, -1) };
-        Assert.Equal(expected, EmulationInputMappingFunctions.IsMappedInputPressed("mOuSe:" + control, EmulationControllerState.Empty, snapshot));
+        Assert.Equal(expected, EmulationSdk.InputProcessing.IsMappedInputPressed("mOuSe:" + control, EmulationControllerState.Empty, snapshot));
     }
 
     [Theory]
@@ -48,8 +49,8 @@ public sealed class PhysicalInputReaderTests
         var keys = new HashSet<EmulationKey> { EmulationKey.A };
         if (secondKeyPressed) keys.Add(EmulationKey.B);
         var snapshot = EmulationInputSnapshot.Empty with { Keys = keys };
-        Assert.Equal(expected, EmulationInputMappingFunctions.IsMappedInputPressed("Keyboard:A+Keyboard:B", EmulationControllerState.Empty, snapshot));
-        Assert.Equal(expected ? 1f : 0f, EmulationInputMappingFunctions.MappedInputMagnitude("Keyboard:A+Keyboard:B", EmulationControllerState.Empty, snapshot, 20));
+        Assert.Equal(expected, EmulationSdk.InputProcessing.IsMappedInputPressed("Keyboard:A+Keyboard:B", EmulationControllerState.Empty, snapshot));
+        Assert.Equal(expected ? 1f : 0f, EmulationSdk.InputProcessing.MappedInputMagnitude("Keyboard:A+Keyboard:B", EmulationControllerState.Empty, snapshot, 20));
     }
 
     [Theory]
@@ -68,14 +69,14 @@ public sealed class PhysicalInputReaderTests
             Controls = new(new Dictionary<string, float> { ["LeftStickRight"] = value })
         };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [controller] };
-        Assert.Equal(expected, EmulationInputMappingFunctions.MappedInputMagnitude("Controller:pad:LeftStickRight", controller, snapshot, deadZone), 6);
+        Assert.Equal(expected, EmulationSdk.InputProcessing.MappedInputMagnitude("Controller:pad:LeftStickRight", controller, snapshot, deadZone), 6);
     }
 
     [Fact]
     public void DigitalSourcesKeepFullMagnitudeRegardlessOfAnalogDeadZone()
     {
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
-        Assert.Equal(1f, EmulationInputMappingFunctions.MappedInputMagnitude("Keyboard:A", EmulationControllerState.Empty, snapshot, 100));
+        Assert.Equal(1f, EmulationSdk.InputProcessing.MappedInputMagnitude("Keyboard:A", EmulationControllerState.Empty, snapshot, 100));
     }
 
     [Theory]
@@ -87,5 +88,5 @@ public sealed class PhysicalInputReaderTests
     [InlineData(1f, 32767)]
     [InlineData(2f, 32767)]
     public void NormalizedAxesKeepTruncationRatherThanRounding(float value, int expected)
-        => Assert.Equal((short)expected, EmulationInputMappingFunctions.NormalizedAxis(value));
+        => Assert.Equal((short)expected, EmulationSdk.InputProcessing.NormalizedAxis(value));
 }

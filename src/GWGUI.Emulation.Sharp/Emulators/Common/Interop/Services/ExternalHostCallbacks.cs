@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
 using System.IO;
@@ -93,7 +94,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal ExternalCoreApi.LogCallback Log { get; }
     internal EmulationInputSnapshot Input
     {
-        set => _input.Update(ControllerFunctions.FreezeMappedInput(value));
+        set => _input.Update(CommonControllerFunctions.FreezeMappedInput(value));
     }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }

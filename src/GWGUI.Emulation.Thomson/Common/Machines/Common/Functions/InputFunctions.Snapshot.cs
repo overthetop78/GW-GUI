@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class InputSnapshotFunctions
 {
@@ -13,7 +14,7 @@ internal static class InputSnapshotFunctions
                 continue;
             }
 
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0;
             foreach (var command in ControllerCatalog.Commands(binding.Peripheral))
@@ -21,10 +22,10 @@ internal static class InputSnapshotFunctions
                 var mapping = binding.Mappings?.GetValueOrDefault(command.ToString()) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(mapping))
                     continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (command == ControllerCommand.Fire && EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot))
+                var physical = EmulationSdk.InputProcessing.ResolveSourceController(mapping, snapshot.Controllers, source);
+                if (command == ControllerCommand.Fire && EmulationSdk.InputProcessing.IsMappedInputPressed(mapping, physical, snapshot))
                     buttons |= ControllerConstants.FireButtonMask;
-                var magnitude = EmulationInputMappingFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
+                var magnitude = EmulationSdk.InputProcessing.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
                 switch (command)
                 {
                     case ControllerCommand.Left:
@@ -46,20 +47,20 @@ internal static class InputSnapshotFunctions
             {
                 DeviceId = source.DeviceId,
                 Buttons = buttons,
-                LeftX = EmulationInputMappingFunctions.NormalizedAxis(horizontal),
-                LeftY = EmulationInputMappingFunctions.NormalizedAxis(vertical)
+                LeftX = EmulationSdk.InputProcessing.NormalizedAxis(horizontal),
+                LeftY = EmulationSdk.InputProcessing.NormalizedAxis(vertical)
             };
         }
 
-        var physicalPointerSource = EmulationInputMappingFunctions.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
+        var physicalPointerSource = EmulationSdk.InputProcessing.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
         var left = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
         var right = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
         var pointer = snapshot.Pointer with
         {
             DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),
             DeltaY = Scale(snapshot.Pointer.DeltaY, input.MouseSpeedPercent),
-            Left = EmulationInputMappingFunctions.IsMappedInputPressed(left, EmulationInputMappingFunctions.ResolveSourceController(left, snapshot.Controllers, physicalPointerSource), snapshot),
-            Right = EmulationInputMappingFunctions.IsMappedInputPressed(right, EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physicalPointerSource), snapshot)
+            Left = EmulationSdk.InputProcessing.IsMappedInputPressed(left, EmulationSdk.InputProcessing.ResolveSourceController(left, snapshot.Controllers, physicalPointerSource), snapshot),
+            Right = EmulationSdk.InputProcessing.IsMappedInputPressed(right, EmulationSdk.InputProcessing.ResolveSourceController(right, snapshot.Controllers, physicalPointerSource), snapshot)
         };
         return snapshot with
         {

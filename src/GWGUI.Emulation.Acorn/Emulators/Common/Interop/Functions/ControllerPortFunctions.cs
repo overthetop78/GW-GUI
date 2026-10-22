@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
@@ -21,7 +22,7 @@ internal static class ControllerPortFunctions
         if (port < ControllerPortConstants.MinimumControllerPort
             || port >= ConfigurationFunctions.ControllerPortCount(configuration.Model))
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);
-        if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
+        if (!CommonControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
         // b2 polls analog axes and joypad buttons directly rather than publishing controller descriptors.
         exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None ? CoreLifecycleConstants.NoDevice : CoreLifecycleConstants.DefaultJoypadDevice);

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Input.GameInput;
@@ -129,8 +130,8 @@ public partial class InputBindingEditor
             }
             if (!choices.Any(choice => Matches(choice, group)) && group.Values.All(row => row.Binding.StartsWith("Controller:", StringComparison.Ordinal)))
             {
-                var device = EmulationInputMappingFunctions.ParseControllerDeviceId(group.Values.First().Binding);
-                if (device is not null && group.Values.All(row => EmulationInputMappingFunctions.ParseControllerDeviceId(row.Binding) == device))
+                var device = EmulationSdk.InputProcessing.ParseControllerDeviceId(group.Values.First().Binding);
+                if (device is not null && group.Values.All(row => EmulationSdk.InputProcessing.ParseControllerDeviceId(row.Binding) == device))
                     choices.Add(new(device + " · " + LocExtension.Get("Emulation.Input.Analog.Saved"), group.ToDictionary(item => item.Key, item => item.Value.Binding)));
             }
             selector.ItemsSource = choices;

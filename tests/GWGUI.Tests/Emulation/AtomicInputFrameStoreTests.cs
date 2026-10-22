@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -90,7 +91,7 @@ public sealed class AtomicInputFrameStoreTests
     [InlineData(int.MaxValue, int.MinValue, -1)]
     [InlineData(-7, 3, -4)]
     public void SharedAdditionKeepsSignedSaturation(int left, int right, int expected)
-        => Assert.Equal(expected, EmulationInputMappingFunctions.SaturatingAdd(left, right));
+        => Assert.Equal(expected, EmulationSdk.InputProcessing.SaturatingAdd(left, right));
 
     [Fact]
     public async Task ConcurrentUpdatesAndPollingDoNotLoseRelativeMovement()

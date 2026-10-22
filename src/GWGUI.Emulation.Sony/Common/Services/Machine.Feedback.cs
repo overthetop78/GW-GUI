@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sony.Common.Services;
 
 internal sealed partial class Machine
@@ -20,8 +21,8 @@ internal sealed partial class Machine
                     var selected = new Dictionary<(int, string), EmulationControllerOutputBinding>();
                     foreach (var port in configuration.Input?.ControllerBindings ?? [])
                     {
-                        if (port.Port < 0 || port.Port >= ControllerFunctions.PortCount(configuration)) continue;
-                        var type = ControllerFunctions.Resolve(configuration, port.Port);
+                        if (port.Port < 0 || port.Port >= CommonControllerFunctions.PortCount(configuration)) continue;
+                        var type = CommonControllerFunctions.Resolve(configuration, port.Port);
                         foreach (var binding in InputSettingsFunctions.ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings))
                             selected[(port.Port, binding.Key)] = binding.Value;
                     }

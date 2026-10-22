@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -72,7 +73,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal ExternalCoreApi.LogCallback Log { get; }
     internal EmulationInputSnapshot Input
     {
-        set => _input.Update(ControllerFunctions.ApplyDeadZones(value, _controllerBindings));
+        set => _input.Update(CommonControllerFunctions.ApplyDeadZones(value, _controllerBindings));
     }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }

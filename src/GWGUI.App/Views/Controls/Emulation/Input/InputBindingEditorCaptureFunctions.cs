@@ -214,9 +214,9 @@ public partial class InputBindingEditor
         var detailedStates = GameInputControllerReader.ReadAllDetailedStates();
         foreach (var source in _captureSourcesPressed.Where(source => source.StartsWith(InputBindingSyntaxConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)).ToArray())
         {
-            var device = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
-            var state = EmulationInputMappingFunctions.ResolveController(device, states, -1);
-            var value = EmulationInputMappingFunctions.ControllerSourceValue(source, state);
+            var device = EmulationSdk.InputProcessing.ParseControllerDeviceId(source);
+            var state = EmulationSdk.InputProcessing.ResolveController(device, states, -1);
+            var value = EmulationSdk.InputProcessing.ControllerSourceValue(source, state);
             var detailed = detailedStates.FirstOrDefault(item => item.DeviceId == device);
             var name = source[(source.LastIndexOf(':') + 1)..];
             if (detailed is not null && name.StartsWith("Button", StringComparison.OrdinalIgnoreCase) && int.TryParse(name[6..], out var index))
@@ -256,7 +256,7 @@ public partial class InputBindingEditor
         }
         foreach (var state in detailedStates)
         {
-            if (_capturedSources.Any(source => string.Equals(EmulationInputMappingFunctions.ParseControllerDeviceId(source), state.DeviceId, StringComparison.OrdinalIgnoreCase))
+            if (_capturedSources.Any(source => string.Equals(EmulationSdk.InputProcessing.ParseControllerDeviceId(source), state.DeviceId, StringComparison.OrdinalIgnoreCase))
                 && states.Any(controller => controller.DeviceId == state.DeviceId && (controller.Buttons != 0 || controller.Controls.Count > 0))) continue;
             var baseline = _controllerDetailedBaseline.FirstOrDefault(item => string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase)) ?? GameInputLiveState.Empty(state.DeviceId);
             var axisBaseline = _controllerDetailedAxisBaseline.FirstOrDefault(item => string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase)) ?? GameInputLiveState.Empty(state.DeviceId);
@@ -350,7 +350,7 @@ public partial class InputBindingEditor
     internal void ApplyOppositeAxisBinding(InputBindingRow row)
     {
         if (row.OppositeDirectionId is { } oppositeId
-            && EmulationInputMappingFunctions.OppositeControllerAxisSource(row.Binding) is { } oppositeSource
+            && EmulationSdk.InputProcessing.OppositeControllerAxisSource(row.Binding) is { } oppositeSource
             && _rows.FirstOrDefault(candidate => candidate.Id == oppositeId) is { } oppositeRow)
             oppositeRow.Binding = oppositeSource;
     }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
@@ -43,7 +44,7 @@ public sealed class CommodoreSpecialKeyboardTests
         Assert.Equal(nameof(EmulationKey.F10), restored.Values[nameof(EmulationKey.CommodoreRunStop)]);
         Assert.Equal(string.Empty, restored.Values[nameof(EmulationKey.CommodoreShiftLock)]);
         var normalized = KeyboardBindings.Normalize(changed.Input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration));
-        var mapped = EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10, EmulationKey.A, EmulationKey.Numpad1 }, normalized.KeyboardMappings);
+        var mapped = EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10, EmulationKey.A, EmulationKey.Numpad1 }, normalized.KeyboardMappings);
         Assert.Contains(EmulationKey.CommodoreRunStop, mapped);
         Assert.Contains(EmulationKey.A, mapped);
         Assert.Contains(EmulationKey.Numpad1, mapped);
@@ -90,9 +91,9 @@ public sealed class CommodoreSpecialKeyboardTests
         var normalized = KeyboardBindings.Normalize(input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration));
         Assert.Equal(nameof(EmulationKey.F10), normalized.KeyboardBindings![nameof(EmulationKey.CommodoreRestore)]);
         Assert.DoesNotContain(nameof(EmulationKey.PageUp), normalized.KeyboardBindings.Keys);
-        Assert.Contains(EmulationKey.CommodoreRestore, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, normalized.KeyboardMappings));
-        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, normalized.KeyboardMappings));
-        Assert.Contains(EmulationKey.A, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.A }, normalized.KeyboardMappings));
+        Assert.Contains(EmulationKey.CommodoreRestore, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, normalized.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, normalized.KeyboardMappings));
+        Assert.Contains(EmulationKey.A, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.A }, normalized.KeyboardMappings));
     }
 
     [Fact]
@@ -103,7 +104,7 @@ public sealed class CommodoreSpecialKeyboardTests
         var normalized = KeyboardBindings.Normalize(input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration));
         Assert.Equal(string.Empty, normalized.KeyboardBindings![nameof(EmulationKey.CommodoreRestore)]);
         Assert.DoesNotContain(nameof(EmulationKey.CommodoreRestore), normalized.KeyboardMappings!.Keys);
-        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp, EmulationKey.F10 }, normalized.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp, EmulationKey.F10 }, normalized.KeyboardMappings));
     }
 
     [Fact]
@@ -129,9 +130,9 @@ public sealed class CommodoreSpecialKeyboardTests
         var changed = InputSettings.Apply(configuration, settings with { Keyboard = keyboard with { Values = values } });
         Assert.Equal(nameof(EmulationKey.F10), changed.Input!.KeyboardBindings![nameof(EmulationKey.CommodoreRestore)]);
         Assert.Equal(string.Empty, changed.Input.KeyboardBindings[nameof(EmulationKey.CommodoreShiftLock)]);
-        Assert.Contains(EmulationKey.CommodoreRestore, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input.KeyboardMappings));
-        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, changed.Input.KeyboardMappings));
-        Assert.DoesNotContain(EmulationKey.CommodoreShiftLock, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.CapsLock }, changed.Input.KeyboardMappings));
+        Assert.Contains(EmulationKey.CommodoreRestore, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.CommodoreRestore, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, changed.Input.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.CommodoreShiftLock, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.CapsLock }, changed.Input.KeyboardMappings));
         Assert.Equal(EmulationKey.CommodoreRestore, ViceKeyboard.Overrides(configuration)[280]);
     }
 
@@ -150,7 +151,7 @@ public sealed class CommodoreSpecialKeyboardTests
         Assert.All(keyboard.Definitions, definition => Assert.NotNull(definition.InvariantDisplayValue));
         var values = new Dictionary<string, string>(keyboard.Values) { [nameof(EmulationKey.Commodore40_80Display)] = nameof(EmulationKey.F10), [nameof(EmulationKey.CommodoreNoScroll)] = string.Empty };
         var changed = InputSettings.Apply(configuration, settings with { Keyboard = keyboard with { Values = values } });
-        var keys = EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings);
+        var keys = EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings);
         Assert.Contains(EmulationKey.Commodore40_80Display, keys);
         Assert.DoesNotContain(nameof(EmulationKey.CommodoreNoScroll), changed.Input.KeyboardMappings!.Keys);
         Assert.Equal(EmulationKey.Help, ViceKeyboard.Overrides(configuration)[helpCode]);
@@ -208,8 +209,8 @@ public sealed class CommodoreSpecialKeyboardTests
         Assert.DoesNotContain(96u, ViceKeyboard.Overrides(configuration).Keys);
         var values = new Dictionary<string, string>(keyboard.Values) { [nameof(EmulationKey.Help)] = nameof(EmulationKey.F10), [nameof(EmulationKey.CommodoreShiftLock)] = string.Empty };
         var changed = InputSettings.Apply(configuration, settings with { Keyboard = keyboard with { Values = values } });
-        Assert.Contains(EmulationKey.Help, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings));
-        Assert.DoesNotContain(EmulationKey.Help, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F8 }, changed.Input.KeyboardMappings));
+        Assert.Contains(EmulationKey.Help, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.Help, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F8 }, changed.Input.KeyboardMappings));
         Assert.DoesNotContain(nameof(EmulationKey.CommodoreShiftLock), changed.Input.KeyboardMappings!.Keys);
         Assert.Empty(ViceKeyboard.Expansions(configuration));
     }
@@ -242,8 +243,8 @@ public sealed class CommodoreSpecialKeyboardTests
         Assert.Equal("NORM/GRAPH", keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.CommodoreNormalGraphic)).InvariantDisplayValue);
         var values = new Dictionary<string, string>(keyboard.Values) { [nameof(EmulationKey.CommodoreOffReverse)] = nameof(EmulationKey.F10), [nameof(EmulationKey.CommodoreNormalGraphic)] = string.Empty };
         var changed = InputSettings.Apply(configuration, settings with { Keyboard = keyboard with { Values = values } });
-        Assert.Contains(EmulationKey.CommodoreOffReverse, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings));
-        Assert.DoesNotContain(EmulationKey.CommodoreOffReverse, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, changed.Input.KeyboardMappings));
+        Assert.Contains(EmulationKey.CommodoreOffReverse, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input!.KeyboardMappings));
+        Assert.DoesNotContain(EmulationKey.CommodoreOffReverse, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.PageUp }, changed.Input.KeyboardMappings));
         Assert.DoesNotContain(nameof(EmulationKey.CommodoreNormalGraphic), changed.Input.KeyboardMappings!.Keys);
         Assert.Empty(ViceKeyboard.Expansions(configuration));
         Assert.Equal(ViceKeyboard.Defaults(configuration), ViceKeyboard.Defaults(configuration with { Options = new Dictionary<string, string> { [ViceKeyboardConstants.KeymapOption] = "symbolic-user" } }));
@@ -268,8 +269,8 @@ public sealed class CommodoreSpecialKeyboardTests
         Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
         var changed = InputSettings.Apply(configuration, settings);
         Assert.Equal(nameof(EmulationKey.F10), changed.Input!.KeyboardBindings![nameof(EmulationKey.A)]);
-        Assert.Contains(EmulationKey.A, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input.KeyboardMappings));
-        Assert.Contains(EmulationKey.B, EmulationInputMappingFunctions.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.B }, changed.Input.KeyboardMappings));
+        Assert.Contains(EmulationKey.A, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.F10 }, changed.Input.KeyboardMappings));
+        Assert.Contains(EmulationKey.B, EmulationSdk.InputProcessing.MapKeyboard(new HashSet<EmulationKey> { EmulationKey.B }, changed.Input.KeyboardMappings));
     }
 
     private static MachineConfiguration Configuration(string keymap) => new("C64", Emulator.ViceX64, Options: new Dictionary<string, string> { [ViceKeyboardConstants.KeymapOption] = keymap });

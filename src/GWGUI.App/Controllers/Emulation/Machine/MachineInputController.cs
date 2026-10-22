@@ -344,7 +344,7 @@ internal sealed class MachineInputController : IDisposable
         var physicalSnapshot = new EmulationInputSnapshot(keys, physical.Pointer, physical.Controllers);
         foreach (var shortcut in _globalShortcuts.Where(binding => binding.SourceBinding is not null))
         {
-            if (EmulationInputMappingFunctions.InputSourcePressure(shortcut.SourceBinding!, EmulationControllerState.Empty, physicalSnapshot) > .5f)
+            if (EmulationSdk.InputProcessing.InputSourcePressure(shortcut.SourceBinding!, EmulationControllerState.Empty, physicalSnapshot) > .5f)
             {
                 if (_activeShortcuts.Add(shortcut.Action)) _ = _executeShortcut(shortcut.Action);
             }
@@ -354,7 +354,7 @@ internal sealed class MachineInputController : IDisposable
         foreach (var binding in machine.Input.KeyboardBindings)
             if (binding.Value.Contains(':') && Enum.TryParse<EmulationKey>(binding.Key, out var target)
                 && !_globalShortcuts.Any(shortcut => shortcut.SourceBinding is { } source && InputBindingSyntax.Conflicts(source, binding.Value))
-                && EmulationInputMappingFunctions.InputSourcePressure(binding.Value, EmulationControllerState.Empty, physicalSnapshot) > .5f)
+                && EmulationSdk.InputProcessing.InputSourcePressure(binding.Value, EmulationControllerState.Empty, physicalSnapshot) > .5f)
                 keys.Add(target);
         machine.Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
     }

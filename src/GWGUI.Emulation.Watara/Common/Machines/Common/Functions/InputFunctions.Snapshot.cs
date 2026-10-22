@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Watara.Common.Machines.Common.Dictionaries;
 
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Functions;
@@ -15,7 +16,7 @@ internal static class InputSnapshotFunctions
                 continue;
             }
 
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0;
             foreach (var command in ControllerCatalog.Commands)
@@ -23,8 +24,8 @@ internal static class InputSnapshotFunctions
                 var mapping = binding.Mappings?.GetValueOrDefault(command.ToString()) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(mapping))
                     continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot))
+                var physical = EmulationSdk.InputProcessing.ResolveSourceController(mapping, snapshot.Controllers, source);
+                if (EmulationSdk.InputProcessing.IsMappedInputPressed(mapping, physical, snapshot))
                     buttons |= (uint)(command switch
                     {
                         ControllerCommand.A => ControllerButtons.A,
@@ -33,7 +34,7 @@ internal static class InputSnapshotFunctions
                         ControllerCommand.Select => ControllerButtons.Select,
                         _ => ControllerButtons.None
                     });
-                var magnitude = EmulationInputMappingFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
+                var magnitude = EmulationSdk.InputProcessing.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
                 switch (command)
                 {
                     case ControllerCommand.Left:
@@ -55,8 +56,8 @@ internal static class InputSnapshotFunctions
             {
                 DeviceId = source.DeviceId,
                 Buttons = buttons,
-                LeftX = EmulationInputMappingFunctions.NormalizedAxis(horizontal),
-                LeftY = EmulationInputMappingFunctions.NormalizedAxis(vertical)
+                LeftX = EmulationSdk.InputProcessing.NormalizedAxis(horizontal),
+                LeftY = EmulationSdk.InputProcessing.NormalizedAxis(vertical)
             };
         }
 

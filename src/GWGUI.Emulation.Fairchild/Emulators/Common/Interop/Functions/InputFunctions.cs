@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Fairchild.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;
 
@@ -8,6 +9,6 @@ internal static class NativeInputFunctions
         if (device != InputConstants.JoypadDevice || index != InputConstants.PrimaryIndex || port >= snapshot.Controllers.Count)
             return InputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];
-        return EmulationInputMappingFunctions.NativeJoypadState(controller.Buttons, id, InputConstants.MaximumJoypadButtonCount);
+        return CommonControllerFunctions.NativeJoypadState(controller.Buttons, id, InputConstants.MaximumJoypadButtonCount);
     }
 }

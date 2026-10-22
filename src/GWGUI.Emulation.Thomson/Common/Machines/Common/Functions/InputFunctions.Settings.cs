@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
@@ -9,7 +10,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
-        var mouseValues = EmulationInputMappingFunctions.ResolveBindings(MouseDefinitions(), configuration.Input.Mouse);
+        var mouseValues = EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), configuration.Input.Mouse);
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
         {
@@ -50,9 +51,9 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
+        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
             throw new ArgumentException(nameof(settings));
-        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
+        var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,
             (index, peripheral) => SupportsPeripheral(configuration, index, peripheral),
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
@@ -75,11 +76,11 @@ internal static class InputSettingsFunctions
         _ = KeyboardBindings(configuration.Input, configuration.Model);
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         mouseIds.Add(InputMappingConstants.MouseRight);
-        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid))
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid))
             throw new ArgumentException(nameof(configuration.Input));
         var ids = ControllerCatalog.Definitions(PeripheralCategory.Joystick).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
+            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
                 throw new ArgumentException(nameof(configuration.Input));
     }
 }

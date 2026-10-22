@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 
@@ -15,7 +16,7 @@ public sealed class ControllerDeadZoneStateTests
             Controls = controls
         };
 
-        var result = EmulationInputMappingFunctions.ApplyDeadZones(source, 50);
+        var result = EmulationSdk.InputProcessing.ApplyDeadZones(source, 50);
 
         Assert.Equal(new short[] { 0, 16384, 0, -16384, short.MinValue, 0 }, Axes(result));
         Assert.Equal(new short[] { 16383, 16384, -16383, -16384, short.MinValue, 0 }, Axes(source));
@@ -30,7 +31,7 @@ public sealed class ControllerDeadZoneStateTests
     public void ZeroPercentStillCopiesTheRecordAndPreservesItsValues()
     {
         var source = new EmulationControllerState(1, 1, -1, 2, -2, 3, -3);
-        var result = EmulationInputMappingFunctions.ApplyDeadZones(source, 0);
+        var result = EmulationSdk.InputProcessing.ApplyDeadZones(source, 0);
         Assert.Equal(source, result);
         Assert.NotSame(source, result);
         Assert.Same(source.Controls, result.Controls);
@@ -43,7 +44,7 @@ public sealed class ControllerDeadZoneStateTests
     {
         var source = new EmulationControllerState(3, short.MinValue, short.MaxValue,
             short.MinValue, short.MaxValue, short.MinValue, short.MaxValue);
-        var result = EmulationInputMappingFunctions.ApplyDeadZones(source, percent);
+        var result = EmulationSdk.InputProcessing.ApplyDeadZones(source, percent);
         Assert.Equal(new short[] { expectedNegative, 0, expectedNegative, 0, expectedNegative, 0 }, Axes(result));
         Assert.Equal(source.Buttons, result.Buttons);
     }

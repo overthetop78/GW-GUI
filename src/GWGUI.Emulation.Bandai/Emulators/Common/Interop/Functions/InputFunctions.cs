@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Bandai.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 
@@ -8,6 +9,6 @@ internal static class NativeInputFunctions
         if (device != InputConstants.JoypadDevice || index != InputConstants.LeftAnalogIndex
             || port >= snapshot.Controllers.Count) return InputConstants.InactiveState;
         var buttons = snapshot.Controllers[checked((int)port)].Buttons;
-        return EmulationInputMappingFunctions.NativeJoypadState(buttons, id, InputConstants.MaximumJoypadButtonCount);
+        return CommonControllerFunctions.NativeJoypadState(buttons, id, InputConstants.MaximumJoypadButtonCount);
     }
 }

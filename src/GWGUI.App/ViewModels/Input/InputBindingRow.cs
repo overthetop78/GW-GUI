@@ -38,7 +38,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     {
         get
         {
-            var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(_binding);
+            var deviceId = EmulationSdk.InputProcessing.ParseControllerDeviceId(_binding);
             if (string.IsNullOrWhiteSpace(deviceId)) return string.Empty;
             return GameInputControllerReader.GetControllerName(deviceId) ?? deviceId;
         }

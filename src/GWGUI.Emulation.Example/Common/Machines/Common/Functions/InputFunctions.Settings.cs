@@ -1,3 +1,5 @@
+using GWGUI.Emulation;
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using System.Reflection;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Example.Common.Functions;
@@ -20,7 +22,7 @@ internal static class InputSettingsFunctions
     /// <summary>Décrit toutes les touches représentables par le contrat de clavier.</summary>
     /// <param name="configuration">Configuration consultée par les mêmes interfaces que les autres adaptateurs.</param>
     /// <returns>Une action par touche définie, à l’exception de la valeur Unknown.</returns>
-    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => ControllerFunctions.CreateNativeKeyMap().Keys
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => CommonControllerFunctions.CreateNativeKeyMap().Keys
         .OrderBy(key => key).Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Keyboard", key.ToString(), key.ToString())).ToArray();
 
     /// <summary>Décrit les commandes génériques du périphérique sélectionné.</summary>

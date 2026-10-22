@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Microsoft.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
@@ -7,7 +8,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
-        var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+        var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
         var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
         {
@@ -26,12 +27,12 @@ internal static partial class InputSettingsFunctions
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
-        var mouse = GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
+        var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - 1,
             Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None,
             port.PhysicalDeviceId,
-            GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
+            EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId)).ToArray();
         return configuration with
         {
@@ -64,7 +65,7 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
-    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, GWGUI.Emulation.Functions.EmulationInputMappingFunctions.BindingDisplayValue(resourceKey, invariant));
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey, invariant));
 
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),

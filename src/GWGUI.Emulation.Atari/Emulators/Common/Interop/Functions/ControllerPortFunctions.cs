@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
@@ -64,7 +65,7 @@ internal static class ControllerPortFunctions
         var definition = CompatibilityCatalog.Get(configuration.Model);
         if (port < ControllerPortConstants.MinimumControllerPort || port >= definition.ControllerPortCount)
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);
-        if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
+        if (!CommonControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new InvalidDataException(ErrorMessages.UnsupportedControllerDevice);
         exports.SetControllerPortDevice(checked((uint)port), ResolveDevice(callbacks.ControllerPorts, port, peripheral, configuration.Core));
     }

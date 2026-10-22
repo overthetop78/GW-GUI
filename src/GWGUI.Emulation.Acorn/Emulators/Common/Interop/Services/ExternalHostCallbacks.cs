@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Acorn.Emulators.Common.Contracts;
@@ -96,7 +97,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal ExternalCoreApi.LogCallback Log { get; }
     internal EmulationInputSnapshot Input
     {
-        set => _input.Update(ControllerFunctions.ApplyDeadZones(value, _controllerBindings));
+        set => _input.Update(CommonControllerFunctions.ApplyDeadZones(value, _controllerBindings));
     }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }

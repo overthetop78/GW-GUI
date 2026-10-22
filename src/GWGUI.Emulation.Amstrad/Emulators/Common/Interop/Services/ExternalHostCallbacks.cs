@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
@@ -84,9 +85,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 var pointer = value.Pointer with
                 {
-                    DeltaX = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
-                    DeltaY = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                    DeltaX = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
+                    DeltaY = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
+                    Wheel = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
                 };
                 _pendingInput = value with { Pointer = pointer };
             }

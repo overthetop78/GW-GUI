@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Interfaces;
+using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Example.Common.Functions;
@@ -52,4 +55,133 @@ internal static class ControllerFunctions
         }
         return snapshot with { Controllers = controllers };
     }
+    /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
+    /// <param name="pointer">Déplacements relatifs, molettes et boutons empruntés de la souris.</param>
+    /// <param name="port">Indice natif du port, à partir de zéro.</param>
+    /// <param name="index">Sélecteur natif du stick ou de la catégorie de composante.</param>
+    /// <param name="id">Identifiant natif de la composante demandée.</param>
+    /// <returns>Valeur native de la composante ; zéro lorsque la commande est inactive ou non prise en charge.</returns>
+    internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id) => EmulationSdk.InputProcessing.NativeMouseState(pointer, port, index, id);
+
+    /// <summary>Lit un bouton ou le masque natif de la manette, avec la capacité fournie par l’adaptation.</summary>
+    /// <param name="buttons">Masque des boutons, avec un bit par indice natif.</param>
+    /// <param name="id">Identifiant natif de la composante demandée.</param>
+    /// <param name="maximumButtonCount">Nombre de bits de boutons admis par cette adaptation.</param>
+    /// <returns>Valeur native de la composante ; zéro lorsque la commande est inactive ou non prise en charge.</returns>
+    internal static short NativeJoypadState(uint buttons, uint id, uint maximumButtonCount) => EmulationSdk.InputProcessing.NativeJoypadState(buttons, id, maximumButtonCount);
+
+    /// <summary>Lit un bouton ou le masque natif de la manette, avec la capacité fournie par l’adaptation.</summary>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="id">Identifiant natif de la composante demandée.</param>
+    /// <param name="maximumButtonCount">Nombre de bits de boutons admis par cette adaptation.</param>
+    /// <returns>Valeur native de la composante ; zéro lorsque la commande est inactive ou non prise en charge.</returns>
+    internal static short NativeJoypadState(EmulationControllerState controller, uint id, uint maximumButtonCount) => EmulationSdk.InputProcessing.NativeJoypadState(controller, id, maximumButtonCount);
+
+    /// <summary>Lit la composante native d’un stick ou d’une gâchette.</summary>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="index">Sélecteur natif du stick ou de la catégorie de composante.</param>
+    /// <param name="id">Identifiant natif de la composante demandée.</param>
+    /// <returns>Valeur native de la composante ; zéro lorsque la commande est inactive ou non prise en charge.</returns>
+    internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id) => EmulationSdk.InputProcessing.NativeAnalogState(controller, index, id);
+
+    /// <summary>Additionne deux déplacements relatifs en saturant aux limites du type Int32.</summary>
+    /// <param name="left">Premier déplacement relatif entier à additionner.</param>
+    /// <param name="right">Second déplacement relatif entier à additionner.</param>
+    /// <returns>Somme bornée aux limites de System.Int32, sans débordement arithmétique.</returns>
+    internal static int SaturatingAdd(int left, int right) => EmulationSdk.InputProcessing.SaturatingAdd(left, right);
+
+    /// <summary>Projette les touches ou les sources physiques vers les touches émulées.</summary>
+    /// <param name="keys">Touches physiques pressées pendant la frame, sans transfert de propriété.</param>
+    /// <param name="mappings">Associations des sources clavier vers les touches émulées.</param>
+    /// <returns>Nouvel ensemble stable des touches émulées actuellement pressées.</returns>
+    internal static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings) => EmulationSdk.InputProcessing.MapKeyboard(keys, mappings);
+
+    /// <summary>Projette les touches ou les sources physiques vers les touches émulées.</summary>
+    /// <param name="snapshot">Instantané physique emprunté pendant le calcul.</param>
+    /// <param name="mappings">Associations des touches émulées vers les expressions de sources physiques.</param>
+    /// <returns>Nouvel ensemble stable des touches émulées actuellement pressées.</returns>
+    internal static IReadOnlySet<EmulationKey> MapKeyboard(EmulationInputSnapshot snapshot, IReadOnlyDictionary<string, string>? mappings) => EmulationSdk.InputProcessing.MapKeyboard(snapshot, mappings);
+
+    /// <summary>Résout un contrôleur physique par son identité ou son indice de repli.</summary>
+    /// <param name="deviceId">Identité physique recherchée, ou null pour employer l’indice de repli.</param>
+    /// <param name="controllers">Collection empruntée des états des contrôleurs physiques.</param>
+    /// <param name="fallbackIndex">Indice utilisé en l’absence d’identité physique explicite.</param>
+    /// <returns>État sélectionné, état de repli ou état vide selon la politique demandée.</returns>
+    internal static EmulationControllerState ResolveController(string? deviceId, IReadOnlyList<EmulationControllerState> controllers, int fallbackIndex) => EmulationSdk.InputProcessing.ResolveController(deviceId, controllers, fallbackIndex);
+
+    /// <summary>Résout le contrôleur désigné par une expression en conservant la politique de repli.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controllers">Collection empruntée des états des contrôleurs physiques.</param>
+    /// <param name="fallback">État de repli fourni par l’adaptation.</param>
+    /// <returns>État sélectionné, état de repli ou état vide selon la politique demandée.</returns>
+    internal static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback) => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback);
+
+    /// <summary>Résout le contrôleur désigné par une expression en conservant la politique de repli.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controllers">Collection empruntée des états des contrôleurs physiques.</param>
+    /// <param name="fallback">État de repli fourni par l’adaptation.</param>
+    /// <param name="fallbackWhenMissing">Autorise le repli lorsqu’une identité explicite est absente des sources disponibles.</param>
+    /// <returns>État sélectionné, état de repli ou état vide selon la politique demandée.</returns>
+    internal static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback, bool fallbackWhenMissing) => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing);
+
+    /// <summary>Applique les zones mortes aux axes et aux gâchettes d’un contrôleur.</summary>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="percent">Zone morte exprimée en pourcentage de la course.</param>
+    /// <returns>Valeur calculée par le traitement commun, sans modification des entrées reçues.</returns>
+    internal static EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) => EmulationSdk.InputProcessing.ApplyDeadZones(controller, percent);
+
+    /// <summary>Lit la valeur d’une commande physique de contrôleur.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <returns>Valeur calculée par le traitement commun, sans modification des entrées reçues.</returns>
+    internal static float ControllerSourceValue(string source, EmulationControllerState controller) => EmulationSdk.InputProcessing.ControllerSourceValue(source, controller);
+
+    /// <summary>Évalue l’appui d’une commande de contrôleur selon les règles existantes.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <returns>True lorsque la source est considérée appuyée selon les règles et seuils du SDK.</returns>
+    internal static bool IsControllerSourcePressed(string source, EmulationControllerState controller) => EmulationSdk.InputProcessing.IsControllerSourcePressed(source, controller);
+
+    /// <summary>Évalue l’appui d’une commande de contrôleur selon les règles existantes.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="value">Amplitude normalisée, ou valeur déjà lue de la source selon la surcharge.</param>
+    /// <returns>True lorsque la source est considérée appuyée selon les règles et seuils du SDK.</returns>
+    internal static bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value) => EmulationSdk.InputProcessing.IsControllerSourcePressed(source, controller, value);
+
+    /// <summary>Évalue la pression d’une expression de clavier, souris ou contrôleur.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="snapshot">Instantané physique emprunté pendant le calcul.</param>
+    /// <returns>Valeur calculée par le traitement commun, sans modification des entrées reçues.</returns>
+    internal static float InputSourcePressure(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot) => EmulationSdk.InputProcessing.InputSourcePressure(source, controller, snapshot);
+
+    /// <summary>Évalue la pression d’une expression de clavier, souris ou contrôleur.</summary>
+    /// <param name="source">Expression de la source physique à interpréter.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="physical">Collection empruntée des autres contrôleurs physiques.</param>
+    /// <param name="keys">Touches physiques pressées pendant la frame, sans transfert de propriété.</param>
+    /// <param name="mouse">États empruntés des commandes physiques de souris.</param>
+    /// <returns>Valeur calculée par le traitement commun, sans modification des entrées reçues.</returns>
+    internal static float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => EmulationSdk.InputProcessing.InputSourcePressure(source, controller, physical, keys, mouse);
+
+    /// <summary>Évalue l’appui d’une expression de source à partir de l’instantané physique.</summary>
+    /// <param name="mapping">Expression de la source associée à une commande émulée.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="snapshot">Instantané physique emprunté pendant le calcul.</param>
+    /// <returns>True lorsque la source est considérée appuyée selon les règles et seuils du SDK.</returns>
+    internal static bool IsMappedInputPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot) => EmulationSdk.InputProcessing.IsMappedInputPressed(mapping, controller, snapshot);
+
+    /// <summary>Convertit une amplitude normalisée vers un axe signé sur seize bits.</summary>
+    /// <param name="value">Amplitude normalisée, ou valeur déjà lue de la source selon la surcharge.</param>
+    /// <returns>Axe signé sur seize bits après bornage de l’amplitude normalisée.</returns>
+    internal static short NormalizedAxis(float value) => EmulationSdk.InputProcessing.NormalizedAxis(value);
+
+    /// <summary>Calcule l’amplitude associée après application de la zone morte en pourcentage.</summary>
+    /// <param name="mapping">Expression de la source associée à une commande émulée.</param>
+    /// <param name="controller">État physique du contrôleur, conservé inchangé.</param>
+    /// <param name="snapshot">Instantané physique emprunté pendant le calcul.</param>
+    /// <param name="deadZone">Zone morte des associations, exprimée en pourcentage.</param>
+    /// <returns>Valeur calculée par le traitement commun, sans modification des entrées reçues.</returns>
+    internal static float MappedInputMagnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone) => EmulationSdk.InputProcessing.MappedInputMagnitude(mapping, controller, snapshot, deadZone);
 }

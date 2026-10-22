@@ -1,3 +1,4 @@
+using ControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;

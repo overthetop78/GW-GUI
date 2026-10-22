@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 
@@ -15,8 +16,8 @@ public sealed class StrictKeyboardBindingResolutionTests
     public void DefaultsAndOverridesAreIndependentOrdinalCopies()
     {
         var input = new Dictionary<string, string> { ["First"] = "Ctrl+Keyboard:C" };
-        var defaults = EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, null);
-        var result = EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, input);
+        var defaults = EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, null);
+        var result = EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, input);
         Assert.Equal("Keyboard:A", defaults["First"]);
         Assert.Equal("Ctrl+Keyboard:C", result["First"]);
         Assert.Equal("Keyboard:B", result["Second"]);
@@ -24,7 +25,7 @@ public sealed class StrictKeyboardBindingResolutionTests
         result["First"] = "Keyboard:D";
         Assert.Equal("Ctrl+Keyboard:C", input["First"]);
         Assert.Equal("Keyboard:A", defaults["First"]);
-        Assert.Equal("Ctrl+Keyboard:C", EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, input)["First"]);
+        Assert.Equal("Ctrl+Keyboard:C", EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, input)["First"]);
     }
 
     [Theory]
@@ -37,7 +38,7 @@ public sealed class StrictKeyboardBindingResolutionTests
     public void ValidStoredValuesArePreservedWithoutFallbackOrNormalization(string? value)
     {
         var input = new Dictionary<string, string> { ["First"] = value! };
-        var result = EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, input);
+        var result = EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, input);
         Assert.Equal(value, result["First"]);
         Assert.Equal(value, input["First"]);
     }
@@ -51,7 +52,7 @@ public sealed class StrictKeyboardBindingResolutionTests
     public void InvalidKeysOrSourcesKeepTheOriginalMessageOverload(string key, string value)
     {
         var input = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { [key] = value };
-        var error = Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, input));
+        var error = Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, input));
         Assert.Equal("input", error.Message);
         Assert.Null(error.ParamName);
         Assert.Equal(value, Assert.Single(input).Value);
@@ -61,11 +62,11 @@ public sealed class StrictKeyboardBindingResolutionTests
     public void DuplicateDefinitionsAreRejectedAndPermissiveResolutionRemainsSeparate()
     {
         InputBindingDefinition[] duplicates = [Definitions[0], Definitions[0]];
-        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.ResolveKeyboardBindings(duplicates, null));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.ResolveKeyboardBindings(duplicates, null));
         var input = new Dictionary<string, string> { ["Unknown"] = "Keyboard:C", ["First"] = null! };
-        var permissive = EmulationInputMappingFunctions.ResolveBindings(Definitions, input);
+        var permissive = EmulationSdk.InputProcessing.ResolveBindings(Definitions, input);
         Assert.Equal("Keyboard:A", permissive["First"]);
         Assert.False(permissive.ContainsKey("Unknown"));
-        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.ResolveKeyboardBindings(Definitions, input));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions, input));
     }
 }

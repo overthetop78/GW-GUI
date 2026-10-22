@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -16,12 +17,12 @@ public sealed class InputBindingDisplayTests
     [InlineData(null, "", "")]
     public void ExplicitLabelsShortCircuitResourceFallback(string? resourceKey, string? invariant, string? expected)
     {
-        Assert.Equal(expected, EmulationInputMappingFunctions.BindingDisplayValue(resourceKey!, invariant));
+        Assert.Equal(expected, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey!, invariant));
     }
 
     [Fact]
     public void MissingResourceWithoutOverrideKeepsOriginalFailure()
     {
-        Assert.Throws<NullReferenceException>(() => EmulationInputMappingFunctions.BindingDisplayValue(null!));
+        Assert.Throws<NullReferenceException>(() => EmulationSdk.InputProcessing.BindingDisplayValue(null!));
     }
 }

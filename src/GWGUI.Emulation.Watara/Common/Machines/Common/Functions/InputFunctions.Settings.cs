@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Watara.Common.Machines.Common.Dictionaries;
 
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Functions;
@@ -49,7 +50,7 @@ internal static class InputSettingsFunctions
     {
         var commands = ControllerCatalog.Definitions.Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, commands, EmulationKeyboardBindingFunctions.IsValid) || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, commands, EmulationKeyboardBindingFunctions.IsValid) || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
                 throw new ArgumentException(nameof(configuration.Input));
     }
 }

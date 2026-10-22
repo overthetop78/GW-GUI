@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.App.Constants.Input.Bindings;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Functions.Input.Bindings;
@@ -58,9 +59,9 @@ internal sealed class EmulationBindingVisualizationController
     {
         if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.ControllerPrefix, out _))
         {
-            var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(binding);
-            var controller = EmulationInputMappingFunctions.ResolveController(deviceId, controllers, fallbackIndex: -1);
-            return EmulationInputMappingFunctions.ControllerSourceValue(binding, controller);
+            var deviceId = EmulationSdk.InputProcessing.ParseControllerDeviceId(binding);
+            var controller = EmulationSdk.InputProcessing.ResolveController(deviceId, controllers, fallbackIndex: -1);
+            return EmulationSdk.InputProcessing.ControllerSourceValue(binding, controller);
         }
 
         if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.MousePrefix, out var mouseSource))

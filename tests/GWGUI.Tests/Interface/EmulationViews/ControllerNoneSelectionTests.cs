@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
@@ -247,7 +248,7 @@ public sealed class ControllerNoneSelectionTests(StaExecutionScenarios sta, ITes
             Assert.Equal("Controller:two:RightStickUp", values["N64StickUp"]);
             Assert.Equal("Controller:two:RightStickRight", values["N64StickRight"]);
             Assert.Equal(4, editor.Rows.Count);
-            var mapped = GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MapControllerAxis(values, "N64StickRight", "N64StickLeft",
+            var mapped = EmulationSdk.InputProcessing.MapControllerAxis(values, "N64StickRight", "N64StickLeft",
                 EmulationControllerState.Empty, [EmulationControllerState.Empty with { DeviceId = "two", RightX = short.MaxValue / 2 }],
                 new HashSet<EmulationKey>(), new Dictionary<string, bool>());
             Assert.InRange(mapped, (short)16000, (short)17000);

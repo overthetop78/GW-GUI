@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -99,7 +100,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         _lastPhysicalInput = snapshot;
-        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input, _controllerPointerSwitchPressed, ControllerFunctions.PortCount(Configuration)));
+        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input, _controllerPointerSwitchPressed, CommonControllerFunctions.PortCount(Configuration)));
     }
 
     private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)

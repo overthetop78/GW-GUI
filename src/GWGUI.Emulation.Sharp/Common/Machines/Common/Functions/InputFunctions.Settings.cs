@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
@@ -16,7 +17,7 @@ internal static class InputSettingsFunctions
         new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),
         new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
     ];
-    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationInputMappingFunctions.ResolveBindings(MouseDefinitions(), input.Mouse);
+    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), input.Mouse);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));
@@ -73,9 +74,9 @@ internal static class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
-        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count) || !SupportsMouse(configuration) && settings.Mouse is not null)
+        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count) || !SupportsMouse(configuration) && settings.Mouse is not null)
             throw new ArgumentException(nameof(settings));
-        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
+        var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,
             (index, peripheral) => Choices(configuration, index).Contains(peripheral),
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
@@ -99,14 +100,14 @@ internal static class InputSettingsFunctions
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)
             throw new ArgumentException(nameof(configuration.Input));
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        if (EmulationInputMappingFunctions.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
             throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
             var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

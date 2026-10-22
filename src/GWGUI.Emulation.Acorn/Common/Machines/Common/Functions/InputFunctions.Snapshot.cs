@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
@@ -11,7 +12,7 @@ internal static class InputSnapshotFunctions
                 keyboardMappings[mapping.Key] = mapping.Value;
         var mapped = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, keyboardMappings)
+            Keys = EmulationSdk.InputProcessing.MapKeyboard(snapshot, keyboardMappings)
         };
         if (configuration?.Controllers is not { Count: > 0 }) return mapped with { Controllers = [] };
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerPortConstants.MaximumControllerPortCount).ToArray();
@@ -19,7 +20,7 @@ internal static class InputSnapshotFunctions
         {
             if (binding.Port < ControllerPortConstants.MinimumControllerPort
                 || binding.Port >= controllers.Length || binding.Peripheral == PeripheralCategory.None) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -32,7 +33,7 @@ internal static class InputSnapshotFunctions
             var vertical = 0f;
             foreach (var mapping in binding.Mappings)
             {
-                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
+                var controller = EmulationSdk.InputProcessing.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
                 var target = InputSnapshotDictionary.CommonButtons.GetValueOrDefault(mapping.Key, -1);
                 if (target < 0) continue;
                 if (IsPressed(mapping.Value, controller, snapshot)) buttons |= 1u << target;
@@ -73,16 +74,16 @@ internal static class InputSnapshotFunctions
 
     private static float Magnitude(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
-        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot);
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(source, controller, snapshot);
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
             || source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return IsPressed(source, controller, snapshot) ? 1f : 0f;
-        return EmulationInputMappingFunctions.ControllerSourcePressure(source, controller);
+        return EmulationSdk.InputProcessing.ControllerSourcePressure(source, controller);
     }
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
-        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(source, controller, snapshot) > .5f;
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Keyboard, out var keyboard)
             && Enum.TryParse<EmulationKey>(keyboard, true, out var key)) return snapshot.Keys.Contains(key);
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Mouse, out var mouse))
@@ -99,9 +100,9 @@ internal static class InputSnapshotFunctions
                 InputSnapshotFunctionsConstants.WheelRight => snapshot.Pointer.HorizontalWheel > 0,
                 _ => false
             };
-        return EmulationInputMappingFunctions.IsControllerSourcePressed(source, controller);
+        return EmulationSdk.InputProcessing.IsControllerSourcePressed(source, controller);
     }
 
     private static bool TryRemovePrefix(string value, string prefix, out string source)
-    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.TryRemovePrefix(value, prefix, out source);
+    => EmulationSdk.InputProcessing.TryRemovePrefix(value, prefix, out source);
 }

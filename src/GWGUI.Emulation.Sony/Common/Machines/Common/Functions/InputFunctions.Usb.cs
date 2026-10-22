@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
@@ -17,7 +18,7 @@ internal static partial class InputSettingsFunctions
     {
         if (configuration.EmulatorId == "pcee2")
             return configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index)
-                ?? new ControllerBinding(index, ControllerFunctions.Selected(configuration, index));
+                ?? new ControllerBinding(index, CommonControllerFunctions.Selected(configuration, index));
         var bindings = configuration.Input?.UsbBindings;
         if (bindings is not null) return bindings.FirstOrDefault(binding => binding.Port == index) ?? new ControllerBinding(index, ControllerType.None);
         // Older LRPS2 configurations stored USB modes in controller slots.
@@ -49,7 +50,7 @@ internal static partial class InputSettingsFunctions
             : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index);
         var type = synthetic ? current!.Type
             : configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2
-                ? ControllerFunctions.Selected(configuration, index) : ControllerFunctions.Resolve(configuration, index);
+                ? CommonControllerFunctions.Selected(configuration, index) : CommonControllerFunctions.Resolve(configuration, index);
         if (!usb && configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId == "pcsx2"
             && type is ControllerType.Keyboard or ControllerType.Mouse or ControllerType.KeyboardAndMouse)
             type = ControllerType.Joystick;

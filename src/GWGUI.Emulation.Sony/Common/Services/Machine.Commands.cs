@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -28,10 +29,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void SetControllerPortDevice(int port, ControllerType type)
     {
-        ControllerFunctions.Validate(Configuration, port, type);
+        CommonControllerFunctions.Validate(Configuration, port, type);
         QueueCommand(() =>
         {
-            var updated = ControllerFunctions.WithControllerType(Configuration, port, type);
+            var updated = CommonControllerFunctions.WithControllerType(Configuration, port, type);
             _core.SetControllerPortDevice(port, type);
             Configuration = updated;
         }, CancellationToken.None).AsTask().GetAwaiter().GetResult();

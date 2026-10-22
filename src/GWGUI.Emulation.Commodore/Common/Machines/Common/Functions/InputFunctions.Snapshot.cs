@@ -9,7 +9,7 @@ internal static class InputSnapshotFunctions
         configuration ??= new InputConfiguration();
         var hostKeys = snapshot.Keys;
         var physicalMouse = PhysicalMouse(snapshot.Pointer);
-        var mappedKeys = EmulationInputMappingFunctions.MapKeyboard(hostKeys, configuration.KeyboardMappings);
+        var mappedKeys = EmulationSdk.InputProcessing.MapKeyboard(hostKeys, configuration.KeyboardMappings);
         if (controllerPointerSwitchPressed)
             mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };
         return snapshot with
@@ -50,7 +50,7 @@ internal static class InputSnapshotFunctions
         for (var port = ControllerPortConstants.MinimumControllerPort; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
-            var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount })
             {
                 result[port] = EmulationControllerState.Empty;
@@ -62,7 +62,7 @@ internal static class InputSnapshotFunctions
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, InputSnapshotFunctionsConstants.UnknownButtonIndex);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
-                var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(sourceName, physical, source);
+                var mappingSource = EmulationSdk.InputProcessing.ResolveSourceController(sourceName, physical, source);
                 if (target >= InputSnapshotFunctionsConstants.MinimumButtonIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= InputSnapshotFunctionsConstants.SingleButtonMask << target;
             }
@@ -70,24 +70,24 @@ internal static class InputSnapshotFunctions
             {
                 Buttons = buttons,
                 LeftX = binding.Type == ControllerType.AnalogJoystick
-                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
                 LeftY = binding.Type == ControllerType.AnalogJoystick
-                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
             };
         }
         return result;
     }
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>
-        GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(pointer);
+        EmulationSdk.InputProcessing.PhysicalMouse(pointer);
 
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
-        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))
         {
-            var value = EmulationInputMappingFunctions.ControllerSourceValue(controllerSource, controller);
-            return EmulationInputMappingFunctions.IsControllerSourcePressed(controllerSource, controller, value);
+            var value = EmulationSdk.InputProcessing.ControllerSourceValue(controllerSource, controller);
+            return EmulationSdk.InputProcessing.IsControllerSourcePressed(controllerSource, controller, value);
         }
         if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
             return (controller.Buttons & (InputSnapshotFunctionsConstants.SingleButtonMask << legacyIndex)) != InputSnapshotFunctionsConstants.NoPressedButtons;
@@ -97,7 +97,7 @@ internal static class InputSnapshotFunctions
     }
 
     private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
-    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
+    => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
 
     private static bool TryRemovePrefix(string? value, string prefix, out string source)
     {

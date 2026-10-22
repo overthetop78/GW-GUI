@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Bandai.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
@@ -15,7 +16,7 @@ internal static class ControllerPortFunctions
     {
         if (port != ControllerConstants.FirstPort)
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);
-        if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
+        if (!CommonControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
         exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None ? CoreLifecycleConstants.NoDevice : InputConstants.JoypadDevice);
     }

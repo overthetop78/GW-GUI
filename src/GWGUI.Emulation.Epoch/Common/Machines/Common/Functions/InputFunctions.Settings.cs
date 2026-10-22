@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
@@ -126,7 +127,7 @@ internal static class InputSettingsFunctions
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
             var actions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationInputMappingFunctions.HasInvalidBindings(controller.Mappings, actions, EmulationKeyboardBindingFunctions.IsValidSourcePrefix))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(controller.Mappings, actions, EmulationKeyboardBindingFunctions.IsValidSourcePrefix))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

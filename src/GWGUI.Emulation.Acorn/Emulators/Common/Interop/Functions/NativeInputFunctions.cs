@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
@@ -13,20 +14,20 @@ internal static class NativeInputFunctions
         if (device == InputConstants.KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains) ? InputConstants.ActiveState : InputConstants.InactiveState;
         if (device == InputConstants.MouseDevice)
-            return EmulationInputMappingFunctions.NativeMouseState(snapshot.Pointer, port, index, id);
+            return CommonControllerFunctions.NativeMouseState(snapshot.Pointer, port, index, id);
         if (port >= snapshot.Controllers.Count) return InputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];
         if (device == InputConstants.JoypadDevice)
         {
             if (index != InputConstants.LeftAnalogIndex) return InputConstants.InactiveState;
-            return EmulationInputMappingFunctions.NativeJoypadState(controller.Buttons, id, InputConstants.MaximumJoypadButtonCount);
+            return CommonControllerFunctions.NativeJoypadState(controller.Buttons, id, InputConstants.MaximumJoypadButtonCount);
         }
         if (device != InputConstants.AnalogDevice) return InputConstants.InactiveState;
         return (index, id) switch
         {
             (InputConstants.TriggerAnalogIndex, InputConstants.LeftTriggerId) => controller.LeftTrigger,
             (InputConstants.TriggerAnalogIndex, InputConstants.RightTriggerId) => controller.RightTrigger,
-            _ => EmulationInputMappingFunctions.NativeAnalogState(controller, index, id)
+            _ => CommonControllerFunctions.NativeAnalogState(controller, index, id)
         };
     }
 

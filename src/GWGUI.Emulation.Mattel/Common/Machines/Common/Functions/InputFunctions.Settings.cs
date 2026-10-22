@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
@@ -31,10 +32,10 @@ internal static class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
-        if (EmulationInputMappingFunctions.HasInvalidControllerPortNumbers(settings, count)
+        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count)
             || settings.Mouse is not null || settings.Keyboard?.Values.Count > 0)
             throw new ArgumentException(nameof(settings));
-        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
+        var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,
             (index, peripheral) => Peripherals(configuration.Model, configuration.Core).Contains(peripheral),
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
@@ -49,7 +50,7 @@ internal static class InputSettingsFunctions
         {
             if (!Peripherals(configuration.Model, configuration.Core).Contains(binding.Peripheral)) throw new ArgumentException(nameof(configuration.Input));
             var ids = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationInputMappingFunctions.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValidSourcePrefix)) throw new ArgumentException(nameof(configuration.Input));
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValidSourcePrefix)) throw new ArgumentException(nameof(configuration.Input));
         }
     }
 }

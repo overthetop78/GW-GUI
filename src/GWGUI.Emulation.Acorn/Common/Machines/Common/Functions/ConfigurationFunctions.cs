@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 
@@ -48,7 +49,7 @@ internal static class ConfigurationFunctions
             if (controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent
                 or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentOutOfRangeException(nameof(configuration), ErrorMessages.InvalidControllerDeadZone);
-            if (!ControllerFunctions.Peripherals(configuration.Model).Contains(controller.Peripheral))
+            if (!CommonControllerFunctions.Peripherals(configuration.Model).Contains(controller.Peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(configuration));
         }
     }

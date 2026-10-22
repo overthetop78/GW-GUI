@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Emulators.A5200.Constants;
 using InputConstants = GWGUI.Emulation.Atari.Emulators.A5200.Constants.InputConstants;
@@ -23,7 +24,7 @@ internal sealed class A5200MachineFactory() : MachineFactory(EmulatorConstants.E
     {
         if (port < InputConstants.PrimaryPort || port >= Atari5200ModelConstants.FourPorts)
             throw new ArgumentOutOfRangeException(nameof(port));
-        if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
+        if (!CommonControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new ArgumentOutOfRangeException(nameof(peripheral));
         if (port >= InputConstants.SupportedPortCount) return;
         exports.SetControllerPortDevice(checked((uint)port), port == InputConstants.PrimaryPort ? InputConstants.DirectKeypadDevice : CoreLifecycleConstants.DefaultJoypadDevice);

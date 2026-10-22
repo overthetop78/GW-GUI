@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -13,8 +14,8 @@ public sealed class InputBindingConversionTests
     public void MissingAndEmptyMappingsDoNotInvokeTheSourcePolicy()
     {
         var ids = new HashSet<string>(StringComparer.Ordinal) { "Fire" };
-        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(null, ids, _ => throw new InvalidOperationException()));
-        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(new Dictionary<string, string>(), ids,
+        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(null, ids, _ => throw new InvalidOperationException()));
+        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(new Dictionary<string, string>(), ids,
             _ => throw new InvalidOperationException()));
     }
 
@@ -22,7 +23,7 @@ public sealed class InputBindingConversionTests
     public void UnknownCommandsStopBeforeSourceValidation()
     {
         var values = new Dictionary<string, string> { ["unknown"] = "Keyboard:A" };
-        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, new HashSet<string> { "Fire" },
+        Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values, new HashSet<string> { "Fire" },
             _ => throw new InvalidOperationException()));
     }
 
@@ -31,7 +32,7 @@ public sealed class InputBindingConversionTests
     {
         var values = new Dictionary<string, string> { ["Fire"] = "first", ["Jump"] = "rejected", ["After"] = "unreached" };
         var visited = new List<string>();
-        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, values.Keys.ToHashSet(StringComparer.Ordinal), source =>
+        Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values, values.Keys.ToHashSet(StringComparer.Ordinal), source =>
         {
             visited.Add(source);
             return source != "rejected";
@@ -44,12 +45,12 @@ public sealed class InputBindingConversionTests
     public void MappingValidationKeepsTheCommandSetComparerAndPropagatesPolicyErrors()
     {
         var values = new Dictionary<string, string> { ["fire"] = "Keyboard:A" };
-        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values,
+        Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values,
             new HashSet<string>(StringComparer.Ordinal) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
-        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(values,
+        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(values,
             new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
         var failure = new InvalidOperationException("source policy");
-        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() => EmulationInputMappingFunctions.HasInvalidBindings(values,
+        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() => EmulationSdk.InputProcessing.HasInvalidBindings(values,
             new HashSet<string> { "fire" }, _ => throw failure)));
     }
 
@@ -58,8 +59,8 @@ public sealed class InputBindingConversionTests
     {
         var values = new Dictionary<string, string> { ["Fire"] = null! };
         var ids = new HashSet<string> { "Fire" };
-        Assert.False(EmulationInputMappingFunctions.HasInvalidBindings(values, ids, EmulationKeyboardBindingFunctions.IsValid));
-        Assert.True(EmulationInputMappingFunctions.HasInvalidBindings(values, ids, static source => source is not null));
+        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(values, ids, EmulationKeyboardBindingFunctions.IsValid));
+        Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values, ids, static source => source is not null));
     }
 
     [Theory]
@@ -82,8 +83,8 @@ public sealed class InputBindingConversionTests
     public void DefinitionDefaultsProduceIndependentOrdinalResults()
     {
         InputBindingDefinition[] definitions = [new("A", "unused", "Keyboard:A"), new("a", "unused", "Keyboard:B")];
-        var first = EmulationInputMappingFunctions.ResolveBindings(definitions, null);
-        var second = EmulationInputMappingFunctions.ResolveBindings(definitions, null);
+        var first = EmulationSdk.InputProcessing.ResolveBindings(definitions, null);
+        var second = EmulationSdk.InputProcessing.ResolveBindings(definitions, null);
 
         Assert.Equal("Keyboard:A", first["A"]);
         Assert.Equal("Keyboard:B", first["a"]);
@@ -105,7 +106,7 @@ public sealed class InputBindingConversionTests
         {
             ["A"] = "Keyboard:Z", ["a"] = "", ["null"] = null!, ["blank"] = " ", ["unknown"] = "ignored"
         };
-        var result = EmulationInputMappingFunctions.ResolveBindings(definitions, values);
+        var result = EmulationSdk.InputProcessing.ResolveBindings(definitions, values);
 
         Assert.Equal(5, result.Count);
         Assert.Equal("Keyboard:Z", result["A"]);
@@ -122,7 +123,7 @@ public sealed class InputBindingConversionTests
     public void DefinitionLookupUsesTheConfiguredComparerWhileResultIdsRemainOrdinal()
     {
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { ["UP"] = "" };
-        var result = EmulationInputMappingFunctions.ResolveBindings([new("Up", "unused", "Keyboard:A")], values);
+        var result = EmulationSdk.InputProcessing.ResolveBindings([new("Up", "unused", "Keyboard:A")], values);
 
         Assert.Equal("", result["Up"]);
         Assert.False(result.ContainsKey("UP"));
@@ -133,7 +134,7 @@ public sealed class InputBindingConversionTests
     public void DuplicateDefinitionIdsRemainErrors()
     {
         InputBindingDefinition[] definitions = [new("A", "unused", "first"), new("A", "unused", "second")];
-        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.ResolveBindings(definitions, null));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.ResolveBindings(definitions, null));
     }
 
     [Fact]
@@ -187,14 +188,14 @@ public sealed class InputBindingConversionTests
         {
             ["left input"] = MouseAction.Left, ["none input"] = MouseAction.None, ["zero input"] = 0
         };
-        var result = EmulationInputMappingFunctions.MouseBindings(source, MouseAction.None);
+        var result = EmulationSdk.InputProcessing.MouseBindings(source, MouseAction.None);
         Assert.Equal(2, result.Count);
         Assert.Equal("left input", result["Left"]);
         Assert.Equal("zero input", result["0"]);
         Assert.Same(StringComparer.Ordinal, result.Comparer);
         source.Clear();
         Assert.Equal(2, result.Count);
-        var other = EmulationInputMappingFunctions.MouseBindings(
+        var other = EmulationSdk.InputProcessing.MouseBindings(
             new Dictionary<string, OtherMouseAction> { ["left"] = OtherMouseAction.Left }, OtherMouseAction.None);
         Assert.Equal("left", other["Left"]);
     }
@@ -202,8 +203,8 @@ public sealed class InputBindingConversionTests
     [Fact]
     public void NullForwardMouseMapsProduceIndependentEmptyDictionaries()
     {
-        var first = EmulationInputMappingFunctions.MouseBindings<MouseAction>(null, MouseAction.None);
-        var second = EmulationInputMappingFunctions.MouseBindings<MouseAction>(null, MouseAction.None);
+        var first = EmulationSdk.InputProcessing.MouseBindings<MouseAction>(null, MouseAction.None);
+        var second = EmulationSdk.InputProcessing.MouseBindings<MouseAction>(null, MouseAction.None);
         first.Add("Left", "A");
         Assert.Empty(second);
     }
@@ -212,15 +213,15 @@ public sealed class InputBindingConversionTests
     public void TwoPhysicalSourcesForTheSameMouseActionStillThrow()
     {
         var source = new Dictionary<string, MouseAction> { ["A"] = MouseAction.Left, ["B"] = MouseAction.Left };
-        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.MouseBindings(source, MouseAction.None));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.MouseBindings(source, MouseAction.None));
         Assert.Equal(2, source.Count);
     }
 
     [Fact]
     public void ReverseMouseMappingsKeepNullDistinctFromAnEmptyConfiguredSet()
     {
-        Assert.Null(EmulationInputMappingFunctions.CreateMouseMappings<MouseAction>(null, MouseAction.None));
-        var result = EmulationInputMappingFunctions.CreateMouseMappings(Bindings(new Dictionary<string, string>()), MouseAction.None);
+        Assert.Null(EmulationSdk.InputProcessing.CreateMouseMappings<MouseAction>(null, MouseAction.None));
+        var result = EmulationSdk.InputProcessing.CreateMouseMappings(Bindings(new Dictionary<string, string>()), MouseAction.None);
         Assert.NotNull(result);
         Assert.Empty(result);
         Assert.Same(StringComparer.OrdinalIgnoreCase, result.Comparer);
@@ -234,7 +235,7 @@ public sealed class InputBindingConversionTests
             ["left"] = " Input A ", ["RIGHT"] = "B", ["None"] = "ignored",
             ["invalid"] = "ignored", ["32767"] = "numeric", ["0"] = "zero", ["1"] = "\t"
         };
-        var result = EmulationInputMappingFunctions.CreateMouseMappings(Bindings(source), MouseAction.None)!;
+        var result = EmulationSdk.InputProcessing.CreateMouseMappings(Bindings(source), MouseAction.None)!;
         Assert.Equal(4, result.Count);
         Assert.Equal(MouseAction.Left, result[" input a "]);
         Assert.Equal(MouseAction.Right, result["b"]);
@@ -248,7 +249,7 @@ public sealed class InputBindingConversionTests
     public void ReverseMouseSourceCollisionsRemainCaseInsensitiveErrors()
     {
         var source = new Dictionary<string, string> { ["Left"] = "Source", ["Right"] = "source" };
-        Assert.Throws<ArgumentException>(() => EmulationInputMappingFunctions.CreateMouseMappings(Bindings(source), MouseAction.None));
+        Assert.Throws<ArgumentException>(() => EmulationSdk.InputProcessing.CreateMouseMappings(Bindings(source), MouseAction.None));
         Assert.Equal(2, source.Count);
     }
 
@@ -260,7 +261,7 @@ public sealed class InputBindingConversionTests
             ["A"] = "value", ["a"] = " value ", [""] = "ignored", [" "] = "ignored",
             ["empty"] = "", ["blank"] = "\t", ["null"] = null!
         };
-        var result = EmulationInputMappingFunctions.CopyNonEmptyBindings(source);
+        var result = EmulationSdk.InputProcessing.CopyNonEmptyBindings(source);
         Assert.Equal(2, result.Count);
         Assert.Equal("value", result["A"]);
         Assert.Equal(" value ", result["a"]);
@@ -273,7 +274,7 @@ public sealed class InputBindingConversionTests
     public void RequiredKeyAndControllerMapsKeepTheirOriginalNullSourceErrors()
     {
         Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationKeyboardBindingFunctions.ToKeys(null!)).ParamName);
-        Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationInputMappingFunctions.CopyNonEmptyBindings(null!)).ParamName);
+        Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationSdk.InputProcessing.CopyNonEmptyBindings(null!)).ParamName);
     }
 
     private static EmulationInputBindingSet Bindings(IReadOnlyDictionary<string, string> values) =>

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Fairchild.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Dictionaries;
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;
 
@@ -9,14 +10,14 @@ internal static class NativeInputSnapshotFunctions
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, PeripheralCategory.Standard);
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
+            var source = CommonControllerFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             foreach (var action in ControllerProtocolDictionary.Actions(model, core, port))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(action.Id, action.DefaultBinding) ?? action.DefaultBinding;
                 if (string.IsNullOrWhiteSpace(mapping)) continue;
-                var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot)) buttons |= 1u << action.Button;
+                var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
+                if (CommonControllerFunctions.IsMappedInputPressed(mapping, physical, snapshot)) buttons |= 1u << action.Button;
             }
             controllers[port] = source with { Buttons = buttons, LeftX = 0, LeftY = 0, RightX = 0, RightY = 0 };
         }

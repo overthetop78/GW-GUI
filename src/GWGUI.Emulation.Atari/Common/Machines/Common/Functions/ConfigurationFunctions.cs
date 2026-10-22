@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -92,7 +93,7 @@ internal static class ConfigurationFunctions
             if (controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent
                 or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentOutOfRangeException(nameof(input), ErrorMessages.InvalidControllerDeadZone);
-            if (!ControllerFunctions.Peripherals(model).Contains(controller.Peripheral))
+            if (!CommonControllerFunctions.Peripherals(model).Contains(controller.Peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(input));
         }
     }

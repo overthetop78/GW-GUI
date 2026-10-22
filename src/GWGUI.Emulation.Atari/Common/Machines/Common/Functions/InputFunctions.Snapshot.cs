@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -8,16 +9,16 @@ internal static class InputSnapshotFunctions
     {
         var mappedKeyboard = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal))
+            Keys = EmulationSdk.InputProcessing.MapKeyboard(snapshot, configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal))
         };
-        var withDeadZones = ControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
+        var withDeadZones = CommonControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
         if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones with { Controllers = [] };
         var count = Math.Max(withDeadZones.Controllers.Count, configuration.Controllers.Max(binding => binding.Port) + 1);
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, count).ToArray();
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port < 0 || binding.Port >= controllers.Length) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, withDeadZones.Controllers, binding.Port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, withDeadZones.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -41,8 +42,8 @@ internal static class InputSnapshotFunctions
             controllers[binding.Port] = source with
             {
                 Buttons = buttons,
-                LeftX = analog ? EmulationInputMappingFunctions.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftX,
-                LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick ? EmulationInputMappingFunctions.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftY
+                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftX,
+                LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftY
             };
         }
         return withDeadZones with { Controllers = controllers };
@@ -50,22 +51,22 @@ internal static class InputSnapshotFunctions
 
     private static bool IsPressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
     {
-        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, new EmulationInputSnapshot(keys, pointer, [controller])) > .5f;
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(sourceName, controller, new EmulationInputSnapshot(keys, pointer, [controller])) > .5f;
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
             return keys.Contains(key);
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource))
             return PhysicalMouse(pointer).GetValueOrDefault(mouseSource);
-        return EmulationInputMappingFunctions.IsControllerSourcePressed(sourceName, controller);
+        return EmulationSdk.InputProcessing.IsControllerSourcePressed(sourceName, controller);
     }
 
-    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(pointer);
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => EmulationSdk.InputProcessing.PhysicalMouse(pointer);
 
     private static bool TryRemovePrefix(string? value, string prefix, out string source)
-    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.TryRemovePrefix(value, prefix, out source);
+    => EmulationSdk.InputProcessing.TryRemovePrefix(value, prefix, out source);
 
     private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
-    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
+    => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
 
     private static int ResolveButton(MachineModel model, string action)
     {

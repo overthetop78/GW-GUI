@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Philips.Common.Machines.P2000.Dictionaries;
 
 internal static class P2000KeyboardDictionary
@@ -24,7 +25,7 @@ internal static class P2000KeyboardDictionary
         foreach (var binding in Definitions)
         {
             var source = configured?.GetValueOrDefault(binding.Id, binding.DefaultBinding) ?? binding.DefaultBinding;
-            if (!string.IsNullOrWhiteSpace(source) && EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f)
+            if (!string.IsNullOrWhiteSpace(source) && EmulationSdk.InputProcessing.InputSourcePressure(source, controller, snapshot) > .5f)
                 result.Add(Enum.Parse<EmulationKey>(binding.Id));
         }
         return result;

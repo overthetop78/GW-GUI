@@ -77,4 +77,119 @@ public interface IEmulationInputProcessing
     /// <param name="id">Identifiant de bouton, touche ou axe dans le contrat natif.</param>
     /// <returns>Valeur native de l’entrée ; zéro pour une source absente ou un périphérique non couvert par ce sélecteur générique.</returns>
     short ReadNativeInput(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id);
+    /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id);
+
+    /// <summary>Lit un bouton ou le masque natif de la manette, avec la capacité fournie par l’adaptation.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short NativeJoypadState(uint buttons, uint id, uint maximumButtonCount);
+
+    /// <summary>Lit un bouton ou le masque natif de la manette, avec la capacité fournie par l’adaptation.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short NativeJoypadState(EmulationControllerState controller, uint id, uint maximumButtonCount);
+
+    /// <summary>Lit la composante native d’un stick ou d’une gâchette.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short NativeAnalogState(EmulationControllerState controller, uint index, uint id);
+
+    /// <summary>Résout la valeur invariante d’un libellé de liaison selon sa clé de ressource.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    string? BindingDisplayValue(string resourceKey, string? invariant = null);
+
+    /// <summary>Additionne deux déplacements relatifs en saturant aux limites du type Int32.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    int SaturatingAdd(int left, int right);
+
+    /// <summary>Projette les associations de souris vers les noms de commandes, sans conserver la collection reçue.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    Dictionary<string, string> MouseBindings<TAction>(IReadOnlyDictionary<string, TAction>? mappings, TAction none) where TAction : struct, Enum;
+
+    /// <summary>Reconstruit les associations typées de souris en conservant les règles de sélection existantes.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    Dictionary<string, TAction>? CreateMouseMappings<TAction>(EmulationInputBindingSet? bindings, TAction none) where TAction : struct, Enum;
+
+    /// <summary>Copie les seules associations dont la commande et la source ne sont pas vides.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    Dictionary<string, string> CopyNonEmptyBindings(IReadOnlyDictionary<string, string> values);
+
+    /// <summary>Vérifie les identifiants autorisés et la syntaxe des sources par le prédicat fourni.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool HasInvalidBindings(IReadOnlyDictionary<string, string>? bindings, IReadOnlySet<string> commandIds, Func<string, bool> isValidSource);
+
+    /// <summary>Contrôle le nombre de ports et leur numérotation continue à partir de un.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool HasInvalidControllerPortNumbers(EmulationInputSettings settings, int count);
+
+    /// <summary>Résout les valeurs par défaut et valide strictement les associations de clavier fournies.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    Dictionary<string, string> ResolveKeyboardBindings(IReadOnlyList<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? input);
+
+    /// <summary>Projette les valeurs proposées sur les commandes définies et leurs valeurs par défaut.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    Dictionary<string, string> ResolveBindings(IReadOnlyList<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values);
+
+    /// <summary>Construit les associations de ports après validation des périphériques par le module.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    TBinding[] CreateControllerBindings<TPeripheral, TBinding>(EmulationInputSettings settings, Func<int, TPeripheral, bool> supportsPeripheral, Func<EmulationControllerPort, TPeripheral, IReadOnlyDictionary<string, string>, TBinding> createBinding) where TPeripheral : struct, Enum;
+
+    /// <summary>Projette les touches ou les sources physiques vers les touches émulées.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings);
+
+    /// <summary>Extrait l’identité physique éventuellement inscrite dans une expression de source.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    string? ParseControllerDeviceId(string? source);
+
+    /// <summary>Résout le contrôleur désigné par une expression en conservant la politique de repli.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback, bool fallbackWhenMissing);
+
+    /// <summary>Retire un préfixe reconnu sans modifier la comparaison ni normaliser la source.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool TryRemovePrefix(string? value, string prefix, out string source);
+
+    /// <summary>Produit l’état des commandes physiques de souris à partir du pointeur emprunté.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer);
+
+    /// <summary>Lit la valeur d’une commande physique de contrôleur.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    float ControllerSourceValue(string source, EmulationControllerState controller);
+
+    /// <summary>Évalue l’appui d’une commande de contrôleur selon les règles existantes.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool IsControllerSourcePressed(string source, EmulationControllerState controller);
+
+    /// <summary>Évalue l’appui d’une commande de contrôleur selon les règles existantes.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value);
+
+    /// <summary>Calcule un axe signé à partir de ses commandes opposées et des sources physiques.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse);
+
+    /// <summary>Calcule une pression encodée à partir de l’association de la commande.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse);
+
+    /// <summary>Évalue la pression d’une expression de clavier, souris ou contrôleur.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse);
+
+    /// <summary>Évalue la pression de la commande physique d’un contrôleur.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    float ControllerSourcePressure(string source, EmulationControllerState controller);
+
+    /// <summary>Résout l’expression opposée d’un axe reconnu.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    string? OppositeControllerAxisSource(string source);
+
+    /// <summary>Évalue l’appui d’une expression de source à partir de l’instantané physique.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    bool IsMappedInputPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot);
+
+    /// <summary>Convertit une amplitude normalisée vers un axe signé sur seize bits.</summary>
+    /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
+    short NormalizedAxis(float value);
 }

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -88,9 +89,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 var pointer = value.Pointer with
                 {
-                    DeltaX = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
-                    DeltaY = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                    DeltaX = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
+                    DeltaY = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
+                    Wheel = CommonControllerFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
                 };
                 _pendingInput = value with
                 {

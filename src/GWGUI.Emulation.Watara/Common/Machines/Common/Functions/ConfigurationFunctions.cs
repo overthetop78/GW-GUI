@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Functions;
 internal static class ConfigurationFunctions
 {
@@ -22,7 +23,7 @@ internal static class ConfigurationFunctions
         {
             if (controller.Port != ControllerConstants.FirstPort || !ports.Add(controller.Port) || controller.Peripheral != PeripheralCategory.Supervision || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));
-            if (EmulationInputMappingFunctions.HasInvalidBindings(controller.Mappings, commands, static value => value is not null))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(controller.Mappings, commands, static value => value is not null))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
