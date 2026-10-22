@@ -6033,3 +6033,29 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les cinq contrats de rôles alignés sur Example, leurs opérations et leurs implémentations ; exécuter les tests de configuration, de contenu et de stockage concernés puis le build Debug avec les 23 modules.
 
   - Validation : 140 tests ciblés réussis, dont les cinq contrats alignés sur Example, les capacités des 24 Common, les configurations Apple, les contenus initiaux SNK et les règles de cartes mémoire Sony ; aucun ancien nom de contrat ou de membre restant dans les familles concernées ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.
+
+## Contrats de réglages firmware et catalogue NEC unique
+
+- [x] Regrouper les opérations de firmware sous leurs propriétaires Common existants.
+  - [x] Compléter le contrat de réglages d’Example avec les opérations déjà présentes.
+    - [x] Créer src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareSettings.cs : déplacer depuis IEmulatorAdapter les contrats documentés GetFirmwareSlots, RequiresExternalFirmware, ScanFirmware et PrepareFirmware ; reprendre FirmwareRoles et IsFirmwareRequired de SNK avec leur documentation complète.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorFirmwareSettings et retirer les quatre déclarations déplacées.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir FirmwareRoles par le catalogue matériel et IsFirmwareRequired suivant le comportement actuel du mock sans firmware externe obligatoire ; utiliser ces opérations dans GetFirmwareSlots en conservant les noms de fichiers, rôles et valeurs existants.
+  - [x] Employer le même accès d’emplacements dans NEC, Sony et Example.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareSettings.cs : remplacer la propriété FirmwareSlots par GetFirmwareSlots(MachineConfiguration configuration), avec documentation du contexte et des emplacements retournés.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NekoProjectII/Factories/MachineFactory.cs : exposer le même catalogue constant par GetFirmwareSlots(configuration).
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NP2Kai/Factories/MachineFactory.cs : exposer le même catalogue constant par GetFirmwareSlots(configuration).
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Quasi88/Factories/MachineFactory.cs : exposer le même catalogue constant par GetFirmwareSlots(configuration).
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/FirmwareFunctions.cs : recevoir la configuration dans Slots, consulter GetFirmwareSlots sur le même adaptateur et transmettre la configuration depuis Apply et Scan.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Modules/NecEmulationModule.cs : transmettre la configuration courante aux trois consultations de Slots.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/FirmwareFunctions.cs : retirer le switch Slots et ses trois alias de catalogues ; utiliser le catalogue Common dans Fields et Prepare, en conservant l’ordre des champs et les copies de fichiers existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.cs : consulter le catalogue Common pour la présence d’emplacements, en conservant la projection des champs existante.
+  - [x] Documenter les opérations conservées dans les autres contrats de réglages firmware.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareSettings.cs : expliquer les paramètres et la propriété des fichiers de PrepareFirmware, comme dans Example.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareSettings.cs : expliquer RequiresExternalFirmware et GetFirmwareSlots, leurs paramètres et la distinction entre exigence globale et emplacement obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareSettings.cs : expliquer FirmwareRoles et IsFirmwareRequired, leurs paramètres et les règles conservées.
+  - [x] Vérifier les contrats et la conservation des catalogues.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Nec/NecEmulatorCatalogTests.cs : transmettre une configuration de modèle compatible dans le contrôle existant des 13, 11 et 11 emplacements, en conservant ses assertions de libellés et de chemins.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les opérations de réglages firmware de chaque famille concernée et leurs implémentations par rapport à Example ; exécuter les contrôles ciblés puis le build Debug avec les 23 modules.
+
+  - Validation : 86 tests ciblés réussis ; opérations de réglages firmware alignées sur Example pour les familles concernées ; 13, 11 et 11 emplacements NEC conservés avec leurs champs, leur ordre et les chemins utilisateur ; un seul sélecteur Slots dans Common NEC, sans switch parallèle dans Emulators ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.

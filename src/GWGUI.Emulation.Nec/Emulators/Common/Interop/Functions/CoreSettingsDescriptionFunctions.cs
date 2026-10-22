@@ -1,3 +1,4 @@
+using CommonFirmwareFunctions = GWGUI.Emulation.Nec.Common.Machines.Common.Functions.FirmwareFunctions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
@@ -124,7 +125,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                     blocks.Add(new EmulationSettingsBlock(blockId, tab, CoreSettingsConstants.Titles[tab], fields, Columns: CoreSettingsConstants.ColumnCount));
                 else blocks[blocks.IndexOf(block)] = block with { Fields = block.Fields.Concat(fields).ToArray() };
             }
-            if (FirmwareFunctions.Slots(configuration.EmulatorId).Count != 0)
+            if (CommonFirmwareFunctions.Slots(configuration).Count != 0)
             {
                 var firmware = blocks.First(item => item.Tab == EmulationMachineTab.Rom);
                 blocks[blocks.IndexOf(firmware)] = firmware with

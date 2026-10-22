@@ -13,6 +13,36 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Theory]
+    [InlineData("Apple", "PrepareFirmware")]
+    [InlineData("Nec", "GetFirmwareSlots")]
+    [InlineData("Sony", "GetFirmwareSlots")]
+    [InlineData("Sony", "get_RequiresExternalFirmware")]
+    [InlineData("Snk", "FirmwareRoles")]
+    [InlineData("Snk", "IsFirmwareRequired")]
+    public void FirmwareSettingsUseTheSameOperationsAsExample(string family, string operation)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorFirmwareSettings", throwOnError: true)!;
+        var exampleAssembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
+        var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorFirmwareSettings", throwOnError: true)!;
+        var exampleAdapter = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+        Assert.Contains(example, exampleAdapter.GetInterfaces());
+        var method = contract.GetMethod(operation)!;
+        var reference = example.GetMethod(operation)!;
+        Assert.NotNull(method);
+        Assert.NotNull(reference);
+        // Chaque module possède ses modèles de configuration et de firmware : leurs identités restent opaques au SDK.
+        static string Shape(Type type) => type.IsGenericType ? type.Name + "<" + string.Join(",", type.GetGenericArguments().Select(Shape)) + ">" : type.Name;
+        Assert.Equal(Shape(reference.ReturnType), Shape(method.ReturnType));
+        Assert.Equal(reference.GetParameters().Select(parameter => (parameter.Name, Shape(parameter.ParameterType))), method.GetParameters().Select(parameter => (parameter.Name, Shape(parameter.ParameterType))));
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+        if (family == "Nec") Assert.Null(contract.GetProperty("FirmwareSlots"));
+    }
+
+    [Theory]
     [InlineData("Apple", "IEmulatorConfigurationOptions", "IEmulatorConfiguration", "InitializeOptions")]
     [InlineData("Apple", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "GetMediaDependencies")]
     [InlineData("Snk", "IEmulatorInitialContentSettings", "IEmulatorMediaAdapter", "ResolveInitialContentPaths")]

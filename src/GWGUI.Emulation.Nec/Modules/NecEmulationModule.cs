@@ -76,7 +76,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     {
         var necConfiguration = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(necConfiguration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        var firmwareSlots = FirmwareFunctions.Slots(necConfiguration.EmulatorId);
+        var firmwareSlots = FirmwareFunctions.Slots(necConfiguration);
         CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey =>
             {
@@ -158,7 +158,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var current = RequireConfiguration(configuration);
         if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException(nameof(configuration));
-        if (FirmwareFunctions.Slots(current.EmulatorId).Count != 0)
+        if (FirmwareFunctions.Slots(current).Count != 0)
             return ValueTask.FromResult(FirmwareFunctions.Scan(current, GetFirmwareDirectory(machineId)));
         if (!ModelCatalog.Get(machineId).SupportsCdDrive)
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
@@ -179,7 +179,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = RequireConfiguration(configuration);
-        if (FirmwareFunctions.Slots(current.EmulatorId).Any(slot => slot.FieldId == firmware.DestinationFieldId))
+        if (FirmwareFunctions.Slots(current).Any(slot => slot.FieldId == firmware.DestinationFieldId))
         {
             if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
             return FirmwareFunctions.Apply(current, new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) });

@@ -1,22 +1,12 @@
 using System.IO;
-using Quasi = GWGUI.Emulation.Nec.Emulators.Quasi88.Constants;
-using Neko = GWGUI.Emulation.Nec.Emulators.NekoProjectII.Constants;
-using Kai = GWGUI.Emulation.Nec.Emulators.NP2Kai.Constants;
+using CommonFirmwareFunctions = GWGUI.Emulation.Nec.Common.Machines.Common.Functions.FirmwareFunctions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 
 internal static class FirmwareFunctions
 {
-    internal static IReadOnlyList<FirmwareSlot> Slots(string emulatorId) => emulatorId switch
-    {
-        Quasi.CoreConstants.Id => Quasi.FirmwareConstants.Slots,
-        Neko.CoreConstants.Id => Neko.FirmwareConstants.Slots,
-        Kai.CoreConstants.Id => Kai.FirmwareConstants.Slots,
-        _ => []
-    };
-
     internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration) =>
-        Slots(configuration.EmulatorId).Select(slot => new EmulationSettingsField(slot.FieldId,
+        CommonFirmwareFunctions.Slots(configuration).Select(slot => new EmulationSettingsField(slot.FieldId,
             EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.Firmware,
             slot.LabelResourceKey, EmulationSettingsEditor.Path,
             configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId),
@@ -24,7 +14,7 @@ internal static class FirmwareFunctions
 
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
-        foreach (var slot in Slots(configuration.EmulatorId))
+        foreach (var slot in CommonFirmwareFunctions.Slots(configuration))
             if (configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId) is { } path)
             {
                 var directory = Path.Combine(systemDirectory, slot.SystemSubdirectory);

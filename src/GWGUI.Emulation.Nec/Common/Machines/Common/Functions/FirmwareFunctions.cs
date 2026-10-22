@@ -4,13 +4,16 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static class FirmwareFunctions
 {
-    internal static IReadOnlyList<FirmwareSlot> Slots(string emulatorId) =>
-        EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == emulatorId) is IEmulatorFirmwareSettings settings ? settings.FirmwareSlots : [];
+    /// <summary>Consulte le catalogue du backend par le contrat de réglages firmware commun.</summary>
+    /// <param name="configuration">Configuration du modèle et du cœur sélectionnés.</param>
+    /// <returns>Emplacements du backend, ou liste vide s’il ne fournit pas ce catalogue.</returns>
+    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) =>
+        EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == configuration.EmulatorId) is IEmulatorFirmwareSettings settings ? settings.GetFirmwareSlots(configuration) : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var paths = new Dictionary<string, string>(configuration.FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        foreach (var slot in Slots(configuration.EmulatorId))
+        foreach (var slot in Slots(configuration))
             if (values.TryGetValue(slot.FieldId, out var value))
             {
                 if (string.IsNullOrWhiteSpace(value)) paths.Remove(slot.FieldId);
@@ -22,7 +25,7 @@ internal static class FirmwareFunctions
     internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration, string directory)
     {
         if (!Directory.Exists(directory)) return [];
-        var slots = Slots(configuration.EmulatorId);
+        var slots = Slots(configuration);
         return Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories)
             .SelectMany(path =>
             {

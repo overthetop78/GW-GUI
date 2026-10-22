@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// de recherche et d’installation. Create reçoit les services empruntés et retourne une machine Common possédant
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
-    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
+    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorStorageSettings, IEmulatorVideoSettings
 {
     /// <summary>Nom technique de la bibliothèque de cœur utilisée par l’adaptateur.</summary>
@@ -17,24 +17,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <param name="configuration">Configuration empruntée précisant le modèle et ses options.</param>
     /// <returns>Ensemble des extensions spécifiques, ou null lorsque l’adaptateur n’en fournit pas de restriction spécifique.</returns>
     IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
-
-    /// <summary>Décrit les emplacements de firmware proposés par cet adaptateur.</summary>
-    /// <param name="configuration">Configuration du modèle pour lequel les emplacements sont demandés.</param>
-    /// <returns>Descriptions des champs de sélection, fichiers attendus et contraintes associées.</returns>
-    IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
-
-    /// <summary>Indique si le cœur exige au moins un fichier de firmware externe avant l’enregistrement de sa configuration.</summary>
-    /// <remarks>Cette obligation peut être satisfaite par plusieurs alternatives facultatives prises séparément.
-    /// IsRequired dans FirmwareSlot exprime, lui, l’obligation de fournir précisément cet emplacement.
-    /// Un cœur disposant uniquement de firmwares embarqués annonce false.</remarks>
-    bool RequiresExternalFirmware { get; }
-
-    /// <summary>Recherche les candidats de firmware suivant les règles du modèle et du cœur.</summary>
-    /// <param name="configuration">Configuration indiquant les emplacements et compatibilités à rechercher.</param>
-    /// <param name="directory">Répertoire de recherche fourni par l’hôte, dont les fichiers restent empruntés.</param>
-    /// <param name="cancellationToken">Annulation de la recherche et des lectures nécessaires à l’identification.</param>
-    /// <returns>Candidats avec leurs identités et informations de compatibilité.</returns>
-    IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);
 
     /// <summary>Prépare un média pour les contraintes de contenu du cœur, avec conversion si nécessaire.</summary>
     /// <param name="media">Description du média source ; le fichier utilisateur reste sous la responsabilité de son propriétaire.</param>
@@ -83,11 +65,5 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
     /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>
     IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
-
-    /// <summary>Prépare les fichiers de firmware dans le dossier système fourni au cœur.</summary>
-    /// <param name="configuration">Configuration empruntée contenant les firmwares sélectionnés.</param>
-    /// <param name="systemDirectory">Dossier de préparation dont Common possède le cycle de vie.</param>
-    /// <remarks>Les fichiers sources de l’utilisateur restent empruntés et ne sont pas supprimés par cette opération.</remarks>
-    void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
 
 }

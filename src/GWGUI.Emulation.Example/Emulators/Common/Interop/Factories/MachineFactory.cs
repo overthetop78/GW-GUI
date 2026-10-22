@@ -247,7 +247,14 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyList<string> GetMediaDependencies(string path) => [];
     /// <inheritdoc/>
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Firmware.Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", false)).ToArray();
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRoles(configuration.Model).Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", IsFirmwareRequired(configuration.Model, role))).ToArray();
+    /// <inheritdoc/>
+    public IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => HardwareModelCatalog.Get(model).Firmware;
+    /// <summary>Le cœur fictif fonctionne sans firmware externe obligatoire, quel que soit le rôle proposé.</summary>
+    /// <remarks>Un backend réel fournit ici sa règle par modèle et catégorie. Le mock conserve ses fichiers
+    /// facultatifs pour illustrer leur sélection et leur préparation sans imposer un fichier externe au démarrage.</remarks>
+    /// <inheritdoc/>
+    public bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
     /// <inheritdoc/>
     public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => GetFirmwareSlots(configuration).Select(slot => new FirmwareRequirement(Enum.Parse<FirmwareCategory>(slot.FieldId), slot.FieldId, slot.LabelResourceKey, [slot.FileName], slot.IsRequired)).ToArray();
     /// <summary>Le catalogue de simulation ne prétend pas identifier une ROM réelle inconnue.</summary>

@@ -100,11 +100,17 @@ public sealed class NecEmulatorCatalogTests
     [InlineData("np2kai", 11)]
     public void FirmwareSlotsUseRoleLabelsAndKeepUserPaths(string emulator, int count)
     {
-        var slots = FirmwareFunctions.Slots(emulator);
+        var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == emulator);
+        var configuration = new MachineConfiguration(adapter.Definition.MachineIds.First(), emulator);
+        var slots = FirmwareFunctions.Slots(configuration);
         Assert.Equal(count, slots.Count);
         Assert.All(slots, slot => Assert.StartsWith("Emulation.Nec.Firmware.", slot.LabelResourceKey));
+        configuration = configuration with { FirmwarePaths = slots.ToDictionary(slot => slot.FieldId, slot => slot.FieldId + ".rom") };
+        var fields = GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.FirmwareFunctions.Fields(configuration);
+        Assert.Equal(slots.Select(slot => slot.FieldId), fields.Select(field => field.Id));
+        Assert.Equal(slots.Select(slot => configuration.FirmwarePaths[slot.FieldId]), fields.Select(field => field.Value));
         var paths = slots.Take(2).ToDictionary(slot => slot.FieldId, slot => (string?)$"renamed-{slot.FileName}");
-        var configured = FirmwareFunctions.Apply(new MachineConfiguration("Pc8801", emulator), paths);
+        var configured = FirmwareFunctions.Apply(configuration, paths);
         Assert.All(paths, path => Assert.Equal(path.Value, configured.FirmwarePaths![path.Key]));
     }
 

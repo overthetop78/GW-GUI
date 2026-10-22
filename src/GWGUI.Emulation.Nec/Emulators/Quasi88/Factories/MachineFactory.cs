@@ -8,7 +8,8 @@ internal sealed class MachineFactory : CoreMachineFactory, IEmulatorFirmwareSett
 {
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
-    public IReadOnlyList<FirmwareSlot> FirmwareSlots => GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.FirmwareConstants.Slots;
+    /// <inheritdoc/>
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.FirmwareConstants.Slots;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;
     public override EmulationEmulatorDefinition Definition { get; } = new(
