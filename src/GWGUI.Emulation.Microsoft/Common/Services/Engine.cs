@@ -18,6 +18,9 @@ public sealed class Engine
         return Adapter(configuration).Create(configuration, context);
     }
 
+    /// <summary>Retrouve l’adaptateur sélectionné sans charger de cœur ; null conserve le parcours sans sélection.</summary>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => string.IsNullOrEmpty(configuration.EmulatorId) ? null : _adapters.GetValueOrDefault(configuration.EmulatorId);
+
     internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => Adapter(configuration.EmulatorId);
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);

@@ -50,6 +50,17 @@ public sealed class ArchitectureValidationTests
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
             if (contractName == "IEmulatorConfigurationValidation")
                 Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
+            if (contractName == "IEmulatorSettings")
+            {
+                var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+                if (root != "GWGUI.Emulation.Microsoft")
+                    Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
+                else
+                {
+                    Assert.Contains(contract, adapter.GetInterfaces());
+                    Assert.Contains(adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".DescribeSettings", StringComparison.Ordinal) && !method.IsAbstract);
+                }
+            }
             foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
             {
                 Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);

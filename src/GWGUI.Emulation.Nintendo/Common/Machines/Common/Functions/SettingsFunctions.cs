@@ -50,7 +50,7 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.ResourceAudio,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
         ];
-        foreach (var coreBlock in adapter?.GetSettingsBlocks(configuration) ?? [])
+        foreach (var coreBlock in adapter?.DescribeSettings(configuration) ?? [])
         {
             var index = blocks.FindIndex(block => block.Tab == coreBlock.Tab);
             if (index < 0)

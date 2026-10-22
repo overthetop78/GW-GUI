@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettingsAdapter
 {
     IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
     IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);
@@ -7,7 +7,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
     IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration);
     IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
-    IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(Model model, MachineConfiguration configuration);
     EmulationStorageSettings DescribeStorage(MachineConfiguration configuration);
     MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings);
     MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values);

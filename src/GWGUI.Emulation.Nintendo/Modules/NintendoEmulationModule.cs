@@ -37,7 +37,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
         var adapter = string.IsNullOrEmpty(current.EmulatorId) ? null : _engine.Adapter(current);
-        var optionTabs = (adapter?.GetSettingsBlocks(current) ?? []).Select(block => block.Tab).ToHashSet();
+        var optionTabs = (adapter?.DescribeSettings(current) ?? []).Select(block => block.Tab).ToHashSet();
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => optionTabs.Contains(item.Key) || item.Key switch
         {
             EmulationMachineTab.Keyboard => adapter is not null && model.HasKeyboard,

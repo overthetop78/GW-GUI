@@ -34,7 +34,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     {
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
-        var blocks = SettingsDescriptionFunctions.Create(current, _engine.GetOptions(current, EmulatorManagement(_engine.Adapter(current))));
+        var blocks = SettingsDescriptionFunctions.Create(current, EmulatorManagement(_engine.Adapter(current)));
         var capabilities = _engine.Adapter(current) as IEmulatorCapabilities;
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {

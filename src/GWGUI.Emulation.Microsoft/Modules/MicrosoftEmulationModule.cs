@@ -13,6 +13,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
 {
     private static readonly EmulationModuleLocalization Localization = new(typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
     private readonly ConfigurationStore _store;
+    private readonly Engine _engine = new();
 
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
@@ -47,7 +48,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
                 || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
+        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), _engine.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)

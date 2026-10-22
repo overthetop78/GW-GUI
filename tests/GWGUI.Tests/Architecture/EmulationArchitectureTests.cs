@@ -35,14 +35,14 @@ public sealed class EmulationArchitectureTests
     {
         var atari = CommonAdapter(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari");
         var amiga = CommonAdapter(typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore");
-        Assert.All(MemberNames(atari.Adapter).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
+        Assert.All(MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
         Assert.Equal(new[]
         {
             "Create", "Definition", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
             "FindReleasesAsync", "GetInstallationAsync", "InstallAsync",
             "ResolveConfiguredMedia", "TryHandleHostCommand", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey"
-        }, MemberNames(atari.Adapter).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }));
+        }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));
         foreach (var row in FamilyModules())
         {

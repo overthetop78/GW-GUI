@@ -18,7 +18,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
         UaeFirmwareConstants.Uae => MediaCategory.Configuration,
         _ => MediaCategory.Floppy
     };
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(Model model, MachineConfiguration configuration) => AmigaSettingsDescriptionFunctions.Create((AmigaModel)model, configuration).Where(block => block.Tab != EmulationMachineTab.Rom).ToArray();
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(Model model, MachineConfiguration configuration) => AmigaSettingsDescriptionFunctions.Create((AmigaModel)model, configuration).Where(block => block.Tab != EmulationMachineTab.Rom).ToArray();
     public override EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration);
     public override MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => AmigaStorageSettingsFunctions.Apply(configuration, settings);
     public override MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => AmigaSettingsApplicationFunctions.Apply(configuration, values);

@@ -49,7 +49,7 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
             _ => item.Value
         }
         );
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
+        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), _engine.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));

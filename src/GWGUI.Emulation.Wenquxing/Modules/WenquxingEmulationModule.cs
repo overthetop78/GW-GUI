@@ -37,7 +37,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         var current = configuration is null ? new MachineConfiguration(model) : Require(configuration);
         if (current.Model != model)
             throw new ArgumentException(nameof(configuration));
-        return new EmulationMachineSettings(machineId, DefaultVisibility, SettingsDescriptionFunctions.Create(current));
+        return new EmulationMachineSettings(machineId, DefaultVisibility, _engine.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));

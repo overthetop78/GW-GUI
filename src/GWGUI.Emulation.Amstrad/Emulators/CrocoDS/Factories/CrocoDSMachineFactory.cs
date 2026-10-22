@@ -42,10 +42,10 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.CrocoDS.ToString();
-    public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) => CoreOptionsReader.Read(Path.Combine(context.CoreDirectory, Core.LibraryFile));
+    public IReadOnlyList<CoreOption> GetSettingsOptions(EmulatorManagementContext context) => CoreOptionsReader.Read(Path.Combine(context.CoreDirectory, Core.LibraryFile));
     public EmulationEmulatorDefinition Definition { get; } = new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, new HashSet<string>([EmulatorConstants.MachineId], StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

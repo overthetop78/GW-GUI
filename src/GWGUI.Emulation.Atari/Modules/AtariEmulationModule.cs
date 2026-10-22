@@ -55,7 +55,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             _ => item.Value
         });
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current), SettingsRules(model));
+        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), _engine.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current), SettingsRules(model));
     }
 
     private static IReadOnlyList<EmulationSettingsRule> SettingsRules(MachineModel model)
