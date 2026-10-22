@@ -35,7 +35,7 @@ internal static class InputSettingsFunctions
         var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
             ? configuration.Input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
-            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && EmulationKeyboardBindingFunctions.IsValid(item.Value)).ToDictionary(item => item.Key,
+            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && CommonControllerFunctions.IsValidBinding(item.Value)).ToDictionary(item => item.Key,
                 item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value,
                 StringComparer.Ordinal);
         var keyboard = EmulationSdk.InputProcessing.ToKeys(keyboardBindings);

@@ -5,6 +5,20 @@ namespace GWGUI.Emulation.Interfaces;
 /// <summary>Persistance commune : le module conserve son schéma et fournit les conversions de chemins.</summary>
 public interface IEmulationConfigurationFiles
 {
+    /// <summary>Écrit un document de façon synchrone dans un fichier temporaire puis remplace sa destination.</summary>
+    /// <param name="path">Destination du document appartenant à l’appelant.</param>
+    /// <param name="document">Données empruntées pendant la sérialisation.</param>
+    /// <param name="options">Options JSON empruntées, conservées sans modification.</param>
+    /// <param name="temporarySuffix">Suffixe ajouté au chemin pour préparer le fichier temporaire.</param>
+    /// <remarks>Le service possède le flux et le temporaire de cette écriture ; le nettoyage reste protégé par finally.</remarks>
+    void WriteDocument<T>(string path, T document, JsonSerializerOptions options, string temporarySuffix);
+
+    /// <summary>Remplace la destination par un fichier préparé en conservant le verrouillage et les reprises du SDK.</summary>
+    /// <param name="source">Fichier temporaire préparé par l’appelant et déplacé en cas de succès.</param>
+    /// <param name="target">Destination à remplacer.</param>
+    /// <remarks>L’appelant conserve la responsabilité du nettoyage de la source après un échec. Le service libère le verrou de fichier avant son retour.</remarks>
+    void ReplaceFile(string source, string target);
+
     /// <summary>Prépare et écrit la configuration dans son dossier GUID sous le verrou emprunté.</summary>
     /// <remarks>Les conversions restent fournies par Common. Le verrou et le fichier temporaire sont libérés dans finally, même après annulation.</remarks>
     Task WriteDocumentAsync<TConfiguration>(SemaphoreSlim saveGate, string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration, Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths, JsonSerializerOptions options, CancellationToken cancellationToken);

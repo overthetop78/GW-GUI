@@ -6,7 +6,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationVideoFunctions
+internal static class EmulationVideoFunctions
 {
     internal static void ApplyGeometry(ExternalCoreApi.Geometry geometry, ref float aspectRatio)
     {

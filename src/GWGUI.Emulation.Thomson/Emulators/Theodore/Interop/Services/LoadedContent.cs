@@ -45,7 +45,7 @@ internal sealed class LoadedContent : IDisposable
             if (_writeBack && _loaded)
             {
                 var temporary = _original + "." + Guid.NewGuid().ToString("N") + ".tmp";
-                try { File.Copy(_runtime, temporary); ConfigurationFileAccessFunctions.ReplaceFile(temporary, _original); }
+                try { File.Copy(_runtime, temporary); CommonCoreHostFunctions.ConfigurationFiles.ReplaceFile(temporary, _original); }
                 finally { if (File.Exists(temporary)) File.Delete(temporary); }
             }
         }

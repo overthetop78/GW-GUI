@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class ConfigurationFunctions
@@ -58,7 +59,7 @@ internal static class ConfigurationFunctions
         }
         if (configuration.Input.Keyboard is { Count: > 0 } keys
             && (configuration.Model != MachineModel.Adam
-                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !EmulationKeyboardBindingFunctions.IsValid(mapping.Value))))
+                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !CommonControllerFunctions.IsValidBinding(mapping.Value))))
             throw new ArgumentException(nameof(configuration.Input));
         if (configuration.Core == Emulator.GearColeco)
         {

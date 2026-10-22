@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 using System.Reflection;

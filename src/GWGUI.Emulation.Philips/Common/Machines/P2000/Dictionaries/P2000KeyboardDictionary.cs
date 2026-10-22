@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Philips.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Philips.Common.Machines.P2000.Dictionaries;
 
@@ -35,7 +36,7 @@ internal static class P2000KeyboardDictionary
     {
         foreach (var pair in configured ?? new Dictionary<string, string>())
             if (!Definitions.Any(definition => definition.Id == pair.Key)
-                || (!string.IsNullOrEmpty(pair.Value) && !TrySource(pair.Value, out _) && !EmulationKeyboardBindingFunctions.IsValid(pair.Value)))
+                || (!string.IsNullOrEmpty(pair.Value) && !TrySource(pair.Value, out _) && !CommonControllerFunctions.IsValidBinding(pair.Value)))
                 throw new ArgumentException(nameof(configured));
     }
 

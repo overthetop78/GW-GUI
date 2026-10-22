@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Thomson.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
@@ -76,11 +77,11 @@ internal static class InputSettingsFunctions
         _ = KeyboardBindings(configuration.Input, configuration.Model);
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         mouseIds.Add(InputMappingConstants.MouseRight);
-        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid))
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, CommonControllerFunctions.IsValidBinding))
             throw new ArgumentException(nameof(configuration.Input));
         var ids = ControllerCatalog.Definitions(PeripheralCategory.Joystick).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
+            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, CommonControllerFunctions.IsValidBinding))
                 throw new ArgumentException(nameof(configuration.Input));
     }
 }

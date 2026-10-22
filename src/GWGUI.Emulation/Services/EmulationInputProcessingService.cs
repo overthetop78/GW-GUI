@@ -79,7 +79,7 @@ internal sealed class EmulationInputProcessingService : IEmulationInputProcessin
     public EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) => EmulationInputMappingFunctions.ApplyDeadZones(controller, percent);
 
     /// <inheritdoc/>
-    public bool IsValidBinding(string binding) => EmulationKeyboardBindingFunctions.IsValid(binding);
+    public bool IsValidBinding(string? binding) => EmulationKeyboardBindingFunctions.IsValid(binding);
 
     /// <inheritdoc/>
     public EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback) => EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback);

@@ -112,7 +112,8 @@ public interface IEmulationInputProcessing
     /// <summary>Contrôle la syntaxe d’une association avec les règles communes du clavier et des sources préfixées.</summary>
     /// <param name="binding">Expression de source ; une valeur vide décrit une action non associée.</param>
     /// <returns>True lorsque l’expression est admise par le traitement commun.</returns>
-    bool IsValidBinding(string binding);
+    /// <remarks>Une valeur nulle, vide ou blanche est acceptée comme dans la validation commune existante.</remarks>
+    bool IsValidBinding(string? binding);
 
     /// <summary>Résout le contrôleur explicitement nommé dans une expression de source.</summary>
     /// <param name="source">Expression d’association éventuellement préfixée par une identité physique.</param>

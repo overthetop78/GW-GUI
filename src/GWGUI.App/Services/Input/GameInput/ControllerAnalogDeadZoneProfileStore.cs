@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.App.Services.Storage;
 using System.IO;
 using System.Text.Json;
@@ -50,5 +51,5 @@ internal static class ControllerAnalogDeadZoneProfileStore
     }
 
     private static void SaveProfiles()
-    => GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.WriteDocumentAtomically(FilePath, _profiles, new JsonSerializerOptions { WriteIndented = true }, ".tmp");
+    => EmulationSdk.ConfigurationFiles.WriteDocument(FilePath, _profiles, new JsonSerializerOptions { WriteIndented = true }, ".tmp");
 }

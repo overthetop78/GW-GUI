@@ -9,6 +9,11 @@ namespace GWGUI.Emulation.Panasonic.Common.Functions;
 /// <remarks>Les adaptations de cœur passent par ce propriétaire Common ; les algorithmes restent dans le SDK.</remarks>
 internal static class ControllerFunctions
 {
+    /// <summary>Valide la syntaxe commune des associations clavier, souris et contrôleur.</summary>
+    /// <param name="binding">Association empruntée ; une valeur nulle, vide ou blanche est acceptée.</param>
+    /// <returns>True si chaque composante respecte la syntaxe commune, sans modifier les libellés ni les correspondances du module.</returns>
+    internal static bool IsValidBinding(string? binding) => EmulationSdk.InputProcessing.IsValidBinding(binding);
+
     /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
     /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
     /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>

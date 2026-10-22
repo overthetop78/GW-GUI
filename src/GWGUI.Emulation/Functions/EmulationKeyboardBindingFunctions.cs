@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationKeyboardBindingFunctions
+internal static class EmulationKeyboardBindingFunctions
 {
     internal static IReadOnlyDictionary<string, EmulationKey> ToKeys(this IReadOnlyDictionary<string, string> values) =>
         values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key,

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace GWGUI.Emulation.Functions;
 
-public static partial class JsonConfigurationRecoveryFunctions
+internal static partial class JsonConfigurationRecoveryFunctions
 {
     public static T DeserializeRemovingInvalidProperties<T>(string json, Func<JsonElement, T> deserialize, out string repairedJson)
     {

@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class ConfigurationFileAccessFunctions
+internal static class ConfigurationFileAccessFunctions
 {
     private const int DefaultReplacementRetryCount = 5;
     private const int DefaultReplacementRetryDelayMilliseconds = 25;

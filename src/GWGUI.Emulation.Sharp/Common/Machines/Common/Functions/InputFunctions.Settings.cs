@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
@@ -100,14 +101,14 @@ internal static class InputSettingsFunctions
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)
             throw new ArgumentException(nameof(configuration.Input));
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, EmulationKeyboardBindingFunctions.IsValid) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, CommonControllerFunctions.IsValidBinding) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
             throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
             var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, CommonControllerFunctions.IsValidBinding))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

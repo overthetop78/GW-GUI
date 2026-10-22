@@ -46,9 +46,9 @@ public sealed class InputBindingConversionTests
     {
         var values = new Dictionary<string, string> { ["fire"] = "Keyboard:A" };
         Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values,
-            new HashSet<string>(StringComparer.Ordinal) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
+            new HashSet<string>(StringComparer.Ordinal) { "Fire" }, EmulationSdk.InputProcessing.IsValidBinding));
         Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(values,
-            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Fire" }, EmulationKeyboardBindingFunctions.IsValid));
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Fire" }, EmulationSdk.InputProcessing.IsValidBinding));
         var failure = new InvalidOperationException("source policy");
         Assert.Same(failure, Assert.Throws<InvalidOperationException>(() => EmulationSdk.InputProcessing.HasInvalidBindings(values,
             new HashSet<string> { "fire" }, _ => throw failure)));
@@ -59,7 +59,7 @@ public sealed class InputBindingConversionTests
     {
         var values = new Dictionary<string, string> { ["Fire"] = null! };
         var ids = new HashSet<string> { "Fire" };
-        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(values, ids, EmulationKeyboardBindingFunctions.IsValid));
+        Assert.False(EmulationSdk.InputProcessing.HasInvalidBindings(values, ids, EmulationSdk.InputProcessing.IsValidBinding));
         Assert.True(EmulationSdk.InputProcessing.HasInvalidBindings(values, ids, static source => source is not null));
     }
 
@@ -75,8 +75,8 @@ public sealed class InputBindingConversionTests
     [InlineData("unexpected", false, false)]
     public void PrefixOnlyAdaptersKeepTheirOriginalPolicyDistinctFromFullSyntax(string? source, bool prefix, bool syntax)
     {
-        Assert.Equal(prefix, EmulationKeyboardBindingFunctions.IsValidSourcePrefix(source));
-        Assert.Equal(syntax, EmulationKeyboardBindingFunctions.IsValid(source));
+        Assert.Equal(prefix, EmulationSdk.InputProcessing.IsValidSourcePrefix(source));
+        Assert.Equal(syntax, EmulationSdk.InputProcessing.IsValidBinding(source));
     }
 
     [Fact]
@@ -160,7 +160,7 @@ public sealed class InputBindingConversionTests
     public void KeyStringsCopyValuesAndPreserveOrdinalCommandNames()
     {
         var source = new Dictionary<string, EmulationKey> { ["A"] = EmulationKey.A, ["a"] = (EmulationKey)int.MaxValue };
-        var result = EmulationKeyboardBindingFunctions.ToStrings(source);
+        var result = EmulationSdk.InputProcessing.ToStrings(source);
         Assert.Equal("A", result["A"]);
         Assert.Equal(int.MaxValue.ToString(), result["a"]);
         Assert.Same(StringComparer.Ordinal, Assert.IsType<Dictionary<string, string>>(result).Comparer);
@@ -171,9 +171,9 @@ public sealed class InputBindingConversionTests
     [Fact]
     public void NullKeyMapsPreserveBothOriginalEmptyComparerPoliciesAndIndependentResults()
     {
-        var first = Assert.IsType<Dictionary<string, string>>(EmulationKeyboardBindingFunctions.ToStrings(null));
-        var second = Assert.IsType<Dictionary<string, string>>(EmulationKeyboardBindingFunctions.ToStrings(null));
-        var ordinal = Assert.IsType<Dictionary<string, string>>(EmulationKeyboardBindingFunctions.ToStrings(null, StringComparer.Ordinal));
+        var first = Assert.IsType<Dictionary<string, string>>(EmulationSdk.InputProcessing.ToStrings(null));
+        var second = Assert.IsType<Dictionary<string, string>>(EmulationSdk.InputProcessing.ToStrings(null));
+        var ordinal = Assert.IsType<Dictionary<string, string>>(EmulationSdk.InputProcessing.ToStrings(null, StringComparer.Ordinal));
         Assert.Same(new Dictionary<string, string>().Comparer, first.Comparer);
         Assert.Same(StringComparer.Ordinal, ordinal.Comparer);
         first.Add("A", "A");
@@ -273,7 +273,7 @@ public sealed class InputBindingConversionTests
     [Fact]
     public void RequiredKeyAndControllerMapsKeepTheirOriginalNullSourceErrors()
     {
-        Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationKeyboardBindingFunctions.ToKeys(null!)).ParamName);
+        Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationSdk.InputProcessing.ToKeys(null!)).ParamName);
         Assert.Equal("source", Assert.Throws<ArgumentNullException>(() => EmulationSdk.InputProcessing.CopyNonEmptyBindings(null!)).ParamName);
     }
 

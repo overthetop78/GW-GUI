@@ -5,6 +5,12 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Adaptation du contrat de persistance aux opérations existantes ; aucun second algorithme d’écriture.</summary>
 internal sealed class EmulationConfigurationFileService : IEmulationConfigurationFiles
 {
+    /// <inheritdoc/>
+    public void WriteDocument<T>(string path, T document, JsonSerializerOptions options, string temporarySuffix) => ConfigurationFileAccessFunctions.WriteDocumentAtomically(path, document, options, temporarySuffix);
+
+    /// <inheritdoc/>
+    public void ReplaceFile(string source, string target) => ConfigurationFileAccessFunctions.ReplaceFile(source, target);
+
     public Task WriteDocumentAsync<TConfiguration>(SemaphoreSlim saveGate, string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration, Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths, JsonSerializerOptions options, CancellationToken cancellationToken)
         => ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(saveGate, directory, configuration, prepareConfiguration, configurationId, storePaths, options, cancellationToken);
     public Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(string directory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize, Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)

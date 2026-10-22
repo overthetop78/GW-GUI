@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Panasonic.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
@@ -84,6 +85,6 @@ internal static class InputSettingsFunctions
     {
         if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) && source[InputMappingConstants.MousePrefix.Length..] is "X+" or "X−" or "Y+" or "Y−")
             return true;
-        return EmulationKeyboardBindingFunctions.IsValid(source);
+        return CommonControllerFunctions.IsValidBinding(source);
     }
 }

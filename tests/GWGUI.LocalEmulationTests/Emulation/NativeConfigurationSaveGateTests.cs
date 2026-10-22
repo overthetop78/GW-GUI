@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using GWGUI.Emulation.Functions;
 
@@ -44,7 +45,7 @@ public sealed class NativeConfigurationSaveGateTests
         using var stop = new CancellationTokenSource();
         stop.Cancel();
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() =>
-            ConfigurationFileAccessFunctions.WithSaveGateAsync(gate,
+            EmulationSdk.ConfigurationFiles.WithSaveGateAsync(gate,
                 () => throw new InvalidOperationException("Writer must not run"), stop.Token));
         Assert.Equal(1, gate.CurrentCount);
     }
@@ -57,7 +58,7 @@ public sealed class NativeConfigurationSaveGateTests
         Task? operation = null;
         try
         {
-            operation = ConfigurationFileAccessFunctions.WithSaveGateAsync(gate,
+            operation = EmulationSdk.ConfigurationFiles.WithSaveGateAsync(gate,
                 () => throw new InvalidOperationException("Writer must not run"), stop.Token);
             Assert.False(operation.IsCompleted);
             stop.Cancel();
@@ -85,7 +86,7 @@ public sealed class NativeConfigurationSaveGateTests
         Task? operation = null;
         try
         {
-            operation = ConfigurationFileAccessFunctions.WithSaveGateAsync(gate, () =>
+            operation = EmulationSdk.ConfigurationFiles.WithSaveGateAsync(gate, () =>
             {
                 Assert.Equal(0, gate.CurrentCount);
                 return completion.Task;
@@ -126,7 +127,7 @@ public sealed class NativeConfigurationSaveGateTests
         using var gate = new SemaphoreSlim(1, 1);
         var failure = new InvalidOperationException("Synchronous writer failure");
         Assert.Same(failure, await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            ConfigurationFileAccessFunctions.WithSaveGateAsync(gate, () => throw failure, CancellationToken.None)));
+            EmulationSdk.ConfigurationFiles.WithSaveGateAsync(gate, () => throw failure, CancellationToken.None)));
         Assert.Equal(1, gate.CurrentCount);
     }
 
@@ -139,7 +140,7 @@ public sealed class NativeConfigurationSaveGateTests
         Task? operation = null;
         try
         {
-            operation = ConfigurationFileAccessFunctions.WithSaveGateAsync(gate, () => completion.Task, stop.Token);
+            operation = EmulationSdk.ConfigurationFiles.WithSaveGateAsync(gate, () => completion.Task, stop.Token);
             stop.Cancel();
             Assert.False(operation.IsCompleted);
             Assert.Equal(0, gate.CurrentCount);

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.App.Constants.Input.Bindings;
 using GWGUI.App.Constants.Input.Controllers;
 using GWGUI.App.Enums.Input;
@@ -77,12 +78,12 @@ public partial class InputBindingEditor
         {
             if (part.StartsWith(InputBindingSyntaxConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
             {
-                if (!_captureSources.HasFlag(InputCaptureSources.Mouse) || !EmulationKeyboardBindingFunctions.IsValid(part)) return false;
+                if (!_captureSources.HasFlag(InputCaptureSources.Mouse) || !EmulationSdk.InputProcessing.IsValidBinding(part)) return false;
                 hasPhysicalSource = true;
             }
             else if (part.StartsWith(InputBindingSyntaxConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             {
-                if (!_captureSources.HasFlag(InputCaptureSources.Controller) || !EmulationKeyboardBindingFunctions.IsValid(part)) return false;
+                if (!_captureSources.HasFlag(InputCaptureSources.Controller) || !EmulationSdk.InputProcessing.IsValidBinding(part)) return false;
                 hasPhysicalSource = true;
             }
             else keyboardParts.Add(InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.KeyboardPrefix, out var source) ? source : part);

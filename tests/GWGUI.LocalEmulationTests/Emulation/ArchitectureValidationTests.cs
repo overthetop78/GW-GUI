@@ -65,11 +65,11 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void EveryCommonExposesExecutionAndMessagesThroughTheSamePublicContracts()
+    public void EveryCommonExposesExecutionMessagesAndBindingValidationThroughPublicContracts()
     {
         var implementation = typeof(IEmulationFrameTimer).Assembly.GetType("GWGUI.Emulation.Services.EmulationFrameTimer", throwOnError: true)!;
         Assert.False(implementation.IsVisible);
-        foreach (var name in new[] { "GWGUI.Emulation.Functions.EmulationFrameOutputFunctions", "GWGUI.Emulation.Services.EmulationErrorService", "GWGUI.Emulation.Services.EmulationModuleLocalization" })
+        foreach (var name in new[] { "GWGUI.Emulation.Functions.EmulationFrameOutputFunctions", "GWGUI.Emulation.Services.EmulationErrorService", "GWGUI.Emulation.Services.EmulationModuleLocalization", "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions", "GWGUI.Emulation.Functions.EmulationAdapterFunctions", "GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions", "GWGUI.Emulation.Functions.EmulationVideoFunctions", "GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions", "GWGUI.Emulation.Functions.JsonConfigurationRecoveryFunctions" })
             Assert.False(typeof(IEmulationMachineExecution).Assembly.GetType(name, throwOnError: true)!.IsVisible);
         Assert.True(typeof(EmulationMachineCommand).IsVisible);
         foreach (var name in new[] { "Execute", "Enqueue", "FailPending" })
@@ -101,6 +101,12 @@ public sealed class ArchitectureValidationTests
                 Assert.False(localization.TryGetString("__unknown-key-common-contract__", culture, out var value));
                 Assert.Empty(value);
             }
+            var controllers = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
+            var validateBinding = controllers.GetMethod("IsValidBinding", BindingFlags.NonPublic | BindingFlags.Static, [typeof(string)])!;
+            Assert.Equal(typeof(bool), validateBinding.ReturnType);
+            Assert.True((bool)validateBinding.Invoke(null, [null])!);
+            Assert.True((bool)validateBinding.Invoke(null, ["Keyboard:A"])!);
+            Assert.False((bool)validateBinding.Invoke(null, ["__invalid-input-binding__"])!);
         }
     }
 

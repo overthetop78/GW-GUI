@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
 
@@ -12,7 +13,7 @@ public sealed class LegacyConfigurationSaveTests
         using var stop = new CancellationTokenSource();
         stop.Cancel();
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(gate, "unused", new Document(Guid.Empty, ""),
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(gate, "unused", new Document(Guid.Empty, ""),
                 _ => throw new InvalidOperationException("Preparation must not run"),
                 _ => throw new InvalidOperationException(), _ => throw new InvalidOperationException(),
                 new JsonSerializerOptions(), stop.Token));
@@ -27,7 +28,7 @@ public sealed class LegacyConfigurationSaveTests
         Task? pending = null;
         try
         {
-            pending = ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(gate, "unused", new Document(Guid.Empty, ""),
+            pending = EmulationSdk.ConfigurationFiles.WriteDocumentAsync(gate, "unused", new Document(Guid.Empty, ""),
                 _ => throw new InvalidOperationException("Preparation must not run"),
                 _ => throw new InvalidOperationException(), _ => throw new InvalidOperationException(),
                 new JsonSerializerOptions(), stop.Token);
@@ -51,7 +52,7 @@ public sealed class LegacyConfigurationSaveTests
         using var gate = new SemaphoreSlim(1, 1);
         var failure = new InvalidOperationException("Preparation failure");
         var error = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(gate, "unused", new Document(Guid.Empty, ""),
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(gate, "unused", new Document(Guid.Empty, ""),
                 _ =>
                 {
                     Assert.Equal(0, gate.CurrentCount);
@@ -72,7 +73,7 @@ public sealed class LegacyConfigurationSaveTests
         var failure = new InvalidOperationException("Id failure");
         var calls = new List<string>();
         var error = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(gate, "unused", new Document(Guid.Empty, "original"),
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(gate, "unused", new Document(Guid.Empty, "original"),
                 value =>
                 {
                     calls.Add(value.Value);

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
@@ -94,7 +95,7 @@ internal static class InputSettingsFunctions
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
             var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationKeyboardBindingFunctions.IsValid))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, CommonControllerFunctions.IsValidBinding))
                 throw new ArgumentException(nameof(configuration.Input));
             if (!string.IsNullOrEmpty(binding.VisualId) && !ControllerVisualDictionary.VisualIds(binding.Peripheral).Contains(binding.VisualId, StringComparer.Ordinal))
                 throw new ArgumentException(nameof(configuration.Input));

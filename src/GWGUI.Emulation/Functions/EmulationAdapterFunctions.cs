@@ -2,7 +2,7 @@ using System.Reflection;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationAdapterFunctions
+internal static class EmulationAdapterFunctions
 {
     public static IReadOnlyList<T> Create<T>(Assembly assembly) where T : class
     {

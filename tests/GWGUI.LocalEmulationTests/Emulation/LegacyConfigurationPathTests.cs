@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Reflection;
 using GWGUI.Emulation.Functions;
@@ -84,8 +85,8 @@ public sealed class LegacyConfigurationPathTests
     [Fact]
     public void NativeSdkWhitespacePolicyIsUnchanged()
     {
-        Assert.Equal(" ", ConfigurationFileAccessFunctions.StorePath(" ", BasePath));
-        Assert.Equal(" ", ConfigurationFileAccessFunctions.ResolvePath(" ", BasePath));
+        Assert.Equal(" ", EmulationSdk.ConfigurationFiles.StorePath(" ", BasePath));
+        Assert.Equal(" ", EmulationSdk.ConfigurationFiles.ResolvePath(" ", BasePath));
     }
 
     private static object Create(Type type)

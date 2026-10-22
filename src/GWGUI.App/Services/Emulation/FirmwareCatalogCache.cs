@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.App.Services.Storage;
 using System.IO;
 using System.Text.Json;
@@ -12,7 +13,7 @@ internal static class FirmwareCatalogCache
     };
 
     internal static void Write<T>(string platform, IReadOnlyList<T> entries)
-    => GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.WriteDocumentAtomically(StoragePaths.FirmwareCatalogPath(platform), entries, JsonOptions, ".tmp");
+    => EmulationSdk.ConfigurationFiles.WriteDocument(StoragePaths.FirmwareCatalogPath(platform), entries, JsonOptions, ".tmp");
 
     internal static IReadOnlyList<T> Read<T>(string platform)
     {

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace GWGUI.Emulation.Functions;
 
 /// <summary>Opérations de cycle de vie communes aux modules d’émulation indépendants.</summary>
-public static class ExternalCoreLifecycleFunctions
+internal static class ExternalCoreLifecycleFunctions
 {
     /// <summary>Sérialise le cœur avec les contrôles et la copie native partagés ; l’appelant possède le tableau retourné.</summary>
     /// <remarks>La bibliothèque et ses exports restent empruntés. Le buffer natif est toujours libéré dans finally.</remarks>

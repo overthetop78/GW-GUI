@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.ElectronicDictionaries.Dictionaries;
 internal static class KeyboardDictionary
@@ -55,7 +56,7 @@ internal static class KeyboardDictionary
             if (!bindings.ContainsKey(pair.Key) || pair.Value is null)
                 throw new ArgumentException(nameof(input));
             var physical = pair.Value.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase) ? pair.Value["Keyboard:".Length..] : pair.Value;
-            if (!EmulationKeyboardBindingFunctions.IsValid(physical))
+            if (!CommonControllerFunctions.IsValidBinding(physical))
                 throw new ArgumentException(nameof(input));
             bindings[pair.Key] = physical;
         }

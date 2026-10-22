@@ -37,7 +37,7 @@ internal static class EmulationShortcutMap
             var hasKeyboard = InputBindingSyntax.TryGetKeyboardChord(mapping.Value, out var chord);
             if (hasKeyboard && KeyboardChordFunctions.IsWindowsReserved(chord)) return null;
             if (InputBindingSyntax.HasNonKeyboardSource(mapping.Value))
-                return EmulationKeyboardBindingFunctions.IsValid(mapping.Value) ? new GlobalShortcutBinding(mapping.Key, chord, mapping.Value) : null;
+                return EmulationSdk.InputProcessing.IsValidBinding(mapping.Value) ? new GlobalShortcutBinding(mapping.Key, chord, mapping.Value) : null;
             return hasKeyboard ? new GlobalShortcutBinding(mapping.Key, chord) : null;
         }).Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
 }

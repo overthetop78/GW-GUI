@@ -67,7 +67,7 @@ internal static class BindingsAndFeedbackScenarios
             Controllers = [second with { Buttons = (1u << 8) | (1u << 9) }]
         };
         const string combined = "Keyboard:LeftControl+Keyboard:A+Mouse:Left+Mouse:Middle+Controller:two:ButtonA+Controller:two:ButtonX";
-        Assert.True(EmulationKeyboardBindingFunctions.IsValid(combined));
+        Assert.True(EmulationSdk.InputProcessing.IsValidBinding(combined));
         Assert.Equal(1f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed));
         Assert.Equal(0f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Pointer = mixed.Pointer with { Middle = false } }));
         Assert.Equal(0f, EmulationSdk.InputProcessing.InputSourcePressure(combined, EmulationControllerState.Empty, mixed with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }));
