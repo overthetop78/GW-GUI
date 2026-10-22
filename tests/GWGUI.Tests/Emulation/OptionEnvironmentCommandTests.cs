@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
@@ -17,7 +18,7 @@ public sealed class OptionEnvironmentCommandTests
         foreach (var data in new nint[] { 0, 17 })
         {
             var options = new OptionCommands();
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, options, out var result));
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleOptionCommand(command, data, options, out var result));
             Assert.Equal(data != nint.Zero, result);
             Assert.Equal(new[] { (method, data) }, options.Calls);
         }
@@ -34,7 +35,7 @@ public sealed class OptionEnvironmentCommandTests
         foreach (var hostResult in new[] { false, true })
         {
             var options = new OptionCommands { BooleanResult = hostResult };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, nint.Zero, options, out var result));
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleOptionCommand(command, nint.Zero, options, out var result));
             Assert.Equal(hostResult, result);
             Assert.Equal(new[] { (method, nint.Zero) }, options.Calls);
         }
@@ -49,7 +50,7 @@ public sealed class OptionEnvironmentCommandTests
     public void OtherCommandsRemainWithTheEnvironmentHost(uint command)
     {
         var options = new OptionCommands { BooleanResult = true };
-        Assert.False(ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, 17, options, out var result));
+        Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleOptionCommand(command, 17, options, out var result));
         Assert.False(result);
         Assert.Empty(options.Calls);
     }
@@ -60,7 +61,7 @@ public sealed class OptionEnvironmentCommandTests
         var expected = new InvalidOperationException("registration failed");
         var options = new OptionCommands { Failure = expected };
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(
+            EmulationSdk.EnvironmentProcessing.TryHandleOptionCommand(
                 ExternalCoreApiConstants.SetCoreOptionsV2, 17, options, out _));
         Assert.Same(expected, actual);
         Assert.Equal(new[] { ("RegisterVersionTwo", (nint)17) }, options.Calls);
@@ -77,7 +78,7 @@ public sealed class OptionEnvironmentCommandTests
         var options = new OptionCommands { Failure = new InvalidOperationException("must not call") };
         var unknown = new HashSet<uint>();
         var diagnostics = new List<string>();
-        Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, 17, options,
+        Assert.False(EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(command, 17, options,
             unknown, diagnostics, _ => throw new InvalidOperationException("must not format")));
         Assert.Empty(options.Calls);
         Assert.Empty(unknown);
@@ -92,7 +93,7 @@ public sealed class OptionEnvironmentCommandTests
         var options = new OptionCommands { BooleanResult = reply };
         var unknown = new HashSet<uint>();
         var diagnostics = new List<string>();
-        Assert.Equal(reply, ExternalCoreEnvironmentFunctions.HandleRemainingCommand(
+        Assert.Equal(reply, EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(
             ExternalCoreApiConstants.GetVariable, 17, options, unknown, diagnostics,
             _ => throw new InvalidOperationException("must not format")));
         Assert.Equal(new[] { ("ReturnValue", (nint)17) }, options.Calls);
@@ -114,7 +115,7 @@ public sealed class OptionEnvironmentCommandTests
             return $"module diagnostic {command}";
         }
         for (var attempt = 0; attempt < 2; attempt++)
-            Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue,
+            Assert.False(EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(uint.MaxValue,
                 17, options, unknown, diagnostics, Format));
         Assert.Equal(1, formatted);
         Assert.Equal(new[] { uint.MaxValue }, unknown);
@@ -132,11 +133,11 @@ public sealed class OptionEnvironmentCommandTests
         var formatted = 0;
         string Format(uint command) { formatted++; throw failure; }
         Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue, 17,
+            EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(uint.MaxValue, 17,
                 options, unknown, diagnostics, Format)));
         Assert.Contains(uint.MaxValue, unknown);
         Assert.Empty(diagnostics);
-        Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue, 17,
+        Assert.False(EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(uint.MaxValue, 17,
             options, unknown, diagnostics, Format));
         Assert.Equal(1, formatted);
         Assert.Empty(diagnostics);
@@ -150,7 +151,7 @@ public sealed class OptionEnvironmentCommandTests
         var unknown = new HashSet<uint>();
         var diagnostics = new List<string>();
         Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.HandleRemainingCommand(ExternalCoreApiConstants.SetCoreOptionsV2,
+            EmulationSdk.EnvironmentProcessing.HandleRemainingCommand(ExternalCoreApiConstants.SetCoreOptionsV2,
                 17, options, unknown, diagnostics,
                 _ => throw new InvalidOperationException("must not format"))));
         Assert.Equal(new[] { ("RegisterVersionTwo", (nint)17) }, options.Calls);

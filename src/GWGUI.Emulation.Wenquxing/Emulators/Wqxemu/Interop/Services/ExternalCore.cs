@@ -90,7 +90,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
                 NativeOptions.CreateCallbackHost
             );
             _input = new InputCallbackHost(configuration.Model, _environment);
-            ExternalCoreEnvironmentFunctions.InstallCallbacks(_exports, this);
+            CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(_exports, this);
             _exports.Initialize();
             _initialized = true;
             if (!_environment.SupportsNoGame || !_exports.LoadGame(nint.Zero))

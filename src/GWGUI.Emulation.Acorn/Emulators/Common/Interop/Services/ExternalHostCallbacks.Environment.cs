@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using System.IO;
@@ -13,13 +14,13 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private bool OnEnvironment(uint command, nint data)
     {
         _environmentCommands.Add(command);
-        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleStatelessCommand(command, data,
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
                 EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))
             return commonResult;
-        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleCallbackCommand(command, data, this, out var callbackResult))
             return callbackResult;
-        return ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, data, _optionHost,
+        return CommonCoreHostFunctions.EnvironmentProcessing.HandleRemainingCommand(command, data, _optionHost,
             _unknownEnvironmentCommands, Diagnostics, EnvironmentFunctions.CreateUnknownCommandDiagnostic);
     }
 

@@ -29,8 +29,8 @@ internal static class CoreFunctions
     internal static ExternalCoreExports ResolveExports(IEmulationCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: false);
 
     internal static void InstallCallbacks(ExternalCoreExports exports, ExternalHostCallbacks callbacks)
-    => ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks);
+    => CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(exports, callbacks);
 
     internal static bool WritePointer(nint destination, nint value)
-        => ExternalCoreEnvironmentFunctions.WritePointer(destination, value);
+        => CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(destination, value);
 }

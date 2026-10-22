@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Nec.Common.Functions.AudioFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
@@ -21,13 +22,13 @@ internal sealed partial class ExternalHostCallbacks
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
-        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,
+        CommonCoreHostFunctions.EnvironmentProcessing.ApplySystemAvInfo(info,
             ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);
     }
 
     private bool ApplyGeometry(nint data)
     {
-        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);
+        return CommonCoreHostFunctions.EnvironmentProcessing.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);
     }
 
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
@@ -37,7 +38,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private bool ApplySystemAvInfo(nint data)
     {
-        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);
+        return CommonCoreHostFunctions.EnvironmentProcessing.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);
     }
 
     private void HandleAudioSample(short left, short right)

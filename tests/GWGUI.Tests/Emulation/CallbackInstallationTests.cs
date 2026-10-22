@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
@@ -36,9 +37,9 @@ public sealed class CallbackInstallationTests
             GetRegion: null!, GetMemoryData: null!, GetMemorySize: null!, GetSerializedSize: null!,
             Serialize: null!, Unserialize: null!);
 
-        if (failAt < 0) ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks);
+        if (failAt < 0) EmulationSdk.EnvironmentProcessing.InstallCallbacks(exports, callbacks);
         else Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks)));
+            EmulationSdk.EnvironmentProcessing.InstallCallbacks(exports, callbacks)));
         var count = failAt < 0 ? 6 : failAt + 1;
         Assert.Equal(Enumerable.Range(0, count).SelectMany(index => new[] { "get " + index, "set " + index }), events);
     }

@@ -17,10 +17,10 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     {
         try
         {
-            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+            if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleLegacyQuery(command, data,
                     2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))
                 return legacyQueryResult;
-            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(command, data,
+            if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleLegacyEnvironmentCommand(command, data,
                     this, true, out var legacyEnvironmentResult))
                 return legacyEnvironmentResult;
             switch (command)
@@ -41,7 +41,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                 case ExternalCoreApiConstants.SetHardwareRender:
                     return HardwareRender.Configure(data);
                 case ExternalCoreApiConstants.GetPreferredHardwareRender:
-                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
+                    return CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
                 case ExternalCoreApiConstants.SetCoreOptionsV2:
                     RegisterVersionTwoOptions(data);
                     return true;
@@ -79,7 +79,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
     {
-        _pixelFormat = ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data,
+        _pixelFormat = CommonCoreHostFunctions.EnvironmentProcessing.ReadLegacyPixelFormat(data,
             value => new NotSupportedException(CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnsupportedPixelFormat, value)));
         return true;
     }
@@ -106,12 +106,12 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)
     {
-        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
+        return CommonCoreHostFunctions.EnvironmentProcessing.SetLogInterface(data, Log);
     }
 
     bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)
     {
-        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);
+        return CommonCoreHostFunctions.EnvironmentProcessing.SetLedInterface(data, Led);
     }
 
     bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data)
@@ -123,17 +123,17 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)
     {
-        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(SystemDirectory));
     }
 
     bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)
     {
-        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(ContentDirectory));
     }
 
     bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)
     {
-        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(SaveDirectory));
     }
 
     bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)
@@ -170,7 +170,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
     {
         var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
-        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
+        _keyboardEvent = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
         return true;
     }
 
@@ -188,7 +188,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
     {
-        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);
+        _ = CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(data, 1);
         return true;
     }
 
@@ -230,13 +230,13 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     {
         if (data == 0) return false;
         var textPointer = Marshal.ReadIntPtr(data);
-        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}"));
+        CommonCoreHostFunctions.EnvironmentProcessing.CopyDiagnostic(textPointer, message => AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}"));
         return true;
     }
 
     private bool CaptureControllerInfo(nint data)
     {
-        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(
+        if (!CommonCoreHostFunctions.EnvironmentProcessing.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(
             data, 16, 64, static (name, id) => new(name, id), static devices => devices,
             rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;
         ControllerPorts = ports;

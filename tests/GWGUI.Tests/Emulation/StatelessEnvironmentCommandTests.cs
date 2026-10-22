@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Constants;
@@ -34,7 +35,7 @@ public sealed class StatelessEnvironmentCommandTests
     public void CapabilitiesKeepAllSixtyFourBits() => WithBuffer(data =>
     {
         const ulong capabilities = 0x9ABCDEF012345678;
-        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(
+        Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleStatelessCommand(
             ExternalCoreApiConstants.GetInputDeviceCapabilities, data, 7, 11, capabilities, out var result));
         Assert.True(result);
         Assert.Equal(capabilities, unchecked((ulong)Marshal.ReadInt64(data)));
@@ -104,7 +105,7 @@ public sealed class StatelessEnvironmentCommandTests
             Marshal.Copy(bytes, 0, allocation, bytes.Length);
             var destination = allocation + IntPtr.Size;
             var expected = unchecked((nint)value);
-            Assert.True(ExternalCoreEnvironmentFunctions.WritePointer(destination, expected));
+            Assert.True(EmulationSdk.EnvironmentProcessing.WritePointer(destination, expected));
             Assert.Equal(expected, Marshal.ReadIntPtr(destination));
             Marshal.Copy(allocation, bytes, 0, bytes.Length);
             Assert.All(bytes.Take(IntPtr.Size), item => Assert.Equal((byte)0xa5, item));
@@ -116,8 +117,8 @@ public sealed class StatelessEnvironmentCommandTests
     [Fact]
     public void PointerRepliesRefuseANullDestination()
     {
-        Assert.False(ExternalCoreEnvironmentFunctions.WritePointer(nint.Zero, nint.Zero));
-        Assert.False(ExternalCoreEnvironmentFunctions.WritePointer(nint.Zero, (nint)(-1)));
+        Assert.False(EmulationSdk.EnvironmentProcessing.WritePointer(nint.Zero, nint.Zero));
+        Assert.False(EmulationSdk.EnvironmentProcessing.WritePointer(nint.Zero, (nint)(-1)));
     }
 
     [Theory]
@@ -127,7 +128,7 @@ public sealed class StatelessEnvironmentCommandTests
     [InlineData(ExternalCoreApiConstants.GetMessageInterfaceVersion, false)]
     public void LegacyNullRepliesPreserveTheOriginalQueryPolicy(uint command, bool expected)
     {
-        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, nint.Zero,
+        Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyQuery(command, nint.Zero,
             7, 11, out var result));
         Assert.Equal(expected, result);
     }
@@ -141,7 +142,7 @@ public sealed class StatelessEnvironmentCommandTests
         WithBuffer(data =>
         {
             var before = unchecked((ulong)Marshal.ReadInt64(data));
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyQuery(command, data,
                 7, 11, out var result));
             Assert.True(result);
             var mask = width == 1 ? 0xffUL : 0xffffffffUL;
@@ -162,7 +163,7 @@ public sealed class StatelessEnvironmentCommandTests
         WithBuffer(data =>
         {
             var before = Marshal.ReadInt64(data);
-            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+            Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleLegacyQuery(command, data,
                 7, 11, out var result));
             Assert.False(result);
             Assert.Equal(before, Marshal.ReadInt64(data));
@@ -176,9 +177,9 @@ public sealed class StatelessEnvironmentCommandTests
         Marshal.WriteInt32(data, value);
         var before = Marshal.ReadInt64(data);
         var actual = EmulationPixelFormat.Rgb1555;
-        Assert.True(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.True(EmulationSdk.EnvironmentProcessing.SetPixelFormat(data, ref actual));
         Assert.Equal(expected, actual);
-        Assert.Equal(expected, ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data,
+        Assert.Equal(expected, EmulationSdk.EnvironmentProcessing.ReadLegacyPixelFormat(data,
             _ => throw new InvalidOperationException("must not create an error")));
         Assert.Equal(before, Marshal.ReadInt64(data));
     });
@@ -188,12 +189,12 @@ public sealed class StatelessEnvironmentCommandTests
     {
         Marshal.WriteInt32(data, 0);
         var actual = EmulationPixelFormat.Rgb565;
-        Assert.True(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.True(EmulationSdk.EnvironmentProcessing.SetPixelFormat(data, ref actual));
         Assert.Equal(EmulationPixelFormat.Rgb1555, actual);
         var error = new NotSupportedException("local profile error");
         var calls = 0;
         Assert.Same(error, Assert.Throws<NotSupportedException>(() =>
-            ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data, value =>
+            EmulationSdk.EnvironmentProcessing.ReadLegacyPixelFormat(data, value =>
             {
                 Assert.Equal(0, value);
                 calls++;
@@ -211,12 +212,12 @@ public sealed class StatelessEnvironmentCommandTests
         Marshal.WriteInt32(data, value);
         var before = Marshal.ReadInt64(data);
         var actual = EmulationPixelFormat.Rgb565;
-        Assert.False(ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref actual));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetPixelFormat(data, ref actual));
         Assert.Equal(EmulationPixelFormat.Rgb565, actual);
         var error = new NotSupportedException("local profile error");
         var calls = 0;
         Assert.Same(error, Assert.Throws<NotSupportedException>(() =>
-            actual = ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data, unsupported =>
+            actual = EmulationSdk.EnvironmentProcessing.ReadLegacyPixelFormat(data, unsupported =>
             {
                 Assert.Equal(value, unsupported);
                 calls++;
@@ -231,12 +232,12 @@ public sealed class StatelessEnvironmentCommandTests
     public void BroadPixelNullRefusalDoesNotModifyTheCurrentFormat()
     {
         var actual = EmulationPixelFormat.Rgb565;
-        Assert.False(ExternalCoreEnvironmentFunctions.SetPixelFormat(0, ref actual));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetPixelFormat(0, ref actual));
         Assert.Equal(EmulationPixelFormat.Rgb565, actual);
     }
 
     private static bool Handle(uint command, nint data, out bool result) =>
-        ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data, 7, 11, 0, out result);
+        EmulationSdk.EnvironmentProcessing.TryHandleStatelessCommand(command, data, 7, 11, 0, out result);
 
     private static void WithBuffer(Action<nint> run)
     {

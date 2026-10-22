@@ -58,7 +58,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
         if (_disposed) return false;
         try
         {
-            if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
+            if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, directory.Pointer); }
             switch (command)
             {
                 case ExternalCoreApiConstants.SetVariables: return _options.Register(data);
@@ -69,10 +69,10 @@ internal sealed class EnvironmentCallbackHost : IDisposable
                 case ExternalCoreApiConstants.SetPerformanceLevel: return data != nint.Zero;
                 case ExternalCoreApiConstants.SetInputDescriptors: return data != nint.Zero;
                 case ExternalCoreApiConstants.SetControllerInfo: return data != nint.Zero;
-                case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
-                case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage);
-                case ExternalCoreApiConstants.GetLogInterface: return ExternalCoreEnvironmentFunctions.SetLogInterface(data, _log);
-                case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; ExternalCoreEnvironmentFunctions.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
+                case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; return CommonCoreHostFunctions.EnvironmentProcessing.WriteBoolean(data, true);
+                case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; return CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage);
+                case ExternalCoreApiConstants.GetLogInterface: return CommonCoreHostFunctions.EnvironmentProcessing.SetLogInterface(data, _log);
+                case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; CommonCoreHostFunctions.EnvironmentProcessing.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
                 case ExternalCoreApiConstants.SetPixelFormat:
                     if (data == nint.Zero) return false;
                     var format = (NativePixelFormat)Marshal.ReadInt32(data);
@@ -89,7 +89,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
 
     private void OnLog(int level, nint text)
     {
-        try { ExternalCoreEnvironmentFunctions.CopyDiagnostic(text, Diagnostics.Add, allowWhitespace: true); }
+        try { CommonCoreHostFunctions.EnvironmentProcessing.CopyDiagnostic(text, Diagnostics.Add, allowWhitespace: true); }
         catch (Exception error) { Failure ??= error; }
     }
 

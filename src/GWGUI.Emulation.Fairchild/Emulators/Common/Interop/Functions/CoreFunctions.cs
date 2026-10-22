@@ -29,11 +29,11 @@ internal static class CoreFunctions
     internal static ExternalCoreExports ResolveExports(IEmulationCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: true);
 
     internal static void InstallCallbacks(ExternalCoreExports exports, ExternalHostCallbacks callbacks)
-    => ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks);
+    => CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(exports, callbacks);
 
     internal static bool WritePointer(nint destination, nint value)
-        => ExternalCoreEnvironmentFunctions.WritePointer(destination, value);
+        => CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(destination, value);
 
     internal static bool WriteInteger(nint destination, int value)
-        => ExternalCoreEnvironmentFunctions.WriteInteger(destination, value);
+        => CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(destination, value);
 }

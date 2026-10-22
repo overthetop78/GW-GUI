@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
 
@@ -15,7 +16,7 @@ internal sealed partial class ExternalHostCallbacks
     private bool CaptureAudioBufferStatus(nint data)
     {
         var pointer = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
-        _audioBufferStatusCallback = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<NativeAudioBufferStatusCallback>(pointer);
+        _audioBufferStatusCallback = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<NativeAudioBufferStatusCallback>(pointer);
         return true;
     }
 

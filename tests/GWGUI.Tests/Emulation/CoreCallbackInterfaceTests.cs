@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
@@ -12,7 +13,7 @@ public sealed class CoreCallbackInterfaceTests
         var source = new PointerSource(read => read == 1 ? nint.Zero : throw new InvalidOperationException("unexpected second read"));
         try
         {
-            Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+            Assert.Null(EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
             Assert.Equal(1, source.Reads);
             Assert.False(source.Disposed);
         }
@@ -32,7 +33,7 @@ public sealed class CoreCallbackInterfaceTests
             var firstPointer = Marshal.GetFunctionPointerForDelegate(first);
             var secondPointer = Marshal.GetFunctionPointerForDelegate(second);
             source = new PointerSource(read => read == 1 ? firstPointer : secondPointer);
-            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read());
+            var converted = EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read());
             Assert.NotNull(converted);
             Assert.Equal(secondPointer, Marshal.GetFunctionPointerForDelegate(converted));
             converted(true, 0, 0, 0);
@@ -57,7 +58,7 @@ public sealed class CoreCallbackInterfaceTests
         {
             var expected = Assert.Throws<ArgumentNullException>(() => Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(nint.Zero));
             var actual = Assert.Throws<ArgumentNullException>(() =>
-                ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+                EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
             Assert.Equal(expected.ParamName, actual.ParamName);
             Assert.Equal(2, source.Reads);
             Assert.False(source.Disposed);
@@ -75,7 +76,7 @@ public sealed class CoreCallbackInterfaceTests
         try
         {
             var actual = Assert.Throws<InvalidOperationException>(() =>
-                ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+                EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
             Assert.Same(expected, actual);
             Assert.Equal(failingRead, source.Reads);
             Assert.False(source.Disposed);
@@ -97,7 +98,7 @@ public sealed class CoreCallbackInterfaceTests
         var expected = new InvalidOperationException("incomplete interface");
         var calls = 0;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () =>
+            EmulationSdk.EnvironmentProcessing.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () =>
             {
                 calls++;
                 return expected;
@@ -118,11 +119,11 @@ public sealed class CoreCallbackInterfaceTests
         try
         {
             var pointer = Marshal.GetFunctionPointerForDelegate(callback);
-            var converted = ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer,
+            var converted = EmulationSdk.EnvironmentProcessing.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer,
                 () => throw new InvalidOperationException("must not create an error"));
             Assert.True(converted(7, (nint)123, 1024));
             Assert.Equal((7u, (nint)123, (nuint)1024), observed);
-            var withoutFactory = ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer, null!);
+            var withoutFactory = EmulationSdk.EnvironmentProcessing.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer, null!);
             Assert.False(withoutFactory(8, nint.Zero, 0));
             Assert.Equal((8u, nint.Zero, (nuint)0), observed);
         }
@@ -134,15 +135,15 @@ public sealed class CoreCallbackInterfaceTests
     {
         var expected = new InvalidOperationException("factory failed");
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () => throw expected));
+            EmulationSdk.EnvironmentProcessing.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () => throw expected));
         Assert.Same(expected, actual);
     }
 
     [Fact]
     public void OptionalDelegateReturnsNullForMissingCallbacks()
     {
-        Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero));
-        Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(nint.Zero));
+        Assert.Null(EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero));
+        Assert.Null(EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.GetImagePath>(nint.Zero));
     }
 
     [Fact]
@@ -153,7 +154,7 @@ public sealed class CoreCallbackInterfaceTests
         try
         {
             var pointer = Marshal.GetFunctionPointerForDelegate(callback);
-            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer);
+            var converted = EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer);
             Assert.NotNull(converted);
             converted(true, 273, 0x1f642, ushort.MaxValue);
             Assert.Equal((true, 273u, 0x1f642u, ushort.MaxValue), observed);
@@ -175,7 +176,7 @@ public sealed class CoreCallbackInterfaceTests
         try
         {
             var pointer = Marshal.GetFunctionPointerForDelegate(callback);
-            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(pointer);
+            var converted = EmulationSdk.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.GetImagePath>(pointer);
             Assert.NotNull(converted);
             Assert.True(converted(5, (nint)123, (nuint)1024));
             Assert.Equal((5u, (nint)123, (nuint)1024), observed);
@@ -188,10 +189,10 @@ public sealed class CoreCallbackInterfaceTests
     [Fact]
     public void NullDestinationsDoNotConvertOrPublishCallbacks()
     {
-        Assert.False(ExternalCoreEnvironmentFunctions.SetLogInterface(nint.Zero, null!));
-        Assert.False(ExternalCoreEnvironmentFunctions.SetLedInterface(nint.Zero, null!));
-        Assert.False(ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint.Zero, null!));
-        Assert.False(ExternalCoreEnvironmentFunctions.SetSensorInterface(nint.Zero, null!, null!));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetLogInterface(nint.Zero, null!));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetLedInterface(nint.Zero, null!));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetRumbleInterface(nint.Zero, null!));
+        Assert.False(EmulationSdk.EnvironmentProcessing.SetSensorInterface(nint.Zero, null!, null!));
     }
 
     [Fact]
@@ -200,7 +201,7 @@ public sealed class CoreCallbackInterfaceTests
         (int Level, nint Format)? observed = null;
         ExternalCoreApi.LogCallback callback = (level, format) => observed = (level, format);
         WithGuardedBuffer<ExternalCoreApi.LogInterface>(
-            pointer => ExternalCoreEnvironmentFunctions.SetLogInterface(pointer, callback),
+            pointer => EmulationSdk.EnvironmentProcessing.SetLogInterface(pointer, callback),
             native =>
             {
                 Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.Log);
@@ -218,7 +219,7 @@ public sealed class CoreCallbackInterfaceTests
         (int Level, nint Format, nint First, nint Second)? observed = null;
         FourArgumentLogCallback callback = (level, format, first, second) => observed = (level, format, first, second);
         WithGuardedBuffer<ExternalCoreApi.LogInterface>(
-            pointer => ExternalCoreEnvironmentFunctions.SetLogInterface(pointer, callback),
+            pointer => EmulationSdk.EnvironmentProcessing.SetLogInterface(pointer, callback),
             native =>
             {
                 Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.Log);
@@ -229,7 +230,7 @@ public sealed class CoreCallbackInterfaceTests
 
     [Fact]
     public void NullDestinationDoesNotConvertAFourArgumentCallback()
-        => Assert.False(ExternalCoreEnvironmentFunctions.SetLogInterface<FourArgumentLogCallback>(nint.Zero, null!));
+        => Assert.False(EmulationSdk.EnvironmentProcessing.SetLogInterface<FourArgumentLogCallback>(nint.Zero, null!));
 
     [Fact]
     public void LedInterfacePublishesTheBorrowedCallback()
@@ -237,7 +238,7 @@ public sealed class CoreCallbackInterfaceTests
         (int Led, int State)? observed = null;
         ExternalCoreApi.SetLedState callback = (led, state) => observed = (led, state);
         WithGuardedBuffer<ExternalCoreApi.LedInterface>(
-            pointer => ExternalCoreEnvironmentFunctions.SetLedInterface(pointer, callback),
+            pointer => EmulationSdk.EnvironmentProcessing.SetLedInterface(pointer, callback),
             native =>
             {
                 Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.SetLedState);
@@ -256,7 +257,7 @@ public sealed class CoreCallbackInterfaceTests
             return port == 3;
         };
         WithGuardedBuffer<ExternalCoreApi.RumbleInterface>(
-            pointer => ExternalCoreEnvironmentFunctions.SetRumbleInterface(pointer, callback),
+            pointer => EmulationSdk.EnvironmentProcessing.SetRumbleInterface(pointer, callback),
             native =>
             {
                 Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.SetState);
@@ -284,7 +285,7 @@ public sealed class CoreCallbackInterfaceTests
             return 0.75f;
         };
         WithGuardedBuffer<ExternalCoreApi.SensorInterface>(
-            pointer => ExternalCoreEnvironmentFunctions.SetSensorInterface(pointer, setState, getInput),
+            pointer => EmulationSdk.EnvironmentProcessing.SetSensorInterface(pointer, setState, getInput),
             native =>
             {
                 Assert.Equal(Marshal.GetFunctionPointerForDelegate(setState), native.SetState);
@@ -308,7 +309,7 @@ public sealed class CoreCallbackInterfaceTests
         {
             Marshal.Copy(expected, 0, allocation, expected.Length);
             Assert.Throws<ArgumentNullException>(() =>
-                ExternalCoreEnvironmentFunctions.SetSensorInterface(allocation, callback, null!));
+                EmulationSdk.EnvironmentProcessing.SetSensorInterface(allocation, callback, null!));
             var actual = new byte[expected.Length];
             Marshal.Copy(allocation, actual, 0, actual.Length);
             Assert.Equal(expected, actual);

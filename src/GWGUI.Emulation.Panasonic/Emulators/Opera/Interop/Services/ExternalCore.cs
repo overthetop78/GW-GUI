@@ -85,7 +85,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             _audio = CommonCoreHostFunctions.NativeResources.CreateAudioCallbackHost();
             _environment = new EnvironmentCallbackHost(_video, _audio, NativeOptions.Prepare(configuration), system, Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"));
             _input = new InputCallbackHost();
-            ExternalCoreEnvironmentFunctions.InstallCallbacks(_exports, this);
+            CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(_exports, this);
             _exports.Initialize();
             _initialized = true;
             LoadContent(configuration.Media.SingleOrDefault(media => media.IsInserted));

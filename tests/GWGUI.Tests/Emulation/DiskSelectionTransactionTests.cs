@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -26,7 +27,7 @@ public sealed class DiskSelectionTransactionTests
             Assert.Equal(failure, operation);
             return error;
         }
-        void Select() => ExternalCoreEnvironmentFunctions.SelectDisk(7,
+        void Select() => EmulationSdk.EnvironmentProcessing.SelectDisk(7,
             () => { calls.Add("get-index"); return noPreviousImage ? uint.MaxValue : 3; },
             () => { calls.Add("get-eject"); return wasEjected; },
             ejected =>
@@ -49,7 +50,7 @@ public sealed class DiskSelectionTransactionTests
         var calls = new List<string>();
         var error = new InvalidOperationException("native callback");
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.SelectDisk(7, () => 3, () => false,
+            EmulationSdk.EnvironmentProcessing.SelectDisk(7, () => 3, () => false,
                 ejected => { calls.Add("eject:" + ejected); return true; },
                 index =>
                 {
@@ -69,7 +70,7 @@ public sealed class DiskSelectionTransactionTests
         var rollbackError = new InvalidOperationException("rollback callback");
         var originalError = new InvalidOperationException("selection refused");
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.SelectDisk(7, () => 3, () => false,
+            EmulationSdk.EnvironmentProcessing.SelectDisk(7, () => 3, () => false,
                 ejected => { calls.Add("eject:" + ejected); return true; },
                 index =>
                 {

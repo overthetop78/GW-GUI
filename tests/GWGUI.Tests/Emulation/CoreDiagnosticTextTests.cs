@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 
@@ -22,7 +23,7 @@ public sealed class CoreDiagnosticTextTests
         var published = new List<string>();
         try
         {
-            var result = ExternalCoreEnvironmentFunctions.CopyDiagnostic(pointer, published.Add, allowWhitespace);
+            var result = EmulationSdk.EnvironmentProcessing.CopyDiagnostic(pointer, published.Add, allowWhitespace);
             Assert.Equal(expected, result);
             if (expected is null) Assert.Empty(published);
             else Assert.Equal(new[] { expected }, published);
@@ -36,7 +37,7 @@ public sealed class CoreDiagnosticTextTests
         var pointer = Marshal.StringToCoTaskMemUTF8("message é 日本語");
         string? copied;
         string? published = null;
-        try { copied = ExternalCoreEnvironmentFunctions.CopyDiagnostic(pointer, text => published = text); }
+        try { copied = EmulationSdk.EnvironmentProcessing.CopyDiagnostic(pointer, text => published = text); }
         finally { Marshal.FreeCoTaskMem(pointer); }
         Assert.Equal("message é 日本語", copied);
         Assert.Same(copied, published);
@@ -48,7 +49,7 @@ public sealed class CoreDiagnosticTextTests
         var pointer = Marshal.StringToCoTaskMemUTF8("\t");
         try
         {
-            Assert.Null(ExternalCoreEnvironmentFunctions.CopyDiagnostic(pointer,
+            Assert.Null(EmulationSdk.EnvironmentProcessing.CopyDiagnostic(pointer,
                 _ => throw new InvalidOperationException("must not publish")));
         }
         finally { Marshal.FreeCoTaskMem(pointer); }
@@ -63,7 +64,7 @@ public sealed class CoreDiagnosticTextTests
         try
         {
             var actual = Assert.Throws<InvalidOperationException>(() =>
-                ExternalCoreEnvironmentFunctions.CopyDiagnostic(pointer, _ => { count++; throw expected; }));
+                EmulationSdk.EnvironmentProcessing.CopyDiagnostic(pointer, _ => { count++; throw expected; }));
             Assert.Same(expected, actual);
             Assert.Equal(1, count);
         }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
@@ -36,7 +37,7 @@ public sealed class EnvironmentCallbackCommandTests
         foreach (var result in new[] { false, true })
         {
             var callbacks = new Callbacks { Result = result };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, (nint)42, callbacks, out var actual));
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleCallbackCommand(command, (nint)42, callbacks, out var actual));
             Assert.Equal(result, actual);
             Assert.Equal(expected, callbacks.LastMethod);
             Assert.Equal((nint)42, callbacks.LastData);
@@ -51,7 +52,7 @@ public sealed class EnvironmentCallbackCommandTests
     [InlineData(ExternalCoreApiConstants.SetVariables)]
     public void LeavesOtherCommandsToTheirExistingOwners(uint command)
     {
-        Assert.False(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, (nint)42, null!, out var result));
+        Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleCallbackCommand(command, (nint)42, null!, out var result));
         Assert.False(result);
     }
 
@@ -64,7 +65,7 @@ public sealed class EnvironmentCallbackCommandTests
         var error = new InvalidOperationException("callback failed");
         var callbacks = new Callbacks { Error = error };
         var observed = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, (nint)42, callbacks, out _));
+            EmulationSdk.EnvironmentProcessing.TryHandleCallbackCommand(command, (nint)42, callbacks, out _));
         Assert.Same(error, observed);
         Assert.Equal(1, callbacks.CallCount);
     }
@@ -74,7 +75,7 @@ public sealed class EnvironmentCallbackCommandTests
     [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
     public void NullDiskCaptureIsRefusedBeforeCallingTheOwner(uint command)
     {
-        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, nint.Zero, null!, out var result));
+        Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleCallbackCommand(command, nint.Zero, null!, out var result));
         Assert.False(result);
     }
 
@@ -86,7 +87,7 @@ public sealed class EnvironmentCallbackCommandTests
         foreach (var expected in new[] { false, true })
         {
             var callbacks = new Callbacks { Result = expected };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, nint.Zero, callbacks, out var result));
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleCallbackCommand(command, nint.Zero, callbacks, out var result));
             Assert.Equal(expected, result);
             Assert.Equal(nint.Zero, callbacks.LastData);
             Assert.Equal(1, callbacks.CallCount);
@@ -106,7 +107,7 @@ public sealed class EnvironmentCallbackCommandTests
             var callbacks = new Callbacks { Result = reply };
             var options = new OptionEnvironmentCommandTests.OptionCommands
                 { Failure = new InvalidOperationException("must not call options") };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 command, 42, callbacks, options, out var result));
             Assert.Equal(reply, result);
             Assert.Equal(expected, callbacks.LastMethod);
@@ -124,7 +125,7 @@ public sealed class EnvironmentCallbackCommandTests
         foreach (var data in new nint[] { 0, 42 })
         {
             var options = new OptionEnvironmentCommandTests.OptionCommands();
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 command, data, null!, options, out var result));
             Assert.True(result);
             Assert.Equal(new[] { (expected, data) }, options.Calls);
@@ -139,7 +140,7 @@ public sealed class EnvironmentCallbackCommandTests
         foreach (var reply in new[] { false, true })
         {
             var options = new OptionEnvironmentCommandTests.OptionCommands { BooleanResult = reply };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 command, 42, null!, options, out var result));
             Assert.Equal(reply, result);
             Assert.Equal(new[] { (expected, (nint)42) }, options.Calls);
@@ -152,7 +153,7 @@ public sealed class EnvironmentCallbackCommandTests
     public void LegacyDiskCaptureKeepsTheExistingNullRefusal(uint command)
     {
         var callbacks = new Callbacks { Error = new InvalidOperationException("must not capture") };
-        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+        Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
             command, nint.Zero, callbacks, null!, out var result));
         Assert.False(result);
         Assert.Equal(0, callbacks.CallCount);
@@ -175,7 +176,7 @@ public sealed class EnvironmentCallbackCommandTests
         ];
         foreach (var command in commands)
         {
-            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 command, nint.Zero, null!, null!, out var result));
             Assert.False(result);
         }
@@ -184,7 +185,7 @@ public sealed class EnvironmentCallbackCommandTests
     [Fact]
     public void LegacyFastForwardOverrideIsRecognizedAsAQuietRefusal()
     {
-        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+        Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
             ExternalCoreApiConstants.SetFastForwardingOverride, nint.Zero, null!, null!, out var result));
         Assert.False(result);
     }
@@ -195,7 +196,7 @@ public sealed class EnvironmentCallbackCommandTests
         var error = new InvalidOperationException("callback failed");
         var callbacks = new Callbacks { Error = error };
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 ExternalCoreApiConstants.GetSystemDirectory, 42, callbacks, null!, out _)));
         Assert.Equal(1, callbacks.CallCount);
     }
@@ -206,7 +207,7 @@ public sealed class EnvironmentCallbackCommandTests
         var error = new InvalidOperationException("options failed");
         var options = new OptionEnvironmentCommandTests.OptionCommands { Failure = error };
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleLegacyCallbackCommand(
+            EmulationSdk.EnvironmentProcessing.TryHandleLegacyCallbackCommand(
                 ExternalCoreApiConstants.SetVariables, 42, null!, options, out _)));
         Assert.Equal(new[] { ("RegisterLegacyVariables", (nint)42) }, options.Calls);
     }
@@ -221,7 +222,7 @@ public sealed class EnvironmentCallbackCommandTests
         {
             var callbacks = new Callbacks { Result = reply };
             var invoked = captureNull || data != 0;
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyEnvironmentCommand(
                 command, data, callbacks, captureNull, out var result));
             Assert.Equal(invoked && reply, result);
             Assert.Equal(invoked ? 1 : 0, callbacks.CallCount);
@@ -238,7 +239,7 @@ public sealed class EnvironmentCallbackCommandTests
         var error = new InvalidOperationException("original callback error");
         var callbacks = new Callbacks { Error = error };
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+            EmulationSdk.EnvironmentProcessing.TryHandleLegacyEnvironmentCommand(
                 command, 0, callbacks, true, out _)));
         Assert.Equal(1, callbacks.CallCount);
         Assert.Equal(nint.Zero, callbacks.LastData);
@@ -254,7 +255,7 @@ public sealed class EnvironmentCallbackCommandTests
         foreach (var reply in new[] { false, true })
         {
             var callbacks = new Callbacks { Result = reply };
-            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleLegacyEnvironmentCommand(
                 command, 0, callbacks, captureNull, out var result));
             Assert.Equal(reply, result);
             Assert.Equal(1, callbacks.CallCount);
@@ -274,7 +275,7 @@ public sealed class EnvironmentCallbackCommandTests
     {
         foreach (var captureNull in new[] { false, true })
         {
-            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyEnvironmentCommand(
+            Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleLegacyEnvironmentCommand(
                 command, 0, null!, captureNull, out var result));
             Assert.False(result);
         }

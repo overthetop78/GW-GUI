@@ -6,6 +6,16 @@ namespace GWGUI.Emulation.Sega.Common.Functions;
 /// <summary>Accès commun au contrat de transport et de durée de vie des hôtes de cœur.</summary>
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit le contrat commun des structures, commandes et callbacks d’environnement natifs.</summary>
+    /// <value>Service emprunté, sans propriétaire de cœur, bibliothèque ou état de session dans cet accès Common.</value>
+    /// <remarks>Les adaptateurs transmettent leurs opérations, bornes et politiques au même traitement SDK.
+    /// Les textes reçus sont copiés ; les pointeurs de code, exports et plages mémoire restent empruntés
+    /// à leurs propriétaires. Le fournisseur conserve ses délégués pendant leur enregistrement et cesse
+    /// de les utiliser avant la libération du code natif. Les buffers temporaires de lecture sont libérés
+    /// par le traitement existant. Les paramètres ref/out, lectures différées et restaurations après erreur
+    /// conservent leur ordre ; le service ne sélectionne pas les capacités à la place du module.</remarks>
+    internal static IEmulationCoreEnvironmentProcessing EnvironmentProcessing => EmulationSdk.EnvironmentProcessing;
+
     /// <summary>Fournit les traitements communs d’options natives et de leurs champs de réglage.</summary>
     /// <value>Service emprunté, sans catalogue ni ressource de session conservés dans cet accès Common.</value>
     /// <remarks>Le module garde ses descriptions, clés, valeurs et choix de présentation. Il fournit leurs

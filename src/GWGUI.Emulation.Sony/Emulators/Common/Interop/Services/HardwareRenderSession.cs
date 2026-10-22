@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
@@ -21,8 +22,8 @@ internal sealed class HardwareRenderSession : IDisposable
         {
             Dispose();
             if (!context.MakeCurrentForCore()) throw new InvalidOperationException();
-            _coreContextReset = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
-            _coreContextDestroy = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
+            _coreContextReset = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
+            _coreContextDestroy = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
             callback.GetCurrentFramebuffer = context.CurrentFramebufferCallback;
             callback.GetProcAddress = context.ProcAddressCallback;
             Marshal.StructureToPtr(callback, data, false);

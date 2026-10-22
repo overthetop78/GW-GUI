@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.IO;
@@ -12,11 +13,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     private bool OnEnvironment(uint command, nint data)
     {
         _environmentCommands.Add(command);
-        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleStatelessCommand(command, data,
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
                 _inputCapabilities, out var commonResult))
             return commonResult;
-        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleCallbackCommand(command, data, this, out var callbackResult))
             return callbackResult;
         switch (command)
         {
@@ -25,7 +26,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             case EnvironmentConstants.SetMinimumAudioLatency:
                 return SetMinimumAudioLatency(data);
             default:
-                return ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, data, _optionHost,
+                return CommonCoreHostFunctions.EnvironmentProcessing.HandleRemainingCommand(command, data, _optionHost,
                     _unknownEnvironmentCommands, Diagnostics, EnvironmentFunctions.CreateUnknownCommandDiagnostic);
         }
     }

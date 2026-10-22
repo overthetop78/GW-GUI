@@ -5,6 +5,9 @@ namespace GWGUI.Emulation;
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
 public static class EmulationSdk
 {
+    /// <summary>Traitements d’environnement des cœurs natifs par contrat public, avec les politiques et propriétaires fournis par Common.</summary>
+    public static IEmulationCoreEnvironmentProcessing EnvironmentProcessing { get; } = new EmulationCoreEnvironmentService();
+
     /// <summary>Traitement des options natives et de leurs champs de réglage, sous son contrat public sans état de session.</summary>
     public static IEmulationCoreOptionProcessing OptionProcessing { get; } = new EmulationCoreOptionService();
 

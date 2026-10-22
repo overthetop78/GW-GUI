@@ -90,7 +90,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
                 NativeOptions.CreateCallbackHost
             );
             _input = new InputCallbackHost(configuration, _environment, _video);
-            ExternalCoreEnvironmentFunctions.InstallCallbacks(_exports, this);
+            CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(_exports, this);
             _exports.Initialize();
             _initialized = true;
             for (var port = ControllerConstants.FirstPort; port < ControllerConstants.PortCount; port++)

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -29,15 +30,15 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (data == nint.Zero) return false;
         KeyboardCallbackPointer = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data).Callback;
-        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer);
+        _keyboardEvent = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer);
         return true;
     }
 
     public bool SetPixelFormat(nint data)
-        => ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref _pixelFormat);
+        => CommonCoreHostFunctions.EnvironmentProcessing.SetPixelFormat(data, ref _pixelFormat);
 
     public bool SetSystemAvInfo(nint data)
-        => ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplySystemAvInfo);
+        => CommonCoreHostFunctions.EnvironmentProcessing.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplySystemAvInfo);
 
     public bool SetGeometry(nint data)
     {
@@ -66,17 +67,17 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
 
     private string? CopyDiagnostic(nint textPointer)
-        => ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, Diagnostics.Add);
+        => CommonCoreHostFunctions.EnvironmentProcessing.CopyDiagnostic(textPointer, Diagnostics.Add);
 
     public bool SetLogInterface(nint data)
-        => ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
+        => CommonCoreHostFunctions.EnvironmentProcessing.SetLogInterface(data, Log);
 
     public bool SetLedInterface(nint data)
-        => ExternalCoreEnvironmentFunctions.SetLedInterface(data, SetLedState);
+        => CommonCoreHostFunctions.EnvironmentProcessing.SetLedInterface(data, SetLedState);
 
     public bool SetRumbleInterface(nint data)
-        => ExternalCoreEnvironmentFunctions.SetRumbleInterface(data, SetRumbleState);
+        => CommonCoreHostFunctions.EnvironmentProcessing.SetRumbleInterface(data, SetRumbleState);
 
     public bool SetSensorInterface(nint data)
-        => ExternalCoreEnvironmentFunctions.SetSensorInterface(data, SetSensorState, GetSensorInput);
+        => CommonCoreHostFunctions.EnvironmentProcessing.SetSensorInterface(data, SetSensorState, GetSensorInput);
 }

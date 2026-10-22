@@ -171,6 +171,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.CoreReleases), typeof(IEmulationCoreReleases))]
     [InlineData(nameof(EmulationSdk.CoreDiagnostics), typeof(IEmulationCoreDiagnostics))]
     [InlineData(nameof(EmulationSdk.OptionProcessing), typeof(IEmulationCoreOptionProcessing))]
+    [InlineData(nameof(EmulationSdk.EnvironmentProcessing), typeof(IEmulationCoreEnvironmentProcessing))]
     [InlineData(nameof(EmulationSdk.NativeResources), typeof(IEmulationNativeResources))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
@@ -264,6 +265,7 @@ public sealed class ArchitectureValidationTests
     [InlineData("EmulationHostProtocolFunctions")]
     [InlineData("EmulationChildProcessLifetime")]
     [InlineData("EmulationCoreOptionFunctions")]
+    [InlineData("ExternalCoreEnvironmentFunctions")]
     public void SharedAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
     {
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
@@ -271,13 +273,15 @@ public sealed class ArchitectureValidationTests
         Assert.Empty(owner.GetMethods(BindingFlags.Public | BindingFlags.Static));
     }
 
-    [Fact]
-    public void OptionProcessingRetainsEveryInternalOperationWithItsSignatureAndDefaults()
+    [Theory]
+    [InlineData(typeof(IEmulationCoreOptionProcessing), "EmulationCoreOptionFunctions", 24)]
+    [InlineData(typeof(IEmulationCoreEnvironmentProcessing), "ExternalCoreEnvironmentFunctions", 34)]
+    public void ProcessingContractsRetainEveryInternalOperationWithItsSignatureAndDefaults(Type contract, string implementation, int operationCount)
     {
-        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationCoreOptionFunctions", throwOnError: true)!;
+        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
         var algorithms = owner.GetMethods(BindingFlags.Static | BindingFlags.NonPublic).Where(method => method.IsAssembly).ToArray();
-        var api = typeof(IEmulationCoreOptionProcessing).GetMethods();
-        Assert.Equal(24, algorithms.Length);
+        var api = contract.GetMethods();
+        Assert.Equal(operationCount, algorithms.Length);
         Assert.Equal(algorithms.Length, api.Length);
         static string Signature(MethodInfo method) => method.Name + "`" + method.GetGenericArguments().Length + "(" +
             string.Join(",", method.GetParameters().Select(parameter => (parameter.IsOut ? "out " : string.Empty) + parameter.ParameterType + " " + parameter.Name +
