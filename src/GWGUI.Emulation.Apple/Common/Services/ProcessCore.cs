@@ -15,7 +15,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Apple.Common.Services;
 
-[SupportedOSPlatform(ProcessCoreConstants.Windows)]
+[SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     private readonly string _hostExecutablePath;

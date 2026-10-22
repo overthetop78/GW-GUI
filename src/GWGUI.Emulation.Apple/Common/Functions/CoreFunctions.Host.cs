@@ -162,11 +162,11 @@ internal static class CoreHostFunctions
     internal static int CalculateVideoSlotCapacity(int frameLength) => CoreHostFunctions.Protocol.CalculateVideoSlotCapacity(
         frameLength, CoreHostConstants.MinimumVideoSlotCapacity, CoreHostConstants.HostName);
 
-    [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video) =>
         CoreHostFunctions.Protocol.WriteResizableSharedFrame(writer, frame, video);
 
-    [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName) =>
         CoreHostFunctions.Protocol.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, CoreHostConstants.MinimumVideoSlotCapacity);
     internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => CoreHostFunctions.Protocol.ReadAudio(reader, CoreHostConstants.HostName);

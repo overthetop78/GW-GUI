@@ -1,9 +1,11 @@
 namespace GWGUI.Emulation.Apple.Common.Constants;
 
 
-// Unique to GWGUI.Emulation.Apple.
+/// <summary>Constantes du transport et de la plateforme de l’hôte de cœur.</summary>
 public static class CoreHostConstants
 {
+    /// <summary>Identifiant de plateforme utilisé par les annotations des services réservés à Windows.</summary>
+    internal const string Windows = "windows";
     public const string CommandLineArgument = "--apple-core-host";
     internal const string HostName = "Apple";
     internal const string PipePrefix = "gwgui-apple-";

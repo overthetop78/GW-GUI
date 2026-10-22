@@ -12,7 +12,7 @@ namespace GWGUI.Emulation.Apple.Common.Services;
 
 public static class CoreHost
                 {
-    [SupportedOSPlatform(CoreHostValues.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
     {
         ArgumentNullException.ThrowIfNull(createCore);
@@ -80,7 +80,7 @@ public static class CoreHost
             }, CoreHostFunctions.WriteLedStates);
     }
 
-    [SupportedOSPlatform(CoreHostValues.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
