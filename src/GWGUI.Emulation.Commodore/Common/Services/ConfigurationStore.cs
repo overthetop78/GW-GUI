@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using System.Text.Json;
@@ -23,17 +24,17 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-        => EmulationSdk.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName,
+        => CommonCoreHostFunctions.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName,
             static json => JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions),
             static value => value.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion,
             value => ResolvePaths(value.EnsureId()), cancellationToken);
 
     public Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
-        => EmulationSdk.ConfigurationFiles.WriteDocumentAsync(SaveGate, _directory, configuration,
+        => CommonCoreHostFunctions.ConfigurationFiles.WriteDocumentAsync(SaveGate, _directory, configuration,
             static value => value.EnsureId() with { SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion },
             static value => value.Id, StorePaths, JsonOptions, cancellationToken);
 
-    public void Delete(Guid id) => EmulationSdk.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
+    public void Delete(Guid id) => CommonCoreHostFunctions.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with
     {
@@ -52,8 +53,8 @@ public sealed class ConfigurationStore
     };
 
     private string? StorePath(string? path)
-        => EmulationSdk.ConfigurationFiles.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
+        => CommonCoreHostFunctions.ConfigurationFiles.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 
     private string? ResolvePath(string? path)
-        => EmulationSdk.ConfigurationFiles.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
+        => CommonCoreHostFunctions.ConfigurationFiles.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 }

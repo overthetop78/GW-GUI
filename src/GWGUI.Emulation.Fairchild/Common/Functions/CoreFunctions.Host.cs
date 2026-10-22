@@ -12,6 +12,10 @@ namespace GWGUI.Emulation.Fairchild.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit les opérations de configuration et de fichiers par leur interface publique commune.</summary>
+    /// <remarks>Le module conserve ses chemins, verrous, projections et annulation ; le service possède les flux qu’il ouvre.</remarks>
+    internal static IEmulationConfigurationFiles ConfigurationFiles => EmulationSdk.ConfigurationFiles;
+
     /// <summary>Fournit les sauvegardes et empreintes partagées par leur interface publique.</summary>
     /// <remarks>Le module choisit les données à identifier et conserve la propriété des flux empruntés.
     /// Les algorithmes, la sérialisation canonique et les vérifications de format restent dans Emulation.</remarks>

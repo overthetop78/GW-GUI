@@ -1,3 +1,5 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
+using System.Globalization;
 using EmulatorCatalogFunctions = GWGUI.Emulation.Panasonic.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
@@ -41,17 +43,17 @@ internal sealed class CoreReleaseService
         var extracted = paths.LibraryPath + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
-            await CoreReleaseFunctions.Releases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
+            await CoreReleaseFunctions.Releases.InstallLibraryAsync(() => CoreReleaseFunctions.Releases.DownloadAsync(_httpClient, release.DownloadUri, download, progress is null ? null : (written, total) => progress.Report(new CoreInstallProgress(written, total)), cancellationToken), () => CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, entry.DllName, extracted, name => string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.MissingExpectedLibraryFormat, name)), archiveSize =>
             {
                 var manifest = EmulatorCatalogFunctions.Diagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
                     archiveSize, extracted);
                 EmulatorCatalogFunctions.Diagnostics.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
                     static () => CoreReleaseErrors.InvalidArchitecture);
                 return manifest;
-            }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
+            }, () => CoreReleaseFunctions.Releases.ReplaceLibraryAtomically(extracted, paths.LibraryPath, path => string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.InstalledLibraryLockedFormat, path)), manifest => CoreReleaseFunctions.Releases.WriteJsonAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
             {
                 var activeManifestPath = CoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
-                await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
+                await CoreReleaseFunctions.Releases.WriteJsonAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
             }, archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
             return paths;
         }
@@ -59,11 +61,11 @@ internal sealed class CoreReleaseService
         {
             try
             {
-                CoreReleaseFunctions.DeleteIfExists(download);
+                CommonCoreHostFunctions.ConfigurationFiles.DeleteIfExists(download);
             }
             finally
             {
-                CoreReleaseFunctions.DeleteIfExists(extracted);
+                CommonCoreHostFunctions.ConfigurationFiles.DeleteIfExists(extracted);
             }
         }
     }

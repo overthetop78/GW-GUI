@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 using System.IO;
 
@@ -16,7 +17,7 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-        => EmulationSdk.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationPaths,
+        => CommonCoreHostFunctions.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationPaths,
             static root => ConfigurationStoreFunctions.Deserialize(root),
             document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);
 
@@ -24,7 +25,7 @@ public sealed class ConfigurationStore
     {
         ArgumentNullException.ThrowIfNull(configuration);
         ConfigurationFunctions.Validate(configuration);
-        await EmulationSdk.ConfigurationFiles.WithSaveGateAsync(SaveGate, () =>
+        await CommonCoreHostFunctions.ConfigurationFiles.WithSaveGateAsync(SaveGate, () =>
         {
             var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);
             var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
@@ -35,8 +36,8 @@ public sealed class ConfigurationStore
     public void Delete(Guid id)
     {
         if (id == Guid.Empty) throw new ArgumentException(nameof(id));
-        EmulationSdk.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
+        CommonCoreHostFunctions.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
 
-    private IEnumerable<string> ConfigurationPaths() => EmulationSdk.ConfigurationFiles.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);
+    private IEnumerable<string> ConfigurationPaths() => CommonCoreHostFunctions.ConfigurationFiles.EnumerateDocumentPaths(_directory, ConfigurationStoreConstants.MachineFileName);
 }

@@ -24,16 +24,7 @@ public sealed class ExternalCoreInstaller
 
     public string LibraryPath => Path.Combine(_directory, _definition.LibraryFile);
 
-    public bool IsInstalled
-    {
-        get
-        {
-            if (!File.Exists(LibraryPath)) return false;
-            try { CoreReleaseService.VerifyWindowsX64Library(LibraryPath); return true; }
-            catch (IOException) { return false; }
-            catch (InvalidDataException) { return false; }
-        }
-    }
+    public bool IsInstalled => EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(LibraryPath, CoreReleaseService.VerifyWindowsX64Library) is not null;
 
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {
@@ -66,6 +57,6 @@ public sealed class ExternalCoreInstaller
     internal static async Task WriteManifestAsync(string version, string source, string libraryPath, string sha256, CancellationToken cancellationToken)
     {
         var manifest = new { version, source, librarySize = new FileInfo(libraryPath).Length, librarySha256 = sha256, architecture = CoreReleaseConstants.X64, installedUtc = DateTimeOffset.UtcNow };
-        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }), cancellationToken).ConfigureAwait(false);
+        await CoreReleaseFunctions.Releases.WriteJsonAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), manifest, new JsonSerializerOptions { WriteIndented = true }, cancellationToken).ConfigureAwait(false);
     }
 }

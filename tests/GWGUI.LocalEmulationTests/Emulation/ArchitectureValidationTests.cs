@@ -814,6 +814,23 @@ public sealed class ArchitectureValidationTests
         var implementation = EmulationSdk.CoreReleases.GetType();
         Assert.False(implementation.IsVisible);
         Assert.Null(implementation.GetMethod("ReadJsonAsync", BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance));
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var module in modules)
+        {
+            var factory = Assert.Single(module.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = module.GetType(root + ".Common.Functions.CoreReleaseFunctions", throwOnError: true)!;
+            var flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+            var gateway = Assert.Single(common.GetProperties(flags));
+            Assert.Equal("Releases", gateway.Name);
+            Assert.Equal(typeof(IEmulationCoreReleases), gateway.PropertyType);
+            Assert.Same(EmulationSdk.CoreReleases, gateway.GetValue(null));
+            Assert.Equal("get_Releases", Assert.Single(common.GetMethods(flags)).Name);
+        }
     }
 
     [Fact]

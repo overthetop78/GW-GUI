@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Example.Common.Constants;
@@ -48,7 +49,7 @@ public sealed class ConfigurationStore
     /// insensible à la casse. Il ignore les documents JSON illisibles ou invalides selon sa politique commune,
     /// mais propage l’annulation. La restauration résout les chemins et vérifie le schéma du module.</remarks>
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-        => EmulationSdk.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName, ConfigurationStoreFunctions.Deserialize,
+        => CommonCoreHostFunctions.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName, ConfigurationStoreFunctions.Deserialize,
             document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);
 
     /// <summary>Enregistre un document de configuration sous le verrou d’écriture partagé.</summary>
@@ -61,7 +62,7 @@ public sealed class ConfigurationStore
     public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        await EmulationSdk.ConfigurationFiles.WithSaveGateAsync(SaveGate, () =>
+        await CommonCoreHostFunctions.ConfigurationFiles.WithSaveGateAsync(SaveGate, () =>
         {
             // Les contrôles de présence sont effectués sous le verrou, juste avant la projection et l’écriture du document.
             ConfigurationFunctions.ValidateForSave(configuration);
@@ -78,7 +79,7 @@ public sealed class ConfigurationStore
     public void Delete(Guid id)
     {
         if (id == Guid.Empty) throw new ArgumentException(nameof(id));
-        EmulationSdk.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
+        CommonCoreHostFunctions.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
 
 }
