@@ -7063,3 +7063,34 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/SettingsPresentationTests.cs : utiliser PeripheralCategory à la place de ControllerType avec les mêmes scénarios et assertions.
   - [x] Vérifier les valeurs et raccordements conservés.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le nom commun des catégories dans les modules qui en déclarent, sans ancien type parallèle ; comparer les sources avant et après renommage, exécuter les contrôles locaux puis construire et vérifier le Debug avec les 23 modules.
+
+
+## Options du runtime par le même contrat Common dans les 24 familles
+
+- [x] Raccorder les six familles restantes à GetRuntimeOptions, en conservant les valeurs et le comportement sans adaptateur.
+  - [x] Raccorder les options Amstrad.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Raccorder les options Commodore.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Raccorder les options Microsoft.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Raccorder les options Nec.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Raccorder les options Nintendo.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Raccorder les options Sega.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : déclarer GetRuntimeOptions(MachineConfiguration configuration) avec la signature et la documentation générique du contrat Example.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : implémenter GetRuntimeOptions avec les options actuellement retournées par le module, en conservant les règles de copie et de comparaison.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Engine.cs : appeler GetRuntimeOptions sur l’adaptateur sélectionné ; conserver le résultat actuel sans adaptateur, la validation du type de configuration et les règles de copie.
+  - [x] Vérifier les contrats et les résultats existants.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier la déclaration GetRuntimeOptions dans les 24 contrats et son implémentation par leurs fabriques réelles ; exercer les valeurs et le cas sans adaptateur des six familles, puis construire et vérifier le Debug avec tous les modules.

@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public abstract EmulatorCatalogEntry CatalogEntry { get; }

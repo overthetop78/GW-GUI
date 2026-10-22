@@ -109,8 +109,12 @@ public sealed class Engine
         return current with { Options = options };
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        new Dictionary<string, string>((configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration))).Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = SelectedAdapter(current);
+        return adapter?.GetRuntimeOptions(current) ?? new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
+    }
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration)
     {

@@ -10,6 +10,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 
 internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
 {
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
+
     public bool SupportsPointer(MachineConfiguration configuration) => true;
     public bool SupportsVideoSettings => true;
     private static readonly CoreDefinition Core = new(EmulatorConstants.Id,

@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories;
 
 internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation, IEmulatorStorageSettings
 {
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
+
     public void ValidateConfiguration(MachineConfiguration configuration) => Validate(configuration);
 
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration)

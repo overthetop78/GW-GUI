@@ -12,4 +12,8 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     int GetControllerPortCount(MachineConfiguration configuration);
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
     IReadOnlySet<EmulationKey> SoftResetKeys { get; }
+    /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
+    /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
+    /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>
+    IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
 }

@@ -123,7 +123,12 @@ public sealed class Engine
         };
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => configuration is MachineConfiguration nintendo ? nintendo.Options ?? new Dictionary<string, string>() : throw new ArgumentException(nameof(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = string.IsNullOrEmpty(current.EmulatorId) ? null : _adapters.GetValueOrDefault(current.EmulatorId);
+        return adapter?.GetRuntimeOptions(current) ?? current.Options ?? new Dictionary<string, string>();
+    }
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 

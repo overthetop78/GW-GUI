@@ -449,6 +449,57 @@ public sealed class ArchitectureValidationTests
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.ControllerType"));
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var runtimeOptions = adapterContract.GetMethod("GetRuntimeOptions")!;
+            Assert.NotNull(runtimeOptions);
+            Assert.Equal(typeof(IReadOnlyDictionary<string, string>), runtimeOptions.ReturnType);
+            var runtimeConfiguration = Assert.Single(runtimeOptions.GetParameters());
+            Assert.Equal("configuration", runtimeConfiguration.Name);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(runtimeConfiguration.ParameterType));
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapterContract.IsAssignableFrom(type)))
+                Assert.Contains(implementation.GetInterfaceMap(adapterContract).TargetMethods, method => method.Name == "GetRuntimeOptions" && !method.IsAbstract);
+            if (root is "GWGUI.Emulation.Amstrad" or "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Microsoft" or "GWGUI.Emulation.Nec" or "GWGUI.Emulation.Nintendo" or "GWGUI.Emulation.Sega")
+            {
+                var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+                var engine = Activator.CreateInstance(engineType)!;
+                var engineOptions = engineType.GetMethod("RuntimeOptions")!;
+                var adapters = ((System.Collections.IEnumerable)engineType.GetField("_adapters", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(engine)!).Cast<object>()
+                    .Select(pair => pair.GetType().GetProperty("Value")!.GetValue(pair)!).ToArray();
+                var constructor = Assert.Single(runtimeConfiguration.ParameterType.GetConstructors());
+                var parameters = constructor.GetParameters();
+                var optionsIndex = Array.FindIndex(parameters, parameter => parameter.Name == "Options");
+                Assert.True(optionsIndex >= 0);
+                foreach (var adapter in adapters.Cast<object?>().Append(null))
+                {
+                    var definition = adapter is null ? null : (EmulationEmulatorDefinition)adapter.GetType().GetProperty("Definition")!.GetValue(adapter)!;
+                    var model = definition?.MachineIds.First() ?? "runtime-options";
+                    object selection = parameters[1].ParameterType.IsEnum
+                        ? adapter is null ? Enum.ToObject(parameters[1].ParameterType, int.MaxValue) : Enum.Parse(parameters[1].ParameterType, (string)adapter.GetType().GetProperty("EmulatorKey")!.GetValue(adapter)!)
+                        : definition?.Id ?? "runtime-options";
+                    foreach (var options in new IReadOnlyDictionary<string, string>?[] { null, new Dictionary<string, string>(StringComparer.Ordinal) { ["MixedCase"] = "1", ["mixedcase"] = "2" } })
+                    {
+                        var arguments = parameters.Select(parameter => parameter.HasDefaultValue ? parameter.DefaultValue : null).ToArray();
+                        arguments[0] = model;
+                        arguments[1] = selection;
+                        arguments[optionsIndex] = options;
+                        var configuration = constructor.Invoke(arguments);
+                        var actual = Assert.IsAssignableFrom<IReadOnlyDictionary<string, string>>(engineOptions.Invoke(engine, [configuration]));
+                        Assert.Equal(options?.Count ?? 0, actual.Count);
+                        foreach (var pair in options ?? new Dictionary<string, string>()) Assert.Equal(pair.Value, actual[pair.Key]);
+                        if (options is not null)
+                        {
+                            if (root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Microsoft")
+                            {
+                                Assert.NotSame(options, actual);
+                                var copy = Assert.IsType<Dictionary<string, string>>(actual);
+                                copy["MixedCase"] = "changed";
+                                Assert.Equal("1", options["MixedCase"]);
+                            }
+                            else Assert.Same(options, actual);
+                        }
+                    }
+                }
+            }
             var peripheral = assembly.GetType(root + ".Common.Machines.Common.Enums.PeripheralCategory");
             if (peripheral is not null)
             {

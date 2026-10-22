@@ -10,6 +10,9 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     protected abstract CoreDefinition CoreDefinition { get; }

@@ -6,4 +6,8 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
 
     /// <summary>Réutilise la description Common existante pour le contrat commun de réglages.</summary>
     IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context) => SettingsDescriptionFunctions.Create(configuration);
+    /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
+    /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
+    /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>
+    IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
 }
