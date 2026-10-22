@@ -3,7 +3,7 @@ using GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;
 
 namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Factories;
 
-internal sealed class AppleWinMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorSettingsApplication, IEmulatorStorageConfiguration, IEmulatorPointerCapabilities, IEmulatorConfiguration, IEmulatorRuntimePolicy
+internal sealed class AppleWinMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorSettingsApplication, IEmulatorStorageConfiguration, IEmulatorPointerCapabilities, IEmulatorConfigurationOptions, IEmulatorRuntimePolicy
 {
     public bool SupportsPointer(MachineConfiguration configuration) => configuration.Options.GetValueOrDefault(OptionConstants.Slot4) == ExpansionConstants.Mouse;
     public MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ExpansionFunctions.ApplySettings(configuration, values);

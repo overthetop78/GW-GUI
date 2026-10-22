@@ -27,7 +27,7 @@ public sealed class AdapterPresentationPolicyTests
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
             Options: new Dictionary<string, string> { [PceeOptions.MultitapKey] = mode });
         var expected = indexes.Split(',').Select(value => int.Parse(value, System.Globalization.CultureInfo.InvariantCulture)).ToArray();
-        IEmulatorMediaAdapter adapter = new Pcee2MachineFactory();
+        IEmulatorStorageSettings adapter = new Pcee2MachineFactory();
         Assert.Equal(expected, adapter.GetMemoryCardIndexes(configuration));
         var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices
             .Where(device => device.MediaType == EmulationMediaType.MemoryCard).ToArray();
@@ -53,7 +53,7 @@ public sealed class AdapterPresentationPolicyTests
         });
         Assert.Equal(inserted ? "disabled" : "enabled", changed.Options![key]);
         Assert.Equal("preserved", changed.Options["unrelated"]);
-        Assert.Equal(key, ((IEmulatorMediaAdapter)new PpssppMachineFactory()).MemoryStickInsertedOptionKey);
+        Assert.Equal(key, ((IEmulatorStorageSettings)new PpssppMachineFactory()).MemoryCardInsertedOptionKey);
     }
 
     [Fact]

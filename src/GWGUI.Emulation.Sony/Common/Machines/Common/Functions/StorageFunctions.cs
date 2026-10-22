@@ -10,7 +10,7 @@ internal static class StorageSettingsFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
-        var mediaAdapter = adapter as IEmulatorMediaAdapter;
+        var mediaAdapter = adapter as IEmulatorStorageSettings;
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
         if (model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
@@ -41,7 +41,7 @@ internal static class StorageSettingsFunctions
         {
             var discFields = (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? [];
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                mediaAdapter?.SupportedContentExtensions ?? [],
+                (adapter as IEmulatorContentFormats)?.SupportedContentExtensions ?? [],
                 RequiresMachineRecreation: true,
                 DisplayLabel: model.Id == ModelConstants.Psp ? "UMD" : model.Id == ModelConstants.PlayStation2 ? "DVD" : model.Id == ModelConstants.PlayStation3 ? "Blu-ray" : StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
                 ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : model.Id == ModelConstants.PlayStation2 ? "Emulation.Sony.Storage.DVD" : model.Id == ModelConstants.PlayStation3 ? "Emulation.Sony.Storage.BluRay" : StorageSettingsFunctionsConstants.CdModelResource,
@@ -52,13 +52,13 @@ internal static class StorageSettingsFunctions
                     : model.Id == ModelConstants.Psp ? "Emulation.Sony.Storage.UMD.Device"
                     : model.Id == ModelConstants.PlayStation3 ? "Emulation.Sony.Storage.BluRay.Device" : null));
         }
-        devices.AddRange(mediaAdapter?.GetStorageDevices(configuration) ?? []);
+        devices.AddRange(mediaAdapter?.DescribeMediaDevices(configuration) ?? []);
         devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var configured = devices.Where(device => device.Slot.Category switch
         {
             EmulationMediaCategory.MemoryCard => model.Id == ModelConstants.Psp
-                ? (mediaAdapter?.MemoryStickInsertedOptionKey is not { } insertedKey || options.GetValueOrDefault(insertedKey, "enabled") != "disabled")
+                ? (mediaAdapter?.MemoryCardInsertedOptionKey is not { } insertedKey || options.GetValueOrDefault(insertedKey, "enabled") != "disabled")
                 : device.IsPermanent || model.HasBuiltInMemoryCard && device.Slot == EmulationMediaSlot.MemoryCard0
                 || mounted.Any(media => media.Slot == device.Slot)
                 || OptionBool(options, StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index),
@@ -80,8 +80,8 @@ internal static class StorageSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var mediaAdapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId) as IEmulatorMediaAdapter;
-        var adapterDevices = mediaAdapter?.GetStorageDevices(configuration) ?? [];
+        var mediaAdapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId) as IEmulatorStorageSettings;
+        var adapterDevices = mediaAdapter?.DescribeMediaDevices(configuration) ?? [];
         var hardDisks = settings.MountedMedia.Where(item => item.Type == EmulationMediaType.HardDisk && settings.ConfiguredSlots.Contains(item.Slot)).ToArray();
         if (hardDisks.Select(item => item.Slot).Distinct().Count() != hardDisks.Length) throw new InvalidDataException(nameof(settings));
         foreach (var disk in hardDisks)
@@ -112,7 +112,7 @@ internal static class StorageSettingsFunctions
         {
             [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0).ToString()
         };
-        if (model.Id == ModelConstants.Psp && mediaAdapter?.MemoryStickInsertedOptionKey is { } insertedKey)
+        if (model.Id == ModelConstants.Psp && mediaAdapter?.MemoryCardInsertedOptionKey is { } insertedKey)
             options[insertedKey] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.MemoryCard0) ? "enabled" : "disabled";
         foreach (var device in settings.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard))
             options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index] = settings.ConfiguredSlots.Contains(device.Slot).ToString();
@@ -158,10 +158,10 @@ internal static class StorageSettingsFunctions
         return configuration with { Media = media, Options = options };
     }
 
-    private static IEnumerable<int> MemoryCardIndexes(MachineConfiguration configuration, IEmulatorMediaAdapter? adapter) =>
+    private static IEnumerable<int> MemoryCardIndexes(MachineConfiguration configuration, IEmulatorStorageSettings? adapter) =>
         adapter?.GetMemoryCardIndexes(configuration) ?? Enumerable.Range(0, MemoryCardCount(configuration, adapter));
 
-    private static int MemoryCardCount(MachineConfiguration configuration, IEmulatorMediaAdapter? adapter) => adapter?.GetMemoryCardCount(configuration) ?? (configuration.Model == ModelConstants.Psp ? 1 : StorageSettingsFunctionsConstants.MemoryCardCount);
+    private static int MemoryCardCount(MachineConfiguration configuration, IEmulatorStorageSettings? adapter) => adapter?.GetMemoryCardCount(configuration) ?? (configuration.Model == ModelConstants.Psp ? 1 : StorageSettingsFunctionsConstants.MemoryCardCount);
 
     private static EmulationMediaDevice MemoryCard(int index, bool ps2 = false)
     {

@@ -10,7 +10,7 @@ using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Con
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorMediaAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
@@ -36,7 +36,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
         }
     }
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
-    public virtual IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => [];
+    public virtual IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => [];
     public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
         type == ControllerType.Keyboard ? ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
             .Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Sony.Keyboard.Key." + key, key.ToString())).ToArray() : null;
@@ -70,7 +70,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;
     public virtual IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => Enumerable.Range(0, GetMemoryCardCount(configuration));
     public virtual string? GetMemoryCardDisplayLabel(int index) => null;
-    public virtual string? MemoryStickInsertedOptionKey => null;
+    public virtual string? MemoryCardInsertedOptionKey => null;
     public virtual bool HasFixedMemoryCardDirectories => false;
     public virtual string? GetMemoryCardDirectory(int index) => null;
     public string EmulatorId => CoreDefinition.Id;

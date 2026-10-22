@@ -42,7 +42,6 @@ internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
     string? GetMemoryCardDisplayLabel(int index);
 
     /// <summary>Clé native indiquant l’insertion d’une carte mémoire, ou null lorsque le cœur gère autrement son insertion.</summary>
-    /// <remarks>Ce nom commun reprend également le rôle nommé MemoryStickInsertedOptionKey par certains adaptateurs.</remarks>
     string? MemoryCardInsertedOptionKey { get; }
 
     /// <summary>Indique si le protocole impose des noms de dossiers fixes pour ses cartes mémoire.</summary>

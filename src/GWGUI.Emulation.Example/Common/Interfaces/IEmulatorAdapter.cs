@@ -79,9 +79,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <remarks>Cette déclaration décrit les touches ; le propriétaire du runtime gère leur appui puis leur relâchement.</remarks>
     IReadOnlySet<EmulationKey> SoftResetKeys { get; }
 
-    /// <summary>Extensions de contenus annoncées par l’adaptateur sans démarrer une machine.</summary>
-    IReadOnlyList<string> SupportedContentExtensions { get; }
-
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
     /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>
@@ -93,8 +90,4 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <remarks>Les fichiers sources de l’utilisateur restent empruntés et ne sont pas supprimés par cette opération.</remarks>
     void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
 
-    /// <summary>Décrit les fichiers nécessaires au chargement d’un média, notamment les pistes référencées par un conteneur.</summary>
-    /// <param name="path">Chemin du média principal.</param>
-    /// <returns>Chemins des dépendances du média ; une liste vide indique qu’aucun fichier associé n’est nécessaire.</returns>
-    IReadOnlyList<string> GetMediaDependencies(string path);
 }

@@ -22,7 +22,7 @@ internal sealed class Rpcs3MachineFactory : CoreMachineFactory
                 RequiresRestart: true, RefreshSettingsOnChange: true, IsGlobalControllerOption: true)
         ])
     ];
-    public override IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
+    public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
     public override IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
         category == EmulationMediaCategory.CompactDiscDrive ? Functions.StorageFunctions.Fields(configuration, true) : [];
 

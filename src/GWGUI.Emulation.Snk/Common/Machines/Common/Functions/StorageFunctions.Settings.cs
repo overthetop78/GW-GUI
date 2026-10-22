@@ -8,7 +8,7 @@ internal static class StorageSettingsFunctions
     {
         if (configuration.Core == Emulator.None)
             return new(Array.Empty<EmulationMediaDevice>(), Array.Empty<EmulationMediaSlot>(), Array.Empty<EmulationMedia>());
-        var devices = new Engine().Adapter(configuration)is IEmulatorMediaAdapter adapter ? adapter.DescribeMediaDevices(configuration).ToArray() : Array.Empty<EmulationMediaDevice>();
+        var devices = new Engine().Adapter(configuration)is IEmulatorMediaCapabilities adapter ? adapter.DescribeMediaDevices(configuration).ToArray() : Array.Empty<EmulationMediaDevice>();
         return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 

@@ -12,6 +12,31 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Theory]
+    [InlineData("Apple", "IEmulatorConfigurationOptions", "IEmulatorConfiguration", "InitializeOptions")]
+    [InlineData("Apple", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "GetMediaDependencies")]
+    [InlineData("Snk", "IEmulatorInitialContentSettings", "IEmulatorMediaAdapter", "ResolveInitialContentPaths")]
+    [InlineData("Sony", "IEmulatorStorageSettings", "IEmulatorMediaAdapter", "GetMemoryCardCount")]
+    [InlineData("Sony", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "get_SupportedContentExtensions")]
+    public void CommonRolesUseTheSameContractAndOperationNamesAsExample(string family, string contractName, string previousName, string operation)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{contractName}", throwOnError: true)!;
+        var example = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly
+            .GetType("GWGUI.Emulation.Example.Common.Interfaces." + contractName, throwOnError: true)!;
+        Assert.Null(assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{previousName}"));
+        var method = contract.GetMethod(operation)!;
+        var reference = example.GetMethod(operation)!;
+        Assert.NotNull(method);
+        Assert.NotNull(reference);
+        Assert.Equal(reference.ReturnType, method.ReturnType);
+        Assert.Equal(reference.GetParameters().Select(parameter => parameter.Name), method.GetParameters().Select(parameter => parameter.Name));
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+    }
+
     [Fact]
     public void SettingsOptionProvidersUseTheSameOperationAndParametersAsExample()
     {
@@ -163,7 +188,7 @@ public sealed class ArchitectureValidationTests
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
         var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorContentFormats", throwOnError: true)!;
-        var method = Assert.Single(contract.GetMethods());
+        var method = Assert.Single(contract.GetMethods(), method => method.Name == "ResolveContentExtensions");
         Assert.Equal("ResolveContentExtensions", method.Name);
         Assert.Equal(typeof(IReadOnlySet<string>), method.ReturnType);
         Assert.Equal(new[] { typeof(IReadOnlySet<string>), typeof(bool) }, method.GetParameters().Select(parameter => parameter.ParameterType));
@@ -284,7 +309,7 @@ public sealed class ArchitectureValidationTests
                 }
             }
             if (root == "GWGUI.Emulation.Apple" && contractName == "IEmulatorConfigurationValidation")
-                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfiguration")!.GetInterfaces());
+                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions")!.GetInterfaces());
             if (root == "GWGUI.Emulation.Example")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
             if (contractName == "IEmulatorMediaCapabilities")
@@ -292,7 +317,7 @@ public sealed class ArchitectureValidationTests
                 if (root is "GWGUI.Emulation.Acorn" or "GWGUI.Emulation.Example")
                     Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings")!.GetInterfaces());
                 if (root == "GWGUI.Emulation.Snk")
-                    Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorMediaAdapter")!.GetInterfaces());
+                    Assert.Contains(contract, assembly.GetType(root + ".Emulators.Common.Factories.MachineFactory")!.GetInterfaces());
                 if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
                     Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings"));
             }

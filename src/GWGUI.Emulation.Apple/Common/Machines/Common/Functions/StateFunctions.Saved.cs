@@ -60,7 +60,7 @@ internal static class SavedStateFunctions
 
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        var mediaAdapter = new Engine().Adapter(configuration) as IEmulatorMediaAdapter;
+        var mediaAdapter = new Engine().Adapter(configuration) as IEmulatorContentFormats;
         var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path, mediaAdapter)))
             .Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path, mediaAdapter))))
@@ -85,7 +85,7 @@ internal static class SavedStateFunctions
         input.CaptureMouse,
         input.ReleaseMouseKey.ToString());
 
-    private static string HashPath(string path, IEmulatorMediaAdapter? adapter)
+    private static string HashPath(string path, IEmulatorContentFormats? adapter)
     {
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })

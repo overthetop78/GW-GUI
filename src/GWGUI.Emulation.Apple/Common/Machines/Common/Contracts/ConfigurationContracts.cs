@@ -36,7 +36,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
         Folders = folders ?? new FolderConfiguration();
-        if (new Engine().SelectedAdapter(this) is IEmulatorConfiguration adapter) adapter.InitializeOptions(this, (Dictionary<string, string>)Options);
+        if (new Engine().SelectedAdapter(this) is IEmulatorConfigurationOptions adapter) adapter.InitializeOptions(this, (Dictionary<string, string>)Options);
         ConfigurationFunctions.Validate(this);
     }
 

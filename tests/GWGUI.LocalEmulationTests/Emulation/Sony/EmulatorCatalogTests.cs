@@ -141,14 +141,14 @@ public sealed class EmulatorCatalogTests
     {
         var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == id);
         var firmware = Assert.IsAssignableFrom<IEmulatorFirmwareSettings>(adapter);
-        var media = Assert.IsAssignableFrom<IEmulatorMediaAdapter>(adapter);
+        var formats = Assert.IsAssignableFrom<IEmulatorContentFormats>(adapter);
         var settings = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(adapter);
         Assert.Equal(model, Assert.Single(adapter.Definition.MachineIds));
         Assert.Equal(required, firmware.RequiresExternalFirmware);
         var configuration = new MachineConfiguration(model, EmulatorId: id);
         Assert.Equal(required, firmware.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
         Assert.Contains(EmulatorCatalog.GetAll(model), item => item.Id == id);
-        Assert.NotEmpty(media.SupportedContentExtensions);
+        Assert.NotEmpty(formats.SupportedContentExtensions);
         if (id == PlayCore.Id)
         {
             Assert.Empty(firmware.GetFirmwareSlots(configuration));

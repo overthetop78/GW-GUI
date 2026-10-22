@@ -55,6 +55,6 @@ internal static class ConfigurationFunctions
                 || controller.Peripheral is not (PeripheralCategory.None or PeripheralCategory.Automatic
                     or PeripheralCategory.AnalogJoystick))
                 throw new ArgumentException(nameof(configuration.Input));
-        if (selectedAdapter is IEmulatorConfiguration adapter) adapter.ValidateConfiguration(configuration);
+        if (selectedAdapter is IEmulatorConfigurationOptions adapter) adapter.ValidateConfiguration(configuration);
     }
 }

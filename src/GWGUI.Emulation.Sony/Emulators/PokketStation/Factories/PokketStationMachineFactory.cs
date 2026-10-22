@@ -14,7 +14,7 @@ internal sealed class PokketStationMachineFactory : CoreMachineFactory
 
     public override int GetControllerPortCount(MachineConfiguration configuration) => LinkFunctions.IsLinked(configuration) ? LinkConstants.UnitCount : 1;
 
-    public override IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) =>
+    public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) =>
     [new(new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, 1), EmulationMediaType.MemoryCard,
         GWGUI.Emulation.Sony.Common.Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions,
         RequiresMachineRecreation: true, DisplayLabel: LinkConstants.SecondaryCardLabel)];

@@ -38,7 +38,7 @@ internal static class ConfigurationValidationFunctions
             if (!slots.Any(slot => slot.FieldId == item.Key)) throw new InvalidDataException(item.Key);
             if (!File.Exists(item.Value)) throw new FileNotFoundException(null, item.Value);
         }
-        var devices = (adapter as IEmulatorMediaAdapter)?.GetStorageDevices(configuration) ?? [];
+        var devices = (adapter as IEmulatorMediaCapabilities)?.DescribeMediaDevices(configuration) ?? [];
         foreach (var media in configuration.Media ?? [])
         {
             if (!File.Exists(media.Path)) throw new FileNotFoundException(null, media.Path);
