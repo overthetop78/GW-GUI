@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
@@ -9,7 +10,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
 
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace GWGUI.Emulation.Sony.Modules;
 public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationVideoSettingsManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

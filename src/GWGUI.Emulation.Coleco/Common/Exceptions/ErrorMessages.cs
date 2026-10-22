@@ -1,8 +1,10 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Coleco.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Coleco.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Coleco.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();

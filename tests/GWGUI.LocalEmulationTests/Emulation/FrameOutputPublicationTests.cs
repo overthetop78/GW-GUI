@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -95,7 +96,7 @@ public sealed class FrameOutputPublicationTests
     }
 
     private static void Publish(State state, ref long sequence)
-        => EmulationFrameOutputFunctions.PublishOutputs(state, ref sequence,
+        => EmulationSdk.MachineExecution.PublishOutputs(state, ref sequence,
             static owner => owner.Video,
             static owner => owner.Audio.TryDequeue(out var audio) ? audio : null,
             static (owner, video) =>

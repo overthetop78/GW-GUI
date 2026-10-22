@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Acorn.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -9,7 +10,7 @@ namespace GWGUI.Emulation.Acorn.Modules;
 public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(AcornEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AcornEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

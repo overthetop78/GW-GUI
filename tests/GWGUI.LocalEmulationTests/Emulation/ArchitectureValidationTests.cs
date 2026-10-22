@@ -65,10 +65,15 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void EveryCommonExposesFrameTimingThroughTheSameExecutionContract()
+    public void EveryCommonExposesExecutionAndMessagesThroughTheSamePublicContracts()
     {
         var implementation = typeof(IEmulationFrameTimer).Assembly.GetType("GWGUI.Emulation.Services.EmulationFrameTimer", throwOnError: true)!;
         Assert.False(implementation.IsVisible);
+        foreach (var name in new[] { "GWGUI.Emulation.Functions.EmulationFrameOutputFunctions", "GWGUI.Emulation.Services.EmulationErrorService", "GWGUI.Emulation.Services.EmulationModuleLocalization" })
+            Assert.False(typeof(IEmulationMachineExecution).Assembly.GetType(name, throwOnError: true)!.IsVisible);
+        Assert.True(typeof(EmulationMachineCommand).IsVisible);
+        foreach (var name in new[] { "Execute", "Enqueue", "FailPending" })
+            Assert.Null(typeof(EmulationMachineCommand).GetMethod(name, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance));
         var create = typeof(IEmulationMachineExecution).GetMethod("CreateFrameTimer", [typeof(CancellationToken)])!;
         Assert.Equal(typeof(IEmulationFrameTimer), create.ReturnType);
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -84,6 +89,18 @@ public sealed class ArchitectureValidationTests
             var execution = common.GetProperty("MachineExecution", BindingFlags.NonPublic | BindingFlags.Static)!;
             Assert.Equal(typeof(IEmulationMachineExecution), execution.PropertyType);
             Assert.Same(EmulationSdk.MachineExecution, execution.GetValue(null));
+            var messages = common.GetProperty("Messages", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.Equal(typeof(IEmulationMessages), messages.PropertyType);
+            Assert.Same(EmulationSdk.Messages, messages.GetValue(null));
+            var createLocalization = common.GetMethod("CreateLocalization", BindingFlags.NonPublic | BindingFlags.Static, [typeof(Assembly), typeof(string)])!;
+            Assert.Equal(typeof(IEmulationModuleLocalization), createLocalization.ReturnType);
+            var localization = Assert.IsAssignableFrom<IEmulationModuleLocalization>(createLocalization.Invoke(null, [assembly, root + ".Resources."]));
+            Assert.NotSame(localization, createLocalization.Invoke(null, [assembly, root + ".Resources."]));
+            foreach (var culture in new[] { System.Globalization.CultureInfo.InvariantCulture, System.Globalization.CultureInfo.GetCultureInfo("fr-FR"), System.Globalization.CultureInfo.GetCultureInfo("ja-JP") })
+            {
+                Assert.False(localization.TryGetString("__unknown-key-common-contract__", culture, out var value));
+                Assert.Empty(value);
+            }
         }
     }
 

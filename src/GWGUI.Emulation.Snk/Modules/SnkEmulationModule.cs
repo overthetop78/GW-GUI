@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ using System.Net.Http;
 namespace GWGUI.Emulation.Snk.Modules;
 public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SnkEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SnkEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

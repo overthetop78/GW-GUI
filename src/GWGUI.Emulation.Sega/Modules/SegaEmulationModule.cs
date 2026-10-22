@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -7,7 +8,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

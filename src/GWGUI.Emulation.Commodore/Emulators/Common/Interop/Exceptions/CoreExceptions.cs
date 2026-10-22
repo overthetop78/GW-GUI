@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Commodore.Modules;
 
@@ -5,7 +7,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
 
     internal static string HostConfigurationInvalid() => Text(CoreErrorResourceKeys.HostConfigurationInvalid);
     internal static string HostNotInitialized() => Text(CoreErrorResourceKeys.HostNotInitialized);

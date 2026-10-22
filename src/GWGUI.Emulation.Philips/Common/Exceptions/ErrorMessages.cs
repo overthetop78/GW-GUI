@@ -1,8 +1,10 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Philips.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Philips.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Philips.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using GWGUI.Emulation.Contracts;
 
@@ -10,7 +11,7 @@ public sealed class MachineCommandTests
     {
         var queue = new ConcurrentQueue<EmulationMachineCommand>();
         var calls = 0;
-        var wait = EmulationMachineCommand.Enqueue(queue, new object(), () => calls++, CancellationToken.None);
+        var wait = EmulationSdk.MachineExecution.EnqueueCommand(queue, new object(), () => calls++, CancellationToken.None);
         Assert.False(wait.IsCompleted);
         Assert.True(queue.TryDequeue(out var command));
         Assert.NotNull(command);
@@ -43,7 +44,7 @@ public sealed class MachineCommandTests
         var queue = new ConcurrentQueue<EmulationMachineCommand>();
         using var stop = new CancellationTokenSource();
         var calls = 0;
-        var wait = EmulationMachineCommand.Enqueue(queue, new object(), () => calls++, stop.Token);
+        var wait = EmulationSdk.MachineExecution.EnqueueCommand(queue, new object(), () => calls++, stop.Token);
         stop.Cancel();
         Assert.ThrowsAny<OperationCanceledException>(() => wait.GetAwaiter().GetResult());
         Assert.True(queue.TryDequeue(out var command));
@@ -61,7 +62,7 @@ public sealed class MachineCommandTests
         var error = new InvalidOperationException("machine stopped");
         var validatedInsideGate = false;
         var observed = Assert.Throws<InvalidOperationException>(() =>
-            EmulationMachineCommand.Enqueue(queue, gate, () => throw new InvalidOperationException(),
+            EmulationSdk.MachineExecution.EnqueueCommand(queue, gate, () => throw new InvalidOperationException(),
                 CancellationToken.None, validateInsideGate: () =>
                 {
                     validatedInsideGate = Monitor.IsEntered(gate);
@@ -79,10 +80,10 @@ public sealed class MachineCommandTests
         var queue = new ConcurrentQueue<EmulationMachineCommand>();
         var gate = new object();
         var calls = 0;
-        var first = EmulationMachineCommand.Enqueue(queue, gate, () => calls++, CancellationToken.None);
-        var second = EmulationMachineCommand.Enqueue(queue, gate, () => calls++, CancellationToken.None);
+        var first = EmulationSdk.MachineExecution.EnqueueCommand(queue, gate, () => calls++, CancellationToken.None);
+        var second = EmulationSdk.MachineExecution.EnqueueCommand(queue, gate, () => calls++, CancellationToken.None);
         var error = new OperationCanceledException("machine stopped");
-        EmulationMachineCommand.FailPending(queue, error);
+        EmulationSdk.MachineExecution.FailPendingCommands(queue, error);
         Assert.Empty(queue);
         Assert.Equal(0, calls);
         Assert.True(first.AsTask().IsFaulted);

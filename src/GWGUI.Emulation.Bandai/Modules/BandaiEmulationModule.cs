@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Bandai.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -10,7 +11,7 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
     IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(BandaiEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(BandaiEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

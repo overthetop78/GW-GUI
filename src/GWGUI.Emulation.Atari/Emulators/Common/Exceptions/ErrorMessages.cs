@@ -1,8 +1,10 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(Modules.AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(Modules.AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();

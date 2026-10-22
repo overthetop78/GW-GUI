@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Services;
 
-public static class EmulationErrorService
+internal static class EmulationErrorService
 {
     internal static EmulationMessageException EmulatorNotInstalled(string emulatorId) =>
         new(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,

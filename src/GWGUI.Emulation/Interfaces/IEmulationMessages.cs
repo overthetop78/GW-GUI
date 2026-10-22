@@ -1,9 +1,18 @@
+using System.Reflection;
+
 namespace GWGUI.Emulation.Interfaces;
 
-/// <summary>Contextualisation commune des échecs de machine pour l’application hôte.</summary>
+/// <summary>Contextualisation des échecs et création des catalogues de textes des modules pour l’application hôte.</summary>
 /// <remarks>Les annulations et erreurs déjà contextualisées conservent leur identité ; le service ne possède aucune session.</remarks>
 public interface IEmulationMessages
 {
+    /// <summary>Crée un catalogue indépendant pour les ressources embarquées du module.</summary>
+    /// <param name="assembly">Assembly emprunté contenant les catalogues ; le service ne le charge ni ne le décharge.</param>
+    /// <param name="resourcePrefix">Préfixe existant des ressources à rechercher dans cet assembly.</param>
+    /// <returns>Catalogue sous son contrat public ; ses lectures conservent le repli par culture parente, puis anglais et base commune.</returns>
+    /// <remarks>Chaque catalogue possède son cache de textes. La culture invariante consulte directement la base commune. Les flux et lecteurs ouverts pendant une recherche sont libérés avant son retour. Les chaînes, clés et règles de recherche restent celles des ressources du module.</remarks>
+    IEmulationModuleLocalization CreateLocalization(Assembly assembly, string resourcePrefix);
+
     /// <summary>Construit l’erreur de cœur absent avec l’identité publique de l’émulateur concerné.</summary>
     EmulationMessageException EmulatorNotInstalled(string emulatorId);
     /// <summary>Construit une erreur destinée au dialogue de l’hôte avec sa catégorie, son code et sa cause facultative.</summary>

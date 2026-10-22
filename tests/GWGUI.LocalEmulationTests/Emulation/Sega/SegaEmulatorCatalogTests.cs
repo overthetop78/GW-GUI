@@ -162,7 +162,7 @@ public sealed class SegaEmulatorCatalogTests
     public void CoreOptionResourcesResolveInEveryPublishedCulture()
     {
         var assembly = typeof(EmulatorCatalog).Assembly;
-        var localization = new EmulationModuleLocalization(assembly, "GWGUI.Emulation.Sega.Resources.");
+        var localization = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions.CreateLocalization(assembly, "GWGUI.Emulation.Sega.Resources.");
         var cultures = assembly.GetManifestResourceNames().Select(name => Regex.Match(name, @"\.([a-z]{2}(?:-[A-Za-z]{2,4})?)\.resources$")).Where(match => match.Success).Select(match => CultureInfo.GetCultureInfo(match.Groups[1].Value))
             .DistinctBy(culture => culture.Name).ToArray();
         Assert.Equal(29, cultures.Length);

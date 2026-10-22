@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Panasonic.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ using System.Net.Http;
 namespace GWGUI.Emulation.Panasonic.Modules;
 public sealed class PanasonicEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(PanasonicEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(PanasonicEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

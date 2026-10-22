@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Atari.Modules;
 
@@ -5,7 +7,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 
 internal static class CartridgeExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
     internal static EmulationException UnsupportedCore() => Error(ErrorCategory.Content, ErrorCode.ContentUnsupported, "Emulation.Atari.Error.Cartridge.UnsupportedCore");
 

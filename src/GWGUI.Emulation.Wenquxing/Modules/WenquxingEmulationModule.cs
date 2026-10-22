@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ using System.Net.Http;
 namespace GWGUI.Emulation.Wenquxing.Modules;
 public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(WenquxingEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(WenquxingEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

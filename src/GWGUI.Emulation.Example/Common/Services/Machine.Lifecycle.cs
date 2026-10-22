@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Example.Common.Functions;
 using System.Collections.Concurrent;
@@ -43,7 +44,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var threadStarted = false;
             try
             {
-                EmulationSdk.MachineExecution.StartThread(
+                CommonCoreHostFunctions.MachineExecution.StartThread(
                     Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
                     ref _stopSource, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
@@ -54,7 +55,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (!threadStarted) State = EmulationMachineState.Faulted;
             }
         }
-        await EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
+        await CommonCoreHostFunctions.MachineExecution.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
@@ -131,7 +132,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            await EmulationSdk.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await CommonCoreHostFunctions.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

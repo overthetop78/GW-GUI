@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Services;
 
@@ -10,7 +12,7 @@ namespace GWGUI.Emulation.Example.Common.Exceptions;
 internal static class ExceptionText
 {
     // Catalogue partagé par les demandes de ce propriétaire ; il applique les règles de repli du service commun.
-    private static readonly EmulationModuleLocalization Localization = new(typeof(ExceptionText).Assembly, "GWGUI.Emulation.Example.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ExceptionText).Assembly, "GWGUI.Emulation.Example.Resources.Emulation");
 
     /// <summary>Résout une clé dans la culture d’interface courante.</summary>
     /// <param name="resourceKey">Clé technique exacte à rechercher dans les ressources.</param>

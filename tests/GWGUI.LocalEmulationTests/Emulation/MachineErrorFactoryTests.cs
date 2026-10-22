@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Reflection;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -20,8 +21,8 @@ public sealed class MachineErrorFactoryTests
             EmulationMediaCategory.CartridgeSlot
         };
         var cause = new InvalidOperationException("original cause");
-        var first = EmulationErrorService.RequiredMediaMissing(machineId, media, cause);
-        var second = EmulationErrorService.RequiredMediaMissing(machineId, media, cause);
+        var first = Assert.IsType<EmulationMessageException>(EmulationSdk.Messages.RequiredMediaMissing(machineId, media, cause));
+        var second = Assert.IsType<EmulationMessageException>(EmulationSdk.Messages.RequiredMediaMissing(machineId, media, cause));
         var context = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(first.MessageData.Context);
         Assert.NotSame(first, second);
         Assert.NotSame(first.MessageData, second.MessageData);
@@ -46,10 +47,10 @@ public sealed class MachineErrorFactoryTests
     public void RequiredMediaDoesNotIntroduceValidationOrDefaults()
     {
         var empty = Array.Empty<EmulationMediaCategory>();
-        var error = EmulationErrorService.RequiredMediaMissing(string.Empty, empty, null);
+        var error = Assert.IsType<EmulationMessageException>(EmulationSdk.Messages.RequiredMediaMissing(string.Empty, empty, null));
         Assert.Same(empty, Assert.IsType<EmulationRequiredMachineMediaMessageContext>(error.MessageData.Context).RequiredMedia);
         Assert.Null(error.InnerException);
-        var unvalidated = EmulationErrorService.RequiredMediaMissing(null!, null!, null);
+        var unvalidated = Assert.IsType<EmulationMessageException>(EmulationSdk.Messages.RequiredMediaMissing(null!, null!, null));
         var context = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(unvalidated.MessageData.Context);
         Assert.Null(context.MachineId);
         Assert.Null(context.RequiredMedia);
@@ -61,8 +62,8 @@ public sealed class MachineErrorFactoryTests
     [InlineData("Émulateur-日本語")]
     public void MissingEmulatorKeepsOpaqueIdentityAndIndependentMessageContexts(string emulatorId)
     {
-        var first = EmulationErrorService.EmulatorNotInstalled(emulatorId);
-        var second = EmulationErrorService.EmulatorNotInstalled(emulatorId);
+        var first = EmulationSdk.Messages.EmulatorNotInstalled(emulatorId);
+        var second = EmulationSdk.Messages.EmulatorNotInstalled(emulatorId);
         Assert.NotSame(first, second);
         Assert.NotSame(first.MessageData, second.MessageData);
         Assert.NotSame(first.MessageData.Context, second.MessageData.Context);
@@ -113,9 +114,9 @@ public sealed class MachineErrorFactoryTests
     public void SharedFactoryCreatesIndependentExceptionAndMessageInstances()
     {
         var cause = new InvalidOperationException("cause");
-        var first = EmulationErrorService.CreateError(
+        var first = EmulationSdk.Messages.CreateError(
             EmulationMessageCategory.Media, EmulationMessageCode.MediaNotFound, cause);
-        var second = EmulationErrorService.CreateError(
+        var second = EmulationSdk.Messages.CreateError(
             EmulationMessageCategory.Media, EmulationMessageCode.MediaNotFound, cause);
         Assert.NotSame(first, second);
         Assert.NotSame(first.MessageData, second.MessageData);

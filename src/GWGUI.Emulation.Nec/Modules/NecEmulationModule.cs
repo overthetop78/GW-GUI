@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
@@ -11,7 +12,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

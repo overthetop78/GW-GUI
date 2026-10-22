@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Nintendo.Modules;
 
@@ -5,7 +7,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(NintendoEmulationModule).Assembly, "GWGUI.Emulation.Nintendo.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(NintendoEmulationModule).Assembly, "GWGUI.Emulation.Nintendo.Resources.Emulation");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Core.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Core.HostNotInitialized");

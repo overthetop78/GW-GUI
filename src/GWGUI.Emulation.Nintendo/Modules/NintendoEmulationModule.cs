@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace GWGUI.Emulation.Nintendo.Modules;
 public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(NintendoEmulationModule).Assembly, "GWGUI.Emulation.Nintendo.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(NintendoEmulationModule).Assembly, "GWGUI.Emulation.Nintendo.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

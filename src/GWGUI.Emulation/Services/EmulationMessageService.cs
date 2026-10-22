@@ -1,8 +1,13 @@
+using System.Reflection;
+
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Relie le contrat des messages aux règles de contextualisation existantes.</summary>
 internal sealed class EmulationMessageService : IEmulationMessages
 {
+    /// <inheritdoc/>
+    public IEmulationModuleLocalization CreateLocalization(Assembly assembly, string resourcePrefix) => new EmulationModuleLocalization(assembly, resourcePrefix);
+
     /// <inheritdoc/>
     public EmulationMessageException EmulatorNotInstalled(string emulatorId) => EmulationErrorService.EmulatorNotInstalled(emulatorId);
     /// <inheritdoc/>

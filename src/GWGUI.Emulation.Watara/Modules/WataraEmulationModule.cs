@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Watara.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ using System.Net.Http;
 namespace GWGUI.Emulation.Watara.Modules;
 public sealed class WataraEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(WataraEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(WataraEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

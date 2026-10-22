@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sinclair.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Sinclair.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ using System.Net.Http;
 namespace GWGUI.Emulation.Sinclair.Modules;
 public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SinclairEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SinclairEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

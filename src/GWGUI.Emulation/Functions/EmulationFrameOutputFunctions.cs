@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Functions;
 
 /// <summary>Publication commune des sorties produites par un cœur d’émulation.</summary>
-public static class EmulationFrameOutputFunctions
+internal static class EmulationFrameOutputFunctions
 {
     /// <summary>Publie une nouvelle image, puis vide la file audio dans son ordre de production.</summary>
     /// <remarks>La séquence vidéo évite de publier deux fois la même image. La machine et les données sont empruntées.</remarks>

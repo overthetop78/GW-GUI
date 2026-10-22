@@ -39,7 +39,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken, EmulationMessageCategory category = EmulationMessageCategory.Machine, EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return EmulationSdk.MachineExecution.EnqueueCommand(_commands, _gate, () =>
+        return CommonCoreHostFunctions.MachineExecution.EnqueueCommand(_commands, _gate, () =>
         {
             try { action(); }
             catch (Exception error) when (error is not OperationCanceledException)
@@ -63,7 +63,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// Le finally commun libère le cœur, arrête l’audio et termine les commandes restantes avant de publier Stopped.</remarks>
     private void Run(CancellationToken cancellationToken)
     {
-        EmulationSdk.MachineExecution.RunCore(
+        CommonCoreHostFunctions.MachineExecution.RunCore(
             () => _core.Initialize(CurrentConfiguration(), _sessionDirectory, _saveDirectory),
             () =>
             {
@@ -116,7 +116,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     catch (Exception error) { ReportFailure(error); }
                     finally
                     {
-                        if (!released) released = EmulationSdk.MachineExecution.TryDisposeCore(_core, ReportFailure);
+                        if (!released) released = CommonCoreHostFunctions.MachineExecution.TryDisposeCore(_core, ReportFailure);
                     }
                 }
                 finally
@@ -191,7 +191,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <param name="videoSequence">Dernière séquence vidéo publiée, mise à jour seulement pour une nouvelle image.</param>
     /// <remarks>Les blocs audio passent par le contrôleur commun puis AudioChunkReady. Les abonnés reçoivent
     /// les buffers selon leur durée de validité contractuelle ; cette publication n’en prend pas possession.</remarks>
-    private void PublishOutputs(ref long videoSequence) => EmulationSdk.MachineExecution.PublishOutputs(this, ref videoSequence,
+    private void PublishOutputs(ref long videoSequence) => CommonCoreHostFunctions.MachineExecution.PublishOutputs(this, ref videoSequence,
         static machine => machine._core.LatestVideoFrame,
         static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
         static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
@@ -213,7 +213,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     /// <summary>Termine en échec les commandes que la boucle ne peut plus exécuter.</summary>
     /// <param name="error">Erreur transmise aux appelants attendant leur commande.</param>
-    private void FailPendingCommands(Exception error) => EmulationSdk.MachineExecution.FailPendingCommands(_commands, error);
+    private void FailPendingCommands(Exception error) => CommonCoreHostFunctions.MachineExecution.FailPendingCommands(_commands, error);
 
     /// <summary>Réinitialise le cœur après vidage de la sortie audio.</summary>
     /// <param name="hardReset">True demande une réinitialisation matérielle ; false utilise la commande logicielle du cœur.</param>
@@ -338,7 +338,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         var released = _mediaSuspended;
         try
         {
-            await EmulationSdk.MachineExecution.DisposeMachineAsync(() => StopAsync(),
+            await CommonCoreHostFunctions.MachineExecution.DisposeMachineAsync(() => StopAsync(),
                 () =>
                 {
                     if (disposeUnstartedCore && !released)

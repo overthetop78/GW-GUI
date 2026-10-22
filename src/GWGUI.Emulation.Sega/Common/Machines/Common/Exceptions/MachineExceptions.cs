@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Sega.Modules;
@@ -19,5 +20,5 @@ internal static class MachineExceptions
 
 internal static class ExternalCoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Error");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Error");
 }

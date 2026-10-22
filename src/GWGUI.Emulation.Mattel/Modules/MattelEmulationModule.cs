@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Mattel.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Mattel.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -11,7 +12,7 @@ public sealed class MattelEmulationModule : IEmulationModule, IEmulationEmulator
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
     IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(MattelEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(MattelEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

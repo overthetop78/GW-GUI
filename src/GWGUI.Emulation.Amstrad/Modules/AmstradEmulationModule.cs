@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace GWGUI.Emulation.Amstrad.Modules;
 public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

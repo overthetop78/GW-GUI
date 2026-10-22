@@ -14,7 +14,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return EmulationMachineCommand.Enqueue(_commands, _gate, action, cancellationToken, validateInsideGate: () =>
+        return CommonCoreHostFunctions.MachineExecution.EnqueueCommand(_commands, _gate, action, cancellationToken, validateInsideGate: () =>
         {
             if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
                 throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
@@ -109,7 +109,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void PublishOutputs(ref long videoSequence)
-        => EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
+        => CommonCoreHostFunctions.MachineExecution.PublishOutputs(this, ref videoSequence,
             static machine => machine._core.LatestVideoFrame,
             static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
             static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
@@ -120,7 +120,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             });
 
     private void FailPendingCommands(Exception error)
-        => EmulationMachineCommand.FailPending(_commands, error);
+        => CommonCoreHostFunctions.MachineExecution.FailPendingCommands(_commands, error);
 
     private void ResetCore()
     {

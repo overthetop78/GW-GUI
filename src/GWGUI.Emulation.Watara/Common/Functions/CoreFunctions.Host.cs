@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Buffers;
 using GWGUI.Emulation.Interfaces;
 using System.IO;
@@ -43,6 +44,13 @@ internal static class CoreHostFunctions
     /// <summary>Fournit la contextualisation et les erreurs publiques par le contrat commun des messages.</summary>
     /// <remarks>Le service emprunté conserve les causes et les identités ; il ne possède ni machine ni cœur.</remarks>
     internal static IEmulationMessages Messages => EmulationSdk.Messages;
+
+    /// <summary>Crée le catalogue de textes du module par le contrat public des messages.</summary>
+    /// <param name="assembly">Assembly emprunté qui contient les ressources du module.</param>
+    /// <param name="resourcePrefix">Préfixe exact de ses ressources embarquées.</param>
+    /// <returns>Catalogue indépendant sous son interface, avec le cache et les règles de repli du SDK.</returns>
+    /// <remarks>Le module conserve ses clés et son préfixe. La culture est fournie à chaque recherche ; les cultures parentes, les traductions de repli et la base commune sont parcourues par le même service. Les flux temporaires de ressources sont libérés avant le retour ; ce catalogue ne possède ni assembly chargé ni session de cœur.</remarks>
+    internal static IEmulationModuleLocalization CreateLocalization(Assembly assembly, string resourcePrefix) => Messages.CreateLocalization(assembly, resourcePrefix);
 
     /// <summary>Fournit la construction et le formatage communs des réglages matériels et audio.</summary>
     /// <value>Service emprunté, sans configuration ni caractéristique de machine stockée dans cet accès Common.</value>

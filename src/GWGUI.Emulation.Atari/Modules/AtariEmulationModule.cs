@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation;
@@ -8,7 +9,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 

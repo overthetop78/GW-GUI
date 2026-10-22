@@ -15,7 +15,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
             throw MachineExceptions.MachineNotRunning();
-        return EmulationMachineCommand.Enqueue(_commands, _gate, () =>
+        return CommonCoreHostFunctions.MachineExecution.EnqueueCommand(_commands, _gate, () =>
         {
             try
             {
@@ -51,7 +51,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 CommonCoreHostFunctions.MachineExecution.RunLoop(_gate, _commands, () => _pauseRequested,
                     () => {
                         _core.RunFrame();
-                        EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
+                        CommonCoreHostFunctions.MachineExecution.PublishOutputs(this, ref videoSequence,
                             static machine => machine._core.LatestVideoFrame,
                             static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
                             static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
@@ -95,7 +95,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void FailPendingCommands(Exception error)
-        => EmulationMachineCommand.FailPending(_commands, error);
+        => CommonCoreHostFunctions.MachineExecution.FailPendingCommands(_commands, error);
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);
 

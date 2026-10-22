@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace GWGUI.Emulation.Services;
 
-public sealed class EmulationModuleLocalization(Assembly assembly, string resourcePrefix)
+internal sealed class EmulationModuleLocalization(Assembly assembly, string resourcePrefix)
     : IEmulationModuleLocalization
 {
     private const string BaseCulture = "00-Base";

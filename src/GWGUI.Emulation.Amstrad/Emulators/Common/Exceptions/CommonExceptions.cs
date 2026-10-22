@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Amstrad.Modules;
 
@@ -5,7 +7,7 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 
 internal static class CommonExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
 
     internal static string HostConfigurationInvalid() => Text(CommonExceptionsConstants.HostConfigurationInvalidResourceKey);
     internal static string HostNotInitialized() => Text(CommonExceptionsConstants.HostNotInitializedResourceKey);

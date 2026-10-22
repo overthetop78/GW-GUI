@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Coleco.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -11,7 +12,7 @@ public sealed class ColecoEmulationModule : IEmulationModule, IEmulationEmulator
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
     IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(ColecoEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ColecoEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();

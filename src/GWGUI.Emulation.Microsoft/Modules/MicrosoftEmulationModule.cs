@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Microsoft.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Microsoft.Common.Constants;
 using GWGUI.Emulation.Microsoft.Common.Dictionaries;
@@ -11,7 +12,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly Engine _engine = new();
 

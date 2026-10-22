@@ -67,7 +67,7 @@ public sealed class SnkOptionCatalogTests
         CoreOptionValidationFunctions.Validate(configuration with { Options = defaults });
         var blocks = SettingsDescriptionFunctions.Create(configuration);
         Assert.True(blocks.Count == blocks.Select(block => block.Id).Distinct(StringComparer.Ordinal).Count(), string.Join(", ", blocks.GroupBy(block => block.Id).Where(group => group.Count() > 1).Select(group => $"{group.Key}: {string.Join("/", group.Select(block => block.Tab))}")));
-        var localization = new EmulationModuleLocalization(typeof(SnkEmulationModule).Assembly, "GWGUI.Emulation.Snk.Resources.Emulation");
+        var localization = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions.CreateLocalization(typeof(SnkEmulationModule).Assembly, "GWGUI.Emulation.Snk.Resources.Emulation");
         void Resolve(string? key)
         {
             if (key is null || !key.StartsWith("Emulation.Snk.", StringComparison.Ordinal)) return;

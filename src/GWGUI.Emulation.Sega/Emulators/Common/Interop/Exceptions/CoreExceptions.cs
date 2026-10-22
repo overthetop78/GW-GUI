@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Sega.Modules;
 
@@ -5,7 +7,7 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Emulation");
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Emulation");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Core.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Core.HostNotInitialized");

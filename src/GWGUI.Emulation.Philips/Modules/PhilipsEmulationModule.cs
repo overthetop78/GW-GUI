@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Philips.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -11,7 +12,7 @@ public sealed class PhilipsEmulationModule : IEmulationModule, IEmulationEmulato
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
     IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(typeof(PhilipsEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(PhilipsEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();
