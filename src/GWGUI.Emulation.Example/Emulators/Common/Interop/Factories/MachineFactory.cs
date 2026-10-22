@@ -173,7 +173,11 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => OptionCatalog.For(configuration);
     /// <inheritdoc/>
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => SettingsDescriptionFunctions.Create(configuration, GetSettingsOptions(configuration, context));
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => DescribeSettings(configuration, GetSettingsOptions(configuration, context));
+    /// <inheritdoc/>
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => SettingsDescriptionFunctions.Create(configuration, coreOptions);
+    /// <inheritdoc/>
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(HardwareModelDefinition model, MachineConfiguration configuration) => SettingsDescriptionFunctions.Create(model, configuration, GetSettingsOptions(configuration));
     /// <inheritdoc/>
     public bool IsDeferredOption(MachineConfiguration configuration, string key) => RequiresOptionRestart(key);
     /// <inheritdoc/>

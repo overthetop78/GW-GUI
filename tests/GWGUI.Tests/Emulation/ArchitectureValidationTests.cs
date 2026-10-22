@@ -12,6 +12,31 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void ExampleBackendsPreservePreloadedOptionsAndExplicitHardware()
+    {
+        var assembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
+        var models = GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All;
+        var configuration = new GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MachineConfiguration(models[0].Model);
+        var explicitModel = models[1] with { MainMemoryBytes = 123456789 };
+        var options = Array.Empty<GWGUI.Emulation.Example.Common.Contracts.CoreOption>();
+        var contract = assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
+        var preloaded = contract.GetMethod("DescribeSettings", [configuration.GetType(), typeof(IReadOnlyList<GWGUI.Emulation.Example.Common.Contracts.CoreOption>)])!;
+        var explicitHardware = contract.GetMethod("DescribeSettings", [explicitModel.GetType(), configuration.GetType()])!;
+        var backends = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.Equal(3, backends.Length);
+        foreach (var backend in backends)
+        {
+            var adapter = Activator.CreateInstance(backend, nonPublic: true)!;
+            var blocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(preloaded.Invoke(adapter, [configuration, options]));
+            Assert.DoesNotContain(blocks, block => block.Id.StartsWith("core-", StringComparison.Ordinal));
+            var hardwareBlocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(explicitHardware.Invoke(adapter, [explicitModel, configuration]));
+            var memory = Assert.Single(hardwareBlocks.SelectMany(block => block.Fields), field => field.Id == "example_main_memory");
+            Assert.Equal("123456789 B", memory.Value);
+            Assert.Equal(models[0].Model, configuration.Model);
+        }
+    }
+
     [Theory]
     [InlineData("IEmulatorConfigurationValidation", "ValidateConfiguration", typeof(void))]
     [InlineData("IEmulatorSettings", "DescribeSettings", typeof(IReadOnlyList<EmulationSettingsBlock>))]

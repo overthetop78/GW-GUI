@@ -5196,7 +5196,8 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs : comparer les membres publics des contrats en excluant les noms qualifiés des implémentations explicites locales.
   - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : exiger une implémentation réelle du contrat de description dans chacun des 24 Common, y compris les compositions existantes de modèles et d’options ; exécuter les tests Emulation et architecture puis le build Debug de tous les modules.
 
-- [ ] Compléter les variantes de description du modèle Example.
-  - [ ] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettingsAdapter.cs : représenter les variantes de description avec options préchargées et modèle explicite présentes dans Amstrad et Commodore, en conservant les noms des contrats communs.
-  - [ ] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/SettingsFunctions.cs : réutiliser la projection existante pour ces entrées supplémentaires sans dupliquer les blocs.
-  - [ ] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : raccorder ces variantes de description Common à la projection existante et documenter leur usage.
+- [x] Compléter les variantes de description du modèle Example.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettingsAdapter.cs : représenter les variantes de description avec options préchargées et modèle explicite présentes dans Amstrad et Commodore, en conservant les noms des contrats communs.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/SettingsFunctions.cs : réutiliser la projection existante pour ces entrées supplémentaires sans dupliquer les blocs.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : raccorder ces variantes de description Common à la projection existante et documenter leur usage.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier les trois backends Example avec options préchargées et un modèle explicite différent de celui de la configuration ; exécuter les tests concernés puis le build Debug de tous les modules.
