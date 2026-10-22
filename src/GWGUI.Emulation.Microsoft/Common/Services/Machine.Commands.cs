@@ -33,12 +33,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
-                var audioSampleRate = 0;
-                if (_audioOutput is not null)
-                {
-                    try { _audioOutput.Start(_core.SampleRate); audioSampleRate = _core.SampleRate; }
-                    catch { _audioOutput.Dispose(); _audioOutput = null; }
-                }
+                _audio.Start(_core.SampleRate);
                 lock (_gate)
                 {
                     State = EmulationMachineState.Running;
@@ -47,28 +42,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 var nextFrame = TimeProvider.System.GetTimestamp();
                 long videoSequence = 0;
 
-                Action<Machine, AudioChunk> publishAudio = (machine, audio) =>
+                Action<Machine, AudioChunk> publishAudio = static (machine, audio) =>
                 {
-                    if (machine._audioOutput is not null && !machine._audioMuted)
-                    {
-                        try
-                        {
-                            if (audio.SampleRate != audioSampleRate)
-                            {
-                                machine._audioOutput.Stop();
-                                machine._audioOutput.Start(audio.SampleRate);
-                                audioSampleRate = audio.SampleRate;
-                            }
-
-                            machine.WriteAudio(audio.InterleavedSamples.Span);
-                        }
-                        catch
-                        {
-                            machine._audioOutput.Dispose();
-                            machine._audioOutput = null;
-                        }
-                    }
-
+                    machine._audio.Write(audio);
                     machine.AudioChunkReady?.Invoke(machine, audio);
                 };
 
@@ -100,7 +76,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     try { _core.Stop(); }
                     catch (Exception) { }
                 }
-                try { _audioOutput?.Stop(); }
+                try { _audio.Stop(); }
                 catch (Exception) { }
                 FailPendingCommands(new OperationCanceledException());
                 lock (_gate)
@@ -109,28 +85,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
     private void FailPendingCommands(Exception error)
         => EmulationMachineCommand.FailPending(_commands, error);
-
-    private void FlushAudio()
-    {
-        if (_audioOutput is null) return;
-        try { _audioOutput.Flush(); }
-        catch { _audioOutput.Dispose(); _audioOutput = null; }
-    }
-
-    private void WriteAudio(ReadOnlySpan<short> samples)
-    => AudioFunctions.Processing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
-
-    private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
-    {
-        lock (_gate)
-        {
-            try { _audioOutput?.Stop(); }
-            finally { _audioOutput?.Dispose(); }
-            _audioOutput = factory?.Invoke();
-            if (_audioOutput is not null && State is EmulationMachineState.Running or EmulationMachineState.Paused)
-                _audioOutput.Start(_core.SampleRate);
-        }
-    }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);
 
@@ -144,7 +98,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 () => StopAsync(),
                 () => { try { _stop?.Dispose(); } finally { _stop = null; } },
                 () => _core.Dispose(),
-                () => { try { _audioOutput?.Dispose(); } finally { _audioOutput = null; } },
+                () => _audio.Dispose(),
                 DeleteSessionDirectory).ConfigureAwait(false);
         }
         finally { _disposed = true; }

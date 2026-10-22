@@ -45,11 +45,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
-                if (_audioOutput is not null)
-                {
-                    try { StartAudioOutput(_core.SampleRate, EmulationAudioChannelLayout.Stereo); }
-                    catch { _audioOutput.Dispose(); _audioOutput = null; }
-                }
+                _audio.Start(_core.SampleRate);
                 lock (_gate)
                 {
                     State = EmulationMachineState.Running;
@@ -60,25 +56,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
                 Action<Machine, AudioChunk> publishAudio = static (machine, audio) =>
                 {
-                    if (machine._audioOutput is not null && !machine._audioMuted)
-                    {
-                        try
-                        {
-                            if (audio.SampleRate != machine._audioSampleRate || audio.ChannelLayout != machine._audioChannelLayout)
-                            {
-                                machine._audioOutput.Stop();
-                                machine.StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
-                            }
-
-                            machine.WriteAudio(audio.InterleavedSamples.Span);
-                        }
-                        catch
-                        {
-                            machine._audioOutput.Dispose();
-                            machine._audioOutput = null;
-                        }
-                    }
-
+                    machine._audio.Write(audio);
                     machine.AudioChunkReady?.Invoke(machine, audio);
                 };
 
@@ -112,7 +90,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     try { _core.Stop(); }
                     catch (Exception) { }
                 }
-                try { _audioOutput?.Stop(); }
+                try { _audio.Stop(); }
                 catch (Exception) { }
                 FailPendingCommands(new OperationCanceledException());
                 lock (_gate)
@@ -121,37 +99,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
     private void FailPendingCommands(Exception error)
         => EmulationMachineCommand.FailPending(_commands, error);
-
-    private void FlushAudio()
-    {
-        if (_audioOutput is null) return;
-        try { _audioOutput.Flush(); }
-        catch { _audioOutput.Dispose(); _audioOutput = null; }
-    }
-
-    private void WriteAudio(ReadOnlySpan<short> samples)
-    => AudioFunctions.Processing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
-
-    private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
-    {
-        lock (_gate)
-        {
-            try { _audioOutput?.Stop(); }
-            finally { _audioOutput?.Dispose(); }
-            _audioOutput = factory?.Invoke();
-            if (_audioOutput is not null && State is EmulationMachineState.Running or EmulationMachineState.Paused)
-                StartAudioOutput(_core.SampleRate, _audioChannelLayout);
-        }
-    }
-
-    private void StartAudioOutput(int sampleRate, EmulationAudioChannelLayout layout)
-    {
-        if (_audioOutput is IMultichannelAudioOutput multichannel) multichannel.Start(sampleRate, layout);
-        else if (layout == EmulationAudioChannelLayout.Stereo) _audioOutput?.Start(sampleRate);
-        else throw new NotSupportedException(nameof(IMultichannelAudioOutput));
-        _audioSampleRate = sampleRate;
-        _audioChannelLayout = layout;
-    }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);
 
@@ -165,7 +112,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 () => StopAsync(),
                 () => { try { _stop?.Dispose(); } finally { _stop = null; } },
                 () => _core.Dispose(),
-                () => { try { _audioOutput?.Dispose(); } finally { _audioOutput = null; } },
+                () => _audio.Dispose(),
                 DeleteSessionDirectory).ConfigureAwait(false);
         }
         finally { _disposed = true; }

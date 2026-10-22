@@ -17,15 +17,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly string? _saveDirectory;
     private readonly Action<string>? _deleteSession;
     private readonly Func<Exception, Exception>? _startErrorTranslator;
-    private IAudioOutput? _audioOutput;
-    private int _audioSampleRate;
-    private EmulationAudioChannelLayout _audioChannelLayout = EmulationAudioChannelLayout.Stereo;
+    private readonly AudioOutputController _audio;
     private Thread? _thread;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
     private bool _pauseRequested;
-    private volatile bool _audioMuted;
-    private float _audioVolume = 1f;
     private bool _disposed;
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
@@ -40,7 +36,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null, Func<IAudioOutput?>? audioOutputFactory = null)
     {
         Id = id;
         _configuration = configuration;
@@ -51,7 +47,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _saveDirectory = saveDirectory;
         _deleteSession = deleteSession;
         _startErrorTranslator = startErrorTranslator;
-        _audioOutput = audioOutput;
+        _audio = new AudioOutputController(audioOutput, audioOutputFactory);
+        _audio.SetMuted(!configuration.AudioEnabled);
         _mediaPaths = resolvedMedia.Where(item => item.Category != MediaCategory.HardDisk).Select(item => Path.GetFullPath(item.Path)).ToList();
         _mountedCommonMedia = EmulationMediaConversionFunctions.ToCommon(resolvedMedia).ToList();
         _currentDiskPath = _mediaPaths.FirstOrDefault();
@@ -93,7 +90,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
     public int DiskCount => _core.DiskCount;
     public int CurrentDiskIndex => _core.CurrentDiskIndex;
-    public bool IsAudioMuted => _audioMuted;
+    public bool IsAudioMuted => _audio.IsMuted;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedCommonMedia.ToArray();
@@ -118,15 +115,15 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
     int IEmulationAudio.SampleRate => _core.SampleRate;
     bool IEmulationAudio.IsMuted => IsAudioMuted;
-    float IEmulationAudio.Volume => _audioVolume;
+    float IEmulationAudio.Volume => _audio.Volume;
     event EventHandler<AudioChunk>? IEmulationAudio.ChunkReady
     {
         add => AudioChunkReady += value;
         remove => AudioChunkReady -= value;
     }
     void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
-    void IEmulationAudio.SetVolume(float volume) => _audioVolume = Math.Clamp(volume, 0f, 1f);
-    void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => ReplaceAudioOutput(factory);
+    void IEmulationAudio.SetVolume(float volume) => _audio.SetVolume(volume);
+    void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => _audio.ReplaceFactory(factory);
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;

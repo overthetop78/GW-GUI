@@ -29,7 +29,7 @@ public sealed class MultichannelAudioTests
         var core = new AudioCore(chunks);
         var first = new Sink();
         var second = new Sink();
-        var machine = new GWGUI.Emulation.Sony.Common.Services.Machine(Guid.NewGuid(), new("PlayStation3", Rpcs3.Id), core, [], "unused", first, deleteSession: _ => { });
+        var machine = new GWGUI.Emulation.Sony.Common.Services.Machine(Guid.NewGuid(), new("PlayStation3", Rpcs3.Id), core, [], "unused", deleteSession: _ => { }, audioOutputFactory: () => first);
         var received = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         machine.Audio.SetVolume(.5f);
         machine.Audio.ChunkReady += (_, chunk) =>

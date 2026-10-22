@@ -59,6 +59,8 @@ internal static class AudioBufferScenarios
         audio.Pause(); audio.Write(chunk); Assert.Equal(3,sink.Samples.Count); Assert.Equal(1,sink.Stops); Assert.Equal(2,sink.Flushes);
         audio.Resume(); audio.Write(chunk with {SampleRate=44100}); Assert.Equal(new[]{48000,48000,44100},sink.Rates); Assert.Equal(4,sink.Samples.Count);
         audio.Reset(); Assert.Equal(3,sink.Flushes); audio.Stop(); audio.Write(chunk); Assert.Equal(4,sink.Samples.Count);
+        audio.Start(48000); audio.Pause(); audio.Stop(); audio.Start(48000); audio.Write(chunk);
+        Assert.Equal(5, sink.Samples.Count); Assert.Equal(samples, sink.Samples[^1]);
         audio.Dispose(); Assert.Equal(0,sink.Disposals);
     }
     public static void OutputRecovery(bool available)

@@ -43,7 +43,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                             feedback.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
                         if (_core is IEmulatorAudioBufferFeedback latency)
-                            _audio.SetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+                            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
                         PublishOutputs(ref videoSequence);
                     },
                     () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,

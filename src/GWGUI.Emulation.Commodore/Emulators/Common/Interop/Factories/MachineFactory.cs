@@ -110,16 +110,14 @@ internal abstract class MachineFactory : IEmulatorAdapter
         var machineId = Guid.NewGuid();
         var configured = PrepareConfiguration(configuration.EnsureId());
         var core = new ProcessCore(context.HostExecutablePath, context.CorePath);
-        IAudioOutput? audio = null;
         var ownershipTransferred = false;
         try
         {
-            audio = configured.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
             var machine = new Machine(machineId, configured, core,
                 ExternalCore.ResolveConfiguredMedia(configured),
                 Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                audio, context.SaveDirectoryResolver?.Invoke(configured),
-                startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)), inputMapper: this);
+                null, context.SaveDirectoryResolver?.Invoke(configured),
+                startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)), inputMapper: this, audioOutputFactory: context.AudioOutputFactory);
             ownershipTransferred = true;
             return machine;
         }
@@ -127,8 +125,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
         {
             if (!ownershipTransferred)
             {
-                try { core.Dispose(); }
-                finally { audio?.Dispose(); }
+                core.Dispose();
             }
         }
     }

@@ -119,14 +119,12 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
         var native = Configure(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         ProcessCore? core = null;
-        IAudioOutput? audio = null;
         var ownershipTransferred = false;
         try
         {
             core = new ProcessCore(context.HostExecutablePath, context.CorePath);
-            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
-            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio, context.SaveDirectoryResolver?.Invoke(configuration),
-                supportsSavedStates: CoreDefinition.SupportsSavedStates, inputMapper: this);
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, null, context.SaveDirectoryResolver?.Invoke(configuration),
+                supportsSavedStates: CoreDefinition.SupportsSavedStates, inputMapper: this, audioOutputFactory: context.AudioOutputFactory);
             ownershipTransferred = true;
             return machine;
         }
@@ -134,8 +132,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
         {
             if (!ownershipTransferred)
             {
-                try { core?.Dispose(); }
-                finally { audio?.Dispose(); }
+                core?.Dispose();
             }
         }
     }

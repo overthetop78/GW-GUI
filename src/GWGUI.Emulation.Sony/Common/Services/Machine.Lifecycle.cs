@@ -43,7 +43,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (State != EmulationMachineState.Running) return ValueTask.CompletedTask;
             _pauseRequested = true;
             State = EmulationMachineState.Paused;
-            FlushAudio();
+            _audio.Pause();
         }
         return ValueTask.CompletedTask;
     }
@@ -53,6 +53,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         lock (_gate)
         {
             if (State != EmulationMachineState.Paused) return ValueTask.CompletedTask;
+            _audio.Resume();
             _pauseRequested = false;
             State = EmulationMachineState.Running;
             Monitor.PulseAll(_gate);
@@ -61,12 +62,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { FlushAudio(); _core.HardReset(); }, cancellationToken);
+        QueueCommand(() => { _audio.Reset(); _core.HardReset(); }, cancellationToken);
 
     public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
-            FlushAudio();
+            _audio.Reset();
             _core.SoftReset();
         }, cancellationToken);
 
@@ -115,11 +116,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         return _controllerPointerMode;
     }
 
-    public void SetAudioMuted(bool muted)
-    {
-        _audioMuted = muted;
-        if (muted) FlushAudio();
-    }
+    public void SetAudioMuted(bool muted) => _audio.SetMuted(muted);
 
     public ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>

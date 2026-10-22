@@ -6,25 +6,25 @@ namespace GWGUI.Emulation.Services;
 
 /// <summary>Gestion commune de la sortie audio, du volume et de la récupération après une erreur de sortie.</summary>
 /// <remarks>Une sortie reçue est empruntée ; une sortie créée par la fabrique appartient au contrôleur.</remarks>
-public class EmulationAudioOutputController : IEmulationAudioOutputController
+internal sealed class EmulationAudioOutputController : IEmulationAudioOutputController
 {
-    protected readonly object _gate = new();
+    private readonly object _gate = new();
     private Func<IAudioOutput?>? _factory;
-    protected IAudioOutput? _output;
+    private IAudioOutput? _output;
     private bool _ownsOutput;
     private short[] _volumeBuffer = [];
     private int _sampleRate;
     private EmulationAudioChannelLayout _channelLayout = EmulationAudioChannelLayout.Stereo;
     private int _minimumLatencyMilliseconds;
     private float _volume = 1f;
-    protected bool _muted;
-    protected bool _paused;
-    protected bool _stopped;
-    protected bool _started;
-    protected bool _unavailable;
+    private bool _muted;
+    private bool _paused;
+    private bool _stopped;
+    private bool _started;
+    private bool _unavailable;
 
     /// <summary>Associe une sortie empruntée et, éventuellement, une fabrique de sorties possédées.</summary>
-    public EmulationAudioOutputController(IAudioOutput? output = null, Func<IAudioOutput?>? factory = null)
+    internal EmulationAudioOutputController(IAudioOutput? output = null, Func<IAudioOutput?>? factory = null)
     {
         _output = output;
         _factory = factory;
@@ -181,6 +181,7 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         lock (_gate)
         {
             _stopped = true;
+            _paused = false;
             StopOutput();
         }
     }
@@ -206,7 +207,6 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         try
         {
             if (_minimumLatencyMilliseconds > 0) _output.TrySetMinimumLatency(_minimumLatencyMilliseconds);
-            BeforeStart(_output);
             if (_output is IMultichannelAudioOutput multichannel) multichannel.Start(_sampleRate, _channelLayout);
             else if (_channelLayout == EmulationAudioChannelLayout.Stereo) _output.Start(_sampleRate);
             else throw new NotSupportedException(nameof(IMultichannelAudioOutput));
@@ -245,7 +245,7 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
         finally { _started = false; }
     }
 
-    protected void DropOutput()
+    private void DropOutput()
     {
         var output = _output;
         var ownsOutput = _ownsOutput;
@@ -270,6 +270,4 @@ public class EmulationAudioOutputController : IEmulationAudioOutputController
             finally { DropOutput(); }
         }
     }
-
-    protected virtual void BeforeStart(IAudioOutput output) { }
 }
