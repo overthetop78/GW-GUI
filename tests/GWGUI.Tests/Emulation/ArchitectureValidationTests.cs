@@ -137,7 +137,7 @@ public sealed class ArchitectureValidationTests
             if (root is "GWGUI.Emulation.Apple" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Philips" or "GWGUI.Emulation.Snk")
                 Assert.NotEmpty(implementations);
             if (root == "GWGUI.Emulation.Example")
-                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection")!.GetInterfaces());
+                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
         }
     }
 
@@ -174,7 +174,7 @@ public sealed class ArchitectureValidationTests
         foreach (var implementation in implementations)
             Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
         if (family == "Example")
-            Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection")!.GetInterfaces());
+            Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
     }
 
     [Theory]
@@ -197,6 +197,67 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(images.Count, actual.Count);
         foreach (var image in images)
             Assert.Equal(image.Value, actual[image.Key]);
+    }
+
+    [Theory]
+    [InlineData("Example")]
+    [InlineData("Nec")]
+    public void FirmwareIdentificationUsesObservedCandidatesWithoutOwningOtherCapabilities(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection", throwOnError: true)!;
+        var observed = assembly.GetType(root + ".Common.Machines.Common.Contracts.ScannedFirmware", throwOnError: true)!;
+        Assert.True(contract.IsInterface);
+        Assert.False(contract.IsVisible);
+        Assert.Empty(contract.GetInterfaces());
+        var identify = Assert.Single(contract.GetMethods());
+        Assert.Equal("IdentifyFirmware", identify.Name);
+        Assert.True(identify.IsAbstract);
+        Assert.Equal(observed, identify.ReturnType);
+        Assert.Equal(observed, Assert.Single(identify.GetParameters()).ParameterType);
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+            Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+        if (family == "Nec")
+        {
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Contracts.Firmware"));
+            Assert.Equal(new[] { "Path", "Size", "Md5", "Sha256", "LastWriteTimeUtc", "Type", "IsKnown", "IsOfficial", "Name", "Version", "CompatibleModels", "IsVerified" },
+                observed.GetProperties().Select(property => property.Name));
+        }
+    }
+
+    [Theory]
+    [InlineData("pac-n1.bin", true)]
+    [InlineData("pce-lp1.bin", true)]
+    [InlineData("PAC-N10.BIN", true)]
+    [InlineData("unknown.bin", false)]
+    public void NecFirmwareIdentificationPreservesObservedMetadata(string fileName, bool known)
+    {
+        var candidate = new GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.ScannedFirmware(
+            Path.Combine("firmware", fileName), 4096, "observed-md5", "observed-sha256", DateTime.UnixEpoch,
+            GWGUI.Emulation.Nec.Common.Machines.Common.Enums.FirmwareType.Unknown, false, false, null, null, [], false);
+        var owner = candidate.GetType().Assembly.GetType("GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions.GeargrafxFirmwareFunctions", throwOnError: true)!;
+        var identify = owner.GetMethod("Identify", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var result = identify.Invoke(null, [candidate]);
+        if (!known)
+        {
+            Assert.Null(result);
+            return;
+        }
+        var recognized = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.ScannedFirmware>(result);
+        Assert.True(recognized.IsKnown);
+        Assert.False(recognized.IsOfficial);
+        Assert.False(recognized.IsVerified);
+        Assert.Equal(candidate.Path, recognized.Path);
+        Assert.Equal(candidate.Size, recognized.Size);
+        Assert.Equal(candidate.Md5, recognized.Md5);
+        Assert.Equal(candidate.Sha256, recognized.Sha256);
+        Assert.Equal(candidate.LastWriteTimeUtc, recognized.LastWriteTimeUtc);
+        Assert.Equal(GWGUI.Emulation.Nec.Common.Machines.Common.Enums.FirmwareType.SystemRom, recognized.Type);
+        Assert.Equal(Path.GetFileNameWithoutExtension(fileName), recognized.Name);
+        Assert.Single(recognized.CompatibleModels);
     }
 
     [Fact]

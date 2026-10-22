@@ -22,10 +22,11 @@ public sealed class FirmwareScanner(string firmwareRoot)
     {
         var candidates = await Task.Run(() => FirmwareScanFunctions.EnumerateCandidates(_firmwareRoot), cancellationToken).ConfigureAwait(false);
         var scanned = new List<ScannedFirmware>(candidates.Count);
+        var inspections = EmulatorCatalog.CreateAdapters().OfType<IEmulatorFirmwareInspection>().ToArray();
         foreach (var path in candidates)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            scanned.Add(await FirmwareScanFunctions.ScanFileAsync(path, model, region, cancellationToken).ConfigureAwait(false));
+            scanned.Add(await FirmwareScanFunctions.ScanFileAsync(inspections, path, model, region, cancellationToken).ConfigureAwait(false));
         }
         var duplicateHashes = scanned.Where(item => item.Md5 is not null).GroupBy(item => item.Md5!, StringComparer.OrdinalIgnoreCase)
             .Where(group => group.Count() >= 2).Select(group => group.Key).ToHashSet(StringComparer.OrdinalIgnoreCase);

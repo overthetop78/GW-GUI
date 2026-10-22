@@ -4957,3 +4957,18 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareCapabilities.cs : documenter le contrat de description et de compatibilité avec les mêmes noms, unités et rôles que dans Example.
   - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareCapabilities.cs : documenter le contrat de description et de compatibilité avec les mêmes noms, unités et rôles que dans Example.
   - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier les signatures, les exigences et les implémentations des trois contrats de capacités, ainsi que les noms, valeurs et clés JSON des catégories renommées ; exécuter les tests Emulation et architecture puis le build Debug de tous les modules.
+
+- [x] Raccorder et uniformiser les contrats existants d’identification des firmwares.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareInspection.cs : conserver uniquement IdentifyFirmware dans ce contrat, avec ses commentaires de résultat facultatif.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter directement des contrats distincts de scan, de capacités et d’identification.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/FirmwareFunctions.Scan.cs : recevoir le contrat d’identification et lui transmettre le candidat observé, en conservant ce candidat quand l’identification retourne null.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : passer l’adaptateur au scan Common et transmettre la version éventuellement identifiée au résultat SDK.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/FirmwareContracts.cs : renommer le résultat Firmware en ScannedFirmware sans changer ses champs ni leur ordre, et documenter leurs unités et rôles.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareInspection.cs : utiliser ScannedFirmware pour le résultat d’identification et documenter le contrat comme dans Example.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs : utiliser ScannedFirmware pour les résultats de scan et d’identification, en conservant empreintes, catalogue et règles de repli.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs : utiliser le résultat ScannedFirmware dans le contrat d’identification existant.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Functions/GeargrafxFirmwareFunctions.cs : utiliser le résultat ScannedFirmware en conservant la reconnaissance des noms et les métadonnées retournées.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/FirmwareFunctions.Scan.cs : consulter les contrats d’identification reçus dans leur ordre et conserver le candidat si aucun adaptateur ne le reconnaît.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre son seul contrat d’identification au scan d’un fichier demandé à cet adaptateur.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/FirmwareScanner.cs : transmettre au scan les adaptateurs d’identification du catalogue Common tout en conservant l’ordre du parcours et le calcul des doublons.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats d’identification et leurs implémentations NEC et Example, ainsi que la conservation des métadonnées NEC ; exécuter les tests Emulation et architecture puis le build Debug de tous les modules.

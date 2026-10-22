@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 internal static class GeargrafxFirmwareFunctions
 {
-    internal static Firmware? Identify(Firmware firmware)
+    internal static ScannedFirmware? Identify(ScannedFirmware firmware)
     {
         var name = Path.GetFileName(firmware.Path);
         if (!name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)

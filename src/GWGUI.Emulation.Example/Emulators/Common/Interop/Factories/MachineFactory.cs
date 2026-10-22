@@ -262,8 +262,8 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public async ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
-        var scanned = await FirmwareScanFunctions.ScanFileAsync(path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
-        return new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), null,
+        var scanned = await FirmwareScanFunctions.ScanFileAsync([this], path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
+        return new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Definition?.Version,
             scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem, path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
             FirmwareCategory.OperatingSystem.ToString());
     }

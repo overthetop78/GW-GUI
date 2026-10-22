@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// de recherche et d’installation. Create reçoit les services empruntés et retourne une machine Common possédant
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
-    IEmulatorControllerAdapter, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
+    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorStorageSettings, IEmulatorVideoSettings
 {
     /// <summary>Nom technique de la bibliothèque de cœur utilisée par l’adaptateur.</summary>

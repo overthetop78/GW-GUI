@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <remarks>Ce contrat reprend IdentifyFirmware en utilisant le résultat d’analyse unique ScannedFirmware.
 /// L’adaptateur consulte ses règles et données de reconnaissance sans recevoir de flux ni posséder le fichier.
 /// Il peut fournir l’identité, la version, les modèles compatibles et les autres informations du catalogue.</remarks>
-internal interface IEmulatorFirmwareInspection : IEmulatorFirmwareAdapter, IEmulatorFirmwareCapabilities
+internal interface IEmulatorFirmwareInspection
 {
     /// <summary>Recherche une identité connue pour les données observées du candidat.</summary>
     /// <param name="firmware">Chemin, taille et empreintes observés ; Detection peut encore indiquer Unknown et la compatibilité reste à établir.</param>
