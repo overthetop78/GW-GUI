@@ -14,7 +14,7 @@ internal static partial class InputSettingsFunctions
     {
         var compatibility = CompatibilityCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse) ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.Controllers ?? [];
         var ports = Enumerable.Range(0, compatibility.ControllerPortCount).Select(index =>
@@ -37,7 +37,7 @@ internal static partial class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values.ToKeys() ?? current.KeyboardMappings;
+        var keyboard = settings.Keyboard?.Values is { } keyboardValues ? EmulationSdk.InputProcessing.ToKeys(keyboardValues) : current.KeyboardMappings;
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - 1,
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) ? peripheral : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
             port.DeadZonePercent, port.VisualId)).ToArray();

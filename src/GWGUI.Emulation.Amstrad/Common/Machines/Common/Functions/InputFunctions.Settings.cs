@@ -40,7 +40,7 @@ internal static partial class InputSettingsFunctions
             Input = current with
             {
                 KeyboardBindings = keyboard,
-                KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
+                KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 ControllerBindings = controllers
             }

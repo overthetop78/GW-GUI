@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Coleco.Common.Constants;
 using GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Coleco.Common.Machines.Common.Enums;
@@ -64,14 +65,14 @@ internal static class ConfigurationStoreFunctions
     }
 
     internal static string? StorePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.StorePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.StorePath(path, pathBase);
 
     internal static string? ResolvePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.ResolvePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.ResolvePath(path, pathBase);
 
     internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
         =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(path, document, JsonOptions, cancellationToken);
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(path, document, JsonOptions, cancellationToken);
 
     private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) =>
         new(StorePath(folders.Shared, pathBase), StorePath(folders.Cartridges, pathBase),

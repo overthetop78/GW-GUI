@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation;
@@ -113,7 +114,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _nativeInitialized = false;
         try
         {
-            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

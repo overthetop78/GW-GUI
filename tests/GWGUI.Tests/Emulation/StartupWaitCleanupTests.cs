@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -13,7 +14,7 @@ public sealed class StartupWaitCleanupTests
         if (canceled) cancellation.Cancel();
         var stops = 0;
 
-        await ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+        await EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
             Task.CompletedTask, cancellation.Token,
             () => { stops++; return ValueTask.CompletedTask; });
 
@@ -27,7 +28,7 @@ public sealed class StartupWaitCleanupTests
         var stops = 0;
 
         var actual = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-            ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+            EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
                 Task.FromException(failure), CancellationToken.None,
                 () => { stops++; return ValueTask.CompletedTask; }).AsTask());
 
@@ -45,7 +46,7 @@ public sealed class StartupWaitCleanupTests
         try
         {
             var actual = await Assert.ThrowsAnyAsync<OperationCanceledException>(() =>
-                ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+                EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
                     start.Task, cancellation.Token,
                     () => { stops++; return ValueTask.CompletedTask; }).AsTask());
 
@@ -61,7 +62,7 @@ public sealed class StartupWaitCleanupTests
         var failure = new InvalidOperationException("start");
         var cleanup = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var stops = 0;
-        var pending = ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+        var pending = EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
             Task.FromException(failure), CancellationToken.None,
             () => { stops++; return new ValueTask(cleanup.Task); }).AsTask();
         try
@@ -82,7 +83,7 @@ public sealed class StartupWaitCleanupTests
     {
         var cleanupFailure = new ApplicationException("stop");
         var actual = await Assert.ThrowsAsync<ApplicationException>(() =>
-            ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+            EmulationSdk.MachineExecution.WaitForStartOrStopAsync(
                 Task.FromException(new InvalidOperationException("start")), CancellationToken.None,
                 () => ValueTask.FromException(cleanupFailure)).AsTask());
 

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Nec.Common.Dictionaries;
 
 public static class EmulatorCatalog
@@ -5,7 +6,7 @@ public static class EmulatorCatalog
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
+        CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
 
     public static string DefaultFor(string machineId) => CreateAdapters()
         .FirstOrDefault(adapter => adapter is IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machineId))?.EmulatorId

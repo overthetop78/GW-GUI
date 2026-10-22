@@ -4,6 +4,11 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>Les annulations et erreurs déjà contextualisées conservent leur identité ; le service ne possède aucune session.</remarks>
 public interface IEmulationMessages
 {
+    /// <summary>Construit l’erreur de cœur absent avec l’identité publique de l’émulateur concerné.</summary>
+    EmulationMessageException EmulatorNotInstalled(string emulatorId);
+    /// <summary>Construit une erreur destinée au dialogue de l’hôte avec sa catégorie, son code et sa cause facultative.</summary>
+    EmulationMessageException CreateError(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException);
+
     /// <summary>Associe un diagnostic public à une cause qui n’en possède pas encore.</summary>
     /// <param name="error">Cause conservée comme exception interne lorsque la contextualisation est nécessaire.</param>
     /// <param name="fallbackCategory">Domaine fonctionnel employé pour une cause non contextualisée.</param>

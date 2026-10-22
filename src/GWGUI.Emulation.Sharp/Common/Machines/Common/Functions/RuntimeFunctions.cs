@@ -38,12 +38,12 @@ internal static class MessageFunctions
     {
         var context = new EmulationMachineMessageContext(configuration.MachineId);
         if (error is not EmulationException coreError)
-            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, context);
+            return CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, context);
         if (coreError.IsLocalized)
-            return EmulationErrorService.TranslateLocalized(error, Category(coreError.Category), context);
+            return CommonCoreHostFunctions.Messages.TranslateLocalized(error, Category(coreError.Category), context);
         if (coreError.Code == ErrorCode.ContentRequired)
-            return EmulationErrorService.RequiredMediaMissing(configuration.MachineId, [EmulationMediaCategory.FloppyDrive], error);
-        return EmulationErrorService.Translate(error, Category(coreError.Category), MessageCode(coreError.Code), context);
+            return CommonCoreHostFunctions.Messages.RequiredMediaMissing(configuration.MachineId, [EmulationMediaCategory.FloppyDrive], error);
+        return CommonCoreHostFunctions.Messages.Translate(error, Category(coreError.Category), MessageCode(coreError.Code), context);
     }
 
     private static EmulationMessageCategory Category(ErrorCategory category) => category switch

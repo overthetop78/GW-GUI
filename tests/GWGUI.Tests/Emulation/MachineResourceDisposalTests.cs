@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -20,7 +21,7 @@ public sealed class MachineResourceDisposalTests
             calls.Add(step);
             if (step == failingStep) throw failure;
         }
-        var pending = ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+        var pending = EmulationSdk.MachineExecution.DisposeMachineAsync(
             () => { Release(0); return ValueTask.CompletedTask; },
             () => Release(1), () => Release(2), () => Release(3), () => Release(4)).AsTask();
 
@@ -35,7 +36,7 @@ public sealed class MachineResourceDisposalTests
         var calls = new List<int>();
         var cleanupFailure = new ApplicationException("cleanup");
         var actual = await Assert.ThrowsAsync<ApplicationException>(() =>
-            ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+            EmulationSdk.MachineExecution.DisposeMachineAsync(
                 () => ValueTask.FromException(new InvalidOperationException("stop")),
                 () => { calls.Add(1); throw new InvalidOperationException("first"); },
                 () => calls.Add(2),
@@ -51,7 +52,7 @@ public sealed class MachineResourceDisposalTests
     {
         var stop = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var calls = new List<int>();
-        var pending = ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+        var pending = EmulationSdk.MachineExecution.DisposeMachineAsync(
             () => new ValueTask(stop.Task), () => calls.Add(1), () => calls.Add(2),
             () => calls.Add(3), () => calls.Add(4)).AsTask();
         try

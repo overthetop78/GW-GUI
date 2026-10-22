@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Functions;
@@ -34,5 +35,5 @@ internal static class EmulationMediaConversionFunctions
 
 internal static class EmulationMediaActivityFunctions
 {
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => GWGUI.Emulation.Functions.EmulationMediaRules.FromLedStatesWithCd(leds);
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => CommonCoreHostFunctions.MachineExecution.FromLedStatesWithCd(leds);
 }

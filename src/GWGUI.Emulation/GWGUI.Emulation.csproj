@@ -28,29 +28,6 @@
     <PackageReference Include="LTRData.DiscUtils.ExFat" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.Ext" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Commodore" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Acorn" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Apple" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Bandai" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Coleco" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Epoch" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Fairchild" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Philips" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Mattel" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Sharp" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Sinclair" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Snk" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Thomson" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Watara" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Wenquxing" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Panasonic" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Sony" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Microsoft" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Nec" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;
 using GWGUI.Emulation.Apple.Common.Contracts;
 
@@ -120,8 +121,8 @@ internal static class AppleWinOptionCatalog
         new(OptionConstants.VideoRefreshRate, "Video Refresh Rate", null, "system",
             "60Hz", "60Hz",
             [
-                new("60Hz", "60Hz", InvariantDisplayValue: EmulationVideoFunctions.FormatFrequency(60)),
-                new("50Hz", "50Hz", InvariantDisplayValue: EmulationVideoFunctions.FormatFrequency(50)),
+                new("60Hz", "60Hz", InvariantDisplayValue: CommonCoreHostFunctions.VideoProcessing.FormatFrequency(60)),
+                new("50Hz", "50Hz", InvariantDisplayValue: CommonCoreHostFunctions.VideoProcessing.FormatFrequency(50)),
             ], ResourceKey: SettingsTextConstants.SettingVideoRefreshRate),
         new(OptionConstants.DiskControlDrive, "Disk Control Drive", null, "disk_control", "Drive 1", "Drive 1", [new("Drive 1", "Drive 1"), new("Drive 2", "Drive 2"),]),
         new(OptionConstants.PlaylistStart, "Playlist Start Disk", null, "disk_control",

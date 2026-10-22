@@ -56,11 +56,11 @@ internal static class MessageFunctions
     internal static Exception Translate(Exception error, MachineConfiguration configuration)
     {
         if (error is not EmulationException atariError)
-            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configuration.MachineId));
+            return CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configuration.MachineId));
         if (atariError.IsLocalized)
-            return EmulationErrorService.TranslateLocalized(error, Category(atariError.Category), new EmulationMachineMessageContext(configuration.MachineId));
+            return CommonCoreHostFunctions.Messages.TranslateLocalized(error, Category(atariError.Category), new EmulationMachineMessageContext(configuration.MachineId));
         if (atariError.Code != ErrorCode.ContentRequired)
-            return EmulationErrorService.Translate(error, Category(atariError.Category), MessageCode(atariError.Code), new EmulationMachineMessageContext(configuration.MachineId));
+            return CommonCoreHostFunctions.Messages.Translate(error, Category(atariError.Category), MessageCode(atariError.Code), new EmulationMachineMessageContext(configuration.MachineId));
         var required = CompatibilityCatalog.Get(configuration.Model).Media.Where(rule => rule.Availability == MediaAvailability.Available && rule.Category != MediaCategory.Directory)
             .Select(rule => rule.Category switch
             {
@@ -73,7 +73,7 @@ internal static class MessageFunctions
             })
             .Distinct()
             .ToArray();
-        return EmulationErrorService.RequiredMediaMissing(configuration.MachineId, required, error);
+        return CommonCoreHostFunctions.Messages.RequiredMediaMissing(configuration.MachineId, required, error);
     }
 
     private static EmulationMessageCategory Category(ErrorCategory category) => category switch

@@ -14,7 +14,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
             || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
-        var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);
+        var pixels = CommonCoreHostFunctions.VideoProcessing.CopyFramePixels(data, height, pitch);
         LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > MinimumAspectRatio ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
     }
 
@@ -31,7 +31,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
-        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);
+        CommonCoreHostFunctions.VideoProcessing.ApplyGeometry(geometry, ref _aspectRatio);
     }
 
     private bool ApplySystemAvInfo(nint data)

@@ -31,7 +31,7 @@ internal sealed partial class ExternalHostCallbacks
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
         HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));
-        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);
+        CommonCoreHostFunctions.VideoProcessing.ApplyGeometry(geometry, ref _aspectRatio);
     }
 
     private bool ApplySystemAvInfo(nint data)

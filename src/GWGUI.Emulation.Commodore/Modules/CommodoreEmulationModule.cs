@@ -243,11 +243,11 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         ConfigurationValidationFunctions.ValidateForSave(current);
         foreach (var slot in _engine.Adapter(current).GetFirmwareSlots(current))
             if (slot.IsRequired && string.IsNullOrWhiteSpace(current.FirmwarePath(slot.FieldId)))
-                throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
+                throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
         var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
         var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken).ConfigureAwait(false)
-            ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(emulator.EmulatorId);
+            ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(emulator.EmulatorId);
         var audio = runtime.Audio ?? new AudioConfiguration();
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

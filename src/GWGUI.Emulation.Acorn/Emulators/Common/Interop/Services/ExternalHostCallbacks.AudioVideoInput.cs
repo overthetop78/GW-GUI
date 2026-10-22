@@ -20,18 +20,18 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 LatestVideoFrame = previous with
                 {
                     Sequence = ++_videoSequence,
-                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)
+                    Timestamp = CommonCoreHostFunctions.VideoProcessing.Timestamp(_videoStartTimestamp)
                 };
             return;
         }
         if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||
             height == ExternalCoreInteropConstants.EmptyFrameDimension ||
             pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;
-        var length = VideoFunctions.FrameLength(height, pitch);
+        var length = CommonCoreHostFunctions.VideoProcessing.FrameLength(height, pitch);
         if (length > CommonCoreHostFunctions.Protocol.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
-        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
-        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
+        CommonCoreHostFunctions.VideoProcessing.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, CommonCoreHostFunctions.VideoProcessing.Timestamp(_videoStartTimestamp));
     }
 
     private void OnAudioSample(short left, short right)
@@ -77,7 +77,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
-        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeCallbackResources(
+        CommonCoreHostFunctions.MachineExecution.DisposeCallbackResources(
                 _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);
         _keyboardEvent = null;
         KeyboardCallbackPointer = nint.Zero;

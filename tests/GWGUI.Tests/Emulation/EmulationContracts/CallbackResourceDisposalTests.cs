@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation.EmulationContracts;
@@ -23,7 +24,7 @@ public sealed class CallbackResourceDisposalTests
         var resources = DisposalOrder.Select((name, index) =>
             new Resource(name, calls, index == failingStage ? failure : null)).ToArray();
 
-        var actual = Record.Exception(() => ExternalCoreLifecycleFunctions.DisposeCallbackResources(
+        var actual = Record.Exception(() => EmulationSdk.MachineExecution.DisposeCallbackResources(
             resources[6], resources[5], resources[4], resources[3], resources[2], resources[1], resources[0]));
 
         Assert.Equal(DisposalOrder, calls);
@@ -38,7 +39,7 @@ public sealed class CallbackResourceDisposalTests
         var failures = DisposalOrder.Select(name => new InvalidOperationException(name)).ToArray();
         var resources = DisposalOrder.Select((name, index) => new Resource(name, calls, failures[index])).ToArray();
 
-        var actual = Assert.Throws<InvalidOperationException>(() => ExternalCoreLifecycleFunctions.DisposeCallbackResources(
+        var actual = Assert.Throws<InvalidOperationException>(() => EmulationSdk.MachineExecution.DisposeCallbackResources(
             resources[6], resources[5], resources[4], resources[3], resources[2], resources[1], resources[0]));
 
         Assert.Equal(DisposalOrder, calls);
@@ -51,7 +52,7 @@ public sealed class CallbackResourceDisposalTests
         var calls = new List<string>();
         var options = new Resource("options", calls, null);
 
-        ExternalCoreLifecycleFunctions.DisposeCallbackResources(null, null, null, null, null, null, options);
+        EmulationSdk.MachineExecution.DisposeCallbackResources(null, null, null, null, null, null, options);
 
         Assert.Equal(new[] { "options" }, calls);
     }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 internal static class KeyboardBindingFunctions
 {
@@ -41,7 +42,7 @@ internal static class KeyboardBindingFunctions
                 result[target] = item.Value;
             }
 
-        var mappings = result.ToKeys();
+        var mappings = EmulationSdk.InputProcessing.ToKeys(result);
         return input with
         {
             KeyboardBindings = result,

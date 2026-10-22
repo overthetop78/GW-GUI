@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -19,7 +20,7 @@ public sealed class CoreThreadStartTests
         Thread? thread = null;
         try
         {
-            ExternalCoreLifecycleFunctions.StartThread(token =>
+            EmulationSdk.MachineExecution.StartThread(token =>
             {
                 workerToken = token;
                 ready.Set();
@@ -70,14 +71,14 @@ public sealed class CoreThreadStartTests
         CancellationToken secondToken = default;
         try
         {
-            ExternalCoreLifecycleFunctions.StartThread(_ => { }, "GW GUI first worker",
+            EmulationSdk.MachineExecution.StartThread(_ => { }, "GW GUI first worker",
                 firstCancellation.Token, ref stop, out _, out loop, ref thread);
             var previousThread = thread;
             var previousStop = stop;
             Assert.NotNull(loop);
             await loop;
 
-            ExternalCoreLifecycleFunctions.StartThread(token =>
+            EmulationSdk.MachineExecution.StartThread(token =>
             {
                 secondToken = token;
                 ready.Set();

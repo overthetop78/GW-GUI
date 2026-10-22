@@ -98,7 +98,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _callbacks.ValidateDeferredOptions(configuration);
             MediaAdapter().CompleteMediaLoad(configuration, _sessionDirectory, _callbacks);
             var stateSize = _exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
 
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
@@ -119,7 +119,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         if (!_supportsSaveStates)
         {
             var size = exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(size, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(size, SavedStateConstants.MaximumStateSize);
         }
     }
     public void HardReset() => RequireExports().Reset();

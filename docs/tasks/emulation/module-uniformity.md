@@ -514,7 +514,7 @@ Demande explicite : supprimer le schéma Legacy et les traitements réservés à
   - [ ] Modifier src/GWGUI.Emulation/Services/ExternalRichDiskControl.cs : ouvrir le contrôle générique utilisé par onze modules et conserver le contrat de libération des contenus.
 
 - [ ] Retirer les autorisations de production après résolution de tous leurs usages
-  - [ ] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : supprimer les 23 InternalsVisibleTo des modules d’émulation après ouverture des opérations requises, y compris membres internes de types publics et constantes incorporées ; conserver les autorisations des projets de tests existants. Ne pas ajouter Example ni une nouvelle liste d’identités autorisées.
+  - [x] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : supprimer les 23 InternalsVisibleTo des modules d’émulation après ouverture des opérations requises, y compris membres internes de types publics et constantes incorporées ; conserver les autorisations des projets de tests existants. Ne pas ajouter Example ni une nouvelle liste d’identités autorisées.
   - [ ] Modifier tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs : vérifier que le SDK n’autorise aucun module de production par InternalsVisibleTo, que les 23 modules restent compilables et que les contrats partagés de leurs interfaces sont publics. Le futur Example doit compiler sans autorisation particulière.
 
 ## Exemple intégré, prioritaire pour fixer la structure commune
@@ -4022,5 +4022,558 @@ Validation de l’environnement : 34 opérations exposées par la même interfac
 
 Validation des contrôles de disques : les 17 adaptations utilisent les interfaces et la fabrique Common ; aucune référence de module aux deux implémentations SDK. Messages, politiques de capture et corps de chargement conservés. Le traitement InsertAt existant est partagé, les contenus emploient IEmulationLoadedContent et le statut utilise le DiskStatus commun sans relais générique superflu. Les 3 251 tests Emulation passent sans échec ni test ignoré, avec contrôles des ordres de callbacks, restaurations et libérations sans fichier externe. Build Debug --modules=A réussi ; application, Example et les 23 manifestes et DLL vérifiés.
 
-- [ ] Terminer le retrait des accès privilégiés SDK après les raccordements restants.
-  - [ ] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : supprimer définitivement les 23 privilèges de production après raccordement des autres implémentations relevées : réglages matériels et constantes ABI/clavier.
+- [x] Raccorder les réglages matériels partagés aux interfaces des 24 Common.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationHardwareSettings.cs : exposer les constructeurs de champs et les formats existants avec leurs paramètres et leurs règles de culture.
+  - [x] Créer src/GWGUI.Emulation/Services/EmulationHardwareSettingsService.cs : déléguer aux mêmes fonctions internes, sans recopier les ressources ou données invariantes.
+  - [x] Modifier src/GWGUI.Emulation/EmulationSdk.cs : fournir HardwareSettings par son interface publique.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer HardwareSettings par le même contrat public et documenter les données et délégués empruntés.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.Hardware.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs : remplacer les appels directs à EmulationHardwareSettingsFunctions par Common HardwareSettings, sans modifier arguments, ressources et politiques de présentation.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/AudioSettingsConstructionTests.cs : exercer les mêmes constructions et formats par le contrat public, avec leurs cas et leur nettoyage existants.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/HardwareSettingsConstructionTests.cs : exercer les mêmes constructions et formats par le contrat public, avec leurs cas et leur nettoyage existants.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs : conserver les algorithmes et rendre leurs méthodes internes après raccordement des consommateurs.
+
+- [x] Ouvrir les données du contrat ABI et clavier en conservant les calculs internes.
+  - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : rendre publiques les valeurs invariantes du contrat natif, sans modifier leurs nombres ni expressions.
+  - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreKeyboardConstants.cs : rendre publics les codes et bornes partagés, conserver les détails de calcul internes et documenter ce contrat en français.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs : exprimer les deux tris de modificateurs par leurs prédicats booléens équivalents, sans dépendre des indices internes de tri du SDK.
+
+- [x] Retirer les privilèges SDK de production et valider les raccordements.
+  - [x] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : supprimer les 23 InternalsVisibleTo de production et conserver les autorisations de tests existantes.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier les 12 signatures matérielles, les contrats de constantes publics sans méthode, les détails clavier internes et l’absence de privilèges de production ; exécuter la suite Emulation et le build Debug avec tous les modules.
+
+- [x] Raccorder la persistance des modules au contrat existant sans modifier les algorithmes.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationConfigurationFiles.cs : ajouter les contrats de sauvegarde préparée sous verrou, lecture par sélection de chemins, énumération et suppression de fichier.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationConfigurationFileService.cs : déléguer ces contrats aux implémentations existantes avec les mêmes arguments et retours.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Release.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs : utiliser ConfigurationFiles dans Common à la place des fonctions de persistance directes, en conservant les conversions, paramètres et ordre des opérations.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier la présence des opérations de persistance sur le contrat public ; compiler Example et le SDK.
+
+- [x] Raccorder les conversions de liaisons clavier au contrat commun des entrées.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputProcessing.cs : déclarer ToKeys, ToStrings et IsValidSourcePrefix avec les paramètres existants.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputProcessingService.cs : déléguer les trois opérations aux algorithmes internes existants.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs : appeler InputProcessing depuis Common pour les conversions et préfixes clavier, sans modifier le contenu des liaisons.
+
+- [x] Raccorder les messages et erreurs par le Common de chaque module.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMessages.cs : exposer les fabriques existantes CreateError et EmulatorNotInstalled avec leur retour typé.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationMessageService.cs : déléguer les deux fabriques aux implémentations existantes.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer Messages par IEmulationMessages avec le même nom pour les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Modules/AcornEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Modules/AppleEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Modules/BandaiEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Modules/ColecoEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Modules/EpochEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Modules/FairchildEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Modules/MattelEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Modules/NecEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Modules/NintendoEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Protocol.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/FirmwareRuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Modules/PanasonicEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Modules/PhilipsEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Modules/SnkEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Exceptions/MachineExceptions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Protocol.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/MediaRuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Modules/ThomsonEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Protocol.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/MediaRuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Modules/WataraEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/RuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Protocol.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/FirmwareRuntimeFunctions.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Modules/WenquxingEmulationModule.cs : utiliser Messages du Common du module pour les erreurs, en conservant catégories, codes et contexte.
+
+- [x] Raccorder les opérations vidéo au contrat commun sans changer les allocations ni les unités.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationVideoProcessing.cs : définir les huit opérations existantes de géométrie, copie, horodatage et formatage avec leurs contrats de propriété.
+  - [x] Créer src/GWGUI.Emulation/Services/EmulationVideoProcessingService.cs : déléguer aux huit algorithmes existants.
+  - [x] Modifier src/GWGUI.Emulation/EmulationSdk.cs : exposer VideoProcessing uniquement par son interface.
+  - [x] Modifier src/GWGUI.Emulation/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer VideoProcessing par le même contrat dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/AppleWin/Dictionaries/OptionCatalog.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/SettingsDictionary.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreVideoFunctions.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationVideoBufferSet.cs : appeler VideoProcessing du Common en conservant les arguments, références et copies existants.
+
+- [x] Corriger la sélection des consommateurs pour conserver les appels internes du SDK.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationLegacyOptionHost.cs : conserver la délégation interne directe aux algorithmes du SDK, sans relais Common de module.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationMessageService.cs : conserver la délégation interne directe aux algorithmes du SDK, sans relais Common de module.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationVideoBufferSet.cs : conserver la délégation interne directe aux algorithmes du SDK, sans relais Common de module.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationVideoProcessingService.cs : conserver la délégation interne directe aux algorithmes du SDK, sans relais Common de module.
+
+- [x] Raccorder les opérations de cycle de vie au contrat MachineExecution existant.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMachineExecution.cs : ajouter les contrats de sauvegarde native, contrôle de taille et nettoyage de ressources possédées.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationMachineExecutionService.cs : déléguer les cinq opérations aux algorithmes existants, en conservant les finally.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer MachineExecution sous son interface publique dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.Media.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.State.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.Content.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : appeler MachineExecution du Common en conservant les propriétaires, attentes, retours et ordre de nettoyage.
+
+- [x] Compléter les raccordements des catalogues et des derniers appels vidéo et activité.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationAdapters.cs : exposer les conversions existantes de modèle, ressource et définition de catalogue.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationAdapterService.cs : réutiliser les trois conversions internes existantes.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMachineExecution.cs : exposer les deux projections existantes des voyants vers les emplacements de médias.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationMachineExecutionService.cs : déléguer les deux projections sans changer leurs dictionnaires.
+  - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreExportNames.cs : publier les noms invariants du contrat natif avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : exposer Adapters par son interface dans les 24 Common.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Dictionaries/CoreCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Dictionaries/EmulatorCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Dictionaries/ModelCatalog.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : utiliser Adapters, MachineExecution ou VideoProcessing du Common pour les opérations déjà présentes, avec les mêmes données et règles de sélection.
+
+- [x] Remplacer l’héritage privé OpenGL par un propriétaire sous interface publique.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationHardwareRenderContext.cs : décrire les callbacks empruntés, la lecture et le redimensionnement du framebuffer et la libération du contexte possédé.
+  - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : déclarer les deux types de contexte OpenGL du contrat natif avec leurs valeurs existantes.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationOpenGlHardwareRenderContext.cs : implémenter le contrat en conservant création, lecture et destruction effectives.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationOpenGlHardwareRenderContext.Framebuffer.cs : exposer le redimensionnement par le contrat et réutiliser le code de contexte commun.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationNativeResources.cs : déclarer la fabrique du propriétaire graphique sous son interface.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationNativeResourceService.cs : construire le propriétaire existant sous son contrat.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/OpenGlHardwareRenderContext.cs : composer le propriétaire obtenu par Common NativeResources et conserver les noms et opérations utilisés par le cœur.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/OpenGlHardwareRenderContext.cs : composer le propriétaire obtenu par Common NativeResources et conserver les noms et opérations utilisés par le cœur.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/OpenGlHardwareRenderContext.cs : composer le propriétaire obtenu par Common NativeResources et conserver les noms et opérations utilisés par le cœur.
+
+- [x] Valider les raccordements publics sur les scénarios existants et tous les modules.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/AdapterDiscoveryTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/CoreAvUpdateTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/CoreRunLifecycleTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/CoreThreadStartTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/EmulationContracts/CallbackResourceDisposalTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/MachineDisplayResourceTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/MachineResourceDisposalTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/MediaLedMappingTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/NativeVideoPixelCopyTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/StartupWaitCleanupTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/TransportDisposalTests.cs : exécuter les scénarios existants par les interfaces publiques correspondantes, en conservant les assertions et nettoyages.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : contrôler le contrat vidéo, les services publics et le propriétaire graphique interne ; exécuter toute la suite Emulation et le build Debug avec tous les modules, puis vérifier leurs fichiers livrés.
+
+Validation de ce lot : 3 266 tests Emulation réussis, aucun échec ni test ignoré ; scripts/local-building.cmd --building=debug --modules=A terminé avec le code 0. Exécutable build/Debug/GW GUI/gwgui.exe, Example intégré et les 23 manifestes avec leur DLL d’entrée vérifiés.

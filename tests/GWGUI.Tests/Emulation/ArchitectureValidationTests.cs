@@ -2,6 +2,8 @@ using GWGUI.Emulation;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
@@ -10,6 +12,40 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void SdkGrantsInternalAccessOnlyToTheExistingTestAssemblies()
+    {
+        var grants = typeof(EmulationSdk).Assembly.GetCustomAttributes<InternalsVisibleToAttribute>()
+            .Select(attribute => new AssemblyName(attribute.AssemblyName).Name).ToArray();
+        var tests = new[] { "GWGUI.Tests", "GWGUI.LocalDiskImageTests", "GWGUI.TemporaryLibretroMediaReader" };
+        Assert.All(grants, name => Assert.Contains(name, tests));
+        Assert.DoesNotContain(grants, name => name!.StartsWith("GWGUI.Emulation.", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData(typeof(ExternalCoreApiConstants))]
+    [InlineData(typeof(ExternalCoreKeyboardConstants))]
+    [InlineData(typeof(ExternalCoreExportNames))]
+    public void NativeDataContractsExposeConstantsWithoutImplementationMethods(Type contract)
+    {
+        Assert.True(contract.IsPublic);
+        Assert.Empty(contract.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly));
+        var fields = contract.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+        Assert.NotEmpty(fields);
+        Assert.All(fields, field => Assert.True(field.IsLiteral && !field.IsInitOnly));
+    }
+
+    [Fact]
+    public void KeyboardCalculationDetailsRemainInternal()
+    {
+        foreach (var name in new[] { "UppercaseOffset", "FirstRangeOffset", "ModifierFirstOrder", "ModifierLastOrder" })
+        {
+            var field = typeof(ExternalCoreKeyboardConstants).GetField(name, BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.NotNull(field);
+            Assert.True(field.IsAssembly);
+        }
+    }
+
     [Theory]
     [InlineData(nameof(IEmulationNativeResources.CreateString), typeof(IEmulationNativeString), "ExternalCoreUtf8String")]
     [InlineData(nameof(IEmulationNativeResources.AddString), typeof(IEmulationNativeString), "ExternalCoreUtf8String")]
@@ -20,6 +56,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(IEmulationNativeResources.CreateAudioCallbackHost), typeof(IEmulationAudioCallbackHost), "ExternalCoreAudioCallbackHost")]
     [InlineData(nameof(IEmulationNativeResources.CreateVideoCallbackHost), typeof(IEmulationVideoCallbackHost), "ExternalCoreVideoCallbackHost")]
     [InlineData(nameof(IEmulationNativeResources.CreateEnvironmentCallbackHost), typeof(IEmulationEnvironmentCallbackHost), "ExternalCoreEnvironmentCallbackHost")]
+    [InlineData(nameof(IEmulationNativeResources.CreateHardwareRenderContext), typeof(IEmulationHardwareRenderContext), "EmulationOpenGlHardwareRenderContext")]
     public void NativeResourceFactoriesExposeInterfacesAndKeepOwnersInternal(string methodName, Type contract, string implementationName)
     {
         var methods = typeof(IEmulationNativeResources).GetMethods().Where(method => method.Name == methodName).ToArray();
@@ -173,6 +210,12 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.CoreDiagnostics), typeof(IEmulationCoreDiagnostics))]
     [InlineData(nameof(EmulationSdk.OptionProcessing), typeof(IEmulationCoreOptionProcessing))]
     [InlineData(nameof(EmulationSdk.EnvironmentProcessing), typeof(IEmulationCoreEnvironmentProcessing))]
+    [InlineData(nameof(EmulationSdk.HardwareSettings), typeof(IEmulationHardwareSettings))]
+    [InlineData(nameof(EmulationSdk.VideoProcessing), typeof(IEmulationVideoProcessing))]
+    [InlineData(nameof(EmulationSdk.MachineExecution), typeof(IEmulationMachineExecution))]
+    [InlineData(nameof(EmulationSdk.Messages), typeof(IEmulationMessages))]
+    [InlineData(nameof(EmulationSdk.ConfigurationFiles), typeof(IEmulationConfigurationFiles))]
+    [InlineData(nameof(EmulationSdk.Adapters), typeof(IEmulationAdapters))]
     [InlineData(nameof(EmulationSdk.NativeResources), typeof(IEmulationNativeResources))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
@@ -267,6 +310,7 @@ public sealed class ArchitectureValidationTests
     [InlineData("EmulationChildProcessLifetime")]
     [InlineData("EmulationCoreOptionFunctions")]
     [InlineData("ExternalCoreEnvironmentFunctions")]
+    [InlineData("EmulationHardwareSettingsFunctions")]
     public void SharedAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
     {
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
@@ -277,6 +321,7 @@ public sealed class ArchitectureValidationTests
     [Theory]
     [InlineData(typeof(IEmulationCoreOptionProcessing), "EmulationCoreOptionFunctions", 24)]
     [InlineData(typeof(IEmulationCoreEnvironmentProcessing), "ExternalCoreEnvironmentFunctions", 34)]
+    [InlineData(typeof(IEmulationHardwareSettings), "EmulationHardwareSettingsFunctions", 12)]
     public void ProcessingContractsRetainEveryInternalOperationWithItsSignatureAndDefaults(Type contract, string implementation, int operationCount)
     {
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
@@ -355,6 +400,18 @@ public sealed class ArchitectureValidationTests
             Assert.Equal("architecture refusée", error.Message);
             Assert.Equal(1, reads);
         }
+    }
+
+    [Fact]
+    public void ConfigurationFilesExposeExistingPersistenceOperationsThroughThePublicContract()
+    {
+        var contract = typeof(IEmulationConfigurationFiles);
+        Assert.False(EmulationSdk.ConfigurationFiles.GetType().IsVisible);
+        foreach (var name in new[] { "StorePath", "ResolvePath", "DeleteIfExists", "DeleteDirectoryIfExists", "EnumerateDocumentPaths", "WithSaveGateAsync" })
+            Assert.Single(contract.GetMethods(), method => method.Name == name);
+        var writes = contract.GetMethods().Where(method => method.Name == "WriteDocumentAsync").ToArray();
+        Assert.Equal(new[] { 4, 8 }, writes.Select(method => method.GetParameters().Length).Order().ToArray());
+        Assert.Equal(3, contract.GetMethods().Count(method => method.Name == "ReadDocumentsAsync"));
     }
 
     [Fact]

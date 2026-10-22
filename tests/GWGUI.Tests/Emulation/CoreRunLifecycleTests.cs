@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -8,7 +9,7 @@ public sealed class CoreRunLifecycleTests
     public void SuccessfulRunCleansUpAfterExecutionWithInitializationCompleted()
     {
         var calls = new List<string>();
-        ExternalCoreLifecycleFunctions.RunCore(
+        EmulationSdk.MachineExecution.RunCore(
             () => calls.Add("initialize"), () => calls.Add("run"),
             _ => () => throw new InvalidOperationException("Unexpected report"),
             initialized => calls.Add($"cleanup:{initialized}"));
@@ -25,7 +26,7 @@ public sealed class CoreRunLifecycleTests
         var failure = new InvalidOperationException("original");
         Exception? reported = null;
         bool? cleanupState = null;
-        ExternalCoreLifecycleFunctions.RunCore(
+        EmulationSdk.MachineExecution.RunCore(
             () => { calls.Add("initialize"); if (failInitialize) throw failure; },
             () => { calls.Add("run"); throw failure; },
             error => () => { calls.Add("report"); reported = error; },
@@ -45,7 +46,7 @@ public sealed class CoreRunLifecycleTests
     {
         var reportFailure = new ApplicationException("report");
         bool? cleanupState = null;
-        var actual = Assert.Throws<ApplicationException>(() => ExternalCoreLifecycleFunctions.RunCore(
+        var actual = Assert.Throws<ApplicationException>(() => EmulationSdk.MachineExecution.RunCore(
             () => { if (failInitialize) throw new InvalidOperationException("initialize"); },
             () => throw new InvalidOperationException("run"),
             _ => () => throw reportFailure,
@@ -62,7 +63,7 @@ public sealed class CoreRunLifecycleTests
     {
         var cleanupFailure = new ApplicationException("cleanup");
         var reports = 0;
-        var actual = Assert.Throws<ApplicationException>(() => ExternalCoreLifecycleFunctions.RunCore(
+        var actual = Assert.Throws<ApplicationException>(() => EmulationSdk.MachineExecution.RunCore(
             () => { if (failInitialize) throw new InvalidOperationException("initialize"); },
             () => throw new InvalidOperationException("run"),
             _ => () => { reports++; throw new InvalidOperationException("report"); },
@@ -80,7 +81,7 @@ public sealed class CoreRunLifecycleTests
         var failure = new OperationCanceledException(cancellation.Token);
         Exception? reported = null;
         bool? cleanupState = null;
-        ExternalCoreLifecycleFunctions.RunCore(() => throw failure,
+        EmulationSdk.MachineExecution.RunCore(() => throw failure,
             () => throw new InvalidOperationException("Run must not start"),
             error => () => reported = error,
             initialized => cleanupState = initialized);
@@ -95,7 +96,7 @@ public sealed class CoreRunLifecycleTests
         var calls = new List<string>();
         var scopeDisposed = false;
         bool? observedAtSelection = null;
-        ExternalCoreLifecycleFunctions.RunCore(
+        EmulationSdk.MachineExecution.RunCore(
             () => calls.Add("initialize"),
             () =>
             {

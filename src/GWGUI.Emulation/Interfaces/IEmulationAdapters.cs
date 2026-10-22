@@ -7,6 +7,13 @@ namespace GWGUI.Emulation.Interfaces;
 /// Les constructeurs doivent préparer des descriptions et des fabriques, sans démarrer de cœur ou de processus.</remarks>
 public interface IEmulationAdapters
 {
+    /// <summary>Résout le libellé du modèle qui correspond à l’identité de la configuration empruntée.</summary>
+    string DisplayResourceKey(IReadOnlyList<EmulationMachineDefinition> models, IEmulationConfiguration configuration);
+    /// <summary>Convertit et valide une identité dans l’enum de modèles définie par le module.</summary>
+    TModel Parse<TModel>(string id) where TModel : struct, Enum;
+    /// <summary>Projette l’entrée de catalogue du module vers sa définition publique avec les identités et ressources existantes.</summary>
+    EmulationEmulatorDefinition ToDefinition<TEmulator, TMachineModel>(EmulationCoreCatalogEntry<TEmulator, TMachineModel> entry);
+
     /// <summary>Construit les types concrets fermés implémentant le contrat demandé, dans l’ordre ordinal de leur nom complet.</summary>
     /// <typeparam name="T">Contrat interne ou public choisi par le module pour ses adaptateurs.</typeparam>
     /// <param name="assembly">Assembly du module, indépendant de son nom et de son auteur.</param>

@@ -34,5 +34,5 @@ internal static class RuntimeFunctions
 
 internal static class MessageFunctions
 {
-    internal static Exception Translate(Exception error, MachineConfiguration configuration) => EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configuration.MachineId));
+    internal static Exception Translate(Exception error, MachineConfiguration configuration) => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configuration.MachineId));
 }

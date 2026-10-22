@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
@@ -19,7 +20,7 @@ internal static class CoreVideoFunctions
                 checked((int)width * HardwareRenderConstants.PixelByteCount), EmulationPixelFormat.Xrgb8888,
                 aspectRatio > 0 ? aspectRatio : width / (float)height, ++sequence, elapsed);
         }
-        var pixels = GWGUI.Emulation.Functions.EmulationVideoFunctions.CopyFramePixels(data, height, pitch);
+        var pixels = CommonCoreHostFunctions.VideoProcessing.CopyFramePixels(data, height, pitch);
         return new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch),
             pixelFormat, aspectRatio > 0 ? aspectRatio : width / (float)height, ++sequence, elapsed);
     }

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
@@ -24,7 +25,7 @@ internal sealed partial class ExternalCore
         _supportsSaveStates = false;
         try
         {
-            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Microsoft.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Microsoft.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
@@ -22,13 +23,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             }
             catch (Exception error)
             {
-                throw EmulationErrorService.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
+                throw CommonCoreHostFunctions.Messages.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
         }, cancellationToken);
     }
     private void Run(CancellationToken cancellationToken)
     {
-        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+        CommonCoreHostFunctions.MachineExecution.RunCore(
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
@@ -87,7 +88,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             },
             error => () =>
             {
-                error = _startErrorTranslator?.Invoke(error) ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
+                error = _startErrorTranslator?.Invoke(error) ?? CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
                 if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
                 _started?.TrySetException(error);
                 FailPendingCommands(error);
@@ -139,7 +140,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _disposed = true;
         try
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+            await CommonCoreHostFunctions.MachineExecution.DisposeMachineAsync(
                 () => StopAsync(),
                 () => { try { _stop?.Dispose(); } finally { _stop = null; } },
                 () => _core.Dispose(),

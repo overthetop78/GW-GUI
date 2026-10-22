@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Dictionaries;
 using NativeFirmwareConstants = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants.FirmwareConstants;
@@ -72,5 +73,5 @@ internal static class FirmwareRuntimeFunctions
         }
     }
 
-    private static EmulationMessageException Invalid(EmulationMessageCode code) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, code, null);
+    private static EmulationMessageException Invalid(EmulationMessageCode code) => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Firmware, code, null);
 }

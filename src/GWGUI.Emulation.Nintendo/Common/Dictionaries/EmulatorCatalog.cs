@@ -1,10 +1,11 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Nintendo.Common.Dictionaries;
 
 public static class EmulatorCatalog
 {
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
 
     public static string DefaultFor(string machineId) => CreateAdapters()
         .FirstOrDefault(adapter => adapter is IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machineId))?.EmulatorId

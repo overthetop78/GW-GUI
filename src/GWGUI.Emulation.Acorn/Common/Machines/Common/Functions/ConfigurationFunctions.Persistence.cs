@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
@@ -61,14 +62,14 @@ internal static class ConfigurationStoreFunctions
     }
 
     internal static string? StorePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.StorePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.StorePath(path, pathBase);
 
     internal static string? ResolvePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.ResolvePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.ResolvePath(path, pathBase);
 
     internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
         =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(path, document, JsonOptions, cancellationToken);
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(path, document, JsonOptions, cancellationToken);
 
     private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) => new(StorePath(folders.Shared, pathBase), StorePath(folders.Floppies, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
 

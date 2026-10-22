@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
@@ -26,12 +27,12 @@ internal sealed partial class ExternalCore
 
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot)?.RequiresExplicitSave == true;
 
-    public byte[] SaveState() => ExternalCoreLifecycleFunctions.SerializeState(RequireExports, SupportsSaveStates,
+    public byte[] SaveState() => CommonCoreHostFunctions.MachineExecution.SerializeState(RequireExports, SupportsSaveStates,
         (nuint)Array.MaxLength,
         static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable),
         static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSaveFailed));
 
-    public void LoadState(ReadOnlySpan<byte> state) => ExternalCoreLifecycleFunctions.UnserializeState(RequireExports,
+    public void LoadState(ReadOnlySpan<byte> state) => CommonCoreHostFunctions.MachineExecution.UnserializeState(RequireExports,
         SupportsSaveStates, (nuint)Array.MaxLength, state,
         static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSizeInvalid),
         static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateLoadFailed));

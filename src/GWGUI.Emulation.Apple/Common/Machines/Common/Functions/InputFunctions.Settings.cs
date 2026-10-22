@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using CommonControllerFunctions = GWGUI.Emulation.Apple.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Apple.Common.Machines.AppleII.Dictionaries;
 using GWGUI.Emulation.Apple.Common.Machines.Macintosh.Dictionaries;
@@ -19,7 +20,7 @@ internal static class InputSettingsFunctions
     {
         var input = configuration.Input;
         var definitions = KeyboardDefinitions(configuration);
-        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
+        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = configuration.Family == MachineFamily.AppleII ? CommonControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
@@ -54,11 +55,11 @@ internal static class InputSettingsFunctions
     {
         var allowedKeys = KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
-            ? configuration.Input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
+            ? configuration.Input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && EmulationKeyboardBindingFunctions.IsValid(item.Value)).ToDictionary(item => item.Key,
                 item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value,
                 StringComparer.Ordinal);
-        var keyboard = keyboardBindings.ToKeys();
+        var keyboard = EmulationSdk.InputProcessing.ToKeys(keyboardBindings);
         var controllers = settings.ControllerPorts.Select(port =>
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) || !Enum.IsDefined(peripheral))

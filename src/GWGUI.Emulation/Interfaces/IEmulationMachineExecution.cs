@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Interfaces;
 
@@ -7,6 +8,25 @@ namespace GWGUI.Emulation.Interfaces;
 /// leur arrêt puis attend leur destruction effective dans son finally avant de libérer ses autres ressources.</remarks>
 public interface IEmulationMachineExecution
 {
+    /// <summary>Projette les voyants de disquette, cassette et cartouche vers leurs emplacements communs.</summary>
+    Dictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds);
+    /// <summary>Projette les mêmes voyants avec l’activité du lecteur de disque compact.</summary>
+    IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStatesWithCd(IReadOnlyDictionary<int, bool> leds);
+
+    /// <summary>Sérialise les exports empruntés après contrôle de taille ; le tableau retourné appartient à l’appelant.</summary>
+    /// <remarks>Le tampon natif temporaire est libéré dans finally. Les fabriques d’erreurs sont évaluées uniquement sur leurs branches d’échec.</remarks>
+    byte[] SerializeState(Func<ExternalCoreExports> requireExports, bool supported, nuint maximumSize, Func<Exception> unavailable, Func<Exception> saveFailed);
+    /// <summary>Restaure les octets empruntés avec les contrôles existants et libère le tampon natif dans finally.</summary>
+    void UnserializeState(Func<ExternalCoreExports> requireExports, bool supported, nuint maximumSize, ReadOnlySpan<byte> state, Func<Exception> invalidSize, Func<Exception> loadFailed);
+    /// <summary>Vérifie que la taille d’état native est positive et ne dépasse pas la borne fournie.</summary>
+    bool IsSupportedStateSize(nuint size, nuint maximumStateSize);
+    /// <summary>Libère les ressources possédées des callbacks dans l’ordre existant, même si une libération échoue.</summary>
+    /// <remarks>L’appelant transfère explicitement le nettoyage de ces ressources ; les ressources empruntées à un tiers restent à leur propriétaire.</remarks>
+    void DisposeCallbackResources(IDisposable? systemDirectory, IDisposable? contentDirectory, IDisposable? saveDirectory, IDisposable? assetsDirectory, IDisposable? virtualFileSystem, IDisposable? videoBuffers, IDisposable optionHost);
+    /// <summary>Décharge le contenu puis désinitialise le cœur, libère les callbacks et enfin la bibliothèque.</summary>
+    /// <remarks>Chaque étape est protégée par finally. L’appelant doit avoir arrêté et attendu l’exécution avant de demander la destruction de ses ressources.</remarks>
+    void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary);
+
     /// <summary>Démarre le thread de session avec ses signaux de démarrage et de fin.</summary>
     /// <param name="run">Boucle ou action empruntée au propriétaire de la session.</param>
     /// <param name="name">Nom technique du thread de cœur.</param>

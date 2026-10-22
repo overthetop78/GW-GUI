@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using EmulatorCatalogFunctions = GWGUI.Emulation.Acorn.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
@@ -16,7 +17,7 @@ internal static class CoreCatalog
     public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;
 
     private static IReadOnlyList<MachineFactory> DiscoverFactories() =>
-        GWGUI.Emulation.Functions.EmulationAdapterFunctions.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)
+        CommonCoreHostFunctions.Adapters.Create<MachineFactory, IEmulatorAdapter>(typeof(CoreCatalog).Assembly)
             .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
             .ToArray();
 
@@ -28,7 +29,7 @@ internal static class CoreCatalog
 
     public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();
 
-    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => entry.ToDefinition();
+    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => CommonCoreHostFunctions.Adapters.ToDefinition(entry);
 
     public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);
 

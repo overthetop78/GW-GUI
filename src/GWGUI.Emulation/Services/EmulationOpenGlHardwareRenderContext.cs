@@ -3,7 +3,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal partial class EmulationOpenGlHardwareRenderContext : IDisposable
+internal partial class EmulationOpenGlHardwareRenderContext : IEmulationHardwareRenderContext
 {
     private const string StaticWindowClass = "STATIC";
     private const string EmptyWindowTitle = "";
@@ -21,7 +21,7 @@ internal partial class EmulationOpenGlHardwareRenderContext : IDisposable
     private const uint GlUnsignedByte = 0x1401;
     private const int GlReadBufferCommand = 0x0C02;
     private const int GlBack = 0x0405;
-    internal const int OpenGlContextType = 1;
+    internal const int OpenGlContextType = ExternalCoreApiConstants.OpenGlContextType;
     private const int OpenGlVersionMajor = 3;
     private const int OpenGlVersionMinor = 0;
     private const int ContextWidth = 1;
@@ -63,14 +63,14 @@ internal partial class EmulationOpenGlHardwareRenderContext : IDisposable
         }
     }
 
-    internal nint CurrentFramebufferCallback => Marshal.GetFunctionPointerForDelegate(_framebufferCallback);
-    internal nint ProcAddressCallback => Marshal.GetFunctionPointerForDelegate(_procAddressCallback);
+    public nint CurrentFramebufferCallback => Marshal.GetFunctionPointerForDelegate(_framebufferCallback);
+    public nint ProcAddressCallback => Marshal.GetFunctionPointerForDelegate(_procAddressCallback);
 
-    internal int ContextType => OpenGlContextType;
-    internal uint VersionMajor => OpenGlVersionMajor;
-    internal uint VersionMinor => OpenGlVersionMinor;
+    public int ContextType => OpenGlContextType;
+    public uint VersionMajor => OpenGlVersionMajor;
+    public uint VersionMinor => OpenGlVersionMinor;
 
-    internal bool TryReadFramebuffer(int width, int height, out byte[] pixels)
+    public bool TryReadFramebuffer(int width, int height, out byte[] pixels)
     {
         pixels = [];
         if (_disposed || _deviceContext == IntPtr.Zero || _renderingContext == IntPtr.Zero
@@ -105,7 +105,7 @@ internal partial class EmulationOpenGlHardwareRenderContext : IDisposable
         GC.KeepAlive(_procAddressCallback);
     }
 
-    internal bool MakeCurrentForCore() => !_disposed && MakeCurrent();
+    public bool MakeCurrentForCore() => !_disposed && MakeCurrent();
 
     private void CreateContext()
     {

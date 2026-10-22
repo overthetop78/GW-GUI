@@ -236,7 +236,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (configuration is not MachineConfiguration atari)
             throw new ArgumentException(nameof(configuration));
         var corePath = await _engine.Adapter(atari).FindInstalledCorePathAsync(ManagementContext, cancellationToken).ConfigureAwait(false)
-            ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(_engine.Adapter(atari).EmulatorId);
+            ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(_engine.Adapter(atari).EmulatorId);
         var audioDevice = atari.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioOutputOption);
         if (string.Equals(audioDevice, VideoAudioSettingsConstants.DefaultAudioOutput, StringComparison.Ordinal)) audioDevice = null;
         var latency = atari.Options.TryGetValue(VideoAudioSettingsConstants.AudioLatencyOption, out var configuredLatency) && int.TryParse(configuredLatency, out var parsedLatency) ? parsedLatency : VideoAudioSettingsConstants.DefaultAudioLatencyMilliseconds;

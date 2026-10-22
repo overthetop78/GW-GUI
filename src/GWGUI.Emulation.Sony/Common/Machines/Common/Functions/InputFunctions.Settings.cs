@@ -12,7 +12,7 @@ internal static partial class InputSettingsFunctions
         var input = configuration.Input ?? new InputConfiguration();
         var usbKeyboard = HasUsbKeyboard(configuration);
         var usbMouse = HasUsbMouse(configuration);
-        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions(configuration) : [], input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions(configuration) : [], input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
             CompatibleVisualIds: usbKeyboard ? [UsbKeyboardVisualId(configuration)] : null, DefaultVisualId: usbKeyboard ? UsbKeyboardVisualId(configuration) : null) : null;
         var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         if (usbMouse && mouse is not null) mouse = mouse with
@@ -32,7 +32,7 @@ internal static partial class InputSettingsFunctions
         if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
             return configuration;
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(current.KeyboardMappings);
+        var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(current.KeyboardMappings);
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Where(port => port.Number <= CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
@@ -54,7 +54,7 @@ internal static partial class InputSettingsFunctions
             Input = current with
             {
                 KeyboardBindings = keyboard,
-                KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
+                KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 ControllerBindings = controllers,
                 UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"

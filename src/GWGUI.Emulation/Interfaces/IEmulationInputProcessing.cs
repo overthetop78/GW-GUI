@@ -7,6 +7,13 @@ namespace GWGUI.Emulation.Interfaces;
 /// L’accumulation des mouvements entre deux frames appartient au contrat IEmulationInputFrames.</remarks>
 public interface IEmulationInputProcessing
 {
+    /// <summary>Convertit les noms de touches reconnus en valeurs typées, en conservant la comparaison ordinale des commandes.</summary>
+    IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values);
+    /// <summary>Convertit les touches en noms ; pour une source absente, utilise le comparateur de dictionnaire vide fourni.</summary>
+    IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values, IEqualityComparer<string>? emptyComparer = null);
+    /// <summary>Accepte une source vide ou un préfixe clavier, souris ou contrôleur selon les comparaisons existantes.</summary>
+    bool IsValidSourcePrefix(string? source);
+
     /// <summary>Calcule le masque natif des touches Majuscule, Contrôle et Alt.</summary>
     /// <param name="keys">Touches appuyées empruntées pendant le calcul ; le service ne conserve pas cet ensemble.</param>
     /// <returns>Masque natif des modificateurs ; les touches droites et gauches utilisent les mêmes bits.</returns>

@@ -92,7 +92,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
             var stateSize = _exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
             ControllerPortFunctions.Configure(_exports);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);

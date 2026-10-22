@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Snk.Common.Dictionaries;
 internal static class EmulatorCatalog
 {
@@ -13,7 +14,7 @@ internal static class EmulatorCatalog
     private static readonly IReadOnlyDictionary<string, EmulatorDefinition> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);
     internal static IReadOnlyList<EmulatorDefinition> All => Entries;
 
-    private static IReadOnlyList<IEmulatorAdapter> DiscoverAdapters() => EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => adapter.EmulatorId,
+    private static IReadOnlyList<IEmulatorAdapter> DiscoverAdapters() => CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => adapter.EmulatorId,
         StringComparer.Ordinal).ToArray();
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => Entries.Select(entry => CreateAdapter(entry.Emulator)).ToArray();
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => AdapterTypes.TryGetValue(emulator, out var type) ? (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)! : throw new ArgumentOutOfRangeException(nameof(emulator));

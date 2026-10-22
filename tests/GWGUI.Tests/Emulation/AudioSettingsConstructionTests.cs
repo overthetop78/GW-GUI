@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -18,7 +19,7 @@ public sealed class AudioSettingsConstructionTests
         try
         {
             CultureInfo.CurrentCulture = culture;
-            var field = EmulationHardwareSettingsFunctions.AudioSelection(
+            var field = EmulationSdk.HardwareSettings.AudioSelection(
                 new Dictionary<string, string>(), "latency", "audio-block", "latency-label",
                 -25, [-25, 0, 25], "ms", invariantLabels ? CultureInfo.InvariantCulture : null);
             Assert.Equal("-25", field.Value);
@@ -48,7 +49,7 @@ public sealed class AudioSettingsConstructionTests
     [InlineData("saved-custom-value")]
     public void SavedValuesArePreservedWithoutNewClampingOrValidation(string saved)
     {
-        var field = EmulationHardwareSettingsFunctions.AudioSelection(
+        var field = EmulationSdk.HardwareSettings.AudioSelection(
             new Dictionary<string, string> { ["volume"] = saved }, "volume", "audio", "volume-label",
             100, [0, 50, 100], "%", CultureInfo.InvariantCulture);
         Assert.Equal(saved, field.Value);
@@ -60,7 +61,7 @@ public sealed class AudioSettingsConstructionTests
     [InlineData("", "20 ")]
     public void UnitsKeepTheirExistingSpacing(string unit, string expected)
     {
-        var field = EmulationHardwareSettingsFunctions.AudioSelection(
+        var field = EmulationSdk.HardwareSettings.AudioSelection(
             new Dictionary<string, string>(), "value", "audio", "label", 20, [20], unit, CultureInfo.InvariantCulture);
         Assert.Equal(expected, Assert.Single(field.Choices!).InvariantDisplayValue);
     }
@@ -70,8 +71,8 @@ public sealed class AudioSettingsConstructionTests
     {
         var values = new List<int> { 30, 20, 30 };
         var options = new Dictionary<string, string>();
-        var first = EmulationHardwareSettingsFunctions.AudioSelection(options, "id", "audio", "label", 20, values, "ms", null);
-        var second = EmulationHardwareSettingsFunctions.AudioSelection(options, "id", "audio", "label", 20, values, "ms", null);
+        var first = EmulationSdk.HardwareSettings.AudioSelection(options, "id", "audio", "label", 20, values, "ms", null);
+        var second = EmulationSdk.HardwareSettings.AudioSelection(options, "id", "audio", "label", 20, values, "ms", null);
         Assert.NotSame(first.Choices, second.Choices);
         Assert.NotSame(first.Choices![0], second.Choices![0]);
         values[0] = 999;

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
 
@@ -37,7 +38,7 @@ internal static class SettingsDictionary
         ("ntsc", EmulationVideoStandard.Ntsc, 60, 320, 240),
         ("pal1", EmulationVideoStandard.Pal, 50, 320, 288),
         ("pal2", EmulationVideoStandard.Pal, 50, 384, 288)
-    }.Select(item => new EmulationSettingsChoice(item.Token, string.Empty, $"{EmulationVideoFunctions.FormatTiming(item.Standard, item.Frequency)} · {item.Width} × {item.Height}")).ToArray();
+    }.Select(item => new EmulationSettingsChoice(item.Token, string.Empty, $"{CommonCoreHostFunctions.VideoProcessing.FormatTiming(item.Standard, item.Frequency)} · {item.Width} × {item.Height}")).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> PixelFormats { get; } = [new("0RGB1555", string.Empty, "RGB1555"), new("RGB565", string.Empty, "RGB565"), new("XRGB8888", string.Empty, "XRGB8888")];
     internal static IReadOnlyList<EmulationSettingsChoice> MatrixModes { get; } = [new("hardware", "Emulation.Panasonic.Value.Hardware"), new("software", "Emulation.Panasonic.Value.Software")];
     internal static IReadOnlyList<EmulationSettingsChoice> SaveModes { get; } = [new("per game", "Emulation.Panasonic.Value.PerGame"), new("shared", "Emulation.Panasonic.Value.Shared")];

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -22,7 +23,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void Run(CancellationToken cancellationToken)
     {
-        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+        CommonCoreHostFunctions.MachineExecution.RunCore(
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
@@ -68,7 +69,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     catch (Exception error) { ReportFailure(error); }
                     finally
                     {
-                        released = ExternalCoreLifecycleFunctions.TryDisposeCore(_core, ReportFailure);
+                        released = CommonCoreHostFunctions.MachineExecution.TryDisposeCore(_core, ReportFailure);
                     }
                 }
                 finally
@@ -180,7 +181,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         var disposeUnstartedCore = _thread is null;
         try
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+            await CommonCoreHostFunctions.MachineExecution.DisposeMachineAsync(
                 () => StopAsync(),
                 () => { if (disposeUnstartedCore) _core.Dispose(); },
                 () => _audio.Dispose(),

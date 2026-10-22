@@ -10,7 +10,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var mouseType = model.Id == PcFxMachineConstants.Id ? ControllerType.PcFxMouse : ControllerType.PcEngineMouse;
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
             ? new EmulationInputBindingSet(
             MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse
@@ -50,7 +50,7 @@ internal static partial class InputSettingsFunctions
             Input = current with
             {
                 KeyboardBindings = keyboard,
-                KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
+                KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 ControllerBindings = controllers
             }

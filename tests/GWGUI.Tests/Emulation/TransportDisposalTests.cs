@@ -24,7 +24,7 @@ public sealed class TransportDisposalTests
         };
         var core = new Transport(error);
         var reported = new List<Exception>();
-        var released = ExternalCoreLifecycleFunctions.TryDisposeCore(core, reported.Add);
+        var released = EmulationSdk.MachineExecution.TryDisposeCore(core, reported.Add);
 
         Assert.Equal(error is null, released);
         Assert.Equal(1, core.DisposeCount);
@@ -42,7 +42,7 @@ public sealed class TransportDisposalTests
 
         var actual = Assert.Throws<InvalidOperationException>(() =>
         {
-            try { released = ExternalCoreLifecycleFunctions.TryDisposeCore(core, _ => throw reportFailure); }
+            try { released = EmulationSdk.MachineExecution.TryDisposeCore(core, _ => throw reportFailure); }
             finally { finalizationReached = true; }
         });
 
@@ -56,7 +56,7 @@ public sealed class TransportDisposalTests
     public void MissingCorePreservesTheOriginalCaughtDereferenceFailure()
     {
         var reported = new List<Exception>();
-        Assert.False(ExternalCoreLifecycleFunctions.TryDisposeCore(null!, reported.Add));
+        Assert.False(EmulationSdk.MachineExecution.TryDisposeCore(null!, reported.Add));
         Assert.IsType<NullReferenceException>(Assert.Single(reported));
     }
 

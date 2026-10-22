@@ -21,10 +21,10 @@ internal static class SettingsDescriptionFunctions
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        EmulationHardwareSettingsFunctions.AddBlocks(blocks, "coleco", hardware.CpuResourceKey,
-            () => EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true),
-            () => EmulationHardwareSettingsFunctions.FormatMemory(hardware.MainMemoryBytes),
-            () => hardware.DisplayMemoryBytes > 0 ? EmulationHardwareSettingsFunctions.FormatMemory(hardware.DisplayMemoryBytes) : null,
+        CommonCoreHostFunctions.HardwareSettings.AddBlocks(blocks, "coleco", hardware.CpuResourceKey,
+            () => CommonCoreHostFunctions.HardwareSettings.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true),
+            () => CommonCoreHostFunctions.HardwareSettings.FormatMemory(hardware.MainMemoryBytes),
+            () => hardware.DisplayMemoryBytes > 0 ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(hardware.DisplayMemoryBytes) : null,
             SettingsConstants.ResourceDisplayMemory, () => $"{hardware.DisplayWidth} × {hardware.DisplayHeight}",
             isCompactCpu: false);
     }
@@ -40,19 +40,19 @@ internal static class SettingsDescriptionFunctions
     private static EmulationSettingsChoice Choice(CoreOptionValue choice, string optionKey)
     {
         if (choice.InvariantDisplayValue is { } invariant) return new(choice.Value, string.Empty, invariant);
-        if (choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequencyHz) return new(choice.Value, string.Empty, EmulationVideoFunctions.FormatTiming(standard, frequencyHz));
+        if (choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequencyHz) return new(choice.Value, string.Empty, CommonCoreHostFunctions.VideoProcessing.FormatTiming(standard, frequencyHz));
         if (choice.VideoStandard is not null || choice.FrequencyHz is not null) throw new InvalidOperationException(optionKey + ":" + choice.Value);
         return new(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException(optionKey + ":" + choice.Value), double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out _) ? choice.Value : null);
     }
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) =>
         Block(EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,
-            EmulationHardwareSettingsFunctions.Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioEnabled, configuration.AudioEnabled, null, null),
-            EmulationHardwareSettingsFunctions.AudioOutput(SettingsConstants.AudioOutput, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioOutput, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], null, null),
+            CommonCoreHostFunctions.HardwareSettings.Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioEnabled, configuration.AudioEnabled, null, null),
+            CommonCoreHostFunctions.HardwareSettings.AudioOutput(SettingsConstants.AudioOutput, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioOutput, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], null, null),
             AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, EmulationSettingConstants.DefaultAudioLatencyMilliseconds, EmulationSettingConstants.AudioLatencyMillisecondsChoices, SettingsConstants.MillisecondsUnit),
             AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, EmulationSettingConstants.DefaultAudioVolumePercent, EmulationSettingConstants.AudioVolumePercentChoices, SettingsConstants.PercentUnit));
 
     private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit) =>
-        EmulationHardwareSettingsFunctions.AudioSelection(configuration.Options, id, SettingsConstants.ResourceAudio, resource, fallback, values, unit, CultureInfo.InvariantCulture);
+        CommonCoreHostFunctions.HardwareSettings.AudioSelection(configuration.Options, id, SettingsConstants.ResourceAudio, resource, fallback, values, unit, CultureInfo.InvariantCulture);
 
     private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }

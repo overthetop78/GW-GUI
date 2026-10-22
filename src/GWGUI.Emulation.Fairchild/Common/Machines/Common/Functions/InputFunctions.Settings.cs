@@ -60,7 +60,7 @@ internal static class InputSettingsFunctions
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
             var actions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
-            if (EmulationSdk.InputProcessing.HasInvalidBindings(controller.Mappings, actions, EmulationKeyboardBindingFunctions.IsValidSourcePrefix))
+            if (EmulationSdk.InputProcessing.HasInvalidBindings(controller.Mappings, actions, EmulationSdk.InputProcessing.IsValidSourcePrefix))
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

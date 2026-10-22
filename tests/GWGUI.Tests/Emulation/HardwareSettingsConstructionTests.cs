@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Globalization;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -18,7 +19,7 @@ public sealed class HardwareSettingsConstructionTests
             events.Add(name);
             return value;
         }
-        EmulationHardwareSettingsFunctions.AddBlocks(blocks, "bandai", "Emulation.Bandai.Cpu.V30Mz",
+        EmulationSdk.HardwareSettings.AddBlocks(blocks, "bandai", "Emulation.Bandai.Cpu.V30Mz",
             () => Read("frequency", "3,072 MHz", 0), () => Read("main", "16 KiB", 1),
             () => Read("display", "80 B", 1), "Emulation.Bandai.Memory.Display",
             () => Read("resolution", "224 × 144", 2), isCompactCpu: false);
@@ -45,7 +46,7 @@ public sealed class HardwareSettingsConstructionTests
     public void AbsentOptionalValuesLeaveOnlyTheCpuModelAndKeepCompactPolicy(bool compact)
     {
         var blocks = new List<EmulationSettingsBlock>();
-        EmulationHardwareSettingsFunctions.AddBlocks(blocks, "sharp", "cpu", () => null, () => null, () => null,
+        EmulationSdk.HardwareSettings.AddBlocks(blocks, "sharp", "cpu", () => null, () => null, () => null,
             "display", () => null, compact);
         var block = Assert.Single(blocks);
         Assert.Equal(compact, block.IsCompact);
@@ -69,7 +70,7 @@ public sealed class HardwareSettingsConstructionTests
             return name;
         }
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationHardwareSettingsFunctions.AddBlocks(blocks, "philips", "cpu", () => Read("frequency"),
+            EmulationSdk.HardwareSettings.AddBlocks(blocks, "philips", "cpu", () => Read("frequency"),
                 () => Read("main"), () => Read("display"), "display", () => Read("resolution"), false)));
         Assert.Equal(blockCount, blocks.Count);
         Assert.Equal(failAt, events[^1]);
@@ -84,7 +85,7 @@ public sealed class HardwareSettingsConstructionTests
     [InlineData(1000000, true, "1 MHz")]
     [InlineData(3072000, true, "3,072 MHz")]
     public void FrequencyFormattingKeepsTheModuleUnitPolicyAndCurrentCulture(long hertz, bool useKilohertz, string expected)
-        => InFrenchCulture(() => Assert.Equal(expected, EmulationHardwareSettingsFunctions.FormatFrequency(hertz, useKilohertz)));
+        => InFrenchCulture(() => Assert.Equal(expected, EmulationSdk.HardwareSettings.FormatFrequency(hertz, useKilohertz)));
 
     [Theory]
     [InlineData(1000000L, "0.00", "1,00 MHz")]
@@ -94,7 +95,7 @@ public sealed class HardwareSettingsConstructionTests
     [InlineData(32768L, "0.##", "0,03 MHz")]
     [InlineData(32768L, "0.######", "0,032768 MHz")]
     public void MegahertzDisplayKeepsFixedAndOptionalDecimalPlaces(long hertz, string format, string expected)
-        => InFrenchCulture(() => Assert.Equal(expected, EmulationHardwareSettingsFunctions.FormatMegahertz(hertz, format)));
+        => InFrenchCulture(() => Assert.Equal(expected, EmulationSdk.HardwareSettings.FormatMegahertz(hertz, format)));
 
     [Theory]
     [InlineData(-1, "-1 B")]
@@ -104,7 +105,7 @@ public sealed class HardwareSettingsConstructionTests
     [InlineData(1536, "1 KiB")]
     [InlineData(65536, "64 KiB")]
     public void MemoryFormattingKeepsInvariantIntegersAndExistingKibibyteTruncation(long bytes, string expected)
-        => InFrenchCulture(() => Assert.Equal(expected, EmulationHardwareSettingsFunctions.FormatMemory(bytes)));
+        => InFrenchCulture(() => Assert.Equal(expected, EmulationSdk.HardwareSettings.FormatMemory(bytes)));
 
     private static void InFrenchCulture(Action action)
     {

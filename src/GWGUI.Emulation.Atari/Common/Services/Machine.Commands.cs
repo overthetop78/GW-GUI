@@ -22,7 +22,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void Run(CancellationToken cancellationToken)
     {
-        GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.RunCore(
+        CommonCoreHostFunctions.MachineExecution.RunCore(
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
@@ -99,7 +99,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         var disposeUnstartedCore = _thread is null;
         try
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.DisposeMachineAsync(
+            await CommonCoreHostFunctions.MachineExecution.DisposeMachineAsync(
                 () => StopAsync(),
                 () => _stopSource?.Dispose(),
                 () => { if (disposeUnstartedCore) _core.Dispose(); },

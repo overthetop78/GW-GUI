@@ -23,7 +23,7 @@ internal partial class EmulationOpenGlHardwareRenderContext
     private const int ContextMinorVersionAttribute = 0x2092;
     private const int ContextProfileMaskAttribute = 0x9126;
     private const int CoreProfileMask = 1;
-    internal const int OpenGlCoreContextType = 3;
+    internal const int OpenGlCoreContextType = ExternalCoreApiConstants.OpenGlCoreContextType;
     private const string CreateContextAttributesFunction = "wglCreateContextAttribsARB";
     private const string GenFramebuffersFunction = "glGenFramebuffers";
     private const string BindFramebufferFunction = "glBindFramebuffer";
@@ -40,7 +40,7 @@ internal partial class EmulationOpenGlHardwareRenderContext
     private BindObject? _bindFramebuffer;
     private BindObject BindFramebuffer => _bindFramebuffer ??= Function<BindObject>(BindFramebufferFunction);
 
-    internal void EnsureFramebuffer(int width, int height)
+    public void EnsureFramebuffer(int width, int height)
     {
         if (_framebuffer != 0 && width == _framebufferWidth && height == _framebufferHeight) return;
         if (width <= 0 || height <= 0) throw new ArgumentOutOfRangeException(nameof(width));

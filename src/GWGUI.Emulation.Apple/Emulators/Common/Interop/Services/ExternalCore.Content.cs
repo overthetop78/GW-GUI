@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
@@ -24,7 +25,7 @@ internal sealed partial class ExternalCore
         _supportsSaveStates = false;
         try
         {
-            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

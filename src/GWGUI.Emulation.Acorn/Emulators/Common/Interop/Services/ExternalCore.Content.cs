@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
@@ -23,7 +24,7 @@ internal sealed partial class ExternalCore
         _gameLoaded = false;
         try
         {
-            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

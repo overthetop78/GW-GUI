@@ -17,8 +17,8 @@ internal sealed class KeyboardState
         var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();
         var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();
         CommonControllerFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
-                codes => codes.OrderBy(code => IsModifier(code) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder),
-                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder),
+                codes => codes.OrderBy(IsModifier),
+                codes => codes.OrderBy(code => !modifierCodes.Contains(code)),
                 code => KeyboardFunctions.Character(code, keys));
         _previous = current;
     }

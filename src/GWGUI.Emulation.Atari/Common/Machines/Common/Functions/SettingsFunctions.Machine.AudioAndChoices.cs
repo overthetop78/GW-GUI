@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -67,6 +68,6 @@ internal static partial class SettingsDescriptionFunctions
 
     private static IReadOnlyList<EmulationSettingsChoice> Percentages(int minimum, int maximum, int step) => Enumerable.Range(0, (maximum - minimum) / step + 1).Select(index => Percentage(minimum + index * step)).ToArray();
 
-    private static EmulationSettingsChoice Invariant(string value) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(value, value);
+    private static EmulationSettingsChoice Invariant(string value) => CommonCoreHostFunctions.HardwareSettings.InvariantChoice(value, value);
 
 }

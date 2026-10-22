@@ -36,5 +36,5 @@ internal static class CoreReleaseFunctions
         CoreReleaseFunctions.Releases.ReplaceLibraryAtomically(source, destination,
             path => string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.InstalledLibraryLockedFormat, path));
 
-    internal static void DeleteIfExists(string path) => ConfigurationFileAccessFunctions.DeleteIfExists(path);
+    internal static void DeleteIfExists(string path) => EmulationSdk.ConfigurationFiles.DeleteIfExists(path);
 }

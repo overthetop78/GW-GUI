@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
@@ -20,7 +21,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var threadStarted = false;
             try
             {
-                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                CommonCoreHostFunctions.MachineExecution.StartThread(
                     Run, $"GWGUI Sony {Id:N}", cancellationToken,
                     ref _stop, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
@@ -31,7 +32,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (!threadStarted) State = EmulationMachineState.Faulted;
             }
         }
-        await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+        await CommonCoreHostFunctions.MachineExecution.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
@@ -93,7 +94,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await CommonCoreHostFunctions.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Reflection;
 using GWGUI.Emulation.Functions;
 
@@ -16,7 +17,7 @@ public sealed class AdapterDiscoveryTests
         var expectedConstructionOrder = FixtureAssembly.GetTypes()
             .Where(type => type == typeof(ZFactory) || type == typeof(AFactory))
             .Select(type => type == typeof(ZFactory) ? "ctor:Z" : "ctor:A").ToArray();
-        var candidates = EmulationAdapterFunctions.Create<Factory, IIncluded>(FixtureAssembly);
+        var candidates = EmulationSdk.Adapters.Create<Factory, IIncluded>(FixtureAssembly);
         Assert.Empty(Events);
         var result = candidates.OrderBy(factory => factory.Id, StringComparer.Ordinal).ToArray();
         Assert.Equal(new[] { typeof(AFactory), typeof(ZFactory) }, result.Select(factory => factory.GetType()));
@@ -30,28 +31,28 @@ public sealed class AdapterDiscoveryTests
     public void PublicDiscoveryKeepsTypeNameOrderingAndOpenGenericExclusion()
     {
         Events.Clear();
-        var result = EmulationAdapterFunctions.Create<Factory>(FixtureAssembly);
+        var result = EmulationSdk.Adapters.Create<Factory>(FixtureAssembly);
         Assert.Equal(new[] { typeof(AFactory), typeof(ExcludedFactory), typeof(ZFactory) },
             result.Select(factory => factory.GetType()));
         Assert.Equal(new[] { "ctor:A", "excluded", "ctor:Z" }, Events);
-        Assert.Empty(EmulationAdapterFunctions.Create<OpenFactoryBase>(FixtureAssembly));
+        Assert.Empty(EmulationSdk.Adapters.Create<OpenFactoryBase>(FixtureAssembly));
     }
 
     [Fact]
     public void TypedDiscoveryKeepsOriginalFailureForAnOpenGenericFactory()
     {
         Assert.Throws<ArgumentException>(() =>
-            EmulationAdapterFunctions.Create<OpenFactoryBase, IOpenIncluded>(FixtureAssembly).ToArray());
+            EmulationSdk.Adapters.Create<OpenFactoryBase, IOpenIncluded>(FixtureAssembly).ToArray());
     }
 
     [Fact]
     public void AssemblyNullKeepsEachOriginalPolicy()
     {
         var error = Assert.Throws<ArgumentNullException>(() =>
-            EmulationAdapterFunctions.Create<Factory>(null!));
+            EmulationSdk.Adapters.Create<Factory>(null!));
         Assert.Equal("assembly", error.ParamName);
         Assert.Throws<NullReferenceException>(() =>
-            EmulationAdapterFunctions.Create<Factory, IIncluded>(null!));
+            EmulationSdk.Adapters.Create<Factory, IIncluded>(null!));
     }
 
     [Theory]
@@ -62,9 +63,9 @@ public sealed class AdapterDiscoveryTests
         var error = Assert.Throws<TargetInvocationException>(() =>
         {
             if (publicPolicy)
-                _ = EmulationAdapterFunctions.Create<ThrowFactoryBase>(FixtureAssembly);
+                _ = EmulationSdk.Adapters.Create<ThrowFactoryBase>(FixtureAssembly);
             else
-                _ = EmulationAdapterFunctions.Create<ThrowFactoryBase, IThrowIncluded>(FixtureAssembly).ToArray();
+                _ = EmulationSdk.Adapters.Create<ThrowFactoryBase, IThrowIncluded>(FixtureAssembly).ToArray();
         });
         Assert.Same(ConstructorFailure, error.InnerException);
     }

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using GWGUI.Emulation;
 
@@ -5,7 +6,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class HardwareSettingsFunctions
 {
-    internal static EmulationSettingsChoice Invariant(string value, string displayValue) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(value, displayValue);
+    internal static EmulationSettingsChoice Invariant(string value, string displayValue) => CommonCoreHostFunctions.HardwareSettings.InvariantChoice(value, displayValue);
 
     internal static EmulationSettingsChoice CpuPrecision(StCpuPrecision value) => value switch
     {

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Dictionaries;
@@ -7,5 +8,5 @@ public static class ModelCatalog
     public static IReadOnlyList<EmulationMachineDefinition> All { get; } =
         HardwareModelCatalog.All.Select(definition => new EmulationMachineDefinition(definition.Model.ToString(), definition.DisplayNameResourceKey)).ToArray();
 
-    public static MachineModel Parse(string id) => GWGUI.Emulation.Functions.EmulationMachineModelFunctions.Parse<MachineModel>(id);
+    public static MachineModel Parse(string id) => CommonCoreHostFunctions.Adapters.Parse<MachineModel>(id);
 }

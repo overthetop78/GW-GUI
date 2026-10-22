@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions;
 using EmulatorCatalogFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation;
 using System.IO;
@@ -27,7 +28,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
-        Exception? innerException = null) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
+        Exception? innerException = null) => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {

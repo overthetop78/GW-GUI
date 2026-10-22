@@ -5,6 +5,20 @@ namespace GWGUI.Emulation.Interfaces;
 /// <summary>Persistance commune : le module conserve son schéma et fournit les conversions de chemins.</summary>
 public interface IEmulationConfigurationFiles
 {
+    /// <summary>Prépare et écrit la configuration dans son dossier GUID sous le verrou emprunté.</summary>
+    /// <remarks>Les conversions restent fournies par Common. Le verrou et le fichier temporaire sont libérés dans finally, même après annulation.</remarks>
+    Task WriteDocumentAsync<TConfiguration>(SemaphoreSlim saveGate, string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration, Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths, JsonSerializerOptions options, CancellationToken cancellationToken);
+
+    /// <summary>Charge les documents sélectionnés par Common puis restaure leurs configurations avec les conversions empruntées.</summary>
+    /// <remarks>Le document JSON appartient au lecteur et reste valide uniquement pendant deserialize. Les erreurs de document suivent la politique commune existante.</remarks>
+    Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(string directory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize, Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken);
+
+    /// <summary>Énumère les documents présents dans les sous-dossiers, par chemin ordinal insensible à la casse.</summary>
+    IEnumerable<string> EnumerateDocumentPaths(string directory, string fileName);
+
+    /// <summary>Supprime le fichier possédé s’il existe, sans intervenir sur les autres fichiers du dossier.</summary>
+    void DeleteIfExists(string path);
+
     /// <summary>Stocke relativement à la base un chemin situé dans cette base ; conserve un chemin absolu extérieur.</summary>
     /// <param name="path">Chemin à enregistrer ; les valeurs nulles, vides ou blanches sont conservées.</param>
     /// <param name="pathBase">Racine servant au calcul du chemin relatif.</param>

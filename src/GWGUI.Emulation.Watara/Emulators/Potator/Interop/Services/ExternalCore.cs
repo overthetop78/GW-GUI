@@ -149,7 +149,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         try
         {
             try { input?.Release(); }
-            finally { ExternalCoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
+            finally { CommonCoreHostFunctions.MachineExecution.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
         }
         finally
         {
@@ -165,6 +165,6 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
             }
         }
     }
-    private static EmulationMessageException MediaUnsupported() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
-    private static EmulationMessageException StateInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
+    private static EmulationMessageException MediaUnsupported() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException StateInvalid() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

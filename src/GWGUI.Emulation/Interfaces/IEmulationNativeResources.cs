@@ -8,6 +8,10 @@ namespace GWGUI.Emulation.Interfaces;
 /// allocations ; l’appelant les libère dans un finally, sauf transfert réussi à un autre propriétaire.</remarks>
 public interface IEmulationNativeResources
 {
+    /// <summary>Crée le propriétaire graphique OpenGL existant, sans exposer sa classe d’implémentation.</summary>
+    /// <remarks>La session possède le résultat et le libère sur son thread graphique dans finally après arrêt du cœur. La construction interrompue détruit ses ressources déjà acquises.</remarks>
+    IEmulationHardwareRenderContext CreateHardwareRenderContext(ExternalCoreApi.HardwareRenderCallback callback, Func<string> configurationInvalid);
+
     /// <summary>Crée le contrôle commun des images de disques d’un cœur.</summary>
     /// <param name="policy">Messages et règles empruntés au module, lus au moment du traitement correspondant.</param>
     /// <param name="createContent">Fabrique empruntée de contenu possédé par chaque insertion ; null pour le chargement natif par chemin seul.</param>

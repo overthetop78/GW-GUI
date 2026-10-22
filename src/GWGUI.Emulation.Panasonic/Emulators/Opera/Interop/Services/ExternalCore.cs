@@ -129,7 +129,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
                 throw UnsupportedMedia();
             var path = Path.GetFullPath(content.Path);
             if (!File.Exists(path))
-                throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, null);
+                throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, null);
             using var filename = CommonCoreHostFunctions.NativeResources.CreateString(path);
             var info = new ExternalCoreApi.GameInfo
             {
@@ -148,7 +148,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         }
 
         if (!loaded)
-            throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media, content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported, null);
+            throw CommonCoreHostFunctions.Messages.CreateError(content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media, content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported, null);
         _loaded = true;
         _content = content;
         exports.GetSystemAvInfo(out var av);
@@ -297,7 +297,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         try
         {
             try { input?.Release(); }
-            finally { ExternalCoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
+            finally { CommonCoreHostFunctions.MachineExecution.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
         }
         finally
         {
@@ -310,6 +310,6 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             finally { audio?.Dispose(); }
         }
     }
-    private static EmulationMessageException UnsupportedMedia() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
-    private static EmulationMessageException InvalidState() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
+    private static EmulationMessageException UnsupportedMedia() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException InvalidState() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.IO;
 using NativeFirmwareConstants = GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.FirmwareConstants;
 
@@ -36,5 +37,5 @@ internal static class FirmwareRuntimeFunctions
             File.SetAttributes(destination, File.GetAttributes(destination) & ~FileAttributes.ReadOnly);
         }
     }
-    private static EmulationMessageException Missing() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
+    private static EmulationMessageException Missing() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
 }

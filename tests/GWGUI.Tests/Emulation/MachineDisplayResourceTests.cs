@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
 
@@ -10,7 +11,7 @@ public sealed class MachineDisplayResourceTests
     [InlineData("a", "lower")]
     public void LookupKeepsOrdinalIdentifiers(string id, string expected)
     {
-        Assert.Equal(expected, EmulationMachineModelFunctions.DisplayResourceKey(
+        Assert.Equal(expected, EmulationSdk.Adapters.DisplayResourceKey(
             [new("A", "upper"), new("a", "lower")], new Configuration(() => id)));
     }
 
@@ -18,7 +19,7 @@ public sealed class MachineDisplayResourceTests
     public void SearchReadsConfigurationForEveryEntryAfterFindingAMatch()
     {
         var reads = 0;
-        var result = EmulationMachineModelFunctions.DisplayResourceKey(
+        var result = EmulationSdk.Adapters.DisplayResourceKey(
             [new("A", "first"), new("B", "second"), new("C", "third")],
             new Configuration(() => { reads++; return "B"; }));
         Assert.Equal("second", result);
@@ -30,28 +31,28 @@ public sealed class MachineDisplayResourceTests
     [InlineData("a")]
     public void MissingOrDifferentlyCasedIdentifierKeepsSingleFailure(string id)
     {
-        Assert.Throws<InvalidOperationException>(() => EmulationMachineModelFunctions.DisplayResourceKey(
+        Assert.Throws<InvalidOperationException>(() => EmulationSdk.Adapters.DisplayResourceKey(
             [new("A", "resource")], new Configuration(() => id)));
     }
 
     [Fact]
     public void EmptyCatalogDoesNotReadNullConfiguration()
     {
-        Assert.Throws<InvalidOperationException>(() => EmulationMachineModelFunctions.DisplayResourceKey([], null!));
+        Assert.Throws<InvalidOperationException>(() => EmulationSdk.Adapters.DisplayResourceKey([], null!));
     }
 
     [Fact]
     public void NullCatalogKeepsLinqSourceErrorBeforeReadingConfiguration()
     {
         var error = Assert.Throws<ArgumentNullException>(() =>
-            EmulationMachineModelFunctions.DisplayResourceKey(null!, null!));
+            EmulationSdk.Adapters.DisplayResourceKey(null!, null!));
         Assert.Equal("source", error.ParamName);
     }
 
     [Fact]
     public void DuplicateIdentifiersKeepSingleFailure()
     {
-        Assert.Throws<InvalidOperationException>(() => EmulationMachineModelFunctions.DisplayResourceKey(
+        Assert.Throws<InvalidOperationException>(() => EmulationSdk.Adapters.DisplayResourceKey(
             [new("A", "first"), new("A", "second")], new Configuration(() => "A")));
     }
 
@@ -59,7 +60,7 @@ public sealed class MachineDisplayResourceTests
     public void GetterIsNotCachedBeforeThePredicate()
     {
         var reads = 0;
-        Assert.Throws<InvalidOperationException>(() => EmulationMachineModelFunctions.DisplayResourceKey(
+        Assert.Throws<InvalidOperationException>(() => EmulationSdk.Adapters.DisplayResourceKey(
             [new("A", "first"), new("B", "second")],
             new Configuration(() => ++reads == 1 ? "A" : "B")));
         Assert.Equal(2, reads);
@@ -70,7 +71,7 @@ public sealed class MachineDisplayResourceTests
     {
         var error = new InvalidOperationException("model getter");
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            EmulationMachineModelFunctions.DisplayResourceKey([new("A", "resource")], new Configuration(() => throw error))));
+            EmulationSdk.Adapters.DisplayResourceKey([new("A", "resource")], new Configuration(() => throw error))));
     }
 
     private sealed class Configuration(Func<string> readMachineId) : IEmulationConfiguration

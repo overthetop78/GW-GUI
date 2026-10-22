@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -13,7 +14,7 @@ public sealed class MediaLedMappingTests
     [InlineData(3, EmulationMediaCategory.CompactDiscDrive)]
     public void CdSnapshotKeepsTheOriginalSlotForEachLed(int led, EmulationMediaCategory category)
     {
-        var result = EmulationMediaRules.FromLedStatesWithCd(new Dictionary<int, bool> { [led] = true });
+        var result = EmulationSdk.MachineExecution.FromLedStatesWithCd(new Dictionary<int, bool> { [led] = true });
         Assert.Equal(4, result.Count);
         Assert.Equal(new EmulationMediaSlot(category, 0), Assert.Single(result, item => item.Value).Key);
     }
@@ -21,7 +22,7 @@ public sealed class MediaLedMappingTests
     [Fact]
     public void OriginalSnapshotKeepsThreeKeysAndIgnoresCd()
     {
-        var result = EmulationMediaRules.FromLedStates(new Dictionary<int, bool> { [0] = true, [3] = true });
+        var result = EmulationSdk.MachineExecution.FromLedStates(new Dictionary<int, bool> { [0] = true, [3] = true });
         Assert.Equal(new[] { EmulationMediaSlot.Floppy0, EmulationMediaSlot.Cassette0, EmulationMediaSlot.Cartridge0 }, result.Keys);
         Assert.True(result[EmulationMediaSlot.Floppy0]);
         Assert.False(result.ContainsKey(EmulationMediaSlot.Cd0));
@@ -30,7 +31,7 @@ public sealed class MediaLedMappingTests
     [Fact]
     public void MissingValuesStayFalseAndUnknownIndicesAreIgnored()
     {
-        var result = EmulationMediaRules.FromLedStatesWithCd(new Dictionary<int, bool> { [99] = true });
+        var result = EmulationSdk.MachineExecution.FromLedStatesWithCd(new Dictionary<int, bool> { [99] = true });
         Assert.Equal(4, result.Count);
         Assert.All(result.Values, value => Assert.False(value));
     }
@@ -39,15 +40,15 @@ public sealed class MediaLedMappingTests
     public void SnapshotsRemainIndependentOfTheirSourceAndEachOther()
     {
         var source = new Dictionary<int, bool> { [0] = false };
-        var first = EmulationMediaRules.FromLedStatesWithCd(source);
+        var first = EmulationSdk.MachineExecution.FromLedStatesWithCd(source);
         source[0] = true;
-        var second = EmulationMediaRules.FromLedStatesWithCd(source);
+        var second = EmulationSdk.MachineExecution.FromLedStatesWithCd(source);
         Assert.NotSame(first, second);
         Assert.False(first[EmulationMediaSlot.Floppy0]);
         Assert.True(second[EmulationMediaSlot.Floppy0]);
         ((IDictionary<EmulationMediaSlot, bool>)second)[EmulationMediaSlot.Floppy0] = false;
         Assert.True(source[0]);
-        Assert.True(EmulationMediaRules.FromLedStatesWithCd(source)[EmulationMediaSlot.Floppy0]);
+        Assert.True(EmulationSdk.MachineExecution.FromLedStatesWithCd(source)[EmulationMediaSlot.Floppy0]);
     }
 
     [Theory]
@@ -79,7 +80,7 @@ public sealed class MediaLedMappingTests
     }
 
     private static IReadOnlyDictionary<EmulationMediaSlot, bool> Snapshot(IReadOnlyDictionary<int, bool> input, bool withCd) =>
-        withCd ? EmulationMediaRules.FromLedStatesWithCd(input) : EmulationMediaRules.FromLedStates(input);
+        withCd ? EmulationSdk.MachineExecution.FromLedStatesWithCd(input) : EmulationSdk.MachineExecution.FromLedStates(input);
 
     private sealed class Probe(Func<int, bool> read) : IReadOnlyDictionary<int, bool>
     {

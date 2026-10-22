@@ -1,10 +1,11 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Sony.Common.Dictionaries;
 
 public static class EmulatorCatalog
 {
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
         .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
 
     public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id ?? throw new NotSupportedException($"No Sony emulator adapter is installed for '{machineId}'.");

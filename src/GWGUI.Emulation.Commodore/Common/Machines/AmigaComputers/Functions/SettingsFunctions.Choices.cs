@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Enums;
 using GWGUI.Emulation;
 
@@ -113,7 +114,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
     private static double ToMhz(double frequencyHz) => frequencyHz / ClockConstants.HertzPerMegahertz;
     private static string FormatMhz(double frequency) => string.Format(SettingsValueConstants.MegahertzLabelFormat, frequency);
     private static bool Approximately(double left, double right) => Math.Abs(left - right) < ClockConstants.ComparisonToleranceMhz;
-    private static EmulationSettingsChoice Invariant(string id, string text, long? numericValue = null) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(id, text, numericValue);
+    private static EmulationSettingsChoice Invariant(string id, string text, long? numericValue = null) => CommonCoreHostFunctions.HardwareSettings.InvariantChoice(id, text, numericValue);
     private static IEnumerable<EmulationSettingsChoice> InvariantChoices(params string[] values) => values.Select(value => Invariant(value, value));
     private static IReadOnlyList<EmulationSettingsChoice> VideoStandardChoices() => Enum.GetValues<VideoStandard>().Select(value => SettingsChoiceConstants.VideoStandardChoices[value]).ToArray();
     private static IReadOnlyList<EmulationSettingsChoice> VideoResolutionChoices() => Enum.GetValues<VideoResolution>().Select(value => SettingsChoiceConstants.VideoResolutionChoices[value]).ToArray();

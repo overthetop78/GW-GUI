@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 
@@ -12,7 +13,7 @@ internal static class MediaRuntimeFunctions
             MediaRuntimeConstants.Floppy or MediaRuntimeConstants.SapFloppy => MediaCategory.Floppy,
             MediaRuntimeConstants.Tape => MediaCategory.Tape,
             MediaRuntimeConstants.MoCartridge or MediaRuntimeConstants.ToCartridge or MediaRuntimeConstants.RomCartridge => MediaCategory.Cartridge,
-            _ => throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
+            _ => throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
         };
     }
 

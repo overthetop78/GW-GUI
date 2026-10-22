@@ -87,7 +87,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             if (!loaded) throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
             var stateSize = _exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
             ControllerPortFunctions.Configure(_exports, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
@@ -107,7 +107,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         if (!_supportsSaveStates)
         {
             var size = exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(size, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(size, SavedStateConstants.MaximumStateSize);
         }
     }
     public void HardReset() => RequireExports().Reset();

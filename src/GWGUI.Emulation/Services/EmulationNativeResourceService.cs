@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Relie le contrat de ressources aux allocations existantes, sans modifier leur durée de vie.</summary>
 internal sealed class EmulationNativeResourceService : IEmulationNativeResources
 {
+    public IEmulationHardwareRenderContext CreateHardwareRenderContext(ExternalCoreApi.HardwareRenderCallback callback, Func<string> configurationInvalid) => new EmulationOpenGlHardwareRenderContext(callback, configurationInvalid);
+
     /// <inheritdoc/>
     public IEmulationDiskControl CreateDiskControl(IEmulationDiskControlPolicy policy, Func<string, IEmulationLoadedContent>? createContent = null, Func<string, bool>? mediaExists = null)
         => createContent is null ? new ExternalCoreDiskControl(policy, mediaExists) : new ExternalRichDiskControl(policy, createContent, mediaExists);

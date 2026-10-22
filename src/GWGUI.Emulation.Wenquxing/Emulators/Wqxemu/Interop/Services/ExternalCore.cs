@@ -125,7 +125,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
     public void SetOption(string key, string value)
     {
         if (key == GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants.RuntimeOptionConstants.Model)
-            throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, null);
+            throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, null);
         (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
     }
 
@@ -223,7 +223,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         try
         {
             try { input?.Release(); }
-            finally { ExternalCoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
+            finally { CommonCoreHostFunctions.MachineExecution.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
         }
         finally
         {
@@ -235,7 +235,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             finally { audio?.Dispose(); }
         }
     }
-    private static EmulationMessageException FirmwareInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareIncompatible, null);
-    private static EmulationMessageException MediaUnsupported() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
-    private static EmulationMessageException StateInvalid() => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
+    private static EmulationMessageException FirmwareInvalid() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareIncompatible, null);
+    private static EmulationMessageException MediaUnsupported() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null);
+    private static EmulationMessageException StateInvalid() => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, null);
 }

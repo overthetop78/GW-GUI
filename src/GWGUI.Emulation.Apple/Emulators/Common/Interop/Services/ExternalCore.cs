@@ -94,7 +94,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _gameLoaded = true;
             AttachAdditionalMedia();
             var stateSize = _exports.GetSerializedSize();
-            _supportsSaveStates = ExternalCoreLifecycleFunctions.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(stateSize, SavedStateConstants.MaximumStateSize);
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
 using System.Security.Cryptography;
@@ -27,7 +28,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
-        Exception? innerException = null) => GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
+        Exception? innerException = null) => CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.SavedState, code, innerException ?? new InvalidDataException(message));
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {

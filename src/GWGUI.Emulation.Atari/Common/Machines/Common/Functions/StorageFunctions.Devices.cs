@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -69,7 +70,7 @@ internal static partial class StorageSettingsFunctions
         return choices;
     }
 
-    private static EmulationSettingsChoice InvariantChoice(string id, string value) => GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions.InvariantChoice(id, value);
+    private static EmulationSettingsChoice InvariantChoice(string id, string value) => CommonCoreHostFunctions.HardwareSettings.InvariantChoice(id, value);
     private static EmulationStorageDeviceSettings DeviceSettings(MachineConfiguration configuration, EmulationMediaSlot slot)
     {
         var device = CompatibilityCatalog.Get(configuration.Model).Media.First(rule => rule.Availability == MediaAvailability.Available && rule.Slots.Contains(slot));

@@ -10,7 +10,7 @@ internal static partial class InputSettingsFunctions
         configuration = EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration);
         var input = configuration.Input ?? new InputConfiguration();
         var model = ModelCatalog.Get(configuration.Model);
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration), input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount == MachineSettingsConstants.NoDevices ? null : new EmulationInputBindingSet(MouseDefinitions(model),
             EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
@@ -42,7 +42,7 @@ internal static partial class InputSettingsFunctions
         var input = current with
         {
             KeyboardBindings = keyboard,
-            KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
+            KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
             MouseButtonMappings = mouse,
             ControllerBindings = controllers
         };

@@ -5,6 +5,13 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Adaptation du contrat de persistance aux opérations existantes ; aucun second algorithme d’écriture.</summary>
 internal sealed class EmulationConfigurationFileService : IEmulationConfigurationFiles
 {
+    public Task WriteDocumentAsync<TConfiguration>(SemaphoreSlim saveGate, string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration, Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths, JsonSerializerOptions options, CancellationToken cancellationToken)
+        => ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(saveGate, directory, configuration, prepareConfiguration, configurationId, storePaths, options, cancellationToken);
+    public Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(string directory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize, Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)
+        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(directory, paths, deserialize, restore, cancellationToken);
+    public IEnumerable<string> EnumerateDocumentPaths(string directory, string fileName) => ConfigurationFileAccessFunctions.EnumerateDocumentPaths(directory, fileName);
+    public void DeleteIfExists(string path) => ConfigurationFileAccessFunctions.DeleteIfExists(path);
+
     public string? StorePath(string? path, string pathBase) => ConfigurationFileAccessFunctions.StorePath(path, pathBase);
     public string? ResolvePath(string? path, string pathBase) => ConfigurationFileAccessFunctions.ResolvePath(path, pathBase);
     public Task WriteDocumentAsync<T>(string path, T document, JsonSerializerOptions options, CancellationToken cancellationToken)

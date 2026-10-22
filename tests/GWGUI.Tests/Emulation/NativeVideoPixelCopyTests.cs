@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 
@@ -18,7 +19,7 @@ public sealed class NativeVideoPixelCopyTests
         try
         {
             Marshal.Copy(source, 0, pointer, source.Length);
-            var copy = EmulationVideoFunctions.CopyFramePixels(pointer, height, (nuint)pitch);
+            var copy = EmulationSdk.VideoProcessing.CopyFramePixels(pointer, height, (nuint)pitch);
             Assert.Equal(source.Take(expectedLength), copy);
         }
         finally
@@ -35,12 +36,12 @@ public sealed class NativeVideoPixelCopyTests
         try
         {
             Marshal.Copy(source, 0, pointer, source.Length);
-            var first = EmulationVideoFunctions.CopyFramePixels(pointer, 1, 4);
-            var second = EmulationVideoFunctions.CopyFramePixels(pointer, 1, 4);
+            var first = EmulationSdk.VideoProcessing.CopyFramePixels(pointer, 1, 4);
+            var second = EmulationSdk.VideoProcessing.CopyFramePixels(pointer, 1, 4);
             Assert.NotSame(first, second);
             first[0] = 99;
             Assert.Equal(source, second);
-            Assert.Equal(source, EmulationVideoFunctions.CopyFramePixels(pointer, 1, 4));
+            Assert.Equal(source, EmulationSdk.VideoProcessing.CopyFramePixels(pointer, 1, 4));
         }
         finally
         {
@@ -51,8 +52,8 @@ public sealed class NativeVideoPixelCopyTests
     [Fact]
     public void OversizedFramesFailBeforeAllocatingOrReadingTheSource()
     {
-        Assert.Throws<OverflowException>(() => EmulationVideoFunctions.CopyFramePixels(nint.Zero, 1, (nuint)int.MaxValue + 1));
-        Assert.Throws<OverflowException>(() => EmulationVideoFunctions.CopyFramePixels(nint.Zero, uint.MaxValue, 2));
-        Assert.Throws<OverflowException>(() => EmulationVideoFunctions.CopyFramePixels(nint.Zero, 2, nuint.MaxValue));
+        Assert.Throws<OverflowException>(() => EmulationSdk.VideoProcessing.CopyFramePixels(nint.Zero, 1, (nuint)int.MaxValue + 1));
+        Assert.Throws<OverflowException>(() => EmulationSdk.VideoProcessing.CopyFramePixels(nint.Zero, uint.MaxValue, 2));
+        Assert.Throws<OverflowException>(() => EmulationSdk.VideoProcessing.CopyFramePixels(nint.Zero, 2, nuint.MaxValue));
     }
 }

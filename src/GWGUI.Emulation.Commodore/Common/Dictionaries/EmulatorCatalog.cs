@@ -1,10 +1,11 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Commodore.Common.Dictionaries;
 
 internal static class EmulatorCatalog
 {
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => Enum.Parse<Emulator>(adapter.EmulatorKey)).ToArray();
+        CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => Enum.Parse<Emulator>(adapter.EmulatorKey)).ToArray();
 
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).ToArray();
 

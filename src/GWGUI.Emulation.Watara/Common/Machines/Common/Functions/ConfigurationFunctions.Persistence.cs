@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Watara.Common.Constants;
 using GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;
@@ -45,12 +46,12 @@ internal static class ConfigurationStoreFunctions
     }
 
     internal static string? StorePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.StorePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.StorePath(path, pathBase);
 
     internal static string? ResolvePath(string? path, string pathBase)
-        => ConfigurationFileAccessFunctions.ResolvePath(path, pathBase);
+        => EmulationSdk.ConfigurationFiles.ResolvePath(path, pathBase);
 
     internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
         =>
-            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(path, document, JsonOptions, cancellationToken);
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(path, document, JsonOptions, cancellationToken);
 }

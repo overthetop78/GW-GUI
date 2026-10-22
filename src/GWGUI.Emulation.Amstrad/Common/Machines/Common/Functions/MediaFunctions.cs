@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
@@ -32,5 +33,5 @@ internal static class EmulationMediaConversionFunctions
 
 internal static class EmulationMediaActivityFunctions
 {
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => GWGUI.Emulation.Functions.EmulationMediaRules.FromLedStates(leds);
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => CommonCoreHostFunctions.MachineExecution.FromLedStates(leds);
 }

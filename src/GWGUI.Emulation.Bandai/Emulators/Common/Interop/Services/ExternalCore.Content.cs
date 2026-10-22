@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
@@ -30,7 +31,7 @@ internal sealed partial class ExternalCore
             }
             finally
             {
-                ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
+                CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
             }
         }
         finally

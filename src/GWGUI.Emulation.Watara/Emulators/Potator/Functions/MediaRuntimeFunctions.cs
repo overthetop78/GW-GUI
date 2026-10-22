@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Functions;
@@ -11,7 +12,7 @@ internal static class MediaRuntimeFunctions
         return Path.GetExtension(path).ToLowerInvariant() switch
         {
             BinExtension or SupervisionExtension => MediaCategory.Cartridge,
-            _ => throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
+            _ => throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null)
         };
     }
 

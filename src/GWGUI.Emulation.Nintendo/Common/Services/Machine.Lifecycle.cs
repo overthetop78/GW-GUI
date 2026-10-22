@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -19,7 +20,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var threadStarted = false;
             try
             {
-                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                CommonCoreHostFunctions.MachineExecution.StartThread(
                     Run, $"GWGUI Nintendo {Id:N}", cancellationToken,
                     ref _stop, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
@@ -30,7 +31,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (!threadStarted) State = EmulationMachineState.Faulted;
             }
         }
-        await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+        await CommonCoreHostFunctions.MachineExecution.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
@@ -92,7 +93,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await CommonCoreHostFunctions.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

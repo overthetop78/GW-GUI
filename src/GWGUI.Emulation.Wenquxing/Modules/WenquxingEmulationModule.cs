@@ -120,7 +120,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
     {
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
         var output = AudioFunctions.Processing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
         var latency = AudioFunctions.Processing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
         var context = new EmulatorCreationContext(
@@ -132,7 +132,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         );
         return new EmulationMachineRuntime(
             current,
-            media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw GWGUI.Emulation.Services.EmulationErrorService.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null),
+            media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null),
             [],
             [],
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,

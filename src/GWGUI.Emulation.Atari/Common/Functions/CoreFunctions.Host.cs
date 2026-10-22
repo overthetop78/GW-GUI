@@ -12,6 +12,30 @@ namespace GWGUI.Emulation.Atari.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit la découverte des adaptateurs et la projection des catalogues par leur contrat public.</summary>
+    /// <remarks>Les définitions et les identités restent déclarées par le module ; aucun registre de modules connus n’est nécessaire.</remarks>
+    internal static IEmulationAdapters Adapters => EmulationSdk.Adapters;
+
+    /// <summary>Fournit le cycle de vie commun par le contrat public d’exécution.</summary>
+    /// <remarks>La machine conserve ses propriétaires ; elle attend leur arrêt avant le nettoyage protégé par finally.</remarks>
+    internal static IEmulationMachineExecution MachineExecution => EmulationSdk.MachineExecution;
+
+    /// <summary>Fournit les opérations vidéo communes par leur interface publique.</summary>
+    /// <remarks>Les copies conservent leur allocation existante ; les pointeurs et surfaces appartiennent à leur appelant.</remarks>
+    internal static IEmulationVideoProcessing VideoProcessing => EmulationSdk.VideoProcessing;
+
+    /// <summary>Fournit la contextualisation et les erreurs publiques par le contrat commun des messages.</summary>
+    /// <remarks>Le service emprunté conserve les causes et les identités ; il ne possède ni machine ni cœur.</remarks>
+    internal static IEmulationMessages Messages => EmulationSdk.Messages;
+
+    /// <summary>Fournit la construction et le formatage communs des réglages matériels et audio.</summary>
+    /// <value>Service emprunté, sans configuration ni caractéristique de machine stockée dans cet accès Common.</value>
+    /// <remarks>Le module conserve ses caractéristiques, choix et ressources spécifiques, et les transmet
+    /// au contrat commun. Le SDK construit les mêmes champs et blocs avec leurs clés partagées ; les valeurs
+    /// invariantes ne sont pas recopiées dans les traductions. Les délégués restent empruntés pendant l’appel,
+    /// et leurs lectures, les cultures de formatage et les valeurs de repli conservent leur ordre existant.</remarks>
+    internal static IEmulationHardwareSettings HardwareSettings => EmulationSdk.HardwareSettings;
+
     /// <summary>Fournit le contrat commun des structures, commandes et callbacks d’environnement natifs.</summary>
     /// <value>Service emprunté, sans propriétaire de cœur, bibliothèque ou état de session dans cet accès Common.</value>
     /// <remarks>Les adaptateurs transmettent leurs opérations, bornes et politiques au même traitement SDK.

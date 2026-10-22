@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.IO;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
@@ -21,17 +22,17 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName,
+        => EmulationSdk.ConfigurationFiles.ReadDocumentsAsync(_directory, ConfigurationStoreConstants.MachineFileName,
             static json => JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions),
             static value => value.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion,
             value => ResolvePaths(value.EnsureId()), cancellationToken);
 
     public Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
-        => ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(SaveGate, _directory, configuration,
+        => EmulationSdk.ConfigurationFiles.WriteDocumentAsync(SaveGate, _directory, configuration,
             static value => value.EnsureId() with { SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion },
             static value => value.Id, StorePaths, JsonOptions, cancellationToken);
 
-    public void Delete(Guid id) => ConfigurationFileAccessFunctions.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
+    public void Delete(Guid id) => EmulationSdk.ConfigurationFiles.DeleteDirectoryIfExists(Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), ConfigurationStoreConstants.RecursiveDirectoryDelete);
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with
     {
@@ -46,8 +47,8 @@ public sealed class ConfigurationStore
     };
 
     private string? StorePath(string? path)
-        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
+        => EmulationSdk.ConfigurationFiles.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 
     private string? ResolvePath(string? path)
-        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
+        => EmulationSdk.ConfigurationFiles.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 }

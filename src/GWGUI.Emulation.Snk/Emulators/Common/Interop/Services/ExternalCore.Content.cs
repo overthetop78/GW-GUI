@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
@@ -28,7 +29,7 @@ internal sealed partial class ExternalCore
         _supportsSaveStates = false;
         try
         {
-            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => { try { if (gameLoaded) persistentMediaAdapter?.CompletePersistentMedia(persistentMediaState); } finally { callbacks?.Dispose(); } }, () => library?.Dispose());
+            CommonCoreHostFunctions.MachineExecution.Cleanup(exports, gameLoaded, initialized, () => { try { if (gameLoaded) persistentMediaAdapter?.CompletePersistentMedia(persistentMediaState); } finally { callbacks?.Dispose(); } }, () => library?.Dispose());
         }
         finally
         {

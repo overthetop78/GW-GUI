@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
@@ -20,7 +21,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var threadStarted = false;
             try
             {
-                GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.StartThread(
+                CommonCoreHostFunctions.MachineExecution.StartThread(
                     Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
                     ref _stopSource, out _started, out _runLoop, ref _thread);
                 threadStarted = true;
@@ -31,7 +32,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (!threadStarted) State = EmulationMachineState.Faulted;
             }
         }
-        await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForStartOrStopAsync(
+        await CommonCoreHostFunctions.MachineExecution.WaitForStartOrStopAsync(
             started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
@@ -90,7 +91,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
-            await GWGUI.Emulation.Functions.ExternalCoreLifecycleFunctions.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+            await CommonCoreHostFunctions.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
         }
     }
 

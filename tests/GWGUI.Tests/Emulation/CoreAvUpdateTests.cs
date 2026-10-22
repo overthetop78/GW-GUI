@@ -21,7 +21,7 @@ public sealed class CoreAvUpdateTests
     public void GeometryUsesTheExplicitRatioOrDimensionsAndOtherwiseKeepsTheOldValue(float ratio, uint width, uint height, float expected)
     {
         var current = 1.75f;
-        EmulationVideoFunctions.ApplyGeometry(new ExternalCoreApi.Geometry { AspectRatio = ratio, BaseWidth = width, BaseHeight = height }, ref current);
+        EmulationSdk.VideoProcessing.ApplyGeometry(new ExternalCoreApi.Geometry { AspectRatio = ratio, BaseWidth = width, BaseHeight = height }, ref current);
         Assert.Equal(expected, current);
     }
 
