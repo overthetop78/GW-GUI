@@ -16,6 +16,14 @@ internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
     /// <returns>Configuration résultante après validation par le backend.</returns>
     /// <remarks>Cette opération couvre le stockage complet ; ApplyDeviceSettings ne porte que sur les paramètres supplémentaires des périphériques.</remarks>
     MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings);
+
+    /// <summary>Adapte la configuration à la sélection de lecteurs, indépendamment de leurs médias.</summary>
+    /// <param name="configuration">Configuration de départ, conservée immuable.</param>
+    /// <param name="slots">Emplacements choisis par l’appelant, dont la liste doit être copiée avant conservation.</param>
+    /// <returns>Configuration adaptée à cette sélection suivant les règles du backend.</returns>
+    /// <remarks>Common conserve les contrôles de médias et de paramètres du stockage complet. Ce point
+    /// d’adaptation permet au backend d’appliquer ses contraintes matérielles avant la validation finale.</remarks>
+    MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots);
     /// <summary>Décrit les paramètres supplémentaires des périphériques de stockage.</summary>
     /// <param name="configuration">Configuration dont les réglages courants doivent être présentés.</param>
     /// <returns>Liste vide par défaut ; l’adaptateur fournit les paramètres lorsqu’il en prend en charge.</returns>

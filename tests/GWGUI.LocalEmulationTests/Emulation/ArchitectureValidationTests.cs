@@ -45,6 +45,7 @@ public sealed class ArchitectureValidationTests
     [Theory]
     [InlineData("Apple", "IEmulatorConfigurationOptions", "IEmulatorConfiguration", "InitializeOptions")]
     [InlineData("Apple", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "GetMediaDependencies")]
+    [InlineData("Apple", "IEmulatorStorageSettings", "IEmulatorStorageConfiguration", "ApplyStorageConfiguration")]
     [InlineData("Snk", "IEmulatorInitialContentSettings", "IEmulatorMediaAdapter", "ResolveInitialContentPaths")]
     [InlineData("Sony", "IEmulatorStorageSettings", "IEmulatorMediaAdapter", "GetMemoryCardCount")]
     [InlineData("Sony", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "get_SupportedContentExtensions")]
@@ -59,7 +60,9 @@ public sealed class ArchitectureValidationTests
         var reference = example.GetMethod(operation)!;
         Assert.NotNull(method);
         Assert.NotNull(reference);
-        Assert.Equal(reference.ReturnType, method.ReturnType);
+        if (typeof(IEmulationConfiguration).IsAssignableFrom(reference.ReturnType))
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.ReturnType));
+        else Assert.Equal(reference.ReturnType, method.ReturnType);
         Assert.Equal(reference.GetParameters().Select(parameter => parameter.Name), method.GetParameters().Select(parameter => parameter.Name));
         var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
         Assert.NotEmpty(implementations);

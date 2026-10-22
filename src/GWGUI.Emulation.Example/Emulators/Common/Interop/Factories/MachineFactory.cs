@@ -222,6 +222,8 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration, settings);
     /// <inheritdoc/>
+    public MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots) => StorageSettingsFunctions.ApplyStorageConfiguration(configuration, slots);
+    /// <inheritdoc/>
     public int GetMemoryCardCount(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.MemoryCard) ? 1 : 0;
     /// <inheritdoc/>
     public string? GetMemoryCardDisplayLabel(int index) => null;

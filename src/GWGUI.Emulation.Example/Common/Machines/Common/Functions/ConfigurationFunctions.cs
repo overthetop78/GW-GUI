@@ -35,11 +35,15 @@ internal static class ConfigurationFunctions
         if (configuration.Firmwares.Any(firmware => !model.Firmware.Contains(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))) throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
         if (configuration.Core != Emulator.None && !EmulatorCatalog.Get(configuration.Core).MachineIds.Contains(model.StableModelId))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
+        var devices = StorageSettingsFunctions.DescribeDevices(configuration.Model);
+        if (configuration.ConfiguredSlots is null || configuration.ConfiguredSlots.Distinct().Count() != configuration.ConfiguredSlots.Count
+            || configuration.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot)))
+            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         var slots = new HashSet<EmulationMediaSlot>();
         foreach (var media in configuration.Media)
         {
-            if (string.IsNullOrWhiteSpace(media.Path) || !model.Media.Contains(media.Category) || !slots.Add(media.Slot)
-                || !StorageSettingsFunctions.DescribeDevices(configuration.Model).Any(device => device.Slot == media.Slot && device.MediaType == EmulationMediaConversionFunctions.ToType(media.Category)))
+            if (string.IsNullOrWhiteSpace(media.Path) || !model.Media.Contains(media.Category) || !slots.Add(media.Slot) || !configuration.ConfiguredSlots.Contains(media.Slot)
+                || !devices.Any(device => device.Slot == media.Slot && device.MediaType == EmulationMediaConversionFunctions.ToType(media.Category)))
                 throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         }
         var ports = new HashSet<int>();

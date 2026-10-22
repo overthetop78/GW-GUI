@@ -6059,3 +6059,25 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les opérations de réglages firmware de chaque famille concernée et leurs implémentations par rapport à Example ; exécuter les contrôles ciblés puis le build Debug avec les 23 modules.
 
   - Validation : 86 tests ciblés réussis ; opérations de réglages firmware alignées sur Example pour les familles concernées ; 13, 11 et 11 emplacements NEC conservés avec leurs champs, leur ordre et les chemins utilisateur ; un seul sélecteur Slots dans Common NEC, sans switch parallèle dans Emulators ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.
+
+## Sélection de lecteurs persistante et contrat de stockage commun dans Example
+
+- [x] Conserver les lecteurs choisis dans Example et employer le même rôle Common que le contrat Apple existant.
+  - [x] Aligner le contrat d’adaptation des lecteurs.
+    - [x] Renommer src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorStorageConfiguration.cs en src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorStorageSettings.cs : conserver ApplyStorageConfiguration et documenter sa configuration, les emplacements et les adaptations du backend.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : consulter IEmulatorStorageSettings pour la même adaptation existante des lecteurs.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/AppleWin/Factories/AppleWinMachineFactory.cs : déclarer le contrat IEmulatorStorageSettings à la place du nom précédent, avec la même implémentation.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorStorageSettings.cs : reprendre ApplyStorageConfiguration(configuration, slots) dans le contrat existant et documenter sa distinction avec le stockage complet.
+  - [x] Conserver les emplacements choisis dans la configuration et ses projections.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/ConfigurationContracts.cs : reprendre ConfiguredSlots sous forme de liste copiée et documentée ; utiliser par défaut les lecteurs du profil, tout en conservant une sélection explicitement vide.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : décrire la sélection enregistrée ; ajouter ApplyStorageConfiguration pour contrôler et copier les emplacements ; appeler ce traitement par le contrat du backend ou directement sans backend, puis conserver les contrôles de médias et de paramètres existants.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.cs : contrôler les emplacements choisis, leur unicité et l’appartenance des médias à un lecteur configuré.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : appliquer les emplacements par le traitement Common unique dans les trois adaptateurs fictifs.
+    - [x] Modifier src/GWGUI.Emulation.Example/EmulationGlobalUsings.cs : utiliser le contrat SDK existant EmulationConfigurationSlotsDocument pour le document de configuration, sans créer un autre format.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : conserver ConfiguredSlots dans ToDocument et FromDocument avec les mêmes conversions de chemins.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Lifecycle.cs : refuser l’insertion d’un média dans un emplacement absent de ConfiguredSlots avant de transmettre la commande au cœur.
+  - [x] Vérifier la sélection et son raccordement aux trois adaptateurs.
+    - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier pour les deux profils et les trois adaptateurs la sélection partielle ou vide, le document JSON en mémoire, la copie des listes et le refus d’emplacements incompatibles ou dupliqués, sans fichier externe.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat Apple de sélection des lecteurs par rapport à celui d’Example, en conservant les contrôles des autres rôles ; exécuter les contrôles locaux concernés puis le build Debug avec les 23 modules.
+
+  - Validation : 79 contrôles ciblés réussis ; sélections partielles et vides conservées pour les deux profils et les trois adaptateurs, y compris après document JSON en mémoire ; listes copiées et emplacements incompatibles ou dupliqués refusés ; contrat SDK de document à lecteurs configurés réutilisé sans nouveau type ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés identiques aux derniers assemblages construits ; workflows inchangés.

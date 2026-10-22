@@ -223,6 +223,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public ValueTask InsertMediaAsync(MediaConfiguration media, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
+            // La sélection de lecteurs appartient à la configuration de cette session. Un lecteur
+            // désactivé ne reçoit aucune insertion, même si le profil matériel sait le prendre en charge.
+            if (!Configuration.ConfiguredSlots.Contains(media.Slot)) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(media));
             var inserted = media with { IsInserted = true };
             if (_mediaSuspended || NeedsMediaRestart(inserted.Slot, inserted.Path))
                 RestartCore(CurrentConfiguration() with { Media = _mountedMedia.Where(item => item.Slot != inserted.Slot).Append(inserted).ToArray() });

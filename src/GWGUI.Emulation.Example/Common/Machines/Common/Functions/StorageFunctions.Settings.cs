@@ -25,7 +25,21 @@ internal static class StorageSettingsFunctions
     {
         var adapter = new Engine().SelectedAdapter(configuration);
         var devices = adapter?.DescribeMediaDevices(configuration) ?? DescribeDevices(configuration.Model);
-        return new(devices, devices.Select(item => item.Slot).ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), adapter?.DescribeDeviceSettings(configuration) ?? []);
+        return new(devices, configuration.ConfiguredSlots.ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), adapter?.DescribeDeviceSettings(configuration) ?? []);
+    }
+
+    /// <summary>Contrôle la sélection de lecteurs et la conserve dans une copie de la configuration.</summary>
+    /// <param name="configuration">Configuration du profil dont les lecteurs disponibles sont consultés.</param>
+    /// <param name="slots">Emplacements choisis ; une liste vide désactive tous les lecteurs configurables.</param>
+    /// <returns>Configuration dont la sélection est copiée, indépendante de la liste fournie par l’appelant.</returns>
+    /// <remarks>Les contrôles de montages appartiennent au traitement du stockage complet, qui peut retirer
+    /// les médias des lecteurs désactivés avant de valider la configuration résultante.</remarks>
+    internal static MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots)
+    {
+        var devices = Describe(configuration).AvailableDevices;
+        if (slots.Distinct().Count() != slots.Count || slots.Any(slot => !devices.Any(device => device.Slot == slot)))
+            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(slots));
+        return configuration with { ConfiguredSlots = Array.AsReadOnly(slots.ToArray()) };
     }
 
     /// <summary>Applique les montages et les paramètres de lecteurs après contrôle de leur compatibilité.</summary>
@@ -34,18 +48,18 @@ internal static class StorageSettingsFunctions
     /// <returns>Configuration mise à jour ; les médias utilisateur restent empruntés.</returns>
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var devices = Describe(configuration).AvailableDevices;
-        if (settings.ConfiguredSlots.Distinct().Count() != settings.ConfiguredSlots.Count
-            || settings.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot))
-            || settings.MountedMedia.Any(media => !settings.ConfiguredSlots.Contains(media.Slot)
+        var adapter = new Engine().SelectedAdapter(configuration);
+        var result = adapter?.ApplyStorageConfiguration(configuration, settings.ConfiguredSlots) ?? ApplyStorageConfiguration(configuration, settings.ConfiguredSlots);
+        var devices = Describe(result).AvailableDevices;
+        if (settings.MountedMedia.Any(media => !result.ConfiguredSlots.Contains(media.Slot)
                 || !devices.Any(device => device.Slot == media.Slot && device.MediaType == media.Type
                     && device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase))))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var deviceSettings = settings.DeviceSettings ?? [];
         if (deviceSettings.Select(item => item.Slot).Distinct().Count() != deviceSettings.Count
-            || deviceSettings.Any(item => !settings.ConfiguredSlots.Contains(item.Slot)))
+            || deviceSettings.Any(item => !result.ConfiguredSlots.Contains(item.Slot)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
-        var result = new Engine().SelectedAdapter(configuration)?.ApplyDeviceSettings(configuration, deviceSettings) ?? configuration;
+        result = adapter?.ApplyDeviceSettings(result, deviceSettings) ?? result;
         result = result with { Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray() };
         ConfigurationFunctions.Validate(result);
         return result;

@@ -24,7 +24,7 @@ internal static class ConfigurationStoreFunctions
         configuration.SchemaVersion, configuration.Id, configuration.Model, configuration.Core,
         configuration.Firmwares.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.StorePath(item.Path, pathBase)! }).ToArray(),
         configuration.Media.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.StorePath(item.Path, pathBase)! }).ToArray(),
-        configuration.Options, configuration.Input, StoreFolders(configuration.Folders, pathBase), configuration.AudioEnabled);
+        configuration.Options, configuration.Input, StoreFolders(configuration.Folders, pathBase), configuration.AudioEnabled, configuration.ConfiguredSlots);
 
     /// <summary>Contrôle le document avant de reconstruire sa configuration et de résoudre ses chemins.</summary>
     /// <param name="document">Document désérialisé, dont les identités n’ont pas encore été validées.</param>
@@ -38,7 +38,7 @@ internal static class ConfigurationStoreFunctions
         var result = new MachineConfiguration(document.Model,
             document.Firmwares.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.ResolvePath(item.Path, pathBase)! }).ToArray(),
             document.Media.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.ResolvePath(item.Path, pathBase)! }).ToArray(),
-            document.Options, document.Input, document.Id, document.SchemaVersion, document.AudioEnabled, ResolveFolders(document.Folders, pathBase), document.Core);
+            document.Options, document.Input, document.Id, document.SchemaVersion, document.AudioEnabled, ResolveFolders(document.Folders, pathBase), document.Core, document.ConfiguredSlots);
         ConfigurationFunctions.Validate(result);
         return result;
     }
