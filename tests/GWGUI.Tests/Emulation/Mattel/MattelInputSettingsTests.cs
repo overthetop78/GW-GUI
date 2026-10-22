@@ -60,7 +60,7 @@ public sealed class MattelInputSettingsTests
             Controllers = [physical, physical]
         };
         var mapper = new FreeIntvMachineFactory();
-        var mapped = mapper.MapInput(snapshot, restored.Input, restored.Model);
+        var mapped = mapper.MapInput(snapshot, restored);
         for (uint port = 0; port < 2; port++)
             Assert.InRange(NativeInputFunctions.State(mapped, port, NativeInput.AnalogDevice, NativeInput.LeftAnalogIndex, NativeInput.AnalogXId, Emulator.FreeIntv), (short)8100, (short)8200);
         foreach (var released in new[]
@@ -70,10 +70,10 @@ public sealed class MattelInputSettingsTests
             snapshot with { Controllers = [EmulationControllerState.Empty, EmulationControllerState.Empty] }
         })
         {
-            mapped = mapper.MapInput(released, restored.Input, restored.Model);
+            mapped = mapper.MapInput(released, restored);
             Assert.All(mapped.Controllers, controller => Assert.Equal((short)0, controller.LeftX));
         }
-        mapped = mapper.MapInput(snapshot, original.Input, original.Model);
+        mapped = mapper.MapInput(snapshot, original);
         Assert.All(mapped.Controllers, controller =>
         {
             Assert.Equal(0u, controller.Buttons);

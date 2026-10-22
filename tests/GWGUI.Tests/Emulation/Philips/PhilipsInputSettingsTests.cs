@@ -37,7 +37,7 @@ public sealed class PhilipsInputSettingsTests
             Pointer = EmulationInputSnapshot.Empty.Pointer with { Left = true }, Controllers = [controller]
         };
         var mapper = new M2000MachineFactory();
-        var mapped = mapper.MapInput(snapshot, restored.Input, restored.Model);
+        var mapped = mapper.MapInput(snapshot, restored);
         Assert.Contains(target, mapped.Keys);
         Assert.Contains(EmulationKey.Z, mapped.Keys);
         var nativeKey = KeyboardFunctions.CreateKeyMap(p2000: true)[target];
@@ -50,7 +50,7 @@ public sealed class PhilipsInputSettingsTests
             EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.F1 } }
         })
         {
-            mapped = mapper.MapInput(released, restored.Input, restored.Model);
+            mapped = mapper.MapInput(released, restored);
             Assert.DoesNotContain(target, mapped.Keys);
             Assert.Equal(0, NativeInputFunctions.State(mapped, NativeInput.PrimaryPort, NativeInput.KeyboardDevice, 0, nativeKey, Emulator.M2000));
         }
@@ -64,8 +64,8 @@ public sealed class PhilipsInputSettingsTests
         var input = new InputConfiguration(Keyboard: new Dictionary<string, string> { [nameof(EmulationKey.PhilipsP2000Start)] = source });
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { modifier, EmulationKey.A } };
         var mapper = new M2000MachineFactory();
-        Assert.Contains(EmulationKey.PhilipsP2000Start, mapper.MapInput(snapshot, input, MachineModel.P2000T).Keys);
-        Assert.DoesNotContain(EmulationKey.PhilipsP2000Start, mapper.MapInput(EmulationInputSnapshot.Empty, input, MachineModel.P2000T).Keys);
+        Assert.Contains(EmulationKey.PhilipsP2000Start, mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.P2000T, input: input)).Keys);
+        Assert.DoesNotContain(EmulationKey.PhilipsP2000Start, mapper.MapInput(EmulationInputSnapshot.Empty, new MachineConfiguration(MachineModel.P2000T, input: input)).Keys);
     }
 
     [Fact]
@@ -107,10 +107,10 @@ public sealed class PhilipsInputSettingsTests
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.LeftControl }, Controllers = [EmulationControllerState.Empty with { LeftX = 8192 }]
         };
-        var mapped = mapper.MapInput(snapshot, input, MachineModel.PhilipsCdi);
+        var mapped = mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.PhilipsCdi, input: input));
         Assert.InRange(mapped.Controllers[0].LeftX, 8191, 8193);
         Assert.Equal(mapped.Controllers[0].LeftX, NativeInputFunctions.State(mapped, 0, NativeInput.AnalogDevice, NativeInput.LeftAnalogIndex, NativeInput.AnalogXId, Emulator.SameCdi));
-        Assert.Equal(0, mapper.MapInput(snapshot with { Keys = new HashSet<EmulationKey>() }, input, MachineModel.PhilipsCdi).Controllers[0].LeftX);
-        Assert.Equal(0, mapper.MapInput(snapshot, new InputConfiguration(), MachineModel.PhilipsCdi).Controllers[0].LeftX);
+        Assert.Equal(0, mapper.MapInput(snapshot with { Keys = new HashSet<EmulationKey>() }, new MachineConfiguration(MachineModel.PhilipsCdi, input: input)).Controllers[0].LeftX);
+        Assert.Equal(0, mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.PhilipsCdi, input: new InputConfiguration())).Controllers[0].LeftX);
     }
 }

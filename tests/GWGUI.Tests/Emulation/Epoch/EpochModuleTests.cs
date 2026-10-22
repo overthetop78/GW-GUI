@@ -65,28 +65,28 @@ public sealed class EpochModuleTests
         var sources = Enumerable.Repeat(EmulationControllerState.Empty, 2).ToArray();
         sources[port] = sources[port] with { LeftX = 8192 };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = sources };
-        var unassigned = mapper.MapInput(snapshot, new InputConfiguration(), MachineModel.CassetteVision);
+        var unassigned = mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.CassetteVision, input: new InputConfiguration()));
         Assert.All(unassigned.Controllers, controller => Assert.Equal(0, controller.LeftX));
         var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Standard, Mappings: new Dictionary<string, string>
         {
             [paddle + "Decrease"] = "Controller:LeftStickLeft", [paddle + "Increase"] = "Controller:LeftStickRight"
         }, DeadZonePercent: 0)]);
-        var mapped = mapper.MapInput(snapshot, input, MachineModel.CassetteVision);
+        var mapped = mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.CassetteVision, input: input));
         Assert.InRange(mapped.Controllers[port].LeftX, 8191, 8193);
         Assert.Equal(mapped.Controllers[port].LeftX, NativeInputFunctions.State(mapped, (uint)port, NativeInput.AnalogDevice, NativeInput.LeftAnalogIndex, NativeInput.AnalogXId));
         sources[port] = sources[port] with { LeftX = -16384 };
-        mapped = mapper.MapInput(snapshot with { Controllers = sources }, input, MachineModel.CassetteVision);
+        mapped = mapper.MapInput(snapshot with { Controllers = sources }, new MachineConfiguration(MachineModel.CassetteVision, input: input));
         Assert.InRange(mapped.Controllers[port].LeftX, -16385, -16383);
         Assert.Equal(0, mapped.Controllers[1 - port].LeftX);
         input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Standard, Mappings: new Dictionary<string, string>
         {
             [paddle + "Decrease"] = "Keyboard:A", [paddle + "Increase"] = "Keyboard:D"
         })]);
-        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }, input, MachineModel.CassetteVision);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }, new MachineConfiguration(MachineModel.CassetteVision, input: input));
         Assert.Equal(-short.MaxValue, mapped.Controllers[port].LeftX);
-        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.D } }, input, MachineModel.CassetteVision);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.D } }, new MachineConfiguration(MachineModel.CassetteVision, input: input));
         Assert.Equal(short.MaxValue, mapped.Controllers[port].LeftX);
-        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.D } }, input, MachineModel.CassetteVision);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.D } }, new MachineConfiguration(MachineModel.CassetteVision, input: input));
         Assert.Equal(0, mapped.Controllers[port].LeftX);
     }
     [Fact]
@@ -143,9 +143,9 @@ public sealed class EpochModuleTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         var mapper = new EmuSCVMachineFactory();
-        Assert.Contains(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, mapper).Keys);
+        Assert.Contains(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(pressed, restored, mapper).Keys);
         var old = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.P } };
-        Assert.DoesNotContain(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(old, restored.Input, restored.Model, mapper).Keys);
+        Assert.DoesNotContain(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(old, restored, mapper).Keys);
     }
 
     [Fact]

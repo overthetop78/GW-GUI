@@ -51,7 +51,7 @@ public sealed class ColecoModuleTests
             Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 12, DeltaY = -9, Left = true, Right = true, Middle = true, Wheel = 3 },
             Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue }]
         };
-        var mapped = InputSnapshotFunctions.Apply(physical, new InputConfiguration(), MachineModel.ColecoVision, core);
+        var mapped = InputSnapshotFunctions.Apply(physical, new MachineConfiguration(MachineModel.ColecoVision, input: new InputConfiguration(), core: core));
         Assert.Equal(EmulationInputSnapshot.Empty.Pointer, mapped.Pointer);
         Assert.All(mapped.Controllers, controller => Assert.Equal(0u, controller.Buttons));
         for (uint id = 0; id <= 2; id++)
@@ -71,13 +71,13 @@ public sealed class ColecoModuleTests
             Keys = new HashSet<EmulationKey> { EmulationKey.Z },
             Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 12, DeltaY = -9, Left = true }
         };
-        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.GearColeco);
+        var mapped = InputSnapshotFunctions.Apply(physical, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.GearColeco));
         Assert.Equal(x, mapped.Pointer.DeltaX);
         Assert.Equal(y, mapped.Pointer.DeltaY);
         Assert.False(mapped.Pointer.Left);
         Assert.Equal(x, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, 0, 2, 0, 0));
         Assert.Equal(y, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, 0, 2, 0, 1));
-        Assert.Equal(EmulationInputSnapshot.Empty.Pointer, InputSnapshotFunctions.Apply(physical with { Keys = EmulationInputSnapshot.Empty.Keys }, input, MachineModel.ColecoVision, Emulator.GearColeco).Pointer);
+        Assert.Equal(EmulationInputSnapshot.Empty.Pointer, InputSnapshotFunctions.Apply(physical with { Keys = EmulationInputSnapshot.Empty.Keys }, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.GearColeco)).Pointer);
     }
 
     [Theory]
@@ -154,10 +154,10 @@ public sealed class ColecoModuleTests
             Keys = new HashSet<EmulationKey> { EmulationKey.Z },
             Pointer = EmulationInputSnapshot.Empty.Pointer with { Middle = true }
         };
-        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.JollyCV);
+        var mapped = InputSnapshotFunctions.Apply(physical, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.JollyCV));
         Assert.Equal(1, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, (uint)port, 1, 0, nativeButton));
         Assert.Equal(0u, mapped.Controllers[1 - port].Buttons);
-        var released = InputSnapshotFunctions.Apply(physical with { Pointer = EmulationInputSnapshot.Empty.Pointer }, input, MachineModel.ColecoVision, Emulator.JollyCV);
+        var released = InputSnapshotFunctions.Apply(physical with { Pointer = EmulationInputSnapshot.Empty.Pointer }, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.JollyCV));
         Assert.Equal(0, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(released, (uint)port, 1, 0, nativeButton));
     }
 
@@ -170,11 +170,11 @@ public sealed class ColecoModuleTests
     {
         var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.SuperAction, Mappings: new Dictionary<string, string> { [action] = "Keyboard:Z" })]);
         var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
-        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.BlueMSX);
+        var mapped = InputSnapshotFunctions.Apply(physical, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.BlueMSX));
         Assert.Equal(expected, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, (uint)port, 5, 1, 1));
         Assert.Equal(0, mapped.Controllers[1 - port].RightY);
         Assert.Equal(0, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(
-            InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, input, MachineModel.ColecoVision, Emulator.BlueMSX), (uint)port, 5, 1, 1));
+            InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: Emulator.BlueMSX)), (uint)port, 5, 1, 1));
     }
 
     [Theory]
@@ -262,10 +262,10 @@ public sealed class ColecoModuleTests
     {
         var input = new InputConfiguration(Controllers: Enumerable.Range(0, 2).Select(port => new ControllerBinding(port, PeripheralCategory.Standard, Mappings: new Dictionary<string,string> { ["Keypad1"] = "Keyboard:Z" })).ToArray());
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
-        var result = InputSnapshotFunctions.Apply(snapshot, input, MachineModel.ColecoVision, core);
+        var result = InputSnapshotFunctions.Apply(snapshot, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: core));
         var expected = (1u << bit) | (core == Emulator.JollyCV ? 1u << 12 : 0);
         Assert.All(result.Controllers, controller => Assert.Equal(expected, controller.Buttons));
-        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, input, MachineModel.ColecoVision, core).Controllers, controller => Assert.Equal(0u, controller.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, new MachineConfiguration(MachineModel.ColecoVision, input: input, core: core)).Controllers, controller => Assert.Equal(0u, controller.Buttons));
     }
 
     [Fact]
@@ -274,9 +274,9 @@ public sealed class ColecoModuleTests
         var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = "Z" }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
-        Assert.Contains(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, restored.Core).Keys);
+        Assert.Contains(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, restored).Keys);
         var old = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.F1 } };
-        Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(old, restored.Input, restored.Model, restored.Core).Keys);
+        Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(old, restored).Keys);
         Assert.Equal(12, InputSettingsFunctions.Describe(restored).Keyboard!.Definitions.Count);
     }
 
@@ -311,6 +311,6 @@ public sealed class ColecoModuleTests
     {
         var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = string.Empty }));
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.F1 } };
-        Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, config.Input, config.Model, config.Core).Keys);
+        Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, config).Keys);
     }
 }

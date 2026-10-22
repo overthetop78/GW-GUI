@@ -95,17 +95,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, _inputMapper));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, _inputMapper));
 
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
         QueueCommand(() =>
         {
             if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration.Model, Configuration.Core).Contains(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
-            var previous = _inputConfiguration.Controllers?.FirstOrDefault(binding => binding.Port == port);
+            var previous = _inputConfiguration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port);
             var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };
             if (!_mediaSuspended) _core.SetControllerPortDevice(port, peripheral);
-            _inputConfiguration = _inputConfiguration with { Controllers = (_inputConfiguration.Controllers ?? []).Where(item => item.Port != port).Append(binding).ToArray() };
+            _inputConfiguration = _inputConfiguration with { Input = _inputConfiguration.Input with { Controllers = (_inputConfiguration.Input.Controllers ?? []).Where(item => item.Port != port).Append(binding).ToArray() } };
         }, CancellationToken.None)
             .AsTask().GetAwaiter().GetResult();
 

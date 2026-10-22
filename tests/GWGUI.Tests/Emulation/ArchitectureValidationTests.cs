@@ -13,6 +13,37 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Theory]
+    [InlineData("Coleco")]
+    [InlineData("Epoch")]
+    [InlineData("Example")]
+    [InlineData("Fairchild")]
+    [InlineData("Mattel")]
+    [InlineData("Philips")]
+    [InlineData("Sharp")]
+    [InlineData("Sinclair")]
+    [InlineData("Snk")]
+    public void InputMappersReceiveTheSameCompleteConfigurationContract(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorInputMapper", throwOnError: true)!;
+        var method = Assert.Single(contract.GetMethods(), method => method.Name == "MapInput");
+        Assert.Equal(typeof(EmulationInputSnapshot), method.ReturnType);
+        var parameters = method.GetParameters();
+        Assert.Equal(2, parameters.Length);
+        Assert.Equal(typeof(EmulationInputSnapshot), parameters[0].ParameterType);
+        Assert.Equal("snapshot", parameters[0].Name);
+        Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[1].ParameterType));
+        Assert.Equal("configuration", parameters[1].Name);
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+        {
+            Assert.DoesNotContain(implementation.GetMethods(), method => method.Name == "MapInput" && method.GetParameters().Length != 2);
+            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
+        }
+    }
+
+    [Theory]
     [InlineData("Bandai")]
     [InlineData("Coleco")]
     [InlineData("Example")]

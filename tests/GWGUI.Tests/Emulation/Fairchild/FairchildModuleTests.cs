@@ -71,9 +71,9 @@ public sealed class FairchildModuleTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var keyboard = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         var mapper = new FreeChaFMachineFactory();
-        Assert.NotEqual(0u, InputSnapshotFunctions.Apply(keyboard, restored.Input, restored.Model, mapper).Controllers[0].Buttons & 1u);
+        Assert.NotEqual(0u, InputSnapshotFunctions.Apply(keyboard, restored, mapper).Controllers[0].Buttons & 1u);
         var original = EmulationInputSnapshot.Empty with { Controllers = [EmulationControllerState.Empty with { Buttons = 1u }] };
-        Assert.Equal(0u, InputSnapshotFunctions.Apply(original, restored.Input, restored.Model, mapper).Controllers[0].Buttons & 1u);
+        Assert.Equal(0u, InputSnapshotFunctions.Apply(original, restored, mapper).Controllers[0].Buttons & 1u);
     }
 
     [Fact]
@@ -88,7 +88,7 @@ public sealed class FairchildModuleTests
             Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue }]
         };
         var mapper = new FreeChaFMachineFactory();
-        Assert.All(InputSnapshotFunctions.Apply(physical, config.Input, config.Model, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(physical, config, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
         var ports = settings.ControllerPorts.Select(port => port with
         {
             VisualId = port.ControllerChoices[0].DefaultVisualId,
@@ -98,6 +98,6 @@ public sealed class FairchildModuleTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
         Assert.All(restored.Input.Controllers!, port => Assert.All(port.Mappings!, pair => Assert.Empty(pair.Value)));
         Assert.Equal(ports[0].VisualId, InputSettingsFunctions.Describe(restored).ControllerPorts[0].VisualId);
-        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, restored.Model, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
     }
 }

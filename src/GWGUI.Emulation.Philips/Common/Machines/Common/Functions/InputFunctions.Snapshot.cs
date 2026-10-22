@@ -1,9 +1,9 @@
-﻿namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, IEmulatorInputMapper? mapper) => mapper is not null
-        ? mapper.MapInput(snapshot, input, model)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper) => mapper is not null
+        ? mapper.MapInput(snapshot, configuration)
         : snapshot with
         {
             Controllers = [],

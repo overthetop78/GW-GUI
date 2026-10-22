@@ -19,7 +19,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly EmulationInputAccumulator _input = new();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
-    private InputConfiguration _inputConfiguration;
+    /// <summary>Configuration de projection courante ; ses associations peuvent évoluer sans réécrire la configuration enregistrée.</summary>
+    private MachineConfiguration _inputConfiguration;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -49,7 +50,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Id = id;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
-        _inputConfiguration = configuration.Input;
+        _inputConfiguration = configuration;
         _core = core;
         _inputMapper = inputMapper;
         _coreFactory = coreFactory;
@@ -79,7 +80,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     bool IEmulationInput.CapturePointerOnClick => _supportsPointerCapture;
 
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration, Configuration.Model);
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration.Input, Configuration.Model);
 
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
 

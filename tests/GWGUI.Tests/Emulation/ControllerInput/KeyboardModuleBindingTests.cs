@@ -137,7 +137,7 @@ public sealed class KeyboardModuleBindingTests
                 var coleco = new ColecoKeyboard();
                 return new(new GWGUI.Emulation.Coleco.Modules.ColecoEmulationModule("unused", "unused", http, "unused"), new ColecoMachines.Contracts.MachineConfiguration(ColecoMachines.Enums.MachineModel.Adam),
                     "Smart1", EmulationKey.AdamSmart1, ColecoKeyboard.Mappings[EmulationKey.AdamSmart1],
-                    (snapshot, configuration) => ColecoMachines.Functions.InputSnapshotFunctions.Apply(snapshot, ((ColecoMachines.Contracts.MachineConfiguration)configuration).Input, ((ColecoMachines.Contracts.MachineConfiguration)configuration).Model, ((ColecoMachines.Contracts.MachineConfiguration)configuration).Core),
+                    (snapshot, configuration) => ColecoMachines.Functions.InputSnapshotFunctions.Apply(snapshot, (ColecoMachines.Contracts.MachineConfiguration)configuration),
                     keys => coleco.Publish(keys, (pressed, code, character, modifiers) => events.Add((pressed, code))));
             default:
                 throw new ArgumentOutOfRangeException(nameof(family));
