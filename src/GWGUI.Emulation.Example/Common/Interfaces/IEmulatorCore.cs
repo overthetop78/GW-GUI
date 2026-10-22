@@ -7,17 +7,10 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// les options, les états et les commandes de médias. Common sérialise les accès au cœur pendant l’exécution.
 /// La machine qui possède le cœur arrête sa boucle puis le détruit dans finally ; les fichiers de médias reçus
 /// restent possédés par leurs appelants. L’hébergement peut être local ou confié à un processus séparé.</remarks>
-internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
+internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
 {
     /// <summary>Identité du backend utilisé par ce cœur, distincte du modèle matériel émulé.</summary>
     Emulator Emulator { get; }
-    /// <summary>État du tampon de sortie audio de l’hôte, transmis au cœur pour son suivi de remplissage.</summary>
-    /// <remarks>Null indique qu’aucun état de sortie n’est disponible. Le contrat commun exprime la fréquence en Hz
-    /// et les capacités en frames audio ; il reste une description empruntée, sans propriété de la sortie physique.</remarks>
-    AudioOutputBufferStatus? OutputAudioStatus { get; set; }
-    /// <summary>Latence audio minimale demandée par le cœur, exprimée en millisecondes.</summary>
-    /// <remarks>Le propriétaire de la sortie utilise cette demande pour adapter son tampon ; elle ne remplace pas la fréquence d’échantillonnage.</remarks>
-    int MinimumAudioLatencyMilliseconds { get; }
     /// <summary>Indique que le cœur demande la fermeture de sa session.</summary>
     /// <remarks>La boucle du propriétaire doit examiner ce signal et effectuer son arrêt et sa destruction habituels.</remarks>
     bool ShutdownRequested { get; }

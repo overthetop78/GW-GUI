@@ -2,11 +2,9 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Snk.Common.Interfaces;
 
-internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
+internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
 {
     Emulator Emulator { get; }
-    AudioOutputBufferStatus? OutputAudioStatus { get; set; }
-    int MinimumAudioLatencyMilliseconds { get; }
     HostProcessState HostProcessState { get; }
     int? HostProcessId { get; }
 }

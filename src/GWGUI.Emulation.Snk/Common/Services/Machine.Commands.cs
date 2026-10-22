@@ -39,7 +39,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
                     () => {
                         _core.SetInput(_input.Consume());
-                        _core.OutputAudioStatus = _audio.BufferStatus;
+                        _core.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
                         _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
                         PublishOutputs(ref videoSequence);

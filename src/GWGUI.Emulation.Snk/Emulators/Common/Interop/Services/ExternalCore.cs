@@ -48,7 +48,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public bool SupportsSaveStates => _supportsSaveStates;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
-    public AudioOutputBufferStatus? OutputAudioStatus { get => _callbacks?.OutputAudioStatus; set { if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = value; } }
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status; }
     public int MinimumAudioLatencyMilliseconds => _callbacks?.MinimumAudioLatencyMilliseconds ?? default;
     public EmulationVideoStandard? Region { get; private set; }
     public int BufferedAudioFrames => _callbacks?.BufferedAudioFrames ?? default;

@@ -126,7 +126,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Statut du tampon physique fourni par la machine avant la prochaine requête d’image.</summary>
     /// <remarks>Ce statut ne possède aucune sortie audio ; ses nombres de frames et sa fréquence en Hz
     /// sont transmis au cœur distant avec un booléen indiquant la présence du bloc.</remarks>
-    public AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
     /// <summary>Latence audio minimale en millisecondes reçue à l’initialisation puis après chaque frame.</summary>
     public int MinimumAudioLatencyMilliseconds { get; private set; }
     /// <summary>Demande de fermeture annoncée par le cœur distant, traitée par la boucle de la machine.</summary>

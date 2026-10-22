@@ -58,6 +58,51 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void EveryCommonUsesTheSameAudioBufferFeedbackContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly)
+            .Distinct().OrderBy(assembly => assembly.GetName().Name, StringComparer.Ordinal).ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            Assert.Equal(2, contract.GetMethods().Length);
+            var latency = Assert.Single(contract.GetProperties());
+            Assert.Equal("MinimumAudioLatencyMilliseconds", latency.Name);
+            Assert.Equal(typeof(int), latency.PropertyType);
+            Assert.Null(latency.SetMethod);
+            Assert.True(latency.GetMethod!.IsAbstract);
+            var publish = contract.GetMethod("SetAudioBufferStatus")!;
+            Assert.NotNull(publish);
+            Assert.True(publish.IsAbstract);
+            Assert.Equal(typeof(void), publish.ReturnType);
+            Assert.Equal(typeof(AudioOutputBufferStatus?), Assert.Single(publish.GetParameters()).ParameterType);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            foreach (var implementation in implementations)
+            {
+                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
+                Assert.Null(implementation.GetProperty("OutputAudioStatus", BindingFlags.Public | BindingFlags.Instance));
+            }
+            if (root is "GWGUI.Emulation.Example" or "GWGUI.Emulation.Snk")
+            {
+                var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore")!;
+                Assert.Contains(contract, core.GetInterfaces());
+                Assert.Null(core.GetProperty("OutputAudioStatus"));
+                Assert.Equal(2, implementations.Length);
+            }
+            if (root == "GWGUI.Emulation.Watara")
+                Assert.Equal(2, implementations.Length);
+        }
+    }
+
+    [Fact]
     public void SdkGrantsInternalAccessOnlyToTheExistingTestAssemblies()
     {
         var grants = typeof(EmulationSdk).Assembly.GetCustomAttributes<InternalsVisibleToAttribute>()

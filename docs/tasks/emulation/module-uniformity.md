@@ -4832,3 +4832,41 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 - [x] Valider les contrats de validation et de lecteurs uniformisés dans les 24 Common.
   - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : contrôler les deux noms et signatures abstraites dans les 24 Common, leurs implémentations et les héritages conservés ; exécuter la suite Emulation, les contrôles d’architecture concernés et le build Debug complet.
+
+- [x] Uniformiser le retour du tampon audio par le contrat Common existant.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : définir le contrat commun de retour du tampon audio et de latence minimale, avec les unités et le rôle de chaque membre.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorCore.cs : hériter du contrat IEmulatorAudioBufferFeedback et retirer les deux déclarations audio redondantes.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : implémenter SetAudioBufferStatus avec le stockage ou le callback existant, sans modifier la latence.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : implémenter SetAudioBufferStatus avec le stockage ou le callback existant, sans modifier la latence.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : transmettre le statut audio par SetAudioBufferStatus au même moment et conserver les champs du protocole.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Commands.cs : transmettre le statut audio par SetAudioBufferStatus au même moment et conserver les champs du protocole.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs : hériter du contrat IEmulatorAudioBufferFeedback et retirer les deux déclarations audio redondantes.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : implémenter SetAudioBufferStatus avec le stockage ou le callback existant, sans modifier la latence.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.cs : implémenter SetAudioBufferStatus avec le stockage ou le callback existant, sans modifier la latence.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : transmettre le statut audio par SetAudioBufferStatus au même moment et conserver les champs du protocole.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : transmettre le statut audio par SetAudioBufferStatus au même moment et conserver les champs du protocole.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : documenter le stockage privé du dernier statut audio reçu par le cœur fictif.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat audio dans les 24 Common et les implémentations réelles de SNK, Watara et Example ; exécuter les tests Emulation et architecture, puis le build Debug de tous les modules.

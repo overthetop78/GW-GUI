@@ -104,7 +104,7 @@ public static class CoreHost
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
-        core.OutputAudioStatus = reader.ReadBoolean() ? new AudioOutputBufferStatus(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadBoolean()) : null;
+        core.SetAudioBufferStatus(reader.ReadBoolean() ? new AudioOutputBufferStatus(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadBoolean()) : null);
         core.RunFrame();
         CommonCoreHostFunctions.Protocol.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
             writer, core, (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),

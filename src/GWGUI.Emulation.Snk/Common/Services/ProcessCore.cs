@@ -67,7 +67,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public bool SupportsSaveStates { get; private set; }
     public double FramesPerSecond { get; private set; }
     public int SampleRate { get; private set; }
-    public AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
     public int MinimumAudioLatencyMilliseconds { get; private set; }
     public EmulationVideoStandard? Region { get; private set; }
     public int BufferedAudioFrames { get; private set; }

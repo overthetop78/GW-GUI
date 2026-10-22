@@ -57,8 +57,10 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     /// <inheritdoc/>
     public Emulator Emulator { get; }
+    /// <summary>Dernier statut reçu de la sortie de la machine ; instantané conservé par le cœur fictif.</summary>
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
     /// <inheritdoc/>
-    public AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
     /// <inheritdoc/>
     public int MinimumAudioLatencyMilliseconds => AudioConstants.DefaultLatencyMilliseconds;
     /// <inheritdoc/>
