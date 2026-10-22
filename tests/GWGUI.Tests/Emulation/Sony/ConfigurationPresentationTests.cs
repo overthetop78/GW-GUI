@@ -229,9 +229,20 @@ public sealed class ConfigurationPresentationTests
         var blocks = SettingsDescriptionFunctions.Create(configuration);
         Assert.Single(blocks, block => block.Id == "cpu");
         var acceleration = Assert.Single(blocks, block => block.Id == "acceleration");
-        var frequency = Assert.Single(acceleration.Fields, field => field.FrequencyScaleFieldId is not null);
-        Assert.Contains(acceleration.Fields, field => field.Id == frequency.FrequencyScaleFieldId);
-        Assert.Equal(33_868_800L, frequency.NumericValue);
+        if (emulator == Rearmed.Id)
+        {
+            var clock = Assert.Single(acceleration.Fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.OptionConstants.PsxclockKey);
+            Assert.Equal("auto", clock.AutomaticValue);
+            Assert.Equal(clock.AutomaticValue, clock.Value);
+            Assert.DoesNotContain(acceleration.Fields, field => field.FrequencyScaleFieldId is not null);
+            Assert.Contains(acceleration.Fields, field => field.Value == ModelConstants.FrequencyPs1 && field.Editor == EmulationSettingsEditor.Information);
+        }
+        else
+        {
+            var frequency = Assert.Single(acceleration.Fields, field => field.FrequencyScaleFieldId is not null);
+            Assert.Contains(acceleration.Fields, field => field.Id == frequency.FrequencyScaleFieldId);
+            Assert.Equal(33_868_800L, frequency.NumericValue);
+        }
         Assert.All(blocks.Where(block => block.Tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video or EmulationMachineTab.Audio).SelectMany(block => block.Fields), field =>
         {
             Assert.False(string.IsNullOrWhiteSpace(field.ExplanationResourceKey), field.Id);
@@ -261,9 +272,14 @@ public sealed class ConfigurationPresentationTests
         var steering = fields.Single(field => field.Id == SwanOptions.Controller1SteeringDeadzoneKey);
         Assert.DoesNotContain(nameof(ControllerType.DualShock), steering.AppliesToControllerIds!);
         Assert.DoesNotContain(nameof(ControllerType.AnalogJoystick), steering.AppliesToControllerIds!);
-        var multitap = fields.Single(field => field.Id == SwanOptions.ControllerPortsMultitapModeKey);
-        Assert.True(multitap.IsGlobalControllerOption);
-        Assert.True(multitap.RefreshSettingsOnChange);
+        var multitaps = fields.Where(field => field.Id.StartsWith(SwanOptions.ControllerPortsMultitapModeKey + ".port", StringComparison.Ordinal)).ToArray();
+        Assert.Equal(new[] { SwanOptions.ControllerPortsMultitapModeKey + ".port1", SwanOptions.ControllerPortsMultitapModeKey + ".port2" }, multitaps.Select(field => field.Id));
+        Assert.All(multitaps, multitap =>
+        {
+            Assert.True(multitap.IsGlobalControllerOption);
+            Assert.True(multitap.RefreshSettingsOnChange);
+            Assert.Equal(EmulationSettingsEditor.Toggle, multitap.Editor);
+        });
         var bothPorts = Configuration(Swan.Id) with { Options = new Dictionary<string, string> { [SwanOptions.ControllerPortsMultitapModeKey] = SwanOptions.ControllerPortsMultitapModeBothPorts } };
         var eight = InputSettingsFunctions.Describe(bothPorts);
         Assert.Equal(8, eight.ControllerPorts.Count);
@@ -329,7 +345,8 @@ public sealed class ConfigurationPresentationTests
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Audio && block.Id != audio.Id);
         var basic = blocks.Where(block => block.Tab == EmulationMachineTab.Video && !block.IsCollapsible).ToArray();
         Assert.NotEmpty(basic);
-        Assert.DoesNotContain(basic.SelectMany(block => block.Fields), field => field.Id.Contains("crop", StringComparison.OrdinalIgnoreCase) || field.Id.Contains("PGXP", StringComparison.OrdinalIgnoreCase));
+        Assert.DoesNotContain(basic.SelectMany(block => block.Fields), field => field.Id.Contains("PGXP", StringComparison.OrdinalIgnoreCase));
+        Assert.All(basic.SelectMany(block => block.Fields).Where(field => field.Id.Contains("crop", StringComparison.OrdinalIgnoreCase)), field => Assert.EndsWith("Screen", field.BlockId));
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Video && block.IsCollapsible);
         Assert.DoesNotContain(blocks.SelectMany(block => block.Fields), field => field.Id == SwanOptions.GPUTextureFilterKey || field.Id == GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants.FilterKey);
     }
@@ -386,13 +403,19 @@ public sealed class ConfigurationPresentationTests
         Assert.True(image.GetBuffer().AsSpan(0, checked((int)image.Length)).IndexOfAnyExcept((byte)0xFF) < 0);
     }
 
-    [Fact]
-    public void Pcee2MultitapsExpandControllersButOnlyTwoNativeCardSelectorsExist()
+    [Theory]
+    [InlineData("disabled", 4, 2)]
+    [InlineData("port1", 7, 5)]
+    [InlineData("port2", 7, 5)]
+    [InlineData("both", 10, 8)]
+    public void Pcee2MultitapsExposeMatchingControllerAndNativeCardSlots(string mode, int controllerCount, int cardCount)
     {
-        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2", Options: new Dictionary<string, string> { ["pcsx2_multitap"] = "both" });
-        Assert.Equal(10, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
-        Assert.Equal(2, StorageSettingsFunctions.Describe(configuration).AvailableDevices.Count(device => device.MediaType == EmulationMediaType.MemoryCard));
-        Assert.Equal(2, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration).Count);
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2", Options: new Dictionary<string, string> { ["pcsx2_multitap"] = mode });
+        Assert.Equal(controllerCount, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
+        Assert.Equal(cardCount, StorageSettingsFunctions.Describe(configuration).AvailableDevices.Count(device => device.MediaType == EmulationMediaType.MemoryCard));
+        var nativeNames = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration);
+        Assert.Equal(cardCount, nativeNames.Count);
+        Assert.Equal(cardCount, nativeNames.Distinct(StringComparer.Ordinal).Count());
     }
 
     [Theory]
@@ -606,14 +629,19 @@ public sealed class ConfigurationPresentationTests
         using var http = new HttpClient();
         var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
         var original = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3");
-        var field = module.Describe(original.Model, original).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        var storage = module.DescribeStorageSettings(original);
+        var cache = key == "rpcs3_disk_cache_size";
+        EmulationSettingsField DescribeField(MachineConfiguration configuration) => cache
+            ? module.DescribeStorageSettings(configuration).AvailableDevices.Single(device => device.MediaType == EmulationMediaType.HardDisk).ConfigurationFields!.Single(field => field.Id == key)
+            : module.Describe(configuration.Model, configuration).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        var field = DescribeField(original);
         Assert.Equal(tab, field.Tab);
         Assert.Equal(defaultValue, field.Value);
         Assert.Contains(field.Choices!, choice => choice.Id == value);
-        if (key == "rpcs3_disk_cache_size")
+        if (cache)
         {
-            var storage = module.DescribeStorageSettings(original);
-            Assert.DoesNotContain(storage.AvailableDevices.SelectMany(device => device.ConfigurationFields ?? []), item => item.Id == key);
+            Assert.DoesNotContain(module.Describe(original.Model, original).Blocks.SelectMany(block => block.Fields), item => item.Id == key);
+            Assert.Contains(storage.AvailableDevices.Single(device => device.MediaType == EmulationMediaType.HardDisk).ConfigurationFields!, item => item.Id == key);
             Assert.Contains(storage.AvailableDevices, device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive && (device.ConfigurationFields?.Count ?? 0) > 0);
         }
         if (key == "rpcs3_aspect_ratio")
@@ -621,11 +649,13 @@ public sealed class ConfigurationPresentationTests
             Assert.True(field.RequiresRestart);
             Assert.Equal(value, field.Choices!.Single(choice => choice.Id == value).InvariantDisplayValue);
         }
-        var changed = Assert.IsType<MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { [key] = value }));
+        var changed = Assert.IsType<MachineConfiguration>(cache
+            ? module.ApplyStorageSettings(original, storage with { DeviceSettings = [new EmulationStorageDeviceSettings(storage.AvailableDevices.Single(device => device.MediaType == EmulationMediaType.HardDisk).Slot, Options: new Dictionary<string, string> { [key] = value })] })
+            : module.ApplySettings(original, new Dictionary<string, string?> { [key] = value }));
         Assert.Equal(value, module.RuntimeOptions(changed)[key]);
         var restored = System.Text.Json.JsonSerializer.Deserialize<MachineConfiguration>(System.Text.Json.JsonSerializer.Serialize(changed))!;
         Assert.Equal(value, module.RuntimeOptions(restored)[key]);
-        var restoredField = module.Describe(restored.Model, restored).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        var restoredField = DescribeField(restored);
         Assert.Equal(value, restoredField.Value);
         Assert.Null(original.Options);
     }

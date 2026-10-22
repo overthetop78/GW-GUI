@@ -37,8 +37,8 @@ public sealed class ControllerFeedbackTests
     {
         var configuration = new MachineConfiguration(model, emulator);
         var settings = InputSettingsFunctions.Describe(configuration);
-        var portIndex = emulator == "pcee2" ? 2 : 0;
-        var choice = Assert.Single(settings.ControllerPorts[portIndex].ControllerChoices, item => item.Id == type.ToString());
+        var port = settings.ControllerPorts.First(port => !port.IsUsb);
+        var choice = Assert.Single(port.ControllerChoices, item => item.Id == type.ToString());
         if (expected)
         {
             var outputs = choice.VisualOutputDefinitions![choice.DefaultVisualId!];

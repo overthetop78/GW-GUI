@@ -29,7 +29,7 @@ public sealed class GunCon2InputTests
         var factory = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
         var configuration = Configuration(usb);
         var field = Assert.Single(factory.GetSettingsBlocks(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun_crosshair");
-        Assert.Equal(EmulationMachineTab.Video, field.Tab);
+        Assert.Equal(EmulationMachineTab.Controllers, field.Tab);
         Assert.Equal(enabled, field.IsEnabled);
         Assert.Equal("disabled", field.Value);
         Assert.Equal("Emulation.Controller.CrosshairColor", field.LabelResourceKey);
@@ -53,7 +53,8 @@ public sealed class GunCon2InputTests
         var configuration = Configuration(native);
         var input = InputSettingsFunctions.Describe(configuration);
         Assert.Equal(4, input.ControllerPorts.Count);
-        Assert.Equal(new[] { "USB 1", "USB 2", "DUALSHOCK 2 · 1", "DUALSHOCK 2 · 2" }, input.ControllerPorts.Select(port => port.DisplayName));
+        Assert.Equal(new[] { "USB 1", "USB 2" }, input.ControllerPorts.Where(port => port.IsUsb).Select(port => port.DisplayName));
+        Assert.Equal(new int?[] { 1, 2 }, input.ControllerPorts.Where(port => !port.IsUsb).Select(port => port.DisplayNumber));
         Assert.Equal(first, input.ControllerPorts[0].SelectedControllerId);
         Assert.Equal(second, input.ControllerPorts[1].SelectedControllerId);
         Assert.All(input.ControllerPorts.Take(2), port =>

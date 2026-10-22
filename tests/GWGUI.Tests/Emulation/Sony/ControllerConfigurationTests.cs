@@ -62,12 +62,12 @@ public sealed class ControllerConfigurationTests
     private const float PartialPressure = .25f;
 
     [Theory]
-    [InlineData(ModelConstants.PlayStation2, PlayCore.Id, PortCounts.OneControllerPort)]
-    [InlineData(ModelConstants.PlayStation2, Pcsx2Core.Id, PortCounts.TwoControllerPorts)]
-    [InlineData(ModelConstants.PlayStation3, Rpcs3Core.Id, PortCounts.OneControllerPort)]
-    public void ControllerSettingsRespectTheEmulatorPortCapacity(string model, string emulator, int count)
+    [InlineData(ModelConstants.PlayStation2, PlayCore.Id, PortCounts.OneControllerPort, PortCounts.TwoControllerPorts)]
+    [InlineData(ModelConstants.PlayStation2, Pcsx2Core.Id, PortCounts.TwoControllerPorts, PortCounts.TwoControllerPorts)]
+    [InlineData(ModelConstants.PlayStation3, Rpcs3Core.Id, PortCounts.OneControllerPort, 0)]
+    public void ControllerSettingsRespectTheEmulatorPortCapacity(string model, string emulator, int count, int usbPorts)
     {
-        AssertPortCapacity(new MachineConfiguration(model, emulator), count);
+        AssertPortCapacity(new MachineConfiguration(model, emulator), count, usbPorts);
     }
 
     [Theory]
@@ -113,10 +113,11 @@ public sealed class ControllerConfigurationTests
         }
     }
 
-    private static void AssertPortCapacity(MachineConfiguration configuration, int count)
+    private static void AssertPortCapacity(MachineConfiguration configuration, int count, int usbPorts = 0)
     {
         var settings = InputSettingsFunctions.Describe(configuration);
-        Assert.Equal(count, settings.ControllerPorts.Count);
+        Assert.Equal(count + usbPorts, settings.ControllerPorts.Count);
+        if (usbPorts > 0) Assert.Equal(usbPorts, settings.ControllerPorts.Count(port => port.IsUsb));
         Assert.Equal(count, ControllerFunctions.PortCount(configuration));
         ControllerFunctions.ValidatePort(configuration, count - PortCounts.OneControllerPort);
         Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.ValidatePort(configuration, count));
@@ -216,12 +217,20 @@ public sealed class ControllerConfigurationTests
     [Fact]
     public void UsbPcKeyboardExposesNoForeignSpecialKeysAndPreservesExistingBindings()
     {
-        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(
-            ModelConstants.PlayStation2, Pcsx2Core.Id, Input: new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.A)] = nameof(EmulationKey.F10) })));
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, Pcsx2Core.Id, Input: new InputConfiguration(
+            KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.A)] = nameof(EmulationKey.F10) },
+            UsbBindings: [new ControllerBinding(FirstPort, ControllerType.Keyboard)]));
+        var settings = InputSettingsFunctions.Describe(configuration);
         Assert.NotNull(settings.Keyboard);
-        Assert.Empty(settings.Keyboard.Definitions);
+        Assert.NotEmpty(settings.Keyboard.Definitions);
+        Assert.All(settings.Keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out _)));
         Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
-        Assert.All(settings.ControllerPorts, port => Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
+        Assert.Equal(ControllerType.Keyboard.ToString(), settings.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
+        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb), port => Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
+        Assert.All(settings.ControllerPorts.Where(port => !port.IsUsb), port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
+        var restored = InputSettingsFunctions.Describe(InputSettingsFunctions.Apply(configuration, settings));
+        Assert.Equal(nameof(EmulationKey.F10), restored.Keyboard!.Values[nameof(EmulationKey.A)]);
+        Assert.Equal(ControllerType.Keyboard.ToString(), restored.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
     }
 
     [Fact]

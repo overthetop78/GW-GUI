@@ -2904,8 +2904,18 @@ Demande explicite : supprimer le schéma Legacy et les traitements réservés à
 
 Validation du raccordement : 24 relais comparés à Example et au SDK, deux comparaisons des ports Sony au binaire antérieur et 34 tests permanents de frontière d’API réussis. Régressions étendues : 662 réussites sur 677, avec 15 échecs Sony suivis ci-dessous. Build Debug des 23 modules et d’Example réussi.
 
-- [ ] Reprendre les attentes Sony révélées par la vérification étendue des entrées
-  - [ ] Modifier tests/GWGUI.Tests/Emulation/Sony/ControllerConfigurationTests.cs : compter les ports USB déjà présents avant ce refactoring et sélectionner explicitement un clavier USB avant de vérifier ses associations ; conserver les contrôles de capacité et de conservation des données.
-  - [ ] Modifier tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs : sélectionner le port de manette non USB pour contrôler les vibrations annoncées par chaque cœur et périphérique, sans modifier les capacités attendues.
-  - [ ] Modifier tests/GWGUI.Tests/Emulation/Sony/GunCon2InputTests.cs : vérifier les réglages du pistolet et la distinction USB/manettes via les propriétés de présentation communes actuelles ; conserver les contrôles des couleurs, commandes et associations.
-  - [ ] Modifier tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs : raccorder les scénarios de multitap aux réglages de ports actuels et vérifier les sélecteurs de cartes réellement exposés, en conservant les contrôles de périphériques compatibles.
+- [x] Reprendre les attentes Sony révélées par la vérification étendue des entrées
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ControllerConfigurationTests.cs : compter les ports USB déjà présents avant ce refactoring et sélectionner explicitement un clavier USB avant de vérifier ses associations ; conserver les contrôles de capacité et de conservation des données.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs : sélectionner le port de manette non USB pour contrôler les vibrations annoncées par chaque cœur et périphérique, sans modifier les capacités attendues.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/GunCon2InputTests.cs : vérifier les réglages du pistolet et la distinction USB/manettes via les propriétés de présentation communes actuelles ; conserver les contrôles des couleurs, commandes et associations.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs : raccorder les scénarios de multitap aux réglages de ports actuels et vérifier les sélecteurs de cartes réellement exposés, en conservant les contrôles de périphériques compatibles.
+
+Validation des entrées : 657 tests réussis, aucun échec. Les quatre classes Sony complètes ont également révélé huit attentes de présentation à reprendre ci-dessous.
+
+- [x] Raccorder les scénarios Sony de présentation aux réglages existants
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs : vérifier le cadrage dans le groupe écran et conserver le contrôle de séparation des options géométriques et audio.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs : vérifier la fréquence automatique de Rearmed et conserver le calcul de fréquence effective pour les cœurs à échelle numérique.
+  - [x] Modifier tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs : sélectionner le cache RPCS3 sur son disque dur, appliquer ses options par le contrat de stockage et vérifier leur persistance et leur transmission au cœur.
+
+Validation combinée : 783 tests réussis, aucun échec ; limites des ports natifs, USB, associations clavier, vibrations, pistolets, multitaps, cartes mémoire, présentation et persistance RPCS3 vérifiées. Aucun fichier produit modifié dans ce bloc.
+Build Debug avec --modules=A réussi ; gwgui.exe, Example intégré et les manifestes/DLL des 23 modules présents dans build/Debug/GW GUI.
