@@ -57,7 +57,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
     public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
     public bool IsFirmwareCompatible(MachineConfiguration configuration, FirmwareCategory role, string path) => NativeFirmware.IsCompatible(configuration, role, path);
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => NativeSettings.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);

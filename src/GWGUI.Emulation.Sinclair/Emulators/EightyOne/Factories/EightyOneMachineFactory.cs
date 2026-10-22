@@ -7,11 +7,11 @@ using NativeOptions = GWGUI.Emulation.Sinclair.Emulators.EightyOne.Functions.Run
 
 namespace GWGUI.Emulation.Sinclair.Emulators.EightyOne.Factories;
 
-internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
+internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => [PeripheralCategory.None, PeripheralCategory.CursorJoystick];
 
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => NativeSettings.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => NativeSettings.GetOptions(configuration);
 
     protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;

@@ -9,7 +9,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
 internal sealed class Pcsx2MachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => Pcsx2Constants.Definition;
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => FileSystemFunctions.Describe(configuration,
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => FileSystemFunctions.Describe(configuration,
         CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, Pcsx2OptionFunctions.ToNative(configuration)));
     public override void ValidateConfiguration(MachineConfiguration configuration) => FileSystemFunctions.Validate(configuration);
     public override MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>

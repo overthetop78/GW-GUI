@@ -67,7 +67,7 @@ public sealed class Engine
     {
         var current = configuration is null ? new MachineConfiguration(ModelCatalog.Parse(machineId)) : Require(configuration);
         if (current.MachineId != machineId) throw new ArgumentException(nameof(machineId));
-        return new(machineId, DefaultVisibility, SettingsDescriptionFunctions.Create(current, GetOptions(current, Management)));
+        return new(machineId, DefaultVisibility, SelectedAdapter(current)?.DescribeSettings(current, Management) ?? SettingsDescriptionFunctions.Create(current, []));
     }
     /// <summary>Crée une configuration neuve sans fichier ni ressource d’exécution.</summary>
     public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));
@@ -226,13 +226,6 @@ public sealed class Engine
     /// <remarks>Le résultat décrit une préférence ; cette consultation ne modifie pas une configuration existante.</remarks>
     internal Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
 
-    /// <summary>Demande les options du backend sélectionné par son contrat de réglages.</summary>
-    /// <param name="configuration">Configuration permettant de résoudre les options dépendantes du modèle.</param>
-    /// <param name="context">Services de gestion empruntés lorsque le backend doit consulter son installation.</param>
-    /// <returns>Descriptions courantes, ou une liste vide lorsque le backend n’expose pas de réglages.</returns>
-    /// <remarks>Le backend reçoit le contexte sans en prendre possession. Ce moteur ne charge et ne conserve aucun cœur.</remarks>
-    internal IReadOnlyList<CoreOption> GetOptions(MachineConfiguration configuration, EmulatorManagementContext context) =>
-        SelectedAdapter(configuration) is IEmulatorSettings settings ? settings.GetSettingsOptions(configuration, context) : [];
     /// <summary>Résout un choix de cœur typé en passant par son identifiant de catalogue.</summary>
     /// <param name="emulator">Valeur du cœur à rechercher.</param>
     /// <returns>Adaptateur associé à son identifiant.</returns>

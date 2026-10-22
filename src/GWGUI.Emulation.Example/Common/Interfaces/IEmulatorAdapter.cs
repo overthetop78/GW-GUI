@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
-    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorStorageSettings, IEmulatorVideoSettings
+    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorStorageSettings, IEmulatorVideoSettings
 {
     /// <summary>Nom technique de la bibliothèque de cœur utilisée par l’adaptateur.</summary>
     /// <remarks>Ce membre conserve la métadonnée LibraryName des catalogues internes, sans dupliquer

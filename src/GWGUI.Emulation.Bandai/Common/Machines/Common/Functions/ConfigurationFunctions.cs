@@ -21,7 +21,7 @@ internal static class ConfigurationFunctions
         var adapter = new Engine().Adapter(configuration);
         if (!adapter.Definition.MachineIds.Contains(configuration.MachineId))
             throw new ArgumentException(nameof(configuration.Core));
-        var options = (adapter as IEmulatorSettings)?.GetSettingsOptions() ?? [];
+        var options = (adapter as IEmulatorSettingsAdapter)?.GetSettingsOptions() ?? [];
         foreach (var option in configuration.Options)
         {
             if (option.Key == SettingsConstants.AudioOutput)

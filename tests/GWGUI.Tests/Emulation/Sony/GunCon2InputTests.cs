@@ -29,7 +29,7 @@ public sealed class GunCon2InputTests
     {
         var factory = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
         var configuration = Configuration(usb);
-        var field = Assert.Single(factory.GetSettingsBlocks(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun_crosshair");
+        var field = Assert.Single(factory.DescribeSettings(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun_crosshair");
         Assert.Equal(EmulationMachineTab.Controllers, field.Tab);
         Assert.Equal(enabled, field.IsEnabled);
         Assert.Equal("disabled", field.Value);
@@ -39,9 +39,9 @@ public sealed class GunCon2InputTests
         {
             var selected = configuration with { Options = new Dictionary<string, string>(configuration.Options!) { [field.Id] = value.Id } };
             Assert.Equal(value.Id, factory.GetRuntimeOptions(selected)[field.Id]);
-            Assert.Equal(value.Id, Assert.Single(factory.GetSettingsBlocks(selected).SelectMany(block => block.Fields), item => item.Id == field.Id).Value);
+            Assert.Equal(value.Id, Assert.Single(factory.DescribeSettings(selected).SelectMany(block => block.Fields), item => item.Id == field.Id).Value);
         }
-        Assert.DoesNotContain(factory.GetSettingsBlocks(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun");
+        Assert.DoesNotContain(factory.DescribeSettings(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun");
     }
 
     [Theory]

@@ -57,7 +57,7 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
     };
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration);
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => GWGUI.Emulation.Watara.Emulators.Potator.Functions.SettingsDescriptionFunctions.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Watara.Emulators.Potator.Functions.SettingsDescriptionFunctions.Create(configuration);
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);

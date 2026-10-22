@@ -5,7 +5,7 @@ using Settings = GWGUI.Emulation.Coleco.Emulators.BlueMSX.Functions.SettingsDesc
 
 namespace GWGUI.Emulation.Coleco.Emulators.BlueMSX.Factories;
 
-internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettings, IEmulatorConfigurationValidation, IEmulatorContentFormats
+internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettingsAdapter, IEmulatorConfigurationValidation, IEmulatorContentFormats
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals() => [PeripheralCategory.None, PeripheralCategory.Standard, PeripheralCategory.SuperAction];
     public IReadOnlyList<InputBindingDefinition> DescribeInput(PeripheralCategory peripheral, int port) => InputSettingsFunctions.Definitions(peripheral)
@@ -19,7 +19,7 @@ internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants
         extensions.Add(EmulatorConstants.RawCartridgeExtension);
         return extensions;
     }
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => Settings.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions() => Settings.GetOptions();
     public void ValidateConfiguration(MachineConfiguration configuration) => Settings.Validate(configuration);
 }

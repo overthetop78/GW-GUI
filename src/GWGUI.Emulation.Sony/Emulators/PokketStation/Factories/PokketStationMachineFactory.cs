@@ -29,7 +29,7 @@ internal sealed class PokketStationMachineFactory : CoreMachineFactory
             : PocketInputs.Definitions;
     }
 
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration)
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null)
     {
         if (!LinkFunctions.IsLinked(configuration)) return [];
         var identity = OptionCatalog.All.Single(option => option.Key == LinkConstants.IdentityKey);

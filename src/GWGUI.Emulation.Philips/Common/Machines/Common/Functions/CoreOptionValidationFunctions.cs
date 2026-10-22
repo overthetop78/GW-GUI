@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettingsAdapter)?.GetSettingsOptions() ?? [];
 
     internal static void Validate(MachineConfiguration configuration)
     {

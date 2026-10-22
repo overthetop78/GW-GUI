@@ -48,7 +48,7 @@ public sealed class PocketStationTests
         Assert.Null(LinkFunctions.CreateLoadPlan(updated));
         Assert.Single(InputSettingsFunctions.Describe(updated).ControllerPorts);
         Assert.Equal(0, Assert.Single(updated.Media!).SlotIndex);
-        Assert.DoesNotContain(new PokketStationMachineFactory().GetSettingsBlocks(updated).SelectMany(block => block.Fields), field => field.Id == LinkConstants.LayoutKey);
+        Assert.DoesNotContain(new PokketStationMachineFactory().DescribeSettings(updated).SelectMany(block => block.Fields), field => field.Id == LinkConstants.LayoutKey);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public sealed class PocketStationTests
     {
         var factory = new PokketStationMachineFactory();
         var original = LinkedConfiguration();
-        var field = factory.GetSettingsBlocks(original).SelectMany(block => block.Fields).Single(field => field.Id == key);
+        var field = factory.DescribeSettings(original).SelectMany(block => block.Fields).Single(field => field.Id == key);
         Assert.Contains(field.Choices!, choice => choice.Id == value);
         Assert.Equal(LinkConstants.Help, field.ExplanationResourceKey);
         Assert.Equal(key == LinkConstants.LayoutKey ? EmulationMachineTab.Video : key == LinkConstants.AudioKey ? EmulationMachineTab.Audio : EmulationMachineTab.General, field.Tab);

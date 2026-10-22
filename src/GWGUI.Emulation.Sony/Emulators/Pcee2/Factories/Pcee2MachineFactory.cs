@@ -24,7 +24,7 @@ internal sealed class Pcee2MachineFactory : CoreMachineFactory
         port is Controllers.FirstUsbPort or Controllers.SecondUsbPort ? GetControllerTypes(configuration, port) : [ControllerType.None];
     public override IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
         type == ControllerType.GunCon2 ? ControllerConfigurationFunctions.GunCommands : null;
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => NetworkFunctions.Describe(configuration, CheatFunctions.Describe(configuration, base.GetSettingsBlocks(configuration)
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NetworkFunctions.Describe(configuration, CheatFunctions.Describe(configuration, base.DescribeSettings(configuration, context)
         .Select(block => block with
         {
             Fields = block.Fields.Where(field => field.Id != OptionConstants.LightgunKey).Select(field => field.Id == OptionConstants.CrosshairKey

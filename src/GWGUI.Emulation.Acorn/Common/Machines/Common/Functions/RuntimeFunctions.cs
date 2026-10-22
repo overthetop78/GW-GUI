@@ -27,7 +27,7 @@ internal static class RuntimeFunctions
 
 internal static class RuntimeOptionFunctions
 {
-    internal static bool RequiresRestart(Emulator emulator, string key) => emulator != Emulator.None && new Engine().Adapter(emulator) is IEmulatorSettings settings && settings.GetSettingsOptions().Any(option => option.Key == key && option.RequiresRestart);
+    internal static bool RequiresRestart(Emulator emulator, string key) => emulator != Emulator.None && new Engine().Adapter(emulator) is IEmulatorSettingsAdapter settings && settings.GetSettingsOptions().Any(option => option.Key == key && option.RequiresRestart);
 }
 
 internal static class MessageFunctions

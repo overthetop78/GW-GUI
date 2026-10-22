@@ -3,7 +3,7 @@ using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories;
 
-internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorContentFormats
+internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorContentFormats
 {
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
         GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.PaletteFunctions.RuntimeOptions(configuration);
@@ -15,6 +15,6 @@ internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(Emulator
         if (!requiresFilePath) extensions.Add(EmulatorConstants.RawCartridgeExtension);
         return extensions;
     }
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.SettingsDescriptionFunctions.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.SettingsDescriptionFunctions.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions() => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries.BeetleWonderSwanOptionCatalog.All;
 }

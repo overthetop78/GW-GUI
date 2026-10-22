@@ -8,12 +8,12 @@ using NativeFirmware = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.Firmwar
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories;
 
-internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
+internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => Enum.GetValues<PeripheralCategory>();
     protected override bool SupportsInitialContent => true;
 
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => NativeSettings.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => NativeSettings.GetOptions(configuration);
 
     protected override bool SupportsNoContent => true;

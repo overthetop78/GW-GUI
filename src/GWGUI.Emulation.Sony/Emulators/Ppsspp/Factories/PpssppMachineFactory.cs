@@ -9,7 +9,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 internal sealed class PpssppMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => PpssppConstants.Definition;
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) =>
         CoreSettingsFunctions.Blocks(PpssppOptionFunctions.Options(configuration), configuration);
     public override MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         PpssppOptionFunctions.ToNative(configuration with { GraphicsApi = graphicsApi });

@@ -14,6 +14,7 @@ public sealed class ArchitectureValidationTests
 {
     [Theory]
     [InlineData("IEmulatorConfigurationValidation", "ValidateConfiguration", typeof(void))]
+    [InlineData("IEmulatorSettings", "DescribeSettings", typeof(IReadOnlyList<EmulationSettingsBlock>))]
     [InlineData("IEmulatorPointerCapabilities", "SupportsPointer", typeof(bool))]
     [InlineData("IEmulatorMediaCapabilities", "DescribeMediaDevices", typeof(IReadOnlyList<GWGUI.Emulation.Contracts.EmulationMediaDevice>))]
     public void EveryCommonUsesTheSameCapabilityContractsIncludingExample(string contractName, string methodName, Type returnType)
@@ -35,7 +36,16 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
             Assert.Equal(returnType, method.ReturnType);
-            var parameter = Assert.Single(method.GetParameters());
+            var parameters = method.GetParameters();
+            Assert.Equal(contractName == "IEmulatorSettings" ? 2 : 1, parameters.Length);
+            var parameter = parameters[0];
+            if (contractName == "IEmulatorSettings")
+            {
+                Assert.Equal(typeof(EmulatorManagementContext), parameters[1].ParameterType);
+                Assert.Equal("context", parameters[1].Name);
+                Assert.True(parameters[1].HasDefaultValue);
+                Assert.Null(parameters[1].DefaultValue);
+            }
             Assert.Equal("configuration", parameter.Name);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
             if (contractName == "IEmulatorConfigurationValidation")
@@ -48,6 +58,14 @@ public sealed class ArchitectureValidationTests
                     Assert.Null(implementation.GetProperty("SupportsPointerCapture", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
                     Assert.Null(implementation.GetProperty("SupportsPointerSettings", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
                 }
+                if (contractName == "IEmulatorSettings")
+                    Assert.Null(implementation.GetMethod("GetSettingsBlocks"));
+            }
+            if (contractName == "IEmulatorSettings")
+            {
+                var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+                if (extension is not null && root != "GWGUI.Emulation.Snk")
+                    Assert.Contains(contract, extension.GetInterfaces());
             }
             if (contractName == "IEmulatorPointerCapabilities")
             {

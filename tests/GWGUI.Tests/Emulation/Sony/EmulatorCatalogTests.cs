@@ -102,7 +102,7 @@ public sealed class EmulatorCatalogTests
         Assert.Equal(new[] { "vulkan", "opengl", "software" }, option.Values.Select(item => item.Value));
         Assert.Equal("vulkan", option.DefaultValue);
         Assert.True(option.RequiresRestart);
-        var field = adapter.GetSettingsBlocks(configuration).SelectMany(block => block.Fields).Single(item => item.Id == key);
+        var field = adapter.DescribeSettings(configuration).SelectMany(block => block.Fields).Single(item => item.Id == key);
         Assert.Equal(expected, field.Value);
         Assert.Equal("Vulkan", Assert.Single(option.Values, item => item.Value == "vulkan").Label);
         var hardware = Assert.Single(field.Choices!, item => item.DisplayResourceKey == "Emulation.Option.Common.Value.HardwareRendering");
@@ -153,6 +153,6 @@ public sealed class EmulatorCatalogTests
         {
             Assert.Empty(firmware.GetFirmwareSlots(configuration));
         }
-        Assert.NotEmpty(settings.GetSettingsBlocks(configuration));
+        Assert.NotEmpty(settings.DescribeSettings(configuration));
     }
 }

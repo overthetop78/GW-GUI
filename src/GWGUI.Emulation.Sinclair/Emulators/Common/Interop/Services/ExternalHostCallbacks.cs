@@ -59,7 +59,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             _contentDirectory = content = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory));
             _saveDirectory = save = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory));
             _assetsDirectory = assets = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory));
-            _optionHost = optionHost = new CoreOptionHost(configuredOptions, (new Engine().Adapter(emulator) as IEmulatorSettings)?.GetSettingsOptions());
+            _optionHost = optionHost = new CoreOptionHost(configuredOptions, (new Engine().Adapter(emulator) as IEmulatorSettingsAdapter)?.GetSettingsOptions());
             _virtualFileSystem = virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem();
             Environment = OnEnvironment;
             Video = OnVideo;

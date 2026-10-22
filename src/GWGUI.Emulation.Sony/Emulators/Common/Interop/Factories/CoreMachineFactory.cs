@@ -18,7 +18,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     protected CoreReleaseSettings ReleaseSettings => CoreDefinition.ReleaseSettings;
     public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation ? [PlayStationFirmware.Selected] : CoreDefinition.Firmware;
-    public virtual IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
+    public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
     public virtual void ApplySettingsOptions(Dictionary<string, string> options, IReadOnlyDictionary<string, string?> values)
     {
         foreach (var (multitap, mode) in ControllerOptionConstants.MultitapModes)
@@ -43,7 +43,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public virtual IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
     {
         var globalStorage = CoreDefinition.Options.Where(option => option.IsGlobalStorageOption).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
-        return GetSettingsBlocks(configuration).Select(block => block.Tab == EmulationMachineTab.Storage
+        return DescribeSettings(configuration).Select(block => block.Tab == EmulationMachineTab.Storage
             ? block with { Fields = block.Fields.Where(field => globalStorage.Contains(field.Id)).ToArray() }
             : block).Where(block => block.Fields.Count > 0).ToArray();
     }

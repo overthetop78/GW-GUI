@@ -19,7 +19,7 @@ public sealed class ExternalFileSettingsTests
     public void GamePatchSettingsAreVisibleOutsideGeneralWithoutDiscardingSelections(bool enabled)
     {
         var configuration = Configuration(enabled);
-        var fields = new Pcsx2MachineFactory().GetSettingsBlocks(configuration).SelectMany(block => block.Fields).ToArray();
+        var fields = new Pcsx2MachineFactory().DescribeSettings(configuration).SelectMany(block => block.Fields).ToArray();
         Assert.Equal(fields.Length, fields.Select(field => field.Id).Distinct().Count());
         var patchIds = new[] { FileSystemConstants.GameIndexPathKey, OptionConstants.UseExternalGameindexKey,
             OptionConstants.HintLanguageUnlockKey, OptionConstants.GameEnhancementsHintKey };
@@ -49,7 +49,7 @@ public sealed class ExternalFileSettingsTests
     public void Pcee2OnlyReceivesItsOwnCheatFolderSelector()
     {
         var adapter = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
-        var fields = adapter.GetSettingsBlocks(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields);
+        var fields = adapter.DescribeSettings(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields);
         Assert.DoesNotContain(fields, field => field.Id == FileSystemConstants.GameIndexPathKey);
         Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey);
     }
@@ -68,7 +68,7 @@ public sealed class ExternalFileSettingsTests
         }));
         var restored = Assert.IsType<MachineConfiguration>(JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(selected)));
         var adapter = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
-        var fields = adapter.GetSettingsBlocks(restored).SelectMany(block => block.Fields).ToArray();
+        var fields = adapter.DescribeSettings(restored).SelectMany(block => block.Fields).ToArray();
         var toggle = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsKey);
         var folder = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey);
         Assert.True(toggle.RefreshSettingsOnChange);
@@ -82,7 +82,7 @@ public sealed class ExternalFileSettingsTests
         Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsHelpResource, folder.ExplanationResourceKey);
         Assert.Equal(enabled ? "enabled" : "disabled", ((GWGUI.Emulation.Sony.Common.Interfaces.IEmulatorSettingsAdapter)adapter).GetRuntimeOptions(restored)[toggle.Id]);
         Assert.Equal("disabled", Assert.Single(new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory()
-            .GetSettingsBlocks(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields), field => field.Id == toggle.Id).Value);
+            .DescribeSettings(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields), field => field.Id == toggle.Id).Value);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ public sealed class ExternalFileSettingsTests
             [OptionConstants.RendererKey] = renderer,
             [OptionConstants.EnableHwHacksKey] = manualFixes ? "enabled" : "disabled"
         } };
-        var fields = new Pcsx2MachineFactory().GetSettingsBlocks(configuration).SelectMany(block => block.Fields).ToArray();
+        var fields = new Pcsx2MachineFactory().DescribeSettings(configuration).SelectMany(block => block.Fields).ToArray();
         Assert.Equal(available, fields.Single(field => field.Id == OptionConstants.UseExternalGameindexKey).IsEnabled);
         Assert.Equal(available, fields.Single(field => field.Id == FileSystemConstants.GameIndexPathKey).IsEnabled);
         Assert.Equal(manualFixes ? "enabled" : "disabled", configuration.Options![OptionConstants.EnableHwHacksKey]);

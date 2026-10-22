@@ -1,8 +1,7 @@
 namespace GWGUI.Emulation.Sony.Common.Interfaces;
 
-internal interface IEmulatorSettingsAdapter
+internal interface IEmulatorSettingsAdapter : IEmulatorSettings
 {
-    IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
     IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
         SettingsDescriptionFunctions.MachineBlocks(this, configuration);
     IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>

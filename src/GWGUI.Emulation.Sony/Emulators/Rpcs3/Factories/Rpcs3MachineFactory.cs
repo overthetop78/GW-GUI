@@ -11,9 +11,9 @@ internal sealed class Rpcs3MachineFactory : CoreMachineFactory
     public override int GetControllerPortCount(MachineConfiguration configuration) =>
         int.TryParse(configuration.Options?.GetValueOrDefault(ControllerCountKey), out var count) ? Math.Clamp(count, 1, 7) : 1;
     public override string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => "RF " + (port + 1);
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) =>
     [
-        .. base.GetSettingsBlocks(configuration),
+        .. base.DescribeSettings(configuration, context),
         new("controllerCount", EmulationMachineTab.Controllers, "Emulation.Sony.Controller.Count",
         [
             new(ControllerCountKey, EmulationMachineTab.Controllers, "controllerCount", "Emulation.Sony.Controller.Count",
