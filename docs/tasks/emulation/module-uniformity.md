@@ -6222,29 +6222,114 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 ## Propriétés de diagnostics sans consommateur dans les Common
 
-- [ ] Retirer les propriétés de messages devenues inutilisées après les raccordements communs.
-  - [ ] Nettoyer les fichiers Exceptions dans l’ordre des modules et conserver les messages encore appelés.
-    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel et MissingModel après vérification des références ; construire Debug avec les 23 modules puis vérifier les fichiers livrés.
+- [x] Retirer les propriétés de messages devenues inutilisées après les raccordements communs.
+  - [x] Nettoyer les fichiers Exceptions dans l’ordre des modules et conserver les messages encore appelés.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel et MissingModel après vérification des références ; construire Debug avec les 23 modules puis vérifier les fichiers livrés.
+
+  - Validation : références et alias vérifiés dans les modules concernés et les tests avant chaque retrait ; 33 propriétés inutilisées et quatre fonctions privées devenues sans appel supprimées dans 24 fichiers ; autres messages conservés ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Accumulation des entrées par contrat public et relais Common
+
+- [ ] Remplacer les accès directs à l’implémentation SDK par son interface, avec les mêmes opérations.
+  - [ ] Encapsuler l’implémentation existante du SDK.
+    - [ ] Créer src/GWGUI.Emulation/Interfaces/IEmulationInputAccumulator.cs : décrire Update, Consume et Reset avec leurs règles actuelles d’accumulation, d’emprunt des collections, de saturation et de remise à zéro.
+    - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputProcessing.cs : déclarer CreateInputAccumulator retournant le nouveau contrat, avec une instance indépendante par appel.
+    - [ ] Modifier src/GWGUI.Emulation/Services/EmulationInputProcessingService.cs : créer l’accumulateur existant par cette opération, sans conserver son état dans le service.
+    - [ ] Modifier src/GWGUI.Emulation/Services/EmulationInputAccumulator.cs : implémenter le contrat et rendre la classe interne, en conservant les corps d’Update, Consume et Reset.
+  - [ ] Fournir la même fabrique dans les Common.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/ControllerFunctions.cs : ajouter CreateInputAccumulator par InputProcessing et retourner IEmulationInputAccumulator ; documenter entièrement cette fabrique dans Example.
+  - [ ] Raccorder les consommateurs existants à la fabrique de leur Common.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs : retirer l’alias InputAccumulator inutilisé vers l’implémentation SDK.
+    - [ ] Modifier src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs : remplacer l’alias de classe InputAccumulator par le contrat IEmulationInputAccumulator.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : utiliser le contrat IEmulationInputAccumulator et la fabrique du Common du module, en conservant les appels et leur ordre.
+  - [ ] Vérifier l’API et les règles d’accumulation conservées.
+    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ControllerInput/BindingsAndFeedbackScenarios.cs : obtenir l’accumulateur par l’interface SDK dans le contrôle existant, en conservant les assertions d’accumulation et de consommation.
+    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que l’implémentation est interne, que chaque Common retourne le contrat public et que les instances créées sont indépendantes ; exécuter les contrôles d’entrées concernés puis le build Debug avec les 23 modules et vérifier les fichiers livrés.
