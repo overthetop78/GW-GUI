@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
   </ItemGroup>
 

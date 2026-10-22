@@ -29,6 +29,7 @@
     <PackageReference Include="LTRData.DiscUtils.Ext" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />
   </ItemGroup>

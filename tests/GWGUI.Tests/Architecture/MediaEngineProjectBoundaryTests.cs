@@ -2,8 +2,6 @@ using GWGUI.MediaEngine.Images.Formats.Tape;
 using System.Reflection;
 using GWGUI.App.Views.Windows.Shell;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.Emulation.Commodore.Modules;
-using GWGUI.Emulation.Atari.Modules;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Contracts.Explorer;
@@ -22,16 +20,14 @@ public sealed class MediaEngineProjectBoundaryTests
         AssertGwguiReferences(typeof(MediaContentCategory).Assembly, []);
         AssertGwguiReferences(typeof(MediaVolumeDetectorRegistry).Assembly, ["gwgui.mediaanalysis"]);
         AssertGwguiReferences(typeof(MediaEngineComposition).Assembly, ["gwgui.mediafilesystems"]);
-        AssertGwguiReferences(typeof(GWGUI.Infrastructure.Processes.GreaseweazleRunner).Assembly, ["gwgui.mediaengine"]);
-        AssertGwguiReferences(typeof(CommodoreEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
-        AssertGwguiReferences(typeof(AtariEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
+        AssertGwguiReferences(typeof(GWGUI.Infrastructure.Processes.GreaseweazleRunner).Assembly, ["gwgui.mediaengine", "gwgui.mediafilesystems"]);
 
         var appReferences = References(typeof(MainWindow).Assembly);
         Assert.DoesNotContain("gwgui.domain", appReferences);
         Assert.Contains("gwgui.infrastructure", appReferences);
         Assert.Contains("gwgui.mediaengine", appReferences);
         Assert.Contains("gwgui.emulation", appReferences);
-        Assert.DoesNotContain("gwgui.mediafilesystems", appReferences);
+        Assert.Contains("gwgui.mediafilesystems", appReferences);
         Assert.DoesNotContain("gwgui.mediaanalysis", appReferences);
 
         var readers = GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault();

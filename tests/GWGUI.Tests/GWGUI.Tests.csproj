@@ -21,11 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Thomson\GWGUI.Emulation.Thomson.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Example\GWGUI.Emulation.Example.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Watara\GWGUI.Emulation.Watara.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Wenquxing\GWGUI.Emulation.Wenquxing.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Panasonic\GWGUI.Emulation.Panasonic.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaFileSystems\GWGUI.MediaFileSystems.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaAnalysis\GWGUI.MediaAnalysis.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Launcher\GWGUI.Launcher.csproj" />
@@ -33,25 +28,9 @@
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation\GWGUI.Emulation.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Commodore\GWGUI.Emulation.Commodore.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amstrad\GWGUI.Emulation.Amstrad.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Acorn\GWGUI.Emulation.Acorn.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Apple\GWGUI.Emulation.Apple.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Bandai\GWGUI.Emulation.Bandai.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Coleco\GWGUI.Emulation.Coleco.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Epoch\GWGUI.Emulation.Epoch.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Fairchild\GWGUI.Emulation.Fairchild.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Philips\GWGUI.Emulation.Philips.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Mattel\GWGUI.Emulation.Mattel.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sharp\GWGUI.Emulation.Sharp.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sinclair\GWGUI.Emulation.Sinclair.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Snk\GWGUI.Emulation.Snk.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Microsoft\GWGUI.Emulation.Microsoft.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Nec\GWGUI.Emulation.Nec.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\GWGUI.LocalEmulationTests\Emulation\Video\VideoProcessingScenarios.cs" Link="Shared\VideoProcessingScenarios.cs" />
+  </ItemGroup>
 </Project>

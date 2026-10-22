@@ -11,6 +11,13 @@ namespace GWGUI.Tests.Architecture;
 public sealed class EmulationArchitectureTests
 {
     [Fact]
+    public void ModuleMediaDependenciesStayWithinTheSharedLibraries()
+    {
+        foreach (var assembly in new[] { typeof(CommodoreEmulationModule).Assembly, typeof(AtariEmulationModule).Assembly })
+            Assert.Equal(new[] { "gwgui.emulation", "gwgui.mediaengine" }, References(assembly).Where(name => name.StartsWith("gwgui.", StringComparison.Ordinal)).Order(StringComparer.Ordinal));
+    }
+
+    [Fact]
     public void AtariHostUsesTheSharedCoreContractWithoutNativeApiTypes()
     {
         var assembly = typeof(AtariEmulationModule).Assembly;
@@ -39,7 +46,7 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(new[]
         {
             "Create", "Definition", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
-            "FindReleasesAsync", "GetInstallationAsync", "InstallAsync",
+            "FindReleasesAsync", "GetInstallationAsync", "InstallAsync", "MapInput",
             "ResolveConfiguredMedia", "TryHandleHostCommand", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey"
         }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
