@@ -1,7 +1,6 @@
 namespace GWGUI.Emulation.Sharp.Common.Interfaces;
 
-internal interface IEmulatorRuntimeCapabilities
+internal interface IEmulatorRuntimeCapabilities : IEmulatorPointerCapabilities
 {
-    bool SupportsPointerSettings { get; }
     bool SupportsNoContent { get; }
 }

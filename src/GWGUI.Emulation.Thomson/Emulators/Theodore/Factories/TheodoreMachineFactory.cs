@@ -9,12 +9,15 @@ using NativeMedia = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.MediaRu
 using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
-internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings
+internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Theodore.ToString();
     public EmulationEmulatorDefinition Definition { get; } = new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, CoreCatalog.Entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
+
+    /// <inheritdoc/>
+    public bool SupportsPointer(MachineConfiguration configuration) => true;
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -77,7 +80,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
-                supportsPointerCapture: true,
+                supportsPointerCapture: SupportsPointer(configuration),
                 supportsNoContent: true
             );
             completed = true;

@@ -17,12 +17,11 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
-    bool IEmulatorRuntimeCapabilities.SupportsPointerSettings => SupportsPointerCapture;
     bool IEmulatorRuntimeCapabilities.SupportsNoContent => SupportsNoContent;
     bool IEmulatorInitialContentSettings.SupportsInitialContent => SupportsInitialContent;
     protected virtual bool SupportsInitialContent => false;
     public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
-    protected virtual bool SupportsPointerCapture => false;
+    public virtual bool SupportsPointer(MachineConfiguration configuration) => false;
     protected virtual bool RequiresResetRestart => false;
     protected virtual bool SupportsNoContent => false;
 
@@ -55,7 +54,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: () => CreateCore(configuration, context),
-                supportsPointerCapture: SupportsPointerCapture,
+                supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
                 supportsNoContent: SupportsNoContent,
                 inputMapper: this as IEmulatorInputMapper

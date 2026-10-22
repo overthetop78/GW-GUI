@@ -14,6 +14,7 @@ public sealed class ArchitectureValidationTests
 {
     [Theory]
     [InlineData("IEmulatorConfigurationValidation", "ValidateConfiguration", typeof(void))]
+    [InlineData("IEmulatorPointerCapabilities", "SupportsPointer", typeof(bool))]
     [InlineData("IEmulatorMediaCapabilities", "DescribeMediaDevices", typeof(IReadOnlyList<GWGUI.Emulation.Contracts.EmulationMediaDevice>))]
     public void EveryCommonUsesTheSameCapabilityContractsIncludingExample(string contractName, string methodName, Type returnType)
     {
@@ -40,7 +41,29 @@ public sealed class ArchitectureValidationTests
             if (contractName == "IEmulatorConfigurationValidation")
                 Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
             foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
+            {
                 Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+                if (contractName == "IEmulatorPointerCapabilities")
+                {
+                    Assert.Null(implementation.GetProperty("SupportsPointerCapture", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+                    Assert.Null(implementation.GetProperty("SupportsPointerSettings", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+                }
+            }
+            if (contractName == "IEmulatorPointerCapabilities")
+            {
+                if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
+                {
+                    var runtime = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimeCapabilities")!;
+                    Assert.Contains(contract, runtime.GetInterfaces());
+                    Assert.Null(runtime.GetProperty("SupportsPointerSettings"));
+                }
+                if (root == "GWGUI.Emulation.Example")
+                {
+                    var capabilities = assembly.GetType(root + ".Common.Interfaces.IEmulatorCapabilities")!;
+                    Assert.Contains(contract, capabilities.GetInterfaces());
+                    Assert.DoesNotContain(capabilities.GetMethods(), method => method.Name == "SupportsPointer");
+                }
+            }
             if (root == "GWGUI.Emulation.Apple" && contractName == "IEmulatorConfigurationValidation")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfiguration")!.GetInterfaces());
             if (root == "GWGUI.Emulation.Example")
