@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class EmulationPeripheralConversionFunctions
 {
-    internal static PeripheralCategory ToColeco(EmulationPeripheralCategory peripheral, MachineModel model) =>
+    internal static PeripheralCategory ToModule(EmulationPeripheralCategory peripheral, MachineModel model) =>
         peripheral switch
         {
             EmulationPeripheralCategory.None => PeripheralCategory.None,

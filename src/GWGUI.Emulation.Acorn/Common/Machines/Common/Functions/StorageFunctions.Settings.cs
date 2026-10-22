@@ -27,7 +27,7 @@ internal static class StorageSettingsFunctions
             ? adapter.ApplyDeviceSettings(configuration, configured) : configuration;
         result = result with
         {
-            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToAcorn(media, configuration.Media)).ToArray()
+            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray()
         };
         ConfigurationFunctions.Validate(result);
         return result;

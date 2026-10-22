@@ -19,7 +19,7 @@ internal static class StorageSettingsFunctions
         var result = configuration with
         {
             ConfiguredSlots = settings.ConfiguredSlots.ToArray(),
-            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToFairchild(media, configuration.Media)).ToArray()
+            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray()
         };
         ConfigurationFunctions.Validate(result);
         return result;

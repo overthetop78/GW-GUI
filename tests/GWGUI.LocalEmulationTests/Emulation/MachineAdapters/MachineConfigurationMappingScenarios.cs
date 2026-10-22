@@ -106,7 +106,7 @@ internal static class MachineConfigurationMappingScenarios
         Assert.Equal(new[] { EmulationMediaSlot.Floppy0, EmulationMediaSlot.HardDisk0, EmulationMediaSlot.Floppy1 }, mapped.Select(item => item.Slot));
         Assert.Equal(Path.GetFullPath("disk-b"), mapped[2].Path);
         var original = new EmulationMedia("virtual", EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, true, false);
-        var atari = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToAtari(original, []);
+        var atari = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToModule(original, []);
         Assert.Equal(original, GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToCommon(atari));
     }
 }

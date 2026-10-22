@@ -4,9 +4,9 @@ internal static class EmulationMediaConversionFunctions
 {
     internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToColeco(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
-        var category = ToColecoCategory(media.Type);
+        var category = ToCategory(media.Type);
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null
             ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
@@ -27,7 +27,7 @@ internal static class EmulationMediaConversionFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
     };
 
-    private static MediaCategory ToColecoCategory(EmulationMediaType type) => type switch
+    private static MediaCategory ToCategory(EmulationMediaType type) => type switch
     {
         EmulationMediaType.Cartridge => MediaCategory.Cartridge,
         EmulationMediaType.Floppy => MediaCategory.Floppy,

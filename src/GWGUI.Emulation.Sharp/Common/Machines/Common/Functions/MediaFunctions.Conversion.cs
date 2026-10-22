@@ -6,7 +6,7 @@ internal static class EmulationMediaConversionFunctions
     { MediaCategory.Floppy => EmulationMediaType.Floppy, MediaCategory.HardDisk => EmulationMediaType.HardDisk, _ => throw new ArgumentOutOfRangeException(nameof(media))
     }, media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToSharp(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var category = (media.Type, media.Slot.Category) switch
         { (EmulationMediaType.Floppy, EmulationMediaCategory.FloppyDrive) => MediaCategory.Floppy, (EmulationMediaType.HardDisk, EmulationMediaCategory.HardDisk) when media.Slot == EmulationMediaSlot.HardDisk0 => MediaCategory.HardDisk, _ => throw new ArgumentOutOfRangeException(nameof(media))

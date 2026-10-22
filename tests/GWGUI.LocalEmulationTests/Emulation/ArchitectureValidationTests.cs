@@ -14,6 +14,41 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void ConvertersUseTheSameModuleAndCategoryNamesAsExample()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var converters = 0;
+        var peripheralConverters = 0;
+        foreach (var assembly in modules)
+        {
+            var module = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModule).IsAssignableFrom(type));
+            var moduleNamespace = module.Namespace!;
+            var root = moduleNamespace[..moduleNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var conversion = assembly.GetType(root + ".Common.Machines.Common.Functions.EmulationMediaConversionFunctions", throwOnError: true)!;
+            var methods = conversion.GetMethods(BindingFlags.NonPublic | BindingFlags.Static);
+            foreach (var method in methods.Where(method => method.ReturnType.Name == "MediaConfiguration" && method.GetParameters().FirstOrDefault()?.ParameterType == typeof(EmulationMedia)))
+            {
+                Assert.Equal("ToModule", method.Name);
+                converters++;
+            }
+            foreach (var method in methods.Where(method => method.ReturnType.Name == "MediaCategory" && method.GetParameters().FirstOrDefault()?.ParameterType == typeof(EmulationMediaType)))
+                Assert.Equal("ToCategory", method.Name);
+            var peripheralConversion = assembly.GetType(root + ".Common.Machines.Common.Functions.EmulationPeripheralConversionFunctions");
+            if (peripheralConversion is null) continue;
+            foreach (var method in peripheralConversion.GetMethods(BindingFlags.NonPublic | BindingFlags.Static).Where(method => method.ReturnType.Name == "PeripheralCategory" && method.GetParameters().FirstOrDefault()?.ParameterType == typeof(EmulationPeripheralCategory)))
+            {
+                Assert.Equal("ToModule", method.Name);
+                peripheralConverters++;
+            }
+        }
+        Assert.Equal(17, converters);
+        Assert.Equal(16, peripheralConverters);
+    }
+
+    [Fact]
     public void EveryModuleFacadeDelegatesItsPublicOperationsToItsCommonEngine()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

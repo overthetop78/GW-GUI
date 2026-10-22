@@ -9,7 +9,7 @@ internal static class EmulationMediaConversionFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(media))
         }, media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToMattel(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var category = (media.Type, media.Slot) switch
         {

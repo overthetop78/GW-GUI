@@ -4,7 +4,7 @@ internal static class EmulationMediaConversionFunctions
 {
     internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, EmulationMediaType.Cartridge, media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToEpoch(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         if (media.Type != EmulationMediaType.Cartridge || media.Slot != EmulationMediaSlot.Cartridge0)
             throw new ArgumentOutOfRangeException(nameof(media));

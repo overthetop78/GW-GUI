@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 
 internal static class EmulationPeripheralConversionFunctions
 {
-    internal static PeripheralCategory ToAcorn(EmulationPeripheralCategory peripheral) => peripheral switch
+    internal static PeripheralCategory ToModule(EmulationPeripheralCategory peripheral) => peripheral switch
     {
         EmulationPeripheralCategory.None => PeripheralCategory.None,
         EmulationPeripheralCategory.Automatic => PeripheralCategory.Automatic,

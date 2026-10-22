@@ -6,15 +6,15 @@ internal static class EmulationMediaConversionFunctions
 {
     internal static EmulationMedia? ToCommon(MediaConfiguration media) => media.Category == MediaCategory.Directory ? null : new EmulationMedia(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToAtari(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null
-            ? new MediaConfiguration(media.Path, ToAtariCategory(media.Type), media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
+            ? new MediaConfiguration(media.Path, ToCategory(media.Type), media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
             : existing with
             {
                 Path = media.Path,
-                Category = ToAtariCategory(media.Type),
+                Category = ToCategory(media.Type),
                 IsReadOnly = media.IsReadOnly,
                 IsInserted = media.IsInserted
             };
@@ -30,7 +30,7 @@ internal static class EmulationMediaConversionFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(media), media, null)
     };
 
-    private static MediaCategory ToAtariCategory(EmulationMediaType media) => media switch
+    private static MediaCategory ToCategory(EmulationMediaType media) => media switch
     {
         EmulationMediaType.Floppy => MediaCategory.Floppy,
         EmulationMediaType.HardDisk => MediaCategory.HardDisk,

@@ -289,7 +289,7 @@ public sealed class Engine
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media)
     {
-        var converted = media.Select(item => EmulationMediaConversionFunctions.ToAtari(item, configuration.Media)).ToArray();
+        var converted = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, configuration.Media)).ToArray();
         return configuration with { Media = converted };
     }
 }

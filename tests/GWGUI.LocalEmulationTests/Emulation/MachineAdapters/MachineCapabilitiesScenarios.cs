@@ -17,7 +17,7 @@ internal static class MachineCapabilitiesScenarios
         Assert.Equal(storage.AvailableDevices.Count, storage.AvailableDevices.Select(d=>d.Slot).Distinct().Count());
         foreach(var device in storage.AvailableDevices)
         {
-            var media = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToAtari(new("virtual-media",device.Slot,device.MediaType,false,true),[]);
+            var media = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToModule(new("virtual-media",device.Slot,device.MediaType,false,true),[]);
             var accepted = new AtariMachineConfiguration(parsed,media:[media]);
             Assert.Equal(media,Assert.Single(accepted.Media));
             Assert.Throws<ArgumentException>(()=>new AtariMachineConfiguration(parsed,media:[media,media]));

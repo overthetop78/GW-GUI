@@ -17,7 +17,7 @@ internal static class StorageSettingsFunctions
             || settings.DeviceSettings?.Count>0 || settings.MountedMedia.Any(media=>media.Slot!=device.Slot || media.Type!=device.MediaType
                 || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path),StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia,nameof(settings));
-        var result=configuration with {ConfiguredSlots=settings.ConfiguredSlots.ToArray(),Media=settings.MountedMedia.Select(media=>EmulationMediaConversionFunctions.ToMattel(media,configuration.Media)).ToArray()};
+        var result=configuration with {ConfiguredSlots=settings.ConfiguredSlots.ToArray(),Media=settings.MountedMedia.Select(media=>EmulationMediaConversionFunctions.ToModule(media,configuration.Media)).ToArray()};
         ConfigurationFunctions.Validate(result);
         return result;
     }

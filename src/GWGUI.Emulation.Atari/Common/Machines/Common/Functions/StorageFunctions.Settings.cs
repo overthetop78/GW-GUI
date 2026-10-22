@@ -75,7 +75,7 @@ internal static partial class StorageSettingsFunctions
         }
         var media = settings.MountedMedia.Select(item =>
         {
-            var converted = EmulationMediaConversionFunctions.ToAtari(item, configuration.Media);
+            var converted = EmulationMediaConversionFunctions.ToModule(item, configuration.Media);
             if (item.Type != EmulationMediaType.HardDisk) return converted;
             var format = HardDiskFormats.For(configuration.Model).FirstOrDefault(candidate => string.Equals(candidate.Extension, Path.GetExtension(item.Path), StringComparison.OrdinalIgnoreCase))
                 ?? throw new ArgumentException(ErrorMessages.StorageExtensionInvalid);

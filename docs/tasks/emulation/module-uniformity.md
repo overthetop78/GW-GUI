@@ -6713,3 +6713,98 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Engine.cs : retirer les espaces de fin de ligne repris depuis la façade lors du déplacement.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs : vérifier que la résolution du dossier de sauvegarde en échec ne crée pas de sortie audio ; conserver la cause attendue et libérer les ressources possédées dans finally.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que chaque façade ne conserve que son Engine Common et que les propriétés et opérations de ses interfaces ont leur correspondant dans Engine ; exécuter la suite locale des modules, construire le Debug avec les 23 modules et vérifier les DLL livrées.
+
+## Noms communs de conversion des médias vers les modules
+
+- [x] Employer ToModule et ToCategory comme Example pour les conversions existantes équivalentes, en conservant leurs traitements.
+  - [x] Uniformiser les conversions Acorn.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToAcorn en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAcorn, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAcorn, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAcorn, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Apple.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToApple en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToApple, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToApple, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToApple, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Atari.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToAtari en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAtari, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAtari, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAtari, en conservant tous les arguments et les collections.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAtari, en conservant tous les arguments et les collections.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToAtari, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Bandai.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToBandai en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToBandai, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToBandai, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToBandai, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Coleco.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToColeco en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToColeco, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToColeco, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToColeco, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToEpoch en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToEpoch, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToEpoch, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToEpoch, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToFairchild en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToFairchild, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToFairchild, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToFairchild, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToMattel en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToMattel, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToMattel, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToMattel, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToPhilips en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToPhilips, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToPhilips, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToPhilips, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Sharp.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToSharp en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSharp, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSharp, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSharp, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Sinclair.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToSinclair en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSinclair, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSinclair, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSinclair, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les conversions Snk.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : renommer ToSnk en ToModule et le convertisseur de catégorie nommé par famille en ToCategory lorsqu’il existe ; conserver les paramètres, valeurs et corps des conversions.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSnk, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSnk, en conservant tous les arguments et les collections.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : appeler EmulationMediaConversionFunctions.ToModule à la place de ToSnk, en conservant tous les arguments et les collections.
+  - [x] Uniformiser les noms des conversions de périphériques existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToAcorn en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToAcorn.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToApple en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToApple.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToAtari en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToAtari.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToBandai en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToBandai.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToColeco en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToColeco.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToEpoch en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToEpoch.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToFairchild en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToFairchild.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToMattel en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToMattel.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToPhilips en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToPhilips.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToSharp en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToSharp.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToSinclair en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToSinclair.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : renommer ToSnk en ToModule en conservant les paramètres, choix de périphériques et valeurs retournées.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : appeler EmulationPeripheralConversionFunctions.ToModule avec les mêmes paramètres à la place de ToSnk.
+  - [x] Conserver le même nom de fichier pour les convertisseurs de périphériques.
+    - [x] Renommer src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/InputFunctions.Conversion.cs en src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs : conserver la classe et son contenu comme dans Example.
+  - [x] Vérifier les noms fixes et les conversions conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les noms ToModule des convertisseurs unitaires de médias et périphériques présents dans les 24 familles et les noms génériques des catégories ; exécuter les contrôles de médias et de stockage concernés, construire le Debug avec les 23 modules et vérifier les DLL livrées.

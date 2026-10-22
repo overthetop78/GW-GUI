@@ -22,7 +22,7 @@ internal static class StorageSettingsFunctions
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var result = configuration with
         {
-            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToBandai(media, configuration.Media)).ToArray()
+            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray()
         };
         ConfigurationFunctions.Validate(result);
         return result;

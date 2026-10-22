@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class EmulationPeripheralConversionFunctions
 {
-    internal static PeripheralCategory ToAtari(EmulationPeripheralCategory peripheral) => peripheral switch
+    internal static PeripheralCategory ToModule(EmulationPeripheralCategory peripheral) => peripheral switch
     {
         EmulationPeripheralCategory.None => PeripheralCategory.None,
         EmulationPeripheralCategory.Automatic => PeripheralCategory.Automatic,

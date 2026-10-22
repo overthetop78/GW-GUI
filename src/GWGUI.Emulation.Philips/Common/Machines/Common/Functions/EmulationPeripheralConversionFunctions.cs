@@ -1,8 +1,8 @@
-﻿namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class EmulationPeripheralConversionFunctions
 {
-    internal static PeripheralCategory ToPhilips(EmulationPeripheralCategory peripheral, MachineModel model) => peripheral switch
+    internal static PeripheralCategory ToModule(EmulationPeripheralCategory peripheral, MachineModel model) => peripheral switch
     {
         EmulationPeripheralCategory.Automatic or EmulationPeripheralCategory.RetroPad => InputSettingsFunctions.DefaultPeripheral(model),
         EmulationPeripheralCategory.Joystick when ConfigurationFunctions.Family(model) == MachineFamily.Videopac => PeripheralCategory.Joystick,

@@ -104,7 +104,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public event EventHandler<AudioChunk>? AudioChunkReady;
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
 
-    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToSinclair(media, _mountedMedia), cancellationToken);
+    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToModule(media, _mountedMedia), cancellationToken);
     ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) => EjectMediaAsync(slot, cancellationToken);
     ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
@@ -150,5 +150,5 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToSinclair(peripheral, Configuration.Model));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, Configuration.Model));
 }

@@ -175,7 +175,7 @@ public sealed class Engine
         {
             var selected = current with
             {
-                Media = media.Select(item => EmulationMediaConversionFunctions.ToPhilips(item, current.Media)).ToArray()
+                Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray()
             };
             return this.CreateMachine(selected, context);
         }, storage.AvailableDevices, storage.MountedMedia,
