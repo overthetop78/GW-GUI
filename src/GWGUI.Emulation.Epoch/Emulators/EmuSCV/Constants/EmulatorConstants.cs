@@ -1,5 +1,5 @@
 using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
-using GWGUI.Emulation.Epoch.Emulators.Common.Functions;
+using GWGUI.Emulation.Epoch.Common.Functions;
 namespace GWGUI.Emulation.Epoch.Emulators.EmuSCV.Constants;
 
 internal static class EmulatorConstants

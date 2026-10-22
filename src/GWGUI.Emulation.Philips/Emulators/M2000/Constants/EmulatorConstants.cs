@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Philips.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
 using GWGUI.Emulation.Philips.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Philips.Emulators.M2000.Constants;

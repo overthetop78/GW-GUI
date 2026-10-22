@@ -1,3 +1,4 @@
+using CoreReleaseFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
 using System.IO;
@@ -44,7 +45,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
         return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

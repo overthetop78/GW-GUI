@@ -43,12 +43,16 @@ public sealed class EmulatorCatalogTests
         Assert.Equal(new[] { "hardware", "hardware_gl", "hardware_vk", "software" }, beetle.Values.Select(value => value.Value));
     }
 
-    [Fact]
-    public void EveryRpcs3PortOffersOnlyItsDualShock3VisualWithoutPhysicalAssignments()
+    [Theory]
+    [InlineData(null, 1)]
+    [InlineData("1", 1)]
+    [InlineData("7", 7)]
+    public void EveryRpcs3PortOffersOnlyItsDualShock3VisualWithoutPhysicalAssignments(string? selectedCount, int portCount)
     {
-        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id);
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id,
+            Options: selectedCount is null ? null : new Dictionary<string, string> { ["input.controllerCount"] = selectedCount });
         var settings = InputSettingsFunctions.Describe(configuration);
-        Assert.Equal(Enumerable.Range(1, 7), settings.ControllerPorts.Select(port => port.Number));
+        Assert.Equal(Enumerable.Range(1, portCount), settings.ControllerPorts.Select(port => port.Number));
         foreach (var port in settings.ControllerPorts)
         {
             var controller = Assert.Single(port.ControllerChoices, choice => choice.Id == "Joystick");

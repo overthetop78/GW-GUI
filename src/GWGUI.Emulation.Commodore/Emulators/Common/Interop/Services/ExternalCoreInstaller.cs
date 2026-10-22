@@ -1,3 +1,5 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Commodore.Common.Functions.EmulatorCatalogFunctions;
+using CoreReleaseFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
 
@@ -46,10 +48,10 @@ public sealed class ExternalCoreInstaller
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            EmulationSdk.CoreReleases.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
+            CoreReleaseFunctions.Releases.ExtractExpectedLibrary(package, _definition.LibraryFile, extracted,
                 static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = EmulationSdk.CoreDiagnostics.CalculateSha256(extracted);
+            var sha256 = EmulatorCatalogFunctions.Diagnostics.CalculateSha256(extracted);
             File.Move(extracted, LibraryPath, true);
             await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;

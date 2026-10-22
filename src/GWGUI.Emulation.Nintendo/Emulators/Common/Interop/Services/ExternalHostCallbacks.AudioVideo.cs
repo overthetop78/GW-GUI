@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Nintendo.Common.Functions.AudioFunctions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
@@ -51,13 +52,13 @@ internal sealed partial class ExternalHostCallbacks
 
     private void HandleAudioSample(short left, short right)
     {
-        PublishAudio(new AudioChunk(EmulationSdk.AudioProcessing.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(AudioFunctions.Processing.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)
     {
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
-        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frames);
+        var samples = AudioFunctions.Processing.CopyBatch(data, frames);
         PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));
         return frames;
     }

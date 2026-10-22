@@ -192,7 +192,10 @@ public sealed class PocketStationTests
             EmulationControllerCommandIds.Left, EmulationControllerCommandIds.Right,
             EmulationControllerCommandIds.A
         }));
-        Assert.All(port.ControllerChoices, choice => Assert.Null(choice.DefaultVisualId));
+        var controller = Assert.Single(port.ControllerChoices, choice => choice.Id == "Joystick");
+        Assert.Equal(EmulationControllerVisualIds.SonyPocketStation, controller.DefaultVisualId);
+        Assert.Equal(EmulationControllerVisualIds.SonyPocketStation, Assert.Single(controller.CompatibleVisualIds!));
+        Assert.All(port.ControllerChoices.Where(choice => choice.Id != controller.Id), choice => Assert.Null(choice.DefaultVisualId));
     }
 
     private static MachineConfiguration Configuration() => new(ModelConstants.PocketStation, CoreConstants.Id);

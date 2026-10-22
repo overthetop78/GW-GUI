@@ -1,3 +1,5 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Atari.Common.Functions.EmulatorCatalogFunctions;
+using CoreReleaseFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
@@ -17,9 +19,9 @@ public sealed class CoreReleaseService : ICoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var entry = CoreCatalog.Get(emulator);
-        return await EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
+        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
         {
-            return[EmulationSdk.CoreReleases.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
+            return[CoreReleaseFunctions.Releases.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
                 CoreReleaseConstants.ReleaseVersionFormat, static () => CoreReleaseErrors.MissingPublishedDate)];
         }, cancellationToken).ConfigureAwait(false);
     }
@@ -34,9 +36,9 @@ public sealed class CoreReleaseService : ICoreReleaseService
         var extracted = paths.LibraryPath + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
-            await EmulationSdk.CoreReleases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
+            await CoreReleaseFunctions.Releases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
             {
-                var manifest = EmulationSdk.CoreDiagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
+                var manifest = EmulatorCatalogFunctions.Diagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
                     archiveSize, extracted);
                 return manifest;
             }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
@@ -55,7 +57,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        return await EmulationSdk.CoreReleases.GetActiveInstallationAsync(
+        return await CoreReleaseFunctions.Releases.GetActiveInstallationAsync(
             CoreCatalog.GetActiveManifestPath(emulator, _installationRoot),
             version => CoreCatalog.GetInstallationPaths(emulator, _installationRoot, version), cancellationToken).ConfigureAwait(false);
     }

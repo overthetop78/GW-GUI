@@ -1,3 +1,4 @@
+using CoreReleaseFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreReleaseFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -93,7 +94,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
         return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

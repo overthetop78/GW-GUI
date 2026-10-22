@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Atari.Common.Functions.EmulatorCatalogFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries;
 
 internal static class CoreCatalog

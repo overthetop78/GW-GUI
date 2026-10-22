@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Acorn.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
 using System.IO;
@@ -119,8 +120,8 @@ public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorM
         var current = Require(configuration);
         var adapter = Adapter(current.MachineId);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw GWGUI.Emulation.Services.EmulationErrorService.EmulatorNotInstalled(adapter.EmulatorId);
-        var output = EmulationSdk.AudioProcessing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
-        var latency = EmulationSdk.AudioProcessing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
+        var output = AudioFunctions.Processing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
+        var latency = AudioFunctions.Processing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath, () => services.CreateAudioOutput(output, latency),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));

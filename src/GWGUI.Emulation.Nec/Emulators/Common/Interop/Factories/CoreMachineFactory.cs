@@ -1,3 +1,4 @@
+using CoreReleaseFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Dictionaries;
@@ -47,7 +48,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
         return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

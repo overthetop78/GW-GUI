@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Apple.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using System.Buffers.Binary;
@@ -88,7 +89,7 @@ internal static class SavedStateFunctions
     {
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })
-            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulationSdk.CoreDiagnostics.CalculateSha256))));
+            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulatorCatalogFunctions.Diagnostics.CalculateSha256))));
         return EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
     }
 

@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Snk.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using GWGUI.Emulation.Snk.Common.Interfaces;

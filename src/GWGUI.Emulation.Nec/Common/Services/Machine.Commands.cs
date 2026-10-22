@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Nec.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Common.Exceptions;
 using System.Collections.Concurrent;
@@ -133,7 +134,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void WriteAudio(ReadOnlySpan<short> samples)
-    => EmulationSdk.AudioProcessing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
+    => AudioFunctions.Processing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
 
     private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
     {

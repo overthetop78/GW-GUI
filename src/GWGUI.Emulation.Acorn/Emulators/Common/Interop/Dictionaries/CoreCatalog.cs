@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Acorn.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;

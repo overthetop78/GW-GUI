@@ -1,3 +1,4 @@
+using CoreReleaseFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
@@ -43,8 +44,8 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Opera);
-        var forwarded = EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Opera);
+        var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         return (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false)).LibraryPath;
     }
 

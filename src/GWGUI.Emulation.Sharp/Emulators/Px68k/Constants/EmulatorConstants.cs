@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Sharp.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
 using GWGUI.Emulation.Sharp.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;

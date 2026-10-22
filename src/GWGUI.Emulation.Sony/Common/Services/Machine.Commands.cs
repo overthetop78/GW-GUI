@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Sony.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
@@ -128,7 +129,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void WriteAudio(ReadOnlySpan<short> samples)
-    => EmulationSdk.AudioProcessing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
+    => AudioFunctions.Processing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
 
     private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
     {

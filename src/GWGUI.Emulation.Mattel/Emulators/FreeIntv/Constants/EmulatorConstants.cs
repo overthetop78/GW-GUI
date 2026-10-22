@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Mattel.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
 using GWGUI.Emulation.Mattel.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Mattel.Emulators.FreeIntv.Constants;

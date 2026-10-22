@@ -13,6 +13,8 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.StateFiles), typeof(IEmulationStateFiles))]
     [InlineData(nameof(EmulationSdk.InputProcessing), typeof(IEmulationInputProcessing))]
     [InlineData(nameof(EmulationSdk.HostProtocol), typeof(IEmulationHostProtocol))]
+    [InlineData(nameof(EmulationSdk.CoreReleases), typeof(IEmulationCoreReleases))]
+    [InlineData(nameof(EmulationSdk.CoreDiagnostics), typeof(IEmulationCoreDiagnostics))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
         var entry = typeof(EmulationSdk).GetProperty(serviceName)!;

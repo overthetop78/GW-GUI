@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
 
@@ -15,8 +16,8 @@ internal static class CoreOptionValidationFunctions
             var valid = option.Key switch
             {
                 SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),
-                SettingsConstants.AudioLatency => !EmulationSdk.AudioProcessing.HasInvalidConfiguredLatency(option.Value),
-                VideoAudioSettingsConstants.AudioVolumeOption => !EmulationSdk.AudioProcessing.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent),
+                SettingsConstants.AudioLatency => !AudioFunctions.Processing.HasInvalidConfiguredLatency(option.Value),
+                VideoAudioSettingsConstants.AudioVolumeOption => !AudioFunctions.Processing.HasInvalidConfiguredVolume(option.Value, VideoAudioSettingsConstants.MinimumVolumePercent, VideoAudioSettingsConstants.MaximumVolumePercent),
                 _ => adapter?.IsDeferredOption(configuration,
                     option.Key) 
                     == true 

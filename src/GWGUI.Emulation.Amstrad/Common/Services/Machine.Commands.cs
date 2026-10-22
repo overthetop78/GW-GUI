@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Amstrad.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -116,7 +117,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void WriteAudio(ReadOnlySpan<short> samples)
-    => EmulationSdk.AudioProcessing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
+    => AudioFunctions.Processing.WriteVolume(ref _audioOutput, ref _audioVolume, samples);
 
     private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
     {

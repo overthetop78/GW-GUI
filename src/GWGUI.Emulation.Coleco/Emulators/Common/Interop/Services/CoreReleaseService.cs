@@ -2,7 +2,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Coleco.Emulators.Common.Constants;
 using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
 using GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;
-using GWGUI.Emulation.Coleco.Emulators.Common.Functions;
+using GWGUI.Emulation.Coleco.Common.Functions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interfaces;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
@@ -25,9 +25,9 @@ public sealed class CoreReleaseService : ICoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var entry = CoreCatalog.Get(emulator);
-        return await EmulationSdk.CoreReleases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
+        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
         {
-            return[EmulationSdk.CoreReleases.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
+            return[CoreReleaseFunctions.Releases.ParseRelease(entry, response, CoreReleaseConstants.ReleaseIdPrefix,
                 CoreReleaseConstants.ReleaseVersionFormat, static () => CoreReleaseErrors.MissingPublishedDate)];
         }, cancellationToken).ConfigureAwait(false);
     }
@@ -42,11 +42,11 @@ public sealed class CoreReleaseService : ICoreReleaseService
         var extracted = paths.LibraryPath + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
-            await EmulationSdk.CoreReleases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
+            await CoreReleaseFunctions.Releases.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
             {
-                var manifest = EmulationSdk.CoreDiagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
+                var manifest = EmulatorCatalogFunctions.Diagnostics.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
                     archiveSize, extracted);
-                EmulationSdk.CoreDiagnostics.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
+                EmulatorCatalogFunctions.Diagnostics.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
                     static () => CoreReleaseErrors.InvalidArchitecture);
                 return manifest;
             }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
@@ -65,7 +65,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        return await EmulationSdk.CoreReleases.GetActiveInstallationAsync(
+        return await CoreReleaseFunctions.Releases.GetActiveInstallationAsync(
             CoreCatalog.GetActiveManifestPath(emulator, _installationRoot),
             version => CoreCatalog.GetInstallationPaths(emulator, _installationRoot, version), cancellationToken).ConfigureAwait(false);
     }

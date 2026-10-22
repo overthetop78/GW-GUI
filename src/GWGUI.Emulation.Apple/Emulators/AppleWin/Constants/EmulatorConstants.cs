@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Apple.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 using GWGUI.Emulation.Apple.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;

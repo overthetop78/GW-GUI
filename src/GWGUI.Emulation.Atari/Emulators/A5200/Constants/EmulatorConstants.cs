@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Atari.Common.Functions.EmulatorCatalogFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.A5200.Constants;
 
 internal static class EmulatorConstants

@@ -1,3 +1,4 @@
+using CoreReleaseFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
@@ -41,8 +42,8 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = EmulationSdk.CoreReleases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Wqxemu);
-        var forwarded = EmulationSdk.CoreReleases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Wqxemu);
+        var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }

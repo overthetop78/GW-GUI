@@ -53,7 +53,8 @@ public sealed class AmigaEmulatorAdapterTests
         Assert.Contains(common!, adapter!.GetInterfaces());
         var required = new[] { "Create", "FindInstalledCorePathAsync", "FindReleasesAsync",
             "GetInstallationAsync", "InstallAsync", "ResolveConfiguredMedia", "TryHandleHostCommand" };
-        Assert.All(required, name => Assert.Contains(common!.GetMethods(), method => method.Name == name));
+        var methods = new[] { common! }.Concat(common!.GetInterfaces()).SelectMany(contract => contract.GetMethods()).ToArray();
+        Assert.All(required, name => Assert.Contains(methods, method => method.Name == name));
     }
 
     [Fact]

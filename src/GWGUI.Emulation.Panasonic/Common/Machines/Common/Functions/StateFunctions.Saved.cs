@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Panasonic.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using System.Buffers.Binary;
@@ -62,5 +63,5 @@ internal static class SavedStateFunctions
         EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
 
-    private static string HashFile(string path) => EmulationSdk.CoreDiagnostics.CalculateSha256(path);
+    private static string HashFile(string path) => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(path);
 }

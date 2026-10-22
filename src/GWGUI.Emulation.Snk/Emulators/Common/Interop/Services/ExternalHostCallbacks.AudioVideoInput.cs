@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
@@ -39,7 +40,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize || frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;
         var frameCount = checked((int)frames);
-        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frameCount);
+        var samples = AudioFunctions.Processing.CopyBatch(data, frameCount);
         AddAudio(samples, frameCount);
         return frames;
     }

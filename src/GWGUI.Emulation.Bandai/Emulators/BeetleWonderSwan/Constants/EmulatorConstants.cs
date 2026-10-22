@@ -1,5 +1,5 @@
 using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
-using GWGUI.Emulation.Bandai.Emulators.Common.Functions;
+using GWGUI.Emulation.Bandai.Common.Functions;
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 internal static class EmulatorConstants

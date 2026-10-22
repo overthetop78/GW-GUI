@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Amstrad.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
@@ -23,7 +24,7 @@ public sealed class ExternalCoreInstaller
 
     public string LibraryPath => Path.Combine(_directory, _definition.LibraryFile);
 
-    public bool IsInstalled => EmulationSdk.CoreDiagnostics.FindInstalledLibraryPath(LibraryPath, _definition.VerifyInstallation) is not null;
+    public bool IsInstalled => EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(LibraryPath, _definition.VerifyInstallation) is not null;
 
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {

@@ -74,8 +74,10 @@ public sealed class SettingsPresentationTests
         Assert.Equal(EmulationMachineTab.Cheats, Assert.Single(fields, field => field.Id == "ppsspp_cheats").Tab);
         var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
         Assert.Equal(16, port.Bindings.Definitions.Count);
+        var controller = Assert.Single(port.ControllerChoices, choice => choice.Id == "Joystick");
         Assert.Equal(new[] { EmulationControllerVisualIds.SonyPsp1000, EmulationControllerVisualIds.SonyPsp2000,
-            EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo }, port.Bindings.CompatibleVisualIds);
+            EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo }, controller.CompatibleVisualIds);
+        Assert.Equal(EmulationControllerVisualIds.SonyPsp1000, controller.DefaultVisualId);
     }
 
     [Fact]

@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions;
 using System.Globalization;
 using System.IO;
 using GWGUI.Emulation;
@@ -22,7 +23,7 @@ public sealed class Engine
     /// <summary>Version d’implémentation commune aux trois cœurs livrés dans ce même assembly.</summary>
     internal static string CoreVersion => typeof(Engine).Assembly.GetName().Version!.ToString(3);
     /// <summary>Empreinte calculée une seule fois par l’interface publique d’inspection des cœurs.</summary>
-    private static readonly Lazy<string> ImplementationHash = new(() => EmulationSdk.CoreDiagnostics.CalculateSha256(CoreImplementationPath));
+    private static readonly Lazy<string> ImplementationHash = new(() => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(CoreImplementationPath));
     /// <summary>Identité binaire conservée dans les en-têtes d’état, complétée par le modèle et l’émulateur.</summary>
     internal static string CoreSha256 => ImplementationHash.Value;
     /// <summary>Adaptateurs du catalogue indexés par identifiant exact, avec comparaison ordinale.</summary>

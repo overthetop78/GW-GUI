@@ -1,3 +1,4 @@
+using AudioFunctions = GWGUI.Emulation.Sony.Common.Functions.AudioFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -39,13 +40,13 @@ internal sealed partial class ExternalHostCallbacks
 
     private void HandleAudioSample(short left, short right)
     {
-        PublishAudio(new AudioChunk(EmulationSdk.AudioProcessing.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(AudioFunctions.Processing.SingleFrame(left, right), SampleRate, 1, ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)
     {
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
-        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frames);
+        var samples = AudioFunctions.Processing.CopyBatch(data, frames);
         PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));
         return frames;
     }
@@ -61,7 +62,7 @@ internal sealed partial class ExternalHostCallbacks
         if (data == nint.Zero || frames > MultichannelAudioConstants.MaximumFramesPerBatch
             || !AudioChannelLayoutFunctions.TryFromNative(mask, channels, out var layout)) return 0;
         if (frames == 0) return 0;
-        var samples = EmulationSdk.AudioProcessing.CopyBatch(data, frames, channels);
+        var samples = AudioFunctions.Processing.CopyBatch(data, frames, channels);
         PublishAudio(new AudioChunk(samples, SampleRate, (int)frames, ++_audioSequence, _clock.Elapsed, layout));
         return frames;
     }
