@@ -6908,3 +6908,20 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Philips/Common/Contracts/InputContracts.cs : reprendre le même contrat documenté, avec la touche facultative et DefaultBinding ; conserver les définitions actuelles.
   - [x] Vérifier les commandes et associations conservées.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier la signature de description et les implémentations des cinq familles face à Example ; exécuter les contrôles des contrôleurs concernés, construire le Debug avec tous les modules et vérifier les DLL livrées.
+
+## Contrats dédiés aux métadonnées de firmware et aux formats de contenu
+
+- [x] Raccorder les déclarations existantes aux mêmes contrats Common que dans Example.
+  - [x] Raccorder les métadonnées Commodore.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareSettings.cs : reprendre les opérations GetFirmwareSlots et ScanFirmware du contrat Example, avec leur documentation et les types locaux existants.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorFirmwareSettings et retirer les deux déclarations redondantes, en conservant les signatures.
+  - [x] Raccorder les métadonnées Nintendo.
+    - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareSettings.cs : reprendre GetFirmwareSlots et sa documentation depuis Example avec le type FirmwareSlot existant.
+    - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorContentFormats.cs : reprendre SupportedContentExtensions et sa documentation depuis Example.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : hériter des deux contrats dédiés et retirer les déclarations désormais héritées.
+  - [x] Raccorder les métadonnées Sega.
+    - [x] Créer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareSettings.cs : reprendre GetFirmwareSlots et sa documentation depuis Example avec le type FirmwareSlot existant.
+    - [x] Créer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorContentFormats.cs : reprendre SupportedContentExtensions et sa documentation depuis Example.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : hériter des deux contrats dédiés et retirer les déclarations désormais héritées.
+  - [x] Vérifier les raccordements aux fabriques existantes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : couvrir les opérations de firmware et de formats de ces trois familles, vérifier les héritages et les méthodes des fabriques réellement raccordées ; exécuter les contrôles concernés, construire le Debug avec les 23 modules et vérifier les DLL livrées.

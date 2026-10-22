@@ -290,7 +290,11 @@ public sealed class ArchitectureValidationTests
 
     [Theory]
     [InlineData("Apple", "PrepareFirmware")]
+    [InlineData("Commodore", "GetFirmwareSlots")]
+    [InlineData("Commodore", "ScanFirmware")]
     [InlineData("Nec", "GetFirmwareSlots")]
+    [InlineData("Nintendo", "GetFirmwareSlots")]
+    [InlineData("Sega", "GetFirmwareSlots")]
     [InlineData("Sony", "GetFirmwareSlots")]
     [InlineData("Sony", "get_RequiresExternalFirmware")]
     [InlineData("Snk", "FirmwareRoles")]
@@ -315,6 +319,17 @@ public sealed class ArchitectureValidationTests
         Assert.NotEmpty(implementations);
         foreach (var implementation in implementations)
             Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+        if (family is "Commodore" or "Nintendo" or "Sega")
+        {
+            var adapter = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            Assert.DoesNotContain(adapter.GetMethods(), declaration => declaration.Name is "GetFirmwareSlots" or "ScanFirmware");
+            foreach (var implementation in implementations)
+            {
+                var target = implementation.GetMethod(operation, method.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
+                Assert.Contains(target, implementation.GetInterfaceMap(contract).TargetMethods);
+            }
+        }
         if (family == "Nec") Assert.Null(contract.GetProperty("FirmwareSlots"));
     }
 
@@ -325,6 +340,8 @@ public sealed class ArchitectureValidationTests
     [InlineData("Snk", "IEmulatorInitialContentSettings", "IEmulatorMediaAdapter", "ResolveInitialContentPaths")]
     [InlineData("Sony", "IEmulatorStorageSettings", "IEmulatorMediaAdapter", "GetMemoryCardCount")]
     [InlineData("Sony", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "get_SupportedContentExtensions")]
+    [InlineData("Nintendo", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "get_SupportedContentExtensions")]
+    [InlineData("Sega", "IEmulatorContentFormats", "IEmulatorMediaAdapter", "get_SupportedContentExtensions")]
     public void CommonRolesUseTheSameContractAndOperationNamesAsExample(string family, string contractName, string previousName, string operation)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
@@ -344,6 +361,14 @@ public sealed class ArchitectureValidationTests
         Assert.NotEmpty(implementations);
         foreach (var implementation in implementations)
             Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
+        if (family is "Nintendo" or "Sega")
+        {
+            var adapter = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            Assert.Null(adapter.GetProperty("SupportedContentExtensions"));
+            foreach (var implementation in implementations)
+                Assert.Contains(implementation.GetProperty("SupportedContentExtensions")!.GetMethod, implementation.GetInterfaceMap(contract).TargetMethods);
+        }
     }
 
     [Fact]
