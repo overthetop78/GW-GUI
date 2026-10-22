@@ -11,7 +11,7 @@ namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Factories;
 internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => Settings.GetOptions(configuration);
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions(configuration);
 
     public override bool SupportsPointer(MachineConfiguration configuration) => true;
     protected override bool SupportsNoContent => true;

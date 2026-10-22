@@ -12,5 +12,5 @@ internal sealed class JollyCVMachineFactory() : MachineFactory(EmulatorConstants
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.JollyCV, DescribeInput);
 
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions() => Settings.GetOptions();
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
 }

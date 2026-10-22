@@ -11,14 +11,15 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// <returns>Blocs du backend construits par son implémentation existante.</returns>
     IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions);
     /// <summary>Lit les descriptions d’options avec les services de gestion fournis.</summary>
-    /// <param name="context">Contexte emprunté de l’installation du cœur.</param>
+    /// <param name="configuration">Configuration facultative, suivant le contrat commun des adaptateurs.</param>
+    /// <param name="context">Contexte emprunté de l’installation du cœur ; null conserve le catalogue vide du parcours sans contexte.</param>
     /// <returns>Descriptions natives utilisables pour présenter ses réglages.</returns>
-    IReadOnlyList<CoreOption> GetSettingsOptions(EmulatorManagementContext context);
+    IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
     /// <summary>Compose la lecture des options et leur projection pour le contrat commun.</summary>
     /// <remarks>Sans contexte, la projection conserve la liste vide employée par le parcours existant.</remarks>
     IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context)
     {
-        IReadOnlyList<CoreOption> coreOptions = context is null ? [] : GetSettingsOptions(context);
+        IReadOnlyList<CoreOption> coreOptions = context is null ? [] : GetSettingsOptions(configuration, context);
         return DescribeSettings(configuration, coreOptions);
     }
 }

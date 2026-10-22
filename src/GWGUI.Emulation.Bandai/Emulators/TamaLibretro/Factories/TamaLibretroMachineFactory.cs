@@ -6,5 +6,5 @@ namespace GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Factories;
 internal sealed class TamaLibretroMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Functions.SettingsDescriptionFunctions.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions() => GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Dictionaries.TamaLibretroOptionCatalog.All;
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Dictionaries.TamaLibretroOptionCatalog.All;
 }

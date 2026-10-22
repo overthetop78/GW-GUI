@@ -12,7 +12,7 @@ internal sealed class NeoCdMachineFactory() : LibretroMachineFactory(EmulatorCon
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
 
-    public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
+    public override IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => configuration is null ? CoreOptions : NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => NativeFirmware.Required(model, category);
     public override ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => NativeFirmware.Inspect(path, configuration.Model, cancellationToken);

@@ -23,7 +23,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapab
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Caprice32.ToString();
-    public IReadOnlyList<CoreOption> GetSettingsOptions(EmulatorManagementContext context) => [];
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => [];
     public EmulationEmulatorDefinition Definition { get; } = new( EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

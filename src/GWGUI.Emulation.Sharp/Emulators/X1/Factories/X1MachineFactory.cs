@@ -12,7 +12,7 @@ namespace GWGUI.Emulation.Sharp.Emulators.X1.Factories;
 internal sealed class X1MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => Settings.GetOptions(configuration);
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions(configuration);
 
     protected override bool RequiresResetRestart => true;
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => GWGUI.Emulation.Sharp.Emulators.X1.Functions.MediaRuntimeFunctions.Prepare(configuration, sessionDirectory, supportedExtensions);

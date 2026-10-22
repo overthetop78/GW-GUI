@@ -7,7 +7,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration.Model);
     public abstract IReadOnlyList<CoreOption> CoreOptions { get; }
 
-    public abstract IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration);
+    public abstract IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
     public virtual bool IsDeferredOption(MachineConfiguration configuration, string key) => false;
     public abstract IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model);
     public abstract bool IsFirmwareRequired(MachineModel model, FirmwareCategory category);

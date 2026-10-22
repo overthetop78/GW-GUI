@@ -13,6 +13,6 @@ internal sealed class GearColecoMachineFactory() : MachineFactory(EmulatorConsta
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.GearColeco, DescribeInput);
 
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions() => Settings.GetOptions();
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
     public void ValidateConfiguration(MachineConfiguration configuration) => Settings.Validate(configuration);
 }

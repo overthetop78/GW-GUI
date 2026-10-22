@@ -12,6 +12,41 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void SettingsOptionProvidersUseTheSameOperationAndParametersAsExample()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var providers = 0;
+        foreach (var module in modules)
+        {
+            var contract = module.GetTypes().SingleOrDefault(type => type.IsInterface && type.Name == "IEmulatorSettingsAdapter");
+            if (contract?.GetMethod("GetSettingsOptions") is not { } readOptions) continue;
+            providers++;
+            Assert.DoesNotContain(contract.GetMethods(), method => method.Name == "DescribeOptions");
+            Assert.Single(contract.GetMethods(), method => method.Name == "GetSettingsOptions");
+            var parameters = readOptions.GetParameters();
+            Assert.Equal(2, parameters.Length);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[0].ParameterType));
+            Assert.Equal("configuration", parameters[0].Name);
+            Assert.Equal(typeof(EmulatorManagementContext), parameters[1].ParameterType);
+            Assert.Equal("context", parameters[1].Name);
+            Assert.All(parameters, parameter => { Assert.True(parameter.IsOptional); Assert.Null(parameter.DefaultValue); });
+            var implementations = module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                Assert.DoesNotContain(implementation.GetMethods(), method => method.Name == "DescribeOptions");
+                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
+                var adapter = Activator.CreateInstance(implementation, nonPublic: true)!;
+                Assert.IsAssignableFrom<System.Collections.IEnumerable>(readOptions.Invoke(adapter, [null, null]));
+            }
+        }
+        Assert.Equal(12, providers);
+    }
+
     [Theory]
     [InlineData("Example")]
     [InlineData("Snk")]

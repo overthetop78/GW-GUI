@@ -16,5 +16,5 @@ internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(Emulator
         return extensions;
     }
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.SettingsDescriptionFunctions.Create(configuration);
-    public IReadOnlyList<CoreOption> GetSettingsOptions() => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries.BeetleWonderSwanOptionCatalog.All;
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries.BeetleWonderSwanOptionCatalog.All;
 }
