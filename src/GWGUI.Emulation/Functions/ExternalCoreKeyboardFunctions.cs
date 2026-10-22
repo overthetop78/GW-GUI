@@ -7,13 +7,13 @@ namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreKeyboardFunctions
 {
     /// <summary>Calcule le masque natif de majuscule, contrôle et Alt.</summary>
-    public static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(
         (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |
         (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers) |
         (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? ExternalCoreKeyboardConstants.AltModifier : ExternalCoreKeyboardConstants.NoModifiers));
 
     /// <summary>Publie relâchements et pressions dans l’ordre des modificateurs puis mémorise une copie des touches.</summary>
-    public static void PublishTransitions(IReadOnlySet<EmulationKey> keys,
+    internal static void PublishTransitions(IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,
         ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,
         Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)
@@ -28,7 +28,7 @@ internal static class ExternalCoreKeyboardFunctions
     }
 
     /// <summary>Publie les changements de codes avec les fonctions d’ordre et de caractères du module.</summary>
-    public static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,
+    internal static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,
         ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,
         Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased,
         Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor)
@@ -41,7 +41,7 @@ internal static class ExternalCoreKeyboardFunctions
     }
 
     /// <summary>Construit la table commune entre touches de l’application et codes natifs.</summary>
-    public static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()
+    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()
     {
         var map = new Dictionary<EmulationKey, uint>
         {
@@ -88,7 +88,7 @@ internal static class ExternalCoreKeyboardFunctions
 
 
     /// <summary>Calcule le caractère natif avec majuscule et verrouillage des majuscules.</summary>
-    public static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
+    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
     {
         var shifted = HasShift(keys);
         if (code is >= ExternalCoreKeyboardConstants.FirstLetter and <= ExternalCoreKeyboardConstants.LastLetter)
@@ -111,7 +111,7 @@ internal static class ExternalCoreKeyboardFunctions
 
 
     /// <summary>Complète une table empruntée avec une plage continue de touches et codes natifs.</summary>
-    public static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
+    internal static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
     {
         for (var offset = ExternalCoreKeyboardConstants.FirstRangeOffset; offset < count; offset++)
             map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);

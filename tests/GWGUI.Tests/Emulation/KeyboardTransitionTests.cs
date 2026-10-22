@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
@@ -83,7 +84,7 @@ public sealed class KeyboardTransitionTests
         var events = new List<(uint Code, uint Character)>();
         var state = new State { Event = (_, code, character, _) => events.Add((code, character)) };
         var keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.LeftAmiga };
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, Map, 0, ref state.Previous, ref state.Event,
+        EmulationSdk.InputProcessing.PublishTransitions(keys, Map, 0, ref state.Previous, ref state.Event,
             static key => key == EmulationKey.LeftAmiga, static (code, _) => code + 1000);
         Assert.Equal(new[] { (311u, 1311u), ((uint)'a', (uint)'a' + 1000) }, events);
     }
@@ -95,7 +96,7 @@ public sealed class KeyboardTransitionTests
         {
             EmulationKey.RightShift, EmulationKey.RightControl, EmulationKey.RightAlt, EmulationKey.CapsLock
         };
-        Assert.Equal((ushort)7, ExternalCoreKeyboardFunctions.Modifiers(keys));
+        Assert.Equal((ushort)7, EmulationSdk.InputProcessing.Modifiers(keys));
     }
 
     [Fact]
@@ -105,7 +106,7 @@ public sealed class KeyboardTransitionTests
         var original = previous;
         var current = new HashSet<uint> { 2, 7 };
         var events = new List<(bool Down, uint Code, uint Character, ushort Modifiers)>();
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref previous,
+        EmulationSdk.InputProcessing.PublishCodeTransitions(current, ref previous,
             (down, code, character, modifiers) => events.Add((down, code, character, modifiers)), 3,
             codes => codes.OrderBy(code => code == 8),
             codes => codes.OrderByDescending(code => code == 7), code => code + 100);
@@ -123,7 +124,7 @@ public sealed class KeyboardTransitionTests
         var previous = new HashSet<uint> { 13 };
         var current = new HashSet<uint>(new uint[] { 13, 13 });
         var events = 0;
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref previous,
+        EmulationSdk.InputProcessing.PublishCodeTransitions(current, ref previous,
             (_, _, _, _) => events++, 0, codes => codes, codes => codes, _ => 0);
         Assert.Equal(0, events);
     }
@@ -134,7 +135,7 @@ public sealed class KeyboardTransitionTests
         IReadOnlySet<uint> previous = new HashSet<uint> { 1 };
         IReadOnlySet<uint> current = new HashSet<uint> { 2 };
         var events = 0;
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref previous,
+        EmulationSdk.InputProcessing.PublishCodeTransitions(current, ref previous,
             (_, _, _, _) => { events++; previous = new HashSet<uint> { 2 }; },
             0, codes => codes, codes => codes, _ => 0);
         Assert.Equal(1, events);
@@ -148,7 +149,7 @@ public sealed class KeyboardTransitionTests
         var error = new InvalidOperationException("native callback failure");
         var released = new List<uint>();
         Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreKeyboardFunctions.PublishCodeTransitions(new HashSet<uint> { 2 }, ref previous,
+            EmulationSdk.InputProcessing.PublishCodeTransitions(new HashSet<uint> { 2 }, ref previous,
                 (down, code, _, _) => { if (down) throw error; released.Add(code); },
                 0, codes => codes, codes => codes, _ => 0)));
         Assert.Equal(new uint[] { 1 }, released);
@@ -161,15 +162,15 @@ public sealed class KeyboardTransitionTests
         var previous = new HashSet<uint>();
         var composed = false;
         var characters = new List<(uint Code, uint Character)>();
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(new HashSet<uint> { 4, 3 }, ref previous,
+        EmulationSdk.InputProcessing.PublishCodeTransitions(new HashSet<uint> { 4, 3 }, ref previous,
             (_, code, character, _) => { characters.Add((code, character)); composed = true; },
             0, codes => codes, codes => codes.Order(), code => composed ? 0 : code);
         Assert.Equal(new[] { (3u, 3u), (4u, 0u) }, characters);
     }
 
     private static void Publish(State state, IReadOnlySet<EmulationKey> keys) =>
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, Map, ExternalCoreKeyboardFunctions.Modifiers(keys),
-            ref state.Previous, ref state.Event, IsModifier, ExternalCoreKeyboardFunctions.Character);
+        EmulationSdk.InputProcessing.PublishTransitions(keys, Map, EmulationSdk.InputProcessing.Modifiers(keys),
+            ref state.Previous, ref state.Event, IsModifier, EmulationSdk.InputProcessing.Character);
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.LeftControl;
 

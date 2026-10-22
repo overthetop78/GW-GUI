@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -33,8 +34,8 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (_keyboardEvent is null) return;
         var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, reverseMap,
-            ExternalCoreKeyboardFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
+        CommonControllerFunctions.PublishTransitions(keys, reverseMap,
+            CommonControllerFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
             IsModifier, CharacterFor);
     }
 

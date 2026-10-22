@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
@@ -15,7 +16,7 @@ internal sealed class KeyboardState
         var modifiers = KeyboardFunctions.Modifiers(keys);
         var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();
         var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
+        CommonControllerFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
                 codes => codes.OrderBy(code => IsModifier(code) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder),
                 codes => codes.OrderBy(code => modifierCodes.Contains(code) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder),
                 code => KeyboardFunctions.Character(code, keys));

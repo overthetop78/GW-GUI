@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -62,7 +63,7 @@ public sealed class AdapterPresentationPolicyTests
             Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, ControllerType.Keyboard)]));
         var keyboard = InputSettingsFunctions.Describe(configuration).Keyboard;
         Assert.NotNull(keyboard);
-        var expected = ExternalCoreKeyboardFunctions.CreateKeyMap().Keys
+        var expected = EmulationSdk.InputProcessing.CreateKeyMap().Keys
             .Where(key => key is not (EmulationKey.LeftAmiga or EmulationKey.RightAmiga or EmulationKey.Break or EmulationKey.Undo))
             .OrderBy(key => (int)key).Select(key => key.ToString()).ToArray();
         Assert.NotEmpty(expected);

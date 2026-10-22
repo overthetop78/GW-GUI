@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Philips.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
@@ -69,12 +70,12 @@ internal static class KeyboardFunctions
         (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
+        => CommonControllerFunctions.Character(code, keys);
 
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
     private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
 
     private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);
+        => CommonControllerFunctions.AddRange(map, firstKey, firstCode, count);
 }

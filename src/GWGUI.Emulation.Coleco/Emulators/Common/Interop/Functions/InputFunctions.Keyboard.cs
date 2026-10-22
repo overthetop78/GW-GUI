@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
@@ -49,13 +50,13 @@ internal static class KeyboardFunctions
         return map;
     }
 
-    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Modifiers(keys);
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => CommonControllerFunctions.Modifiers(keys);
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
+        => CommonControllerFunctions.Character(code, keys);
 
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
     private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);
+        => CommonControllerFunctions.AddRange(map, firstKey, firstCode, count);
 }

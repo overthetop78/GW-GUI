@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Constants;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;
@@ -13,7 +14,7 @@ internal sealed class KeyboardState
     {
         if (callback is null) return;
         var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, KeyboardConstants.NoModifiers,
+        CommonControllerFunctions.PublishCodeTransitions(current, ref _previous, callback, KeyboardConstants.NoModifiers,
                 codes => codes,
                 codes => codes,
                 code => KeyboardConstants.NoCharacter);

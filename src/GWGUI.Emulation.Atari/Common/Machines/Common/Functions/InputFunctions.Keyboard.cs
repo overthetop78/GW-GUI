@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using SharedKeyboardFunctions = GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions;
 using GWGUI.Emulation;
 
@@ -10,7 +11,7 @@ internal static class KeyboardFunctions
     internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => SharedKeyboardFunctions.Modifiers(keys);
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
+        => CommonControllerFunctions.Character(code, keys);
 
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt or EmulationKey.LeftAmiga or EmulationKey.RightAmiga;
 

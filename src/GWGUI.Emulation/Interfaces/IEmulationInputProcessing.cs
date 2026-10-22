@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interop;
+
 namespace GWGUI.Emulation.Interfaces;
 
 /// <summary>Traitements sans état des instantanés d’entrées échangés avec les cœurs.</summary>
@@ -5,6 +7,52 @@ namespace GWGUI.Emulation.Interfaces;
 /// L’accumulation des mouvements entre deux frames appartient au contrat IEmulationInputFrames.</remarks>
 public interface IEmulationInputProcessing
 {
+    /// <summary>Calcule le masque natif des touches Majuscule, Contrôle et Alt.</summary>
+    /// <param name="keys">Touches appuyées empruntées pendant le calcul ; le service ne conserve pas cet ensemble.</param>
+    /// <returns>Masque natif des modificateurs ; les touches droites et gauches utilisent les mêmes bits.</returns>
+    ushort Modifiers(IReadOnlySet<EmulationKey> keys);
+
+    /// <summary>Calcule le caractère associé à un code natif selon Majuscule et le verrouillage des majuscules.</summary>
+    /// <param name="code">Code clavier natif, distinct de la valeur numérique de l’énumération EmulationKey.</param>
+    /// <param name="keys">Touches appuyées empruntées pour déterminer les modificateurs.</param>
+    /// <returns>Caractère natif, ou zéro lorsque le code ne produit pas de caractère imprimable.</returns>
+    uint Character(uint code, IReadOnlySet<EmulationKey> keys);
+
+    /// <summary>Complète une table de correspondances avec une plage continue de touches et de codes.</summary>
+    /// <param name="map">Table mutable appartenant à l’appelant ; les entrées de la plage sont écrites sur place.</param>
+    /// <param name="firstKey">Première touche de la plage dans l’énumération.</param>
+    /// <param name="firstCode">Premier code natif, incrémenté pour chaque touche.</param>
+    /// <param name="count">Nombre de touches à écrire ; une valeur non positive ne produit aucune écriture.</param>
+    void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count);
+
+    /// <summary>Publie les relâchements avant les pressions, suivant les politiques fournies par l’adaptateur.</summary>
+    /// <param name="keys">Touches courantes empruntées pour cette publication.</param>
+    /// <param name="keyMap">Correspondances empruntées ; les touches absentes de cette table ne produisent pas d’événement.</param>
+    /// <param name="modifiers">Masque natif transmis tel quel à chaque événement.</param>
+    /// <param name="previous">Référence de l’état précédent du propriétaire, remplacée par une copie des touches après succès.</param>
+    /// <param name="keyboardEvent">Référence du callback enregistré par le propriétaire ; les remplacements réentrants restent visibles.</param>
+    /// <param name="isModifier">Politique de priorité : modificateurs relâchés après les touches et pressés avant elles.</param>
+    /// <param name="characterFor">Politique de caractère appliquée aux pressions ; les relâchements transmettent zéro.</param>
+    /// <remarks>Le propriétaire vérifie la présence du callback avant publication. Une exception interrompt la publication
+    /// et empêche sa copie finale de l’état. Les changements réentrants de previous et keyboardEvent restent visibles ;
+    /// aucune ressource ni référence de session n’est conservée par le service.</remarks>
+    void PublishTransitions(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,
+        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,
+        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor);
+
+    /// <summary>Publie les transitions de codes natifs sans remplacer les ensembles détenus par l’appelant.</summary>
+    /// <typeparam name="TSet">Type d’ensemble de codes choisi par le propriétaire pour son état de session.</typeparam>
+    /// <param name="current">Codes courants empruntés ; aucun ensemble de remplacement n’est créé.</param>
+    /// <param name="previous">Référence de l’ensemble précédent, permettant de voir une réaffectation réentrante entre les deux phases.</param>
+    /// <param name="keyboardEvent">Callback emprunté pour cette publication ; le service ne le mémorise pas.</param>
+    /// <param name="modifiers">Masque natif transmis sans transformation.</param>
+    /// <param name="orderReleased">Ordre des codes relâchés ; cette phase précède les pressions.</param>
+    /// <param name="orderPressed">Ordre des codes pressés, évalué après les relâchements.</param>
+    /// <param name="characterFor">Caractère calculé pour chaque pression ; les relâchements transmettent zéro.</param>
+    /// <remarks>Le propriétaire valide le callback et conserve la responsabilité de mémoriser current après succès.
+    /// Les exceptions des politiques et du callback sont propagées ; aucune fermeture ni destruction du callback emprunté n’a lieu.</remarks>
+    void PublishCodeTransitions<TSet>(TSet current, ref TSet previous, ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,
+        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased, Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor) where TSet : IReadOnlySet<uint>;
     /// <summary>Résout une commande dans la table de boutons commune utilisée par les adaptations natives.</summary>
     /// <param name="commandId">Identifiant technique de commande, comparé sans distinction de casse.</param>
     /// <returns>Index du bouton à partir de zéro, ou −1 si la commande n’appartient pas à cette table.</returns>

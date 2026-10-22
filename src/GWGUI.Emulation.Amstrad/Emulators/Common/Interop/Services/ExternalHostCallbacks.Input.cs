@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
@@ -39,8 +40,8 @@ internal sealed partial class ExternalHostCallbacks
             return;
         keys = FilterReservedKeyboardChord(keys);
         var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, reverseMap,
-            ExternalCoreKeyboardFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
+        CommonControllerFunctions.PublishTransitions(keys, reverseMap,
+            CommonControllerFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
             IsModifier, CharacterFor);
     }
 

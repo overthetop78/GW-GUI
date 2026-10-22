@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sinclair.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
@@ -68,8 +69,8 @@ internal static class KeyboardFunctions
         ? KeyboardConstants.ControlModifier
         : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
+        => CommonControllerFunctions.Character(code, keys);
     private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
     private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);
+        => CommonControllerFunctions.AddRange(map, firstKey, firstCode, count);
 }

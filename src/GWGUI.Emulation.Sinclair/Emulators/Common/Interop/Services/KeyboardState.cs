@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sinclair.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
@@ -18,7 +19,7 @@ internal sealed class KeyboardState
         if (keyboardEvent is not null)
         {
             var modifiers = KeyboardFunctions.Modifiers(keys);
-            ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
+            CommonControllerFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
                 codes => codes,
                 codes => codes,
                 code => KeyboardFunctions.Character(code, keys));

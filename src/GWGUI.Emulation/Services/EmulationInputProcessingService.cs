@@ -5,6 +5,26 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationInputProcessingService : IEmulationInputProcessing
 {
     /// <inheritdoc/>
+    public ushort Modifiers(IReadOnlySet<EmulationKey> keys) => ExternalCoreKeyboardFunctions.Modifiers(keys);
+
+    /// <inheritdoc/>
+    public uint Character(uint code, IReadOnlySet<EmulationKey> keys) => ExternalCoreKeyboardFunctions.Character(code, keys);
+
+    /// <inheritdoc/>
+    public void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count) => ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);
+
+    /// <inheritdoc/>
+    public void PublishTransitions(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,
+        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,
+        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)
+        => ExternalCoreKeyboardFunctions.PublishTransitions(keys, keyMap, modifiers, ref previous, ref keyboardEvent, isModifier, characterFor);
+
+    /// <inheritdoc/>
+    public void PublishCodeTransitions<TSet>(TSet current, ref TSet previous, ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,
+        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased, Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor) where TSet : IReadOnlySet<uint>
+        => ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref previous, keyboardEvent, modifiers, orderReleased, orderPressed, characterFor);
+
+    /// <inheritdoc/>
     public int ControllerButtonIndex(string commandId) => EmulationInputMappingFunctions.ControllerButtonIndex(commandId);
 
     /// <summary>Index de codes natifs construit à partir de la table clavier existante, sans conserver de touches appuyées.</summary>

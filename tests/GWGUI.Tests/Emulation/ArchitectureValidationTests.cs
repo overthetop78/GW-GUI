@@ -21,10 +21,12 @@ public sealed class ArchitectureValidationTests
         Assert.False(entry.GetValue(null)!.GetType().IsVisible);
     }
 
-    [Fact]
-    public void InputAlgorithmsRemainInternalBehindThePublicProcessingContract()
+    [Theory]
+    [InlineData("EmulationInputMappingFunctions")]
+    [InlineData("ExternalCoreKeyboardFunctions")]
+    public void InputAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
     {
-        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationInputMappingFunctions", throwOnError: true)!;
+        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
         Assert.False(owner.IsVisible);
         Assert.Empty(owner.GetMethods(BindingFlags.Public | BindingFlags.Static));
     }

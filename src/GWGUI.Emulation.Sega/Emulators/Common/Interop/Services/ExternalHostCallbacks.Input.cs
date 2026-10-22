@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
@@ -35,8 +36,8 @@ internal sealed partial class ExternalHostCallbacks
         if (_keyboardEvent is null) return;
         keys = FilterReservedKeyboardChord(keys);
         var reverseMap = KeyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, reverseMap,
-            ExternalCoreKeyboardFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
+        CommonControllerFunctions.PublishTransitions(keys, reverseMap,
+            CommonControllerFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
             IsModifier, CharacterFor);
     }
 
@@ -51,7 +52,7 @@ internal sealed partial class ExternalHostCallbacks
     }
 
     private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
-    => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
+    => CommonControllerFunctions.Character(code, keys);
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
@@ -156,6 +157,6 @@ internal sealed partial class ExternalHostCallbacks
     private static int AccumulatePointerCoordinate(int coordinate, int delta) => (int)Math.Clamp((long)coordinate + (long)delta * PointerCoordinateScale, PointerCoordinateMinimum, PointerCoordinateMaximum);
 
     private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
-    => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.CreateKeyMap().Where(pair => pair.Key is not (EmulationKey.LeftAmiga or EmulationKey.RightAmiga or EmulationKey.Break or EmulationKey.Undo)).ToDictionary(pair => pair.Value, pair => pair.Key);
+    => CommonControllerFunctions.CreateNativeKeyMap().Where(pair => pair.Key is not (EmulationKey.LeftAmiga or EmulationKey.RightAmiga or EmulationKey.Break or EmulationKey.Undo)).ToDictionary(pair => pair.Value, pair => pair.Key);
 
 }

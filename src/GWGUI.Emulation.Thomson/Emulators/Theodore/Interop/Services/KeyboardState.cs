@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Thomson.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Constants;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;
@@ -24,7 +25,7 @@ internal sealed class KeyboardState
             else if (_map.TryGetValue(key, out var code)) current.Add(code);
         }
         var modifiers = KeyboardFunctions.Modifiers(keys);
-        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, modifiers,
+        CommonControllerFunctions.PublishCodeTransitions(current, ref _previous, callback, modifiers,
                 codes => codes.OrderBy(IsModifier),
                 codes => codes.OrderByDescending(IsModifier),
                 code => KeyboardConstants.NoCharacter);

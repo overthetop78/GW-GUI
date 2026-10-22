@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Thomson.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Constants;
 using GWGUI.Emulation;
 
@@ -73,5 +74,5 @@ internal static class KeyboardFunctions
         | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
     private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
     private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
-        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);
+        => CommonControllerFunctions.AddRange(map, firstKey, firstCode, count);
 }

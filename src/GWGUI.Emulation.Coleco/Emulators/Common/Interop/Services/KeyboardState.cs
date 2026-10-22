@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
@@ -13,7 +14,7 @@ internal sealed class KeyboardState
     {
         if (keyboardEvent is null) return;
         var modifiers = KeyboardFunctions.Modifiers(keys);
-        ExternalCoreKeyboardFunctions.PublishTransitions(keys, KeyMap, modifiers,
+        CommonControllerFunctions.PublishTransitions(keys, KeyMap, modifiers,
             ref _previous, ref keyboardEvent, KeyboardFunctions.IsModifier, KeyboardFunctions.Character);
     }
 
