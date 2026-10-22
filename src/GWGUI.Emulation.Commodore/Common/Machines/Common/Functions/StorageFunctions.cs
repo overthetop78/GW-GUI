@@ -9,7 +9,7 @@ internal static class StorageSettingsFunctions
 
     internal static EmulationStorageSettings DescribeBasic(MachineConfiguration configuration)
     {
-        var devices = EmulatorCatalog.CreateAdapter(configuration.Core).GetMediaDevices(configuration);
+        var devices = EmulatorCatalog.CreateAdapter(configuration.Core).DescribeMediaDevices(configuration);
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var configured = configuration.ConfiguredMediaSlots ?? devices.Where(device => device.IsPermanent).Select(device => device.Slot).Concat(mounted.Select(media => media.Slot)).Distinct().ToArray();
         return new EmulationStorageSettings(devices, configured, mounted);

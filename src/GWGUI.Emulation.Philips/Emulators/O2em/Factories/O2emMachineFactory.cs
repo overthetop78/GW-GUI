@@ -5,11 +5,11 @@ using GWGUI.Emulation.Philips.Emulators.O2em.Constants;
 
 namespace GWGUI.Emulation.Philips.Emulators.O2em.Factories;
 
-internal sealed class O2emMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorStorageSettings, IEmulatorVideoSettings
+internal sealed class O2emMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorMediaCapabilities, IEmulatorVideoSettings
 {
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
-    public IReadOnlyList<EmulationMediaDevice> DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.O2em.Functions.StorageDescriptionFunctions.Describe(configuration);
+    public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.O2em.Functions.StorageDescriptionFunctions.Describe(configuration);
 
     public (int Width, int Height)? GetOutputResolution(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.O2em.Functions.VideoSettingsFunctions.GetOutputResolution(configuration);
 

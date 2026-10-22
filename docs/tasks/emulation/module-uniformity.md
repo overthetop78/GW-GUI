@@ -6829,3 +6829,41 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/RuntimeOptionTests.cs : demander les options d’exécution par IEmulatorAdapter avec les mêmes assertions de conversion.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ExternalFileSettingsTests.cs : demander les options d’exécution par IEmulatorAdapter en conservant les contrôles de réglages des cheats.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : utiliser IEmulatorAdapter pour les options d’exécution tout en conservant les assertions des réglages ; exécuter les contrôles concernés puis construire et vérifier le Debug avec les 23 modules.
+
+## Description des lecteurs et contrats de stockage conformes à Example
+
+- [x] Raccorder les descriptions de lecteurs et les réglages de stockage aux contrats Common correspondants.
+  - [x] Uniformiser les contrats de stockage Commodore.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorStorageSettings.cs : reprendre les opérations DescribeStorage et ApplyStorage du contrat Example, avec leurs commentaires et héritage IEmulatorMediaCapabilities.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorStorageSettings et retirer les déclarations de stockage redondantes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/SettingsFunctions.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/StorageFunctions.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Frodo/Factories/MachineFactory.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/VICE/Common/Factories/ViceMachineFactory.cs : renommer GetMediaDevices en DescribeMediaDevices, dans les déclarations et appels, sans changer les descriptions ni leur ordre.
+  - [x] Uniformiser les contrats de stockage Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/EmuSCV/Factories/EmuSCVMachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Supprimer src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorStorageSettings.cs : retirer le contrat redondant remplacé par IEmulatorMediaCapabilities.
+  - [x] Uniformiser les contrats de stockage Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/FreeChaF/Factories/FreeChaFMachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Supprimer src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorStorageSettings.cs : retirer le contrat redondant remplacé par IEmulatorMediaCapabilities.
+  - [x] Uniformiser les contrats de stockage Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/FreeIntv/Factories/FreeIntvMachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Supprimer src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorStorageSettings.cs : retirer le contrat redondant remplacé par IEmulatorMediaCapabilities.
+  - [x] Uniformiser les contrats de stockage Nec.
+    - [x] Créer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorStorageSettings.cs : reprendre les opérations DescribeStorage et ApplyStorage du contrat Example, avec leurs commentaires et héritage IEmulatorMediaCapabilities.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorStorageSettings et retirer les déclarations de stockage redondantes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer DescribeMediaDevices en réutilisant les AvailableDevices de la description existante, sans recopier son calcul.
+  - [x] Uniformiser les contrats de stockage Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/M2000/Factories/M2000MachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/O2em/Factories/O2emMachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/SameCdi/Factories/SameCdiMachineFactory.cs : utiliser IEmulatorMediaCapabilities et DescribeMediaDevices à la place du contrat de stockage limité aux lecteurs ; conserver les valeurs et validations.
+    - [x] Supprimer src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorStorageSettings.cs : retirer le contrat redondant remplacé par IEmulatorMediaCapabilities.
+  - [x] Vérifier les descriptions et montages conservés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les implémentations réelles du contrat de lecteurs dans ces six familles, son héritage par les contrats de stockage complet et la disparition des anciens noms ; exécuter les contrôles de stockage concernés, construire le Debug avec les 23 modules et vérifier les DLL livrées.

@@ -83,7 +83,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
             SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.DetailedHelpSuffix
         )
     ];
-    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
+    public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
     internal override int ControllerPortCount(MachineConfiguration configuration) => configuration.Input?.ParallelJoystickAdapterEnabled == true ? ControllerPortConstants.FourControllerPorts : base.ControllerPortCount(configuration);
     internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {

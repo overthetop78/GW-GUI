@@ -20,7 +20,7 @@ internal static class SettingsDescriptionFunctions
                         ExplanationResourceKey: slot.ExplanationResourceKey,
                         DetailedExplanationResourceKey: slot.DetailedExplanationResourceKey)).ToArray(),
                 SettingsGlyphs.Firmware, MachineSettingsConstants.InformationColumnCount));
-        if (EmulatorCatalog.CreateAdapter(configuration.Core).GetMediaDevices(configuration).Any(device => device.MediaType == EmulationMediaType.HardDisk))
+        if (EmulatorCatalog.CreateAdapter(configuration.Core).DescribeMediaDevices(configuration).Any(device => device.MediaType == EmulationMediaType.HardDisk))
             blocks.Add(new EmulationSettingsBlock(StorageDirectorySettings.BlockId, EmulationMachineTab.General,
                 StorageDirectorySettings.TitleResource,
                 [new EmulationSettingsField(StorageDirectorySettings.HardDiskDirectory, EmulationMachineTab.General,

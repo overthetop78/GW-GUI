@@ -5,11 +5,11 @@ using GWGUI.Emulation.Philips.Emulators.M2000.Constants;
 
 namespace GWGUI.Emulation.Philips.Emulators.M2000.Factories;
 
-internal sealed class M2000MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorStorageSettings
+internal sealed class M2000MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorMediaCapabilities
 {
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
-    public IReadOnlyList<EmulationMediaDevice> DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.M2000.Functions.StorageDescriptionFunctions.Describe(configuration);
+    public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.M2000.Functions.StorageDescriptionFunctions.Describe(configuration);
 
     protected override bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => true;
 

@@ -10,7 +10,7 @@ internal sealed class MachineFactory : GWGUI.Emulation.Commodore.Emulators.Commo
         new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { C64Models.C64 }));
     internal override CoreDefinition CoreDefinition { get; } = new(EmulatorConstants.DisplayName, EmulatorConstants.LibraryFile, EmulatorConstants.DownloadUrl);
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => EmulatorConstants.Roms.Select(rom => rom.Slot).ToArray();
-    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) =>
+    public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) =>
     [
         new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, EmulatorConstants.DiskExtensions, RequiresMachineRecreation: true),
         new(new(EmulationMediaCategory.CassetteDrive, EmulatorConstants.PrimaryMediaIndex), EmulationMediaType.Cassette, EmulatorConstants.CassetteExtensions, RequiresMachineRecreation: true)

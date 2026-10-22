@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
     /// <summary>Réutilise les associations Common ; la machine ajoute ensuite sa touche de bascule de session.</summary>
     EmulationInputSnapshot IEmulatorInputMapper.MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => InputSnapshotFunctions.Apply(snapshot, configuration.Input, false);
@@ -8,10 +8,7 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);
     ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory);
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
-    IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration);
     IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
-    EmulationStorageSettings DescribeStorage(MachineConfiguration configuration);
-    MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings);
     EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
     IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
     int GetControllerPortCount(MachineConfiguration configuration);

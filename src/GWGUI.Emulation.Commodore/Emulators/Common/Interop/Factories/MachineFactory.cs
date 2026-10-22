@@ -24,7 +24,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     internal virtual MediaCategory InferMediaCategory(MachineConfiguration configuration, string path)
     {
         var extension = Path.GetExtension(path);
-        var device = GetMediaDevices(configuration).FirstOrDefault(device => device.AcceptedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase));
+        var device = DescribeMediaDevices(configuration).FirstOrDefault(device => device.AcceptedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase));
         return device?.MediaType switch
         {
             EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -50,7 +50,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     }
     public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
     public virtual Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);
-    public abstract IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration);
+    public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
     public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(Model model, MachineConfiguration configuration) => SettingsDescriptionFunctions.CreateBasic(model, configuration);
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeBasic(configuration);
     public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.ApplyBasic(configuration, settings);

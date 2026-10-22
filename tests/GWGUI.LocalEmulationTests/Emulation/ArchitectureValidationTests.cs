@@ -646,6 +646,32 @@ public sealed class ArchitectureValidationTests
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
             if (contractName == "IEmulatorMediaCapabilities")
             {
+                if (root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Epoch" or "GWGUI.Emulation.Fairchild" or "GWGUI.Emulation.Mattel" or "GWGUI.Emulation.Nec" or "GWGUI.Emulation.Philips")
+                {
+                    var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+                    var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+                    Assert.NotEmpty(implementations);
+                    foreach (var implementation in implementations)
+                    {
+                        Assert.True(contract.IsAssignableFrom(implementation));
+                        Assert.Equal(implementation.GetMethod("DescribeMediaDevices"), Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
+                        Assert.Null(implementation.GetMethod("GetMediaDevices"));
+                    }
+                    if (root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Nec")
+                    {
+                        var storage = assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
+                        Assert.Contains(contract, storage.GetInterfaces());
+                        Assert.Contains(storage, adapter.GetInterfaces());
+                        Assert.Equal(typeof(EmulationStorageSettings), storage.GetMethod("DescribeStorage")!.ReturnType);
+                        foreach (var implementation in implementations)
+                            Assert.All(implementation.GetInterfaceMap(storage).TargetMethods, target => Assert.False(target.IsAbstract));
+                    }
+                    else
+                    {
+                        Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings"));
+                        Assert.All(implementations, implementation => Assert.Null(implementation.GetMethod("DescribeStorage")));
+                    }
+                }
                 if (root is "GWGUI.Emulation.Acorn" or "GWGUI.Emulation.Example")
                     Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings")!.GetInterfaces());
                 if (root == "GWGUI.Emulation.Snk")

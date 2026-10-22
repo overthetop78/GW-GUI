@@ -6,7 +6,7 @@ using Settings = GWGUI.Emulation.Epoch.Emulators.PD777.Functions.SettingsDescrip
 
 namespace GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
 
-internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorStorageSettings
+internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaCapabilities
 {
     public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port)
     {
@@ -18,7 +18,7 @@ internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.E
     }
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.PD777);
 
-    public IReadOnlyList<EmulationMediaDevice> DescribeStorage(MachineConfiguration configuration) => Settings.Storage(configuration);
+    public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => Settings.Storage(configuration);
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
 }

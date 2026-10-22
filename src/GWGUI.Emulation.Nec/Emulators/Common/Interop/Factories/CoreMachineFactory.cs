@@ -11,6 +11,8 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <summary>Expose les lecteurs déjà calculés par la description complète du stockage.</summary>
+    public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => DescribeStorage(configuration).AvailableDevices;
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 
