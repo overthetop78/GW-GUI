@@ -22,7 +22,7 @@ internal static class CoreOptionValidationFunctions
             };
             if (!valid) throw new ArgumentException(nameof(configuration.Options));
         }
-        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)
+        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidation validator)
             validator.ValidateConfiguration(configuration);
     }
 }

@@ -4,12 +4,8 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <remarks>Les descriptions servent à construire les réglages de l’application. Les méthodes par défaut
 /// permettent de conserver une configuration lorsque le backend n’ajoute aucun réglage de périphérique.
 /// Décrire ou appliquer ces réglages ne transfère pas la propriété des fichiers médias.</remarks>
-internal interface IEmulatorStorageSettings
+internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
 {
-    /// <summary>Décrit les lecteurs de médias disponibles pour la configuration.</summary>
-    /// <param name="configuration">Configuration empruntée indiquant le modèle et les options de stockage.</param>
-    /// <returns>Lecteurs logiques avec leurs types de médias, extensions et capacités.</returns>
-    IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
     /// <summary>Décrit l’ensemble des réglages de stockage suivant les règles du backend.</summary>
     /// <param name="configuration">Configuration dont les lecteurs disponibles, emplacements configurés, médias et paramètres doivent être projetés.</param>
     /// <returns>Description complète du stockage ; distincte de la seule liste de lecteurs donnée par DescribeMediaDevices.</returns>

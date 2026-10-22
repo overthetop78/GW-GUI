@@ -3,7 +3,7 @@ using GWGUI.Emulation.Sharp.Emulators.Common.Dictionaries;
 using System.IO;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Factories;
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorStorageSettings, IEmulatorRuntimeCapabilities
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorRuntimeCapabilities
 {
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;

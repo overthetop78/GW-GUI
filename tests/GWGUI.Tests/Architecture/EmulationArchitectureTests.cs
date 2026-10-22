@@ -227,13 +227,24 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonExceptionFoldersAreBothEmpty()
+    public void SharedCatalogAndReleaseErrorsAreOwnedByCommon()
     {
         var root = RepositoryRoot();
-        var atari = CommonFileNames(root, "Atari", "Exceptions");
-        var amiga = CommonFileNames(root, "Commodore", "Exceptions");
-        Assert.Equal(atari, amiga);
-        Assert.Empty(atari);
+        foreach (var family in FamilyModules().Select(row => (string)row[0]).Append("Example"))
+        {
+            var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
+            var commonNamespace = $"GWGUI.Emulation.{family}.Common";
+            var functions = Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", "Functions");
+            var source = string.Join('\n', Directory.EnumerateFiles(functions, "*.cs").Select(File.ReadAllText));
+            foreach (var errorName in new[] { "CoreReleaseErrors", "EmulatorCatalogErrors" })
+            {
+                if (!Regex.IsMatch(source, @"\b" + errorName + @"\.")) continue;
+                var owner = assembly.GetType(commonNamespace + ".Exceptions." + errorName);
+                Assert.NotNull(owner);
+                Assert.False(owner!.IsVisible);
+                Assert.DoesNotContain(assembly.GetTypes(), type => type.Name == errorName && type.Namespace!.Contains(".Emulators.", StringComparison.Ordinal));
+            }
+        }
     }
 
     [Fact]
@@ -247,13 +258,35 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonFunctionFoldersAreBothEmpty()
+    public void FamilyCommonFunctionFoldersExposeSharedInterfaceGateways()
     {
         var root = RepositoryRoot();
-        var atari = CommonFileNames(root, "Atari", "Functions");
-        var amiga = CommonFileNames(root, "Commodore", "Functions");
-        Assert.Equal(atari, amiga);
-        Assert.Empty(atari);
+        var services = new Dictionary<string, Type>
+        {
+            ["Protocol"] = typeof(IEmulationHostProtocol), ["NativeResources"] = typeof(IEmulationNativeResources),
+            ["Adapters"] = typeof(IEmulationAdapters), ["MachineExecution"] = typeof(IEmulationMachineExecution),
+            ["Messages"] = typeof(IEmulationMessages), ["VideoProcessing"] = typeof(IEmulationVideoProcessing),
+            ["HardwareSettings"] = typeof(IEmulationHardwareSettings), ["OptionProcessing"] = typeof(IEmulationCoreOptionProcessing),
+            ["EnvironmentProcessing"] = typeof(IEmulationCoreEnvironmentProcessing),
+            ["FirmwareProcessing"] = typeof(IEmulationFirmwareProcessing), ["MediaRules"] = typeof(IEmulationMediaRules)
+        };
+        foreach (var family in FamilyModules().Select(row => (string)row[0]).Append("Example"))
+        {
+            var files = CommonFileNames(root, family, "Functions");
+            foreach (var expected in new[] { "AudioFunctions.cs", "ControllerFunctions.cs", "CoreFunctions.Catalog.cs", "CoreFunctions.Host.cs", "CoreFunctions.Release.cs" })
+                Assert.Contains(expected, files);
+            var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
+            var owner = assembly.GetType($"GWGUI.Emulation.{family}.Common.Functions.CoreHostFunctions", throwOnError: true)!;
+            Assert.False(owner.IsVisible);
+            foreach (var service in services)
+            {
+                var entry = owner.GetProperty(service.Key, BindingFlags.Static | BindingFlags.NonPublic);
+                Assert.NotNull(entry);
+                Assert.Equal(service.Value, entry!.PropertyType);
+                Assert.True(entry.PropertyType.IsInterface && entry.PropertyType.IsPublic);
+                Assert.True(entry.GetMethod!.IsAssembly);
+            }
+        }
     }
 
     [Theory]

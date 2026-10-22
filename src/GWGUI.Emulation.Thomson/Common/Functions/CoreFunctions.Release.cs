@@ -1,7 +1,5 @@
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;

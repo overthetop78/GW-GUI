@@ -12,6 +12,51 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Theory]
+    [InlineData("IEmulatorConfigurationValidation", "ValidateConfiguration", typeof(void))]
+    [InlineData("IEmulatorMediaCapabilities", "DescribeMediaDevices", typeof(IReadOnlyList<GWGUI.Emulation.Contracts.EmulationMediaDevice>))]
+    public void EveryCommonUsesTheSameCapabilityContractsIncludingExample(string contractName, string methodName, Type returnType)
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly)
+            .Distinct().OrderBy(assembly => assembly.GetName().Name, StringComparer.Ordinal).ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces." + contractName, throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var method = Assert.Single(contract.GetMethods());
+            Assert.Equal(methodName, method.Name);
+            Assert.True(method.IsAbstract);
+            Assert.Equal(returnType, method.ReturnType);
+            var parameter = Assert.Single(method.GetParameters());
+            Assert.Equal("configuration", parameter.Name);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
+            if (contractName == "IEmulatorConfigurationValidation")
+                Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
+                Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+            if (root == "GWGUI.Emulation.Apple" && contractName == "IEmulatorConfigurationValidation")
+                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfiguration")!.GetInterfaces());
+            if (root == "GWGUI.Emulation.Example")
+                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
+            if (contractName == "IEmulatorMediaCapabilities")
+            {
+                if (root is "GWGUI.Emulation.Acorn" or "GWGUI.Emulation.Example")
+                    Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings")!.GetInterfaces());
+                if (root == "GWGUI.Emulation.Snk")
+                    Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorMediaAdapter")!.GetInterfaces());
+                if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
+                    Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings"));
+            }
+        }
+    }
+
     [Fact]
     public void SdkGrantsInternalAccessOnlyToTheExistingTestAssemblies()
     {

@@ -3,7 +3,7 @@ using CoreReleaseFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreReleas
 using GWGUI.Emulation;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Dictionaries;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Exceptions;
+using GWGUI.Emulation.Thomson.Common.Exceptions;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Functions;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;
 using System.Net.Http;

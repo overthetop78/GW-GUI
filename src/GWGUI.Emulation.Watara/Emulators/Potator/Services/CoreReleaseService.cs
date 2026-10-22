@@ -3,7 +3,7 @@ using CoreReleaseFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreRelease
 using GWGUI.Emulation;
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
 using GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
-using GWGUI.Emulation.Watara.Emulators.Potator.Exceptions;
+using GWGUI.Emulation.Watara.Common.Exceptions;
 using GWGUI.Emulation.Watara.Emulators.Potator.Functions;
 using GWGUI.Emulation.Watara.Emulators.Potator.Interop.Functions;
 using System.Net.Http;

@@ -3,7 +3,7 @@ using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorStorageSettings, IEmulatorInitialContentSettings, IEmulatorRuntimeCapabilities, IEmulatorInputSettings
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorInitialContentSettings, IEmulatorRuntimeCapabilities, IEmulatorInputSettings
 {
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;

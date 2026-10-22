@@ -1,3 +1,4 @@
+global using GWGUI.Emulation.Atari.Common.Exceptions;
 global using DiskImageStatus = GWGUI.Emulation.Contracts.DiskImageStatus;
 global using DiskStatus = GWGUI.Emulation.Contracts.DiskStatus;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;

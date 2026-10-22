@@ -1,8 +1,5 @@
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Sharp.Emulators.Common.Constants;
-using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
-using GWGUI.Emulation.Sharp.Emulators.Common.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;

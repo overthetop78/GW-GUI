@@ -3,7 +3,7 @@ using CoreReleaseFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreRele
 using GWGUI.Emulation;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
-using GWGUI.Emulation.Panasonic.Emulators.Opera.Exceptions;
+using GWGUI.Emulation.Panasonic.Common.Exceptions;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Functions;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Functions;
 using System.Net.Http;

@@ -5,7 +5,7 @@ using Settings = GWGUI.Emulation.Coleco.Emulators.GearColeco.Functions.SettingsD
 
 namespace GWGUI.Emulation.Coleco.Emulators.GearColeco.Factories;
 
-internal sealed class GearColecoMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettings, IEmulatorConfigurationValidator
+internal sealed class GearColecoMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettings, IEmulatorConfigurationValidation
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals() => [PeripheralCategory.None, PeripheralCategory.Standard, PeripheralCategory.SuperAction, PeripheralCategory.Roller, PeripheralCategory.Driving];
     public IReadOnlyList<InputBindingDefinition> DescribeInput(PeripheralCategory peripheral, int port) => InputSettingsFunctions.Definitions(peripheral)

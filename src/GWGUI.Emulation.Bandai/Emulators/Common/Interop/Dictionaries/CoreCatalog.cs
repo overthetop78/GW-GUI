@@ -1,6 +1,6 @@
 using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
-using GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Bandai.Common.Exceptions;
 using GWGUI.Emulation.Bandai.Common.Functions;
 using GWGUI.Emulation.Bandai.Common.Interfaces;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Factories;

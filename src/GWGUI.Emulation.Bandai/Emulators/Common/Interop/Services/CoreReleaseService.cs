@@ -1,7 +1,7 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Bandai.Emulators.Common.Constants;
 using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
-using GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Bandai.Common.Exceptions;
 using GWGUI.Emulation.Bandai.Common.Functions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interfaces;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Dictionaries;

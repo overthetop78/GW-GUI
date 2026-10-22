@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <remarks>Le contrat SDK hérité fournit les identifiants, la description, les commandes d’hôte et les opérations
 /// de recherche et d’installation. Create reçoit les services empruntés et retourne une machine Common possédant
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection,
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
     IEmulatorControllerAdapter, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorStorageSettings, IEmulatorVideoSettings
 {
@@ -64,11 +64,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <param name="configuration">Configuration à présenter sans démarrer son runtime.</param>
     /// <returns>Informations de modèle, processeur, mémoire, lecteurs et périphériques pour l’hôte.</returns>
     EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
-
-    /// <summary>Vérifie les contraintes complètes de configuration imposées par ce backend.</summary>
-    /// <param name="configuration">Configuration empruntée à valider sans modification.</param>
-    /// <remarks>Cette validation complète les contrôles généraux du module ; les refus utilisent ses diagnostics structurés.</remarks>
-    void ValidateConfiguration(MachineConfiguration configuration);
 
     /// <summary>Décrit les touches configurables propres au modèle et au cœur.</summary>
     /// <param name="configuration">Configuration déterminant le clavier et ses options.</param>

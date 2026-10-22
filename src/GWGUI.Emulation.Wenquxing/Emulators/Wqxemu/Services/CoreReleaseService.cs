@@ -3,7 +3,7 @@ using CoreReleaseFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreRele
 using GWGUI.Emulation;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Dictionaries;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Exceptions;
+using GWGUI.Emulation.Wenquxing.Common.Exceptions;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;
 using System.Net.Http;

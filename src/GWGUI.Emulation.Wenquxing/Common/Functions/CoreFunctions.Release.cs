@@ -1,7 +1,5 @@
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;
