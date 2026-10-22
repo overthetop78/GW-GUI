@@ -5915,3 +5915,24 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les opérations conservées et les appels compilés.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : compléter le contrôle existant de l’API des versions pour vérifier le même relais Releases et le même service dans les 24 Common ; exécuter les contrôles locaux d’installation puis le build Debug des 23 modules.
   - Validation : 24 contrôles ciblés réussis sur les assemblages finaux ; 24 relais Releases identiques et 24 accès ConfigurationFiles utilisés par Common ; 112 délégations retirées sans appel restant ; build Debug terminé avec le code 0, application, 23 modules et Example présents ; trois YAML inchangés.
+
+## Clavier générique d’Example : description et transmission des touches
+
+- [x] Raccorder le périphérique clavier au contrat de touches existant.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Settings.cs : réutiliser la même liste documentée de touches pour le clavier principal et le clavier sélectionné sur un port.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs : transmettre les associations du clavier de port dans Keys, conserver le clavier principal et neutraliser les boutons de ce port.
+  - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleKeyboardTests.cs : vérifier les commandes présentées, les touches issues des associations, le choix de source et la neutralisation des boutons ; conserver ces tests autonomes dans le projet local.
+
+## Axes génériques d’Example : projection vers les champs analogiques natifs
+
+- [x] Transmettre les amplitudes associées aux sticks et gâchettes au lecteur natif commun.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs : convertir les amplitudes déjà évaluées avec leur zone morte en LeftX, LeftY, RightX, RightY, LeftTrigger et RightTrigger par NormalizedAxis de l’interface existante ; conserver Controls et les sources physiques.
+  - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : vérifier les deux sticks, les deux gâchettes, les directions opposées, les zones mortes et la lecture native après projection, sans fichier ni bibliothèque externe.
+
+## Souris générique d’Example : associations du port vers le pointeur
+
+- [x] Réutiliser la projection de souris existante pour le périphérique sélectionné sur un port.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs : partager dans ce même fichier la projection des cinq boutons et des deux molettes entre MouseMappings et les associations d’un port Mouse ; conserver les déplacements physiques, les sources et la neutralisation des boutons du port.
+  - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleMouseInputTests.cs : vérifier les associations du port, leur lecture native, la conservation des mouvements et les associations principales existantes, sans ressource externe.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : vérifier par MapInput que les trois adaptateurs et les deux profils utilisent cette même projection de clavier, souris et axes.
+  - Validation : 11 tests locaux réussis, dont la projection commune aux trois adaptateurs et aux deux profils ; build Debug avec les 23 modules terminé avec le code 0 ; exécutable, manifestes et assemblages vérifiés ; Example livré identique au dernier assemblage construit ; workflows inchangés.

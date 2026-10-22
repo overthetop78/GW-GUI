@@ -19,11 +19,16 @@ internal static class InputSettingsFunctions
     /// <summary>Commandes de boutons et molettes disponibles dans le contrat de pointeur.</summary>
     private static readonly IReadOnlyList<string> MouseCommands = Array.AsReadOnly<string>(["Left", "Right", "Middle", "XButton1", "XButton2", "WheelUp", "WheelDown", "WheelLeft", "WheelRight"]);
 
+    /// <summary>Définitions communes au clavier principal et au clavier branché sur un port.</summary>
+    /// <remarks>La table native existante fournit les touches réellement représentables. Les deux chemins
+    /// utilisent ainsi les mêmes identifiants, libellés et associations, sans catalogue parallèle de touches.</remarks>
+    private static readonly IReadOnlyList<InputBindingDefinition> KeyboardCommands = Array.AsReadOnly(CommonControllerFunctions.CreateNativeKeyMap().Keys
+        .OrderBy(key => key).Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Keyboard", key.ToString(), key.ToString())).ToArray());
+
     /// <summary>Décrit toutes les touches représentables par le contrat de clavier.</summary>
     /// <param name="configuration">Configuration consultée par les mêmes interfaces que les autres adaptateurs.</param>
     /// <returns>Une action par touche définie, à l’exception de la valeur Unknown.</returns>
-    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => CommonControllerFunctions.CreateNativeKeyMap().Keys
-        .OrderBy(key => key).Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Keyboard", key.ToString(), key.ToString())).ToArray();
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => KeyboardCommands;
 
     /// <summary>Décrit les commandes génériques du périphérique sélectionné.</summary>
     /// <param name="peripheral">Catégorie choisie sur le port ; None ne possède aucune commande.</param>
@@ -31,6 +36,7 @@ internal static class InputSettingsFunctions
     internal static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory peripheral)
     {
         if (peripheral == PeripheralCategory.None) return [];
+        if (peripheral == PeripheralCategory.Keyboard) return KeyboardCommands;
         var commands = peripheral == PeripheralCategory.Mouse ? MouseCommands : ControllerCommands;
         return commands.Select(command => new InputBindingDefinition(command, "Emulation.Controller.Action." + command, string.Empty, command)).ToArray();
     }
