@@ -11,6 +11,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private MachineConfiguration _configuration;
     private readonly IEmulatorCore _core;
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly bool _supportsSavedStates;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
@@ -39,11 +40,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         _configuration = configuration;
         _core = core;
+        _inputMapper = inputMapper;
         _supportsSavedStates = supportsSavedStates;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
@@ -54,6 +56,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _mountedCommonMedia = EmulationMediaConversionFunctions.ToCommon(resolvedMedia).ToList();
         _currentDiskPath = _mediaPaths.FirstOrDefault();
         _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+    }
+
+    /// <summary>Projette les entrées physiques puis ajoute la bascule de session sans modifier ses sources.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot)
+    {
+        var mapped = _inputMapper?.MapInput(snapshot, Configuration) ?? InputSnapshotFunctions.Apply(snapshot, Configuration.Input, false, GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions.PortCount(Configuration));
+        return _controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
     }
 
     public Guid Id { get; }

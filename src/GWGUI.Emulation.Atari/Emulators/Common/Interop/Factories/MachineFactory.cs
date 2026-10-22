@@ -132,6 +132,6 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         return new Machine(machineId, configuration, core,
             Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
-            saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration));
+            saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this);
     }
 }

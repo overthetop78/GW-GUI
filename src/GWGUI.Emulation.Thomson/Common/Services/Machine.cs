@@ -9,6 +9,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private IEmulatorCore _core;
+    /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
     private readonly string _sessionDirectory;
@@ -18,7 +20,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly EmulationInputAccumulator _input = new();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
-    private InputConfiguration _inputConfiguration;
+    /// <summary>Configuration des entrées de session, mise à jour seulement lors du changement de périphérique.</summary>
+    private MachineConfiguration _inputConfiguration;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -41,14 +44,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Func<IEmulatorCore>? coreFactory = null,
         bool supportsPointerCapture = false,
         bool requiresResetRestart = false,
-        bool supportsNoContent = false
-    )
+        bool supportsNoContent = false, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
-        _inputConfiguration = configuration.Input;
+        _inputConfiguration = configuration;
         _core = core;
+        _inputMapper = inputMapper;
         _coreFactory = coreFactory;
         _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
@@ -61,6 +64,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _requiresResetRestart = requiresResetRestart;
         _supportsNoContent = supportsNoContent;
     }
+
+    /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, _inputConfiguration) ?? InputSnapshotFunctions.Apply(snapshot, _inputConfiguration.Input, _inputConfiguration.Model, _inputConfiguration.Core);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }
@@ -76,7 +82,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     bool IEmulationInput.CapturePointerOnClick => _supportsPointerCapture;
 
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration, Configuration.Model);
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration.Input, Configuration.Model);
 
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
 

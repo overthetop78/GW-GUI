@@ -9,7 +9,7 @@ namespace GWGUI.Emulation.Panasonic.Common.Services;
 
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray(), Input = _inputConfiguration };
+    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray(), Input = _inputConfiguration.Input };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
@@ -38,7 +38,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 long videoSequence = default;
                 EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
                     () => {
-                        _core.SetInput(InputSnapshotFunctions.Apply(_input.Consume(), _inputConfiguration, Configuration.Model, Configuration.Core));
+                        _core.SetInput(MapInput(_input.Consume()));
                         _core.RunFrame();
                         PublishOutputs(ref videoSequence);
                     },

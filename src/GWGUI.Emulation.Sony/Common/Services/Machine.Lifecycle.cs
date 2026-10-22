@@ -101,7 +101,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         _lastPhysicalInput = snapshot;
-        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input, _controllerPointerSwitchPressed, CommonControllerFunctions.PortCount(Configuration)));
+        _core.SetInput(MapInput(snapshot));
     }
 
     private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)

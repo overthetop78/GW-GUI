@@ -113,6 +113,6 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
         return new Machine(id, native, new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: SupportsPointer(configuration)),
             native.Media ?? [], Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+            context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this);
     }
 }

@@ -93,7 +93,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, Configuration.Core));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(MapInput(snapshot));
 
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => ValueTask.FromResult(false);
 

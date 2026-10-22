@@ -79,8 +79,7 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
                 (_, _) => true,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
-                coreFactory: CreateCore
-            );
+                coreFactory: CreateCore, inputMapper: this);
             completed = true;
             return machine;
         }

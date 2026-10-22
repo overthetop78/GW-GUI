@@ -9,6 +9,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private IEmulatorCore _core;
+    /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
     private readonly string _sessionDirectory;
@@ -18,7 +20,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly EmulationInputAccumulator _input = new();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
-    private InputConfiguration _inputConfiguration;
+    /// <summary>Configuration des entrées de session, mise à jour seulement lors du changement de périphérique.</summary>
+    private MachineConfiguration _inputConfiguration;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -39,14 +42,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Func<IAudioOutput?>? audioOutputFactory = null,
         Func<IEmulatorCore>? coreFactory = null,
         bool requiresResetRestart = false,
-        bool supportsNoContent = false
-    )
+        bool supportsNoContent = false, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
-        _inputConfiguration = configuration.Input;
+        _inputConfiguration = configuration;
         _core = core;
+        _inputMapper = inputMapper;
         _coreFactory = coreFactory;
         _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
@@ -59,6 +62,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _supportsNoContent = supportsNoContent;
     }
 
+    /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, _inputConfiguration) ?? InputSnapshotFunctions.Apply(snapshot, _inputConfiguration.Input, _inputConfiguration.Model, _inputConfiguration.Core);
+
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }
     public IEmulationLifecycle Lifecycle => this;
@@ -69,9 +75,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
 
-    bool IEmulationInput.SupportsPointerCapture => InputSettingsFunctions.SupportsPointerCapture(_inputConfiguration);
+    bool IEmulationInput.SupportsPointerCapture => InputSettingsFunctions.SupportsPointerCapture(_inputConfiguration.Input);
 
-    bool IEmulationInput.CapturePointerOnClick => InputSettingsFunctions.SupportsPointerCapture(_inputConfiguration);
+    bool IEmulationInput.CapturePointerOnClick => InputSettingsFunctions.SupportsPointerCapture(_inputConfiguration.Input);
 
     IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings { get; } = new Dictionary<string, string>();
 
@@ -141,5 +147,5 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, InputSettingsFunctions.Peripheral(_inputConfiguration, port)));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, InputSettingsFunctions.Peripheral(_inputConfiguration.Input, port)));
 }

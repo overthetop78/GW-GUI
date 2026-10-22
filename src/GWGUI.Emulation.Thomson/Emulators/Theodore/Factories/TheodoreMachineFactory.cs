@@ -81,8 +81,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
                 supportsPointerCapture: SupportsPointer(configuration),
-                supportsNoContent: true
-            );
+                supportsNoContent: true, inputMapper: this);
             completed = true;
             return machine;
         }

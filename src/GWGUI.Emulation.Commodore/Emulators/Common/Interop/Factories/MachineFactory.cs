@@ -119,7 +119,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
                 ExternalCore.ResolveConfiguredMedia(configured),
                 Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audio, context.SaveDirectoryResolver?.Invoke(configured),
-                startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)));
+                startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)), inputMapper: this);
             ownershipTransferred = true;
             return machine;
         }

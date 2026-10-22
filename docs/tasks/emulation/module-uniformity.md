@@ -5337,3 +5337,105 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre aussi le choix de périphériques sans paramètre dans le contrat de description.
   - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorInputMapper.cs : retirer le choix sans paramètre après son transfert, pour ne garder que MapInput.
   - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : vérifier que les neuf contrats de projection ne déclarent que MapInput et que les descriptions transférées restent implémentées dans les contrats Common de contrôleurs ; exécuter les tests Emulation et architecture puis le build Debug de tous les modules.
+
+- [x] Raccorder les projections Common existantes de huit modules au contrat de session.
+  - [x] Raccordement Acorn.
+    - [x] Créer src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Apple.
+    - [x] Créer src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Atari.
+    - [x] Créer src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Bandai.
+    - [x] Créer src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : conserver les associations actives dans la configuration courante et le moment initial de projection par frame lorsqu’il existe.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Panasonic.
+    - [x] Créer src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : conserver les associations actives dans la configuration courante et le moment initial de projection par frame lorsqu’il existe.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Thomson.
+    - [x] Créer src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : conserver les associations actives dans la configuration courante et le moment initial de projection par frame lorsqu’il existe.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Watara.
+    - [x] Créer src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : conserver les associations actives dans la configuration courante et le moment initial de projection par frame lorsqu’il existe.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine.
+  - [x] Raccordement Wenquxing.
+    - [x] Créer src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) existant, sans nouvelle opération.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de projection et réutiliser la fonction Common existante avec les mêmes données.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.cs : recevoir le projecteur Common de la fabrique, conserver les associations de session et réutiliser la projection initiale si aucun adaptateur explicite ne participe à la construction.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs : conserver la destination et le moment de réception des entrées, en passant par la projection Common de la machine et en préservant les changements de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : conserver les associations actives dans la configuration courante et le moment initial de projection par frame lorsqu’il existe.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : transmettre la fabrique existante comme projecteur Common de sa machine ; vérifier les signatures et raccordements puis compiler Debug avec les 23 modules et Example.
+
+- [x] Uniformiser les sept projections Common restantes en préservant la bascule souris/manette.
+  - [x] Raccordement Amstrad.
+    - [x] Créer src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Raccordement Commodore.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Raccordement Microsoft.
+    - [x] Créer src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+  - [x] Raccordement Nec.
+    - [x] Créer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Raccordement Nintendo.
+    - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Raccordement Sega.
+    - [x] Créer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Raccordement Sony.
+    - [x] Créer src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorInputMapper.cs : reprendre le contrat MapInput(snapshot, configuration) commun.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : transmettre la configuration complète au traitement Common existant, hors touche de bascule de session.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : recevoir le projecteur Common et ajouter la touche de bascule après la projection, comme dans le traitement initial.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : utiliser cette projection en conservant les entrées physiques et les séquences de bascule existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : transmettre la fabrique existante comme projecteur Common, sans changer la création du cœur.
+  - [x] Vérification des contrats raccordés.
+    - [x] Modifier tests/GWGUI.Tests/Emulation/ArchitectureValidationTests.cs : étendre la vérification existante de signature MapInput aux quinze modules raccordés ; exécuter les contrôles ciblés puis le build Debug avec les 23 modules.
+  - Validation : 65 contrôles ciblés réussis ; build Debug avec les 23 modules terminé avec le code 0 ; application, 23 assemblages de modules et Example vérifiés.

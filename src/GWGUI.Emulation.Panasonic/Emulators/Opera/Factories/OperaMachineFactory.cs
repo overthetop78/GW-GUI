@@ -80,8 +80,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
-                supportsNoContent: true
-            );
+                supportsNoContent: true, inputMapper: this);
             completed = true;
             return machine;
         }

@@ -10,6 +10,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private readonly IEmulatorCore _core;
+    /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -23,12 +25,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private bool _pauseRequested;
     private bool _disposed;
 
-    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null)
+    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
+        _inputMapper = inputMapper;
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);
@@ -37,6 +40,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             _audio.SetVolume(volumePercent / 100f);
         _saveDirectory = saveDirectory;
     }
+
+    /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, Configuration) ?? InputSnapshotFunctions.Apply(snapshot, Configuration.Input);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }

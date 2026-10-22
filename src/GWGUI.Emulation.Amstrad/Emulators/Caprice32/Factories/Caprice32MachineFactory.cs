@@ -69,6 +69,6 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapab
             new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath),
             native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+            context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this);
     }
 }

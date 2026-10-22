@@ -10,6 +10,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private IEmulatorCore _core;
+    /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
@@ -18,7 +20,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly EmulationInputAccumulator _input = new();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
-    private InputConfiguration _inputConfiguration;
+    /// <summary>Configuration des entrées de session, mise à jour seulement lors du changement de périphérique.</summary>
+    private MachineConfiguration _inputConfiguration;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -29,13 +32,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
-        _inputConfiguration = configuration.Input;
+        _inputConfiguration = configuration;
         _core = core;
+        _inputMapper = inputMapper;
         _coreFactory = coreFactory;
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
@@ -45,6 +49,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             _audio.SetVolume(volumePercent / 100f);
         _saveDirectory = saveDirectory;
     }
+
+    /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, _inputConfiguration) ?? InputSnapshotFunctions.Apply(snapshot, _inputConfiguration.Input, _inputConfiguration.Model);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }

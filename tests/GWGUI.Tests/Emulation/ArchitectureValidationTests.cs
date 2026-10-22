@@ -66,15 +66,30 @@ public sealed class ArchitectureValidationTests
     }
 
     [Theory]
+    [InlineData("Acorn")]
+    [InlineData("Amstrad")]
+    [InlineData("Apple")]
+    [InlineData("Atari")]
+    [InlineData("Bandai")]
     [InlineData("Coleco")]
+    [InlineData("Commodore")]
     [InlineData("Epoch")]
     [InlineData("Example")]
     [InlineData("Fairchild")]
     [InlineData("Mattel")]
+    [InlineData("Microsoft")]
+    [InlineData("Nec")]
+    [InlineData("Nintendo")]
+    [InlineData("Panasonic")]
     [InlineData("Philips")]
+    [InlineData("Sega")]
     [InlineData("Sharp")]
     [InlineData("Sinclair")]
     [InlineData("Snk")]
+    [InlineData("Sony")]
+    [InlineData("Thomson")]
+    [InlineData("Watara")]
+    [InlineData("Wenquxing")]
     public void InputMappersReceiveTheSameCompleteConfigurationContract(string family)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
@@ -89,8 +104,9 @@ public sealed class ArchitectureValidationTests
         Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[1].ParameterType));
         Assert.Equal("configuration", parameters[1].Name);
         var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
-        Assert.NotEmpty(implementations);
-        if (family is not ("Sinclair" or "Snk"))
+        // Le catalogue Microsoft existant ne déclare encore aucune fabrique concrète.
+        if (family != "Microsoft") Assert.NotEmpty(implementations);
+        if (family is "Coleco" or "Epoch" or "Example" or "Fairchild" or "Mattel" or "Philips" or "Sharp")
         {
             var controllers = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
             Assert.Contains(contract, controllers.GetInterfaces());

@@ -75,7 +75,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
                 displayName: definition.TransportDisplayName, errorPrefix: definition.ErrorResourcePrefix);
             audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
             var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio,
-                context.SaveDirectoryResolver?.Invoke(configuration));
+                context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this);
             ownershipTransferred = true;
             return machine;
         }

@@ -9,6 +9,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private readonly IEmulatorCore _core;
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly Action<string>? _deleteSession;
@@ -34,11 +35,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
         _core = core;
+        _inputMapper = inputMapper;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
         _deleteSession = deleteSession;
@@ -48,6 +50,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _mountedCommonMedia = EmulationMediaConversionFunctions.ToCommon(resolvedMedia).ToList();
         _currentDiskPath = _mediaPaths.FirstOrDefault();
         _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+    }
+
+    /// <summary>Projette les entrées physiques puis ajoute la bascule de session sans modifier ses sources.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot)
+    {
+        var mapped = _inputMapper?.MapInput(snapshot, Configuration) ?? InputSnapshotFunctions.Apply(snapshot, Configuration.Model, Configuration.Input, false);
+        return _controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
     }
 
     public Guid Id { get; }
