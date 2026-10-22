@@ -14,7 +14,7 @@ internal sealed class Pcsx2MachineFactory : CoreMachineFactory
     public override void ValidateConfiguration(MachineConfiguration configuration) => FileSystemFunctions.Validate(configuration);
     public override MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         Pcsx2OptionFunctions.ApplyVideoSettings(configuration, graphicsApi);
-    public override IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) =>
+    public override IReadOnlyList<ControllerType> GetUsbPeripherals(MachineConfiguration configuration, int port) =>
         port is 0 or 1 ? [ControllerType.None, ControllerType.Keyboard, ControllerType.Mouse] : [ControllerType.None];
     public override IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
     public override bool IsCpuClock(string fieldId) => false;

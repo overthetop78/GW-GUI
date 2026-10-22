@@ -5,8 +5,7 @@ using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 
 /// <summary>Choix et description des contrôleurs suivant le modèle, les options et le port du cœur.</summary>
-/// <remarks>Les noms GetControllerTypes et ControllerPortCount des contrats existants sont réunis sous
-/// GetPeripherals et GetControllerPortCount. Les surcharges ajoutent les contraintes de configuration
+/// <remarks>Les opérations de choix et de nombre de ports prennent en compte les contraintes de configuration
 /// et de port à la description par modèle ; elles conservent les mêmes catégories de périphériques.</remarks>
 internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
 {

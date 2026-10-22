@@ -11,7 +11,6 @@ using GWGUI.Tests.Emulation.EmulationContracts;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Commodore.Common.Interfaces;
-using GWGUI.Emulation.Commodore.Emulators.Common.Interfaces;
 using GWGUI.Emulation.Commodore.Common.Services;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineAdapterFailureScenarios

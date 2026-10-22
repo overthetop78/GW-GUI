@@ -24,7 +24,6 @@ global using GWGUI.Emulation.Commodore.Modules;
 global using GWGUI.Emulation.Commodore.Common.Services;
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Contracts;
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Enums;
-global using GWGUI.Emulation.Commodore.Emulators.Common.Interfaces;
 
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;

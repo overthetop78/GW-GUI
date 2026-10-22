@@ -4,7 +4,7 @@ using System.IO;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorMediaAdapter, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
 {
-    public virtual int ControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration.Model);
+    public virtual int GetControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration.Model);
     public abstract IReadOnlyList<CoreOption> CoreOptions { get; }
 
     public abstract IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration);

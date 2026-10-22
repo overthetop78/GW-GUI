@@ -16,7 +16,7 @@ using GWGUI.Emulation.Amstrad.Common.Services;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Amstrad.Common.Interfaces;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 using GWGUI.Emulation.Amstrad.Modules;
 using GWGUI.Emulation.Contracts;

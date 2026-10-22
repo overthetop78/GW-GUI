@@ -9,9 +9,9 @@ internal static class ControllerFunctions
 {
     internal static int PortCount(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ModelCatalog.Get(configuration.Model).ControllerPortCount;
     internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration) => WithCompatibleDevices(configuration,
-        new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerTypes(configuration) : []);
+        new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetPeripherals(configuration) : []);
     internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration, int port) => WithCompatibleDevices(configuration,
-        new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerTypes(configuration, port) : []);
+        new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetPeripherals(configuration, port) : []);
 
     private static IReadOnlyList<ControllerType> WithCompatibleDevices(MachineConfiguration configuration, IReadOnlyList<ControllerType> types) =>
         configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 && types.Contains(ControllerType.Joystick)

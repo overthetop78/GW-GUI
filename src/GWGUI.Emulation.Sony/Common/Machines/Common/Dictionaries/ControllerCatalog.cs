@@ -25,7 +25,7 @@ public static class ControllerCatalog
     }
 
     private static IReadOnlyList<ControllerType> UsbTypes(MachineConfiguration configuration, int port) =>
-        (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetUsbControllerTypes(configuration,
+        (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetUsbPeripherals(configuration,
             configuration.EmulatorId == "pcee2" ? port : port is 8 or 9 ? port - 8 : port)
             ?? [ControllerType.None];
 

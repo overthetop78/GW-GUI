@@ -14,7 +14,7 @@ public sealed class EmulationArchitectureTests
     public void AtariHostUsesTheSharedCoreContractWithoutNativeApiTypes()
     {
         var assembly = typeof(AtariEmulationModule).Assembly;
-        var contract = assembly.GetType("GWGUI.Emulation.Atari.Emulators.Common.Interfaces.IEmulatorCore");
+        var contract = assembly.GetType("GWGUI.Emulation.Atari.Common.Interfaces.IEmulatorCore");
         Assert.NotNull(contract);
         var host = assembly.GetType("GWGUI.Emulation.Atari.Common.Services.CoreHost");
         var factory = host!.GetMethod("Run", BindingFlags.Static | BindingFlags.NonPublic)!.GetParameters().Last().ParameterType;

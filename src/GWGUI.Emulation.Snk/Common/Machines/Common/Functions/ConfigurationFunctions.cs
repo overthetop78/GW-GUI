@@ -17,7 +17,7 @@ internal static partial class ConfigurationFunctions
     };
     internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || EmulatorCatalog.Get(core).Models.Contains(model));
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.NeoGeoPocket ? ControllerConstants.PocketPortCount : ControllerConstants.NeoGeoPortCount;
-    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorControllerAdapter adapter ? adapter.ControllerPortCount(configuration) : ControllerPortCount(configuration.Model);
+    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ControllerPortCount(configuration.Model);
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) switch
     {
         MachineFamily.NeoGeoCartridge => [EmulationMediaSlot.Cartridge0, EmulationMediaSlot.MemoryCard0],

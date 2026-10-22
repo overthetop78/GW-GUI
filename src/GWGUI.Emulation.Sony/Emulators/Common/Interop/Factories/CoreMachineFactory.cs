@@ -57,9 +57,9 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public virtual AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
     public virtual MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         GraphicsSettingsFunctions.Configure(configuration with { GraphicsApi = graphicsApi }, CoreDefinition.Options);
-    public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
-    public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
-    public virtual IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) => [ControllerType.None];
+    public virtual IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
+    public virtual IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
+    public virtual IReadOnlyList<ControllerType> GetUsbPeripherals(MachineConfiguration configuration, int port) => [ControllerType.None];
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;

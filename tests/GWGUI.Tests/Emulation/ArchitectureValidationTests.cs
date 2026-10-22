@@ -13,6 +13,59 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Theory]
+    [InlineData("Example")]
+    [InlineData("Snk")]
+    [InlineData("Sony")]
+    public void ControllerAdaptersUseTheSamePortAndPeripheralOperationNames(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+        var count = contract.GetMethod("GetControllerPortCount")!;
+        Assert.NotNull(count);
+        Assert.Equal(typeof(int), count.ReturnType);
+        Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(Assert.Single(count.GetParameters()).ParameterType));
+        Assert.DoesNotContain(contract.GetMethods(), method => method.Name is "ControllerPortCount" or "GetControllerTypes" or "GetUsbControllerTypes");
+        if (family != "Snk")
+        {
+            Assert.Equal(2, contract.GetMethods().Count(method => method.Name == "GetPeripherals"));
+            var usb = contract.GetMethod("GetUsbPeripherals")!;
+            Assert.NotNull(usb);
+            Assert.Equal(typeof(int), usb.GetParameters()[1].ParameterType);
+        }
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+        {
+            Assert.DoesNotContain(implementation.GetMethods(), method => method.Name is "ControllerPortCount" or "GetControllerTypes" or "GetUsbControllerTypes");
+            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
+        }
+    }
+
+    [Fact]
+    public void EveryModulePlacesItsCoreContractInCommon()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            Assert.True(core.IsInterface);
+            Assert.False(core.IsVisible);
+            Assert.Null(assembly.GetType(root + ".Emulators.Common.Interfaces.IEmulatorCore"));
+            Assert.Contains(core.GetInterfaces(), contract => contract.IsGenericType && contract.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && core.IsAssignableFrom(type)).ToArray();
+            Assert.True(implementations.Length > 0 || root == "GWGUI.Emulation.Microsoft", root);
+            foreach (var implementation in implementations)
+                Assert.All(implementation.GetInterfaceMap(core).TargetMethods, method => Assert.False(method.IsAbstract));
+        }
+    }
+
+    [Theory]
     [InlineData("Coleco")]
     [InlineData("Epoch")]
     [InlineData("Example")]

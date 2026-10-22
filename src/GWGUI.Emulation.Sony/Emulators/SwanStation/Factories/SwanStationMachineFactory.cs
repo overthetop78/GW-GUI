@@ -8,8 +8,8 @@ namespace GWGUI.Emulation.Sony.Emulators.SwanStation.Factories;
 internal sealed class SwanStationMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
-    public override IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) =>
-        base.GetControllerTypes(configuration, port).Where(type =>
+    public override IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration, int port) =>
+        base.GetPeripherals(configuration, port).Where(type =>
             (type != ControllerType.GunCon || port < CoreConstants.LightGunPortCount)
             && (type is not (ControllerType.NeGcon or ControllerType.NeGconRumble)
                 || port < CoreConstants.SteeringControllerPortCount)).ToArray();

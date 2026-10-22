@@ -25,7 +25,6 @@ global using GWGUI.Emulation.Amstrad.Emulators.Common.Enums;
 global using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 global using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 global using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;
-global using GWGUI.Emulation.Amstrad.Emulators.Common.Interfaces;
 global using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 global using GWGUI.Emulation.Amstrad.Common.Constants;
 global using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;

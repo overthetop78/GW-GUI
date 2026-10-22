@@ -14,7 +14,7 @@ internal sealed class GeolithMachineFactory() : LibretroMachineFactory(EmulatorC
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
 
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
-    public override int ControllerPortCount(MachineConfiguration configuration) => NativeOptions.ControllerPorts(configuration);
+    public override int GetControllerPortCount(MachineConfiguration configuration) => NativeOptions.ControllerPorts(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles(model);
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => NativeFirmware.Required(model, category);
     public override ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => NativeFirmware.Inspect(path, configuration.Model, cancellationToken);

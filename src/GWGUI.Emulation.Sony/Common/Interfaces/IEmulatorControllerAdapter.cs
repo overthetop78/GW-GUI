@@ -2,9 +2,9 @@ namespace GWGUI.Emulation.Sony.Common.Interfaces;
 
 internal interface IEmulatorControllerAdapter
 {
-    IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration);
-    IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
-    IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) => [ControllerType.None];
+    IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration);
+    IReadOnlyList<ControllerType> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
+    IReadOnlyList<ControllerType> GetUsbPeripherals(MachineConfiguration configuration, int port) => [ControllerType.None];
     int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
