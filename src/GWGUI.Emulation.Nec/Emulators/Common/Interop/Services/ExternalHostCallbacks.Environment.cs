@@ -38,7 +38,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                 case ExternalCoreApiConstants.GetVariable:
                     return ReturnOption(data);
                 case ExternalCoreApiConstants.GetVariableUpdate:
-                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
+                    _ = CommonCoreHostFunctions.OptionProcessing.GetAndClearUpdated(data, ref _optionsUpdated);
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptionsDisplay:
                     return ApplyOptionVisibility(data);
@@ -173,17 +173,17 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
         return true;
     }
 
-    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));
+    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(CommonCoreHostFunctions.OptionProcessing.ReadLegacy(data, _options, _optionVisibility));
 
     private void RegisterVersionTwoOptions(nint data)
     {
-        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)
+        if (CommonCoreHostFunctions.OptionProcessing.ReadVersionTwo(data, _options, _optionVisibility) is { } options)
             OptionCatalog = AdaptOptions(options);
     }
 
     private bool ApplyOptionVisibility(nint data)
     {
-        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,
+        if (!CommonCoreHostFunctions.OptionProcessing.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,
                 static option => option.Key, static (option, visible) => option with { IsVisible = visible },
                 out var catalog)) return false;
         OptionCatalog = catalog;
@@ -192,7 +192,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     private bool CaptureOptionsDisplayCallback(nint data)
     {
-        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;
+        if (!CommonCoreHostFunctions.OptionProcessing.TryGetDisplayCallback(data, out var callback)) return false;
         _updateOptionsDisplay = callback;
         return true;
     }
@@ -202,10 +202,10 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
             option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();
 
     private bool ReturnOption(nint data)
-    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value));
+    => CommonCoreHostFunctions.OptionProcessing.ReturnNativeValue(data, _options, (_, value) => NativeString(value));
 
     internal void ValidateConfiguredOptions() =>
-        EmulationCoreOptionFunctions.ValidateConfiguredValues(
+        CommonCoreHostFunctions.OptionProcessing.ValidateConfiguredValues(
             _configuredOptionKeys, _options, OptionCatalog,
             static option => option.Key, static option => option.Values, static value => value.Value,
             (key, value) => throw new InvalidDataException(Error("InvalidOptionValue", value, key)));

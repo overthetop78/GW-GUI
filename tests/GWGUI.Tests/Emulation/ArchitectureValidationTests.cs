@@ -170,6 +170,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.HostProtocol), typeof(IEmulationHostProtocol))]
     [InlineData(nameof(EmulationSdk.CoreReleases), typeof(IEmulationCoreReleases))]
     [InlineData(nameof(EmulationSdk.CoreDiagnostics), typeof(IEmulationCoreDiagnostics))]
+    [InlineData(nameof(EmulationSdk.OptionProcessing), typeof(IEmulationCoreOptionProcessing))]
     [InlineData(nameof(EmulationSdk.NativeResources), typeof(IEmulationNativeResources))]
     public void SharedProcessingApisExposePublicInterfacesAndInternalImplementations(string serviceName, Type contract)
     {
@@ -262,11 +263,26 @@ public sealed class ArchitectureValidationTests
     [InlineData("ExternalCoreKeyboardFunctions")]
     [InlineData("EmulationHostProtocolFunctions")]
     [InlineData("EmulationChildProcessLifetime")]
+    [InlineData("EmulationCoreOptionFunctions")]
     public void SharedAlgorithmsRemainInternalBehindThePublicProcessingContract(string implementation)
     {
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
         Assert.False(owner.IsVisible);
         Assert.Empty(owner.GetMethods(BindingFlags.Public | BindingFlags.Static));
+    }
+
+    [Fact]
+    public void OptionProcessingRetainsEveryInternalOperationWithItsSignatureAndDefaults()
+    {
+        var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions.EmulationCoreOptionFunctions", throwOnError: true)!;
+        var algorithms = owner.GetMethods(BindingFlags.Static | BindingFlags.NonPublic).Where(method => method.IsAssembly).ToArray();
+        var api = typeof(IEmulationCoreOptionProcessing).GetMethods();
+        Assert.Equal(24, algorithms.Length);
+        Assert.Equal(algorithms.Length, api.Length);
+        static string Signature(MethodInfo method) => method.Name + "`" + method.GetGenericArguments().Length + "(" +
+            string.Join(",", method.GetParameters().Select(parameter => (parameter.IsOut ? "out " : string.Empty) + parameter.ParameterType + " " + parameter.Name +
+                (parameter.HasDefaultValue ? "=" + (parameter.DefaultValue?.ToString() ?? "null") : string.Empty))) + "):" + method.ReturnType;
+        Assert.Equal(algorithms.Select(Signature).Order(StringComparer.Ordinal), api.Select(Signature).Order(StringComparer.Ordinal));
     }
 
     [Fact]

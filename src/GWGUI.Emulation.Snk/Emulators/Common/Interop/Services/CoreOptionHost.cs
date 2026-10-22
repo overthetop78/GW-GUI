@@ -36,7 +36,7 @@ internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
     public void RegisterVersionOne(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
 
     public void RegisterVersionOneInternational(nint data)
-    => ReplaceCatalog(EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption>(data,
+    => ReplaceCatalog(CommonCoreHostFunctions.OptionProcessing.CopyInternationalDefinitions<CoreOption>(data,
         CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
         CoreOptionFunctions.CopyLegacyDefinitions, CoreOptionFunctions.MergeLocalizedDefinitions), []);
 
@@ -48,7 +48,7 @@ internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 
     public void RegisterVersionTwoInternational(nint data)
     {
-        var options = EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption, CoreOptionCategory>(data,
+        var options = CommonCoreHostFunctions.OptionProcessing.CopyInternationalDefinitions<CoreOption, CoreOptionCategory>(data,
             CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
             CoreOptionFunctions.CopyVersionTwoDefinitions, CoreOptionFunctions.MergeLocalizedDefinitions,
             CoreOptionFunctions.MergeLocalizedCategories, out var categories);

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using GWGUI.Emulation;
@@ -68,7 +69,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var slots = _engine.Adapter(current).GetFirmwareSlots(current);
         var firmwareFields = slots.Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>());
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => firmwareFields.Contains(optionKey) || optionKey is StorageDirectorySettings.HardDiskDirectory or MachineSettingsConstants.AudioEnabled
                 or MachineSettingsConstants.AudioOutput
                 or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation);

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Panasonic.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
@@ -49,9 +50,9 @@ public sealed class PanasonicEmulationModule : IEmulationModule, IEmulationEmula
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
-        var editable = GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
+        var editable = CommonCoreHostFunctions.OptionProcessing.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => !editable.Contains(optionKey) || optionKey == SettingsConstants.AudioEnabled || FirmwareFunctions.Requirements(current).Any(requirement => requirement.FieldId == optionKey));
 
         var result = current with

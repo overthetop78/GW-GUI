@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Collections.ObjectModel;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -21,7 +22,7 @@ public sealed class SettingsOptionApplicationTests
         };
         var before = changes.ToArray();
 
-        EmulationCoreOptionFunctions.ApplyValues(options, changes, key => key == "excluded");
+        EmulationSdk.OptionProcessing.ApplyValues(options, changes, key => key == "excluded");
 
         Assert.Equal("original", options["keep"]);
         Assert.Equal("new", options["replace"]);
@@ -42,7 +43,7 @@ public sealed class SettingsOptionApplicationTests
         var comparer = ignoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
         var options = new Dictionary<string, string>(comparer) { ["Option"] = "old" };
 
-        EmulationCoreOptionFunctions.ApplyValues(options, new Dictionary<string, string?> { ["option"] = "new" });
+        EmulationSdk.OptionProcessing.ApplyValues(options, new Dictionary<string, string?> { ["option"] = "new" });
 
         Assert.Same(comparer, options.Comparer);
         Assert.Equal(ignoreCase ? 1 : 2, options.Count);
@@ -58,7 +59,7 @@ public sealed class SettingsOptionApplicationTests
             { ["a"] = "new", ["b"] = null, ["c"] = "last" };
         var observed = new List<(string Key, bool HasA, bool HasB)>();
 
-        EmulationCoreOptionFunctions.ApplyValues(options, changes, key =>
+        EmulationSdk.OptionProcessing.ApplyValues(options, changes, key =>
         {
             observed.Add((key, options.ContainsKey("a"), options.ContainsKey("b")));
             return false;
@@ -78,7 +79,7 @@ public sealed class SettingsOptionApplicationTests
         var visited = new List<string>();
 
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreOptionFunctions.ApplyValues(options, changes, key =>
+            EmulationSdk.OptionProcessing.ApplyValues(options, changes, key =>
             {
                 visited.Add(key);
                 if (key == "b") throw expected;
@@ -97,7 +98,7 @@ public sealed class SettingsOptionApplicationTests
     {
         var options = new ReadOnlyDictionary<string, string>(new Dictionary<string, string> { ["keep"] = "old" });
 
-        EmulationCoreOptionFunctions.ApplyValues(options,
+        EmulationSdk.OptionProcessing.ApplyValues(options,
             new Dictionary<string, string?> { ["keep"] = null, ["new"] = "value" }, _ => true);
 
         Assert.Equal("old", Assert.Single(options).Value);
@@ -108,7 +109,7 @@ public sealed class SettingsOptionApplicationTests
     {
         var options = new Dictionary<string, string> { ["keep"] = "old" };
 
-        EmulationCoreOptionFunctions.ApplyValues(options, new Dictionary<string, string?>(),
+        EmulationSdk.OptionProcessing.ApplyValues(options, new Dictionary<string, string?>(),
             _ => throw new InvalidOperationException("unexpected predicate"));
 
         Assert.Equal("old", Assert.Single(options).Value);
@@ -131,7 +132,7 @@ public sealed class SettingsOptionApplicationTests
                 IsVisible: false)
         ];
 
-        var actual = EmulationCoreOptionFunctions.EditableFieldIds(blocks);
+        var actual = EmulationSdk.OptionProcessing.EditableFieldIds(blocks);
 
         Assert.Equal(5, actual.Count);
         Assert.True(actual.SetEquals(["same", "A", "a", "hidden-block-field", "directory-action"]));
@@ -148,7 +149,7 @@ public sealed class SettingsOptionApplicationTests
             yield return new("block", EmulationMachineTab.General, "title", [Field("one")]);
         }
 
-        var actual = EmulationCoreOptionFunctions.EditableFieldIds(Blocks());
+        var actual = EmulationSdk.OptionProcessing.EditableFieldIds(Blocks());
 
         Assert.Equal(1, enumerations);
         Assert.Equal("one", Assert.Single(actual));

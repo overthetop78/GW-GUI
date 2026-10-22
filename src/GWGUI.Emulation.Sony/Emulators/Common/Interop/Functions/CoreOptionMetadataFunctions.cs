@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Functions;
 
@@ -7,11 +8,11 @@ internal static class CoreOptionMetadataFunctions
 {
     internal static IReadOnlyList<CoreOption> ReadLegacy(nint data, Dictionary<string, string> values,
         IReadOnlyDictionary<string, bool> visibility) => WithCurrentValues(Adapt(
-            GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ReadLegacy(data, values, visibility)), values);
+            CommonCoreHostFunctions.OptionProcessing.ReadLegacy(data, values, visibility)), values);
 
     internal static IReadOnlyList<CoreOption>? ReadVersionTwo(nint data, Dictionary<string, string> values,
         IReadOnlyDictionary<string, bool> visibility) =>
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ReadVersionTwo(data, values, visibility) is { } options
+        CommonCoreHostFunctions.OptionProcessing.ReadVersionTwo(data, values, visibility) is { } options
             ? WithCurrentValues(Adapt(options), values) : null;
 
     private static IReadOnlyList<CoreOption> Adapt(IReadOnlyList<EmulationOption> options) => options.Select(option =>

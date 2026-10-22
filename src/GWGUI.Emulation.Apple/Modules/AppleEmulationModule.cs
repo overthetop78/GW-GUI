@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Apple.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
@@ -60,9 +61,9 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
-        var editable = GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
+        var editable = CommonCoreHostFunctions.OptionProcessing.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => !editable.Contains(optionKey) || optionKey is SettingsConstants.AudioEnabled
                 or SettingsConstants.SharedFolder or SettingsConstants.FloppyFolder
                 or SettingsConstants.HardDiskFolder or SettingsConstants.Firmware

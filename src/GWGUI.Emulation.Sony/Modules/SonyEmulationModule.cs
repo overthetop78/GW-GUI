@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Sony.Modules;
@@ -83,7 +84,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         if (sony.Model == ModelConstants.Psp && string.IsNullOrWhiteSpace(options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0)))
             options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = _memoryStickDirectory;
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => firmwareFields.Contains(optionKey) || optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));

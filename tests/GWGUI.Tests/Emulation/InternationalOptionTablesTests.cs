@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 
@@ -8,7 +9,7 @@ public sealed class InternationalOptionTablesTests
     [Fact]
     public void NullLegacyTableDoesNotReadOrMerge()
     {
-        var options = EmulationCoreOptionFunctions.CopyInternationalDefinitions<string>(0, 0, 1,
+        var options = EmulationSdk.OptionProcessing.CopyInternationalDefinitions<string>(0, 0, 1,
             _ => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException());
         Assert.Empty(options);
     }
@@ -18,7 +19,7 @@ public sealed class InternationalOptionTablesTests
     {
         static IReadOnlyList<string> Read(nint pointer, out IReadOnlyList<string> categories)
             => throw new InvalidOperationException();
-        var options = EmulationCoreOptionFunctions.CopyInternationalDefinitions<string, string>(0, 0, 1,
+        var options = EmulationSdk.OptionProcessing.CopyInternationalDefinitions<string, string>(0, 0, 1,
             Read, (_, _) => throw new InvalidOperationException(),
             (_, _) => throw new InvalidOperationException(), out var categories);
         Assert.Empty(options);
@@ -40,7 +41,7 @@ public sealed class InternationalOptionTablesTests
             IReadOnlyList<string> english = ["english"];
             IReadOnlyList<string> local = noLocalTable ? [] : ["local"];
             IReadOnlyList<string> merged = ["merged"];
-            var result = EmulationCoreOptionFunctions.CopyInternationalDefinitions<string>(table, 0, 1,
+            var result = EmulationSdk.OptionProcessing.CopyInternationalDefinitions<string>(table, 0, 1,
                 pointer =>
                 {
                     reads.Add(pointer);
@@ -91,7 +92,7 @@ public sealed class InternationalOptionTablesTests
                 categories = localCategories;
                 return localOptions;
             }
-            var result = EmulationCoreOptionFunctions.CopyInternationalDefinitions<string, string>(table, 0, 1,
+            var result = EmulationSdk.OptionProcessing.CopyInternationalDefinitions<string, string>(table, 0, 1,
                 Read, (first, second) =>
                 {
                     events.Add("options");

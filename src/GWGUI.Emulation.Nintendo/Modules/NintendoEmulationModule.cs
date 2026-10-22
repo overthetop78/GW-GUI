@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Modules;
@@ -74,7 +75,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
     {
         var nintendo = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(nintendo.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey =>
             {
                 if (_engine.Adapter(nintendo).GetFirmwareSlots(nintendo).Any(slot => slot.FieldId == optionKey)) return true;

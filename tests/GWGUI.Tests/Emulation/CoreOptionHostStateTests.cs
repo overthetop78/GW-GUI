@@ -20,18 +20,18 @@ public sealed class CoreOptionHostStateTests
     public void NullUpdateQueryPreservesTheFlagUntilARealDestinationConsumesIt(int initial)
     {
         var updated = initial;
-        Assert.False(EmulationCoreOptionFunctions.GetAndClearUpdated(nint.Zero, ref updated));
+        Assert.False(EmulationSdk.OptionProcessing.GetAndClearUpdated(nint.Zero, ref updated));
         Assert.Equal(initial, updated);
 
         WithByte(pointer =>
         {
             Marshal.WriteByte(pointer, 0xa5);
-            Assert.True(EmulationCoreOptionFunctions.GetAndClearUpdated(pointer, ref updated));
+            Assert.True(EmulationSdk.OptionProcessing.GetAndClearUpdated(pointer, ref updated));
             Assert.Equal(initial == 0 ? 0 : 1, Marshal.ReadByte(pointer));
             Assert.Equal(0, updated);
 
             Marshal.WriteByte(pointer, 0xa5);
-            Assert.True(EmulationCoreOptionFunctions.GetAndClearUpdated(pointer, ref updated));
+            Assert.True(EmulationSdk.OptionProcessing.GetAndClearUpdated(pointer, ref updated));
             Assert.Equal(0, Marshal.ReadByte(pointer));
             Assert.Equal(0, updated);
         });

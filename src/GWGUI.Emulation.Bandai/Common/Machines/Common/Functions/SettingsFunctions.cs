@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
@@ -29,7 +30,7 @@ internal static class SettingsDescriptionFunctions
     }
     internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
-    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, blockId,
+    => CommonCoreHostFunctions.OptionProcessing.CreateSettingsFieldWithToggle(option.Key, tab, blockId,
         () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
         choice => new EmulationSettingsChoice(
                 choice.Value,

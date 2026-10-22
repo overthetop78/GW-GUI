@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Microsoft.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Microsoft.Common.Constants;
 using GWGUI.Emulation.Microsoft.Common.Dictionaries;
 using GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts;
@@ -79,7 +80,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values);
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values);
         return current with { Options = options };
     }
 

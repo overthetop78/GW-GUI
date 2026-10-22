@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Epoch.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
@@ -31,7 +32,7 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, block,
+    => CommonCoreHostFunctions.OptionProcessing.CreateSettingsFieldWithToggle(option.Key, tab, block,
         () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,
         choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, InvariantChoice(choice)),
         () => option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled"),

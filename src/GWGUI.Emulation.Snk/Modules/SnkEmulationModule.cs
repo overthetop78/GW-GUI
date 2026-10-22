@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
@@ -61,9 +62,9 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
-        var editable = GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
+        var editable = CommonCoreHostFunctions.OptionProcessing.EditableFieldIds(SettingsDescriptionFunctions.Create(current));
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => !editable.Contains(optionKey) || optionKey is SettingsConstants.AudioEnabled or SettingsConstants.InitialContent || FirmwareFunctions.IsField(optionKey));
 
         var result = current with
@@ -116,7 +117,7 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
         if (!adapter.Definition.MachineIds.Contains(current.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
         var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
-        var options = EmulationCoreOptionFunctions.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), current.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
+        var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), current.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
         var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
         var result = current with
         {

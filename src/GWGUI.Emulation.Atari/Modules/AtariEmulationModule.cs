@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.IO;
 using GWGUI.Emulation;
 
@@ -81,7 +82,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (configuration is not MachineConfiguration atari)
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(atari.Options);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey => optionKey is SettingsConstants.AudioEnabled
                 or SettingsConstants.SystemFirmware or SettingsConstants.BasicFirmware
                 or SettingsConstants.XegsFirmware or SettingsConstants.HardDiskFolder

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
@@ -60,7 +61,7 @@ internal static class SettingsDescriptionFunctions
             isCompactCpu: true);
     }
     private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    => EmulationCoreOptionFunctions.CreateSettingsField(option.Key, tab, block,
+    => CommonCoreHostFunctions.OptionProcessing.CreateSettingsField(option.Key, tab, block,
         () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
         choice => new EmulationSettingsChoice(
                 choice.Value,

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
@@ -37,7 +38,7 @@ internal static partial class SettingsDescriptionFunctions
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
             choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")), choice.InvariantDisplayValue))
             .ToArray();
-        return EmulationCoreOptionFunctions.CreatePreparedSettingsField(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, choices,
+        return CommonCoreHostFunctions.OptionProcessing.CreatePreparedSettingsField(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, choices,
             () => value, () => null, () => EmulationSettingConstants.Enabled, () => EmulationSettingConstants.Disabled);
     }
 

@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sharp.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
@@ -7,7 +8,7 @@ internal static class SettingsDescriptionFunctions
         Func<MachineModel, IReadOnlyDictionary<string, string>> defaults)
     {
         if (configuration is null) return options;
-        return EmulationCoreOptionFunctions.WithDefaults(options, defaults(configuration.Model), configuration.Options,
+        return CommonCoreHostFunctions.OptionProcessing.WithDefaults(options, defaults(configuration.Model), configuration.Options,
             static option => option.Key, static option => option.DefaultValue,
             (option, defaultValue, currentValue) => option with
             {
@@ -16,7 +17,7 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static IReadOnlyList<EmulationSettingsBlock> NativeBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) =>
-        EmulationCoreOptionFunctions.CreateSettingsBlocks(options, static option => option.IsVisible,
+        CommonCoreHostFunctions.OptionProcessing.CreateSettingsBlocks(options, static option => option.IsVisible,
             static option => option.Category, NativeResource,
             (option, tab, resource) => Native(configuration, option, tab, resource));
 
@@ -88,7 +89,7 @@ internal static class SettingsDescriptionFunctions
             isCompactCpu: hardware.CpuFrequencyHz is null);
     }
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    => EmulationCoreOptionFunctions.CreateSettingsField(option.Key, tab, block,
+    => CommonCoreHostFunctions.OptionProcessing.CreateSettingsField(option.Key, tab, block,
         () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,
         choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue),
         choice => choice.ResourceKey == SettingsChoiceConstants.Enabled,

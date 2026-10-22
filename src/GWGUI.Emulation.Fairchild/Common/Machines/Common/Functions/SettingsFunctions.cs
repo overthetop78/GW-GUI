@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Fairchild.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 
 namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
@@ -31,7 +32,7 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, block,
+    => CommonCoreHostFunctions.OptionProcessing.CreateSettingsFieldWithToggle(option.Key, tab, block,
         () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
         choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")),
         () => option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled"),

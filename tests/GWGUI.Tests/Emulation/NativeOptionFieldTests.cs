@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
@@ -74,7 +75,7 @@ public sealed class NativeOptionFieldTests
         var expected = new InvalidOperationException("missing resource");
         var touched = false;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreOptionFunctions.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
+            EmulationSdk.OptionProcessing.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
                 () => throw expected, new[] { "on", "off" },
                 value => { touched = true; return new(value, value); },
                 value => { touched = true; return true; },
@@ -91,7 +92,7 @@ public sealed class NativeOptionFieldTests
         var expected = new InvalidOperationException("invalid choice resource");
         var readConfiguration = false;
         var actual = Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreOptionFunctions.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
+            EmulationSdk.OptionProcessing.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
                 () => "Native.Mode", new[] { "on", "off" },
                 value => throw expected, value => value == "on", value => value == "off", value => value,
                 () => { readConfiguration = true; throw new InvalidOperationException("configuration read"); },
@@ -104,7 +105,7 @@ public sealed class NativeOptionFieldTests
     public void ExistingFieldPathKeepsNativeValueReadsAndConstructorCallbackOrder()
     {
         var events = new List<string>();
-        var field = EmulationCoreOptionFunctions.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
+        var field = EmulationSdk.OptionProcessing.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
             () => { events.Add("resource"); return "Native.Mode"; }, new[] { "on", "off" },
             value => { events.Add("choice " + value); return new(value, value); },
             value => { events.Add("enabled " + value); return value == "on"; },
@@ -126,7 +127,7 @@ public sealed class NativeOptionFieldTests
         var events = new List<string>();
         var values = new[] { "enabled", "enabled" };
         Assert.Throws<InvalidOperationException>(() =>
-            EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle("mode", EmulationMachineTab.Video, "video",
+            EmulationSdk.OptionProcessing.CreateSettingsFieldWithToggle("mode", EmulationMachineTab.Video, "video",
                 () => { events.Add("resource"); return "Native.Mode"; }, values,
                 value => { events.Add("choice " + value); return new(value, value); },
                 () => { events.Add("toggle"); return true; },

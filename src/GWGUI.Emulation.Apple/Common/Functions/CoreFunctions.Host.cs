@@ -13,6 +13,16 @@ namespace GWGUI.Emulation.Apple.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit les traitements communs d’options natives et de leurs champs de réglage.</summary>
+    /// <value>Service emprunté, sans catalogue ni ressource de session conservés dans cet accès Common.</value>
+    /// <remarks>Le module garde ses descriptions, clés, valeurs et choix de présentation. Il fournit leurs
+    /// lecteurs et projections au contrat commun pour reprendre les mêmes copies et validations dans le SDK.
+    /// Les tables natives restent empruntées pendant les copies ; les dictionnaires mutables et paramètres
+    /// ref/out conservent leurs effets sur les données du module. Un callback natif retourné reste emprunté
+    /// au code du cœur : son propriétaire cesse de l’appeler avant de décharger ce code.
+    /// Cet accès porte le même nom dans chaque Common et ne dépend d’aucune identité de module connue du SDK.</remarks>
+    internal static IEmulationCoreOptionProcessing OptionProcessing => EmulationSdk.OptionProcessing;
+
     /// <summary>Fournit les allocations natives communes sous leur contrat public.</summary>
     /// <value>Service emprunté du SDK ; il ne possède aucune ressource de session et ne doit pas être détruit.</value>
     /// <remarks>Les adaptateurs demandent ici leurs chaînes et descripteurs de contenu, au lieu de construire

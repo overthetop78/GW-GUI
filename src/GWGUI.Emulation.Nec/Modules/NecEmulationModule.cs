@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
@@ -76,7 +77,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var necConfiguration = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(necConfiguration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         var firmwareSlots = FirmwareFunctions.Slots(necConfiguration.EmulatorId);
-        GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ApplyValues(options, values,
+        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
             optionKey =>
             {
                 if (firmwareSlots.Any(slot => slot.FieldId == optionKey)) return true;

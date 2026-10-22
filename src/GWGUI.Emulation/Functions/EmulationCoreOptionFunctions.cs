@@ -5,7 +5,7 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Emulation.Functions;
 
-public static partial class EmulationCoreOptionFunctions
+internal static partial class EmulationCoreOptionFunctions
 {
     internal static HashSet<string> EditableFieldIds(IEnumerable<EmulationSettingsBlock> blocks) =>
         blocks.SelectMany(block => block.Fields)
@@ -114,7 +114,7 @@ public static partial class EmulationCoreOptionFunctions
     internal const int MaximumCoreOptionDefinitions = 1024;
     internal const int MaximumCoreOptionValues = 128;
 
-    public static IReadOnlyList<EmulationOption> ReadLegacy(nint data, IDictionary<string, string> currentValues,
+    internal static IReadOnlyList<EmulationOption> ReadLegacy(nint data, IDictionary<string, string> currentValues,
         IReadOnlyDictionary<string, bool> visibility)
     {
         var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
@@ -137,11 +137,11 @@ public static partial class EmulationCoreOptionFunctions
         return catalog;
     }
 
-    public static IReadOnlyList<EmulationOption>? ReadVersionTwo(nint options, IDictionary<string, string> currentValues,
+    internal static IReadOnlyList<EmulationOption>? ReadVersionTwo(nint options, IDictionary<string, string> currentValues,
         IReadOnlyDictionary<string, bool> visibility) => options == 0 ? null
             : ReadSimpleDefinitions(Marshal.ReadIntPtr(options, IntPtr.Size), true, currentValues, visibility);
 
-    public static IReadOnlyList<EmulationOption>? ReadVersionOne(nint definitions, IDictionary<string, string> currentValues,
+    internal static IReadOnlyList<EmulationOption>? ReadVersionOne(nint definitions, IDictionary<string, string> currentValues,
         IReadOnlyDictionary<string, bool> visibility) => definitions == 0 ? null
             : ReadSimpleDefinitions(definitions, false, currentValues, visibility);
 

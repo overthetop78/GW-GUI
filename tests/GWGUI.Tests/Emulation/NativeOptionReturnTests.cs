@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
@@ -34,8 +35,8 @@ public sealed class NativeOptionReturnTests
                 return 1234;
             }
             var result = allowUnavailable
-                ? EmulationCoreOptionFunctions.ReturnNativeValue(data, values, CreateValue)
-                : EmulationCoreOptionFunctions.ReturnNativeValue(data, values, CreateValue, unavailableResult: false);
+                ? EmulationSdk.OptionProcessing.ReturnNativeValue(data, values, CreateValue)
+                : EmulationSdk.OptionProcessing.ReturnNativeValue(data, values, CreateValue, unavailableResult: false);
             Assert.Equal(known || allowUnavailable, result);
             Assert.Equal(known ? 1 : 0, calls);
             var reply = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
@@ -52,8 +53,8 @@ public sealed class NativeOptionReturnTests
         var values = new Dictionary<string, string>();
         nint UnexpectedValue(string key, string value) => throw new InvalidOperationException("factory must not run");
         var result = allowUnavailable
-            ? EmulationCoreOptionFunctions.ReturnNativeValue(nint.Zero, values, UnexpectedValue)
-            : EmulationCoreOptionFunctions.ReturnNativeValue(nint.Zero, values, UnexpectedValue, unavailableResult: false);
+            ? EmulationSdk.OptionProcessing.ReturnNativeValue(nint.Zero, values, UnexpectedValue)
+            : EmulationSdk.OptionProcessing.ReturnNativeValue(nint.Zero, values, UnexpectedValue, unavailableResult: false);
         Assert.Equal(allowUnavailable, result);
     }
 
@@ -65,7 +66,7 @@ public sealed class NativeOptionReturnTests
             var expected = new InvalidOperationException("native value unavailable");
             var values = new Dictionary<string, string> { ["known"] = "configured" };
             var actual = Assert.Throws<InvalidOperationException>(() =>
-                EmulationCoreOptionFunctions.ReturnNativeValue(data, values, (_, _) => throw expected));
+                EmulationSdk.OptionProcessing.ReturnNativeValue(data, values, (_, _) => throw expected));
             Assert.Same(expected, actual);
             var reply = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
             Assert.Equal(keyPointer, reply.Key);

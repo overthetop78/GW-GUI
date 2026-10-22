@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -15,7 +16,7 @@ public sealed class EmulatorOptionSelectionTests
             ["latency"] = "37",
             ["output"] = "device-id"
         };
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(["native"], options, "output", "latency", "volume");
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(["native"], options, "output", "latency", "volume");
         Assert.Equal(new[] { "volume", "native", "latency", "output" }, selected.Keys);
         Assert.Equal("custom", selected["native"]);
         Assert.Equal("device-id", selected["output"]);
@@ -41,7 +42,7 @@ public sealed class EmulatorOptionSelectionTests
             ["native"] = "kept"
         };
         Assert.Equal(ignoreCase, options.ContainsKey("known"));
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(["known", "native"], options, "host", "latency", "volume");
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(["known", "native"], options, "host", "latency", "volume");
         Assert.Equal("kept", Assert.Single(selected).Value);
         Assert.True(selected.ContainsKey("native"));
         Assert.False(selected.ContainsKey("NATIVE"));
@@ -51,7 +52,7 @@ public sealed class EmulatorOptionSelectionTests
     public void DuplicateCatalogKeysDoNotDuplicateRowsOrMergeDifferentCase()
     {
         var options = new Dictionary<string, string> { ["native"] = "lower", ["NATIVE"] = "upper" };
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(
             ["native", "native", "NATIVE"], options, "output", "latency", "volume");
         Assert.Equal(2, selected.Count);
         Assert.Equal("lower", selected["native"]);
@@ -61,7 +62,7 @@ public sealed class EmulatorOptionSelectionTests
     [Fact]
     public void OverlappingNativeAndHostKeysStillProduceOneRow()
     {
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(["shared"],
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(["shared"],
             new Dictionary<string, string> { ["shared"] = "value" }, "shared", "shared", "shared");
         Assert.Equal("value", Assert.Single(selected).Value);
     }
@@ -69,7 +70,7 @@ public sealed class EmulatorOptionSelectionTests
     [Fact]
     public void RetainedValuesAreNotValidatedOrNormalizedByTheFilter()
     {
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(["null", "empty"],
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(["null", "empty"],
             new Dictionary<string, string> { ["null"] = null!, ["empty"] = "", ["output"] = null! },
             "output", "latency", "volume");
         Assert.Equal(3, selected.Count);
@@ -89,7 +90,7 @@ public sealed class EmulatorOptionSelectionTests
             options["added"] = "from-catalog";
             yield return "added";
         }
-        var selected = EmulationCoreOptionFunctions.FilterForEmulator(Keys(), options, "output", "latency", "volume");
+        var selected = EmulationSdk.OptionProcessing.FilterForEmulator(Keys(), options, "output", "latency", "volume");
         Assert.Equal(1, catalogReads);
         Assert.Equal("from-catalog", Assert.Single(selected).Value);
     }
