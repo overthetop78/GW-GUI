@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Interfaces;
@@ -29,6 +30,11 @@ public interface IEmulationStateFiles
     IOrderedEnumerable<KeyValuePair<string, TValue>> OrderInputMappings<TValue>(IReadOnlyDictionary<string, TValue>? mappings);
     /// <summary>Calcule le SHA-256 des octets empruntés.</summary>
     string HashBytes(ReadOnlySpan<byte> bytes);
+    /// <summary>Calcule le SHA-256 des octets restant dans le flux emprunté.</summary>
+    /// <param name="stream">Flux lisible, consommé depuis sa position courante jusqu’à sa fin.</param>
+    /// <returns>Empreinte hexadécimale en majuscules, identique à HashBytes sur ces mêmes octets.</returns>
+    /// <remarks>Le flux reste ouvert ; sa position finale et sa libération appartiennent à son propriétaire.</remarks>
+    string HashStream(Stream stream);
     /// <summary>Calcule le SHA-256 d’un fichier ou dossier selon la représentation du module.</summary>
     string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing);
 }

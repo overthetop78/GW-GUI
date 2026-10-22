@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -33,7 +34,7 @@ internal static class FirmwareFunctions
             if (length != FirmwareConstants.Os7Bytes && length != FirmwareConstants.SmartWriterBytes)
                 return new(absolute, absolute, Path.GetFileName(absolute), null, compatibility, null);
             var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
-            hash = Convert.ToHexString(SHA256.HashData(bytes));
+            hash = CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
             var crc = Crc(bytes);
             role = crc switch
             {

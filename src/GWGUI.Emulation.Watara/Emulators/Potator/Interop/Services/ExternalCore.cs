@@ -30,7 +30,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
     private LoadedContent? _content;
     private bool _initialized, _loaded, _disposed;
     private IReadOnlyList<string> _lastDiagnostics = [];
-    internal ExternalCore(string path) { _path = Path.GetFullPath(path); _info = CoreProbeFunctions.Inspect(_path); using var stream = File.OpenRead(_path); CoreSha256 = Convert.ToHexString(SHA256.HashData(stream)); }
+    internal ExternalCore(string path) { _path = Path.GetFullPath(path); _info = CoreProbeFunctions.Inspect(_path); using var stream = File.OpenRead(_path); CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream); }
     public Emulator Emulator => Emulator.Potator;
     public int MinimumAudioLatencyMilliseconds => _environment?.MinimumAudioLatencyMilliseconds ?? 0;
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => _environment?.PublishAudioBufferStatus(status);

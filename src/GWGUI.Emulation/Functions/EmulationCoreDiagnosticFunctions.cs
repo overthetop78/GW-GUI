@@ -58,7 +58,7 @@ internal sealed class EmulationCoreDiagnosticFunctions : IEmulationCoreDiagnosti
     public string CalculateSha256(string path)
     {
         using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
+        return EmulationStateFileFunctions.HashStream(stream);
     }
 
     /// <summary>Lit l’architecture PE ou renvoie unknown si le fichier ne peut pas être interprété.</summary>

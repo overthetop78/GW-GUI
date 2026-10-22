@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Fairchild.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -32,7 +33,7 @@ internal static class FirmwareFunctions
             if (new FileInfo(absolute).Length == FirmwareConstants.BiosBytes)
             {
                 var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
-                hash = Convert.ToHexString(SHA256.HashData(bytes));
+                hash = CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
                 var md5 = Convert.ToHexString(MD5.HashData(bytes));
                 foreach (var role in Roles(model))
                 {

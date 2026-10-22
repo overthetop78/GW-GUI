@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -12,7 +13,7 @@ internal static class FirmwareRuntimeFunctions
         var bios = configuration.FirmwarePaths?.GetValueOrDefault(settings.IdentityFieldId);
         if (string.IsNullOrWhiteSpace(bios)) return [];
         string identity;
-        using (var stream = File.OpenRead(bios)) identity = Convert.ToHexString(SHA256.HashData(stream));
+        using (var stream = File.OpenRead(bios)) identity = CommonCoreHostFunctions.StateFiles.HashStream(stream);
         var directory = Path.Combine(saveDirectory, emulatorId, settings.DirectoryName, identity);
         return settings.Files.Select(file => PrepareFile(file.FieldId, file.FileName, file.Size)).ToArray();
 

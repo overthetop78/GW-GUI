@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -46,7 +47,7 @@ internal static class AmigaRuntimeMediaFunctions
         if (!Path.GetExtension(path).Equals(StorageSettingsFunctionsConstants.Scp, StringComparison.OrdinalIgnoreCase)) return path;
         var info = new FileInfo(path);
         var identity = string.Join(RuntimeMediaConstants.ConversionIdentitySeparator, Path.GetFullPath(path), info.Length, info.LastWriteTimeUtc.Ticks);
-        var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(identity)))[..RuntimeMediaConstants.ConversionCacheHashLength];
+        var hash = CommonCoreHostFunctions.StateFiles.HashBytes(Encoding.UTF8.GetBytes(identity))[..RuntimeMediaConstants.ConversionCacheHashLength];
         Directory.CreateDirectory(conversionDirectory);
         var output = Path.Combine(conversionDirectory, string.Concat(Path.GetFileNameWithoutExtension(path), RuntimeMediaConstants.ConversionFileNameSeparator, hash, StorageSettingsFunctionsConstants.Adf));
         if (File.Exists(output)) return output;

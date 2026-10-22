@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants;
@@ -17,7 +18,7 @@ internal sealed partial class ExternalCore
         if (cartridge is not null)
         {
             var path = ContentFunctions.Validate(cartridge.Path, _info.Extensions);
-            _batterySavePath = Path.Combine(_saveDirectory!, Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))).ToLowerInvariant() + MediaConstants.BatterySaveExtension);
+            _batterySavePath = Path.Combine(_saveDirectory!, CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(path)).ToLowerInvariant() + MediaConstants.BatterySaveExtension);
         }
         if (configuration.Model == MachineModel.Adam)
         {

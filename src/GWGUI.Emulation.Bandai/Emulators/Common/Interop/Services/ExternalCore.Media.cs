@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 using System.IO;
 
@@ -29,7 +30,7 @@ internal sealed partial class ExternalCore
         if (configuration.Family == MachineFamily.WonderSwan)
         {
             using var source = File.OpenRead(validated);
-            var identity = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(source));
+            var identity = CommonCoreHostFunctions.StateFiles.HashStream(source);
             _batterySavePath = Path.Combine(_saveDirectory!, identity + MediaConstants.BatterySaveExtension);
         }
     }

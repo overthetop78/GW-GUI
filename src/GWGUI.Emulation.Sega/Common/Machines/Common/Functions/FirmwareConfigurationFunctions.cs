@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -32,7 +33,7 @@ internal static class FirmwareConfigurationFunctions
         foreach (var path in Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories))
         {
             using var stream = File.OpenRead(path);
-            var digest = Convert.ToHexString(SHA256.HashData(stream));
+            var digest = CommonCoreHostFunctions.StateFiles.HashStream(stream);
             var name = Path.GetFileName(path);
             var exact = slots.Where(slot => Path.GetFileName(slot.FileName).Equals(name, StringComparison.OrdinalIgnoreCase)).ToArray();
             var targets = exact.Length > 0 ? exact : slots;

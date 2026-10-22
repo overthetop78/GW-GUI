@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation;
 using System.IO;
 using System.Text.Json;
@@ -11,7 +12,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 internal static class StateStore
 {
     /// <summary>Interface sans état empruntée au SDK ; ses opérations libèrent les fichiers et flux qu’elles ouvrent.</summary>
-    private static readonly IEmulationStateFiles Files = EmulationSdk.StateFiles;
+    private static readonly IEmulationStateFiles Files = CommonCoreHostFunctions.StateFiles;
 
     /// <summary>Écrit l’état avec le même format complet que les autres modules.</summary>
     /// <param name="path">Chemin du fichier d’état à créer ou remplacer atomiquement.</param>

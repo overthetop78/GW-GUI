@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -89,7 +90,7 @@ public sealed class FirmwareCatalog
         using var stream = file.OpenRead();
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = 0;
-        var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
         var known = Known.TryGetValue(md5, out var identity);
         return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom, known, known, known ? identity.Name : null, known ? identity.Version : null, known ? identity.Models : [], known ? identity.FileNames : []);
     }

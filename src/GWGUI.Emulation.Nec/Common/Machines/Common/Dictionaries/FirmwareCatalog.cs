@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
@@ -47,7 +48,7 @@ public sealed class FirmwareCatalog
         using var stream = file.OpenRead();
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = 0;
-        var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
         var name = file.Name;
         var identified = md5 switch
         {

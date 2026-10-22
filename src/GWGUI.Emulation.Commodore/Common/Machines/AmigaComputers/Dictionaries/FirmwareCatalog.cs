@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -81,7 +82,7 @@ public sealed class AmigaFirmwareCatalog
         using var stream = file.OpenRead();
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = FirmwareCatalogConstants.StreamStart;
-        var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
         stream.Position = FirmwareCatalogConstants.StreamStart;
         var detected = TryReadKickstartVersion(stream, file.Length);
         var known = TryIdentifyKnown(file, md5, out var identity);

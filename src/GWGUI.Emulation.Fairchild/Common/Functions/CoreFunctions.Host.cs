@@ -12,6 +12,11 @@ namespace GWGUI.Emulation.Fairchild.Common.Functions;
 
 internal static class CoreHostFunctions
 {
+    /// <summary>Fournit les sauvegardes et empreintes partagées par leur interface publique.</summary>
+    /// <remarks>Le module choisit les données à identifier et conserve la propriété des flux empruntés.
+    /// Les algorithmes, la sérialisation canonique et les vérifications de format restent dans Emulation.</remarks>
+    internal static IEmulationStateFiles StateFiles => EmulationSdk.StateFiles;
+
     /// <summary>Fournit les règles communes de lecteurs, montages et documents de médias par leur interface publique.</summary>
     /// <remarks>Les lecteurs et chemins restent décrits par Common. Ce service ne possède ni fichier ni lecteur physique et ne remplace pas les contraintes spécifiques du module.</remarks>
     internal static IEmulationMediaRules MediaRules => EmulationSdk.MediaRules;

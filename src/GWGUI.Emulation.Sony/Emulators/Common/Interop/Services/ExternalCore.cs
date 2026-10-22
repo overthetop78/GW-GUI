@@ -82,7 +82,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var stream = File.OpenRead(sourceCorePath))
-            CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));
+            CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
 
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);

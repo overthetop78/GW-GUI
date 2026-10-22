@@ -183,6 +183,10 @@ internal static class EmulationStateFileFunctions
     /// <summary>Calcule l’empreinte SHA-256 hexadécimale des octets empruntés.</summary>
     internal static string HashBytes(ReadOnlySpan<byte> bytes) => Convert.ToHexString(SHA256.HashData(bytes));
 
+    /// <summary>Reprend le calcul SHA-256 de CoreDiagnostics sur un flux emprunté, de sa position courante à sa fin.</summary>
+    /// <remarks>Le calcul ne ferme ni ne rembobine le flux ; le propriétaire conserve son nettoyage dans finally ou using.</remarks>
+    internal static string HashStream(Stream stream) => Convert.ToHexString(SHA256.HashData(stream));
+
     /// <summary>Calcule l’empreinte d’un fichier ou d’un dossier en conservant le tri et la représentation des chemins du module.</summary>
     /// <remarks>Pour un dossier, les noms relatifs et leurs longueurs participent à l’empreinte avant les octets des fichiers. Les flux sont possédés et libérés par cette opération.</remarks>
     internal static string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing)

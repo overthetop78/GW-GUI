@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Epoch.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -31,7 +32,7 @@ internal static class FirmwareFunctions
             if (Roles(model).Count > 0 && new FileInfo(absolute).Length == FirmwareConstants.ConsoleFirmwareBytes)
             {
                 var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
-                hash = Convert.ToHexString(SHA256.HashData(bytes));
+                hash = CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
                 compatibility = Convert.ToHexString(MD5.HashData(bytes)).Equals(FirmwareConstants.ConsoleFirmwareMd5, StringComparison.OrdinalIgnoreCase) ? EmulationFirmwareCompatibility.Compatible : EmulationFirmwareCompatibility.PartiallyCompatible;
             }
         }

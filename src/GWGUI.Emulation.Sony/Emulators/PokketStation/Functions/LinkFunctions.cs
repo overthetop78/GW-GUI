@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,7 +23,7 @@ internal static class LinkFunctions
         var cards = Cards(configuration);
         if (cards.Count != LinkConstants.UnitCount || cards[0].Slot.Index != 0 || cards[1].Slot.Index != 1)
             throw new InvalidOperationException(CoreExceptions.ContentRefused());
-        var identity = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(Path.GetFullPath(cards[1].Path).ToUpperInvariant())));
+        var identity = CommonCoreHostFunctions.StateFiles.HashBytes(Encoding.UTF8.GetBytes(Path.GetFullPath(cards[1].Path).ToUpperInvariant()));
         return new(LinkConstants.SubsystemId, cards.Select(card => card.Path).ToArray(),
         [
             new(LinkConstants.UnitAFlashId, SaveMemoryConstants.FileName),

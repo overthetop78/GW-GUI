@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Services;
@@ -15,6 +16,7 @@ internal sealed class EmulationStateFileService : IEmulationStateFiles
         TModel model, TCore emulator, IEmulationCoreRuntime<TConfiguration, TOption> core, Func<string> configurationHash, Func<string> contentHash)
         => EmulationStateFileFunctions.IsCompatible(header, model, emulator, core, configurationHash, contentHash);
     public string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
+    public string HashStream(Stream stream) => EmulationStateFileFunctions.HashStream(stream);
     public string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing)
         => EmulationStateFileFunctions.HashPath(path, pattern, separator, bufferSize, missing);
 }

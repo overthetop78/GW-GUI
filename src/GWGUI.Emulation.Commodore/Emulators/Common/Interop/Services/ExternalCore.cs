@@ -62,7 +62,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new FileNotFoundException(slot.FieldId);
         var media = ResolveConfiguredMedia(configuration);
         var sourceCorePath = ResolveCorePath(_corePath);
-        using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = Convert.ToHexString(SHA256.HashData(coreStream));
+        using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(coreStream);
         var adapter = (MachineFactory)EmulatorCatalog.CreateAdapter(configuration.Core);
         _adapter = adapter;
         var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);

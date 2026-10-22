@@ -35,7 +35,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         _path = Path.GetFullPath(path);
         _info = CoreProbeFunctions.Inspect(_path);
         using var stream = File.OpenRead(_path);
-        CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));
+        CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
     }
 
     public Emulator Emulator => Emulator.Theodore;

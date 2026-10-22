@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Mattel.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -29,7 +30,7 @@ internal static class FirmwareFunctions
             var length=new FileInfo(absolute).Length;
             if(length==FirmwareConstants.ExecutiveBytes || length==FirmwareConstants.GraphicsBytes) {
                 var bytes=await File.ReadAllBytesAsync(absolute,cancellationToken).ConfigureAwait(false);
-                hash=Convert.ToHexString(SHA256.HashData(bytes));
+                hash=CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
                 var md5=Convert.ToHexString(MD5.HashData(bytes));
                 if(length==FirmwareConstants.ExecutiveBytes && md5.Equals(FirmwareConstants.ExecutiveMd5,StringComparison.OrdinalIgnoreCase)) destination=Field(FirmwareCategory.Executive);
                 if(length==FirmwareConstants.GraphicsBytes && md5.Equals(FirmwareConstants.GraphicsMd5,StringComparison.OrdinalIgnoreCase)) destination=Field(FirmwareCategory.Graphics);

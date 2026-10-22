@@ -14,6 +14,21 @@ public sealed class StateFingerprintContractTests
     private static readonly string[] Families = ["Apple", "Atari", "Bandai", "Coleco", "Epoch", "Fairchild", "Mattel", "Panasonic", "Philips", "Sharp", "Sinclair", "Snk", "Thomson", "Watara", "Wenquxing"];
     private static readonly string[] ControllerFamilies = ["Apple", "Atari", "Bandai", "Coleco", "Epoch", "Fairchild", "Mattel", "Panasonic", "Philips", "Sharp", "Sinclair", "Snk", "Thomson", "Watara"];
 
+    [Fact]
+    public void StreamFingerprintUsesRemainingBytesAndBorrowsTheStream()
+    {
+        byte[] payload = [255, 97, 98, 99];
+        using var stream = new MemoryStream(payload);
+        stream.Position = 1;
+        var expected = EmulationSdk.StateFiles.HashBytes(payload.AsSpan(1));
+        Assert.Equal("BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD", expected);
+        Assert.Equal(expected, EmulationSdk.StateFiles.HashStream(stream));
+        Assert.Equal(payload.Length, stream.Position);
+        Assert.True(stream.CanRead);
+        Assert.Equal(EmulationSdk.StateFiles.HashBytes(ReadOnlySpan<byte>.Empty), EmulationSdk.StateFiles.HashStream(stream));
+        stream.Position = 1;
+        Assert.Equal(97, stream.ReadByte());
+    }
     public static IEnumerable<object[]> NativeCases() => Families.Select(family => new object[] { family });
     public static IEnumerable<object[]> ControllerCases() => ControllerFamilies.Select(family => new object[] { family });
 

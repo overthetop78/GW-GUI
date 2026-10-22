@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.IO.Compression;
@@ -20,7 +21,7 @@ internal static class FirmwareIdentificationFunctions
                 if (new FileInfo(absolute).Length == MediaRuntimeConstants.VideopacBiosBytes)
                 {
                     var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
-                    hash = Convert.ToHexString(SHA256.HashData(bytes));
+                    hash = CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
                     if (Convert.ToHexString(MD5.HashData(bytes)).Equals(MediaRuntimeConstants.Md5(model), StringComparison.OrdinalIgnoreCase))
                         compatibility = EmulationFirmwareCompatibility.Compatible;
                 }

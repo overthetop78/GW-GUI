@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Security.Cryptography;
 using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Constants.FirmwareConstants;
@@ -40,7 +41,7 @@ internal static class FirmwareConfigurationFunctions
         {
             cancellationToken.ThrowIfCancellationRequested();
             using var stream = File.OpenRead(path);
-            var digest = Convert.ToHexString(SHA256.HashData(stream));
+            var digest = CommonCoreHostFunctions.StateFiles.HashStream(stream);
             var name = Path.GetFileName(path);
             foreach (var slot in MatchingSlots(configuration.Model, slots, name))
                 candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
