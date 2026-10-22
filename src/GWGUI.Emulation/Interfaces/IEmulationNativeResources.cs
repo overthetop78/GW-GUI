@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Interfaces;
 
@@ -87,4 +88,54 @@ public interface IEmulationNativeResources
     /// <param name="value">Pointeur emprunté vers le texte terminé par zéro ; zéro représente une liste vide.</param>
     /// <returns>Ensemble indépendant utilisant la comparaison ordinale sans distinction de casse, sans les points initiaux des extensions.</returns>
     HashSet<string> ParseExtensions(nint value);
+
+    /// <summary>Crée le propriétaire d’un catalogue d’options avec les descriptions et règles du module.</summary>
+    /// <typeparam name="TOption">Description d’option adaptée par les délégués empruntés.</typeparam>
+    /// <typeparam name="TValue">Description d’un choix de valeur dans le catalogue du module.</typeparam>
+    /// <param name="configured">Valeurs configurées copiées à la construction, avec leur identité de clés.</param>
+    /// <param name="keyFor">Lit la clé stable d’une description.</param>
+    /// <param name="defaultFor">Lit sa valeur par défaut.</param>
+    /// <param name="choicesFor">Lit les choix acceptés ; une liste vide conserve les règles de valeur libre existantes.</param>
+    /// <param name="valueFor">Lit l’identité d’un choix de valeur.</param>
+    /// <param name="withCurrent">Produit une description actualisée avec sa valeur sélectionnée.</param>
+    /// <param name="withVisibility">Produit une description actualisée avec sa visibilité native.</param>
+    /// <param name="initialize">Applique la valeur et la visibilité initiales selon la politique du module.</param>
+    /// <param name="present">Présentation finale facultative des descriptions ; null pour les conserver.</param>
+    /// <returns>Propriétaire des valeurs natives, à libérer après la fin des callbacks de la session.</returns>
+    IEmulationCoreOptionHost<TOption> CreateCoreOptionHost<TOption, TValue>(IReadOnlyDictionary<string, string> configured, Func<TOption, string> keyFor, Func<TOption, string> defaultFor,
+        Func<TOption, IReadOnlyList<TValue>> choicesFor, Func<TValue, string> valueFor, Func<TOption, string, TOption> withCurrent, Func<TOption, bool, TOption> withVisibility,
+        Func<TOption, string, bool, TOption> initialize, Func<TOption, TOption>? present = null) where TOption : class;
+
+    /// <summary>Crée le propriétaire d’options déclarées par les commandes natives de variables.</summary>
+    /// <typeparam name="TOption">Description d’option produite par le module.</typeparam>
+    /// <param name="values">Valeurs configurées, copiées sans modification du dictionnaire reçu.</param>
+    /// <param name="createOption">Produit une description à partir de la clé, du nom, du défaut, de la valeur courante et des choix natifs copiés.</param>
+    /// <param name="accepts">Valide une nouvelle valeur selon les descriptions du module.</param>
+    /// <param name="withCurrent">Produit la description actualisée après un changement de valeur.</param>
+    /// <returns>Propriétaire à libérer par la session ou à transférer explicitement à son hôte d’environnement.</returns>
+    IEmulationVariableOptionHost<TOption> CreateVariableOptionHost<TOption>(IReadOnlyDictionary<string, string> values,
+        Func<string, string, string, string, IReadOnlyList<string>, TOption> createOption, Func<TOption, string, bool> accepts, Func<TOption, string, TOption> withCurrent);
+
+    /// <summary>Crée un propriétaire indépendant des callbacks audio stéréo et de leur file bornée.</summary>
+    /// <returns>Propriétaire dont le cœur emprunte les délégués ; la session le libère après l’arrêt des callbacks.</returns>
+    IEmulationAudioCallbackHost CreateAudioCallbackHost();
+
+    /// <summary>Crée un propriétaire indépendant du callback vidéo et de sa dernière image copiée.</summary>
+    /// <returns>Propriétaire à libérer par la session après le dernier callback du cœur.</returns>
+    IEmulationVideoCallbackHost CreateVideoCallbackHost();
+
+    /// <summary>Crée le propriétaire des commandes d’environnement et de leurs ressources natives.</summary>
+    /// <param name="video">Propriétaire vidéo emprunté, actualisé par les annonces de format et de géométrie.</param>
+    /// <param name="audio">Propriétaire audio emprunté, actualisé par les annonces de fréquence.</param>
+    /// <param name="options">Valeurs configurées transmises à la fabrique d’options du module.</param>
+    /// <param name="systemDirectory">Dossier système de la session, créé si nécessaire et exposé au cœur.</param>
+    /// <param name="contentDirectory">Dossier de contenu de la session, créé si nécessaire et exposé au cœur.</param>
+    /// <param name="saveDirectory">Dossier des sauvegardes, créé si nécessaire et exposé au cœur.</param>
+    /// <param name="assetsDirectory">Dossier des assets de la session, créé si nécessaire.</param>
+    /// <param name="createOptions">Fabrique empruntée ; le résultat qu’elle crée est possédé puis libéré par l’hôte d’environnement.</param>
+    /// <returns>Propriétaire de ses options, chaînes et VFS ; les propriétaires audio et vidéo restent à l’appelant.</returns>
+    /// <remarks>Une construction interrompue libère les seules ressources déjà acquises. Les dossiers reçus
+    /// restent sous la responsabilité de la session et ne sont pas supprimés par cet hôte.</remarks>
+    IEmulationEnvironmentCallbackHost CreateEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options,
+        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions);
 }

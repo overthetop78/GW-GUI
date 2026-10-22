@@ -77,9 +77,9 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             NativeFirmware.Prepare(configuration, Path.Combine(sessionDirectory, "System"));
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_path);
             _exports = CoreFunctions.ResolveExports(_library);
-            _video = new VideoCallbackHost();
-            _audio = new AudioCallbackHost();
-            _environment = new EnvironmentCallbackHost(
+            _video = CommonCoreHostFunctions.NativeResources.CreateVideoCallbackHost();
+            _audio = CommonCoreHostFunctions.NativeResources.CreateAudioCallbackHost();
+            _environment = CommonCoreHostFunctions.NativeResources.CreateEnvironmentCallbackHost(
                 _video,
                 _audio,
                 NativeOptions.Prepare(configuration),

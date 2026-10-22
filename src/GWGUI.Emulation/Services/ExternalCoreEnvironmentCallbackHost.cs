@@ -8,30 +8,30 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreEnvironmentCallbackHost : IDisposable
+internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmentCallbackHost
 {
     private enum NativePixelFormat { Rgb1555 = 0, Xrgb8888 = 1, Rgb565 = 2 }
     private const int EnglishLanguage = 0;
     private const int FrenchLanguage = 2;
-    private readonly ExternalCoreVideoCallbackHost _video;
-    private readonly ExternalCoreAudioCallbackHost _audio;
-    private readonly EmulationLegacyOptionHost<EmulationEnabledOption> _options;
+    private readonly IEmulationVideoCallbackHost _video;
+    private readonly IEmulationAudioCallbackHost _audio;
+    private readonly IEmulationVariableOptionHost<EmulationEnabledOption> _options;
     private readonly ExternalCoreVirtualFileSystem _files;
     private readonly Dictionary<uint, ExternalCoreUtf8String> _directories = [];
     private readonly ExternalCoreApi.LogCallback _log;
     private bool _disposed;
-    internal ExternalCoreEnvironmentCallbackHost(ExternalCoreVideoCallbackHost video, ExternalCoreAudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory,
-        Func<IReadOnlyDictionary<string, string>, EmulationLegacyOptionHost<EmulationEnabledOption>> createOptions)
+    internal ExternalCoreEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory,
+        Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions)
     {
         _video = video;
         _audio = audio;
-        _options = createOptions(options);
-        _files = new ExternalCoreVirtualFileSystem();
         Callback = OnEnvironment;
         _log = OnLog;
         var completed = false;
         try
         {
+            _options = createOptions(options);
+            _files = new ExternalCoreVirtualFileSystem();
             foreach (var directory in new[] { systemDirectory, contentDirectory, saveDirectory, assetsDirectory }) Directory.CreateDirectory(directory);
             _directories.Add(ExternalCoreApiConstants.GetSystemDirectory, new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory)));
             _directories.Add(ExternalCoreApiConstants.GetContentDirectory, new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory)));
@@ -40,16 +40,16 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IDisposable
         }
         finally { if (!completed) Dispose(); }
     }
-    internal ExternalCoreApi.EnvironmentCallback Callback { get; }
-    internal ExternalCoreApi.KeyboardEvent? Keyboard { get; private set; }
-    internal IReadOnlyList<EmulationEnabledOption> Options => _options.Options;
-    internal List<string> Diagnostics { get; } = [];
-    internal bool SupportsNoGame { get; private set; }
-    internal double FramesPerSecond { get; private set; }
-    internal Exception? Failure { get; private set; }
-    internal void SetOption(string key, string value) => _options.SetValue(key, value);
+    public ExternalCoreApi.EnvironmentCallback Callback { get; }
+    public ExternalCoreApi.KeyboardEvent? Keyboard { get; private set; }
+    public IReadOnlyList<EmulationEnabledOption> Options => _options.Options;
+    public List<string> Diagnostics { get; } = [];
+    public bool SupportsNoGame { get; private set; }
+    public double FramesPerSecond { get; private set; }
+    public Exception? Failure { get; private set; }
+    public void SetOption(string key, string value) => _options.SetValue(key, value);
 
-    internal void ApplyAvInfo(ExternalCoreApi.SystemAvInfo info)
+    public void ApplyAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
         FramesPerSecond = info.Timing.FramesPerSecond;
         _audio.SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
@@ -101,10 +101,10 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
-        try { _files.Dispose(); }
+        try { _files?.Dispose(); }
         finally
         {
-            try { _options.Dispose(); }
+            try { _options?.Dispose(); }
             finally { foreach (var directory in _directories.Values) directory.Dispose(); _directories.Clear(); Keyboard = null; Diagnostics.Clear(); Failure = null; }
         }
     }

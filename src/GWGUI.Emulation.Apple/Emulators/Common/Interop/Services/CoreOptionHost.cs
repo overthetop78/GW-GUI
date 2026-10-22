@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
@@ -8,11 +10,11 @@ namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
 internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 {
-    private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
+    private readonly IEmulationCoreOptionHost<CoreOption> _host;
 
     internal CoreOptionHost(IReadOnlyDictionary<string, string> configured)
     {
-        _host = new EmulationCoreOptionHost<CoreOption, CoreOptionValue>(
+        _host = CommonCoreHostFunctions.NativeResources.CreateCoreOptionHost<CoreOption, CoreOptionValue>(
             configured,
             keyFor: static option => option.Key,
             defaultFor: static option => option.DefaultValue,

@@ -4,7 +4,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreAudioCallbackHost : IDisposable
+internal sealed class ExternalCoreAudioCallbackHost : IEmulationAudioCallbackHost
 {
     private const int MaximumFramesPerBatch = 64 * 1024;
     private readonly Queue<AudioChunk> _chunks = new();
@@ -12,14 +12,14 @@ internal sealed class ExternalCoreAudioCallbackHost : IDisposable
     private long _sequence;
     private bool _disposed;
     internal ExternalCoreAudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }
-    internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }
-    internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }
-    internal int SampleRate { get; set; }
-    internal AudioChunk? LatestChunk { get; private set; }
-    internal Exception? Failure { get; private set; }
-    internal int BufferedFrames => _bufferedFrames;
-    internal long OverrunCount { get; private set; }
-    internal long UnderrunCount => 0;
+    public ExternalCoreApi.AudioSampleCallback SampleCallback { get; }
+    public ExternalCoreApi.AudioBatchCallback BatchCallback { get; }
+    public int SampleRate { get; set; }
+    public AudioChunk? LatestChunk { get; private set; }
+    public Exception? Failure { get; private set; }
+    public int BufferedFrames => _bufferedFrames;
+    public long OverrunCount { get; private set; }
+    public long UnderrunCount => 0;
 
     private void OnSample(short left, short right)
     {
@@ -52,7 +52,7 @@ internal sealed class ExternalCoreAudioCallbackHost : IDisposable
         _bufferedFrames += chunk.FrameCount;
     }
 
-    internal bool TryDequeue(out AudioChunk? chunk)
+    public bool TryDequeue(out AudioChunk? chunk)
     {
         if (!_chunks.TryDequeue(out chunk)) return false;
         _bufferedFrames -= chunk.FrameCount;

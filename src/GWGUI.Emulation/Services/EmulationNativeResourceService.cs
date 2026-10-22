@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Services;
 
@@ -38,4 +39,26 @@ internal sealed class EmulationNativeResourceService : IEmulationNativeResources
 
     /// <inheritdoc/>
     public HashSet<string> ParseExtensions(nint value) => ExternalCoreLibrary.ParseExtensions(value);
+
+    /// <inheritdoc/>
+    public IEmulationCoreOptionHost<TOption> CreateCoreOptionHost<TOption, TValue>(IReadOnlyDictionary<string, string> configured, Func<TOption, string> keyFor, Func<TOption, string> defaultFor,
+        Func<TOption, IReadOnlyList<TValue>> choicesFor, Func<TValue, string> valueFor, Func<TOption, string, TOption> withCurrent, Func<TOption, bool, TOption> withVisibility,
+        Func<TOption, string, bool, TOption> initialize, Func<TOption, TOption>? present = null) where TOption : class
+        => new EmulationCoreOptionHost<TOption, TValue>(configured, keyFor, defaultFor, choicesFor, valueFor, withCurrent, withVisibility, initialize, present);
+
+    /// <inheritdoc/>
+    public IEmulationVariableOptionHost<TOption> CreateVariableOptionHost<TOption>(IReadOnlyDictionary<string, string> values,
+        Func<string, string, string, string, IReadOnlyList<string>, TOption> createOption, Func<TOption, string, bool> accepts, Func<TOption, string, TOption> withCurrent)
+        => new EmulationLegacyOptionHost<TOption>(values, createOption, accepts, withCurrent);
+
+    /// <inheritdoc/>
+    public IEmulationAudioCallbackHost CreateAudioCallbackHost() => new ExternalCoreAudioCallbackHost();
+
+    /// <inheritdoc/>
+    public IEmulationVideoCallbackHost CreateVideoCallbackHost() => new ExternalCoreVideoCallbackHost();
+
+    /// <inheritdoc/>
+    public IEmulationEnvironmentCallbackHost CreateEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options,
+        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions)
+        => new ExternalCoreEnvironmentCallbackHost(video, audio, options, systemDirectory, contentDirectory, saveDirectory, assetsDirectory, createOptions);
 }

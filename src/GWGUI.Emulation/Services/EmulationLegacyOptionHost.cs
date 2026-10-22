@@ -6,7 +6,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
+internal sealed class EmulationLegacyOptionHost<TOption> : IEmulationVariableOptionHost<TOption>
 {
     private const int MaximumVariableCount = 4096;
     private const char DescriptionSeparator = ';';
@@ -27,9 +27,9 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
         _accepts = accepts;
         _withCurrent = withCurrent;
     }
-    internal IReadOnlyList<TOption> Options => _options.Values.ToArray();
+    public IReadOnlyList<TOption> Options => _options.Values.ToArray();
 
-    internal bool Register(nint data)
+    public bool Register(nint data)
     {
         if (data == nint.Zero) return false;
         var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
@@ -51,7 +51,7 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
         throw new InvalidOperationException("Native option table has no terminating entry.");
     }
 
-    internal bool ReturnValue(nint data)
+    public bool ReturnValue(nint data)
     {
         if (data == nint.Zero) return false;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
@@ -63,7 +63,7 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
         return true;
     }
 
-    internal void SetValue(string key, string value)
+    public void SetValue(string key, string value)
     {
         if (!_options.TryGetValue(key, out var option) || !_accepts(option, value)) throw new ArgumentException(nameof(value));
         if (_values[key] == value) return;
@@ -73,7 +73,7 @@ internal sealed class EmulationLegacyOptionHost<TOption> : IDisposable
         _updated = true;
     }
 
-    internal bool ReturnUpdated(nint data)
+    public bool ReturnUpdated(nint data)
     {
         if (data == nint.Zero) return false;
         Marshal.WriteByte(data, _updated ? (byte)1 : (byte)0);

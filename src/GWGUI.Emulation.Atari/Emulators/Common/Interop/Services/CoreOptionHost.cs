@@ -1,14 +1,16 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 {
-    private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
+    private readonly IEmulationCoreOptionHost<CoreOption> _host;
 
     internal CoreOptionHost(IReadOnlyDictionary<string, string> configured)
     {
-        _host = new EmulationCoreOptionHost<CoreOption, CoreOptionValue>(
+        _host = CommonCoreHostFunctions.NativeResources.CreateCoreOptionHost<CoreOption, CoreOptionValue>(
             configured,
             keyFor: static option => option.Key,
             defaultFor: static option => option.DefaultValue,

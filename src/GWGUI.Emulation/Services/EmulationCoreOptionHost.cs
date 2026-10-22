@@ -3,7 +3,7 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class EmulationCoreOptionHost<TOption, TValue> : IDisposable where TOption : class
+internal sealed class EmulationCoreOptionHost<TOption, TValue> : IEmulationCoreOptionHost<TOption> where TOption : class
 {
     private readonly Dictionary<string, string> _values;
     private readonly HashSet<string> _configuredKeys;
@@ -38,16 +38,16 @@ internal sealed class EmulationCoreOptionHost<TOption, TValue> : IDisposable whe
         _present = present;
     }
 
-    internal IReadOnlyList<TOption> Catalog { get; private set; } = [];
-    internal IReadOnlyDictionary<string, string> DocumentValues => _values;
+    public IReadOnlyList<TOption> Catalog { get; private set; } = [];
+    public IReadOnlyDictionary<string, string> DocumentValues => _values;
 
-    internal bool ReturnValue(nint data) => EmulationCoreOptionFunctions.ReturnNativeValue(data, _values, NativeValue);
+    public bool ReturnValue(nint data) => EmulationCoreOptionFunctions.ReturnNativeValue(data, _values, NativeValue);
 
-    internal bool SetNativeValue(nint data) => EmulationCoreOptionFunctions.SetNativeValue(data, TrySetValue);
+    public bool SetNativeValue(nint data) => EmulationCoreOptionFunctions.SetNativeValue(data, TrySetValue);
 
-    internal bool GetAndClearUpdated(nint data) => EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _updated);
+    public bool GetAndClearUpdated(nint data) => EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _updated);
 
-    internal bool ApplyVisibility(nint data)
+    public bool ApplyVisibility(nint data)
     {
         if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _visibility, Catalog, _keyFor,
                 _withVisibility, out var catalog)) return false;
@@ -55,18 +55,18 @@ internal sealed class EmulationCoreOptionHost<TOption, TValue> : IDisposable whe
         return true;
     }
 
-    internal bool CaptureDisplayUpdate(nint data)
+    public bool CaptureDisplayUpdate(nint data)
     {
         if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;
         _displayUpdate = callback;
         return true;
     }
 
-    internal void ValidateConfiguredValues(Action<string, string> invalid) =>
+    public void ValidateConfiguredValues(Action<string, string> invalid) =>
         EmulationCoreOptionFunctions.ValidateConfiguredValues(_configuredKeys, _values, Catalog,
             _keyFor, _choicesFor, _valueFor, invalid);
 
-    internal bool TrySetValue(string key, string value)
+    public bool TrySetValue(string key, string value)
     {
         var option = Catalog.FirstOrDefault(item => _keyFor(item).Equals(key, StringComparison.Ordinal));
         if (option is null) return false;
@@ -81,7 +81,7 @@ internal sealed class EmulationCoreOptionHost<TOption, TValue> : IDisposable whe
         return true;
     }
 
-    internal void ReplaceCatalog(IReadOnlyList<TOption> options)
+    public void ReplaceCatalog(IReadOnlyList<TOption> options)
     {
         var catalog = options.Select(option =>
         {

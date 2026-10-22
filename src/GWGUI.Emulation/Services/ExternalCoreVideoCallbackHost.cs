@@ -4,17 +4,17 @@ using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Services;
 
-internal sealed class ExternalCoreVideoCallbackHost : IDisposable
+internal sealed class ExternalCoreVideoCallbackHost : IEmulationVideoCallbackHost
 {
     private readonly long _started = Stopwatch.GetTimestamp();
     private long _sequence;
     private bool _disposed;
     internal ExternalCoreVideoCallbackHost() => Callback = OnVideo;
-    internal ExternalCoreApi.VideoCallback Callback { get; }
-    internal VideoFrame? LatestFrame { get; private set; }
-    internal EmulationPixelFormat PixelFormat { get; set; } = EmulationPixelFormat.Xrgb8888;
-    internal float AspectRatio { get; set; }
-    internal Exception? Failure { get; private set; }
+    public ExternalCoreApi.VideoCallback Callback { get; }
+    public VideoFrame? LatestFrame { get; private set; }
+    public EmulationPixelFormat PixelFormat { get; set; } = EmulationPixelFormat.Xrgb8888;
+    public float AspectRatio { get; set; }
+    public Exception? Failure { get; private set; }
 
     private void OnVideo(nint data, uint width, uint height, nuint pitch)
     {

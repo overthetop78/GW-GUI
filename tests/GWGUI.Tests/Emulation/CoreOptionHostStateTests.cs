@@ -1,7 +1,8 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Interfaces;
 using AcornHost = GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.CoreOptionHost;
 using AcornOption = GWGUI.Emulation.Contracts.EmulationResourceRestartOption;
 using MattelHost = GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.CoreOptionHost;
@@ -79,9 +80,9 @@ public sealed class CoreOptionHostStateTests
     {
         using var host = CreateHost();
         host.ReplaceCatalog([Mode()]);
-        using var key = new ExternalCoreUtf8String("mode");
-        using var value = new ExternalCoreUtf8String("fast");
-        using var unknown = new ExternalCoreUtf8String("unknown");
+        using var key = EmulationSdk.NativeResources.CreateString("mode");
+        using var value = EmulationSdk.NativeResources.CreateString("fast");
+        using var unknown = EmulationSdk.NativeResources.CreateString("unknown");
 
         WithNative(new ExternalCoreApi.Variable { Key = key.Pointer, Value = value.Pointer }, pointer =>
         {
@@ -125,7 +126,7 @@ public sealed class CoreOptionHostStateTests
         host.ReplaceCatalog([Mode()]);
         Assert.Equal("fast", presentedValue);
         Assert.False(host.Catalog[0].IsVisible);
-        using var key = new ExternalCoreUtf8String("mode");
+        using var key = EmulationSdk.NativeResources.CreateString("mode");
         WithNative(new ExternalCoreApi.CoreOptionDisplay { Key = key.Pointer, Visible = true }, pointer =>
             Assert.True(host.ApplyVisibility(pointer)));
         Assert.False(host.Catalog[0].IsVisible);
@@ -178,10 +179,10 @@ public sealed class CoreOptionHostStateTests
 
     private static Option Mode() => new("mode", "normal", "normal", ["normal", "fast"]);
 
-    private static EmulationCoreOptionHost<Option, string> CreateHost(
+    private static IEmulationCoreOptionHost<Option> CreateHost(
         IReadOnlyDictionary<string, string>? configured = null, bool preserveDeclaredVisibility = true,
         Func<string, bool>? exposed = null, Func<Option, Option>? present = null) =>
-        new(configured ?? new Dictionary<string, string>(), static option => option.Key,
+        EmulationSdk.NativeResources.CreateCoreOptionHost<Option, string>(configured ?? new Dictionary<string, string>(), static option => option.Key,
             static option => option.DefaultValue, static option => option.Values, static value => value,
             static (option, current) => option with { CurrentValue = current },
             (option, visible) => option with { IsVisible = visible && (exposed?.Invoke(option.Key) ?? true) },

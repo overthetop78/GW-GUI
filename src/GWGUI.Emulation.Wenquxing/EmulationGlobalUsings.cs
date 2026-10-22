@@ -1,10 +1,10 @@
 global using DiskImageStatus = GWGUI.Emulation.Contracts.DiskImageStatus;
 global using DiskStatus = GWGUI.Emulation.Contracts.DiskStatus;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
-global using EnvironmentCallbackHost = GWGUI.Emulation.Services.ExternalCoreEnvironmentCallbackHost;
+global using EnvironmentCallbackHost = GWGUI.Emulation.Interfaces.IEmulationEnvironmentCallbackHost;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
-global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;
-global using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;
+global using VideoCallbackHost = GWGUI.Emulation.Interfaces.IEmulationVideoCallbackHost;
+global using AudioCallbackHost = GWGUI.Emulation.Interfaces.IEmulationAudioCallbackHost;
 global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation;
 global using GWGUI.Emulation.Constants;

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Mattel.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 using System.Runtime.InteropServices;
@@ -6,12 +8,12 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;
 
 internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 {
-    private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
+    private readonly IEmulationCoreOptionHost<CoreOption> _host;
     private readonly IReadOnlyDictionary<string, CoreOption> _presentation;
 
     internal CoreOptionHost(IReadOnlyDictionary<string, string> configured, IReadOnlyList<CoreOption>? presentation = null)
     {
-        _host = new EmulationCoreOptionHost<CoreOption, CoreOptionValue>(
+        _host = CommonCoreHostFunctions.NativeResources.CreateCoreOptionHost<CoreOption, CoreOptionValue>(
             configured,
             keyFor: static option => option.Key,
             defaultFor: static option => option.DefaultValue,

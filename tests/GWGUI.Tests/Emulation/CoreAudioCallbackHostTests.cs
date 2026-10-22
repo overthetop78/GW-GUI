@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -8,7 +8,8 @@ public sealed class CoreAudioCallbackHostTests
     [Fact]
     public void SampleCallbackKeepsItsOwnerAndPublishesTheOriginalValues()
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 20 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 20;
         Assert.Same(host, host.SampleCallback.Target);
         Assert.Same(host, host.BatchCallback.Target);
         host.SampleCallback(short.MinValue, short.MaxValue);
@@ -30,7 +31,8 @@ public sealed class CoreAudioCallbackHostTests
     [InlineData(ulong.MaxValue)]
     public void InvalidBatchCountsReturnBeforeReadingThePointer(ulong frames)
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 20 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 20;
         Assert.Equal((nuint)0, host.BatchCallback((nint)1, checked((nuint)frames)));
         Assert.Null(host.LatestChunk);
         Assert.Null(host.Failure);
@@ -40,7 +42,7 @@ public sealed class CoreAudioCallbackHostTests
     [Fact]
     public void NullBatchPointerDoesNotPublishOrSetFailure()
     {
-        using var host = new ExternalCoreAudioCallbackHost();
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
         Assert.Equal((nuint)0, host.BatchCallback(0, 2));
         Assert.False(host.TryDequeue(out var chunk));
         Assert.Null(chunk);
@@ -54,7 +56,8 @@ public sealed class CoreAudioCallbackHostTests
     [InlineData(65536)]
     public void AcceptedBatchesPublishTheRetainedChunkWithoutCountingTrimmingAsOverrun(int frames)
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 10 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 10;
         var samples = Enumerable.Range(0, frames * 2).Select(index => unchecked((short)index)).ToArray();
         var pointer = Marshal.AllocHGlobal(samples.Length * sizeof(short));
         try
@@ -77,7 +80,8 @@ public sealed class CoreAudioCallbackHostTests
     [Fact]
     public void EvictionHappensBeforeEnqueueAndLeavesTheLatestRetainedChunkPublished()
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 10 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 10;
         host.SampleCallback(1, 2);
         host.SampleCallback(3, 4);
         host.SampleCallback(5, 6);
@@ -96,7 +100,8 @@ public sealed class CoreAudioCallbackHostTests
     [Fact]
     public void RateChangesApplyToTheNextChunkAndKeepTheSequence()
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 20 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 20;
         host.SampleCallback(1, 2);
         host.SampleCallback(3, 4);
         host.SampleRate = 0;
@@ -111,7 +116,8 @@ public sealed class CoreAudioCallbackHostTests
     [Fact]
     public void DisposeClearsStateAndCallbacksIgnoreFurtherInput()
     {
-        using var host = new ExternalCoreAudioCallbackHost { SampleRate = 5 };
+        using var host = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        host.SampleRate = 5;
         host.SampleCallback(1, 2);
         host.SampleCallback(3, 4);
         Assert.Equal(1, host.OverrunCount);

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Enums;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
 
 namespace GWGUI.Tests.Emulation;
 
@@ -12,7 +12,9 @@ public sealed class CoreVideoCallbackHostTests
     [InlineData(EmulationPixelFormat.Rgb1555, 8)]
     public void CopiesPaddedRowsAndRepeatsTheLastFrame(EmulationPixelFormat format, int pitch)
     {
-        using var host = new ExternalCoreVideoCallbackHost { PixelFormat = format, AspectRatio = 1.25f };
+        using var host = EmulationSdk.NativeResources.CreateVideoCallbackHost();
+        host.PixelFormat = format;
+        host.AspectRatio = 1.25f;
         var pixels = Enumerable.Range(0, pitch * 2).Select(index => (byte)index).ToArray();
         var pointer = Marshal.AllocHGlobal(pixels.Length);
         try
@@ -46,7 +48,7 @@ public sealed class CoreVideoCallbackHostTests
     [InlineData(1U, 1U, 0UL)]
     public void IgnoresEmptyImagesBeforeReadingThePointer(uint width, uint height, ulong pitch)
     {
-        using var host = new ExternalCoreVideoCallbackHost();
+        using var host = EmulationSdk.NativeResources.CreateVideoCallbackHost();
         host.Callback(1, width, height, (nuint)pitch);
         Assert.Null(host.LatestFrame);
         Assert.Null(host.Failure);
@@ -55,16 +57,16 @@ public sealed class CoreVideoCallbackHostTests
     [Fact]
     public void RejectsInvalidSizesBeforePointerReadAndRetainsTheFirstError()
     {
-        using var host = new ExternalCoreVideoCallbackHost();
+        using var host = EmulationSdk.NativeResources.CreateVideoCallbackHost();
         host.Callback(1, 2, 1, 4);
         var error = Assert.IsType<InvalidOperationException>(host.Failure);
         host.Callback(1, 1, 1, int.MaxValue);
         Assert.Same(error, host.Failure);
         Assert.Null(host.LatestFrame);
-        using var oversized = new ExternalCoreVideoCallbackHost();
+        using var oversized = EmulationSdk.NativeResources.CreateVideoCallbackHost();
         oversized.Callback(1, 1, 1, int.MaxValue);
         Assert.IsType<InvalidOperationException>(oversized.Failure);
-        using var overflowing = new ExternalCoreVideoCallbackHost();
+        using var overflowing = EmulationSdk.NativeResources.CreateVideoCallbackHost();
         overflowing.Callback(1, 1, 2, int.MaxValue);
         Assert.IsType<OverflowException>(overflowing.Failure);
     }
@@ -72,7 +74,7 @@ public sealed class CoreVideoCallbackHostTests
     [Fact]
     public void FailedFrameKeepsThePreviousImageAndDisposeReleasesItsState()
     {
-        using var host = new ExternalCoreVideoCallbackHost();
+        using var host = EmulationSdk.NativeResources.CreateVideoCallbackHost();
         var pointer = Marshal.AllocHGlobal(4);
         try
         {

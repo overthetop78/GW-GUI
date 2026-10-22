@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 
 namespace GWGUI.Tests.Emulation;
@@ -15,6 +16,9 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(IEmulationNativeResources.CreateLoadedContent), typeof(IEmulationLoadedContent), "ExternalCoreLoadedContent")]
     [InlineData(nameof(IEmulationNativeResources.CreateVirtualFileSystem), typeof(IEmulationVirtualFileSystem), "ExternalCoreVirtualFileSystem")]
     [InlineData(nameof(IEmulationNativeResources.CreateLibrary), typeof(IEmulationCoreLibrary), "ExternalCoreLibrary")]
+    [InlineData(nameof(IEmulationNativeResources.CreateAudioCallbackHost), typeof(IEmulationAudioCallbackHost), "ExternalCoreAudioCallbackHost")]
+    [InlineData(nameof(IEmulationNativeResources.CreateVideoCallbackHost), typeof(IEmulationVideoCallbackHost), "ExternalCoreVideoCallbackHost")]
+    [InlineData(nameof(IEmulationNativeResources.CreateEnvironmentCallbackHost), typeof(IEmulationEnvironmentCallbackHost), "ExternalCoreEnvironmentCallbackHost")]
     public void NativeResourceFactoriesExposeInterfacesAndKeepOwnersInternal(string methodName, Type contract, string implementationName)
     {
         var methods = typeof(IEmulationNativeResources).GetMethods().Where(method => method.Name == methodName).ToArray();
@@ -25,6 +29,75 @@ public sealed class ArchitectureValidationTests
         var implementation = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Services." + implementationName, throwOnError: true)!;
         Assert.False(implementation.IsVisible);
         Assert.True(contract.IsAssignableFrom(implementation));
+    }
+
+    [Theory]
+    [InlineData(nameof(IEmulationNativeResources.CreateCoreOptionHost), typeof(IEmulationCoreOptionHost<>), "EmulationCoreOptionHost`2")]
+    [InlineData(nameof(IEmulationNativeResources.CreateVariableOptionHost), typeof(IEmulationVariableOptionHost<>), "EmulationLegacyOptionHost`1")]
+    public void GenericOptionFactoriesExposeInterfacesAndKeepOwnersInternal(string methodName, Type contract, string implementationName)
+    {
+        var factory = typeof(IEmulationNativeResources).GetMethod(methodName)!;
+        Assert.True(factory.IsGenericMethodDefinition);
+        Assert.Equal(contract, factory.ReturnType.GetGenericTypeDefinition());
+        Assert.True(contract.IsPublic);
+        Assert.True(contract.IsInterface);
+        var implementation = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Services." + implementationName, throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        Assert.Contains(implementation.GetInterfaces(), item => item.IsGenericType && item.GetGenericTypeDefinition() == contract);
+    }
+
+    [Fact]
+    public void EnvironmentFactoryDoesNotDisposeBorrowedAudioAndVideoAfterOptionCreationFails()
+    {
+        using var audio = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        using var video = EmulationSdk.NativeResources.CreateVideoCallbackHost();
+        var expected = new InvalidOperationException("option creation rejected");
+        var error = Assert.Throws<InvalidOperationException>(() =>
+        {
+            using var unexpected = EmulationSdk.NativeResources.CreateEnvironmentCallbackHost(audio: audio, video: video, options: new Dictionary<string, string>(),
+                systemDirectory: string.Empty, contentDirectory: string.Empty, saveDirectory: string.Empty, assetsDirectory: string.Empty, createOptions: _ => throw expected);
+        });
+        Assert.Same(expected, error);
+        AssertBorrowedCallbackOwnersStillWork(audio, video);
+    }
+
+    [Fact]
+    public void EnvironmentFactoryDisposesOwnedOptionsAfterDirectoryValidationFails()
+    {
+        using var audio = EmulationSdk.NativeResources.CreateAudioCallbackHost();
+        using var video = EmulationSdk.NativeResources.CreateVideoCallbackHost();
+        var options = new TrackedVariableOptions();
+        try
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                using var unexpected = EmulationSdk.NativeResources.CreateEnvironmentCallbackHost(audio: audio, video: video, options: new Dictionary<string, string>(),
+                    systemDirectory: string.Empty, contentDirectory: string.Empty, saveDirectory: string.Empty, assetsDirectory: string.Empty, createOptions: _ => options);
+            });
+            Assert.Equal(1, options.Disposals);
+            AssertBorrowedCallbackOwnersStillWork(audio, video);
+        }
+        finally { if (options.Disposals == 0) options.Dispose(); }
+    }
+
+    private static void AssertBorrowedCallbackOwnersStillWork(IEmulationAudioCallbackHost audio, IEmulationVideoCallbackHost video)
+    {
+        audio.SampleRate = 20;
+        audio.SampleCallback(1, 2);
+        Assert.True(audio.TryDequeue(out _));
+        video.Callback((nint)1, 1, 1, 1);
+        Assert.NotNull(video.Failure);
+    }
+
+    private sealed class TrackedVariableOptions : IEmulationVariableOptionHost<EmulationEnabledOption>
+    {
+        internal int Disposals { get; private set; }
+        public IReadOnlyList<EmulationEnabledOption> Options => [];
+        public bool Register(nint data) => throw new NotSupportedException();
+        public bool ReturnValue(nint data) => throw new NotSupportedException();
+        public void SetValue(string key, string value) => throw new NotSupportedException();
+        public bool ReturnUpdated(nint data) => throw new NotSupportedException();
+        public void Dispose() => Disposals++;
     }
 
     [Theory]

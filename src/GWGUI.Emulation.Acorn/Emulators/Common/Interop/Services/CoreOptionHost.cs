@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
@@ -6,13 +8,13 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
 
 internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 {
-    private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
+    private readonly IEmulationCoreOptionHost<CoreOption> _host;
     private readonly IReadOnlyDictionary<string, CoreOption> _presentation;
 
     internal CoreOptionHost(IReadOnlyDictionary<string, string> configured, IReadOnlyList<CoreOption>? presentation = null)
     {
         _presentation = (presentation ?? []).ToDictionary(option => option.Key, StringComparer.Ordinal);
-        _host = new EmulationCoreOptionHost<CoreOption, CoreOptionValue>(
+        _host = CommonCoreHostFunctions.NativeResources.CreateCoreOptionHost<CoreOption, CoreOptionValue>(
             configured,
             keyFor: static option => option.Key,
             defaultFor: static option => option.DefaultValue,
