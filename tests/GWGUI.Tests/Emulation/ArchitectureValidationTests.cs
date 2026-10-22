@@ -141,6 +141,64 @@ public sealed class ArchitectureValidationTests
         }
     }
 
+    [Theory]
+    [InlineData("Example")]
+    [InlineData("Panasonic")]
+    [InlineData("Wenquxing")]
+    public void FirmwareCapabilitiesUseTheSameDescriptionAndCompatibilityContract(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareCapabilities", throwOnError: true)!;
+        var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+        var category = assembly.GetType(root + ".Common.Machines.Common.Enums.FirmwareCategory", throwOnError: true)!;
+        var requirement = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareRequirement", throwOnError: true)!;
+        Assert.True(contract.IsInterface);
+        Assert.False(contract.IsVisible);
+        Assert.Equal(2, contract.GetMethods().Length);
+        var describe = contract.GetMethod("DescribeFirmware")!;
+        Assert.True(describe.IsAbstract);
+        Assert.Equal(typeof(IReadOnlyList<>).MakeGenericType(requirement), describe.ReturnType);
+        Assert.Equal(configuration, Assert.Single(describe.GetParameters()).ParameterType);
+        var compatible = contract.GetMethod("IsFirmwareCompatible")!;
+        Assert.True(compatible.IsAbstract);
+        Assert.Equal(typeof(bool), compatible.ReturnType);
+        Assert.Equal(new[] { configuration, category, typeof(string) }, compatible.GetParameters().Select(parameter => parameter.ParameterType));
+        Assert.Equal(category, requirement.GetProperty("Role")!.PropertyType);
+        Assert.Equal(typeof(string), requirement.GetProperty("FieldId")!.PropertyType);
+        Assert.Equal(typeof(string), requirement.GetProperty("DisplayResourceKey")!.PropertyType);
+        Assert.Equal(typeof(IReadOnlyList<string>), requirement.GetProperty("FileNames")!.PropertyType);
+        Assert.Equal(typeof(bool), requirement.GetProperty("IsRequired")!.PropertyType);
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.NotEmpty(implementations);
+        foreach (var implementation in implementations)
+            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
+        if (family == "Example")
+            Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection")!.GetInterfaces());
+    }
+
+    [Theory]
+    [InlineData("Panasonic", new[] { "SystemRom", "FontRom" })]
+    [InlineData("Wenquxing", new[] { "SystemRom", "NorFlash", "NandFlash", "NandFirstPlane" })]
+    public void RenamedFirmwareCategoriesPreserveTheirValuesAndStoredImageKeys(string family, string[] names)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var category = assembly.GetType(root + ".Common.Machines.Common.Enums.FirmwareCategory", throwOnError: true)!;
+        Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.FirmwareRole"));
+        Assert.Equal(names, Enum.GetNames(category));
+        Assert.Equal(Enumerable.Range(0, names.Length), Enum.GetValues(category).Cast<object>().Select(Convert.ToInt32));
+        var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareConfiguration", throwOnError: true)!;
+        var images = names.ToDictionary(name => name, name => name + ".rom", StringComparer.Ordinal);
+        var json = System.Text.Json.JsonSerializer.Serialize(new { Images = images });
+        var restored = System.Text.Json.JsonSerializer.Deserialize(json, configuration)!;
+        using var stored = System.Text.Json.JsonDocument.Parse(System.Text.Json.JsonSerializer.Serialize(restored, configuration));
+        var actual = stored.RootElement.GetProperty("Images").EnumerateObject().ToDictionary(property => property.Name, property => property.Value.GetString());
+        Assert.Equal(images.Count, actual.Count);
+        foreach (var image in images)
+            Assert.Equal(image.Value, actual[image.Key]);
+    }
+
     [Fact]
     public void SdkGrantsInternalAccessOnlyToTheExistingTestAssemblies()
     {

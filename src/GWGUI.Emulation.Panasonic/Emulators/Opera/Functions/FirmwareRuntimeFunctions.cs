@@ -6,22 +6,22 @@ namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Functions;
 
 internal static class FirmwareRuntimeFunctions
 {
-    internal static bool IsCompatible(MachineConfiguration configuration, FirmwareRole role, string path)
+    internal static bool IsCompatible(MachineConfiguration configuration, FirmwareCategory role, string path)
     {
         if (configuration.Model != MachineModel.ThreeDO || !Enum.IsDefined(role)) return false;
         try
         {
             var file = new FileInfo(path);
             return file.Exists && file.Extension.ToLowerInvariant() is ".bin" or ".rom"
-                && (file.Length == NativeFirmwareConstants.RomSizeBytes || role == FirmwareRole.FontRom && file.Length == NativeFirmwareConstants.Fz1KanjiRomSizeBytes);
+                && (file.Length == NativeFirmwareConstants.RomSizeBytes || role == FirmwareCategory.FontRom && file.Length == NativeFirmwareConstants.Fz1KanjiRomSizeBytes);
         }
         catch (IOException) { return false; }
         catch (UnauthorizedAccessException) { return false; }
     }
-    internal static string FileName(MachineConfiguration configuration, FirmwareRole role)
+    internal static string FileName(MachineConfiguration configuration, FirmwareCategory role)
     {
-        var files = role == FirmwareRole.SystemRom ? NativeFirmwareConstants.SystemFiles : NativeFirmwareConstants.FontFiles;
-        var fallback = role == FirmwareRole.SystemRom ? NativeFirmwareConstants.DefaultSystemFile : NativeFirmwareConstants.DefaultFontFile;
+        var files = role == FirmwareCategory.SystemRom ? NativeFirmwareConstants.SystemFiles : NativeFirmwareConstants.FontFiles;
+        var fallback = role == FirmwareCategory.SystemRom ? NativeFirmwareConstants.DefaultSystemFile : NativeFirmwareConstants.DefaultFontFile;
         if (!configuration.Firmware.Images.TryGetValue(role, out var path)) return fallback;
         return files.FirstOrDefault(file => string.Equals(file, Path.GetFileName(path), StringComparison.OrdinalIgnoreCase)) ?? fallback;
     }

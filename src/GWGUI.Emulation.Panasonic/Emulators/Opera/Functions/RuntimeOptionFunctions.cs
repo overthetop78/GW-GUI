@@ -9,10 +9,10 @@ internal static class RuntimeOptionFunctions
     {
         ConfigurationFunctions.Validate(configuration);
         var values = configuration.Options.Where(option => option.Key.StartsWith(RuntimeOptionConstants.NativePrefix, StringComparison.Ordinal)).ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
-        values[RuntimeOptionConstants.Bios] = configuration.Firmware.Images.ContainsKey(FirmwareRole.SystemRom)
-            ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.SystemRom)
+        values[RuntimeOptionConstants.Bios] = configuration.Firmware.Images.ContainsKey(FirmwareCategory.SystemRom)
+            ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareCategory.SystemRom)
             : NativeFirmwareConstants.BuiltInSystemRom;
-        values[RuntimeOptionConstants.Font] = configuration.Firmware.Images.ContainsKey(FirmwareRole.FontRom) ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.FontRom) : RuntimeOptionConstants.NoFont;
+        values[RuntimeOptionConstants.Font] = configuration.Firmware.Images.ContainsKey(FirmwareCategory.FontRom) ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareCategory.FontRom) : RuntimeOptionConstants.NoFont;
         if (!values.ContainsKey(RuntimeOptionConstants.ActiveDevices))
             values[RuntimeOptionConstants.ActiveDevices] = Enumerable.Range(ControllerConstants.FirstPort,
                 ControllerConstants.PortCount).Where(port => InputSettingsFunctions.Peripheral(configuration.Input,

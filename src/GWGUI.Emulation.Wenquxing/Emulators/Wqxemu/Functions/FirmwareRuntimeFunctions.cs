@@ -6,7 +6,7 @@ using NativeFirmwareConstants = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Const
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions;
 internal static class FirmwareRuntimeFunctions
 {
-    internal static bool IsCompatible(MachineConfiguration configuration, FirmwareRole role, string path)
+    internal static bool IsCompatible(MachineConfiguration configuration, FirmwareCategory role, string path)
     {
         if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.Role == role))
             return false;
@@ -18,24 +18,24 @@ internal static class FirmwareRuntimeFunctions
             var extension = info.Extension.ToLowerInvariant();
             var accepted = role switch
             {
-                FirmwareRole.SystemRom => extension is ".rom" or ".bin",
-                FirmwareRole.NorFlash => extension is ".nor" or ".fls",
-                FirmwareRole.NandFlash => extension == ".nand",
-                FirmwareRole.NandFirstPlane => extension == ".nand0",
+                FirmwareCategory.SystemRom => extension is ".rom" or ".bin",
+                FirmwareCategory.NorFlash => extension is ".nor" or ".fls",
+                FirmwareCategory.NandFlash => extension == ".nand",
+                FirmwareCategory.NandFirstPlane => extension == ".nand0",
                 _ => false
             };
             if (!accepted)
                 return false;
             return role switch
             {
-                FirmwareRole.SystemRom => configuration.Model switch
+                FirmwareCategory.SystemRom => configuration.Model switch
                 {
                     MachineModel.NC1020 => info.Length >= NativeFirmwareConstants.Nc1020RomMinimumBytes,
                     MachineModel.PC1000 => info.Length is NativeFirmwareConstants.Pc1000Rom12MBytes or NativeFirmwareConstants.Pc1000Rom16MBytes,
                     MachineModel.CC800 => info.Length >= NativeFirmwareConstants.Cc800RomMinimumBytes,
                     _ => false
                 },
-                FirmwareRole.NorFlash => info.Length >= (configuration.Model is MachineModel.NC1020 or MachineModel.NC3000 ? NativeFirmwareConstants.Nor1MBytes : NativeFirmwareConstants.Nor512KBytes),
+                FirmwareCategory.NorFlash => info.Length >= (configuration.Model is MachineModel.NC1020 or MachineModel.NC3000 ? NativeFirmwareConstants.Nor1MBytes : NativeFirmwareConstants.Nor512KBytes),
                 _ => true
             };
         }

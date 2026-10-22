@@ -29,15 +29,15 @@ public sealed class OperaFirmwareOptionsTests
     public void ExternalRomKeepsItsNativeFileSelection(string sourceName, string expectedName)
     {
         var configuration = new MachineConfiguration(MachineModel.ThreeDO, core: Emulator.Opera,
-            firmware: new FirmwareConfiguration(new Dictionary<FirmwareRole, string>
+            firmware: new FirmwareConfiguration(new Dictionary<FirmwareCategory, string>
             {
-                [FirmwareRole.SystemRom] = Path.Combine("firmware", sourceName)
+                [FirmwareCategory.SystemRom] = Path.Combine("firmware", sourceName)
             }));
 
         var options = RuntimeOptionFunctions.Prepare(configuration);
 
         Assert.Equal(expectedName, options[RuntimeOptionConstants.Bios]);
-        Assert.Equal(Path.Combine("firmware", sourceName), configuration.Firmware.Images[FirmwareRole.SystemRom]);
+        Assert.Equal(Path.Combine("firmware", sourceName), configuration.Firmware.Images[FirmwareCategory.SystemRom]);
     }
 
     [Fact]
@@ -49,8 +49,8 @@ public sealed class OperaFirmwareOptionsTests
 
         Assert.Equal(2, requirements.Count);
         Assert.All(requirements, requirement => Assert.False(requirement.IsRequired));
-        Assert.Contains(requirements, requirement => requirement.Role == FirmwareRole.SystemRom);
-        Assert.Contains(requirements, requirement => requirement.Role == FirmwareRole.FontRom);
+        Assert.Contains(requirements, requirement => requirement.Role == FirmwareCategory.SystemRom);
+        Assert.Contains(requirements, requirement => requirement.Role == FirmwareCategory.FontRom);
         Assert.All(requirements, requirement => Assert.Contains(fields, field => field.Id == requirement.FieldId && field.Editor == EmulationSettingsEditor.Path));
     }
 }

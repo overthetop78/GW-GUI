@@ -50,7 +50,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Core = core;
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
-        Firmware = firmware is null ? new(new Dictionary<FirmwareRole, string>()) : new(new Dictionary<FirmwareRole, string>(firmware.Images));
+        Firmware = firmware is null ? new(new Dictionary<FirmwareCategory, string>()) : new(new Dictionary<FirmwareCategory, string>(firmware.Images));
         Media = media?.ToArray() ?? [];
         Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
         Input = input ?? new InputConfiguration();

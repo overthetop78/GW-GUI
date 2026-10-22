@@ -4,7 +4,7 @@ using System.IO;
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
 internal static class FirmwareFunctions
 {
-    internal static string Field(FirmwareRole role) => FirmwareConstants.FieldPrefix + role;
+    internal static string Field(FirmwareCategory role) => FirmwareConstants.FieldPrefix + role;
     private static IEmulatorFirmwareCapabilities? Capabilities(MachineConfiguration configuration)
     {
         var engine = new Engine();
@@ -21,7 +21,7 @@ internal static class FirmwareFunctions
     );
     internal static FirmwareConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
-        var selected = new Dictionary<FirmwareRole, string>(configuration.Firmware.Images);
+        var selected = new Dictionary<FirmwareCategory, string>(configuration.Firmware.Images);
         foreach (var requirement in Requirements(configuration))
         {
             if (!values.TryGetValue(requirement.FieldId, out var path))
@@ -56,7 +56,7 @@ internal static class FirmwareFunctions
     internal static MachineConfiguration Select(MachineConfiguration configuration, EmulationFirmwareCandidate candidate)
     {
         var requirement = Requirements(configuration).SingleOrDefault(item => item.FieldId == candidate.DestinationFieldId) ?? throw new ArgumentException(nameof(candidate));
-        var selected = new Dictionary<FirmwareRole, string>(configuration.Firmware.Images)
+        var selected = new Dictionary<FirmwareCategory, string>(configuration.Firmware.Images)
         {
             [requirement.Role] = Path.GetFullPath(candidate.Path)
         };
