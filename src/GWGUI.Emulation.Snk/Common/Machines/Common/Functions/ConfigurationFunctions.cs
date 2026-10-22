@@ -15,7 +15,7 @@ internal static partial class ConfigurationFunctions
         MachineFamily.NeoGeoCd => Emulator.NeoCd,
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
-    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || EmulatorCatalog.Get(core).Models.Contains(model));
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || EmulatorCatalog.Get(core).MachineIds.Select(Enum.Parse<MachineModel>).Contains(model));
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.NeoGeoPocket ? ControllerConstants.PocketPortCount : ControllerConstants.NeoGeoPortCount;
     internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ControllerPortCount(configuration.Model);
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) switch

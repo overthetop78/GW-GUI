@@ -6208,12 +6208,43 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 ## Catalogue Common SNK fondé sur les définitions SDK existantes
 
-- [ ] Réutiliser les définitions publiques comme dans le catalogue d’Example.
-  - [ ] Retirer la projection de métadonnées qui renomme DisplayName en LibraryName.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Dictionaries/EmulatorCatalog.cs : reprendre les inscriptions privées et les définitions EmulationEmulatorDefinition déjà utilisées par Example ; conserver la découverte des adaptateurs, leur tri et leur création ; retirer la table ById inutilisée et retourner les définitions SDK par All et Get.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.cs : vérifier la compatibilité avec MachineIds et conserver les contrôles des énumérations et le cas sans cœur.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : reprendre DisplayName pour la même valeur auparavant recopiée sous LibraryName.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs : conserver les modèles de périphériques à partir de MachineIds, avec la même conversion d’énumération.
-    - [ ] Supprimer src/GWGUI.Emulation.Snk/Common/Contracts/EmulatorContracts.cs : retirer le record EmulatorDefinition après raccordement de ses consommateurs aux définitions SDK.
-  - [ ] Vérifier les catalogues, les identités et les capacités conservées.
-    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Snk/SnkOptionCatalogTests.cs : reprendre les cas des modèles et émulateurs à partir des adaptateurs et de leurs définitions SDK ; vérifier les résumés et les compatibilités conservés, puis exécuter les contrôles SNK et le build Debug avec les 23 modules et vérifier les fichiers livrés.
+- [x] Réutiliser les définitions publiques comme dans le catalogue d’Example.
+  - [x] Retirer la projection de métadonnées qui renomme DisplayName en LibraryName.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Dictionaries/EmulatorCatalog.cs : reprendre les inscriptions privées et les définitions EmulationEmulatorDefinition déjà utilisées par Example ; conserver la découverte des adaptateurs, leur tri et leur création ; retirer la table ById inutilisée et retourner les définitions SDK par All et Get.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.cs : vérifier la compatibilité avec MachineIds et conserver les contrôles des énumérations et le cas sans cœur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs : reprendre DisplayName pour la même valeur auparavant recopiée sous LibraryName.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs : conserver les modèles de périphériques à partir de MachineIds, avec la même conversion d’énumération.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Contracts/EmulatorContracts.cs : retirer le record EmulatorDefinition après raccordement de ses consommateurs aux définitions SDK.
+  - [x] Vérifier les catalogues, les identités et les capacités conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Snk/SnkOptionCatalogTests.cs : reprendre les cas des modèles et émulateurs à partir des adaptateurs et de leurs définitions SDK ; vérifier les résumés et les compatibilités conservés, puis exécuter les contrôles SNK et le build Debug avec les 23 modules et vérifier les fichiers livrés.
+
+  - Validation : 219 contrôles SNK et d’architecture réussis ; identités, ressources, résumés, modèles et parcours sans cœur vérifiés ; catalogue fondé sur les définitions SDK et ancien record supprimé, contrôles des identifiants et modèles conservés ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Propriétés de diagnostics sans consommateur dans les Common
+
+- [ ] Retirer les propriétés de messages devenues inutilisées après les raccordements communs.
+  - [ ] Nettoyer les fichiers Exceptions dans l’ordre des modules et conserver les messages encore appelés.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateCore, DuplicateModel et MissingModel, ainsi que CoreRejected devenu sans appel après vérification des références.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/CoreReleaseErrors.cs : retirer InvalidExportDirectory après vérification de l’absence de consommateur et conserver les autres propriétés.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/EmulatorCatalogErrors.cs : retirer DuplicateModel et MissingModel après vérification des références ; construire Debug avec les 23 modules puis vérifier les fichiers livrés.

@@ -10,7 +10,50 @@ namespace GWGUI.Tests.Emulation.Snk;
 
 public sealed class SnkOptionCatalogTests
 {
-    public static IEnumerable<object[]> MachineAdapters => EmulatorCatalog.All.SelectMany(entry => entry.Models.OrderBy(model => model).Select(model => new object[] { model, entry.Emulator }));
+    public static IEnumerable<object[]> MachineAdapters => EmulatorCatalog.CreateAdapters().SelectMany(adapter => adapter.Definition.MachineIds
+        .Select(Enum.Parse<MachineModel>).Distinct().OrderBy(model => model).Select(model => new object[] { model, Enum.Parse<Emulator>(adapter.EmulatorKey) }));
+
+    [Fact]
+    public void SdkDefinitionsKeepCatalogIdentityCompatibilityAndSummaryValues()
+    {
+        var adapters = EmulatorCatalog.CreateAdapters();
+        Assert.NotEmpty(adapters);
+        Assert.Equal(adapters.Count, EmulatorCatalog.All.Count);
+        Assert.Equal(EmulatorCatalog.All.Select(definition => definition.Id).Order(StringComparer.Ordinal), EmulatorCatalog.All.Select(definition => definition.Id));
+        foreach (var adapter in adapters)
+        {
+            var emulator = Enum.Parse<Emulator>(adapter.EmulatorKey);
+            var expected = adapter.Definition;
+            var definition = EmulatorCatalog.Get(emulator);
+            Assert.Same(definition, Assert.Single(EmulatorCatalog.All, item => item.Id == expected.Id));
+            Assert.Equal(expected.DisplayName, definition.DisplayName);
+            Assert.Equal(expected.DescriptionResourceKey, definition.DescriptionResourceKey);
+            Assert.True(expected.MachineIds.SetEquals(definition.MachineIds));
+            foreach (var model in Enum.GetValues<MachineModel>())
+            {
+                var compatible = expected.MachineIds.Select(Enum.Parse<MachineModel>).Contains(model);
+                Assert.Equal(compatible, ConfigurationFunctions.IsCompatible(model, emulator));
+                if (compatible)
+                    Assert.Equal(expected.DisplayName, Assert.Single(ConfigurationSummaryFunctions.Create(new MachineConfiguration(model, core: emulator)).Details));
+            }
+        }
+        Assert.True(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoAes, Emulator.Geolith));
+        Assert.True(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoCd, Emulator.Geolith));
+        Assert.False(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoPocket, Emulator.Geolith));
+        Assert.True(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoPocketColor, Emulator.MednafenNgp));
+        Assert.False(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoAes, Emulator.MednafenNgp));
+        Assert.True(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoCdz, Emulator.NeoCd));
+        Assert.False(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoMvs, Emulator.NeoCd));
+        foreach (var model in Enum.GetValues<MachineModel>())
+        {
+            Assert.True(ConfigurationFunctions.IsCompatible(model, Emulator.None));
+            Assert.Empty(ConfigurationSummaryFunctions.Create(new MachineConfiguration(model, core: Emulator.None)).Details);
+        }
+        Assert.False(ConfigurationFunctions.IsCompatible((MachineModel)int.MaxValue, Emulator.None));
+        Assert.False(ConfigurationFunctions.IsCompatible(MachineModel.NeoGeoAes, (Emulator)int.MaxValue));
+        Assert.Throws<ArgumentOutOfRangeException>(() => EmulatorCatalog.Get(Emulator.None));
+        Assert.Throws<ArgumentOutOfRangeException>(() => EmulatorCatalog.CreateAdapter(Emulator.None));
+    }
 
     [Theory]
     [MemberData(nameof(MachineAdapters))]

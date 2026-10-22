@@ -6,7 +6,7 @@ internal static class InputSettingsFunctions
     {
         if (!Enum.IsDefined(core))
             throw new ArgumentOutOfRangeException(nameof(core));
-        IEnumerable<MachineModel> models = core == Emulator.None ? Enum.GetValues<MachineModel>() : EmulatorCatalog.Get(core).Models;
+        IEnumerable<MachineModel> models = core == Emulator.None ? Enum.GetValues<MachineModel>() : EmulatorCatalog.Get(core).MachineIds.Select(Enum.Parse<MachineModel>);
         return models.SelectMany(Choices).Distinct().ToArray();
     }
 
