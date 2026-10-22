@@ -6140,6 +6140,25 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 ## Lecture effective des périphériques sélectionnés dans le cœur fictif
 
-- [ ] Utiliser les catégories de ports dans la frame simulée.
-  - [ ] Raccorder la sélection au calcul existant.
-    - [ ] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : faire interroger par CalculateFrame la classe de périphérique enregistrée dans _ports au lieu de toujours demander le bouton de manette ; conserver les chemins interne, Libretro et externe et le passage par Common pour la lecture.
+- [x] Utiliser les catégories de ports dans la frame simulée.
+  - [x] Raccorder la sélection au calcul existant.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : faire interroger par CalculateFrame la classe de périphérique enregistrée dans _ports au lieu de toujours demander le bouton de manette ; conserver les chemins interne, Libretro et externe et le passage par Common pour la lecture.
+    - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleCoreInputTemporaryTests.cs : vérifier les frames produites avec chaque catégorie générique, les deux profils et les trois modes, la sélection initiale, le relâchement, la désactivation et le deuxième port ; utiliser uniquement une session inexistante et libérer les cœurs dans finally ; exécuter ces vérifications et les contrôles d’entrées existants.
+    - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/ExampleCoreInputTemporaryTests.cs après utilisation : retirer le test temporaire qui initialise le cœur avec un chemin de session, vérifier l’absence de dossier créé et reconstruire le projet de tests pour retirer la classe temporaire de son assemblage ; exécuter ensuite le build Debug avec les 23 modules et vérifier l’application, Example et les modules livrés.
+
+  - Validation : 39 contrôles réussis, dont les trois modes avec chaque catégorie et les deux profils, sélection initiale, relâchement, désactivation et deuxième port ; aucun dossier de session créé, cœurs libérés dans finally ; test temporaire supprimé puis assemblage de tests reconstruit sans lui, avec 36 contrôles conservés réussis ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Noms des contrats Common de périphériques et de capacités
+
+- [ ] Employer les noms déjà retenus dans Example pour les rôles équivalents de Sharp et Sinclair.
+  - [ ] Aligner les contrats et leurs appels existants.
+    - [ ] Renommer src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour SupportsNoContent et le contrat de pointeur, avec les commentaires correspondants d’Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer et implémenter le contrat sous le nom uniforme, avec les mêmes valeurs de capacités.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs : consulter le même contrat renommé dans la description du runtime.
+    - [ ] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour le même rôle et documenter les membres.
+    - [ ] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorInputSettings.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerAdapter.cs : conserver GetPeripherals sous le même nom de contrat que dans Example, avec sa documentation.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : utiliser les deux noms uniformes dans les déclarations et les implémentations existantes.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs : conserver GetPeripherals par le contrat de contrôleur renommé.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs : conserver SupportsNoContent par le contrat de capacités renommé.
+  - [ ] Vérifier les noms et les capacités conservées.
+    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats de Sharp et Sinclair par rapport aux rôles d’Example, leurs implémentations et la disparition des anciens noms ; exécuter les vérifications concernées puis le build Debug avec les 23 modules et vérifier les assemblages livrés.

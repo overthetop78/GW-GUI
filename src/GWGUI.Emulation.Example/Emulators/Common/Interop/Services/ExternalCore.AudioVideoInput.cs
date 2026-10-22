@@ -2,6 +2,7 @@ using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.Contr
 using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Example.Common.Functions;
 using GWGUI.Emulation.Example.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Example.Emulators.Common.Interop.Dictionaries;
@@ -28,6 +29,8 @@ internal sealed partial class ExternalCore
     private EmulationInputSnapshot _input = EmulationInputSnapshot.Empty;
     /// <summary>Types de périphériques natifs raccordés aux ports, indexés à partir de zéro.</summary>
     private readonly Dictionary<int, uint> _ports = [];
+    /// <summary>Codes clavier uniques fournis par Common, conservés pour interroger toutes les touches du clavier simulé.</summary>
+    private static readonly IReadOnlyList<uint> KeyboardCodes = Array.AsReadOnly(CommonControllerFunctions.CreateNativeKeyMap().Values.Distinct().ToArray());
     /// <summary>Image et son bruts du dernier calcul, lus après l’export Run dans le mode externe.</summary>
     private byte[] _pixels = [];
     /// <summary>Lot PCM stéréo brut du dernier calcul.</summary>
@@ -68,15 +71,15 @@ internal sealed partial class ExternalCore
     }
 
     /// <summary>Calcule un motif mobile et un son facultatif ; aucune instruction d’une machine réelle n’est exécutée.</summary>
-    /// <remarks>Le premier bouton du premier port influe sur le motif pour rendre le raccordement des
-    /// entrées observable. La RAM change uniquement en mémoire ; aucun média utilisateur n’est modifié.</remarks>
+    /// <remarks>Les commandes des périphériques sélectionnés influent sur le motif pour rendre leur raccordement
+    /// observable. La RAM change uniquement en mémoire ; aucun média utilisateur n’est modifié.</remarks>
     private void CalculateFrame()
     {
         _pollCallback?.Invoke();
-        var pressed = Emulator == Emulator.Internal ? ControllerInput(0, 1, 0, 0) : _inputCallback?.Invoke(0, 1, 0, 0) ?? 0;
+        var inputValue = ReadFrameInput();
         _ticks = checked(_ticks + 1);
         _sequence = checked(_sequence + 1);
-        _memory[0] = unchecked((byte)(_ticks + pressed));
+        _memory[0] = unchecked((byte)(_ticks + inputValue));
         var (width, height) = OptionCatalog.Resolution(_configuration!);
         var format = OptionCatalog.PixelFormat(_configuration!);
         var bytesPerPixel = format == EmulationPixelFormat.Xrgb8888 ? sizeof(uint) : sizeof(ushort);
@@ -106,6 +109,50 @@ internal sealed partial class ExternalCore
             _samples[frame * 2 + 1] = sample;
         }
         if (Emulator == Emulator.Libretro) PublishNative(width, height, width * bytesPerPixel);
+    }
+
+    /// <summary>Interroge les classes natives des ports du profil et additionne leurs valeurs pour le motif de contrôle.</summary>
+    /// <returns>Contribution des commandes de la frame, sans modifier les entrées empruntées.</returns>
+    /// <remarks>Avant une commande de changement de périphérique, le choix provient de la configuration initiale.
+    /// Ensuite, le choix enregistré dans les exports prime. Un port désactivé ne contribue plus au calcul.
+    /// Les trois modes interrogent les mêmes identifiants ; les deux modes à exports passent par leur callback.
+    /// Chaque classe conserve ses unités : déplacements relatifs, positions absolues, pressions et états de boutons.
+    /// Leur somme sert seulement à rendre les lectures observables dans le motif fictif ; elle ne convertit pas
+    /// les commandes en instructions d’une machine réelle et ne modifie aucune association configurée.</remarks>
+    private int ReadFrameInput()
+    {
+        var result = 0;
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration!.Model); port++)
+        {
+            var peripheral = _configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.RetroPad;
+            var device = _ports.TryGetValue(port, out var connected) ? connected : CommonControllerFunctions.ResolveControllerDevice(peripheral);
+            short Read(uint index, uint id) => Emulator == Emulator.Internal ? ControllerInput((uint)port, device, index, id) : _inputCallback?.Invoke((uint)port, device, index, id) ?? 0;
+            switch (device)
+            {
+                case ExternalCoreApiConstants.JoypadDevice:
+                    for (uint id = 0; id < sizeof(uint) * 8; id++) result += Read(0, id);
+                    break;
+                case ExternalCoreApiConstants.MouseDevice:
+                    for (uint id = ExternalCoreApiConstants.MouseXId; id <= ExternalCoreApiConstants.MouseButton5Id; id++) result += Read(0, id);
+                    break;
+                case ExternalCoreApiConstants.KeyboardDevice:
+                    foreach (var code in KeyboardCodes) result += Read(0, code);
+                    break;
+                case ExternalCoreApiConstants.LightGunDevice:
+                    for (uint id = ExternalCoreApiConstants.LightGunTriggerId; id <= ExternalCoreApiConstants.LightGunReloadId; id++) result += Read(0, id);
+                    break;
+                case ExternalCoreApiConstants.AnalogDevice:
+                    for (uint index = ExternalCoreApiConstants.LeftAnalogIndex; index <= ExternalCoreApiConstants.RightAnalogIndex; index++)
+                    for (uint id = ExternalCoreApiConstants.AnalogXId; id <= ExternalCoreApiConstants.AnalogYId; id++) result += Read(index, id);
+                    for (uint id = 0; id < sizeof(ushort) * 8; id++) result += Read(ExternalCoreApiConstants.ButtonAnalogIndex, id);
+                    break;
+                case ExternalCoreApiConstants.PointerDevice:
+                    for (uint id = ExternalCoreApiConstants.PointerXId; id <= ExternalCoreApiConstants.PointerCountId; id++) result += Read(0, id);
+                    result += Read(0, ExternalCoreApiConstants.PointerOffscreenId);
+                    break;
+            }
+        }
+        return result;
     }
 
     /// <summary>Épingle les seuls tableaux empruntés pendant les callbacks et libère les deux épingles dans finally.</summary>
