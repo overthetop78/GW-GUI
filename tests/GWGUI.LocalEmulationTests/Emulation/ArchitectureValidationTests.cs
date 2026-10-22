@@ -14,6 +14,35 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryModuleFacadeDelegatesItsPublicOperationsToItsCommonEngine()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var module = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModule).IsAssignableFrom(type));
+            var field = Assert.Single(module.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly));
+            Assert.Equal("_engine", field.Name);
+            Assert.True(field.IsPrivate);
+            Assert.True(field.IsInitOnly);
+            var moduleNamespace = module.Namespace!;
+            var root = moduleNamespace[..moduleNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            Assert.Equal(engine, field.FieldType);
+            foreach (var property in module.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                Assert.Equal(property.PropertyType, engine.GetProperty(property.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)!.PropertyType);
+            foreach (var method in module.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Where(method => !method.IsSpecialName))
+            {
+                var common = engine.GetMethod(method.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, method.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
+                Assert.NotNull(common);
+                Assert.Equal(method.ReturnType, common.ReturnType);
+            }
+        }
+    }
+
+    [Fact]
     public void EveryCommonCreatesIndependentFrameStoresWithBothExistingPolicies()
     {
         var implementation = typeof(IEmulationInputFrames).Assembly.GetType("GWGUI.Emulation.Services.EmulationInputFrameStore", throwOnError: true)!;

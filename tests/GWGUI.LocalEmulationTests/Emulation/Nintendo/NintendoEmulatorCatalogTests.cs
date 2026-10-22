@@ -53,13 +53,24 @@ public sealed class NintendoEmulatorCatalogTests
     }
 
     [Fact]
-    public void FailedMachineConstructionDisposesAllocatedAudio()
+    public async Task SaveDirectoryFailureDoesNotAllocateAudio()
     {
         var configuration = new MachineConfiguration("Nes", "mesen", AudioEnabled: true);
         var audio = new TrackingAudioOutput();
-        var context = new EmulatorCreationContext(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
-        Assert.Throws<InvalidOperationException>(() => new Engine().Adapter(configuration).Create(configuration, context));
-        Assert.True(audio.Disposed);
+        var allocated = false;
+        IEmulatedMachine? machine = null;
+        try
+        {
+            var context = new EmulatorCreationContext(".", "core.dll", "host.exe", () => { allocated = true; return audio; }, _ => throw new InvalidOperationException("Interrupted construction"));
+            Assert.Throws<InvalidOperationException>(() => machine = new Engine().Adapter(configuration).Create(configuration, context));
+            Assert.False(allocated);
+            Assert.False(audio.Disposed);
+        }
+        finally
+        {
+            try { if (machine is not null) await machine.DisposeAsync(); }
+            finally { audio.Dispose(); }
+        }
     }
 
     private sealed class TrackingAudioOutput : IAudioOutput

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Nec.Common.Services;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
@@ -12,284 +13,74 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
-    private readonly ConfigurationStore _store;
-    private readonly HttpClient _httpClient;
-    private readonly string _coreDirectory;
-    private readonly string _firmwareDirectory;
-    private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
+    private readonly Engine _engine;
 
-    public NecEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory)
-    {
-        _store = new ConfigurationStore(configurationDirectory, pathBase);
-        _httpClient = httpClient;
-        _coreDirectory = coreDirectory;
-        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName, EmulationPathConstants.FirmwareDirectoryName);
-    }
+    public NecEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory) => _engine = new Engine(configurationDirectory, pathBase, httpClient, coreDirectory);
 
-    public string Id => EmulationModuleConstants.ModuleId;
-    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => EmulationModuleConstants.BrandAssetResourceName;
-    public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
+    public string Id => _engine.Id;
 
-    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
+    public string DisplayResourceKey => _engine.DisplayResourceKey;
+
+    public string BrandImageResourceName => _engine.BrandImageResourceName;
+
+    public IReadOnlyList<EmulationMachineDefinition> Machines => _engine.Machines;
+
+    public EmulationSettingsVisibility DefaultVisibility => _engine.DefaultVisibility;
+
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => _engine.TryGetString(key, culture, out value);
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
-    public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
-    {
-        var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
-        var model = ModelCatalog.Get(current.Model);
-        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
-        {
-            EmulationMachineTab.Keyboard => model.HasKeyboard,
-            EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
-            EmulationMachineTab.Storage => model.SupportsCdDrive || model.SupportsCartridgeSlot
-                || model.MaximumFloppyDriveCount > 0,
-            _ => item.Value
-        });
-        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
-    }
+    public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null) => _engine.Describe(machineId, configuration);
 
-    public IEmulationConfiguration CreateConfiguration(string machineId)
-    {
-        var model = ModelCatalog.Get(machineId);
-        return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
-            Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, model.ControllerPortCount)
-                .Select(index => index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : ControllerType.None).ToArray(),
-            Input: new InputConfiguration(), Media: []);
-    }
+    public IEmulationConfiguration CreateConfiguration(string machineId) => _engine.CreateConfiguration(machineId);
 
-    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
-    {
-        if (configuration is not MachineConfiguration current)
-            throw new ArgumentException(nameof(configuration));
-        var created = (MachineConfiguration)CreateConfiguration(machineId);
-        var emulatorId = EmulatorCatalog.GetAll(machineId).Any(item => item.Id == current.EmulatorId) ? current.EmulatorId : created.EmulatorId;
-        return created with { Id = current.Id, EmulatorId = emulatorId,
-            AudioEnabled = current.AudioEnabled, Audio = current.Audio };
-    }
+    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId) => _engine.ChangeMachine(configuration, machineId);
 
-    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
-    {
-        var necConfiguration = RequireConfiguration(configuration);
-        var options = new Dictionary<string, string>(necConfiguration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        var firmwareSlots = FirmwareFunctions.Slots(necConfiguration);
-        CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values,
-            optionKey =>
-            {
-                if (firmwareSlots.Any(slot => slot.FieldId == optionKey)) return true;
-                if (optionKey is StorageDirectorySettings.HardDiskDirectory or SettingsConstants.Model or SettingsConstants.Emulator
-                or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency or SettingsConstants.FirmwarePath
-                or SettingsConstants.Ram or SettingsConstants.FirmwareIntegrated
-                || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) return true;
-                return false;
-            });
-        var audio = necConfiguration.Audio ?? new AudioConfiguration();
-        return FirmwareFunctions.Apply(necConfiguration, values) with
-        {
-            Options = options,
-            HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory) ? string.IsNullOrWhiteSpace(directory) ? null : directory : necConfiguration.HardDiskDirectory,
-            FirmwarePath = values.TryGetValue(SettingsConstants.FirmwarePath, out var firmware) ? string.IsNullOrWhiteSpace(firmware) ? null : firmware : necConfiguration.FirmwarePath,
-            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : necConfiguration.AudioEnabled,
-            Audio = audio with
-            {
-                OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output) ? string.IsNullOrWhiteSpace(output) ? null : output : audio.OutputDeviceId,
-                LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
-            }
-        };
-    }
+    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values) => _engine.ApplySettings(configuration, values);
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => configuration is MachineConfiguration necConfiguration ? necConfiguration.Options ?? new Dictionary<string, string>() : throw new ArgumentException(nameof(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => _engine.RuntimeOptions(configuration);
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => _engine.SummarizeConfiguration(configuration);
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => _engine.DescribeStorageSettings(configuration);
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => _engine.ApplyStorageSettings(configuration, settings);
 
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => _engine.DescribeInputSettings(configuration);
 
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => _engine.ApplyInputSettings(configuration, settings);
 
-    public async ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        if (configuration is not MachineConfiguration machine)
-            throw new ArgumentException(nameof(configuration));
-        await SaveMachineAsync(machine, cancellationToken).ConfigureAwait(false);
-    }
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.SaveInputSettingsAsync(configuration, cancellationToken);
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
+    public ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => _engine.LoadConfigurationsAsync(cancellationToken);
 
-    public async ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        if (configuration is not MachineConfiguration machine)
-            throw new ArgumentException(nameof(configuration));
-        ConfigurationValidationFunctions.ValidateForSave(machine);
-        await SaveMachineAsync(machine, cancellationToken).ConfigureAwait(false);
-    }
+    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.SaveConfigurationAsync(configuration, cancellationToken);
 
-    private async Task SaveMachineAsync(MachineConfiguration machine, CancellationToken cancellationToken)
-    {
-        await _store.SaveAsync(machine, cancellationToken).ConfigureAwait(false);
-        if (_engine.Adapter(machine) is IEmulatorPersistentStorage persistentStorage)
-            persistentStorage.EnsurePersistentStorage(machine, _store.MemoryDirectory(machine.Id));
-    }
+    public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default) => _engine.DeleteConfigurationAsync(configurationId, cancellationToken);
 
-    public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        _store.Delete(configurationId);
-        return ValueTask.CompletedTask;
-    }
+    public string GetFirmwareDirectory(string machineId) => _engine.GetFirmwareDirectory(machineId);
 
-    public string GetFirmwareDirectory(string machineId)
-    {
-        _ = ModelCatalog.Get(machineId);
-        return _firmwareDirectory;
-    }
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.ScanFirmwareAsync(machineId, configuration, cancellationToken);
 
-    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var current = RequireConfiguration(configuration);
-        if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException(nameof(configuration));
-        if (FirmwareFunctions.Slots(current).Count != 0)
-            return ValueTask.FromResult(FirmwareFunctions.Scan(current, GetFirmwareDirectory(machineId)));
-        if (!ModelCatalog.Get(machineId).SupportsCdDrive)
-            return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
-        var candidates = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
-            .Select(firmware =>
-            {
-                var compatible = firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase);
-                return new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
-                    firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                    compatible ? !firmware.IsVerified ? EmulationFirmwareCompatibility.Unknown : firmware.IsOfficial ? EmulationFirmwareCompatibility.Official : EmulationFirmwareCompatibility.Compatible
-                        : firmware.IsKnown ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.Unknown,
-                    compatible || !firmware.IsKnown ? SettingsConstants.FirmwarePath : null);
-            }).ToArray();
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
-    }
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware) => _engine.UseFirmware(configuration, firmware);
 
-    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
-    {
-        var current = RequireConfiguration(configuration);
-        if (FirmwareFunctions.Slots(current).Any(slot => slot.FieldId == firmware.DestinationFieldId))
-        {
-            if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
-            return FirmwareFunctions.Apply(current, new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) });
-        }
-        if (firmware.DestinationFieldId != SettingsConstants.FirmwarePath)
-            throw new InvalidOperationException(nameof(firmware));
-        var inspected = FirmwareCatalog.Inspect(firmware.Path);
-        if (inspected.IsKnown && !inspected.CompatibleModels.Contains(current.Model, StringComparer.OrdinalIgnoreCase))
-            throw new InvalidOperationException(nameof(firmware));
-        return current with { FirmwarePath = inspected.Path };
-    }
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationAsync(machineId, cancellationToken);
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default)
-    {
-        _ = ModelCatalog.Get(machineId);
-        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
-        return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
-    }
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationAsync(configuration, cancellationToken);
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
-        return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
-    }
+    public ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.GetEmulatorInstallationsAsync(configuration, cancellationToken);
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        var necConfiguration = RequireConfiguration(configuration);
-        var installations = new List<EmulationEmulatorInstallation>();
-        foreach (var emulator in EmulatorCatalog.GetAll(necConfiguration.Model))
-        {
-            var adapter = _engine.Adapter(emulator.Id);
-            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false));
-        }
-        return installations;
-    }
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default) => _engine.UseEmulatorAsync(configuration, emulatorId, cancellationToken);
 
-    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var necConfiguration = RequireConfiguration(configuration);
-        if (!EmulatorCatalog.GetAll(necConfiguration.Model).Any(item => item.Id == emulatorId))
-            return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(necConfiguration with { EmulatorId = emulatorId });
-    }
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => _engine.FindEmulatorReleasesAsync(machineId, cancellationToken);
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)
-    {
-        _ = ModelCatalog.Get(machineId);
-        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
-        return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
-    }
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.FindEmulatorReleasesAsync(configuration, cancellationToken);
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
-        return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
-    }
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.InstallEmulatorAsync(machineId, release, progress, cancellationToken);
 
-    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
-    {
-        _ = ModelCatalog.Get(machineId);
-        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
-        return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
-    }
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.InstallEmulatorAsync(configuration, release, progress, cancellationToken);
 
-    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
-    {
-        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
-        return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
-    }
-
-    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
-    {
-        if (configuration is not MachineConfiguration necConfiguration)
-            throw new ArgumentException(nameof(configuration));
-        var adapter = _engine.Adapter(necConfiguration);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = necConfiguration.Audio ?? new AudioConfiguration();
-        var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
-            services.HostExecutablePath,
-            () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => value.Model == PcFxMachineConstants.Id ? _store.MemoryDirectory(value.Id) : Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName),
-            GetFirmwareDirectory(necConfiguration.Model));
-        var storage = StorageSettingsFunctions.Describe(necConfiguration);
-        var mounted = adapter.ResolveConfiguredMedia(necConfiguration);
-        return new EmulationMachineRuntime(necConfiguration,
-            media => _engine.CreateMachine(WithMedia(necConfiguration, media), context),
-            storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
-            MachineConfigurationConstants.ResourcePrefix + necConfiguration.Model,
-            SupportsPointerCapture: ModelCatalog.Get(necConfiguration.Model).MouseButtonCount > 0);
-    }
-
-    private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
-    {
-        Media = media.Select((item, index) => new MediaConfiguration(item.Path,
-            item.Type switch
-            {
-                EmulationMediaType.Cartridge => MediaCategory.Cartridge,
-                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
-                EmulationMediaType.Floppy => MediaCategory.Floppy,
-                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
-                _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
-            MountOrder: index, SlotIndex: item.Slot.Index)).ToArray()
-    };
-
-    private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.DefaultFor(machineId);
-
-    private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default) => _engine.CreateRuntimeAsync(configuration, services, cancellationToken);
 }
 
