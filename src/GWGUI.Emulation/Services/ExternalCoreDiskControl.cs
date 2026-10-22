@@ -2,11 +2,22 @@ using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Services;
 
-internal abstract class ExternalCoreDiskControl
+internal class ExternalCoreDiskControl : IEmulationDiskControl
 {
+    private readonly IEmulationDiskControlPolicy _policy;
+    protected readonly Func<string, bool>? _mediaExists;
+
+    internal ExternalCoreDiskControl(IEmulationDiskControlPolicy policy, Func<string, bool>? mediaExists = null)
+    {
+        ArgumentNullException.ThrowIfNull(policy);
+        _policy = policy;
+        _mediaExists = mediaExists;
+    }
+
     protected ExternalCoreApi.SetEjectState? SetEjectState;
     protected ExternalCoreApi.GetEjectState? _getEjectState;
     private ExternalCoreApi.GetImageIndex? _getImageIndex;
@@ -17,23 +28,23 @@ internal abstract class ExternalCoreDiskControl
     private ExternalCoreApi.GetImagePath? _getImagePath;
     private ExternalCoreApi.GetImageLabel? _getImageLabel;
 
-    protected abstract string UnavailableMessage { get; }
-    protected abstract string IncompleteMessage { get; }
-    protected abstract string EjectFailedMessage { get; }
-    protected abstract string SelectFailedMessage { get; }
-    protected abstract string InsertFailedMessage { get; }
-    protected abstract string CreateSlotFailedMessage { get; }
-    protected abstract string ReplaceFailedMessage { get; }
-    protected abstract string MediaMissingMessage { get; }
-    protected virtual string RequestedSelectFailedMessage => SelectFailedMessage;
-    protected virtual string RequestedInsertFailedMessage => InsertFailedMessage;
-    protected virtual bool ResetOnEmptyCapture => false;
+    protected string UnavailableMessage => _policy.UnavailableMessage;
+    protected string IncompleteMessage => _policy.IncompleteMessage;
+    protected string EjectFailedMessage => _policy.EjectFailedMessage;
+    protected string SelectFailedMessage => _policy.SelectFailedMessage;
+    protected string InsertFailedMessage => _policy.InsertFailedMessage;
+    protected string CreateSlotFailedMessage => _policy.CreateSlotFailedMessage;
+    protected string ReplaceFailedMessage => _policy.ReplaceFailedMessage;
+    protected string MediaMissingMessage => _policy.MediaMissingMessage;
+    protected string RequestedSelectFailedMessage => _policy.RequestedSelectFailedMessage;
+    protected string RequestedInsertFailedMessage => _policy.RequestedInsertFailedMessage;
+    protected bool ResetOnEmptyCapture => _policy.ResetOnEmptyCapture;
     protected virtual bool CountBeforeIndexValidation => true;
-    protected virtual bool MediaExists(string path) => File.Exists(path) || Directory.Exists(path);
+    protected virtual bool MediaExists(string path) => _mediaExists?.Invoke(path) ?? (File.Exists(path) || Directory.Exists(path));
 
-    internal bool IsAvailable => SetEjectState is not null;
-    internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : 0;
-    internal int CurrentIndex
+    public bool IsAvailable => SetEjectState is not null;
+    public int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : 0;
+    public int CurrentIndex
     {
         get
         {
@@ -43,10 +54,11 @@ internal abstract class ExternalCoreDiskControl
         }
     }
     protected bool Ejected => !IsAvailable || _getEjectState!();
+    public bool IsEjected => Ejected;
 
-    internal void Capture(nint data) => CaptureBasic(Marshal.PtrToStructure<ExternalCoreApi.DiskControl>(data));
+    public void Capture(nint data) => CaptureBasic(Marshal.PtrToStructure<ExternalCoreApi.DiskControl>(data));
 
-    internal void CaptureExtended(nint data)
+    public void CaptureExtended(nint data)
     {
         var api = Marshal.PtrToStructure<ExternalCoreApi.DiskControlExtended>(data);
         CaptureBasic(api.Basic);
@@ -71,7 +83,7 @@ internal abstract class ExternalCoreDiskControl
         _addImage = Required<ExternalCoreApi.AddImage>(api.AddImage);
     }
 
-    internal void Clear()
+    public void Clear()
     {
         SetEjectState = null;
         _getEjectState = null;
@@ -84,7 +96,7 @@ internal abstract class ExternalCoreDiskControl
         _getImageLabel = null;
     }
 
-    internal void Select(int index)
+    public void Select(int index)
     {
         EnsureAvailable();
         if (CountBeforeIndexValidation)
@@ -101,13 +113,13 @@ internal abstract class ExternalCoreDiskControl
             () => new InvalidOperationException(RequestedInsertFailedMessage));
     }
 
-    internal string? GetPath(int index) => ExternalCoreEnvironmentFunctions.ReadDiskText(_getImagePath, index, 4096);
-    internal string? GetLabel(int index) => ExternalCoreEnvironmentFunctions.ReadDiskText(_getImageLabel, index, 4096);
+    public string? GetPath(int index) => ExternalCoreEnvironmentFunctions.ReadDiskText(_getImagePath, index, 4096);
+    public string? GetLabel(int index) => ExternalCoreEnvironmentFunctions.ReadDiskText(_getImageLabel, index, 4096);
 
-    protected TStatus ReadStatus<TImage, TStatus>(Func<int, string?, string?, TImage> image, Func<int, int, bool, TImage[], TStatus> status)
+    public DiskStatus GetStatus()
     {
-        var images = Enumerable.Range(0, ImageCount).Select(index => image(index, GetPath(index), GetLabel(index))).ToArray();
-        return status(ImageCount, CurrentIndex, Ejected, images);
+        var images = Enumerable.Range(0, ImageCount).Select(index => new DiskImageStatus(index, GetPath(index), GetLabel(index))).ToArray();
+        return new DiskStatus(ImageCount, CurrentIndex, Ejected, images);
     }
 
     protected uint PrepareInsertion(string path, out bool wasEjected)
@@ -122,7 +134,7 @@ internal abstract class ExternalCoreDiskControl
         return index;
     }
 
-    internal virtual void Insert(string path)
+    public virtual void Insert(string path)
     {
         var index = PrepareInsertion(path, out var wasEjected);
         nint nativePath = 0;
@@ -153,7 +165,31 @@ internal abstract class ExternalCoreDiskControl
         if (!SetEjectState!(false)) throw new InvalidOperationException(InsertFailedMessage);
     }
 
-    internal void Eject()
+    public void InsertAt(int index, string path, int firstImageIndex, Func<string, IEmulationLoadedContent> createContent)
+    {
+        EnsureAvailable();
+        if (index < firstImageIndex) throw new ArgumentOutOfRangeException(nameof(index));
+        if (!MediaExists(path)) throw new FileNotFoundException(MediaMissingMessage, path);
+        var wasEjected = _getEjectState!();
+        if (!wasEjected && !SetEjectState!(true)) throw new InvalidOperationException(EjectFailedMessage);
+        var inserted = false;
+        try
+        {
+            while (ImageCount <= index)
+                if (!_addImage!()) throw new InvalidOperationException(CreateSlotFailedMessage);
+            if (!SetImageIndex!(checked((uint)index))) throw new InvalidOperationException(SelectFailedMessage);
+            using var content = createContent(path);
+            if (!ReplaceImage!(checked((uint)index), content.GameInfo)) throw new InvalidOperationException(ReplaceFailedMessage);
+            if (!SetEjectState!(false)) throw new InvalidOperationException(InsertFailedMessage);
+            inserted = true;
+        }
+        finally
+        {
+            if (!inserted && !wasEjected) SetEjectState!(false);
+        }
+    }
+
+    public void Eject()
     {
         EnsureAvailable();
         if (!SetEjectState!(true)) throw new InvalidOperationException(EjectFailedMessage);

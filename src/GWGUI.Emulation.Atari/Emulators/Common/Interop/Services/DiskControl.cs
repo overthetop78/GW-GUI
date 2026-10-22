@@ -1,28 +1,49 @@
+using GWGUI.Emulation.Contracts;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Interfaces;
 using System.IO;
 
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
-internal sealed class DiskControl : GWGUI.Emulation.Services.ExternalRichDiskControl<IEmulationLoadedContent>
+internal sealed class DiskControl : IEmulationDiskControl, IEmulationDiskControlPolicy
 {
-    protected override string UnavailableMessage => DiskControlErrors.Unavailable;
-    protected override string IncompleteMessage => DiskControlErrors.Incomplete;
-    protected override string EjectFailedMessage => DiskControlErrors.EjectFailed;
-    protected override string SelectFailedMessage => DiskControlErrors.SelectFailed;
-    protected override string InsertFailedMessage => DiskControlErrors.InsertFailed;
-    protected override string CreateSlotFailedMessage => DiskControlErrors.CreateSlotFailed;
-    protected override string ReplaceFailedMessage => DiskControlErrors.ReplaceFailed;
-    protected override string MediaMissingMessage => DiskControlErrors.MediaMissing;
+    private readonly IEmulationDiskControl _control;
 
-    protected override IEmulationLoadedContent CreateContent(string path)
+    internal DiskControl()
+    {
+        _control = CommonCoreHostFunctions.NativeResources.CreateDiskControl(this, CreateContent);
+    }
+
+    public string UnavailableMessage => DiskControlErrors.Unavailable;
+    public string IncompleteMessage => DiskControlErrors.Incomplete;
+    public string EjectFailedMessage => DiskControlErrors.EjectFailed;
+    public string SelectFailedMessage => DiskControlErrors.SelectFailed;
+    public string InsertFailedMessage => DiskControlErrors.InsertFailed;
+    public string CreateSlotFailedMessage => DiskControlErrors.CreateSlotFailed;
+    public string ReplaceFailedMessage => DiskControlErrors.ReplaceFailed;
+    public string MediaMissingMessage => DiskControlErrors.MediaMissing;
+
+    private IEmulationLoadedContent CreateContent(string path)
         => ContentFunctions.Create(path, true,
             new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix)
             });
-    protected override nint GetGameInfo(IEmulationLoadedContent content) => content.GameInfo;
 
-    internal DiskStatus GetStatus() => ReadStatus(
-        static (int index, string? path, string? label) => new DiskImageStatus(index, path, label),
-        static (int count, int index, bool ejected, DiskImageStatus[] images) => new DiskStatus(count, index, ejected, images));
+
+    /// <summary>État et opérations transmis au propriétaire SDK par son interface.</summary>
+    public bool IsAvailable => _control.IsAvailable;
+    public int ImageCount => _control.ImageCount;
+    public int CurrentIndex => _control.CurrentIndex;
+    public bool IsEjected => _control.IsEjected;
+    public void Capture(nint data) => _control.Capture(data);
+    public void CaptureExtended(nint data) => _control.CaptureExtended(data);
+    public void Clear() => _control.Clear();
+    public void Select(int index) => _control.Select(index);
+    public string? GetPath(int index) => _control.GetPath(index);
+    public string? GetLabel(int index) => _control.GetLabel(index);
+    public DiskStatus GetStatus() => _control.GetStatus();
+    public void Insert(string path) => _control.Insert(path);
+    public void InsertAt(int index, string path, int firstImageIndex, Func<string, IEmulationLoadedContent> createContent) => _control.InsertAt(index, path, firstImageIndex, createContent);
+    public void Eject() => _control.Eject();
 }

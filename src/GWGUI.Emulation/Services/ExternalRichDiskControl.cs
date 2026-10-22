@@ -2,22 +2,19 @@ using System.IO;
 
 namespace GWGUI.Emulation.Services;
 
-internal abstract class ExternalRichDiskControl<TContent> : ExternalCoreDiskControl where TContent : IDisposable
+internal sealed class ExternalRichDiskControl(IEmulationDiskControlPolicy policy, Func<string, IEmulationLoadedContent> createContent, Func<string, bool>? mediaExists = null) : ExternalCoreDiskControl(policy, mediaExists)
 {
-    internal bool IsEjected => Ejected;
     protected override bool CountBeforeIndexValidation => false;
-    protected override bool MediaExists(string path) => File.Exists(path);
-    protected abstract TContent CreateContent(string path);
-    protected abstract nint GetGameInfo(TContent content);
+    protected override bool MediaExists(string path) => _mediaExists?.Invoke(path) ?? File.Exists(path);
 
-    internal override void Insert(string path)
+    public override void Insert(string path)
     {
         var index = PrepareInsertion(path, out var wasEjected);
-        using var content = CreateContent(path);
+        using var content = createContent(path);
         var inserted = false;
         try
         {
-            ReplaceAndInsert(index, GetGameInfo(content));
+            ReplaceAndInsert(index, content.GameInfo);
             inserted = true;
         }
         finally

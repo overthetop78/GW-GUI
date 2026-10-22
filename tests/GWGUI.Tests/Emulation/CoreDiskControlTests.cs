@@ -1,19 +1,73 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
-using GWGUI.Emulation.Services;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Interfaces;
 
 namespace GWGUI.Tests.Emulation;
 
 public sealed class CoreDiskControlTests
 {
+    [Fact]
+    public void CommonStatusRetainsNativeReadOrderAndImageDescriptions()
+    {
+        using var fixture = new Fixture();
+        var owner = new NativeOwner().CreateControl();
+        fixture.Capture(owner);
+        var status = owner.GetStatus();
+        Assert.Equal(2, status.ImageCount);
+        Assert.Equal(1, status.CurrentIndex);
+        Assert.False(status.IsEjected);
+        Assert.Equal(new[] { 0, 1 }, status.Images.Select(image => image.Index));
+        Assert.Equal(new[] { "count", "count", "index", "ejected" }, fixture.Trace);
+    }
+
+    [Fact]
+    public void InsertAtCreatesSlotsBeforeSelectingAndLoadingTheContent()
+    {
+        using var fixture = new Fixture { Count = 1 };
+        fixture.Api.AddImage = fixture.Pointer((ExternalCoreApi.AddImage)(() => { fixture.Trace.Add("add"); fixture.Count++; return true; }));
+        var policy = new RichOwner(fixture);
+        var owner = policy.CreateControl();
+        fixture.Capture(owner);
+        owner.InsertAt(2, "disc.bin", 0, policy.CreateContent);
+        Assert.Equal(new[] { "ejected", "eject:True", "count", "add", "count", "add", "count", "select:2", "create", "game-info", "replace:2", "eject:False", "dispose" }, fixture.Trace);
+        Assert.Equal(1, fixture.Disposals);
+    }
+
+    [Fact]
+    public void InsertAtRestoresTheTrayWhenContentCreationFails()
+    {
+        using var fixture = new Fixture { CreationFails = true };
+        var policy = new RichOwner(fixture);
+        var owner = policy.CreateControl();
+        fixture.Capture(owner);
+        Assert.Equal("create", Assert.Throws<InvalidOperationException>(() => owner.InsertAt(0, "disc.bin", 0, policy.CreateContent)).Message);
+        Assert.Equal(new[] { "ejected", "eject:True", "count", "select:0", "create", "eject:False" }, fixture.Trace);
+        Assert.Equal(0, fixture.Disposals);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void InsertAtDisposesContentBeforeRestoringTheTrayAfterReplacementFailure(bool rollbackFails)
+    {
+        using var fixture = new Fixture { RefuseReplacement = true, RollbackFails = rollbackFails };
+        var policy = new RichOwner(fixture);
+        var owner = policy.CreateControl();
+        fixture.Capture(owner);
+        Assert.Equal(rollbackFails ? "rollback" : "replace", Assert.Throws<InvalidOperationException>(() => owner.InsertAt(0, "disc.bin", 0, policy.CreateContent)).Message);
+        Assert.Equal(new[] { "ejected", "eject:True", "count", "select:0", "create", "game-info", "replace:0", "dispose", "eject:False" }, fixture.Trace);
+        Assert.Equal(1, fixture.Disposals);
+    }
+
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void EmptyCaptureKeepsTheProfilePolicy(bool reset)
     {
         using var fixture = new Fixture();
-        var owner = new RichOwner(fixture, reset);
+        var owner = new RichOwner(fixture, reset).CreateControl();
         fixture.Capture(owner);
         fixture.Api = default;
         if (reset)
@@ -37,7 +91,7 @@ public sealed class CoreDiskControlTests
     public void FailedCaptureKeepsTheAssignmentsAlreadyMadeAndTheOldTail()
     {
         using var fixture = new Fixture();
-        var owner = new NativeOwner();
+        var owner = new NativeOwner().CreateControl();
         fixture.Capture(owner);
         fixture.Api.SetEjectState = fixture.Pointer((ExternalCoreApi.SetEjectState)(_ => { fixture.Trace.Add("new-eject"); return true; }));
         fixture.Api.GetImageCount = 0;
@@ -53,7 +107,7 @@ public sealed class CoreDiskControlTests
     public void NegativeIndexRetainsTheNativeOrRichCountReadPolicy(bool rich)
     {
         using var fixture = new Fixture();
-        ExternalCoreDiskControl owner = rich ? new RichOwner(fixture) : new NativeOwner();
+        IEmulationDiskControl owner = rich ? new RichOwner(fixture).CreateControl() : new NativeOwner().CreateControl();
         fixture.Capture(owner);
         Assert.Equal("index", Assert.Throws<ArgumentOutOfRangeException>(() => owner.Select(-1)).ParamName);
         Assert.Equal(rich ? Array.Empty<string>() : new[] { "count" }, fixture.Trace);
@@ -63,7 +117,7 @@ public sealed class CoreDiskControlTests
     public void SelectionUsesTheRequestedErrorAndRollsBackToTheOldIndex()
     {
         using var fixture = new Fixture { RefuseSelection = true };
-        var owner = new NativeOwner();
+        var owner = new NativeOwner().CreateControl();
         fixture.Capture(owner);
         Assert.Equal("requested-select", Assert.Throws<InvalidOperationException>(() => owner.Select(0)).Message);
         Assert.Equal(new[] { "count", "index", "ejected", "eject:True", "select:0", "select:1", "eject:False" }, fixture.Trace);
@@ -76,7 +130,7 @@ public sealed class CoreDiskControlTests
     public void RichContentIsDisposedAfterRollbackEvenIfRollbackThrows(bool gameInfoFails, bool rollbackFails)
     {
         using var fixture = new Fixture { RefuseReplacement = true, GameInfoFails = gameInfoFails, RollbackFails = rollbackFails };
-        var owner = new RichOwner(fixture);
+        var owner = new RichOwner(fixture).CreateControl();
         fixture.Capture(owner);
         var error = Assert.Throws<InvalidOperationException>(() => owner.Insert("disc.bin"));
         Assert.Equal(rollbackFails ? "rollback" : gameInfoFails ? "game-info" : "replace", error.Message);
@@ -89,7 +143,7 @@ public sealed class CoreDiskControlTests
     public void ContentCreationFailureDoesNotEnterTheRollbackRegion()
     {
         using var fixture = new Fixture { CreationFails = true };
-        var owner = new RichOwner(fixture);
+        var owner = new RichOwner(fixture).CreateControl();
         fixture.Capture(owner);
         Assert.Equal("create", Assert.Throws<InvalidOperationException>(() => owner.Insert("disc.bin")).Message);
         Assert.Equal(new[] { "ejected", "eject:True", "count", "index", "create" }, fixture.Trace);
@@ -100,7 +154,7 @@ public sealed class CoreDiskControlTests
     public void AlreadyEjectedContentFailureDoesNotReinsertTheTray()
     {
         using var fixture = new Fixture { Ejected = true, RefuseReplacement = true };
-        var owner = new RichOwner(fixture);
+        var owner = new RichOwner(fixture).CreateControl();
         fixture.Capture(owner);
         Assert.Throws<InvalidOperationException>(() => owner.Insert("disc.bin"));
         Assert.DoesNotContain(fixture.Trace, item => item.StartsWith("eject:", StringComparison.Ordinal));
@@ -111,7 +165,7 @@ public sealed class CoreDiskControlTests
     public void NativeContentKeepsTheFullUtf8PathAndAnEmptyDataPointer()
     {
         using var fixture = new Fixture { InspectNativeGame = true };
-        var owner = new NativeOwner();
+        var owner = new NativeOwner().CreateControl();
         fixture.Capture(owner);
         owner.Insert("jeu-é.bin");
         Assert.Equal(Path.GetFullPath("jeu-é.bin"), fixture.NativePath);
@@ -122,7 +176,7 @@ public sealed class CoreDiskControlTests
     public void ZeroImagesCreatesASlotWithoutReadingAnIndex()
     {
         using var fixture = new Fixture { Count = 0 };
-        var owner = new RichOwner(fixture);
+        var owner = new RichOwner(fixture).CreateControl();
         fixture.Capture(owner);
         owner.Insert("disc.bin");
         Assert.Equal(new[] { "ejected", "eject:True", "count", "add", "create", "game-info", "replace:0", "select:0", "eject:False", "dispose" }, fixture.Trace);
@@ -132,7 +186,7 @@ public sealed class CoreDiskControlTests
     public void ExtendedEmptyCaptureStillInstallsItsOptionalTextCallbacks()
     {
         using var fixture = new Fixture();
-        var owner = new RichOwner(fixture, true);
+        var owner = new RichOwner(fixture, true).CreateControl();
         fixture.Api = default;
         fixture.Capture(owner, extended: true);
         Assert.False(owner.IsAvailable);
@@ -147,7 +201,7 @@ public sealed class CoreDiskControlTests
     public void NativeSentinelAndCheckedConversionsRemainDistinct()
     {
         using var fixture = new Fixture { Index = uint.MaxValue, Count = uint.MaxValue };
-        var owner = new NativeOwner();
+        var owner = new NativeOwner().CreateControl();
         fixture.Capture(owner);
         Assert.Equal(-1, owner.CurrentIndex);
         Assert.Throws<OverflowException>(() => owner.ImageCount);
@@ -203,7 +257,7 @@ public sealed class CoreDiskControlTests
             return Marshal.GetFunctionPointerForDelegate(callback);
         }
 
-        internal void Capture(ExternalCoreDiskControl owner, bool extended = false)
+        internal void Capture(IEmulationDiskControl owner, bool extended = false)
         {
             if (_buffer == 0) _buffer = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.DiskControlExtended>());
             if (extended)
@@ -237,9 +291,9 @@ public sealed class CoreDiskControlTests
         }
     }
 
-    private sealed class Content(Fixture fixture) : IDisposable
+    private sealed class Content(Fixture fixture) : IEmulationLoadedContent
     {
-        internal nint GameInfo
+        public nint GameInfo
         {
             get
             {
@@ -251,38 +305,37 @@ public sealed class CoreDiskControlTests
         public void Dispose() { fixture.Disposals++; fixture.Trace.Add("dispose"); }
     }
 
-    private sealed class NativeOwner : ExternalCoreDiskControl
+    private sealed class NativeOwner : IEmulationDiskControlPolicy
     {
-        protected override bool MediaExists(string path) => true;
-        protected override string UnavailableMessage => "unavailable";
-        protected override string IncompleteMessage => "incomplete";
-        protected override string EjectFailedMessage => "eject";
-        protected override string SelectFailedMessage => "select";
-        protected override string InsertFailedMessage => "insert";
-        protected override string CreateSlotFailedMessage => "add";
-        protected override string ReplaceFailedMessage => "replace";
-        protected override string MediaMissingMessage => "missing";
-        protected override string RequestedSelectFailedMessage => "requested-select";
+        internal IEmulationDiskControl CreateControl() => EmulationSdk.NativeResources.CreateDiskControl(this, mediaExists: static _ => true);
+        public string UnavailableMessage => "unavailable";
+        public string IncompleteMessage => "incomplete";
+        public string EjectFailedMessage => "eject";
+        public string SelectFailedMessage => "select";
+        public string InsertFailedMessage => "insert";
+        public string CreateSlotFailedMessage => "add";
+        public string ReplaceFailedMessage => "replace";
+        public string MediaMissingMessage => "missing";
+        public string RequestedSelectFailedMessage => "requested-select";
     }
 
-    private sealed class RichOwner(Fixture fixture, bool reset = false) : ExternalRichDiskControl<Content>
+    private sealed class RichOwner(Fixture fixture, bool reset = false) : IEmulationDiskControlPolicy
     {
-        protected override bool ResetOnEmptyCapture => reset;
-        protected override bool MediaExists(string path) => true;
-        protected override Content CreateContent(string path)
+        internal IEmulationDiskControl CreateControl() => EmulationSdk.NativeResources.CreateDiskControl(this, CreateContent, static _ => true);
+        public bool ResetOnEmptyCapture => reset;
+        internal Content CreateContent(string path)
         {
             fixture.Trace.Add("create");
             if (fixture.CreationFails) throw new InvalidOperationException("create");
             return new Content(fixture);
         }
-        protected override nint GetGameInfo(Content content) => content.GameInfo;
-        protected override string UnavailableMessage => "unavailable";
-        protected override string IncompleteMessage => "incomplete";
-        protected override string EjectFailedMessage => "eject";
-        protected override string SelectFailedMessage => "select";
-        protected override string InsertFailedMessage => "insert";
-        protected override string CreateSlotFailedMessage => "add";
-        protected override string ReplaceFailedMessage => "replace";
-        protected override string MediaMissingMessage => "missing";
+        public string UnavailableMessage => "unavailable";
+        public string IncompleteMessage => "incomplete";
+        public string EjectFailedMessage => "eject";
+        public string SelectFailedMessage => "select";
+        public string InsertFailedMessage => "insert";
+        public string CreateSlotFailedMessage => "add";
+        public string ReplaceFailedMessage => "replace";
+        public string MediaMissingMessage => "missing";
     }
 }

@@ -4,7 +4,7 @@ using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
-internal sealed class LoadedContent : IDisposable
+internal sealed class LoadedContent : IEmulationLoadedContent
 {
     private IEmulationLoadedContent? _content;
     private readonly string _contentFilePath;
@@ -16,7 +16,7 @@ internal sealed class LoadedContent : IDisposable
         _contentFilePath = contentFilePath;
     }
 
-    internal nint GameInfo => _content?.GameInfo ?? nint.Zero;
+    public nint GameInfo => _content?.GameInfo ?? nint.Zero;
     internal string? ContentFilePath => _content is null ? null : _contentFilePath;
 
     internal static LoadedContent Create(string absolutePath, bool needsFullPath, bool useWindowsAnsiPath)

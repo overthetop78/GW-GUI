@@ -16,6 +16,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(IEmulationNativeResources.CreateLoadedContent), typeof(IEmulationLoadedContent), "ExternalCoreLoadedContent")]
     [InlineData(nameof(IEmulationNativeResources.CreateVirtualFileSystem), typeof(IEmulationVirtualFileSystem), "ExternalCoreVirtualFileSystem")]
     [InlineData(nameof(IEmulationNativeResources.CreateLibrary), typeof(IEmulationCoreLibrary), "ExternalCoreLibrary")]
+    [InlineData(nameof(IEmulationNativeResources.CreateDiskControl), typeof(IEmulationDiskControl), "ExternalCoreDiskControl")]
     [InlineData(nameof(IEmulationNativeResources.CreateAudioCallbackHost), typeof(IEmulationAudioCallbackHost), "ExternalCoreAudioCallbackHost")]
     [InlineData(nameof(IEmulationNativeResources.CreateVideoCallbackHost), typeof(IEmulationVideoCallbackHost), "ExternalCoreVideoCallbackHost")]
     [InlineData(nameof(IEmulationNativeResources.CreateEnvironmentCallbackHost), typeof(IEmulationEnvironmentCallbackHost), "ExternalCoreEnvironmentCallbackHost")]

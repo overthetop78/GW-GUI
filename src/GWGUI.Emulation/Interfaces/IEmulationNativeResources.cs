@@ -8,6 +8,15 @@ namespace GWGUI.Emulation.Interfaces;
 /// allocations ; l’appelant les libère dans un finally, sauf transfert réussi à un autre propriétaire.</remarks>
 public interface IEmulationNativeResources
 {
+    /// <summary>Crée le contrôle commun des images de disques d’un cœur.</summary>
+    /// <param name="policy">Messages et règles empruntés au module, lus au moment du traitement correspondant.</param>
+    /// <param name="createContent">Fabrique empruntée de contenu possédé par chaque insertion ; null pour le chargement natif par chemin seul.</param>
+    /// <param name="mediaExists">Validation empruntée facultative ; null conserve les validations existantes de chaque mode.</param>
+    /// <returns>Contrôle dont les callbacks sont empruntés au cœur ; la session les détache par Clear avant de décharger ce code.</returns>
+    /// <remarks>La présence d’une fabrique conserve les règles de contenu chargé, de lecture du nombre
+    /// d’images et de restauration propres à ce mode. Aucun callback ni fabrique n’est exécuté pendant la construction.</remarks>
+    IEmulationDiskControl CreateDiskControl(IEmulationDiskControlPolicy policy, Func<string, IEmulationLoadedContent>? createContent = null, Func<string, bool>? mediaExists = null);
+
     /// <summary>Copie un texte en UTF-8 terminé par zéro dans une allocation native indépendante.</summary>
     /// <param name="value">Texte à copier ; null est refusé.</param>
     /// <param name="minimumByteCapacity">Capacité minimale en octets, terminateur compris ; le complément est nul.</param>

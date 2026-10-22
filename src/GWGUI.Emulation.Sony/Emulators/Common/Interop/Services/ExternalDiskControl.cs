@@ -1,18 +1,46 @@
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
-internal sealed class ExternalDiskControl(string? emulatorId = null) : GWGUI.Emulation.Services.ExternalCoreDiskControl
+internal sealed class ExternalDiskControl : IEmulationDiskControl, IEmulationDiskControlPolicy
 {
-    protected override string UnavailableMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DiskControlUnavailable);
-    protected override string IncompleteMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DiskControlIncomplete);
-    protected override string EjectFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaEjectFailed);
-    protected override string SelectFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaSelectionFailed);
-    protected override string InsertFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaInsertFailed);
-    protected override string CreateSlotFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaSlotCreationFailed);
-    protected override string ReplaceFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaRefused);
-    protected override string MediaMissingMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.MediaNotFound);
-    protected override string RequestedSelectFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.RequestedDiskSelectionFailed);
-    protected override string RequestedInsertFailedMessage => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.RequestedMediaInsertFailed);
+    private readonly IEmulationDiskControl _control;
+    private readonly string? _emulatorId;
+
+    internal ExternalDiskControl(string? emulatorId = null)
+    {
+        _emulatorId = emulatorId;
+        _control = CommonCoreHostFunctions.NativeResources.CreateDiskControl(this);
+    }
+
+    public string UnavailableMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlUnavailable);
+    public string IncompleteMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlIncomplete);
+    public string EjectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaEjectFailed);
+    public string SelectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSelectionFailed);
+    public string InsertFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaInsertFailed);
+    public string CreateSlotFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSlotCreationFailed);
+    public string ReplaceFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaRefused);
+    public string MediaMissingMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaNotFound);
+    public string RequestedSelectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedDiskSelectionFailed);
+    public string RequestedInsertFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedMediaInsertFailed);
+
+    /// <summary>État et opérations transmis au propriétaire SDK par son interface.</summary>
+    public bool IsAvailable => _control.IsAvailable;
+    public int ImageCount => _control.ImageCount;
+    public int CurrentIndex => _control.CurrentIndex;
+    public bool IsEjected => _control.IsEjected;
+    public void Capture(nint data) => _control.Capture(data);
+    public void CaptureExtended(nint data) => _control.CaptureExtended(data);
+    public void Clear() => _control.Clear();
+    public void Select(int index) => _control.Select(index);
+    public string? GetPath(int index) => _control.GetPath(index);
+    public string? GetLabel(int index) => _control.GetLabel(index);
+    public DiskStatus GetStatus() => _control.GetStatus();
+    public void Insert(string path) => _control.Insert(path);
+    public void InsertAt(int index, string path, int firstImageIndex, Func<string, IEmulationLoadedContent> createContent) => _control.InsertAt(index, path, firstImageIndex, createContent);
+    public void Eject() => _control.Eject();
 }

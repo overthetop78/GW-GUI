@@ -7,6 +7,10 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationNativeResourceService : IEmulationNativeResources
 {
     /// <inheritdoc/>
+    public IEmulationDiskControl CreateDiskControl(IEmulationDiskControlPolicy policy, Func<string, IEmulationLoadedContent>? createContent = null, Func<string, bool>? mediaExists = null)
+        => createContent is null ? new ExternalCoreDiskControl(policy, mediaExists) : new ExternalRichDiskControl(policy, createContent, mediaExists);
+
+    /// <inheritdoc/>
     public IEmulationNativeString CreateString(string value, int minimumByteCapacity = 0) => new ExternalCoreUtf8String(value, minimumByteCapacity);
 
     /// <inheritdoc/>
