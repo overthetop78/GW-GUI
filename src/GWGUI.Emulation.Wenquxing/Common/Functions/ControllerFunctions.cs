@@ -9,6 +9,11 @@ namespace GWGUI.Emulation.Wenquxing.Common.Functions;
 /// <remarks>Les adaptations de cœur passent par ce propriétaire Common ; les algorithmes restent dans le SDK.</remarks>
 internal static class ControllerFunctions
 {
+    /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
+    /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
+    /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
+    internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
+
     /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
     internal static short NativeMouseState(EmulationPointerState pointer, uint port, uint index, uint id) => EmulationSdk.InputProcessing.NativeMouseState(pointer, port, index, id);

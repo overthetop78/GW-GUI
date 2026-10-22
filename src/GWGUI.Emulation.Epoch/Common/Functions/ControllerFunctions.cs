@@ -7,6 +7,11 @@ namespace GWGUI.Emulation.Epoch.Common.Functions;
 
 internal static class ControllerFunctions
 {
+    /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
+    /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
+    /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
+    internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
+
     // Dead zones are applied to physical sources by the mapper before it encodes native axes and carrier bits.
     internal static EmulationInputSnapshot FreezeMappedInput(EmulationInputSnapshot input) => EmulationSdk.InputProcessing.Freeze(input);
     /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>

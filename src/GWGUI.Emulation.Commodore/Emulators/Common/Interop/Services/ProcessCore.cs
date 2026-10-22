@@ -1,3 +1,5 @@
+using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using System.IO;
 
@@ -23,7 +25,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private Process? _process;
     private MemoryMappedFile? _videoMemory;
     private MemoryMappedViewAccessor? _videoMap;
-    private readonly InputAccumulator _input = new();
+    private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;

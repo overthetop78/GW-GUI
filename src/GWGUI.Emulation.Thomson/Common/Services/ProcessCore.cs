@@ -1,3 +1,5 @@
+using CommonControllerFunctions = GWGUI.Emulation.Thomson.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Buffers.Binary;
@@ -25,7 +27,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     private readonly TimeSpan _connectionTimeout;
     private readonly CancellationToken _cancellationToken;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
-    private readonly EmulationInputAccumulator _input = new();
+    private readonly IEmulationInputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private readonly SemaphoreSlim _requestGate = new(CoreHostConstants.MaximumPipeInstances, CoreHostConstants.MaximumPipeInstances);
     private NamedPipeServerStream? _pipe;
     private BinaryWriter? _writer;

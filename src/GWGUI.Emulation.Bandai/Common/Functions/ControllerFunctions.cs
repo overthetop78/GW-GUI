@@ -7,6 +7,11 @@ namespace GWGUI.Emulation.Bandai.Common.Functions;
 
 internal static class ControllerFunctions
 {
+    /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
+    /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
+    /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
+    internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
+
     internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model) => [PeripheralCategory.None, PeripheralCategory.Automatic, ConfigurationFunctions.DefaultPeripheral(model)];
 
     // These devices expose digital buttons. No analog scaling is applied to their native input.

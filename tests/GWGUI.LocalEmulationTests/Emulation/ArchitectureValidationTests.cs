@@ -12,6 +12,51 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void EveryCommonCreatesIndependentInputAccumulatorsThroughThePublicContract()
+    {
+        var implementation = typeof(IEmulationInputAccumulator).Assembly.GetType("GWGUI.Emulation.Services.EmulationInputAccumulator", throwOnError: true)!;
+        Assert.False(implementation.IsVisible);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
+            var create = common.GetMethod("CreateInputAccumulator", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.Equal(typeof(IEmulationInputAccumulator), create.ReturnType);
+            var first = Assert.IsAssignableFrom<IEmulationInputAccumulator>(create.Invoke(null, null));
+            var second = Assert.IsAssignableFrom<IEmulationInputAccumulator>(create.Invoke(null, null));
+            Assert.NotSame(first, second);
+            var input = EmulationInputSnapshot.Empty with { Pointer = new(4, int.MaxValue, 2, true, false, false) { HorizontalWheel = int.MinValue } };
+            first.Update(input);
+            first.Update(input);
+            Assert.Equal(EmulationInputSnapshot.Empty, second.Consume());
+            var accumulated = first.Consume();
+            Assert.Equal(8, accumulated.Pointer.DeltaX);
+            Assert.Equal(int.MaxValue, accumulated.Pointer.DeltaY);
+            Assert.Equal(4, accumulated.Pointer.Wheel);
+            Assert.Equal(int.MinValue, accumulated.Pointer.HorizontalWheel);
+            var consumed = first.Consume();
+            Assert.Equal(0, consumed.Pointer.DeltaX);
+            Assert.Equal(0, consumed.Pointer.DeltaY);
+            Assert.Equal(0, consumed.Pointer.Wheel);
+            Assert.Equal(0, consumed.Pointer.HorizontalWheel);
+            Assert.True(consumed.Pointer.Left);
+            first.Update(input);
+            first.Update(null);
+            Assert.Equal(4, first.Consume().Pointer.DeltaX);
+            Assert.False(first.Consume().Pointer.Left);
+            first.Update(input);
+            first.Reset();
+            Assert.Equal(EmulationInputSnapshot.Empty, first.Consume());
+        }
+    }
+
     [Theory]
     [InlineData("Sharp")]
     [InlineData("Sinclair")]

@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Services;
 /// <remarks>Le service ne conserve aucune référence aux instantanés reçus.</remarks>
 internal sealed class EmulationInputProcessingService : IEmulationInputProcessing
 {
+    /// <inheritdoc/>
+    public IEmulationInputAccumulator CreateInputAccumulator() => new EmulationInputAccumulator();
+
     public IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => EmulationKeyboardBindingFunctions.ToKeys(values);
     public IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values, IEqualityComparer<string>? emptyComparer = null) => EmulationKeyboardBindingFunctions.ToStrings(values, emptyComparer);
     public bool IsValidSourcePrefix(string? source) => EmulationKeyboardBindingFunctions.IsValidSourcePrefix(source);

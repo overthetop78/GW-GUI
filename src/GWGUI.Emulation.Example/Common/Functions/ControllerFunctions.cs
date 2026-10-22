@@ -13,6 +13,11 @@ namespace GWGUI.Emulation.Example.Common.Functions;
 /// collections et neutralise uniquement les ports explicitement désactivés.</remarks>
 internal static class ControllerFunctions
 {
+    /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
+    /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
+    /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
+    internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
+
     /// <summary>Associe chaque catégorie générique à la classe native qu’interrogera le cœur.</summary>
     /// <param name="peripheral">Catégorie du port, déjà contrôlée dans la configuration.</param>
     /// <returns>Classe native commune aux trois modes fictifs, indépendante du matériel physique.</returns>

@@ -1,3 +1,5 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Functions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
@@ -29,7 +31,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private Process? _process;
     private MemoryMappedFile? _videoMemory;
     private MemoryMappedViewAccessor? _videoMap;
-    private readonly InputAccumulator _input = new();
+    private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;

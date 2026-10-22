@@ -4,9 +4,13 @@ namespace GWGUI.Emulation.Interfaces;
 
 /// <summary>Traitements sans état des instantanés d’entrées échangés avec les cœurs.</summary>
 /// <remarks>Le service ne possède aucun périphérique et ne conserve aucun état de session.
-/// L’accumulation des mouvements entre deux frames appartient au contrat IEmulationInputFrames.</remarks>
+/// Les accumulateurs créés possèdent leur état indépendant ; IEmulationInputFrames permet également de copier les collections reçues.</remarks>
 public interface IEmulationInputProcessing
 {
+    /// <summary>Crée un accumulateur indépendant qui emprunte les collections et conserve les mouvements relatifs jusqu’à leur consommation.</summary>
+    /// <returns>Contrat appartenant à l’appelant ; le service ne conserve pas l’instance créée.</returns>
+    IEmulationInputAccumulator CreateInputAccumulator();
+
     /// <summary>Convertit les noms de touches reconnus en valeurs typées, en conservant la comparaison ordinale des commandes.</summary>
     IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values);
     /// <summary>Convertit les touches en noms ; pour une source absente, utilise le comparateur de dictionnaire vide fourni.</summary>

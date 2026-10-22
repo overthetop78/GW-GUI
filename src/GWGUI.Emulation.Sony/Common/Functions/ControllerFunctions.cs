@@ -7,6 +7,11 @@ namespace GWGUI.Emulation.Sony.Common.Functions;
 
 internal static class ControllerFunctions
 {
+    /// <summary>Crée un accumulateur indépendant pour conserver les entrées reçues entre deux lectures du cœur.</summary>
+    /// <remarks>Ce relais Common demande l’instance au contrat SDK. Les collections restent empruntées et doivent être stables ; Update additionne les mouvements avec saturation, Consume remet seulement les déplacements et molettes à zéro, et Reset efface toutes les entrées. Le service ne possède aucune ressource native.</remarks>
+    /// <returns>Contrat appartenant au consommateur ; chaque appel fournit un état indépendant.</returns>
+    internal static IEmulationInputAccumulator CreateInputAccumulator() => EmulationSdk.InputProcessing.CreateInputAccumulator();
+
     internal static int PortCount(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ModelCatalog.Get(configuration.Model).ControllerPortCount;
     internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration) => WithCompatibleDevices(configuration,
         new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetPeripherals(configuration) : []);

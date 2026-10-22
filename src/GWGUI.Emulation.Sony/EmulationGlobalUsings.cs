@@ -22,7 +22,7 @@ global using GWGUI.Emulation.Sony.Common.Machines.Common.Exceptions;
 global using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Sony.Common.Services;
 
-global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;
+global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumulator;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.Emulator>;

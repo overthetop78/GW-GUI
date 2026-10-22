@@ -1,3 +1,5 @@
+using CommonControllerFunctions = GWGUI.Emulation.Apple.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Interop;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -19,7 +21,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
     private readonly AudioOutputController _audio;
-    private readonly EmulationInputAccumulator _input = new();
+    private readonly IEmulationInputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
     private CancellationTokenSource? _stopSource;

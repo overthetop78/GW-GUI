@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
@@ -31,7 +32,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private Process? _process;
     private MemoryMappedFile? _videoMemory;
     private MemoryMappedViewAccessor? _videoMap;
-    private readonly InputAccumulator _input = new();
+    private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;

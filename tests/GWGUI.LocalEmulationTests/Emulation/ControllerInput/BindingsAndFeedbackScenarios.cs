@@ -122,7 +122,7 @@ internal static class BindingsAndFeedbackScenarios
     }
     public static void Accumulate()
     {
-        var accumulator=new EmulationInputAccumulator();
+        var accumulator=EmulationSdk.InputProcessing.CreateInputAccumulator();
         var first=EmulationInputSnapshot.Empty with { Pointer=new(10,int.MaxValue,2,true,false,false) };
         var second=EmulationInputSnapshot.Empty with { Pointer=new(-3,100,1,false,true,false) };
         accumulator.Update(first);accumulator.Update(second);

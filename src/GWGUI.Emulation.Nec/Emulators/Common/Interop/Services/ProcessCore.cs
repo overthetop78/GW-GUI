@@ -1,3 +1,5 @@
+using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Enums;
@@ -35,7 +37,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private Process? _process;
     private MemoryMappedFile? _videoMemory;
     private MemoryMappedViewAccessor? _videoMap;
-    private readonly InputAccumulator _input = new();
+    private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Sony.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
@@ -41,7 +42,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
     private readonly IReadOnlyList<CoreControllerPort>? _controllerPorts;
-    private readonly InputAccumulator _input = new();
+    private readonly InputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
     private int _pointerY = ExternalHostCallbacksConstants.PointerCoordinateCenter;
