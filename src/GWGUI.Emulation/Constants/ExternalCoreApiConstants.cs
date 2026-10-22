@@ -102,8 +102,24 @@ public static class ExternalCoreApiConstants
     public const uint SetNetworkPacketInterface = 78;
     public const uint SetSerializationQuirks = 87;
     public const uint PrimaryPort = 0;
+    /// <summary>Classe native d’un port désactivé.</summary>
+    public const uint NoDevice = 0;
+    /// <summary>Classe native des boutons d’une manette ou d’un joystick numérique.</summary>
+    public const uint JoypadDevice = 1;
+    /// <summary>Classe native des mouvements relatifs et boutons d’une souris.</summary>
+    public const uint MouseDevice = 2;
+    /// <summary>Classe native des touches du clavier.</summary>
+    public const uint KeyboardDevice = 3;
+    /// <summary>Classe native du pistolet optique.</summary>
+    public const uint LightGunDevice = 4;
+    /// <summary>Classe native des sticks et pressions analogiques.</summary>
+    public const uint AnalogDevice = 5;
+    /// <summary>Classe native du stylet ou du point de contact absolu.</summary>
+    public const uint PointerDevice = 6;
     public const uint LeftAnalogIndex = 0;
     public const uint RightAnalogIndex = 1;
+    /// <summary>Sélecteur natif des pressions de boutons, distinct des deux sticks.</summary>
+    public const uint ButtonAnalogIndex = 2;
     public const uint AnalogXId = 0;
     public const uint AnalogYId = 1;
     public const uint MouseXId = 0;
@@ -121,6 +137,44 @@ public static class ExternalCoreApiConstants
     public const uint MouseButton4Id = 9;
     /// <summary>Identifiant natif du cinquième bouton, correspondant au deuxième bouton supplémentaire.</summary>
     public const uint MouseButton5Id = 10;
+    /// <summary>Commande native de tir du pistolet.</summary>
+    public const uint LightGunTriggerId = 2;
+    /// <summary>Première commande auxiliaire native du pistolet.</summary>
+    public const uint LightGunAuxiliaryAId = 3;
+    /// <summary>Deuxième commande auxiliaire native du pistolet.</summary>
+    public const uint LightGunAuxiliaryBId = 4;
+    /// <summary>Commande native de démarrage du pistolet.</summary>
+    public const uint LightGunStartId = 6;
+    /// <summary>Commande native de sélection du pistolet.</summary>
+    public const uint LightGunSelectId = 7;
+    /// <summary>Troisième commande auxiliaire native du pistolet.</summary>
+    public const uint LightGunAuxiliaryCId = 8;
+    /// <summary>Direction haute native du pistolet.</summary>
+    public const uint LightGunUpId = 9;
+    /// <summary>Direction basse native du pistolet.</summary>
+    public const uint LightGunDownId = 10;
+    /// <summary>Direction gauche native du pistolet.</summary>
+    public const uint LightGunLeftId = 11;
+    /// <summary>Direction droite native du pistolet.</summary>
+    public const uint LightGunRightId = 12;
+    /// <summary>Coordonnée horizontale absolue native du pistolet.</summary>
+    public const uint LightGunScreenXId = 13;
+    /// <summary>Coordonnée verticale absolue native du pistolet.</summary>
+    public const uint LightGunScreenYId = 14;
+    /// <summary>État natif indiquant un pointage hors écran.</summary>
+    public const uint LightGunOffscreenId = 15;
+    /// <summary>Commande native de rechargement du pistolet.</summary>
+    public const uint LightGunReloadId = 16;
+    /// <summary>Coordonnée horizontale absolue du contact natif.</summary>
+    public const uint PointerXId = 0;
+    /// <summary>Coordonnée verticale absolue du contact natif.</summary>
+    public const uint PointerYId = 1;
+    /// <summary>État natif d’appui du contact.</summary>
+    public const uint PointerPressedId = 2;
+    /// <summary>Nombre de contacts actifs dans le contrat natif.</summary>
+    public const uint PointerCountId = 3;
+    /// <summary>État natif indiquant un contact hors écran.</summary>
+    public const uint PointerOffscreenId = 15;
     public const uint JoypadMaskId = 256;
     public const short ActiveState = 1;
     public const short InactiveState = 0;

@@ -80,13 +80,20 @@ public sealed class ModuleConfigurationReviewTests
     [InlineData("PlayStation", "swanstation")]
     [InlineData("PlayStation2", "pcsx2")]
     [InlineData("Psp", "ppsspp")]
-    public void SonyFailedConstructionReleasesAudio(string machine, string emulator)
+    public void SonyFailedConstructionDoesNotCreateAudio(string machine, string emulator)
     {
-        var audio = new TrackingAudio();
+        TrackingAudio? audio = null;
         var configuration = new SonyMachines.Contracts.MachineConfiguration(machine, emulator);
-        var context = new GWGUI.Emulation.Contracts.EmulatorCreationContext<SonyMachines.Contracts.MachineConfiguration>(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
-        Assert.Throws<InvalidOperationException>(() => new GWGUI.Emulation.Sony.Common.Services.Engine().Adapter(configuration).Create(configuration, context));
-        Assert.True(audio.Disposed);
+        var context = new GWGUI.Emulation.Contracts.EmulatorCreationContext<SonyMachines.Contracts.MachineConfiguration>(".", "core.dll", "host.exe", () => audio = new TrackingAudio(), _ => throw new InvalidOperationException("Interrupted construction"));
+        try
+        {
+            Assert.Throws<InvalidOperationException>(() => new GWGUI.Emulation.Sony.Common.Services.Engine().Adapter(configuration).Create(configuration, context));
+            Assert.Null(audio);
+        }
+        finally
+        {
+            audio?.Dispose();
+        }
     }
 
     private sealed class TrackingAudio : IAudioOutput

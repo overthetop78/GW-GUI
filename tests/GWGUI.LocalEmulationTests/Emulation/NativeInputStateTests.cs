@@ -96,16 +96,95 @@ public sealed class NativeInputStateTests
     }
 
     [Fact]
-    public void StickReadsKeepSignedAxesAndDoNotExposeTriggers()
+    public void StickReadsKeepSignedAxesAndPressureReadsExposeTriggers()
     {
         var controller = new EmulationControllerState(0, short.MinValue, -42, 71, short.MaxValue, 111, 222);
         Assert.Equal(short.MinValue, EmulationSdk.InputProcessing.NativeAnalogState(controller, 0, 0));
         Assert.Equal((short)-42, EmulationSdk.InputProcessing.NativeAnalogState(controller, 0, 1));
         Assert.Equal((short)71, EmulationSdk.InputProcessing.NativeAnalogState(controller, 1, 0));
         Assert.Equal(short.MaxValue, EmulationSdk.InputProcessing.NativeAnalogState(controller, 1, 1));
-        Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeAnalogState(controller, 2, 12));
-        Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeAnalogState(controller, 2, 13));
+        Assert.Equal((short)111, EmulationSdk.InputProcessing.NativeAnalogState(controller, 2, 12));
+        Assert.Equal((short)222, EmulationSdk.InputProcessing.NativeAnalogState(controller, 2, 13));
         Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeAnalogState(controller, 0, uint.MaxValue));
         Assert.Equal((short)0, EmulationSdk.InputProcessing.NativeAnalogState(controller, uint.MaxValue, 0));
+    }
+
+    [Fact]
+    public void AnalogPressuresPreserveTheirCourseAndOverrideDigitalFallbacks()
+    {
+        var processing = EmulationSdk.InputProcessing;
+        var controller = EmulationControllerState.Empty with { Buttons = ushort.MaxValue, LeftTrigger = 1234, RightTrigger = 2345 };
+        for (uint id = 0; id < 16; id++)
+            Assert.Equal(id == 12 ? (short)1234 : id == 13 ? (short)2345 : short.MaxValue, processing.NativeAnalogState(controller, 2, id));
+        var values = new Dictionary<string, float> { ["A"] = .25f, ["L2"] = 0, ["R2"] = .75f, ["B"] = float.NaN, ["X"] = float.PositiveInfinity, ["Y"] = -1, ["Start"] = 2 };
+        controller = controller with { Controls = new EmulationControllerControls(values) };
+        Assert.Equal((short)8192, processing.NativeAnalogState(controller, 2, 8));
+        Assert.Equal((short)0, processing.NativeAnalogState(controller, 2, 12));
+        Assert.Equal((short)24575, processing.NativeAnalogState(controller, 2, 13));
+        foreach (var id in new uint[] { 0, 1, 9, 16, 32, 256, uint.MaxValue })
+            Assert.Equal((short)0, processing.NativeAnalogState(controller, 2, id));
+        Assert.Equal(short.MaxValue, processing.NativeAnalogState(controller, 2, 3));
+        Assert.Equal((short)0, processing.NativeAnalogState(EmulationControllerState.Empty, 2, 8));
+        Assert.Equal(1234, controller.LeftTrigger);
+    }
+
+    [Fact]
+    public void SonyAnalogButtonsUseTheSamePressureReader()
+    {
+        var assembly = typeof(GWGUI.Emulation.Sony.Modules.SonyEmulationModuleFactory).Assembly;
+        var functions = assembly.GetType("GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerInputFunctions", throwOnError: true)!;
+        var buttonType = assembly.GetType("GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.JoypadInput", throwOnError: true)!;
+        var read = functions.GetMethod("AnalogButton", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)!;
+        var controllers = new[]
+        {
+            EmulationControllerState.Empty,
+            EmulationControllerState.Empty with { Buttons = ushort.MaxValue, LeftTrigger = 8192, RightTrigger = 24575 },
+            EmulationControllerState.Empty with { Buttons = ushort.MaxValue, Controls = new EmulationControllerControls(new Dictionary<string, float> { ["A"] = .25f, ["B"] = 0, ["L2"] = .75f }) }
+        };
+        foreach (var controller in controllers)
+        for (uint id = 0; id < 16; id++)
+            Assert.Equal(EmulationSdk.InputProcessing.NativeAnalogState(controller, 2, id), (short)read.Invoke(null, [controller, Enum.ToObject(buttonType, id)])!);
+        Assert.Equal((short)0, (short)read.Invoke(null, [controllers[1], Enum.ToObject(buttonType, uint.MaxValue)])!);
+    }
+
+    [Fact]
+    public void NativePointingReadsTheSelectedPortAndItsAbsoluteCoordinates()
+    {
+        var processing = EmulationSdk.InputProcessing;
+        var commands = new[] { "B", "A", "X", "Y", "Start", "Select", "Up", "Down", "Left", "Right", "Reload" };
+        var controller = EmulationControllerState.Empty with { LeftX = -1234, LeftY = 5678, Controls = new EmulationControllerControls(commands.Select(command => KeyValuePair.Create(command, 1f))) };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [EmulationControllerState.Empty, controller] };
+        foreach (var device in new uint[] { 4, 260 })
+        {
+            Assert.Equal((short)-1234, processing.ReadNativeInput(snapshot, 1, device, 0, 13));
+            Assert.Equal((short)5678, processing.ReadNativeInput(snapshot, 1, device, 0, 14));
+            Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 1, device, 0, 15));
+            foreach (var id in new uint[] { 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 16 })
+            {
+                Assert.Equal((short)1, processing.ReadNativeInput(snapshot, 1, device, 0, id));
+                Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 0, device, 0, id));
+            }
+        }
+        foreach (var device in new uint[] { 6, 262 })
+        {
+            Assert.Equal((short)-1234, processing.ReadNativeInput(snapshot, 1, device, 0, 0));
+            Assert.Equal((short)5678, processing.ReadNativeInput(snapshot, 1, device, 0, 1));
+            Assert.Equal((short)1, processing.ReadNativeInput(snapshot, 1, device, 0, 2));
+            Assert.Equal((short)1, processing.ReadNativeInput(snapshot, 1, device, 0, 3));
+            Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 0, device, 0, 3));
+        }
+        foreach (var device in new uint[] { 4, 6 })
+        {
+            Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 2, device, 0, 2));
+            Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 1, device, 1, 2));
+            Assert.Equal((short)0, processing.ReadNativeInput(snapshot, 1, device, 0, uint.MaxValue));
+            foreach (var edge in new[] { short.MinValue, short.MaxValue })
+            {
+                var horizontal = snapshot with { Controllers = [controller with { LeftX = edge }] };
+                var vertical = snapshot with { Controllers = [controller with { LeftY = edge }] };
+                Assert.Equal((short)1, processing.ReadNativeInput(horizontal, 0, device, 0, 15));
+                Assert.Equal((short)1, processing.ReadNativeInput(vertical, 0, device, 0, 15));
+            }
+        }
     }
 }

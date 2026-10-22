@@ -43,15 +43,16 @@ internal sealed class EmulationInputProcessingService : IEmulationInputProcessin
         // L’octet bas identifie la classe du périphérique ; les bits hauts portent ses variantes natives.
         switch (device & 0xffu)
         {
-            case 2: return EmulationInputMappingFunctions.NativeMouseState(snapshot.Pointer, port, index, id);
-            case 3: return _nativeKeys.TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains) ? (short)1 : (short)0;
+            case ExternalCoreApiConstants.MouseDevice: return EmulationInputMappingFunctions.NativeMouseState(snapshot.Pointer, port, index, id);
+            case ExternalCoreApiConstants.KeyboardDevice: return _nativeKeys.TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains) ? (short)1 : (short)0;
         }
         if (port >= snapshot.Controllers.Count) return 0;
         var controller = snapshot.Controllers[(int)port];
         return (device & 0xffu) switch
         {
-            1 => EmulationInputMappingFunctions.NativeJoypadState(controller, id, sizeof(uint) * 8),
-            5 => EmulationInputMappingFunctions.NativeAnalogState(controller, index, id),
+            ExternalCoreApiConstants.JoypadDevice => EmulationInputMappingFunctions.NativeJoypadState(controller, id, sizeof(uint) * 8),
+            ExternalCoreApiConstants.AnalogDevice => EmulationInputMappingFunctions.NativeAnalogState(controller, index, id),
+            ExternalCoreApiConstants.LightGunDevice or ExternalCoreApiConstants.PointerDevice => EmulationInputMappingFunctions.NativePointingState(controller, device & 0xffu, index, id),
             _ => 0
         };
     }

@@ -3,6 +3,7 @@ using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Emulation.Example.Common.Functions;
 
@@ -12,6 +13,24 @@ namespace GWGUI.Emulation.Example.Common.Functions;
 /// collections et neutralise uniquement les ports explicitement désactivés.</remarks>
 internal static class ControllerFunctions
 {
+    /// <summary>Associe chaque catégorie générique à la classe native qu’interrogera le cœur.</summary>
+    /// <param name="peripheral">Catégorie du port, déjà contrôlée dans la configuration.</param>
+    /// <returns>Classe native commune aux trois modes fictifs, indépendante du matériel physique.</returns>
+    /// <remarks>Les joysticks analogiques, volants et contrôleurs rotatifs exposent les sticks et les pressions.
+    /// Le pistolet et le stylet conservent leurs classes de pointage ; le clavier et la souris utilisent leurs
+    /// lecteurs dédiés. Les autres catégories échangent des boutons, et Automatic reprend la manette générique.</remarks>
+    internal static uint ResolveControllerDevice(PeripheralCategory peripheral) => peripheral switch
+    {
+        PeripheralCategory.None => ExternalCoreApiConstants.NoDevice,
+        PeripheralCategory.Mouse => ExternalCoreApiConstants.MouseDevice,
+        PeripheralCategory.Keyboard => ExternalCoreApiConstants.KeyboardDevice,
+        PeripheralCategory.LightGun => ExternalCoreApiConstants.LightGunDevice,
+        PeripheralCategory.Pointer => ExternalCoreApiConstants.PointerDevice,
+        PeripheralCategory.AnalogJoystick or PeripheralCategory.DrivingController or PeripheralCategory.Paddle => ExternalCoreApiConstants.AnalogDevice,
+        PeripheralCategory.Automatic or PeripheralCategory.RetroPad or PeripheralCategory.Joystick or PeripheralCategory.NumericKeypad or PeripheralCategory.DanceMat => ExternalCoreApiConstants.JoypadDevice,
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
+
     /// <summary>Fournit la table clavier du contrat natif par l’interface commune du SDK.</summary>
     /// <returns>Correspondances dont les identités ne dépendent d’aucune marque de machine.</returns>
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();

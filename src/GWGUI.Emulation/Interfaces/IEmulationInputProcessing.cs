@@ -124,13 +124,17 @@ public interface IEmulationInputProcessing
     /// <returns>Table indépendante construite par le traitement commun existant.</returns>
     IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap();
 
-    /// <summary>Lit les boutons, axes, souris ou touches de l’instantané selon les identifiants natifs génériques.</summary>
+    /// <summary>Lit les boutons, pressions, axes, souris, touches et dispositifs de pointage selon les identifiants natifs génériques.</summary>
     /// <param name="snapshot">Entrées empruntées et stables pendant le callback.</param>
     /// <param name="port">Indice natif du port demandé.</param>
-    /// <param name="device">Code natif : manette 1, souris 2, clavier 3 ou axes analogiques 5.</param>
+    /// <param name="device">Code natif : manette 1, souris 2, clavier 3, pistolet 4, analogique 5 ou stylet 6 ; les sous-types conservent la classe de leur octet bas.</param>
     /// <param name="index">Indice de composante du périphérique.</param>
     /// <param name="id">Identifiant de bouton, touche ou axe dans le contrat natif.</param>
     /// <returns>Valeur native de l’entrée ; zéro pour une source absente ou un périphérique non couvert par ce sélecteur générique.</returns>
+    /// <remarks>Pour le pointage, LeftX/LeftY contiennent les coordonnées absolues signées ; leurs extrémités indiquent
+    /// une position hors écran. Le pistolet utilise B pour le tir, A/X/Y pour ses auxiliaires, les directions,
+    /// Start, Select et Reload. Le stylet utilise A pour l’appui ; un seul contact est représenté par port.
+    /// Les pressions analogiques se lisent à l’index 2, sur les seize identifiants de boutons natifs.</remarks>
     short ReadNativeInput(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id);
     /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
@@ -144,7 +148,7 @@ public interface IEmulationInputProcessing
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
     short NativeJoypadState(EmulationControllerState controller, uint id, uint maximumButtonCount);
 
-    /// <summary>Lit la composante native d’un stick ou d’une gâchette.</summary>
+    /// <summary>Lit la composante native d’un stick ou la pression d’un bouton à l’index analogique 2.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
     short NativeAnalogState(EmulationControllerState controller, uint index, uint id);
 

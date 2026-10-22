@@ -6113,3 +6113,33 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleMouseInputTests.cs : vérifier les cinq boutons et les deux molettes après application des associations génériques ; exécuter les contrôles locaux concernés puis scripts/local-building.cmd --building=debug --modules=A et vérifier les assemblages livrés.
 
   - Validation : 31 contrôles locaux réussis ; cinq boutons et deux molettes transmis depuis les associations génériques ; 24 Common raccordés au même service de lecture native ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Pointage générique et pressions analogiques raccordés au lecteur commun
+
+- [x] Réunir les lectures natives existantes pour les périphériques génériques d’Example.
+  - [x] Compléter le service commun en reprenant les commandes de pointage et les pressions déjà gérées par les adaptations existantes.
+    - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : définir et documenter les classes de périphériques, le sélecteur de pression et les identifiants de pistolet et de stylet du protocole natif.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs : compléter NativeAnalogState pour les pressions ; reprendre la lecture du pistolet et du stylet avec les coordonnées transportées par les axes existants, les commandes communes et les contrôles d’index.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputProcessingService.cs : raccorder les classes de pointage au même ReadNativeInput, en conservant les lectures existantes et la prise en compte des sous-types.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputProcessing.cs : documenter les périphériques supplémentaires, les coordonnées et les pressions du lecteur existant.
+  - [x] Raccorder les catégories annoncées par Example à leurs classes natives.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : reprendre ResolveControllerDevice pour associer les catégories génériques aux classes natives et documenter leurs commandes et leurs axes.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : remplacer le classement incomplet des périphériques par le résolveur Common, identique pour les trois modes fictifs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Settings.cs : documenter la transmission des coordonnées de pointage et des commandes analogiques par les définitions génériques existantes.
+  - [x] Vérifier les parcours génériques et préserver les adaptations existantes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/NativeInputStateTests.cs : vérifier les pressions, leurs priorités, leurs bornes et les lectures des deux périphériques de pointage, y compris ports absents et sous-types.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : vérifier les catégories natives et la transmission des associations jusqu’aux commandes de pointage et de pression pour les trois adaptateurs et les deux profils ; exécuter les contrôles ciblés.
+
+  - [x] Réutiliser le service commun dans la lecture des pressions Sony.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/ControllerInputFunctions.cs : remplacer le calcul AnalogButton par le contrat NativeAnalogState du Common, en conservant le contrôle des seize identifiants Sony.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/NativeInputStateTests.cs : comparer la lecture Sony au service commun pour les seize boutons, les pressions et les identifiants invalides ; exécuter les vérifications ciblées.
+
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ModuleConfigurationReviewTests.cs : remplacer l’attente de libération d’une sortie jamais créée par le contrôle de non-allocation lors de l’échec du résolveur de sauvegarde ; libérer dans finally toute sortie effectivement créée par le test ; exécuter à nouveau les contrôles concernés puis le build Debug avec les 23 modules et vérifier les fichiers livrés.
+
+  - Validation : 581 contrôles locaux réussis, avec les seize pressions Sony comparées au service commun, les catégories natives d’Example et les associations des trois adaptateurs sur les deux profils ; assertions audio corrigées pour la création différée existante ; build Debug terminé avec le code 0 ; application, Example intégré et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Lecture effective des périphériques sélectionnés dans le cœur fictif
+
+- [ ] Utiliser les catégories de ports dans la frame simulée.
+  - [ ] Raccorder la sélection au calcul existant.
+    - [ ] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : faire interroger par CalculateFrame la classe de périphérique enregistrée dans _ports au lieu de toujours demander le bouton de manette ; conserver les chemins interne, Libretro et externe et le passage par Common pour la lecture.

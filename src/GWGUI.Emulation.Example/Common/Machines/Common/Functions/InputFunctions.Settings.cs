@@ -33,6 +33,13 @@ internal static class InputSettingsFunctions
     /// <summary>Décrit les commandes génériques du périphérique sélectionné.</summary>
     /// <param name="peripheral">Catégorie choisie sur le port ; None ne possède aucune commande.</param>
     /// <returns>Commandes du contrat commun, sans association physique imposée par le module.</returns>
+    /// <remarks>Les directions LeftStick transportent les axes LeftX/LeftY : une position absolue pour le
+    /// pistolet ou le stylet, une direction pour le volant et le joystick. Les directions RightStick restent
+    /// disponibles pour le second couple d’axes, et L2/R2 portent les pressions des pédales ou gâchettes.
+    /// Le lecteur natif du pistolet interroge B pour tirer, A/X/Y pour les auxiliaires, puis Start, Select,
+    /// les directions et Reload. Le stylet interroge A pour son contact. Les autres commandes restent dans
+    /// Controls pour les adaptations qui les utilisent : présenter une commande conserve son identité,
+    /// même lorsqu’elle ne possède pas de numéro de bouton dans une classe native particulière.</remarks>
     internal static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory peripheral)
     {
         if (peripheral == PeripheralCategory.None) return [];

@@ -48,7 +48,7 @@ internal sealed partial class ExternalCore
     {
         EnsureReady();
         if (port < 0 || port >= ConfigurationFunctions.ControllerPortCount(_configuration!.Model)) throw new ArgumentOutOfRangeException(nameof(port));
-        var device = peripheral switch { PeripheralCategory.None => 0u, PeripheralCategory.Mouse => 2u, PeripheralCategory.Keyboard => 3u, _ => 1u };
+        var device = CommonControllerFunctions.ResolveControllerDevice(peripheral);
         if (Emulator == Emulator.Internal) _ports[port] = device;
         else _exports.SetControllerPortDevice((uint)port, device);
     }

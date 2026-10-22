@@ -53,8 +53,26 @@ internal static class EmulationInputMappingFunctions
         return NativeJoypadState(buttons, id, maximumButtonCount);
     }
 
-    internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id) =>
-        (index, id) switch
+    /// <summary>Lit les deux sticks ou la pression des seize boutons du protocole natif.</summary>
+    /// <remarks>Une pression explicite dans Controls prime sur le champ de gâchette puis sur le bouton numérique,
+    /// comme dans les adaptations natives disposant déjà de boutons sensibles à la pression.</remarks>
+    internal static short NativeAnalogState(EmulationControllerState controller, uint index, uint id)
+    {
+        if (index == ExternalCoreApiConstants.ButtonAnalogIndex)
+        {
+            if (id >= sizeof(ushort) * 8) return ExternalCoreApiConstants.InactiveState;
+            float? pressure = null;
+            foreach (var control in controller.Controls)
+            {
+                var command = control.Key == EmulationControllerCommandIds.Fire1 ? EmulationControllerCommandIds.A
+                    : control.Key == EmulationControllerCommandIds.Fire2 ? EmulationControllerCommandIds.B : control.Key;
+                if (ControllerButtonIndex(command) == id) pressure = control.Value;
+            }
+            if (pressure is { } value) return float.IsFinite(value) ? (short)Math.Round(Math.Clamp(value, 0f, 1f) * short.MaxValue) : (short)0;
+            var trigger = id switch { EmulationInputMappingConstants.L2Index => controller.LeftTrigger, EmulationInputMappingConstants.R2Index => controller.RightTrigger, _ => (short)0 };
+            return trigger > 0 ? trigger : NativeJoypadState(controller, id, sizeof(ushort) * 8) != 0 ? short.MaxValue : (short)0;
+        }
+        return (index, id) switch
         {
             (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogXId) => controller.LeftX,
             (ExternalCoreApiConstants.LeftAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.LeftY,
@@ -62,6 +80,51 @@ internal static class EmulationInputMappingFunctions
             (ExternalCoreApiConstants.RightAnalogIndex, ExternalCoreApiConstants.AnalogYId) => controller.RightY,
             _ => ExternalCoreApiConstants.InactiveState
         };
+    }
+
+    /// <summary>Lit les coordonnées absolues et commandes du pistolet ou du contact de pointage générique.</summary>
+    /// <param name="controller">Entrées déjà projetées : LeftX et LeftY transportent les coordonnées absolues.</param>
+    /// <param name="device">Classe native de pistolet ou de contact.</param>
+    /// <param name="index">Index de contact ; seul le premier est représenté par cet état de contrôleur.</param>
+    /// <param name="id">Coordonnée ou commande demandée dans cette classe.</param>
+    /// <returns>Valeur native ; zéro pour un index ou une commande non représentés.</returns>
+    /// <remarks>Le pistolet reprend B pour le tir, A/X/Y pour ses auxiliaires, et les commandes Start,
+    /// Select, directions et Reload déjà utilisées par les adaptations. Le contact utilise A pour l’appui.
+    /// Les extrémités des coordonnées signalent un point hors écran ; le service ne déplace ni n’accumule le pointeur.</remarks>
+    internal static short NativePointingState(EmulationControllerState controller, uint device, uint index, uint id)
+    {
+        if (index != 0) return ExternalCoreApiConstants.InactiveState;
+        var offscreen = controller.LeftX is short.MinValue or short.MaxValue || controller.LeftY is short.MinValue or short.MaxValue;
+        short Button(string command) => NativeJoypadState(controller, (uint)ControllerButtonIndex(command), sizeof(ushort) * 8);
+        if (device == ExternalCoreApiConstants.PointerDevice)
+            return id switch
+            {
+                ExternalCoreApiConstants.PointerXId => controller.LeftX,
+                ExternalCoreApiConstants.PointerYId => controller.LeftY,
+                ExternalCoreApiConstants.PointerPressedId or ExternalCoreApiConstants.PointerCountId => Button(EmulationControllerCommandIds.A),
+                ExternalCoreApiConstants.PointerOffscreenId => Boolean(offscreen),
+                _ => ExternalCoreApiConstants.InactiveState
+            };
+        if (device != ExternalCoreApiConstants.LightGunDevice) return ExternalCoreApiConstants.InactiveState;
+        return id switch
+        {
+            ExternalCoreApiConstants.LightGunScreenXId => controller.LeftX,
+            ExternalCoreApiConstants.LightGunScreenYId => controller.LeftY,
+            ExternalCoreApiConstants.LightGunOffscreenId => Boolean(offscreen),
+            ExternalCoreApiConstants.LightGunTriggerId => Button(EmulationControllerCommandIds.B),
+            ExternalCoreApiConstants.LightGunAuxiliaryAId => Button(EmulationControllerCommandIds.A),
+            ExternalCoreApiConstants.LightGunAuxiliaryBId => Button(EmulationControllerCommandIds.X),
+            ExternalCoreApiConstants.LightGunAuxiliaryCId => Button(EmulationControllerCommandIds.Y),
+            ExternalCoreApiConstants.LightGunStartId => Button(EmulationControllerCommandIds.Start),
+            ExternalCoreApiConstants.LightGunSelectId => Button(EmulationControllerCommandIds.Select),
+            ExternalCoreApiConstants.LightGunUpId => Button(EmulationControllerCommandIds.Up),
+            ExternalCoreApiConstants.LightGunDownId => Button(EmulationControllerCommandIds.Down),
+            ExternalCoreApiConstants.LightGunLeftId => Button(EmulationControllerCommandIds.Left),
+            ExternalCoreApiConstants.LightGunRightId => Button(EmulationControllerCommandIds.Right),
+            ExternalCoreApiConstants.LightGunReloadId => Boolean(controller.Controls.TryGetValue(EmulationControllerCommandIds.Reload, out var reload) && float.IsFinite(reload) && reload > .5f),
+            _ => ExternalCoreApiConstants.InactiveState
+        };
+    }
 
     private static short Boolean(bool value) => value ? ExternalCoreApiConstants.ActiveState : ExternalCoreApiConstants.InactiveState;
     private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
