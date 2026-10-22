@@ -50,7 +50,7 @@ internal static class ConfigurationFunctions
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
             if (controller.Port is < ControllerConstants.FirstPort or >= ControllerConstants.PortCount
-                || !ports.Add(controller.Port) || !InputSettingsFunctions.Peripherals(configuration.Core).Contains(controller.Peripheral)
+                || !ports.Add(controller.Port) || !InputSettingsFunctions.Peripherals(configuration.Model, configuration.Core).Contains(controller.Peripheral)
                 || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent
                     or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));

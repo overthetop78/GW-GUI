@@ -2,5 +2,5 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Dictionaries;
 
 internal static class InputSnapshotDictionary
 {
-    internal static IReadOnlyList<InputActionDefinition> Actions(MachineModel model, Emulator core, PeripheralCategory peripheral) => new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.DescribeInput(model, peripheral) : [];
+    internal static IReadOnlyList<InputActionDefinition> Actions(MachineModel model, Emulator core, int port, PeripheralCategory peripheral) => new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.DescribeInput(model, port, peripheral) : [];
 }

@@ -10,7 +10,8 @@ internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
     IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
     /// <summary>Décrit les commandes et associations proposées pour le périphérique émulé.</summary>
     /// <param name="model">Modèle matériel dont les contrôleurs sont consultés.</param>
+    /// <param name="port">Indice du port émulé, commençant à zéro.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>
     /// <returns>Descriptions existantes du backend, conservées dans leur ordre de présentation.</returns>
-    IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, PeripheralCategory peripheral);
+    IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
 }

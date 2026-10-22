@@ -6867,3 +6867,44 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Supprimer src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorStorageSettings.cs : retirer le contrat redondant remplacé par IEmulatorMediaCapabilities.
   - [x] Vérifier les descriptions et montages conservés.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les implémentations réelles du contrat de lecteurs dans ces six familles, son héritage par les contrats de stockage complet et la disparition des anciens noms ; exécuter les contrôles de stockage concernés, construire le Debug avec les 23 modules et vérifier les DLL livrées.
+
+
+## Signature commune de description des commandes de contrôleurs
+
+- [x] Utiliser DescribeInput(model, port, peripheral) et InputActionDefinition comme Example, avec les traitements existants.
+  - [x] Uniformiser la description des commandes Coleco.
+    - [x] Créer src/GWGUI.Emulation.Coleco/Common/Contracts/InputContracts.cs : reprendre InputActionDefinition et sa documentation depuis Example.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs : importer les contrats Common du module.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorControllerAdapter.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/InputFunctions.Settings.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/BlueMSX/Factories/BlueMSXMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Factories/GearColecoMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/JollyCV/Factories/JollyCVMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.cs : transmettre le modèle courant au choix des périphériques, avec les mêmes listes et contrôles.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs : transmettre le modèle courant au choix des périphériques, avec les mêmes listes et contrôles.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs : transmettre le modèle courant au choix des périphériques, avec les mêmes listes et contrôles.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Snapshot.cs : transmettre modèle, port et catégorie au fournisseur des actions, en conservant les calculs des entrées natives.
+  - [x] Uniformiser la description des commandes Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorControllerAdapter.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/EmuSCV/Factories/EmuSCVMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+  - [x] Uniformiser la description des commandes Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorControllerAdapter.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/FreeChaF/Factories/FreeChaFMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+  - [x] Uniformiser la description des commandes Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorControllerAdapter.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.Settings.cs : transmettre les indices réels des ports aux descriptions des associations et à leur validation.
+  - [x] Uniformiser la description des commandes Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorControllerAdapter.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : exposer ou appeler DescribeInput avec modèle, port et catégorie ; conserver les définitions, filtres et touches, et compléter les commentaires du contrat.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.Settings.cs : transmettre les indices réels des ports aux descriptions des associations et à leur validation.
+  - [x] Compléter les données communes des actions.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Contracts/InputContracts.cs : reprendre le contrat InputActionDefinition documenté dans Example, avec sa touche facultative et sa projection DefaultBinding ; conserver les définitions actuelles.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Contracts/InputContracts.cs : reprendre le même contrat documenté, avec la touche facultative et DefaultBinding ; conserver les définitions actuelles.
+  - [x] Vérifier les commandes et associations conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier la signature de description et les implémentations des cinq familles face à Example ; exécuter les contrôles des contrôleurs concernés, construire le Debug avec tous les modules et vérifier les DLL livrées.

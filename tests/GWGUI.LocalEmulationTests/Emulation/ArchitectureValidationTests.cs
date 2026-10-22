@@ -481,6 +481,25 @@ public sealed class ArchitectureValidationTests
             Assert.Contains(contract, controllers.GetInterfaces());
             Assert.Contains(controllers.GetMethods(), method => method.Name is "GetPeripherals" or "DescribeInput");
             Assert.All(implementations, implementation => Assert.True(controllers.IsAssignableFrom(implementation)));
+            if (family is "Coleco" or "Epoch" or "Example" or "Fairchild" or "Mattel" or "Philips")
+            {
+                var describe = Assert.Single(controllers.GetMethods(), method => method.Name == "DescribeInput");
+                var descriptionParameters = describe.GetParameters();
+                Assert.Equal(new[] { "model", "port", "peripheral" }, descriptionParameters.Select(parameter => parameter.Name));
+                Assert.Equal("MachineModel", descriptionParameters[0].ParameterType.Name);
+                Assert.True(descriptionParameters[0].ParameterType.IsEnum);
+                Assert.Equal(typeof(int), descriptionParameters[1].ParameterType);
+                Assert.Equal("PeripheralCategory", descriptionParameters[2].ParameterType.Name);
+                Assert.True(descriptionParameters[2].ParameterType.IsEnum);
+                var action = Assert.Single(describe.ReturnType.GetGenericArguments());
+                Assert.Equal("InputActionDefinition", action.Name);
+                Assert.Equal(typeof(InputBindingDefinition), action.GetProperty("Definition")!.PropertyType);
+                Assert.Equal(typeof(EmulationKey?), action.GetProperty("Key")!.PropertyType);
+                foreach (var implementation in implementations)
+                    Assert.All(implementation.GetInterfaceMap(controllers).TargetMethods, method => Assert.False(method.IsAbstract));
+                if (family == "Coleco")
+                    Assert.Single(controllers.GetMethods(), method => method.Name == "GetPeripherals" && method.GetParameters() is [{ Name: "model" }]);
+            }
         }
         foreach (var implementation in implementations)
         {

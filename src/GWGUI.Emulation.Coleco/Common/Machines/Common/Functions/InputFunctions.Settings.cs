@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals() : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals(model) : [];
 
     internal static IReadOnlyDictionary<string, EmulationKey> KeyboardDefaults { get; } = new Dictionary<string, EmulationKey>
     {
@@ -134,9 +134,9 @@ internal static class InputSettingsFunctions
         var mapper = new Engine().Adapter(configuration.Core) as IEmulatorControllerAdapter;
         var ports = Enumerable.Range(0, ControllerConstants.PortCount).Select(index =>
         {
-            var choices = (mapper?.GetPeripherals() ?? []).Select(category =>
+            var choices = (mapper?.GetPeripherals(configuration.Model) ?? []).Select(category =>
             {
-                var definitions = mapper?.DescribeInput(category, index) ?? [];
+                var definitions = mapper?.DescribeInput(configuration.Model, index, category).Select(action => action.Definition).ToArray() ?? [];
                 return new EmulationControllerChoice(category.ToString(),
                     category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + category,
                     BindingDefinitions: definitions,
@@ -159,7 +159,7 @@ internal static class InputSettingsFunctions
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,
-                new(mapper?.DescribeInput(peripheral, index) ?? [], binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new(mapper?.DescribeInput(configuration.Model, index, peripheral).Select(action => action.Definition).ToArray() ?? [], binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
         }).ToArray();
         return new(keyboard, null, ports);
@@ -170,7 +170,7 @@ internal static class InputSettingsFunctions
         var controllers = settings.ControllerPorts.Select(port =>
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral)
-                || !Peripherals(configuration.Core).Contains(peripheral)) throw new ArgumentException(nameof(settings));
+                || !Peripherals(configuration.Model, configuration.Core).Contains(peripheral)) throw new ArgumentException(nameof(settings));
             return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.Keyboard, controllers) };

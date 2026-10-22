@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
 
 internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaCapabilities
 {
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port)
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral)
     {
         var actions = ControllerProtocolDictionary.Actions(model, Emulator.PD777, port);
         return actions.Select(action => new InputActionDefinition(action.Definition with

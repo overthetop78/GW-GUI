@@ -148,7 +148,7 @@ public sealed class Engine
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
         var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
         var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), current.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
-        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = PeripheralCategory.Standard }).ToArray();
+        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(current.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = PeripheralCategory.Standard }).ToArray();
         var result = current with { Core = core, Options = options, Input = current.Input with { Controllers = controllers } };
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);

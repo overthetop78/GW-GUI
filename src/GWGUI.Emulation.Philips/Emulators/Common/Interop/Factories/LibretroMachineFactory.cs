@@ -23,7 +23,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

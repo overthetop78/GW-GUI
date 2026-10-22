@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 internal static class NativeInputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core,
-        Func<PeripheralCategory, int, IReadOnlyList<InputBindingDefinition>> definitions)
+        Func<MachineModel, int, PeripheralCategory, IReadOnlyList<InputActionDefinition>> definitions)
     {
         var keys = snapshot.Keys;
         if (model == MachineModel.Adam)
@@ -22,7 +22,7 @@ internal static class NativeInputSnapshotFunctions
             if (binding.Peripheral == PeripheralCategory.None) continue;
             var source = CommonControllerFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             var pressed = new HashSet<string>();
-            foreach (var definition in definitions(binding.Peripheral, port))
+            foreach (var definition in definitions(model, port, binding.Peripheral))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding;
                 var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
