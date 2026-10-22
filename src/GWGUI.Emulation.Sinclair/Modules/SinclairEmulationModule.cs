@@ -170,7 +170,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
             storage.AvailableDevices,
             storage.MountedMedia,
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            current.Core != Emulator.None && _engine.Adapter(current) is IEmulatorRuntimeCapabilities { SupportsNoContent: true }
+            current.Core != Emulator.None && _engine.Adapter(current) is IEmulatorCapabilities { SupportsNoContent: true }
         );
     }
 

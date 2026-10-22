@@ -9,9 +9,10 @@ using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
 
-internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
+internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry)
 {
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
+    /// <inheritdoc/>
+    public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
 
     internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);

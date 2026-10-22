@@ -6150,15 +6150,48 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 ## Noms des contrats Common de périphériques et de capacités
 
-- [ ] Employer les noms déjà retenus dans Example pour les rôles équivalents de Sharp et Sinclair.
-  - [ ] Aligner les contrats et leurs appels existants.
-    - [ ] Renommer src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour SupportsNoContent et le contrat de pointeur, avec les commentaires correspondants d’Example.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer et implémenter le contrat sous le nom uniforme, avec les mêmes valeurs de capacités.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs : consulter le même contrat renommé dans la description du runtime.
-    - [ ] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour le même rôle et documenter les membres.
-    - [ ] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorInputSettings.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerAdapter.cs : conserver GetPeripherals sous le même nom de contrat que dans Example, avec sa documentation.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : utiliser les deux noms uniformes dans les déclarations et les implémentations existantes.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs : conserver GetPeripherals par le contrat de contrôleur renommé.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs : conserver SupportsNoContent par le contrat de capacités renommé.
-  - [ ] Vérifier les noms et les capacités conservées.
-    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats de Sharp et Sinclair par rapport aux rôles d’Example, leurs implémentations et la disparition des anciens noms ; exécuter les vérifications concernées puis le build Debug avec les 23 modules et vérifier les assemblages livrés.
+- [x] Employer les noms déjà retenus dans Example pour les rôles équivalents de Sharp et Sinclair.
+  - [x] Aligner les contrats et leurs appels existants.
+    - [x] Renommer src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour SupportsNoContent et le contrat de pointeur, avec les commentaires correspondants d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer et implémenter le contrat sous le nom uniforme, avec les mêmes valeurs de capacités.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs : consulter le même contrat renommé dans la description du runtime.
+    - [x] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorRuntimeCapabilities.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCapabilities.cs : employer IEmulatorCapabilities pour le même rôle et documenter les membres.
+    - [x] Renommer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorInputSettings.cs en src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerAdapter.cs : conserver GetPeripherals sous le même nom de contrat que dans Example, hériter du contrat existant IEmulatorInputMapper et documenter ces responsabilités.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : utiliser les deux noms uniformes et déclarer MapInput abstraite pour le même raccordement que dans Example.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : fournir MapInput par override du contrat Common, avec le même traitement natif, et retirer la déclaration du contrat de projection devenue héritée.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs : conserver GetPeripherals par le contrat de contrôleur renommé.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Modules/SinclairEmulationModule.cs : conserver SupportsNoContent par le contrat de capacités renommé.
+  - [x] Vérifier les noms et les capacités conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats de Sharp et Sinclair par rapport aux rôles d’Example, leurs implémentations et la disparition des anciens noms ; exécuter les vérifications concernées.
+
+## Nom uniforme du fichier de constantes de l’hôte
+
+- [x] Employer CoreHostConstants.cs pour la classe Common correspondante.
+  - [x] Aligner les noms de fichiers en conservant intégralement leur contenu.
+    - [x] Renommer src/GWGUI.Emulation.Acorn/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Acorn/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Bandai/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Bandai/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Coleco/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Coleco/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Epoch/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Epoch/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Example/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Example/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Fairchild/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Fairchild/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Mattel/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Mattel/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Philips/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Philips/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Sharp/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Sharp/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Sinclair/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Sinclair/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants.
+    - [x] Renommer src/GWGUI.Emulation.Snk/Common/Constants/CoreConstants.cs en src/GWGUI.Emulation.Snk/Common/Constants/CoreHostConstants.cs : conserver les déclarations, les valeurs et le namespace existants ; exécuter le build Debug avec les 23 modules puis vérifier les fichiers livrés.
+
+  - Validation du bloc : 158 contrôles réussis ; capacités de PX68K, X1, Fuse et EightyOne conservées et choix de périphériques Sinclair vérifiés pour chaque modèle ; aucun ancien nom de contrat dans les sources concernées ; onze fichiers renommés avec contenu identique ; build Debug terminé avec le code 0 ; application, Example et 23 modules livrés vérifiés par empreinte ; workflows inchangés.
+
+## Constante de plateforme unique pour l’hôte Apple
+
+- [ ] Reprendre dans Apple la constante Windows déjà placée dans CoreHostConstants par Example.
+  - [ ] Réunir les trois définitions identiques et leurs références.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Constants/CoreHostConstants.cs : ajouter la constante Windows avec la valeur existante et le commentaire de sa fonction dans les annotations de plateforme.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : employer CoreHostConstants.Windows dans les deux annotations existantes.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : employer CoreHostConstants.Windows dans les deux annotations existantes.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : conserver l’annotation de plateforme par CoreHostConstants.Windows.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Host.cs : conserver l’annotation de plateforme par CoreHostConstants.Windows.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Protocol.cs : conserver l’annotation de plateforme par CoreHostConstants.Windows.
+    - [ ] Supprimer src/GWGUI.Emulation.Apple/Common/Constants/CoreHostFunctionsConstants.cs : retirer la définition de Windows remplacée par la constante commune.
+    - [ ] Supprimer src/GWGUI.Emulation.Apple/Common/Constants/CoreHostValues.cs : retirer la deuxième définition identique remplacée.
+    - [ ] Supprimer src/GWGUI.Emulation.Apple/Common/Constants/ProcessCoreConstants.cs : retirer la troisième définition identique, vérifier la disparition des références et construire Debug avec les 23 modules puis vérifier les assemblages livrés.

@@ -169,7 +169,7 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
             storage.AvailableDevices,
             storage.MountedMedia,
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            adapter is IEmulatorRuntimeCapabilities { SupportsNoContent: true }
+            adapter is IEmulatorCapabilities { SupportsNoContent: true }
         );
     }
 

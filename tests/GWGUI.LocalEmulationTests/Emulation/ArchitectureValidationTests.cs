@@ -12,6 +12,48 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Theory]
+    [InlineData("Sharp")]
+    [InlineData("Sinclair")]
+    public void RuntimeCapabilitiesUseExamplesRoleAndKeepTheirDeclaredValues(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = $"GWGUI.Emulation.{family}.Common.Interfaces.";
+        var contract = assembly.GetType(root + "IEmulatorCapabilities", throwOnError: true)!;
+        var reference = Assembly.Load("gwgui.emulation.example").GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorCapabilities", throwOnError: true)!;
+        Assert.Null(assembly.GetType(root + "IEmulatorRuntimeCapabilities"));
+        Assert.Contains(contract.GetInterfaces(), item => item.Name == "IEmulatorPointerCapabilities");
+        var capability = contract.GetProperty("SupportsNoContent")!;
+        Assert.Equal(reference.GetProperty("SupportsNoContent")!.PropertyType, capability.PropertyType);
+        var expected = family == "Sharp" ? new Dictionary<string, bool> { ["Px68kMachineFactory"] = true, ["X1MachineFactory"] = false }
+            : new Dictionary<string, bool> { ["FuseMachineFactory"] = true, ["EightyOneMachineFactory"] = false };
+        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+        Assert.Equal(expected.Keys.Order(), implementations.Select(type => type.Name).Order());
+        foreach (var implementation in implementations)
+        {
+            var adapter = Activator.CreateInstance(implementation, nonPublic: true)!;
+            Assert.Equal(expected[implementation.Name], (bool)capability.GetValue(adapter)!);
+        }
+        if (family == "Sinclair")
+        {
+            Assert.Null(assembly.GetType(root + "IEmulatorInputSettings"));
+            var controllers = assembly.GetType(root + "IEmulatorControllerAdapter", throwOnError: true)!;
+            var method = Assert.Single(controllers.GetMethods());
+            Assert.Equal("GetPeripherals", method.Name);
+            var model = Assert.Single(method.GetParameters()).ParameterType;
+            Assert.True(model.IsEnum);
+            foreach (var implementation in implementations)
+            {
+                Assert.True(controllers.IsAssignableFrom(implementation));
+                var adapter = Activator.CreateInstance(implementation, nonPublic: true)!;
+                var peripheral = method.ReturnType.GetGenericArguments().Single();
+                var choices = implementation.Name == "FuseMachineFactory" ? Enum.GetNames(peripheral) : new[] { "None", "CursorJoystick" };
+                foreach (var value in Enum.GetValues(model))
+                    Assert.Equal(choices, ((System.Collections.IEnumerable)method.Invoke(adapter, [value])!).Cast<object>().Select(item => item.ToString()));
+            }
+        }
+    }
+
     [Fact]
     public void SettingsApplicationUsesTheSameContractInAppleAndExample()
     {
@@ -226,7 +268,7 @@ public sealed class ArchitectureValidationTests
         var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
         // Le catalogue Microsoft existant ne déclare encore aucune fabrique concrète.
         if (family != "Microsoft") Assert.NotEmpty(implementations);
-        if (family is "Coleco" or "Epoch" or "Example" or "Fairchild" or "Mattel" or "Philips" or "Sharp")
+        if (family is "Coleco" or "Epoch" or "Example" or "Fairchild" or "Mattel" or "Philips" or "Sharp" or "Sinclair")
         {
             var controllers = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
             Assert.Contains(contract, controllers.GetInterfaces());
@@ -357,7 +399,7 @@ public sealed class ArchitectureValidationTests
                 }
                 if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
                 {
-                    var runtime = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimeCapabilities")!;
+                    var runtime = assembly.GetType(root + ".Common.Interfaces.IEmulatorCapabilities")!;
                     Assert.Contains(contract, runtime.GetInterfaces());
                     Assert.Null(runtime.GetProperty("SupportsPointerSettings"));
                 }
