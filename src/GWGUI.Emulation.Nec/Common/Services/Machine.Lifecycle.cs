@@ -67,7 +67,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         QueueCommand(() =>
         {
             _audio.Reset();
-            _core.SoftReset();
+            CommonCoreHostFunctions.MachineExecution.SoftReset(_runtimePolicy?.SoftResetKeys ?? new HashSet<EmulationKey>(), _core.SetInput, _core.RunFrame, _core.SoftReset);
         }, cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)

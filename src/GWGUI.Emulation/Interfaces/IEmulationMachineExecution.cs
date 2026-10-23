@@ -8,6 +8,17 @@ namespace GWGUI.Emulation.Interfaces;
 /// leur arrêt puis attend leur destruction effective dans son finally avant de libérer ses autres ressources.</remarks>
 public interface IEmulationMachineExecution
 {
+    /// <summary>Exécute la réinitialisation logicielle par les touches du profil ou par sa commande native.</summary>
+    /// <param name="keys">Ensemble de touches emprunté ; vide pour appeler directement la commande native.</param>
+    /// <param name="setInput">Callback emprunté appliquant les entrées au cœur, puis les libérant avec un instantané vide.</param>
+    /// <param name="runFrame">Calcul synchrone de la frame pendant laquelle les touches sont maintenues.</param>
+    /// <param name="softReset">Commande native empruntée, appelée seulement lorsque le profil ne demande aucune touche.</param>
+    /// <remarks>Common appelle ce traitement sur le thread sérialisé du cœur. La branche clavier effectue
+    /// un seul calcul et relâche toujours les touches dans finally, y compris après une erreur.
+    /// Les délégués, la collection et le cœur restent possédés par leur appelant ; aucun service de sortie
+    /// ni ressource native ne sont créés ou détruits par cette opération.</remarks>
+    void SoftReset(IReadOnlySet<EmulationKey> keys, Action<EmulationInputSnapshot> setInput, Action runFrame, Action softReset);
+
     /// <summary>Crée un minuteur indépendant pour les échéances absolues de la session.</summary>
     /// <param name="cancellationToken">Annulation de la session propriétaire du minuteur.</param>
     /// <returns>Minuteur possédé par l’appelant, à libérer dans son finally après la dernière attente, notamment avec using.</returns>

@@ -69,17 +69,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         QueueCommand(() =>
         {
             _audio.Reset();
-            var resetKeys = EmulatorCatalog.CreateAdapter(Configuration.Core).SoftResetKeys;
-            if (resetKeys.Count == BufferConstants.EmptyCollectionCount) _core.SoftReset();
-            else
-            {
-                try
-                {
-                    _core.SetInput(EmulationInputSnapshot.Empty with { Keys = resetKeys });
-                    _core.RunFrame();
-                }
-                finally { _core.SetInput(EmulationInputSnapshot.Empty); }
-            }
+            CommonCoreHostFunctions.MachineExecution.SoftReset(_runtimePolicy?.SoftResetKeys ?? new HashSet<EmulationKey>(), _core.SetInput, _core.RunFrame, _core.SoftReset);
         }, cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)

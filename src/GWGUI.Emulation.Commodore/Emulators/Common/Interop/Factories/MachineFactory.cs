@@ -7,7 +7,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
 
-internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
+internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)

@@ -132,7 +132,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         if (_mediaSuspended) return;
         _audio.Reset();
-        if (hardReset) _core.HardReset(); else _core.SoftReset();
+        if (hardReset) _core.HardReset(); else CommonCoreHostFunctions.MachineExecution.SoftReset(_runtimePolicy?.SoftResetKeys ?? new HashSet<EmulationKey>(), _core.SetInput, _core.RunFrame, _core.SoftReset);
     }
 
     private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>

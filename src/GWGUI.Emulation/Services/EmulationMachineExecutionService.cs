@@ -7,6 +7,18 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationMachineExecutionService : IEmulationMachineExecution
 {
     /// <inheritdoc/>
+    public void SoftReset(IReadOnlySet<EmulationKey> keys, Action<EmulationInputSnapshot> setInput, Action runFrame, Action softReset)
+    {
+        if (keys.Count == 0) { softReset(); return; }
+        try
+        {
+            setInput(EmulationInputSnapshot.Empty with { Keys = keys });
+            runFrame();
+        }
+        finally { setInput(EmulationInputSnapshot.Empty); }
+    }
+
+    /// <inheritdoc/>
     public IEmulationFrameTimer CreateFrameTimer(CancellationToken cancellationToken) => new EmulationFrameTimer(cancellationToken);
 
     /// <inheritdoc/>

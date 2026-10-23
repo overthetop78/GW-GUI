@@ -2451,7 +2451,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(2, methods.Length);
+            Assert.Equal(3, methods.Length);
             var media = Assert.Single(methods, method => method.Name == "RequiresMediaRestart");
             var option = Assert.Single(methods, method => method.Name == "RequiresOptionRestart");
             var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
@@ -2459,7 +2459,8 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(new[] { "configuration", "slot", "path" }, media.GetParameters().Select(parameter => parameter.Name));
             Assert.Equal(new[] { configuration, typeof(string) }, option.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.Equal(new[] { "configuration", "key" }, option.GetParameters().Select(parameter => parameter.Name));
-            Assert.All(methods, method => { Assert.True(method.IsAbstract); Assert.Equal(typeof(bool), method.ReturnType); });
+            Assert.All(methods, method => Assert.True(method.IsAbstract));
+            Assert.All(new[] { media, option }, method => Assert.Equal(typeof(bool), method.ReturnType));
             var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
             var constructor = Assert.Single(machine.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic));
             var policyParameter = Assert.Single(constructor.GetParameters(), parameter => parameter.Name == "runtimePolicy");
@@ -4162,5 +4163,91 @@ public sealed class ArchitectureValidationTests
         }
         Assert.Equal(23, processes);
         Assert.Equal(23, nativeCores);
+    }
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void SharedSoftwareResetReleasesProfileKeysAfterTheFrame(bool frameFails)
+    {
+        var keys = new HashSet<EmulationKey> { EmulationKey.LeftControl, EmulationKey.A };
+        var events = new List<string>();
+        var snapshots = new List<EmulationInputSnapshot>();
+        var failure = new InvalidOperationException("frame");
+        void Execute() => GWGUI.Emulation.EmulationSdk.MachineExecution.SoftReset(keys,
+            snapshot => { snapshots.Add(snapshot); events.Add(snapshot.Keys.Count == 0 ? "release" : "press"); },
+            () => { events.Add("frame"); if (frameFails) throw failure; },
+            () => throw new InvalidOperationException("La commande native ne doit pas être appelée avec les touches."));
+        if (frameFails) Assert.Same(failure, Assert.Throws<InvalidOperationException>(Execute));
+        else Execute();
+        Assert.Equal(new[] { "press", "frame", "release" }, events);
+        Assert.Same(keys, snapshots[0].Keys);
+        Assert.Empty(snapshots[1].Keys);
+        Assert.True(keys.SetEquals([EmulationKey.LeftControl, EmulationKey.A]));
+    }
+
+    [Fact]
+    public void SharedSoftwareResetWithoutKeysCallsOnlyTheNativeCommand()
+    {
+        var resets = 0;
+        GWGUI.Emulation.EmulationSdk.MachineExecution.SoftReset(new HashSet<EmulationKey>(),
+            _ => throw new InvalidOperationException("Aucune touche ne doit être appliquée."),
+            () => throw new InvalidOperationException("Aucune frame ne doit être calculée."),
+            () => resets++);
+        Assert.Equal(1, resets);
+    }
+
+    [Fact]
+    public void EveryCommonUsesItsInjectedSoftResetKeysPolicyAndSharedSequence()
+    {
+        var shared = typeof(IEmulationMachineExecution).GetMethod("SoftReset")!;
+        Assert.NotNull(shared);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var profilesWithKeys = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var policy = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimePolicy", throwOnError: true)!;
+            var property = policy.GetProperty("SoftResetKeys")!;
+            Assert.NotNull(property);
+            Assert.Equal(typeof(IReadOnlySet<EmulationKey>), property.PropertyType);
+            Assert.True(property.GetMethod!.IsAbstract);
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(policy, adapterContract.GetInterfaces());
+            Assert.Null(adapterContract.GetProperty("SoftResetKeys")); // La propriété possède une seule déclaration dans le contrat de politique.
+            var fallback = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".get_SoftResetKeys", StringComparison.Ordinal));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>().ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+            else Assert.NotEmpty(adapters);
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(policy);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, property.GetMethod!)];
+                var keys = Assert.IsAssignableFrom<IReadOnlySet<EmulationKey>>(property.GetValue(adapter));
+                var declared = adapter.GetType().GetProperty("SoftResetKeys", BindingFlags.Public | BindingFlags.Instance);
+                Assert.Equal(declared?.GetMethod ?? fallback, target);
+                if (declared is not null) Assert.Same(declared.GetValue(adapter), keys);
+                else Assert.Empty(keys);
+                if (keys.Count != 0)
+                {
+                    profilesWithKeys++;
+                    Assert.Equal("GWGUI.Emulation.Commodore", root);
+                    Assert.True(keys.SetEquals([EmulationKey.LeftControl, EmulationKey.LeftAmiga, EmulationKey.RightAmiga]));
+                }
+            }
+            var methods = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.Machine" || type.FullName!.StartsWith(root + ".Common.Services.Machine+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).ToArray();
+            var calls = methods.SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method == shared);
+            Assert.Contains(calls, call => call.Method == property.GetMethod);
+        }
+        Assert.True(profilesWithKeys > 0);
     }
 }

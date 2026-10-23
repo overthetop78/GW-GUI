@@ -11,6 +11,9 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Sélectionne la commande native lorsque le profil ne déclare aucune combinaison de touches.</summary>
+    IReadOnlySet<EmulationKey> IEmulatorRuntimePolicy.SoftResetKeys => new HashSet<EmulationKey>();
+
     /// <summary>Conserve les annonces du runtime lorsqu'aucun catalogue préalable n'est déclaré par le backend.</summary>
     IReadOnlyList<CoreOption> IEmulatorSettings.GetSettingsOptions(MachineConfiguration? configuration, EmulatorManagementContext? context) => [];
 
@@ -250,9 +253,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <returns>Configuration résultante après application des règles de périphériques du cœur.</returns>
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
 
-    /// <summary>Combinaison de touches émulées utilisée par le backend pour sa réinitialisation logicielle.</summary>
-    /// <remarks>Cette déclaration décrit les touches ; le propriétaire du runtime gère leur appui puis leur relâchement.</remarks>
-    IReadOnlySet<EmulationKey> SoftResetKeys { get; }
 
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>

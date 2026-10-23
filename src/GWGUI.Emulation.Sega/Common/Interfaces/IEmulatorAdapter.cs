@@ -4,6 +4,9 @@ using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.Controll
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Sélectionne la commande native lorsque le profil ne déclare aucune combinaison de touches.</summary>
+    IReadOnlySet<EmulationKey> IEmulatorRuntimePolicy.SoftResetKeys => new HashSet<EmulationKey>();
+
     /// <summary>Conserve les annonces du runtime lorsqu'aucun catalogue préalable n'est déclaré par le backend.</summary>
     IReadOnlyList<CoreOption> IEmulatorSettings.GetSettingsOptions(MachineConfiguration? configuration, EmulatorManagementContext? context) => [];
 

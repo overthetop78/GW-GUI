@@ -11442,84 +11442,85 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CoreHostConstants.cs : conserver un seul retour final après la classe.
     - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreHostConstants.cs : conserver un seul retour final après la classe.
     - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : rétablir les fins de ligne CRLF du dépôt après le retrait du relais ajouté.
-  - [ ] Généraliser la politique existante de touches de réinitialisation logicielle.
-    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
-    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
-    - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMachineExecution.cs : déclarer le traitement commun de SoftReset avec touches, entrées, frame et commande native empruntées.
-    - [ ] Modifier src/GWGUI.Emulation/Services/EmulationMachineExecutionService.cs : reprendre la séquence de touches existante et garantir leur relâchement dans finally, ou appeler la commande native sans touches.
-    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
-    - [ ] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver la sélection des touches natives par le contrat de politique explicite.
-    - [ ] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver la sélection des touches natives par le contrat de politique explicite.
-    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement des 24 politiques et la séquence de touches avec et sans erreur, sans ressources externes ; exécuter les vérifications et le build complet.
+  - [x] Généraliser la politique existante de touches de réinitialisation logicielle.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorRuntimePolicy.cs : exposer SoftResetKeys avec les mêmes types et la documentation du profil de touches emprunté.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : fournir les touches vides par défaut et reprendre les déclarations existantes dans le contrat de politique partagé.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMachineExecution.cs : déclarer le traitement commun de SoftReset avec touches, entrées, frame et commande native empruntées.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationMachineExecutionService.cs : reprendre la séquence de touches existante et garantir leur relâchement dans finally, ou appeler la commande native sans touches.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : utiliser les touches du profil et le traitement partagé, en conservant les règles de reset et de recréation déjà présentes.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver la sélection des touches natives par le contrat de politique explicite.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver la sélection des touches natives par le contrat de politique explicite.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement des 24 politiques et la séquence de touches avec et sans erreur, sans ressources externes ; exécuter les vérifications et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure SoftResetKeys et son accesseur dans les membres communs attendus.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

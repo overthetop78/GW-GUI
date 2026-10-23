@@ -228,7 +228,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _audio.Reset();
         if (_requiresResetRestart) RestartCore(CurrentConfiguration());
         else if (hardReset) _core.HardReset();
-        else _core.SoftReset();
+        else CommonCoreHostFunctions.MachineExecution.SoftReset(_runtimePolicy?.SoftResetKeys ?? new HashSet<EmulationKey>(), _core.SetInput, _core.RunFrame, _core.SoftReset);
     }
 
     /// <summary>Consulte le callback explicite puis la politique du backend pour le remplacement d’un média.</summary>

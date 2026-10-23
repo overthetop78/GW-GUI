@@ -8,6 +8,13 @@ namespace GWGUI.Emulation.Sharp.Common.Interfaces;
 /// remplacé dans finally ; la politique ne possède elle-même aucun thread, cœur ou fichier de contenu.</remarks>
 internal interface IEmulatorRuntimePolicy
 {
+    /// <summary>Combinaison de touches émulées choisie par le profil pour sa réinitialisation logicielle.</summary>
+    /// <value>Touches à maintenir pendant une frame ; un ensemble vide sélectionne la commande native SoftReset.</value>
+    /// <remarks>Cette collection décrit le profil et reste empruntée. Common transmet la séquence au service
+    /// partagé qui relâche les entrées dans finally, même si le calcul de la frame échoue.
+    /// La politique conserve ses autres règles de redémarrage et ne possède aucun cœur ni périphérique.</remarks>
+    IReadOnlySet<EmulationKey> SoftResetKeys { get; }
+
     /// <summary>Détermine si un changement de média impose de recréer le cœur.</summary>
     /// <param name="configuration">Configuration empruntée permettant de consulter le modèle, les options et les lecteurs.</param>
     /// <param name="slot">Emplacement de lecteur concerné.</param>

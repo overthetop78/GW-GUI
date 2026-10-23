@@ -4,6 +4,9 @@ using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.Con
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Sélectionne la commande native lorsque le profil ne déclare aucune combinaison de touches.</summary>
+    IReadOnlySet<EmulationKey> IEmulatorRuntimePolicy.SoftResetKeys => new HashSet<EmulationKey>();
+
     /// <summary>Conserve les annonces du runtime lorsqu'aucun catalogue préalable n'est déclaré par le backend.</summary>
     IReadOnlyList<CoreOption> IEmulatorSettings.GetSettingsOptions(MachineConfiguration? configuration, EmulatorManagementContext? context) => [];
 
@@ -206,7 +209,6 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
     EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
     IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
-    IReadOnlySet<EmulationKey> SoftResetKeys { get; }
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
     /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>
