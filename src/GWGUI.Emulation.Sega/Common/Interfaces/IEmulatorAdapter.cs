@@ -1,7 +1,14 @@
 using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings
 {
+    /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
+    bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
+
+    /// <summary>Réutilise les médias configurés et conserve uniquement les sources insérées dans leur ordre de lecteurs.</summary>
+    IReadOnlyList<string> IEmulatorInitialContentSettings.ResolveInitialContentPaths(MachineConfiguration configuration)
+        => ResolveConfiguredMedia(configuration).Where(media => media.IsInserted).OrderBy(media => media.Slot).Select(media => media.Path).ToArray();
+
     /// <summary>Conserve l’absence de valeurs initiales propres au cœur ; les catalogues natifs peuvent fournir leur implémentation.</summary>
     IReadOnlyDictionary<string, string> IEmulatorConfigurationOptions.GetDefaultOptions(MachineConfiguration configuration) => new Dictionary<string, string>(StringComparer.Ordinal);
 

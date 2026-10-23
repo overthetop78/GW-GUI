@@ -64,15 +64,12 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     public virtual bool SupportsPointer(MachineConfiguration configuration) => false;
     protected virtual bool RequiresResetRestart => false;
+    /// <summary>Les cœurs acceptent un contenu initial sélectionné séparément dans les réglages.</summary>
+    public bool SupportsInitialContent => true;
     public virtual bool SupportsNoContent => false;
 
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
-    public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[]
-    {
-        path
-    }
-
-    : Array.Empty<string>();
+    public abstract IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration);
     public abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;

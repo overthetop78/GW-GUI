@@ -1792,6 +1792,82 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public async Task EveryCommonProvidesTheSameInitialContentContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var describedAdapters = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorInitialContentSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            Assert.Equal(new[] { "ResolveInitialContentPaths", "get_SupportsInitialContent" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            var capability = contract.GetProperty("SupportsInitialContent")!;
+            Assert.Equal(typeof(bool), capability.PropertyType);
+            var resolve = contract.GetMethod("ResolveInitialContentPaths")!;
+            Assert.True(resolve.IsAbstract);
+            Assert.Equal(configurationType, Assert.Single(resolve.GetParameters()).ParameterType);
+            Assert.Equal(typeof(IReadOnlyList<string>), resolve.ReturnType);
+            var defaultResolve = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".ResolveInitialContentPaths", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(defaultResolve), call => call.Method.Name == "ResolveConfiguredMedia");
+            if (root is "GWGUI.Emulation.Sinclair" or "GWGUI.Emulation.Snk" or "GWGUI.Emulation.Thomson")
+            {
+                var entries = assembly.GetType(root + ".Common.Machines.Common.Functions.SavedStateFunctions", throwOnError: true)!.GetMethod("ContentEntries", BindingFlags.Static | BindingFlags.NonPublic)!;
+                Assert.Contains(GetCompiledCalls(entries), call => call.Method.DeclaringType == contract && call.Method.Name == resolve.Name);
+            }
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var byId = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)byId.GetType().GetProperty("Values")!.GetValue(byId)!).Cast<object>().ToArray();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                Assert.All(map.TargetMethods, method => Assert.False(method.IsAbstract));
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, resolve)];
+                Assert.Equal(adapter.GetType().GetMethod(resolve.Name) ?? defaultResolve, target);
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                var machine = machines.First(item => definition.MachineIds.Contains(item.Id));
+                var original = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [original, definition.Id, CancellationToken.None])!;
+                var paths = Assert.IsAssignableFrom<IReadOnlyList<string>>(resolve.Invoke(adapter, [configuration]));
+                if (target.DeclaringType == adapterContract)
+                {
+                    var mediaResolver = adapterContract.GetInterfaces().SelectMany(type => type.GetMethods()).First(method => method.Name == "ResolveConfiguredMedia");
+                    var media = (IReadOnlyList<EmulationMedia>)mediaResolver.Invoke(adapter, [configuration])!;
+                    Assert.Equal(media.Where(item => item.IsInserted).OrderBy(item => item.Slot).Select(item => item.Path), paths);
+                }
+                var supported = (bool)capability.GetValue(adapter)!;
+                if (root == "GWGUI.Emulation.Example" || root == "GWGUI.Emulation.Snk" || adapter.GetType().Name is "FuseMachineFactory" or "TheodoreMachineFactory") Assert.True(supported);
+                else Assert.False(supported);
+                if (root == "GWGUI.Emulation.Example")
+                {
+                    Assert.Null(adapter.GetType().GetMethod(resolve.Name));
+                    var example = new GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MachineConfiguration(GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All[0].Model, media:
+                    [
+                        new("second.dsk", GWGUI.Emulation.Example.Common.Machines.Common.Enums.MediaCategory.Floppy, EmulationMediaSlot.Floppy1),
+                        new("first.dsk", GWGUI.Emulation.Example.Common.Machines.Common.Enums.MediaCategory.Floppy, EmulationMediaSlot.Floppy0),
+                        new("ejected.cas", GWGUI.Emulation.Example.Common.Machines.Common.Enums.MediaCategory.Cassette, EmulationMediaSlot.Cassette0, IsInserted: false)
+                    ]);
+                    Assert.Equal(new[] { "first.dsk", "second.dsk" }, Assert.IsAssignableFrom<IReadOnlyList<string>>(resolve.Invoke(adapter, [example])));
+                }
+                if (adapter.GetType().Name is "TheodoreMachineFactory" or "PotatorMachineFactory")
+                    Assert.Contains(GetCompiledCalls(target), call => call.Method.Name == "InitialContentPaths" && call.Method.DeclaringType!.Name == "MediaRuntimeFunctions");
+                describedAdapters++;
+            }
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+            else Assert.NotEmpty(adapters);
+        }
+        Assert.True(describedAdapters >= 24);
+    }
+
+    [Fact]
     public async Task EveryCommonProvidesTheCompleteConfigurationOptionContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

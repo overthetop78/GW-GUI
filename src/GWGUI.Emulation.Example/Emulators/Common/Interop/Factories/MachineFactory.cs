@@ -132,8 +132,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
 
     /// <inheritdoc/>
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
-    /// <inheritdoc/>
-    public IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted).OrderBy(media => media.Slot).Select(media => media.Path).ToArray();
     /// <summary>Les simulations consomment leurs contenus comme données opaques ; aucune conversion de format n’est nécessaire.</summary>
     /// <inheritdoc/>
     public ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);

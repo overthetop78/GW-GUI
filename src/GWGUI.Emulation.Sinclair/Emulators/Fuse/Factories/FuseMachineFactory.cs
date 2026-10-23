@@ -8,10 +8,10 @@ using NativeFirmware = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.Firmwar
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories;
 
-internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
+internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorInitialContentSettings
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => Enum.GetValues<PeripheralCategory>();
-    protected override bool SupportsInitialContent => true;
+    public bool SupportsInitialContent => true;
 
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => NativeSettings.GetOptions(configuration);
@@ -25,5 +25,5 @@ internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorCons
     internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration);
-    public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
+    public IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
 }

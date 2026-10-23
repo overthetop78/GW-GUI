@@ -7,7 +7,7 @@ internal static class InputSettingsFunctions
     internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None
         && new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     internal static bool SupportsInitialContent(MachineConfiguration configuration) => configuration.Core != Emulator.None
-        && new Engine().Adapter(configuration) is IEmulatorInitialContentSettings { SupportsInitialContent: true };
+        && new Engine().Adapter(configuration).SupportsInitialContent;
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch
     {
         MachineModel.Zx80 => PeripheralCategory.None,

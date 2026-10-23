@@ -8,6 +8,13 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
+    /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
+    bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
+
+    /// <summary>Réutilise les médias configurés et conserve uniquement les sources insérées dans leur ordre de lecteurs.</summary>
+    IReadOnlyList<string> IEmulatorInitialContentSettings.ResolveInitialContentPaths(MachineConfiguration configuration)
+        => ResolveConfiguredMedia(configuration).Where(media => media.IsInserted).OrderBy(media => media.Slot).Select(media => media.Path).ToArray();
+
     /// <summary>Conserve l’absence de valeurs initiales propres au cœur ; les catalogues natifs peuvent fournir leur implémentation.</summary>
     IReadOnlyDictionary<string, string> IEmulatorConfigurationOptions.GetDefaultOptions(MachineConfiguration configuration) => new Dictionary<string, string>(StringComparer.Ordinal);
 

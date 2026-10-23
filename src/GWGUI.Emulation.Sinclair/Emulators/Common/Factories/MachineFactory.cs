@@ -54,8 +54,6 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
-    bool IEmulatorInitialContentSettings.SupportsInitialContent => SupportsInitialContent;
-    protected virtual bool SupportsInitialContent => false;
     public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
     /// <summary>Projette les sources physiques vers les entrées du cœur par le même contrat que la description des contrôleurs.</summary>
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
@@ -64,12 +62,6 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public virtual bool SupportsNoContent => false;
 
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
-    public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[]
-    {
-        path
-    }
-
-    : Array.Empty<string>();
     public abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;

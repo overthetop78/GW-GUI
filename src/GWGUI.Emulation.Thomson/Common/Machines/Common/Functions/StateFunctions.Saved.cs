@@ -48,10 +48,7 @@ internal static class SavedStateFunctions
     internal static string ContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(ContentEntries(configuration));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        var initialPaths = configuration.InitialContent is null ? Array.Empty<string>() : new[]
-        {
-            configuration.InitialContent
-        };
+        IReadOnlyList<string> initialPaths = configuration.InitialContent is null ? [] : new Engine().SelectedAdapter(configuration)?.ResolveInitialContentPaths(configuration) ?? [configuration.InitialContent];
         var entries = configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path))).Concat(initialPaths.Select((path,
             index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), HashPath(path)))).ToArray();
         return entries;

@@ -12,6 +12,9 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Factories;
 internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings
 {
     /// <inheritdoc/>
+    public IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
+
+    /// <inheritdoc/>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();

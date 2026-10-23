@@ -13,6 +13,11 @@ namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
 internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
     /// <inheritdoc/>
+    public IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
+    /// <inheritdoc/>
+    public bool SupportsInitialContent => true;
+
+    /// <inheritdoc/>
     public bool SupportsNoContent => true;
 
     /// <inheritdoc/>
