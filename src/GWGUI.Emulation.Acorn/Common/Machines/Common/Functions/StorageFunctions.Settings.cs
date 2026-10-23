@@ -6,7 +6,7 @@ internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
-        IReadOnlyList<EmulationMediaDevice> devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeMediaDevices(configuration) : [];
+        IReadOnlyList<EmulationMediaDevice> devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } storage ? storage.DescribeMediaDevices(configuration) : [];
         var deviceSettings = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorStorageSettings adapter ? adapter.DescribeDeviceSettings(configuration) : [];
         return new EmulationStorageSettings(devices, devices.Select(device => device.Slot).ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), deviceSettings);
     }

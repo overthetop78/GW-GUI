@@ -26,7 +26,7 @@ internal static class ConfigurationFunctions
             throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorConfigurationOptions options)
             options.ValidateOptions(configuration);
-        var devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeMediaDevices(configuration) : [];
+        var devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } storage ? storage.DescribeMediaDevices(configuration) : [];
         var mediaSlots = new HashSet<EmulationMediaSlot>();
         foreach (var media in configuration.Media)
         {

@@ -175,7 +175,7 @@ internal sealed class Engine
                 Controllers = controllers
             }
         };
-        var devices = adapter is IEmulatorMediaCapabilities mediaAdapter ? mediaAdapter.DescribeMediaDevices(result) : [];
+        var devices = adapter is { } mediaAdapter ? mediaAdapter.DescribeMediaDevices(result) : [];
         var slots = devices.Select(device => device.Slot).ToHashSet();
         if (result.Media.Any(media => !slots.Contains(media.Slot)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(emulatorId));

@@ -52,7 +52,7 @@ internal static class StorageSettingsFunctions
                     : model.Id == ModelConstants.Psp ? "Emulation.Sony.Storage.UMD.Device"
                     : model.Id == ModelConstants.PlayStation3 ? "Emulation.Sony.Storage.BluRay.Device" : null));
         }
-        devices.AddRange(mediaAdapter?.DescribeMediaDevices(configuration) ?? []);
+        devices.AddRange(adapter?.DescribeMediaDevices(configuration) ?? []);
         devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var configured = devices.Where(device => device.Slot.Category switch
@@ -80,8 +80,9 @@ internal static class StorageSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var mediaAdapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId) as IEmulatorStorageSettings;
-        var adapterDevices = mediaAdapter?.DescribeMediaDevices(configuration) ?? [];
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var mediaAdapter = adapter as IEmulatorStorageSettings;
+        var adapterDevices = adapter?.DescribeMediaDevices(configuration) ?? [];
         var hardDisks = settings.MountedMedia.Where(item => item.Type == EmulationMediaType.HardDisk && settings.ConfiguredSlots.Contains(item.Slot)).ToArray();
         if (hardDisks.Select(item => item.Slot).Distinct().Count() != hardDisks.Length) throw new InvalidDataException(nameof(settings));
         foreach (var disk in hardDisks)

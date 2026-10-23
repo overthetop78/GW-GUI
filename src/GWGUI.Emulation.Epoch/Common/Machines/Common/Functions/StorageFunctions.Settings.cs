@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration) => new(
-        new Engine().Adapter(configuration) is IEmulatorMediaCapabilities storage ? storage.DescribeMediaDevices(configuration) : [],
+        new Engine().Adapter(configuration) is { } storage ? storage.DescribeMediaDevices(configuration) : [],
         configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)

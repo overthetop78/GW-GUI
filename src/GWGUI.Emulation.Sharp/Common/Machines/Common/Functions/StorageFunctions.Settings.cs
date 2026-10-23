@@ -8,7 +8,7 @@ internal static class StorageSettingsFunctions
     {
         if (configuration.Core == Emulator.None)
             return new(Array.Empty<EmulationMediaDevice>(), Array.Empty<EmulationMediaSlot>(), Array.Empty<EmulationMedia>());
-        var devices = new Engine().Adapter(configuration) is IEmulatorMediaCapabilities storage ? storage.DescribeMediaDevices(configuration).ToArray() : [];
+        var devices = new Engine().Adapter(configuration) is { } storage ? storage.DescribeMediaDevices(configuration).ToArray() : [];
         var interfaces = devices.Where(device => configuration.ConfiguredSlots.Contains(device.Slot) && device.HardDiskFormats?.Count > 0)
             .Select(device => new EmulationStorageDeviceSettings(device.Slot, InterfaceId: device.HardDiskFormats![0].InterfaceName.ToLowerInvariant())).ToArray();
         return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), interfaces);

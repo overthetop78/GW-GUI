@@ -688,13 +688,14 @@ public sealed class ArchitectureValidationTests
             }
             Assert.Equal("configuration", parameter.Name);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
-            if (contractName == "IEmulatorConfigurationValidation")
+            if (contractName is "IEmulatorConfigurationValidation" or "IEmulatorMediaCapabilities")
             {
-                Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
+                if (contractName == "IEmulatorConfigurationValidation")
+                    Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
                 var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
                 Assert.Contains(contract, adapter.GetInterfaces());
-                var defaultValidation = Assert.Single(adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), candidate => candidate.Name.EndsWith(".ValidateConfiguration", StringComparison.Ordinal));
-                Assert.False(defaultValidation.IsAbstract);
+                var defaultImplementation = Assert.Single(adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), candidate => candidate.Name.EndsWith("." + methodName, StringComparison.Ordinal));
+                Assert.False(defaultImplementation.IsAbstract);
                 var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
                 if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
                 else Assert.NotEmpty(adapters);
@@ -703,7 +704,7 @@ public sealed class ArchitectureValidationTests
                     Assert.True(contract.IsAssignableFrom(implementation), implementation.FullName);
                     var selected = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
                     var concrete = implementation.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
-                    Assert.Equal(concrete ?? defaultValidation, selected);
+                    Assert.Equal(concrete ?? defaultImplementation, selected);
                 }
             }
             if (contractName == "IEmulatorSettings")

@@ -10,7 +10,7 @@ internal static class StorageSettingsFunctions
         var adapter = configuration.Core == Emulator.None
             ? engine.Adapters(configuration.MachineId).FirstOrDefault()
             : engine.Adapter(configuration);
-        var devices = adapter is IEmulatorMediaCapabilities capabilities
+        var devices = adapter is { } capabilities
             ? capabilities.DescribeMediaDevices(configuration)
             : [];
         return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
