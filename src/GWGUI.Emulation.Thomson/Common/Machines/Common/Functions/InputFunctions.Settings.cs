@@ -45,7 +45,7 @@ internal static class InputSettingsFunctions
                 ),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
                 binding?.VisualId ?? (peripheral == PeripheralCategory.Joystick ? EmulationControllerVisualIds.ThomsonMj90102 : null)
-            );
+            ) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new(keyboard, mouse, ports);
     }
@@ -57,7 +57,7 @@ internal static class InputSettingsFunctions
         var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,
             (index, peripheral) => SupportsPeripheral(configuration, index, peripheral),
-            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
+            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var input = configuration.Input with
         {
             Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),

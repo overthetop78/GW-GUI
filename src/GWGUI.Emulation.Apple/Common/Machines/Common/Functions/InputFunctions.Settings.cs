@@ -36,7 +36,7 @@ internal static class InputSettingsFunctions
                 new EmulationInputBindingSet(ControllerDefinitions(peripheral), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
                 current?.VisualId
-            );
+            ) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         var mouse = SupportsPointer(configuration)
             ? new EmulationInputBindingSet(
@@ -64,7 +64,7 @@ internal static class InputSettingsFunctions
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) || !Enum.IsDefined(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(settings));
-            return new ControllerBinding(port.Number - BufferConstants.IndexIncrement, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - BufferConstants.IndexIncrement, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
         var result = configuration with
         {

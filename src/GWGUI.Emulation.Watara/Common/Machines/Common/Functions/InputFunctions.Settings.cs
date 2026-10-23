@@ -28,7 +28,7 @@ internal static class InputSettingsFunctions
             EmulationControllerVisualIds.WataraSupervisionControls,
             ControllerCatalog.VisualCommands
         );
-        return new(null, null, [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]);
+        return new(null, null, [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() }]);
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
@@ -38,7 +38,7 @@ internal static class InputSettingsFunctions
         var port = settings.ControllerPorts[ControllerConstants.FirstPort];
         if (port.Number != 1 || port.SelectedControllerId != PeripheralCategory.Supervision.ToString() || port.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
             throw new ArgumentException(nameof(settings));
-        var binding = new ControllerBinding(ControllerConstants.FirstPort, PeripheralCategory.Supervision, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
+        var binding = new ControllerBinding(ControllerConstants.FirstPort, PeripheralCategory.Supervision, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         var result = configuration with
         {
             Input = new InputConfiguration([binding])

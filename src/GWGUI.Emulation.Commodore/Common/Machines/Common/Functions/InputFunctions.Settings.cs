@@ -25,7 +25,7 @@ internal static partial class InputSettingsFunctions
             return new EmulationControllerPort(number,
                 choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId);
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -38,7 +38,7 @@ internal static partial class InputSettingsFunctions
             ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
-            port.VisualId)).ToArray();
+            port.VisualId, OutputBindings: port.OutputBindings)).ToArray();
         var input = current with
         {
             KeyboardBindings = keyboard,

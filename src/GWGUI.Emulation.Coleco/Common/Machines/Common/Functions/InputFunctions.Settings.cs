@@ -160,7 +160,7 @@ internal static class InputSettingsFunctions
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,
                 new(mapper?.DescribeInput(configuration.Model, index, peripheral).Select(action => action.Definition).ToArray() ?? [], binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
+                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new(keyboard, null, ports);
     }
@@ -171,7 +171,7 @@ internal static class InputSettingsFunctions
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral)
                 || !Peripherals(configuration.Model, configuration.Core).Contains(peripheral)) throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.Keyboard, controllers) };
         ConfigurationFunctions.Validate(result);

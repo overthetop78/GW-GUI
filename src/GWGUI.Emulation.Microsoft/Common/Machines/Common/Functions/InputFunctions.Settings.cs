@@ -18,7 +18,7 @@ internal static partial class InputSettingsFunctions
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                VisualId: current?.VisualId);
+                VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -33,7 +33,7 @@ internal static partial class InputSettingsFunctions
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None,
             port.PhysicalDeviceId,
             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
-            port.VisualId)).ToArray();
+            port.VisualId, OutputBindings: port.OutputBindings)).ToArray();
         return configuration with
         {
             Input = current with

@@ -41,7 +41,7 @@ internal static class InputSettingsFunctions
                 Visuals(peripheral).FirstOrDefault(),
                 ControllerCatalog.VisualCommands(peripheral)
             );
-            return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? Visuals(peripheral).FirstOrDefault());
+            return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? Visuals(peripheral).FirstOrDefault()) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new(null, null, ports);
     }
@@ -55,7 +55,7 @@ internal static class InputSettingsFunctions
         {
             if (port.Number < 1 || port.Number > ControllerConstants.PortCount || !Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Enum.IsDefined(peripheral))
                 throw new ArgumentException(nameof(settings));
-            controllers.Add(new(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId));
+            controllers.Add(new(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         }
 
         var result = configuration with

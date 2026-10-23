@@ -34,7 +34,7 @@ internal static class InputSettingsFunctions
                 }) { Category = EmulationControllerCategory.Joystick };
             return new EmulationControllerPort(port + 1, [choice], PeripheralCategory.Standard.ToString(), binding?.DeviceId,
                 new(definitions, binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
+                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new(null, null, ports);
     }
@@ -47,7 +47,7 @@ internal static class InputSettingsFunctions
         {
             if (port.SelectedControllerId != PeripheralCategory.Standard.ToString())
                 throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
         var result = configuration with { Input = new(configuration.Input.Keyboard, controllers) };
         ConfigurationFunctions.Validate(result);

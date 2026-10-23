@@ -25,7 +25,7 @@ internal static class InputSettingsFunctions
                     new(InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, port, peripheral).Select(action => action.Definition).ToArray(),
                         binding?.Mappings ?? new Dictionary<string, string>(),
                         EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                    binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
+                    binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId) { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
             }).ToArray();
         return new(keyboard, null, ports);
     }
@@ -38,7 +38,7 @@ internal static class InputSettingsFunctions
         var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,
             (index, peripheral) => Peripherals(configuration.Model, configuration.Core).Contains(peripheral),
-            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
+            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);
         return result;

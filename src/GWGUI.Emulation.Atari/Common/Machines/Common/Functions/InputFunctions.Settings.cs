@@ -29,7 +29,7 @@ internal static partial class InputSettingsFunctions
                     current?.Mappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
-                current?.VisualId);
+                current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -40,7 +40,7 @@ internal static partial class InputSettingsFunctions
         var keyboard = settings.Keyboard?.Values is { } keyboardValues ? EmulationSdk.InputProcessing.ToKeys(keyboardValues) : current.KeyboardMappings;
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - 1,
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) ? peripheral : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
-            port.DeadZonePercent, port.VisualId)).ToArray();
+            port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings)).ToArray();
         var options = configuration.Options.Where(item => !item.Key.StartsWith(MouseSettingsConstants.MappingOptionPrefix, StringComparison.Ordinal)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
         if (settings.Mouse is not null)
             foreach (var binding in settings.Mouse.Values)

@@ -15,6 +15,67 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonPreservesControllerOutputBindingsInSettingsAndConfiguration()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var checkedFamilies = 0;
+        var roundTrippedFamilies = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Machines.Common.Contracts.ControllerBinding");
+            if (root == "GWGUI.Emulation.Wenquxing") Assert.Null(contract);
+            else
+            {
+                Assert.NotNull(contract);
+                Assert.Equal(typeof(IReadOnlyDictionary<string, EmulationControllerOutputBinding>), contract.GetProperty("OutputBindings")!.PropertyType);
+                checkedFamilies++;
+            }
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var machines = Assert.IsAssignableFrom<IReadOnlyList<EmulationMachineDefinition>>(engineType.GetProperty("Machines")!.GetValue(engine));
+            foreach (var machine in machines)
+            {
+                try
+                {
+                    var configuration = engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var describe = engineType.GetMethod("DescribeInputSettings")!;
+                    var settings = Assert.IsType<EmulationInputSettings>(describe.Invoke(engine, [configuration]));
+                    if (root == "GWGUI.Emulation.Wenquxing") Assert.Empty(settings.ControllerPorts);
+                    // Sony valide déjà les effets selon le visuel et le cœur ; ses cas de filtrage sont couverts séparément.
+                    if (root == "GWGUI.Emulation.Sony" || settings.ControllerPorts.Count == 0) continue;
+                    var outputs = new Dictionary<string, EmulationControllerOutputBinding>
+                    {
+                        [EmulationControllerFeedbackCommands.Strong] = new("physical-device", EmulationControllerMotor.LowFrequency),
+                        [EmulationControllerFeedbackCommands.Weak] = new("other-device", EmulationControllerMotor.HighFrequency)
+                    };
+                    var ports = settings.ControllerPorts.Select(port => port with { OutputBindings = outputs }).ToArray();
+                    var applied = engineType.GetMethod("ApplyInputSettings")!.Invoke(engine, [configuration, settings with { ControllerPorts = ports }])!;
+                    var serialized = System.Text.Json.JsonSerializer.Serialize(applied, applied.GetType());
+                    var restored = System.Text.Json.JsonSerializer.Deserialize(serialized, applied.GetType())!;
+                    var roundTrip = Assert.IsType<EmulationInputSettings>(describe.Invoke(engine, [restored]));
+                    roundTrippedFamilies.Add(root);
+                    Assert.Equal(ports.Length, roundTrip.ControllerPorts.Count);
+                    foreach (var port in roundTrip.ControllerPorts)
+                        Assert.Equal(outputs.OrderBy(item => item.Key), port.OutputBindings.OrderBy(item => item.Key));
+                    Assert.All(Assert.IsType<EmulationInputSettings>(describe.Invoke(engine, [configuration])).ControllerPorts, port => Assert.Empty(port.OutputBindings));
+                }
+                catch (Exception exception)
+                {
+                    throw new InvalidOperationException(root + ": " + machine.Id, exception);
+                }
+            }
+        }
+        Assert.Equal(23, checkedFamilies);
+        Assert.Equal(22, roundTrippedFamilies.Count);
+    }
+
+    [Fact]
     public void EveryCommonDescribesControllerOutputsThroughTheSameContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
