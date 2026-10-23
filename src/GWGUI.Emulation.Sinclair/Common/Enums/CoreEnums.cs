@@ -14,7 +14,9 @@ internal enum HostCommand : byte
     SelectDisk = CoreHostConstants.SelectDiskCommand,
     Dispose = CoreHostConstants.DisposeCommand,
     GetDiskStatus = CoreHostConstants.GetDiskStatusCommand,
-    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand
+    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand,
+    /// <summary>Exécute la réinitialisation logicielle par le contrat commun.</summary>
+    SoftReset = CoreHostConstants.SoftResetCommand
 }
 
 public enum HostProcessState { InProcess, NotStarted, Running, Exited, Faulted }

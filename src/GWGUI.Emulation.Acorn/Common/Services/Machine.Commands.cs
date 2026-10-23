@@ -126,10 +126,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void FailPendingCommands(Exception error)
         => CommonCoreHostFunctions.MachineExecution.FailPendingCommands(_commands, error);
 
-    private void ResetCore()
+    private void ResetCore(bool hardReset = true)
     {
         _audio.Reset();
-        _core.HardReset();
+        if (hardReset) _core.HardReset(); else _core.SoftReset();
     }
 
     public async ValueTask DisposeAsync()

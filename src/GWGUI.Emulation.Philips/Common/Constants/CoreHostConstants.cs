@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Philips.Common.Constants;
 // Unique to GWGUI.Emulation.Philips.
 public static class CoreHostConstants
 {
+    /// <summary>Commande logicielle commune, distincte de la remise à zéro matérielle.</summary>
+    internal const byte SoftResetCommand = 16;
+
     internal const string Windows = "windows";
     public const string CommandLineArgument = "--philips-core-host";
     internal const string HostName = "Philips";

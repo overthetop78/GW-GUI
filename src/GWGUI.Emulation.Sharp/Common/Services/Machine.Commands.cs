@@ -126,11 +126,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void FailPendingCommands(Exception error)
         => CommonCoreHostFunctions.MachineExecution.FailPendingCommands(_commands, error);
 
-    private void ResetCore()
+    private void ResetCore(bool hardReset = true)
     {
         if (_mediaSuspended) return;
         _audio.Reset();
-        if (_requiresResetRestart) RestartCore(CurrentConfiguration()); else _core.HardReset();
+        if (_requiresResetRestart) RestartCore(CurrentConfiguration()); else if (hardReset) _core.HardReset(); else _core.SoftReset();
     }
 
     private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>

@@ -70,7 +70,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             _audio.Reset();
             var resetKeys = EmulatorCatalog.CreateAdapter(Configuration.Core).SoftResetKeys;
-            if (resetKeys.Count == BufferConstants.EmptyCollectionCount) _core.HardReset();
+            if (resetKeys.Count == BufferConstants.EmptyCollectionCount) _core.SoftReset();
             else
             {
                 try

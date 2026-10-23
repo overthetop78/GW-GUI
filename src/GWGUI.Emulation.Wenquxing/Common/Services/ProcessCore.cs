@@ -20,6 +20,9 @@ namespace GWGUI.Emulation.Wenquxing.Common.Services;
 internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
 {
     /// <inheritdoc/>
+    public void SoftReset() => Request(HostCommand.SoftReset);
+
+    /// <inheritdoc/>
     public bool ShutdownRequested { get; private set; }
 
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>

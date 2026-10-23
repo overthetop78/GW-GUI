@@ -58,10 +58,6 @@ internal static class CoreHost
                                 writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
                                 break;
-                            case HostCommand.SoftReset:
-                                EnsureCore(core).SoftReset();
-                                WriteSuccess(writer);
-                                break;
                             case HostCommand.SetControllerPortDevice:
                                 EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (PeripheralCategory)reader.ReadInt32());
                                 WriteSuccess(writer);

@@ -9,5 +9,4 @@ internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRunt
     bool ShutdownRequested { get; }
 
     bool SupportsPointerCapture => true;
-    void SoftReset();
 }

@@ -8,7 +8,6 @@ internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRunt
 
     int DiskCount { get; }
     int CurrentDiskIndex { get; }
-    void SoftReset();
     void InsertMedia(string path);
     void EjectMedia();
 }

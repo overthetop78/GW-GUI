@@ -11,6 +11,10 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
+    public void SoftReset() => HardReset();
+
+    /// <inheritdoc/>
     public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
 
     /// <inheritdoc/>

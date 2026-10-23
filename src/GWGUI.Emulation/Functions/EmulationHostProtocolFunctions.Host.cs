@@ -292,6 +292,9 @@ internal static partial class EmulationHostProtocolFunctions
     {
         switch (command)
         {
+            case EmulationHostProtocolConstants.SoftResetCommand:
+                ensureCore().SoftReset();
+                break;
             case EmulationHostProtocolConstants.HardResetCommand:
                 ensureCore().HardReset();
                 break;

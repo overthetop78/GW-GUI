@@ -52,9 +52,6 @@ internal static class CoreHost
                         case HostCommand.RunFrame:
                             RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount);
                             break;
-                        case HostCommand.SoftReset:
-                            EnsureCore(core).SoftReset();
-                            break;
                         case HostCommand.SaveMediaChanges:
                             EnsureCore(core).SaveMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
                             break;

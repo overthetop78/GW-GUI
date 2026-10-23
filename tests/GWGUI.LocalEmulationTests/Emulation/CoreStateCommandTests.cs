@@ -9,6 +9,7 @@ public sealed class CoreStateCommandTests
 {
     [Theory]
     [InlineData(3, "HardReset")]
+    [InlineData(16, "SoftReset")]
     [InlineData(4, "Stop")]
     [InlineData(7, "SaveState")]
     [InlineData(8, "LoadState")]
@@ -121,6 +122,7 @@ public sealed class CoreStateCommandTests
             events.Add(operation);
             if (Failure is not null) throw Failure;
         }
+        public void SoftReset() => Record(nameof(SoftReset));
         public void HardReset() => Record(nameof(HardReset));
         public void Stop() => Record(nameof(Stop));
         public byte[] SaveState() { Record(nameof(SaveState)); return [7, 8, 9]; }

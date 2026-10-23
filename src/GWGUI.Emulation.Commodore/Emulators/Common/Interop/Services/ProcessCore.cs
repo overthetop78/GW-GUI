@@ -17,6 +17,9 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public void SoftReset() => SimpleRequest(HostCommand.SoftReset);
+
+    /// <inheritdoc/>
     public bool ShutdownRequested { get; private set; }
 
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>

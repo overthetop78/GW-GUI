@@ -11,6 +11,7 @@ public sealed class CoreHostCommandTests
 {
     [Theory]
     [InlineData(3, "HardReset")]
+    [InlineData(16, "SoftReset")]
     [InlineData(4, "Stop")]
     [InlineData(5, "InsertMedia")]
     [InlineData(6, "EjectMedia")]
@@ -252,6 +253,19 @@ public sealed class CoreHostCommandTests
 
     private enum TestPeripheral { Pointer = 37 }
 
+    [Fact]
+    public void PathSoftResetUsesTheSharedStateDispatcher()
+    {
+        using var payload = new MemoryStream();
+        using var reader = new BinaryReader(payload);
+        using var response = new MemoryStream();
+        using var writer = new BinaryWriter(response);
+        var core = new Core();
+        Assert.True(HandlePathMedia(16, reader, writer, () => core));
+        Assert.Equal(new[] { "SoftReset" }, core.Calls);
+        Assert.Equal(new byte[] { 1 }, response.ToArray());
+        Assert.Equal(0, payload.Position);
+    }
     private sealed class Core : IEmulationCoreCommands<string, TestPeripheral, string>, IEmulationCorePathMediaCommands
     {
         internal List<string> Calls { get; } = [];
@@ -269,6 +283,7 @@ public sealed class CoreHostCommandTests
             if (FailMedia) throw new InvalidOperationException("media");
             Calls.Add(nameof(EjectMedia));
         }
+        public void SoftReset() => Calls.Add(nameof(SoftReset));
         public void HardReset() => Calls.Add(nameof(HardReset));
         public void Stop() => Calls.Add(nameof(Stop));
         public void InsertMedia(string media) { if (FailMedia) throw new InvalidOperationException("media"); Calls.Add(nameof(InsertMedia)); Media = media; }

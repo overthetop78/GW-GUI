@@ -19,10 +19,6 @@ internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation
     HostProcessState HostProcessState { get; }
     /// <summary>Identifiant du processus d’hôte lorsqu’il existe ; null en l’absence d’un processus à exposer.</summary>
     int? HostProcessId { get; }
-    /// <summary>Demande la réinitialisation logicielle propre au cœur.</summary>
-    /// <remarks>Cette opération est distincte de HardReset ; le backend peut utiliser sa commande native ou la combinaison
-    /// de touches déclarée par son adaptateur, avec relâchement des entrées à la fin de l’opération.</remarks>
-    void SoftReset();
     /// <summary>Demande l’enregistrement explicite des changements du média monté dans un lecteur.</summary>
     /// <param name="slot">Lecteur logique dont le backend doit enregistrer les changements pris en charge.</param>
     /// <remarks>Common appelle cette opération dans le même ordre sérialisé que les autres commandes du cœur.</remarks>

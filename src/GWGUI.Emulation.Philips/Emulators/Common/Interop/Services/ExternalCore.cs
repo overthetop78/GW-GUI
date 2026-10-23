@@ -12,6 +12,10 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
+    public void SoftReset() => HardReset();
+
+    /// <inheritdoc/>
     public bool ShutdownRequested => _callbacks?.ShutdownRequested ?? false;
 
     /// <inheritdoc/>

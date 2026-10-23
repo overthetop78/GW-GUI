@@ -4098,4 +4098,69 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(1, frames);
         Assert.Equal(0, waits);
     }
+    [Fact]
+    public void EveryCommonUsesTheSharedSoftwareResetCommand()
+    {
+        var shared = typeof(IEmulationCoreStateCommands);
+        var operation = shared.GetMethod("SoftReset")!;
+        Assert.NotNull(operation);
+        Assert.True(operation.IsAbstract);
+        Assert.Equal(typeof(void), operation.ReturnType);
+        Assert.Empty(operation.GetParameters());
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var processes = 0;
+        var nativeCores = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            Assert.Contains(shared, core.GetInterfaces());
+            Assert.DoesNotContain(core.GetMethods(), method => method.Name == operation.Name); // Une seule déclaration de cette opération existe dans le SDK.
+
+            var commands = assembly.GetTypes().Where(type => type.IsEnum && type.Name == "HostCommand").ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(commands);
+            else
+            {
+                Assert.NotEmpty(commands);
+                var constants = assembly.GetType(root + ".Common.Constants.CoreHostConstants", throwOnError: true)!;
+                Assert.Equal((byte)16, constants.GetField("SoftResetCommand", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue());
+            }
+            foreach (var command in commands)
+            {
+                Assert.Equal((byte)16, Convert.ToByte(Enum.Parse(command, "SoftReset")));
+                if (Enum.GetNames(command).Contains("SetControllerPortDevice"))
+                    Assert.Equal((byte)15, Convert.ToByte(Enum.Parse(command, "SetControllerPortDevice")));
+            }
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && core.IsAssignableFrom(type)).ToArray();
+            foreach (var implementation in implementations)
+            {
+                var map = implementation.GetInterfaceMap(shared);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                Assert.Equal(implementation.GetMethod("SoftReset"), target);
+                Assert.False(target.IsAbstract);
+                if (implementation.Name == "ProcessCore")
+                {
+                    processes++;
+                    Assert.Contains(GetCompiledCalls(target), call => call.Method.Name is "Request" or "SimpleRequest");
+                }
+                else nativeCores++;
+            }
+            var methods = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.Machine" || type.FullName!.StartsWith(root + ".Common.Services.Machine+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).ToArray();
+            Assert.Contains(methods.SelectMany(GetCompiledCalls), call => call.Method == operation);
+            if (root == "GWGUI.Emulation.Microsoft") { Assert.Empty(implementations); continue; }
+            var hostCalls = assembly.GetTypes().Where(type => type.FullName!.Contains(".CoreHost", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(hostCalls, call => call.Method.Name is "TryExecuteCoreCommand" or "TryExecutePathMediaCommand");
+            Assert.DoesNotContain(hostCalls, call => call.Method == operation); // Les hôtes utilisent tous le dispatcher commun.
+        }
+        Assert.Equal(23, processes);
+        Assert.Equal(23, nativeCores);
+    }
 }

@@ -4,6 +4,11 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>Le module décrit les capacités réelles de son cœur ; ce contrat ne rend pas une opération prise en charge lorsqu’elle ne l’est pas.</remarks>
 public interface IEmulationCoreStateCommands
 {
+    /// <summary>Demande la réinitialisation logicielle du cœur selon son entrée native de reset.</summary>
+    /// <remarks>Common conserve les combinaisons de touches des profils et les règles imposant une recréation.
+    /// Le backend possédant une seule entrée de reset réutilise son traitement natif existant.</remarks>
+    void SoftReset();
+
     /// <summary>Réinitialise le cœur selon son comportement matériel.</summary>
     void HardReset();
     /// <summary>Arrête le contenu avant la libération du cœur par son propriétaire.</summary>

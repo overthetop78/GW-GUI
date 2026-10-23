@@ -41,7 +41,9 @@ internal enum HostCommand : byte
     SaveMediaChanges = CoreHostConstants.SaveMediaChangesCommand,
     GetDiskStatus = CoreHostConstants.GetDiskStatusCommand,
     HasUnsavedMediaChanges = CoreHostConstants.HasUnsavedMediaChangesCommand,
-    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand
+    SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand,
+    /// <summary>Exécute la réinitialisation logicielle par le contrat commun.</summary>
+    SoftReset = CoreHostConstants.SoftResetCommand
 }
 
 

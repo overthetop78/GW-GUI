@@ -97,7 +97,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _audio.Reset();
         if (Configuration.Core is Emulator.Hatari or Emulator.Hatari2014 or Emulator.HatariB)
             _core.SetOption(MachineValues.ResetType, resetType);
-        _core.HardReset();
+        if (resetType == MachineValues.Value0) _core.SoftReset(); else _core.HardReset();
     }
 
     public async ValueTask DisposeAsync()

@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
 internal enum HostCommand : byte
 {
     Initialize = 1, RunFrame, HardReset, Stop, InsertMedia, EjectMedia,
-    SaveState, LoadState, SetOption, SelectDisk, Dispose, SoftReset, SetControllerPortDevice
+    SaveState, LoadState, SetOption, SelectDisk, Dispose, SoftReset = CoreHostConstants.SoftResetCommand, SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand
 }
 
 

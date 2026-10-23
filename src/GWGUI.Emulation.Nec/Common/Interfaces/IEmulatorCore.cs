@@ -6,5 +6,4 @@ internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRunt
     /// <remarks>La machine examine ce signal dans sa boucle ; son propriétaire ferme et libère le cœur dans finally.</remarks>
     bool ShutdownRequested { get; }
 
-    void SoftReset();
 }

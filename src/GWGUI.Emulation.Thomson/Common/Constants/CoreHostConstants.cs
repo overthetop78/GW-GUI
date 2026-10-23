@@ -3,6 +3,9 @@ namespace GWGUI.Emulation.Thomson.Common.Constants;
 
 public static class CoreHostConstants
 {
+    /// <summary>Commande logicielle commune, distincte de la remise à zéro matérielle.</summary>
+    internal const byte SoftResetCommand = 16;
+
     public const string CommandLineArgument = "--thomson-core-host";
     internal const string Windows = "windows";
     internal const string HostName = "Thomson";

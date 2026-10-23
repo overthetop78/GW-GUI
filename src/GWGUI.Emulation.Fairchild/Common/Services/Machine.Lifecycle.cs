@@ -63,7 +63,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
+    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(hardReset: false), cancellationToken);
 
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
 

@@ -14,6 +14,10 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
     /// <inheritdoc/>
+    /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
+    public void SoftReset() => HardReset();
+
+    /// <inheritdoc/>
     public bool ShutdownRequested => _environment?.ShutdownRequested ?? false;
 
     /// <inheritdoc/>

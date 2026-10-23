@@ -2,6 +2,8 @@ namespace GWGUI.Emulation.Constants;
 
 internal static class EmulationHostProtocolConstants
 {
+    internal const byte SoftResetCommand = 16;
+
     internal const byte HardResetCommand = 3;
     internal const byte StopCommand = 4;
     internal const byte InsertMediaCommand = 5;

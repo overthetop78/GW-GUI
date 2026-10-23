@@ -63,10 +63,6 @@ internal static class CoreHost
                                 writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
                                 break;
-                            case HostCommand.SoftReset:
-                                EnsureCore(core).SoftReset();
-                                WriteSuccess(writer);
-                                break;
                             case HostCommand.Dispose:
                                 CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 WriteSuccess(writer);
