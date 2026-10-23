@@ -23,13 +23,13 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     private const int FrenchLanguage = 2;
     private readonly IEmulationVideoCallbackHost _video;
     private readonly IEmulationAudioCallbackHost _audio;
-    private readonly IEmulationVariableOptionHost<EmulationEnabledOption> _options;
+    private readonly IEmulationVariableOptionHost<EmulationOption> _options;
     private readonly ExternalCoreVirtualFileSystem _files;
     private readonly Dictionary<uint, ExternalCoreUtf8String> _directories = [];
     private readonly ExternalCoreApi.LogCallback _log;
     private bool _disposed;
     internal ExternalCoreEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory,
-        Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions)
+        Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationOption>> createOptions)
     {
         _setRumbleState = _feedback.SetState;
         _video = video;
@@ -51,7 +51,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     }
     public ExternalCoreApi.EnvironmentCallback Callback { get; }
     public ExternalCoreApi.KeyboardEvent? Keyboard => _keyboard;
-    public IReadOnlyList<EmulationEnabledOption> Options => _options.Options;
+    public IReadOnlyList<EmulationOption> Options => _options.Options;
     public List<string> Diagnostics { get; } = [];
     public bool SupportsNoGame { get; private set; }
     public double FramesPerSecond { get; private set; }

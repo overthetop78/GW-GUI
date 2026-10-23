@@ -237,7 +237,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>
         new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,
-            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible))
+            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), IsVisible: option.IsVisible))
         .Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();
 
     private bool ReturnOption(nint data)

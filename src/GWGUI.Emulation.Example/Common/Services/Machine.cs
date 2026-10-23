@@ -257,16 +257,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <remarks>Les clés de traduction sont préférées aux textes invariants lorsqu’elles existent. La nécessité d’un
     /// redémarrage est résolue dans les réglages déclarés par l’adaptateur du cœur sélectionné.</remarks>
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
-        .Select(option => new EmulationOption(
-            option.Key,
-            option.ResourceKey ?? option.Name,
-            option.ExplanationResourceKey ?? option.Description,
-            option.Category,
-            option.DefaultValue,
-            option.CurrentValue,
-            option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
-            option.IsVisible,
-            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
+        .Select(option => option with { Name = option.ResourceKey ?? option.Name, Description = option.ExplanationResourceKey ?? option.Description, Values = option.Values.Select(value => value with { Label = SettingsDescriptionFunctions.ChoiceLabel(value) }).ToArray(), RequiresRestart = option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key) })
         .ToArray();
     /// <summary>Dernière image exposée par la facette vidéo, avec la durée de validité des buffers du producteur.</summary>
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;

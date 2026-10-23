@@ -10889,3 +10889,114 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider les données conservées et les appels.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, les appels compilés et la conservation des observations, définitions et reconnaissances natives ; exécuter la suite et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter IdentifyFirmware aux opérations communes attendues.
+
+## Description unique des options natives du SDK
+
+- [x] Réunir les données des options et de leurs choix dans les contrats existants.
+  - [x] Préserver les arguments des constructions existantes avant de changer leurs alias.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreOptionMetadataFunctions.cs : nommer les arguments optionnels avec leurs paramètres actuels sans modifier leurs expressions ni leurs valeurs.
+  - [x] Réunir les descriptions et les choix existants.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationOption.cs : conserver les paramètres actuels et ajouter les métadonnées existantes de présentation, recharge, rendu et machines.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationOptionValue.cs : réunir ressources, cadence, affichage invariant, machines et saut de trames.
+    - [x] Créer src/GWGUI.Emulation/Enums/EmulationFrameSkipRatio.cs : reprendre les cinq rapports de saut de trames existants avec leurs valeurs et leur documentation.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Example/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs : utiliser les descriptions et choix partagés en conservant les noms CoreOption et CoreOptionValue.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationCategorizedOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationEnabledOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationMachineOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationMachineOptionValue.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationResourceOptionValue.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationResourceReloadOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationResourceRestartOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationTimingOption.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation/Contracts/EmulationTimingOptionValue.cs : retirer la variante reprise par les deux descriptions communes.
+    - [x] Supprimer src/GWGUI.Emulation.Apple/Common/Contracts/CoreContracts.cs : retirer les descriptions locales remplacées par les contrats partagés.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Contracts/CoreContracts.cs : retirer les descriptions locales remplacées par les contrats partagés.
+    - [x] Supprimer src/GWGUI.Emulation.Sinclair/Common/Contracts/CoreContracts.cs : retirer les descriptions locales remplacées par les contrats partagés.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Contracts/CoreContracts.cs : retirer les descriptions locales remplacées par les contrats partagés.
+    - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Contracts/CoreContracts.cs : retirer les descriptions locales remplacées par les contrats partagés.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Machines/Common/Enums/SettingsEnums.cs : retirer les rapports déplacés dans le SDK.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Machines/Common/Enums/SettingsEnums.cs : retirer les rapports déplacés dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationNativeResources.cs : reprendre EmulationOption dans les contrats et relais existants sans changer le cycle de vie des ressources.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationEnvironmentCallbackHost.cs : reprendre EmulationOption dans les contrats et relais existants sans changer le cycle de vie des ressources.
+    - [x] Modifier src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs : reprendre EmulationOption dans les contrats et relais existants sans changer le cycle de vie des ressources.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationNativeResourceService.cs : reprendre EmulationOption dans les contrats et relais existants sans changer le cycle de vie des ressources.
+  - [x] Valider les métadonnées et les consommateurs.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/ConsoleFamilyModuleTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreOptionHostStateTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/NativeOptionFieldTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : conserver les vérifications existantes avec les descriptions uniques et contrôler les métadonnées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/RuntimeOptionTests.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/MultichannelAudioTests.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Dictionaries/OptionCatalog.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/AppleWin/Dictionaries/OptionCatalog.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/ConfigurationFunctions.cs : utiliser les descriptions SDK partagées à la place du namespace local supprimé.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.cs : conserver les projections de libellés, valeurs et redémarrage avec des copies de records sans perdre les autres métadonnées.

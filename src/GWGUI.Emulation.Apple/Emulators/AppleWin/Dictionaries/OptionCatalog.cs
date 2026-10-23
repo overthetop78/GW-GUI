@@ -1,6 +1,5 @@
 using CommonCoreHostFunctions = GWGUI.Emulation.Apple.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;
-using GWGUI.Emulation.Apple.Common.Contracts;
 
 namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries;
 

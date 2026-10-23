@@ -17,7 +17,7 @@ internal static class CoreOptionMetadataFunctions
 
     private static IReadOnlyList<CoreOption> Adapt(IReadOnlyList<EmulationOption> options) => options.Select(option =>
         new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,
-            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();
+            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), IsVisible: option.IsVisible)).ToArray();
 
     internal static IReadOnlyList<CoreOption> WithCurrentValues(IReadOnlyList<CoreOption> options, IReadOnlyDictionary<string, string> currentValues) =>
         options.Select(option => currentValues.TryGetValue(option.Key, out var value) && option.CurrentValue != value ? option with { CurrentValue = value } : option).ToArray();

@@ -1,5 +1,5 @@
 using GWGUI.Emulation.Enums;
-using GWGUI.Emulation.Sony.Common.Contracts;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using GWGUI.Emulation.Sony.Common.Dictionaries;
 using GWGUI.Emulation.Sony.Common.Interfaces;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;

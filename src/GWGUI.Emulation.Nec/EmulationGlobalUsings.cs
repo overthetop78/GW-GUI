@@ -24,7 +24,7 @@ global using GWGUI.Emulation.Nec.Common.Services;
 
 global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumulator;
 
-global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Nec.Common.Machines.Common.Enums.Emulator>;

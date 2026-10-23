@@ -1,5 +1,5 @@
-using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
-using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationMachineOptionValue;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
+using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 using System.Reflection;
 using System.Net.Http;
 using System.IO;

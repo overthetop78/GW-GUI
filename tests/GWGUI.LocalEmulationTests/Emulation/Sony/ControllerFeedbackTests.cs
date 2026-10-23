@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Sony.Common.Contracts;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Contracts;

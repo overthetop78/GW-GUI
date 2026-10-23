@@ -22,9 +22,9 @@ global using GWGUI.Emulation.Nintendo.Common.Services;
 
 global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumulator;
 
-global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationMachineOptionValue;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 
-global using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;
 

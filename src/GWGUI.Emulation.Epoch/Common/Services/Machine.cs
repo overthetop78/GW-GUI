@@ -111,16 +111,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
     IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => RuntimeStatus.MediaActivity;
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
-        .Select(option => new EmulationOption(
-            option.Key,
-            option.ResourceKey ?? option.Name,
-            option.ExplanationResourceKey ?? option.Description,
-            option.Category,
-            option.DefaultValue,
-            option.CurrentValue,
-            option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
-            option.IsVisible,
-            option.RequiresRuntimeReload || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true))
+        .Select(option => option with { Name = option.ResourceKey ?? option.Name, Description = option.ExplanationResourceKey ?? option.Description, Values = option.Values.Select(value => value with { Label = SettingsDescriptionFunctions.ChoiceLabel(value) }).ToArray(), RequiresRestart = option.RequiresRuntimeReload || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true })
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

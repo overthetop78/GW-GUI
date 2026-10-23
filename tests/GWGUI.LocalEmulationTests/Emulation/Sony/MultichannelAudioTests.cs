@@ -6,7 +6,7 @@ using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Sony.Common.Interfaces;
-using GWGUI.Emulation.Sony.Common.Contracts;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;

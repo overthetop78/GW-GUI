@@ -2208,7 +2208,7 @@ public sealed class ArchitectureValidationTests
                 var blocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(describe.Invoke(adapter, [configuration, null]));
                 var memory = Assert.Single(blocks.SelectMany(block => block.Fields), field => field.Id == "example_main_memory");
                 Assert.Equal(model.MainMemoryBytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + " B", memory.Value);
-                var options = Assert.IsAssignableFrom<IReadOnlyList<GWGUI.Emulation.Example.Common.Contracts.CoreOption>>(backend.GetMethod("GetSettingsOptions")!.Invoke(adapter, [configuration, null]));
+                var options = Assert.IsAssignableFrom<IReadOnlyList<GWGUI.Emulation.Contracts.EmulationOption>>(backend.GetMethod("GetSettingsOptions")!.Invoke(adapter, [configuration, null]));
                 foreach (var option in options.Where(option => option.IsVisible))
                     Assert.Contains(blocks.SelectMany(block => block.Fields), field => field.Id == option.Key && field.Value == configuration.Options.GetValueOrDefault(option.Key, option.CurrentValue));
             }
@@ -3332,8 +3332,8 @@ public sealed class ArchitectureValidationTests
             var optionsFactory = assembly.GetType(root + "OptionCallbackHost") ?? assembly.GetType($"GWGUI.Emulation.{family}.Emulators.{emulator}.Functions.RuntimeOptionFunctions", throwOnError: true)!;
             Assert.True(optionsFactory.IsAbstract && optionsFactory.IsSealed);
             var create = optionsFactory.GetMethod("Create", BindingFlags.NonPublic | BindingFlags.Static) ?? optionsFactory.GetMethod("CreateCallbackHost", BindingFlags.NonPublic | BindingFlags.Static)!;
-            Assert.Equal(typeof(IEmulationVariableOptionHost<EmulationEnabledOption>), create.ReturnType);
-            using var options = Assert.IsAssignableFrom<IEmulationVariableOptionHost<EmulationEnabledOption>>(create.Invoke(null, [new Dictionary<string, string>()]));
+            Assert.Equal(typeof(IEmulationVariableOptionHost<EmulationOption>), create.ReturnType);
+            using var options = Assert.IsAssignableFrom<IEmulationVariableOptionHost<EmulationOption>>(create.Invoke(null, [new Dictionary<string, string>()]));
             Assert.Empty(options.Options);
         }
     }
@@ -3366,10 +3366,10 @@ public sealed class ArchitectureValidationTests
         Assert.NotNull(video.Failure);
     }
 
-    private sealed class TrackedVariableOptions : IEmulationVariableOptionHost<EmulationEnabledOption>
+    private sealed class TrackedVariableOptions : IEmulationVariableOptionHost<EmulationOption>
     {
         internal int Disposals { get; private set; }
-        public IReadOnlyList<EmulationEnabledOption> Options => [];
+        public IReadOnlyList<EmulationOption> Options => [];
         public bool Register(nint data) => throw new NotSupportedException();
         public bool ReturnValue(nint data) => throw new NotSupportedException();
         public void SetValue(string key, string value) => throw new NotSupportedException();
@@ -3894,5 +3894,38 @@ public sealed class ArchitectureValidationTests
         }
         Assert.True(nativeAlternatives > 0);
         Assert.True(nativeRoles >= 16);
+    }
+    [Fact]
+    public void EveryCommonUsesTheSingleOptionDescriptionAndPreservesItsRuntimeMetadata()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            Assert.Null(assembly.GetType(root + ".Common.Contracts.CoreOption"));
+            Assert.Null(assembly.GetType(root + ".Common.Contracts.CoreOptionValue"));
+            var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            var runtime = Assert.Single(core.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            Assert.Equal(typeof(EmulationOption), runtime.GetGenericArguments()[1]);
+            var provider = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+            if (provider is not null) Assert.Equal(typeof(IReadOnlyList<EmulationOption>), provider.GetMethod("GetSettingsOptions")!.ReturnType);
+            var projections = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.Machine" || type.FullName!.StartsWith(root + ".Common.Services.Machine+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.Name.Contains("get_AvailableOptions", StringComparison.Ordinal) && method.ReturnType == typeof(EmulationOption)).ToArray();
+            Assert.NotEmpty(projections);
+            foreach (var projection in projections)
+            {
+                var calls = GetCompiledCalls(projection);
+                Assert.DoesNotContain(calls, call => call.Method is ConstructorInfo && call.Method.DeclaringType == typeof(EmulationOption));
+                Assert.Contains(calls, call => call.Method.Name.Contains("Clone", StringComparison.Ordinal) && call.Method.DeclaringType == typeof(EmulationOption));
+            }
+        }
+        foreach (var name in new[] { "EmulationCategorizedOption", "EmulationEnabledOption", "EmulationMachineOption", "EmulationMachineOptionValue", "EmulationResourceOptionValue", "EmulationResourceReloadOption", "EmulationResourceRestartOption", "EmulationTimingOption", "EmulationTimingOptionValue" })
+            Assert.Null(typeof(EmulationOption).Assembly.GetType("GWGUI.Emulation.Contracts." + name));
+        Assert.Equal(new[] { "OneOfTwo", "TwoOfThree", "ThreeOfFour", "FourOfFive", "FiveOfSix" }, Enum.GetNames<EmulationFrameSkipRatio>());
     }
 }

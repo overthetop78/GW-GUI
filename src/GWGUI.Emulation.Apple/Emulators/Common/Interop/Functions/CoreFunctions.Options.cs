@@ -7,7 +7,7 @@ internal static class CoreOptionFunctions
 {
     private static CoreOption CreateOption(string key, string name, string? description, string? category, string defaultValue,
         IReadOnlyList<CoreOptionValue> values, string? categorizedName, string? categorizedDescription) =>
-        new(key, name, description, category, defaultValue, defaultValue, values, true, categorizedName, categorizedDescription);
+        new(key, name, description, category, defaultValue, defaultValue, values, IsVisible: true, CategorizedName: categorizedName, CategorizedDescription: categorizedDescription);
 
     internal static IReadOnlyList<CoreOption> CopyLegacyDefinitions(nint data) =>
         CommonCoreHostFunctions.OptionProcessing.CopyLegacyDefinitions<CoreOption, CoreOptionValue>(data, CreateOption,

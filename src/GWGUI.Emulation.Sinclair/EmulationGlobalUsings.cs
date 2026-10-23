@@ -19,7 +19,6 @@ global using GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Sinclair.Common.Contracts;
 global using GWGUI.Emulation.Sinclair.Common.Interfaces;
 global using GWGUI.Emulation.Sinclair.Common.Services;
 global using GWGUI.Emulation.Sinclair.Common.Machines.Common.Constants;
@@ -38,7 +37,7 @@ global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInst
 global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
-global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory, GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode>;
@@ -52,3 +51,4 @@ global using StateFile = GWGUI.Emulation.Contracts.EmulationSavedStateFile<GWGUI
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationContentDocument<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.FolderConfiguration>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;

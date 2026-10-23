@@ -28,3 +28,6 @@ global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Exa
 global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<GWGUI.Emulation.Example.Common.Machines.Common.Contracts.FirmwareDefinition>;
 global using FirmwareCompatibility = GWGUI.Emulation.Enums.EmulationFirmwareCompatibility;
 global using FirmwareDetectionStatus = GWGUI.Emulation.Enums.EmulationFirmwareDetectionStatus;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
+global using FrameSkipRatio = GWGUI.Emulation.Enums.EmulationFrameSkipRatio;

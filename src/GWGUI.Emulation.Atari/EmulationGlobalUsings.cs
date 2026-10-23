@@ -72,7 +72,7 @@ global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstal
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
 
-global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode>;

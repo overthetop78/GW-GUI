@@ -40,9 +40,9 @@ global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInst
 global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
-global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationTimingOptionValue;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 
-global using CoreOption = GWGUI.Emulation.Contracts.EmulationTimingOption;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Mattel.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Mattel.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Mattel.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory, GWGUI.Emulation.Mattel.Common.Enums.ErrorCode>;

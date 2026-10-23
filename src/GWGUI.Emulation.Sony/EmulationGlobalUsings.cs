@@ -10,7 +10,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Sony.Common.Contracts;
 global using GWGUI.Emulation.Sony.Common.Constants;
 global using GWGUI.Emulation.Sony.Common.Dictionaries;
 global using GWGUI.Emulation.Sony.Common.Interfaces;
@@ -30,3 +29,4 @@ global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCa
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;

@@ -15,7 +15,6 @@ global using GWGUI.Emulation.Services;
 
 global using GWGUI.Emulation;
 global using GWGUI.Emulation.Apple.Common.Constants;
-global using GWGUI.Emulation.Apple.Common.Contracts;
 global using GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Apple.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
@@ -38,7 +37,7 @@ global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInst
 global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
-global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Apple.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, GWGUI.Emulation.Apple.Common.Enums.ErrorCode>;
@@ -51,3 +50,4 @@ global using StateFile = GWGUI.Emulation.Contracts.EmulationSavedStateFile<GWGUI
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationDocument<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Apple.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Apple.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Apple.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Apple.Common.Machines.Common.Contracts.FolderConfiguration>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Apple.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;

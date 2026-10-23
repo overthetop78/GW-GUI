@@ -4,7 +4,7 @@ using GWGUI.Emulation.Sony.Common.Dictionaries;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sony.Common.Interfaces;
-using GWGUI.Emulation.Sony.Common.Contracts;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using BeetleCore = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.CoreConstants;
 using BeetleHardwareCore = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.CoreConstants;
 using RearmedCore = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.CoreConstants;

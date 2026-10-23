@@ -2,7 +2,6 @@ using GWGUI.Emulation.Apple.Common.Constants;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Dictionaries;
-using GWGUI.Emulation.Apple.Common.Contracts;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 

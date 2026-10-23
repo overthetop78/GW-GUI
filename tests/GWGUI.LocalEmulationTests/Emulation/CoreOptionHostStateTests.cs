@@ -4,9 +4,9 @@ using GWGUI.Emulation.Interop;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using AcornHost = GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.CoreOptionHost;
-using AcornOption = GWGUI.Emulation.Contracts.EmulationResourceRestartOption;
+using AcornOption = GWGUI.Emulation.Contracts.EmulationOption;
 using MattelHost = GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.CoreOptionHost;
-using MattelOption = GWGUI.Emulation.Contracts.EmulationTimingOption;
+using MattelOption = GWGUI.Emulation.Contracts.EmulationOption;
 
 namespace GWGUI.Tests.Emulation;
 

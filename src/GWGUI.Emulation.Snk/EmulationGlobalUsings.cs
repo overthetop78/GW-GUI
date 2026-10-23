@@ -18,7 +18,6 @@ global using GWGUI.Emulation.Snk.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Snk.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Snk.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Snk.Common.Contracts;
 global using GWGUI.Emulation.Snk.Common.Interfaces;
 global using GWGUI.Emulation.Snk.Common.Services;
 global using GWGUI.Emulation.Snk.Common.Enums;
@@ -50,3 +49,6 @@ global using StateFile = GWGUI.Emulation.Contracts.EmulationSavedStateFile<GWGUI
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationContentDocument<GWGUI.Emulation.Snk.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Snk.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Snk.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Snk.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Snk.Common.Machines.Common.Contracts.FolderConfiguration>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Snk.Common.Machines.Common.Contracts.MachineConfiguration>;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
+global using FrameSkipRatio = GWGUI.Emulation.Enums.EmulationFrameSkipRatio;

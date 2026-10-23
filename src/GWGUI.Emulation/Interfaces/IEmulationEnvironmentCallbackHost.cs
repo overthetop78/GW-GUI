@@ -14,7 +14,7 @@ public interface IEmulationEnvironmentCallbackHost : IDisposable
     /// <summary>Callback clavier annoncé par le cœur, ou null ; son code doit rester chargé pendant les notifications.</summary>
     ExternalCoreApi.KeyboardEvent? Keyboard { get; }
     /// <summary>Descriptions courantes des options déclarées par le cœur.</summary>
-    IReadOnlyList<EmulationEnabledOption> Options { get; }
+    IReadOnlyList<EmulationOption> Options { get; }
     /// <summary>Diagnostics textuels possédés par l’hôte et vidés lors de Dispose.</summary>
     List<string> Diagnostics { get; }
     /// <summary>Prise en charge du démarrage sans contenu annoncée par le cœur.</summary>

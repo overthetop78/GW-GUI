@@ -150,5 +150,5 @@ public interface IEmulationNativeResources
     /// <remarks>Une construction interrompue libère les seules ressources déjà acquises. Les dossiers reçus
     /// restent sous la responsabilité de la session et ne sont pas supprimés par cet hôte.</remarks>
     IEmulationEnvironmentCallbackHost CreateEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options,
-        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions);
+        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationOption>> createOptions);
 }

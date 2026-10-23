@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Diagnostics;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
-using GWGUI.Emulation.Sony.Common.Contracts;
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using GWGUI.Emulation.Sony.Common.Interfaces;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Enums;

@@ -1,7 +1,7 @@
-namespace GWGUI.Emulation.Example.Common.Machines.Common.Enums;
+namespace GWGUI.Emulation.Enums;
 
-/// <summary>Rapports de saut d’images proposés par les options existantes.</summary>
-public enum FrameSkipRatio
+/// <summary>Rapports de saut d'images annoncés par les choix d'options natifs.</summary>
+public enum EmulationFrameSkipRatio
 {
     /// <summary>Une image non rendue sur deux.</summary>
     OneOfTwo,
@@ -12,5 +12,5 @@ public enum FrameSkipRatio
     /// <summary>Quatre images non rendues sur cinq.</summary>
     FourOfFive,
     /// <summary>Cinq images non rendues sur six.</summary>
-    FiveOfSix,
+    FiveOfSix
 }

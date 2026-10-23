@@ -5,7 +5,6 @@ using GWGUI.Emulation.Functions;
 using SharpModel = GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.MachineModel;
 using SharpConfiguration = GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts.MachineConfiguration;
 using SharpSettings = GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
-using SinclairOptions = GWGUI.Emulation.Sinclair.Common.Contracts;
 using SinclairModel = GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel;
 using SinclairConfiguration = GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts.MachineConfiguration;
 using SinclairSettings = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
@@ -24,13 +23,13 @@ public sealed class NativeOptionFieldTests
             .ForConfiguration(initial).First(option => option.Values.Count >= 2);
         var onValue = declared.Values[0].Value;
         var offValue = declared.Values[1].Value;
-        var values = new List<EmulationResourceOptionValue>
+        var values = new List<EmulationOptionValue>
         {
             new(onValue, "On", "Emulation.Value.Enabled", "YES"),
             new(offValue, "Off", "Emulation.Value.Disabled", "NO")
         };
         if (thirdChoice) values.Add(new("automatic", "Automatic", "Visual.Automatic"));
-        var option = new EmulationResourceRestartOption(declared.Key, "Mode", null, "Video", offValue, "ignored",
+        var option = new EmulationOption(declared.Key, "Mode", null, "Video", offValue, "ignored",
             values, ResourceKey: "Native.Mode", ExplanationResourceKey: "Native.Mode.Help");
         var configuration = new SharpConfiguration(SharpModel.X68000,
             options: new Dictionary<string, string> { [declared.Key] = onValue });
@@ -55,7 +54,7 @@ public sealed class NativeOptionFieldTests
     [InlineData(true)]
     public void SinclairKeepsEnabledStateAndFallsBackToTheDeclaredDefault(bool enabled)
     {
-        var option = new SinclairOptions.CoreOption("mode", "Mode", null, "Video", "native-off", "ignored",
+        var option = new EmulationOption("mode", "Mode", null, "Video", "native-off", "ignored",
             [new("native-on", "On", "Emulation.Value.Enabled"), new("native-off", "Off", "Emulation.Value.Disabled")],
             IsEnabled: enabled, ResourceKey: "Native.Mode", ExplanationResourceKey: "Native.Help");
         var field = SinclairSettings.Native(new SinclairConfiguration(SinclairModel.Spectrum48K), option,

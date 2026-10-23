@@ -65,6 +65,6 @@ internal sealed class EmulationNativeResourceService : IEmulationNativeResources
 
     /// <inheritdoc/>
     public IEmulationEnvironmentCallbackHost CreateEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options,
-        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions)
+        string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationOption>> createOptions)
         => new ExternalCoreEnvironmentCallbackHost(video, audio, options, systemDirectory, contentDirectory, saveDirectory, assetsDirectory, createOptions);
 }

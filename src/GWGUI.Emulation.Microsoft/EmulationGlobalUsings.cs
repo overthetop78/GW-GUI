@@ -22,7 +22,7 @@ global using GWGUI.Emulation.Microsoft.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Microsoft.Common.Services;
 
 
-global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 
