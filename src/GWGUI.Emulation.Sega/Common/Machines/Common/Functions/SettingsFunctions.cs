@@ -113,7 +113,7 @@ internal static partial class SettingsDescriptionFunctions
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.Unknown))
         ];
         var result = blocks.Where(block => block.Fields.Count > 0).ToList();
-        foreach (var coreBlock in adapter.DescribeSettings(configuration))
+        foreach (var coreBlock in adapter.GetMachineSettingsBlocks(configuration))
         {
             var existingIndex = result.FindIndex(block => block.Tab == coreBlock.Tab);
             if (existingIndex < 0)

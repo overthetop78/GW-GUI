@@ -10447,3 +10447,118 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider les capacités et les appels.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les capacités de toutes les machines et tous les adaptateurs des 24 familles, les RAM inférieures au KiB, les profils non renseignés, les réglages existants et la variante PSP ; exécuter la suite et le build complet sans nouvelle dépendance externe.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter GetMemoryKib aux opérations Common attendues.
+
+## Portée des blocs de réglages et champs de stockage par les contrats Common
+
+- [x] Uniformiser les deux points de description pour les 24 familles.
+  - [x] Raccorder les contrats, leurs implémentations et leurs consommateurs.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorSettings.cs : déclarer GetMachineSettingsBlocks avec le contexte de gestion et documenter la portée des blocs.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorStorageSettings.cs : déclarer GetStorageDeviceConfigurationFields avec la catégorie du périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : reprendre les blocs existants et conserver les champs de stockage natifs dans les contrats communs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs : raccorder les blocs présentés au contrat GetMachineSettingsBlocks sans changer les filtres ni les valeurs existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs : employer les contrats obligatoires en conservant la distinction entre réglages globaux et réglages du lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : employer les contrats obligatoires en conservant la distinction entre réglages globaux et réglages du lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : employer les contrats obligatoires en conservant la distinction entre réglages globaux et réglages du lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs : employer les contrats obligatoires en conservant la distinction entre réglages globaux et réglages du lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs : employer les contrats obligatoires en conservant la distinction entre réglages globaux et réglages du lecteur.
+    - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer le contrat devenu vide après déplacement de ses deux opérations.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver le filtrage natif des champs de cartouche dans les implémentations des deux contrats, avec les mêmes valeurs par défaut Common que les autres familles.
+  - [x] Valider les filtres et leur raccordement effectif.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les deux contrats pour tous les adaptateurs, la conservation des blocs et les champs de lecteurs ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter les deux opérations aux appels Common attendus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/RuntimeOptionTests.cs : employer les contrats de réglages obligatoires à la place du contrat supprimé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : vérifier les mêmes champs via les deux contrats Common obligatoires.

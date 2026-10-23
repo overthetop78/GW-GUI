@@ -10,6 +10,13 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Reprend les blocs natifs dans leur portée de présentation existante.</summary>
+    IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context) => ((IEmulatorSettings)this).DescribeSettings(configuration, context);
+
+    /// <summary>Conserve les champs propres au périphérique lorsque le backend en fournit.</summary>
+    IReadOnlyList<EmulationSettingsField> IEmulatorStorageSettings.GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) => [];
+
+
     /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
     decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model)?.MainMemoryBytes / 1024m;
 

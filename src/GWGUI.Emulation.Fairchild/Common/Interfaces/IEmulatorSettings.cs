@@ -5,6 +5,15 @@ namespace GWGUI.Emulation.Fairchild.Common.Interfaces;
 /// de présentation et ne possède aucune session, sortie audio ou surface vidéo.</remarks>
 internal interface IEmulatorSettings
 {
+    /// <summary>Décrit les blocs à présenter parmi les réglages de la machine.</summary>
+    /// <param name="configuration">Configuration empruntée dont les valeurs sont présentées.</param>
+    /// <param name="context">Contexte de gestion transmis à la description native, ou null si inutile.</param>
+    /// <returns>Blocs globaux du backend, avec leurs valeurs et leur ordre de présentation.</returns>
+    /// <remarks>Le backend peut réserver des champs au lecteur qui les possède. Les réglages de stockage
+    /// globaux restent dans ces blocs ; leur présence ne signifie pas qu'ils configurent chaque lecteur.
+    /// Cette consultation ne crée aucun cœur et conserve la configuration empruntée.</remarks>
+    IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context = null);
+
     /// <summary>Résout la capacité de mémoire principale décrite par le profil et ses réglages natifs.</summary>
     /// <param name="configuration">Configuration empruntée fournissant le modèle et ses options.</param>
     /// <returns>Capacité exacte en KiB, ou null lorsque le profil ne renseigne pas sa mémoire principale.</returns>

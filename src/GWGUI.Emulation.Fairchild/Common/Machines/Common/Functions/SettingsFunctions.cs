@@ -10,7 +10,7 @@ internal static class SettingsDescriptionFunctions
         var blocks = new List<EmulationSettingsBlock> { Audio(configuration) };
         AddHardware(blocks, configuration);
         if (new Engine().Adapter(configuration) is { } settings)
-            blocks.AddRange(settings.DescribeSettings(configuration));
+            blocks.AddRange(settings.GetMachineSettingsBlocks(configuration));
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
             FirmwareFunctions.Field(role), EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             "Emulation.Fairchild.Firmware." + role, EmulationSettingsEditor.Path,

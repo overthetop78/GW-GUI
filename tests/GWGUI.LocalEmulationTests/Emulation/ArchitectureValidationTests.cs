@@ -970,7 +970,7 @@ public sealed class ArchitectureValidationTests
         static string TypeName(Type type) => typeof(IEmulationConfiguration).IsAssignableFrom(type) ? "configuration" : type.FullName!;
         static string Signature(MethodInfo method) => method.Name + ":" + TypeName(method.ReturnType) + "(" + string.Join(",", method.GetParameters().Select(parameter => TypeName(parameter.ParameterType) + " " + parameter.Name)) + "):" + method.IsAbstract;
         var expected = reference.GetMethods().Select(Signature).Order(StringComparer.Ordinal).ToArray();
-        Assert.Equal(11, expected.Length);
+        Assert.Equal(12, expected.Length);
         foreach (var assembly in modules)
         {
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
@@ -992,7 +992,8 @@ public sealed class ArchitectureValidationTests
                 {
                     var method = mapping.InterfaceMethods[index];
                     var concrete = implementation.GetMethod(method.Name, BindingFlags.Instance | BindingFlags.Public, method.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
-                    Assert.Equal(concrete ?? method, mapping.TargetMethods[index]);
+                    var fallback = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).SingleOrDefault(candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal));
+                    Assert.Equal(concrete ?? fallback ?? method, mapping.TargetMethods[index]);
                     Assert.False(mapping.TargetMethods[index].IsAbstract);
                 }
             }
@@ -2236,7 +2237,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 6 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 7 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -2372,7 +2373,7 @@ public sealed class ArchitectureValidationTests
             {
                 var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
                 var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
-                var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
+                var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
                 Assert.Null(settings.GetMethod("ValidateConfiguration"));
                 Assert.Null(settings.GetMethod("GetRuntimeOptions"));
                 var runtime = adapter.GetMethod("GetRuntimeOptions")!;
@@ -3606,5 +3607,88 @@ public sealed class ArchitectureValidationTests
         EmulationSdk.CoreDiagnostics.RequireArchitecture("x64", "x64", Message);
         Assert.Same(expected, Assert.Throws<InvalidOperationException>(() =>
             EmulationSdk.CoreDiagnostics.RequireArchitecture("unknown", "x64", Message)));
+    }
+    [Fact]
+    public async Task EveryCommonRoutesSettingsScopesThroughItsContracts()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var probed = 0;
+        var cartridgeFields = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
+            var storage = assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var machineBlocks = settings.GetMethod("GetMachineSettingsBlocks")!;
+            var deviceFields = storage.GetMethod("GetStorageDeviceConfigurationFields")!;
+            Assert.True(machineBlocks.IsAbstract);
+            Assert.True(deviceFields.IsAbstract);
+            Assert.Equal(typeof(IReadOnlyList<EmulationSettingsBlock>), machineBlocks.ReturnType);
+            Assert.Equal(typeof(IReadOnlyList<EmulationSettingsField>), deviceFields.ReturnType);
+            Assert.Equal(typeof(EmulatorManagementContext), machineBlocks.GetParameters()[1].ParameterType);
+            Assert.True(machineBlocks.GetParameters()[1].HasDefaultValue);
+            Assert.Equal(typeof(EmulationMediaCategory), deviceFields.GetParameters()[1].ParameterType);
+            Assert.Contains(settings, adapterContract.GetInterfaces());
+            Assert.Contains(storage, adapterContract.GetInterfaces());
+            var consumers = assembly.GetTypes().Where(type => type.Namespace?.StartsWith(root + ".Common.", StringComparison.Ordinal) == true && !type.IsInterface)
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(consumers, call => call.Method == machineBlocks);
+            if (root is "GWGUI.Emulation.Sony" or "GWGUI.Emulation.Coleco") Assert.Contains(consumers, call => call.Method == deviceFields);
+            if (root == "GWGUI.Emulation.Sony") Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter"));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType, nonPublic: true)!;
+            var adapters = (System.Collections.IEnumerable)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var machines = Assert.IsAssignableFrom<IReadOnlyList<EmulationMachineDefinition>>(engineType.GetProperty("Machines")!.GetValue(engine));
+            foreach (var entry in adapters)
+            {
+                var adapter = entry.GetType().GetProperty("Value")!.GetValue(entry)!;
+                foreach (var (contract, operation) in new[] { (settings, machineBlocks), (storage, deviceFields) })
+                {
+                    var map = adapter.GetType().GetInterfaceMap(contract);
+                    var fallback = adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith("." + operation.Name, StringComparison.Ordinal));
+                    Assert.Equal(adapter.GetType().GetMethod(operation.Name) ?? fallback, map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)]);
+                }
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configuration.GetType());
+                    var original = (IReadOnlyList<EmulationSettingsBlock>)settings.GetMethod("DescribeSettings")!.Invoke(adapter, [configuration, null])!;
+                    var actual = (IReadOnlyList<EmulationSettingsBlock>)machineBlocks.Invoke(adapter, [configuration, null])!;
+                    if (root != "GWGUI.Emulation.Sony")
+                    {
+                        var expected = root == "GWGUI.Emulation.Coleco" ? original.Where(block => block.Tab != EmulationMachineTab.Storage).ToArray() : original;
+                        Assert.Equal(System.Text.Json.JsonSerializer.Serialize(expected), System.Text.Json.JsonSerializer.Serialize(actual));
+                    }
+                    else
+                    {
+                        Assert.Equal(original.Where(block => block.Tab != EmulationMachineTab.Storage).SelectMany(block => block.Fields).Select(field => field.Id),
+                            actual.Where(block => block.Tab != EmulationMachineTab.Storage).SelectMany(block => block.Fields).Select(field => field.Id));
+                    }
+                    foreach (var category in Enum.GetValues<EmulationMediaCategory>())
+                    {
+                        var fields = (IReadOnlyList<EmulationSettingsField>)deviceFields.Invoke(adapter, [configuration, category])!;
+                        if (root == "GWGUI.Emulation.Coleco" && category == EmulationMediaCategory.CartridgeSlot)
+                        {
+                            Assert.Equal(original.Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).Select(field => field.Id), fields.Select(field => field.Id));
+                            cartridgeFields += fields.Count;
+                        }
+                        else if (root != "GWGUI.Emulation.Sony") Assert.Empty(fields);
+                        else if (category != EmulationMediaCategory.CompactDiscDrive) Assert.Empty(fields);
+                    }
+                    Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configuration.GetType()));
+                    probed++;
+                }
+            }
+        }
+        Assert.True(probed > 24);
+        Assert.True(cartridgeFields > 0);
     }
 }

@@ -2,10 +2,10 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> MachineBlocks(IEmulatorSettingsAdapter adapter, MachineConfiguration configuration) =>
-        adapter.DescribeSettings(configuration).Where(block => block.Tab != EmulationMachineTab.Storage).ToArray();
+    internal static IReadOnlyList<EmulationSettingsBlock> MachineBlocks(IEmulatorSettings adapter, MachineConfiguration configuration, EmulatorManagementContext? context = null) =>
+        adapter.DescribeSettings(configuration, context).Where(block => block.Tab != EmulationMachineTab.Storage).ToArray();
 
-    internal static IReadOnlyList<EmulationSettingsField> StorageFields(IEmulatorSettingsAdapter adapter, MachineConfiguration configuration, EmulationMediaCategory category) =>
+    internal static IReadOnlyList<EmulationSettingsField> StorageFields(IEmulatorSettings adapter, MachineConfiguration configuration, EmulationMediaCategory category) =>
         category == EmulationMediaCategory.CompactDiscDrive
             ? adapter.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
 
@@ -13,7 +13,6 @@ internal static partial class SettingsDescriptionFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = new Engine().SelectedAdapter(configuration);
-        var settingsAdapter = adapter as IEmulatorSettingsAdapter;
         var audio = adapter?.GetAudioConfiguration(configuration) ?? configuration.Audio ?? new AudioConfiguration();
         var latencies = adapter?.GetAudioLatencyChoices(configuration) ?? AudioConstants.LatencyChoicesMilliseconds;
         var blocks = new List<EmulationSettingsBlock>
@@ -73,7 +72,7 @@ internal static partial class SettingsDescriptionFunctions
                 blocks.Add(Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                     SettingsDescriptionFunctionsConstants.ResourceRom, SettingsDescriptionFunctionsConstants.IconFirmware,
                     SettingsDescriptionFunctionsConstants.SingleColumnLayout, [.. firmware]));
-            foreach (var coreBlock in settingsAdapter?.GetMachineSettingsBlocks(configuration) ?? [])
+            foreach (var coreBlock in adapter.GetMachineSettingsBlocks(configuration))
             {
                 var index = blocks.FindIndex(block => block.Id == coreBlock.Id);
                 if (index < 0) blocks.Add(coreBlock);

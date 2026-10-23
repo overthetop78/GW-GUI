@@ -24,7 +24,7 @@ internal static class SettingsDescriptionFunctions
             Audio(configuration)
         };
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } settings)
-            blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.DescribeSettings(configuration));
+            blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.GetMachineSettingsBlocks(configuration));
         return blocks;
     }
 

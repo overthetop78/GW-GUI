@@ -10,7 +10,7 @@ internal static class SettingsDescriptionFunctions
         var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         var blocks = new List<EmulationSettingsBlock>();
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration)is { } settings)
-            blocks.AddRange(settings.DescribeSettings(configuration));
+            blocks.AddRange(settings.GetMachineSettingsBlocks(configuration));
         blocks.Add(new(
                 SettingsConstants.ResourceCpuProcessor,
                 EmulationMachineTab.Cpu,

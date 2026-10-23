@@ -70,7 +70,7 @@ internal static class SettingsDescriptionFunctions
                     )
                 ));
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } settings)
-            blocks.AddRange(settings.DescribeSettings(configuration));
+            blocks.AddRange(settings.GetMachineSettingsBlocks(configuration));
 
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
                 FirmwareFunctions.Field(role),

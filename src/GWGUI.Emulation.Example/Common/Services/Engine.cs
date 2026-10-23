@@ -76,7 +76,7 @@ internal sealed class Engine
     {
         var current = configuration is null ? new MachineConfiguration(ModelCatalog.Parse(machineId)) : Require(configuration);
         if (current.MachineId != machineId) throw new ArgumentException(nameof(machineId));
-        EmulationMachineSettings result = new(machineId, DefaultVisibility, SelectedAdapter(current)?.DescribeSettings(current, Management) ?? SettingsDescriptionFunctions.Create(current, []));
+        EmulationMachineSettings result = new(machineId, DefaultVisibility, SelectedAdapter(current)?.GetMachineSettingsBlocks(current, Management) ?? SettingsDescriptionFunctions.Create(current, []));
         if (SelectedAdapter(current)?.SupportsVideoSettings == false && !result.Blocks.Any(block => block.Tab == EmulationMachineTab.Video))
         {
             var adjustedTabs = result.Visibility.Tabs.ToDictionary(pair => pair.Key, pair => pair.Value);

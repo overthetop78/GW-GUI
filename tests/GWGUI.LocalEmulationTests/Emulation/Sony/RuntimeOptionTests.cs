@@ -35,7 +35,7 @@ public sealed class RuntimeOptionTests
     [InlineData("mednafen_psx", ModelConstants.PlayStation, "beetle_psx_cpu_freq_scale", "115", "120%")]
     public void RuntimeChangesUseTheSameAdapterConversionAsStartup(string core, string model, string key, string value, string expected)
     {
-        var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == core));
+        var adapter = Assert.IsAssignableFrom<IEmulatorSettings>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == core));
         var configuration = new MachineConfiguration(model, core, Options: new Dictionary<string, string> { [key] = value });
         Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         Assert.Equal(value, configuration.Options![key]);

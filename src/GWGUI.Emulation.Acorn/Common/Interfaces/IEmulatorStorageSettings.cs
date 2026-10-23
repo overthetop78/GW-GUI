@@ -6,6 +6,15 @@ namespace GWGUI.Emulation.Acorn.Common.Interfaces;
 /// Décrire ou appliquer ces réglages ne transfère pas la propriété des fichiers médias.</remarks>
 internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
 {
+    /// <summary>Décrit les champs propres à une catégorie de périphérique de stockage.</summary>
+    /// <param name="configuration">Configuration empruntée contenant les options courantes du lecteur.</param>
+    /// <param name="category">Catégorie du lecteur dont les paramètres doivent être présentés.</param>
+    /// <returns>Champs natifs du périphérique, ou une liste vide sans réglage particulier.</returns>
+    /// <remarks>Les options globales restent dans les blocs de la machine. Ce point de description
+    /// consulte les métadonnées natives sans reconstruire DescribeStorage, qui peut lui-même l'appeler.
+    /// Il ne monte aucun média et ne change ni fichier ni configuration.</remarks>
+    IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category);
+
     /// <summary>Décrit l’ensemble des réglages de stockage suivant les règles du backend.</summary>
     /// <param name="configuration">Configuration dont les lecteurs disponibles, emplacements configurés, médias et paramètres doivent être projetés.</param>
     /// <returns>Description complète du stockage ; distincte de la seule liste de lecteurs donnée par DescribeMediaDevices.</returns>

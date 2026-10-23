@@ -3,6 +3,13 @@ using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.Controll
 namespace GWGUI.Emulation.Sony.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorSettingsApplication, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Reprend les blocs natifs dans leur portée de présentation existante.</summary>
+    IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context) => ((IEmulatorSettings)this).DescribeSettings(configuration, context);
+
+    /// <summary>Conserve les champs propres au périphérique lorsque le backend en fournit.</summary>
+    IReadOnlyList<EmulationSettingsField> IEmulatorStorageSettings.GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) => [];
+
+
     /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
     decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;
 

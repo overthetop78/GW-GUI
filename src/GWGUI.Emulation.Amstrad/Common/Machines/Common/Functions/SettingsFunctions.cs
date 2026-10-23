@@ -8,5 +8,5 @@ internal static class SettingsDescriptionFunctions
     /// <param name="context">Services de gestion facultatifs, empruntés pendant la description et conservés par leur propriétaire.</param>
     /// <returns>Blocs de l’adaptateur après la lecture habituelle des options.</returns>
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, EmulatorManagementContext? context = null)
-        => new Engine().Adapter(configuration).DescribeSettings(configuration, context: context);
+        => new Engine().Adapter(configuration).GetMachineSettingsBlocks(configuration, context: context);
 }

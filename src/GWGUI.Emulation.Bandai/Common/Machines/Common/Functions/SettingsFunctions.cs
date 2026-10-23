@@ -12,7 +12,7 @@ internal static class SettingsDescriptionFunctions
         };
         AddHardware(blocks, configuration);
         if (new Engine().Adapter(configuration)is { } settings)
-            blocks.AddRange(settings.DescribeSettings(configuration));
+            blocks.AddRange(settings.GetMachineSettingsBlocks(configuration));
         return blocks;
     }
 

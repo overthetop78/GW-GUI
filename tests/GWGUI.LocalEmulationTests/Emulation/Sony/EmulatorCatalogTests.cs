@@ -96,7 +96,7 @@ public sealed class EmulatorCatalogTests
         const string key = GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.RendererKey;
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, PceeCore.Id,
             Options: selected is null ? null : new Dictionary<string, string> { [key] = selected });
-        var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == PceeCore.Id));
+        var adapter = Assert.IsAssignableFrom<IEmulatorSettings>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == PceeCore.Id));
         Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         var option = Assert.Single(PceeCore.Definition.Options, item => item.Key == key);
         Assert.Equal(new[] { "vulkan", "opengl", "software" }, option.Values.Select(item => item.Value));
@@ -122,7 +122,7 @@ public sealed class EmulatorCatalogTests
         const string key = GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants.OptionConstants.RendererKey;
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id,
             Options: selected is null ? null : new Dictionary<string, string> { [key] = selected });
-        var adapter = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == RpcsCore.Id));
+        var adapter = Assert.IsAssignableFrom<IEmulatorSettings>(EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == RpcsCore.Id));
         Assert.Equal(expected, ((IEmulatorAdapter)adapter).GetRuntimeOptions(configuration)[key]);
         var option = Assert.Single(RpcsCore.Definition.Options, item => item.Key == key);
         Assert.Equal(new[] { "opengl", "vulkan", "null" }, option.Values.Select(item => item.Value));
@@ -142,7 +142,7 @@ public sealed class EmulatorCatalogTests
         var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == id);
         var firmware = Assert.IsAssignableFrom<IEmulatorFirmwareSettings>(adapter);
         var formats = Assert.IsAssignableFrom<IEmulatorContentFormats>(adapter);
-        var settings = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(adapter);
+        var settings = Assert.IsAssignableFrom<IEmulatorSettings>(adapter);
         Assert.Equal(model, Assert.Single(adapter.Definition.MachineIds));
         Assert.Equal(required, firmware.RequiresExternalFirmware);
         var configuration = new MachineConfiguration(model, EmulatorId: id);

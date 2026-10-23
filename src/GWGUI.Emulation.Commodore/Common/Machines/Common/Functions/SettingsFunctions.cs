@@ -10,7 +10,7 @@ internal static class SettingsDescriptionFunctions
     {
 
         var firmware = EmulatorCatalog.CreateAdapter(configuration.Core).GetFirmwareSlots(configuration);
-        var blocks = EmulatorCatalog.CreateAdapter(configuration.Core).DescribeSettings(configuration).ToList();
+        var blocks = EmulatorCatalog.CreateAdapter(configuration.Core).GetMachineSettingsBlocks(configuration).ToList();
         if (firmware.Count != BufferConstants.EmptyCollectionCount)
             blocks.Add(new EmulationSettingsBlock(SettingsBlocks.Firmware, EmulationMachineTab.Rom,
                 SettingsResourceKeys.FirmwareRomSystem, firmware.Select(slot =>

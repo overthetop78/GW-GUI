@@ -12,8 +12,14 @@ using System.IO;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettings, IEmulatorStorageSettings
 {
+    /// <inheritdoc/>
+    public virtual IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context = null) => DescribeSettings(configuration, context).Where(block => block.Tab != EmulationMachineTab.Storage).ToArray();
+
+    /// <inheritdoc/>
+    public virtual IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) => category == EmulationMediaCategory.CartridgeSlot ? DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
+
     /// <inheritdoc/>
     public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
 

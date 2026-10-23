@@ -39,7 +39,7 @@ internal static class StorageSettingsFunctions
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions, RequiresMachineRecreation: true, IsPermanent: true));
         if (model.SupportsCompactDiscDrive && adapter is not null)
         {
-            var discFields = (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? [];
+            var discFields = adapter.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive);
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 adapter.SupportedContentExtensions,
                 RequiresMachineRecreation: true,
