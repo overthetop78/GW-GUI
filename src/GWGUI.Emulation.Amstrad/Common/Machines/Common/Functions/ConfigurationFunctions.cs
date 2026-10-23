@@ -20,7 +20,7 @@ internal static class ConfigurationValidationFunctions
         var model = ModelCatalog.Get(configuration.Model);
         if (!EmulatorCatalog.GetAll(model.Id).Any(item => item.Id == configuration.EmulatorId))
             throw new InvalidDataException(nameof(configuration.EmulatorId));
-        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidation validation) validation.ValidateConfiguration(configuration);
+        if (new Engine().Adapter(configuration) is { } validation) validation.ValidateConfiguration(configuration);
         if (string.IsNullOrWhiteSpace(configuration.EmulatorId))
             throw new InvalidDataException(nameof(configuration.EmulatorId));
         if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)

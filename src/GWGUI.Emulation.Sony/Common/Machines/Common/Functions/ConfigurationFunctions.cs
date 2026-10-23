@@ -25,7 +25,7 @@ internal static class ConfigurationValidationFunctions
         var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == configuration.EmulatorId);
         if (!adapter.Definition.MachineIds.Contains(configuration.Model))
             throw new InvalidDataException(nameof(configuration.Model));
-        (adapter as IEmulatorConfigurationValidation)?.ValidateConfiguration(configuration);
+        adapter.ValidateConfiguration(configuration);
         var slots = FirmwareConfigurationFunctions.Slots(configuration, adapter);
         var paths = configuration.FirmwarePaths ?? new Dictionary<string, string>();
         if (adapter is IEmulatorFirmwareSettings { RequiresExternalFirmware: true } && !slots.Any(slot => paths.ContainsKey(slot.FieldId)))

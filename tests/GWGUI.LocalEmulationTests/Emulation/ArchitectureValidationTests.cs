@@ -689,7 +689,23 @@ public sealed class ArchitectureValidationTests
             Assert.Equal("configuration", parameter.Name);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
             if (contractName == "IEmulatorConfigurationValidation")
+            {
                 Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
+                var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+                Assert.Contains(contract, adapter.GetInterfaces());
+                var defaultValidation = Assert.Single(adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), candidate => candidate.Name.EndsWith(".ValidateConfiguration", StringComparison.Ordinal));
+                Assert.False(defaultValidation.IsAbstract);
+                var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+                if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+                else Assert.NotEmpty(adapters);
+                foreach (var implementation in adapters)
+                {
+                    Assert.True(contract.IsAssignableFrom(implementation), implementation.FullName);
+                    var selected = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                    var concrete = implementation.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
+                    Assert.Equal(concrete ?? defaultValidation, selected);
+                }
+            }
             if (contractName == "IEmulatorSettings")
             {
                 var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
@@ -776,29 +792,18 @@ public sealed class ArchitectureValidationTests
                 }
             }
             if (root == "GWGUI.Emulation.Apple" && contractName == "IEmulatorConfigurationValidation")
-                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions")!.GetInterfaces());
-            if (contractName == "IEmulatorConfigurationValidation" && root is "GWGUI.Emulation.Sony" or "GWGUI.Emulation.Commodore")
+                Assert.DoesNotContain(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions")!.GetInterfaces());
+            if (contractName == "IEmulatorConfigurationValidation" && root == "GWGUI.Emulation.Sony")
             {
                 var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
                 var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
-                Assert.NotEmpty(implementations);
+                var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
+                Assert.Null(settings.GetMethod("ValidateConfiguration"));
+                Assert.Null(settings.GetMethod("GetRuntimeOptions"));
+                var runtime = adapter.GetMethod("GetRuntimeOptions")!;
+                Assert.Equal(typeof(IReadOnlyDictionary<string, string>), runtime.ReturnType);
                 foreach (var implementation in implementations)
-                {
-                    Assert.True(contract.IsAssignableFrom(implementation));
-                    Assert.Equal(implementation.GetMethod("ValidateConfiguration"), Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
-                }
-                if (root == "GWGUI.Emulation.Sony")
-                {
-                    var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
-                    Assert.Null(settings.GetMethod("ValidateConfiguration"));
-                    Assert.Null(settings.GetMethod("GetRuntimeOptions"));
-                    var runtime = adapter.GetMethod("GetRuntimeOptions")!;
-                    Assert.Equal(typeof(IReadOnlyDictionary<string, string>), runtime.ReturnType);
-                    foreach (var implementation in implementations)
-                        Assert.Equal(implementation.GetMethod("GetRuntimeOptions"), implementation.GetInterfaceMap(adapter).TargetMethods.Single(target => target.Name == "GetRuntimeOptions"));
-                }
-                else
-                    Assert.Contains(contract, adapter.GetInterfaces());
+                    Assert.Equal(implementation.GetMethod("GetRuntimeOptions"), implementation.GetInterfaceMap(adapter).TargetMethods.Single(target => target.Name == "GetRuntimeOptions"));
             }
             if (root == "GWGUI.Emulation.Example")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());

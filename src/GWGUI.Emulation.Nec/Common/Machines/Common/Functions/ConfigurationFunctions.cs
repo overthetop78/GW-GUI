@@ -28,7 +28,7 @@ internal static class ConfigurationValidationFunctions
             if (!Supports(model, media.Category))
                 throw new InvalidDataException($"{model.Id}:{media.Category}");
         }
-        if (EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == configuration.EmulatorId) is IEmulatorConfigurationValidation validation)
+        if (EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == configuration.EmulatorId) is { } validation)
             validation.ValidateConfiguration(configuration);
     }
 

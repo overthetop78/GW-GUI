@@ -31,7 +31,7 @@ internal static class CoreOptionValidationFunctions
             if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))
                 throw new ArgumentException(nameof(configuration.Options));
         }
-        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidation validator)
+        if (new Engine().Adapter(configuration) is { } validator)
             validator.ValidateConfiguration(configuration);
     }
 }
