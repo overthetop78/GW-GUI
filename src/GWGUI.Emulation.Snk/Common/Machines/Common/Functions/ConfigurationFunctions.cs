@@ -55,7 +55,7 @@ internal static partial class ConfigurationFunctions
 
         var roles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
-            if (!FirmwareFunctions.Roles(configuration.Model, configuration.Core).Contains(firmware.Category) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))
+            if (!FirmwareFunctions.Slots(configuration).Any(slot => slot.FieldId == FirmwareFunctions.Field(firmware.Category)) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))
                 throw new ArgumentException(nameof(configuration.Firmwares));
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])

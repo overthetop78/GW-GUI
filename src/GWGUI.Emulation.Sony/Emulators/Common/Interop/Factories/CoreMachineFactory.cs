@@ -13,7 +13,7 @@ using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Con
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorFirmwareSettings, IEmulatorSettings, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats, IEmulatorFirmwareAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
@@ -43,7 +43,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
 
     protected abstract CoreDefinition CoreDefinition { get; }
     protected CoreReleaseSettings ReleaseSettings => CoreDefinition.ReleaseSettings;
-    public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
+    public bool RequiresExternalFirmware(MachineConfiguration configuration) => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation ? [PlayStationFirmware.Selected] : CoreDefinition.Firmware;
     public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
     /// <summary>Applique les choix de multitap aux options préparées et conserve les autres données de configuration.</summary>

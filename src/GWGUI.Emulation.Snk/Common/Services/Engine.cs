@@ -88,7 +88,7 @@ internal sealed class Engine
         {
             EmulationMachineTab.Keyboard => false,
             EmulationMachineTab.Mouse => false,
-            EmulationMachineTab.Rom => FirmwareFunctions.Roles(current.Model, current.Core).Count > 0,
+            EmulationMachineTab.Rom => FirmwareFunctions.Slots(current).Count > 0,
             EmulationMachineTab.Cpu => true,
             EmulationMachineTab.Ram => HardwareModelCatalog.Get(current.Model).MainMemoryBytes is not null,
             EmulationMachineTab.Controllers => CommonControllerFunctions.PortCount(current) > BufferConstants.EmptyCollectionCount,
@@ -289,7 +289,7 @@ internal sealed class Engine
     {
         var current = Require(configuration);
         var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(FirmwareFunctions.ScanFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult(), firmware.Id, firmware.DestinationFieldId);
-        var selected = FirmwareFunctions.Select(scanned, current.Model, current.Core);
+        var selected = FirmwareFunctions.Select(scanned, current);
         var result = current with
         {
             Firmwares = current.Firmwares.Where(item => item.Category != selected.Category).Append(selected).ToArray()

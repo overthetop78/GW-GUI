@@ -79,7 +79,7 @@ internal static class FirmwareRuntimeFunctions
         var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == role);
         if (firmware is null)
         {
-            if (FirmwareFunctions.IsRequired(configuration.Model, configuration.Core, role))
+            if (FirmwareFunctions.Slots(configuration).Any(slot => slot.FieldId == FirmwareFunctions.Field(role) && slot.IsRequired))
                 throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
             return;
         }

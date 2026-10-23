@@ -28,13 +28,13 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(new(blockId, group.Key, resource, group.Select(option => Native(configuration, option, group.Key, blockId)).ToArray(), IsCompact: group.Key == EmulationMachineTab.Audio));
         }
 
-        var firmwareFields = FirmwareFunctions.Roles(configuration.Model, configuration.Core).Select(role => new EmulationSettingsField(
-                FirmwareFunctions.Field(role),
+        var firmwareFields = FirmwareFunctions.Slots(configuration).Select(slot => new EmulationSettingsField(
+                slot.FieldId,
                 EmulationMachineTab.Rom,
                 SettingsConstants.ResourceFirmware,
-                "Emulation.Snk.Firmware." + role,
+                slot.LabelResourceKey,
                 EmulationSettingsEditor.Path,
-                configuration.Firmwares.SingleOrDefault(item => item.Category == role)?.Path
+                configuration.Firmwares.SingleOrDefault(item => FirmwareFunctions.Field(item.Category) == slot.FieldId)?.Path
             )).ToArray();
         if (firmwareFields.Length > 0)
             blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware, firmwareFields));

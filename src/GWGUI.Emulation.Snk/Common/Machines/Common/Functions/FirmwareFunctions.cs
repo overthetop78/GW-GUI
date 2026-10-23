@@ -5,18 +5,21 @@ internal static class FirmwareFunctions
 {
     internal static string Field(FirmwareCategory role) => FirmwareConstants.FieldPrefix + role;
     internal static bool IsField(string field) => Enum.GetValues<FirmwareCategory>().Any(role => field == Field(role));
-    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model, Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareSettings adapter ? adapter.FirmwareRoles(model) : [];
-    internal static bool IsRequired(MachineModel model, Emulator core, FirmwareCategory role) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareSettings adapter && adapter.IsFirmwareRequired(model, role);
+    /// <summary>Résout les emplacements du cœur choisi avec la configuration complète.</summary>
+    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) => configuration.Core != Emulator.None ? EmulatorCatalog.CreateAdapter(configuration.Core).GetFirmwareSlots(configuration) : [];
+    /// <summary>Retrouve le rôle enregistré à partir de son champ de sélection stable.</summary>
+    private static FirmwareCategory Role(string fieldId) => Enum.GetValues<FirmwareCategory>().Single(role => Field(role) == fieldId);
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();
-        foreach (var role in Roles(configuration.Model, configuration.Core))
+        foreach (var slot in Slots(configuration))
         {
-            if (!values.TryGetValue(Field(role), out var path))
+            var role = Role(slot.FieldId);
+            if (!values.TryGetValue(slot.FieldId, out var path))
                 continue;
             result.RemoveAll(item => item.Category == role);
             if (!string.IsNullOrWhiteSpace(path))
-                result.Add(new(role, path, IsRequired(configuration.Model, configuration.Core, role), IsOriginalFirmware: false));
+                result.Add(new(role, path, slot.IsRequired, IsOriginalFirmware: false));
         }
 
         return result;
@@ -35,13 +38,13 @@ internal static class FirmwareFunctions
             : ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown)]);
     }
 
-    internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineModel model, Emulator core)
+    internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineConfiguration configuration)
     {
         if (candidate.Compatibility is not EmulationFirmwareCompatibility.Official and not EmulationFirmwareCompatibility.Compatible and not EmulationFirmwareCompatibility.PartiallyCompatible || !IsField(candidate.DestinationFieldId ?? string.Empty))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
-        var roles = Roles(model, core).Where(role => Field(role) == candidate.DestinationFieldId).ToArray();
-        if (roles.Length != 1)
+        var slots = Slots(configuration).Where(slot => slot.FieldId == candidate.DestinationFieldId).ToArray();
+        if (slots.Length != 1)
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
-        return new(roles[0], candidate.Path, IsRequired(model, core, roles[0]), IsOriginalFirmware: false);
+        return new(Role(slots[0].FieldId), candidate.Path, slots[0].IsRequired, IsOriginalFirmware: false);
     }
 }

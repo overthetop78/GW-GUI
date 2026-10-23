@@ -4,8 +4,12 @@ using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
 {
+    /// <summary>Expose les rôles natifs et leurs obligations dans la description de firmware commune.</summary>
+    public virtual IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRoles(configuration.Model)
+        .Select(role => new FirmwareSlot(GWGUI.Emulation.Snk.Common.Machines.Common.Functions.FirmwareFunctions.Field(role), string.Empty, "Emulation.Snk.Firmware." + role, IsFirmwareRequired(configuration.Model, role))).ToArray();
+
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {
@@ -47,8 +51,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public abstract IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
     public virtual bool IsDeferredOption(MachineConfiguration configuration, string key) => false;
-    public abstract IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model);
-    public abstract bool IsFirmwareRequired(MachineModel model, FirmwareCategory category);
+    protected abstract IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model);
+    protected abstract bool IsFirmwareRequired(MachineModel model, FirmwareCategory category);
     public abstract ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;

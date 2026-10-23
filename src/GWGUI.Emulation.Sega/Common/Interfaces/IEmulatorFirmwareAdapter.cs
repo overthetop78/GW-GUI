@@ -6,6 +6,15 @@ namespace GWGUI.Emulation.Sega.Common.Interfaces;
 /// L’adaptateur réutilise son identification existante et laisse le fichier d’origine sous la responsabilité de son appelant.</remarks>
 internal interface IEmulatorFirmwareAdapter
 {
+    /// <summary>Indique si la configuration exige au moins un firmware externe.</summary>
+    /// <param name="configuration">Configuration empruntée dont le modèle, le cœur et les options déterminent les exigences.</param>
+    /// <returns>True lorsqu'un fichier externe est nécessaire selon les règles du backend.</returns>
+    /// <remarks>Le comportement commun consulte les emplacements obligatoires. Le backend peut préciser
+    /// une obligation globale satisfaite par plusieurs alternatives, même si chacune reste facultative
+    /// prise séparément. La validation conserve également les obligations individuelles de chaque emplacement.
+    /// Cette consultation ne lit aucun fichier et ne démarre aucun cœur.</remarks>
+    bool RequiresExternalFirmware(MachineConfiguration configuration);
+
     /// <summary>Contrôle un fichier pour un emplacement de firmware précis de la configuration.</summary>
     /// <param name="configuration">Configuration empruntée déterminant les règles du cœur et du modèle.</param>
     /// <param name="fieldId">Identifiant stable du champ retourné par GetFirmwareSlots.</param>

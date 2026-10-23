@@ -8,9 +8,12 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// de recherche et d’installation. Create reçoit les services empruntés et retourne une machine Common possédant
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
-    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
+    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Résout le besoin global depuis les emplacements obligatoires, sans choisir une alternative native.</summary>
+    bool IEmulatorFirmwareAdapter.RequiresExternalFirmware(MachineConfiguration configuration) => ((IEmulatorFirmwareAdapter)this).GetFirmwareSlots(configuration).Any(slot => slot.IsRequired);
+
     /// <summary>Réutilise l'inspection native pour le champ demandé sans déduire de rôle depuis le nom de fichier.</summary>
     bool IEmulatorFirmwareAdapter.IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
     {

@@ -34,8 +34,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public bool SupportsNoContent => true;
     /// <inheritdoc/>
     public bool SupportsInitialContent => true;
-    /// <summary>Le démarrage de la simulation ne nécessite aucun firmware externe.</summary>
-    public bool RequiresExternalFirmware => false;
     /// <inheritdoc/>
     public IReadOnlySet<EmulationKey> SoftResetKeys { get; } = new HashSet<EmulationKey>();
     /// <summary>Extensions déclarées par l’ensemble des lecteurs des deux profils.</summary>
@@ -221,15 +219,13 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => DescribeMediaDevices(configuration).ToDictionary(device => device.Slot, device => ledStates.GetValueOrDefault(device.Slot.ProtocolValue));
     /// <inheritdoc/>
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.Cartridge) ? MediaConstants.CartridgeExtensions.ToHashSet(StringComparer.OrdinalIgnoreCase) : null;
-    /// <inheritdoc/>
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRoles(configuration.Model).Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", IsFirmwareRequired(configuration.Model, role))).ToArray();
-    /// <inheritdoc/>
-    public IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => HardwareModelCatalog.Get(model).Firmware;
-    /// <summary>Le cœur fictif fonctionne sans firmware externe obligatoire, quel que soit le rôle proposé.</summary>
-    /// <remarks>Un backend réel fournit ici sa règle par modèle et catégorie. Le mock conserve ses fichiers
-    /// facultatifs pour illustrer leur sélection et leur préparation sans imposer un fichier externe au démarrage.</remarks>
-    /// <inheritdoc/>
-    public bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
+    /// <summary>Décrit les rôles du profil comme emplacements de firmware facultatifs.</summary>
+    /// <param name="configuration">Configuration complète dont le profil matériel fournit les rôles proposés.</param>
+    /// <returns>Champs stables, noms de fichiers et libellés utilisés par la sélection et la préparation.</returns>
+    /// <remarks>La simulation fonctionne sans fichier externe obligatoire. Un backend réel décrit ses
+    /// exigences individuelles avec IsRequired et peut préciser une obligation globale entre alternatives
+    /// par RequiresExternalFirmware. Les règles ne sont pas répétées dans un second catalogue de rôles.</remarks>
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Firmware.Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", false)).ToArray();
     /// <summary>Le catalogue de simulation ne prétend pas identifier une ROM réelle inconnue.</summary>
     /// <inheritdoc/>
     public ScannedFirmware? IdentifyFirmware(ScannedFirmware firmware) => null;

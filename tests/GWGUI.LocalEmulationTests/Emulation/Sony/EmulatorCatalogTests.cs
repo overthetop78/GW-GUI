@@ -140,12 +140,12 @@ public sealed class EmulatorCatalogTests
     public void NewCoreUsesItsOwnMachineAndFirmwarePolicy(string id, string model, bool required)
     {
         var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == id);
-        var firmware = Assert.IsAssignableFrom<IEmulatorFirmwareSettings>(adapter);
+        var firmware = Assert.IsAssignableFrom<IEmulatorFirmwareAdapter>(adapter);
         var formats = Assert.IsAssignableFrom<IEmulatorContentFormats>(adapter);
         var settings = Assert.IsAssignableFrom<IEmulatorSettings>(adapter);
         Assert.Equal(model, Assert.Single(adapter.Definition.MachineIds));
-        Assert.Equal(required, firmware.RequiresExternalFirmware);
         var configuration = new MachineConfiguration(model, EmulatorId: id);
+        Assert.Equal(required, firmware.RequiresExternalFirmware(configuration));
         Assert.Equal(required, adapter.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
         Assert.Contains(EmulatorCatalog.GetAll(model), item => item.Id == id);
         Assert.NotEmpty(formats.SupportedContentExtensions);

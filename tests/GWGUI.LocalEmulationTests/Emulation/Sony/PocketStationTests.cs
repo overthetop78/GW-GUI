@@ -170,7 +170,7 @@ public sealed class PocketStationTests
     public void BiosUsesUserSelectableRomFieldAndIsRequired()
     {
         var adapter = new PokketStationMachineFactory();
-        Assert.True(adapter.RequiresExternalFirmware);
+        Assert.True(adapter.RequiresExternalFirmware(Configuration()));
         var slot = Assert.Single(adapter.GetFirmwareSlots(Configuration()));
         Assert.True(slot.IsRequired);
         var field = Assert.Single(FirmwareConfigurationFunctions.Fields(Configuration(), adapter));

@@ -10727,3 +10727,89 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats des 24 familles, les implémentations natives et les métadonnées conservées ; exécuter la suite et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter IsFirmwareCompatible aux opérations Common attendues.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Panasonic/OperaFirmwareOptionsTests.cs : vérifier les deux champs de firmware par leurs identifiants stables en conservant les assertions sur leur caractère facultatif.
+
+## Exigences globales et rôles de firmware par le contrat Common
+
+- [x] Décrire les obligations depuis les emplacements et conserver les alternatives natives.
+  - [x] Raccorder les exigences et retirer les contrats remplacés.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer RequiresExternalFirmware avec la configuration et distinguer les alternatives des emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : résoudre le besoin global depuis les obligations des emplacements quand le backend ne fournit pas sa règle.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/ConfigurationFunctions.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Factories/MachineFactory.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/FirmwareFunctions.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : employer le contrat de configuration complet et les obligations des emplacements sans changer les règles natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2003Plus/Factories/Mame2003PlusMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2010/Factories/Mame2010MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2015/Factories/Mame2015MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame/Factories/MameMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/NeoCd/Factories/NeoCdMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2016/Factories/Mame2016MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbNeo/Factories/FbNeoMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2000/Factories/Mame2000MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2003/Factories/Mame2003MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012/Factories/FbAlpha2012MachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Geolith/Factories/GeolithMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/HbMame/Factories/HbMameMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012NeoGeo/Factories/FbAlpha2012NeoGeoMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Factories/FbAlphaMachineFactory.cs : conserver les données de rôles et leur obligation dans les méthodes protégées du backend.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat remplacé par les opérations et emplacements obligatoires.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat remplacé par les opérations et emplacements obligatoires.
+    - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat remplacé par les opérations et emplacements obligatoires.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs : conserver le contrôle de firmware obligatoire depuis les emplacements de la configuration complète.
+  - [x] Valider les exigences et les configurations.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat des 24 familles, les règles natives et les obligations de rôles ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter RequiresExternalFirmware aux opérations Common attendues.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : vérifier les exigences globales avec la configuration complète.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/PocketStationTests.cs : vérifier le firmware obligatoire par le contrat commun.

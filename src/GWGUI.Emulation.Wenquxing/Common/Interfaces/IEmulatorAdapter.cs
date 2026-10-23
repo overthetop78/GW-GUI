@@ -10,6 +10,9 @@ using GWGUI.Emulation.Wenquxing.Common.Services;
 namespace GWGUI.Emulation.Wenquxing.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Résout le besoin global depuis les emplacements obligatoires, sans choisir une alternative native.</summary>
+    bool IEmulatorFirmwareAdapter.RequiresExternalFirmware(MachineConfiguration configuration) => ((IEmulatorFirmwareAdapter)this).GetFirmwareSlots(configuration).Any(slot => slot.IsRequired);
+
     /// <summary>Réutilise l'inspection native pour le champ demandé sans déduire de rôle depuis le nom de fichier.</summary>
     bool IEmulatorFirmwareAdapter.IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
     {

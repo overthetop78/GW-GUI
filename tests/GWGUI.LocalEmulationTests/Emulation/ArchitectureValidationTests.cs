@@ -1413,13 +1413,12 @@ public sealed class ArchitectureValidationTests
     [InlineData("Nintendo", "GetFirmwareSlots")]
     [InlineData("Sega", "GetFirmwareSlots")]
     [InlineData("Sony", "GetFirmwareSlots")]
-    [InlineData("Sony", "get_RequiresExternalFirmware")]
-    [InlineData("Snk", "FirmwareRoles")]
-    [InlineData("Snk", "IsFirmwareRequired")]
+    [InlineData("Sony", "RequiresExternalFirmware")]
+    [InlineData("Snk", "GetFirmwareSlots")]
     public void FirmwareSettingsUseTheSameOperationsAsExample(string family, string operation)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var contractName = operation is "PrepareFirmware" or "GetFirmwareSlots" or "ScanFirmwareAsync" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
+        var contractName = "IEmulatorFirmwareAdapter";
         var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{contractName}", throwOnError: true)!;
         var exampleAssembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
         var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces." + contractName, throwOnError: true)!;
@@ -2943,7 +2942,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(5, contract.GetMethods().Length);
+            Assert.Equal(6, contract.GetMethods().Length);
             var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
@@ -3786,5 +3785,77 @@ public sealed class ArchitectureValidationTests
             if (root == "GWGUI.Emulation.Commodore") Assert.Null(settings);
         }
         Assert.True(nativeSearches > 24);
+    }
+    [Fact]
+    public async Task EveryCommonResolvesGlobalFirmwareRequirementsFromItsContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeAlternatives = 0;
+        var nativeRoles = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            var slotType = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareSlot", throwOnError: true)!;
+            Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareSettings"));
+            var required = contract.GetMethod("RequiresExternalFirmware")!;
+            Assert.True(required.IsAbstract);
+            Assert.Equal(typeof(bool), required.ReturnType);
+            Assert.Equal(configurationType, Assert.Single(required.GetParameters()).ParameterType);
+            var defaults = adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith(".RequiresExternalFirmware", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(defaults), call => call.Method == contract.GetMethod("GetFirmwareSlots"));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType, nonPublic: true)!;
+            var adapters = (System.Collections.IEnumerable)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var machines = Assert.IsAssignableFrom<IReadOnlyList<EmulationMachineDefinition>>(engineType.GetProperty("Machines")!.GetValue(engine));
+            foreach (var entry in adapters)
+            {
+                var adapter = entry.GetType().GetProperty("Value")!.GetValue(entry)!;
+                var implementation = adapter.GetType();
+                Assert.Null(implementation.GetProperty("RequiresExternalFirmware"));
+                Assert.Null(implementation.GetMethod("FirmwareRoles"));
+                Assert.Null(implementation.GetMethod("IsFirmwareRequired"));
+                var map = implementation.GetInterfaceMap(contract);
+                Assert.Equal(implementation.GetMethod(required.Name) ?? defaults, map.TargetMethods[Array.IndexOf(map.InterfaceMethods, required)]);
+                var definition = (EmulationEmulatorDefinition)implementation.GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configurationType);
+                    var slots = ((System.Collections.IEnumerable)contract.GetMethod("GetFirmwareSlots")!.Invoke(adapter, [configuration])!).Cast<object>().ToArray();
+                    var actual = (bool)required.Invoke(adapter, [configuration])!;
+                    if (root == "GWGUI.Emulation.Sony")
+                    {
+                        var core = implementation.GetProperty("CoreDefinition", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(adapter)!;
+                        Assert.Equal(core.GetType().GetProperty("RequiresExternalFirmware")!.GetValue(core), actual);
+                        nativeAlternatives++;
+                    }
+                    else Assert.Equal(slots.Any(slot => (bool)slotType.GetProperty("IsRequired")!.GetValue(slot)!), actual);
+                    if (root == "GWGUI.Emulation.Snk")
+                    {
+                        var model = configurationType.GetProperty("Model")!.GetValue(configuration)!;
+                        var roles = ((System.Collections.IEnumerable)implementation.GetMethod("FirmwareRoles", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(adapter, [model])!).Cast<object>().ToArray();
+                        Assert.Equal(roles.Select(role => "snk_firmware_" + role), slots.Select(slot => (string)slotType.GetProperty("FieldId")!.GetValue(slot)!));
+                        var nativeRequired = implementation.GetMethod("IsFirmwareRequired", BindingFlags.NonPublic | BindingFlags.Instance)!;
+                        for (var index = 0; index < roles.Length; index++)
+                        {
+                            Assert.Equal(nativeRequired.Invoke(adapter, [model, roles[index]]), slotType.GetProperty("IsRequired")!.GetValue(slots[index]));
+                            Assert.Equal("Emulation.Snk.Firmware." + roles[index], slotType.GetProperty("LabelResourceKey")!.GetValue(slots[index]));
+                        }
+                        nativeRoles++;
+                    }
+                    Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configurationType));
+                }
+            }
+        }
+        Assert.True(nativeAlternatives > 0);
+        Assert.True(nativeRoles >= 16);
     }
 }
