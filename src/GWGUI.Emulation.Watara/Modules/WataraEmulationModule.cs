@@ -8,7 +8,7 @@ using System.IO;
 using System.Net.Http;
 
 namespace GWGUI.Emulation.Watara.Modules;
-public sealed class WataraEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
+public sealed class WataraEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationFirmwareManager
 {
     private readonly Engine _engine;
 
@@ -73,4 +73,9 @@ public sealed class WataraEmulationModule : IEmulationModule, IEmulationEmulator
     public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.InstallEmulatorAsync(configuration, release, progress, cancellationToken);
 
     public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default) => _engine.CreateRuntimeAsync(configuration, services, cancellationToken);
+    public string GetFirmwareDirectory(string machineId) => _engine.GetFirmwareDirectory(machineId);
+
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.ScanFirmwareAsync(machineId, configuration, cancellationToken);
+
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware) => _engine.UseFirmware(configuration, firmware);
 }

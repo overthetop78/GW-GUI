@@ -253,7 +253,7 @@ internal sealed class Engine
         var paths = FirmwareScanFunctions.EnumerateCandidates(_firmwareDirectory).Where(path => string.Equals(Path.GetDirectoryName(path), GetFirmwareDirectory(machineId), StringComparison.OrdinalIgnoreCase));
         var entries = new List<EmulationFirmwareCandidate>();
         foreach (var path in paths)
-            entries.AddRange(await ScanFirmwareFileAsync(atari, path, cancellationToken).ConfigureAwait(false));
+            entries.AddRange(await (SelectedAdapter(atari)?.ScanFirmwareFileAsync(atari, path, cancellationToken) ?? ScanFirmwareFileAsync(atari, path, cancellationToken)).ConfigureAwait(false));
         return entries;
     }
 

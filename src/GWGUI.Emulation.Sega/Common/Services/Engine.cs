@@ -247,7 +247,10 @@ internal sealed class Engine
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
         var sega = RequireConfiguration(configuration);
-        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(sega, GetFirmwareDirectory(machineId), this.Adapter(sega)));
+        var directory = GetFirmwareDirectory(machineId);
+        if (!Directory.Exists(directory)) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        var adapter = this.Adapter(sega);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).SelectMany(path => adapter.ScanFirmwareFileAsync(sega, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

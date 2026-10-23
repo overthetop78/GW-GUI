@@ -222,8 +222,10 @@ internal sealed class Engine
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
         if (current.Model != MachineModel.TamagotchiP1) return [];
         var directory = GetFirmwareDirectory(machineId);
-        return await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
-            (path, token) => FirmwareFunctions.ScanFileAsync(path, token), cancellationToken).ConfigureAwait(false);
+        var adapter = SelectedAdapter(current);
+        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
+            async (path, token) => adapter is null ? [await FirmwareFunctions.ScanFileAsync(path, token).ConfigureAwait(false)] : await adapter.ScanFirmwareFileAsync(current, path, token).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
@@ -231,7 +233,8 @@ internal sealed class Engine
         var current = Require(configuration);
         if (current.Model != MachineModel.TamagotchiP1)
             throw new ArgumentException(nameof(configuration));
-        var scanned = FirmwareFunctions.ScanFileAsync(firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
+        var candidates = SelectedAdapter(current)?.ScanFirmwareFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult() ?? [FirmwareFunctions.ScanFileAsync(firmware.Path, CancellationToken.None).GetAwaiter().GetResult()];
+        var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(candidates, firmware.Id, firmware.DestinationFieldId);
         var result = current with { Firmwares = [FirmwareFunctions.Select(scanned)] };
         ConfigurationFunctions.Validate(result);
         return result;

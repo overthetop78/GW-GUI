@@ -204,28 +204,21 @@ internal sealed class Engine
         return _firmwareDirectory;
     }
 
-    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var current = RequireConfiguration(configuration);
-        if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException(nameof(configuration));
-        if (FirmwareFunctions.Slots(current).Count != 0)
-            return ValueTask.FromResult(FirmwareFunctions.Scan(current, GetFirmwareDirectory(machineId)));
-        if (!ModelCatalog.Get(machineId).SupportsCdDrive)
-            return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
-        var candidates = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
-            .Select(firmware =>
-            {
-                var compatible = firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase);
-                return new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
-                    firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                    compatible ? !firmware.IsVerified ? EmulationFirmwareCompatibility.Unknown : firmware.IsOfficial ? EmulationFirmwareCompatibility.Official : EmulationFirmwareCompatibility.Compatible
-                        : firmware.IsKnown ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.Unknown,
-                    compatible || !firmware.IsKnown ? SettingsConstants.FirmwarePath : null);
-            }).ToArray();
+        if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException(nameof(configuration));
+        var directory = GetFirmwareDirectory(machineId);
+        var paths = FirmwareFunctions.Slots(current).Count != 0
+            ? Directory.Exists(directory) ? Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories) : []
+            : ModelCatalog.Get(machineId).SupportsCdDrive ? FirmwareCatalog.EnumerateCandidates(directory) : [];
+        var adapter = SelectedAdapter(current);
+        var candidates = new List<EmulationFirmwareCandidate>();
+        foreach (var path in paths)
+            candidates.AddRange(await (adapter?.ScanFirmwareFileAsync(current, path, cancellationToken) ?? FirmwareFunctions.ScanFileAsync(current, path, cancellationToken)).ConfigureAwait(false));
         cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
+        return candidates;
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

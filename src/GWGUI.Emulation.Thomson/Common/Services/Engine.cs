@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Thomson.Common.Dictionaries;
 
 using GWGUI.Emulation.Interfaces;
@@ -46,12 +47,14 @@ internal sealed class Engine
     }
 
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ThomsonEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private readonly string _firmwareDirectory = null !;
     private readonly ConfigurationStore _store = null !;
     private readonly EmulatorManagementContext _managementContext = null !;
     /// <summary>Configure les opérations du module avec ses chemins et son client HTTP emprunté ; la construction sans paramètres conserve le parcours de catalogue.</summary>
     public Engine(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory) : this()
     {
         _store = new ConfigurationStore(configurationDirectory, pathBase);
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId, EmulationPathConstants.FirmwareDirectoryName);
         _managementContext = new EmulatorManagementContext(httpClient, coreDirectory);
     }
 
@@ -197,4 +200,33 @@ internal sealed class Engine
     /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
     /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
     internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorKey == configuration.Core.ToString());
+    /// <summary>Retourne le dossier de firmware du module après validation de la machine.</summary>
+    public string GetFirmwareDirectory(string machineId)
+    {
+        _ = ModelCatalog.Parse(machineId);
+        return _firmwareDirectory;
+    }
+
+    /// <summary>Inspecte les fichiers par le contrat du backend ; un firmware intégré ne fournit aucun candidat externe.</summary>
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var current = Require(configuration);
+        if (current.MachineId != machineId) throw new ArgumentException(nameof(machineId));
+        var directory = GetFirmwareDirectory(machineId);
+        if (SelectedAdapter(current) is not { } adapter) return [];
+        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
+            (path, token) => adapter.ScanFirmwareFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
+    }
+
+    /// <summary>Revalide le candidat et transmet son rôle au parcours de réglages existant.</summary>
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
+    {
+        var current = Require(configuration);
+        var adapter = SelectedAdapter(current) ?? throw new ArgumentException(nameof(configuration));
+        var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(adapter.ScanFirmwareFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult(), firmware.Id, firmware.DestinationFieldId);
+        if (scanned.DestinationFieldId is not { } field || scanned.Compatibility == EmulationFirmwareCompatibility.Incompatible) throw new ArgumentException(nameof(firmware));
+        return ApplySettings(current, new Dictionary<string, string?> { [field] = scanned.Path });
+    }
 }

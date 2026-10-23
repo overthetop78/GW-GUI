@@ -22,21 +22,25 @@ internal static class FirmwareFunctions
         return configuration with { FirmwarePaths = paths };
     }
 
-    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration, string directory)
-    {
-        if (!Directory.Exists(directory)) return [];
-        var slots = Slots(configuration);
-        return Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories)
-            .SelectMany(path => InspectFile(path, slots, CancellationToken.None)).ToArray();
-    }
-
     /// <summary>Inspecte un fichier et conserve tous ses rôles de firmware possibles.</summary>
     /// <param name="configuration">Configuration empruntée dont les emplacements sont consultés.</param>
     /// <param name="path">Fichier source, conservé en lecture seule.</param>
     /// <param name="cancellationToken">Annulation contrôlée avant la lecture du fichier.</param>
     /// <returns>Tous les candidats reconnus ou possibles, avec leurs identités et destinations.</returns>
-    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) =>
-        ValueTask.FromResult(InspectFile(path, Slots(configuration), cancellationToken));
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var slots = Slots(configuration);
+        if (slots.Count != 0) return ValueTask.FromResult(InspectFile(path, slots, cancellationToken));
+        if (!ModelCatalog.Get(configuration.Model).SupportsCdDrive) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        var firmware = FirmwareCatalog.Inspect(path);
+        var compatible = firmware.CompatibleModels.Contains(configuration.Model, StringComparer.OrdinalIgnoreCase);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new(firmware.Sha256, firmware.Path,
+            firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
+            compatible ? !firmware.IsVerified ? EmulationFirmwareCompatibility.Unknown : firmware.IsOfficial ? EmulationFirmwareCompatibility.Official : EmulationFirmwareCompatibility.Compatible
+                : firmware.IsKnown ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.Unknown,
+            compatible || !firmware.IsKnown ? SettingsConstants.FirmwarePath : null)]);
+    }
 
     /// <summary>Réutilise les emplacements déjà obtenus par le parcours de dossier et libère les lectures avant le retour.</summary>
     private static IReadOnlyList<EmulationFirmwareCandidate> InspectFile(string path, IReadOnlyList<FirmwareSlot> slots, CancellationToken cancellationToken)

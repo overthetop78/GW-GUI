@@ -221,7 +221,7 @@ internal sealed class Engine
         if (this.SelectedAdapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
         var directory = GetFirmwareDirectory(machineId);
         var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
-            (path, token) => FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, path, token), cancellationToken).ConfigureAwait(false);
+            (path, token) => firmwareAdapter.ScanFirmwareFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
         return candidates.SelectMany(candidateSet => candidateSet).ToArray();
     }
 
@@ -230,7 +230,7 @@ internal sealed class Engine
         var current = Require(configuration);
         if (this.SelectedAdapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model))
             throw new ArgumentException(nameof(configuration));
-        var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult(), firmware.Id, firmware.DestinationFieldId);
+        var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(firmwareAdapter.ScanFirmwareFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult(), firmware.Id, firmware.DestinationFieldId);
         var result = current with { Firmwares = [FirmwareFunctions.Select(scanned)] };
         ConfigurationFunctions.Validate(result);
         return result;

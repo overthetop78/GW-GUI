@@ -34,18 +34,6 @@ internal static class FirmwareFunctions
         return new(selected);
     }
 
-    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanAsync(string directory, MachineConfiguration configuration, CancellationToken cancellationToken)
-    {
-        var result = new List<EmulationFirmwareCandidate>();
-        var capabilities = Capabilities(configuration);
-        if (capabilities is null)
-            return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
-        var requirements = capabilities.DescribeFirmware(configuration);
-        CommonCoreHostFunctions.FirmwareProcessing.ScanRecursive(directory, path => result.AddRange(InspectFile(configuration, path, capabilities, requirements, cancellationToken)), cancellationToken);
-
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
-    }
-
     /// <summary>Inspecte un fichier avec les exigences et compatibilités déjà décrites par le backend.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et de son cœur.</param>
     /// <param name="path">Fichier source conservé sous la responsabilité de son propriétaire.</param>

@@ -289,7 +289,10 @@ internal sealed class Engine
         cancellationToken.ThrowIfCancellationRequested();
         var current = RequireConfiguration(configuration);
         if (!current.Model.Equals(machineId, StringComparison.Ordinal)) throw new ArgumentException(nameof(machineId));
-        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(current, GetFirmwareDirectory(machineId), this.Adapter(current)));
+        var directory = GetFirmwareDirectory(machineId);
+        if (!Directory.Exists(directory)) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        var adapter = this.Adapter(current);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).SelectMany(path => adapter.ScanFirmwareFileAsync(current, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

@@ -36,10 +36,16 @@ public sealed class FirmwareCatalog
 
     public IReadOnlyList<ScannedFirmware> Scan()
     {
-        Directory.CreateDirectory(_directory);
-        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).Where(path => Extensions.Contains(Path.GetExtension(path))).Select(Inspect)
-            .OrderBy(entry => entry.Path, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        return EnumerateCandidates(_directory).Select(Inspect).ToArray();
+    }
+
+    /// <summary>Prépare le dossier et énumère les mêmes ROM admissibles, dans leur ordre stable, sans les ouvrir.</summary>
+    internal static IEnumerable<string> EnumerateCandidates(string directory)
+    {
+        var absolute = Path.GetFullPath(directory);
+        Directory.CreateDirectory(absolute);
+        return Directory.EnumerateFiles(absolute, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories)
+            .Where(path => Extensions.Contains(Path.GetExtension(path))).OrderBy(path => path, StringComparer.OrdinalIgnoreCase);
     }
 
     public static ScannedFirmware Inspect(string path)

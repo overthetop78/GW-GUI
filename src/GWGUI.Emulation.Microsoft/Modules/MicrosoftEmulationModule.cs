@@ -10,7 +10,7 @@ namespace GWGUI.Emulation.Microsoft.Modules;
 
 public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
-    IEmulationModuleLocalization
+    IEmulationModuleLocalization, IEmulationFirmwareManager
 {
     private readonly Engine _engine;
 
@@ -69,4 +69,9 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.InstallEmulatorAsync(machineId, release, progress, cancellationToken);
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default) => _engine.DeleteConfigurationAsync(configurationId, cancellationToken);
+    public string GetFirmwareDirectory(string machineId) => _engine.GetFirmwareDirectory(machineId);
+
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.ScanFirmwareAsync(machineId, configuration, cancellationToken);
+
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware) => _engine.UseFirmware(configuration, firmware);
 }

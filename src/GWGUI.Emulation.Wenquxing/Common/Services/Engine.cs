@@ -191,7 +191,10 @@ internal sealed class Engine
         var current = Require(configuration);
         if (current.Model != ModelCatalog.Parse(machineId))
             throw new ArgumentException(nameof(machineId));
-        return FirmwareFunctions.ScanAsync(GetFirmwareDirectory(machineId), current, cancellationToken);
+        var adapter = SelectedOrDefault(current);
+        var candidates = new List<EmulationFirmwareCandidate>();
+        CommonCoreHostFunctions.FirmwareProcessing.ScanRecursive(GetFirmwareDirectory(machineId), path => candidates.AddRange(adapter.ScanFirmwareFileAsync(current, path, cancellationToken).GetAwaiter().GetResult()), cancellationToken);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware) => FirmwareFunctions.Select(Require(configuration), firmware);

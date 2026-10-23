@@ -1199,6 +1199,35 @@ public sealed class ArchitectureValidationTests
             }
             if (root != "GWGUI.Emulation.Microsoft")
                 Assert.NotEmpty(implementations);
+
+            // La façade publique transmet chaque opération au même Engine Common, y compris sans backend installé.
+            var facade = Assert.Single(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && typeof(IEmulationModule).IsAssignableFrom(type));
+            Assert.True(typeof(IEmulationFirmwareManager).IsAssignableFrom(facade), root);
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            static bool Calls(MethodInfo caller, MethodInfo target)
+            {
+                var code = caller.GetMethodBody()!.GetILAsByteArray()!;
+                return new byte[] { 0x28, 0x6f }.Any(opcode => code.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(target.MetadataToken)).ToArray()) >= 0);
+            }
+            var publicMap = facade.GetInterfaceMap(typeof(IEmulationFirmwareManager));
+            for (var index = 0; index < publicMap.InterfaceMethods.Length; index++)
+            {
+                var operation = publicMap.InterfaceMethods[index];
+                var target = engine.GetMethod(operation.Name, operation.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
+                Assert.NotNull(target);
+                Assert.Equal(operation.ReturnType, target.ReturnType);
+                Assert.True(Calls(publicMap.TargetMethods[index], target), root + "." + operation.Name);
+            }
+
+            // Les callbacks et leurs machines d'état restent dans Common. Les deux parcours de dossier existants
+            // passent par le contrat de catalogue du backend, qui conserve ses filtres avant l'inspection par fichier.
+            var inspection = root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Example"
+                ? assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareSettings")!.GetMethod("ScanFirmware")!
+                : scan;
+            var commonMethods = assembly.GetTypes().Where(type => type.FullName!.StartsWith(root + ".Common.", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null);
+            Assert.Contains(commonMethods, method => Calls(method, inspection));
         }
     }
 

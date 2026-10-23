@@ -32,16 +32,6 @@ internal static class FirmwareConfigurationFunctions
         return configuration with { FirmwarePaths = paths };
     }
 
-    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration, string directory, IEmulatorAdapter adapter, CancellationToken cancellationToken)
-    {
-        if (!Directory.Exists(directory)) return [];
-        var candidates = new List<EmulationFirmwareCandidate>();
-        var slots = Slots(configuration, adapter);
-        foreach (var path in Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories))
-            candidates.AddRange(InspectFile(configuration, path, slots, cancellationToken));
-        return candidates;
-    }
-
     /// <summary>Inspecte un fichier et conserve tous ses rôles de firmware possibles.</summary>
     /// <param name="configuration">Configuration empruntée dont les emplacements sont consultés.</param>
     /// <param name="path">Fichier source, conservé en lecture seule.</param>
