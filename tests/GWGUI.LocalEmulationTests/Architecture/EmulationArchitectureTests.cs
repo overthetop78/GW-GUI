@@ -45,7 +45,7 @@ public sealed class EmulationArchitectureTests
         Assert.All(MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
         Assert.Equal(new[]
         {
-            "Create", "Definition", "DescribeMediaDevices", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
+            "ApplySettings", "Create", "Definition", "DescribeMediaDevices", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
             "FindReleasesAsync", "GetInstallationAsync", "GetOutputResolution", "InstallAsync", "MapInput", "RequiresMediaRestart", "RequiresOptionRestart",
             "ResolveConfiguredMedia", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey"

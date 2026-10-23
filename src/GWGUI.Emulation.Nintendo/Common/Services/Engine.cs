@@ -123,7 +123,7 @@ internal sealed class Engine
                 return false;
             });
         var audio = nintendo.Audio ?? new AudioConfiguration();
-        return FirmwareConfigurationFunctions.Apply(nintendo, values, this.Adapter(nintendo)) with
+        var result = FirmwareConfigurationFunctions.Apply(nintendo, values, this.Adapter(nintendo)) with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : nintendo.AudioEnabled,
@@ -133,6 +133,8 @@ internal sealed class Engine
                 LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
+        return result;
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
@@ -296,4 +298,8 @@ internal sealed class Engine
     }
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
+    /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorId == configuration.EmulatorId);
 }

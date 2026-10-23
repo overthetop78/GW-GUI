@@ -118,6 +118,7 @@ internal sealed class Engine
             Folders = folders,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
         ConfigurationFunctions.Validate(result);
         return result;
         string? Folder(string id, string? original) => values.TryGetValue(id, out var value) ? value : original;
@@ -184,4 +185,8 @@ internal sealed class Engine
 
     private IEmulatorAdapter PreferredAdapter(string machineId) => this.Adapters(ModelCatalog.Parse(machineId).ToString()).SingleOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));
     private static MachineConfiguration Require(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
+    /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorKey == configuration.Core.ToString());
 }

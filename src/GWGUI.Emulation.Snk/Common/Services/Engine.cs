@@ -121,6 +121,7 @@ internal sealed class Engine
             InitialContent = editable.Contains(SettingsConstants.InitialContent) && values.TryGetValue(SettingsConstants.InitialContent, out var initialContent) ? string.IsNullOrWhiteSpace(initialContent) ? null : initialContent : current.InitialContent,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
         ConfigurationFunctions.Validate(result);
         return result;
     }

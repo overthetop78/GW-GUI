@@ -14,6 +14,53 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryEngineAppliesSettingsThroughTheSameAdapterContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsApplication", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var method = Assert.Single(contract.GetMethods());
+            Assert.Equal("ApplySettings", method.Name);
+            Assert.True(method.IsAbstract);
+            var parameters = method.GetParameters();
+            Assert.Equal(new[] { "configuration", "values" }, parameters.Select(parameter => parameter.Name));
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.ReturnType));
+            Assert.Equal(method.ReturnType, parameters[0].ParameterType);
+            Assert.Equal(typeof(IReadOnlyDictionary<string, string?>), parameters[1].ParameterType);
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var defaultImplementation = Assert.Single(adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), candidate => candidate.Name.EndsWith(".ApplySettings", StringComparison.Ordinal));
+            Assert.False(defaultImplementation.IsAbstract);
+            var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+            else Assert.NotEmpty(adapters);
+            foreach (var implementation in adapters)
+            {
+                var concrete = implementation.GetMethod("ApplySettings", BindingFlags.Instance | BindingFlags.Public);
+                Assert.Equal(concrete ?? defaultImplementation, Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
+                if (concrete is null)
+                {
+                    var configuration = RuntimeHelpers.GetUninitializedObject(method.ReturnType);
+                    var values = new Dictionary<string, string?> { ["unchanged"] = "value" };
+                    Assert.Same(configuration, method.Invoke(RuntimeHelpers.GetUninitializedObject(implementation), [configuration, values]));
+                    Assert.Equal("value", values["unchanged"]);
+                }
+            }
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var body = engine.GetMethod("ApplySettings")!.GetMethodBody()!.GetILAsByteArray()!;
+            Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(method.MetadataToken)).ToArray()) >= 0), root);
+        }
+    }
+
+    [Fact]
     public void ConvertersUseTheSameModuleAndCategoryNamesAsExample()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

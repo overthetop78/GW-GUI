@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 
 /// <summary>Application des valeurs d’éditeurs par l’adaptateur choisi pour la configuration.</summary>
 /// <remarks>Common transmet les champs à cet adaptateur puis conserve les règles de validation de la configuration.
-/// Les trois simulations utilisent le traitement Common existant ; un backend adapte les valeurs suivant ses propres réglages.</remarks>
+/// Le backend complète les traitements Common suivant ses propres réglages ; sans adaptation supplémentaire, la configuration reçue est conservée.</remarks>
 internal interface IEmulatorSettingsApplication
 {
     /// <summary>Applique les valeurs de réglages et retourne la configuration résultante.</summary>

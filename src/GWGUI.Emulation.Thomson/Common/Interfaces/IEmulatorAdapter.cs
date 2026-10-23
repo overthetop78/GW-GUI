@@ -3,8 +3,14 @@ using GWGUI.Emulation.Thomson.Common.Contracts;
 using GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Thomson.Common.Services;
 namespace GWGUI.Emulation.Thomson.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication
 {
+    /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
+    /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>
+    /// <param name="values">Champs proposés, disponibles pour les adaptations concrètes.</param>
+    /// <returns>La même instance sans adaptation ; les implémentations concrètes retournent leur résultat sans modifier la source.</returns>
+    MachineConfiguration IEmulatorSettingsApplication.ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => configuration;
+
     /// <summary>Conserve les dimensions matérielles de Common lorsque le backend ne fournit aucune résolution configurée.</summary>
     /// <param name="configuration">Configuration empruntée à consulter par les spécialisations concrètes.</param>
     /// <returns>Null sans annonce propre au backend ; une implémentation concrète retourne sa taille en pixels.</returns>

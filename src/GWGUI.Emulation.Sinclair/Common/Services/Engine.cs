@@ -128,6 +128,7 @@ internal sealed class Engine
             InitialContent = editable.Contains(SettingsConstants.InitialContent) && values.TryGetValue(SettingsConstants.InitialContent, out var initialContent) ? string.IsNullOrWhiteSpace(initialContent) ? null : initialContent : current.InitialContent,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
         ConfigurationFunctions.Validate(result);
         return result;
     }
@@ -253,4 +254,8 @@ internal sealed class Engine
     }
 
     private static MachineConfiguration Require(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
+    /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorKey == configuration.Core.ToString());
 }

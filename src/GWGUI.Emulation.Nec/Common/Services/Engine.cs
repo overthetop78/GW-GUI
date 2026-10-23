@@ -126,7 +126,7 @@ internal sealed class Engine
                 return false;
             });
         var audio = necConfiguration.Audio ?? new AudioConfiguration();
-        return FirmwareFunctions.Apply(necConfiguration, values) with
+        var result = FirmwareFunctions.Apply(necConfiguration, values) with
         {
             Options = options,
             HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory) ? string.IsNullOrWhiteSpace(directory) ? null : directory : necConfiguration.HardDiskDirectory,
@@ -138,6 +138,8 @@ internal sealed class Engine
                 LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
+        return result;
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
@@ -332,4 +334,8 @@ internal sealed class Engine
     private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.DefaultFor(machineId);
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
+    /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorId == configuration.EmulatorId);
 }

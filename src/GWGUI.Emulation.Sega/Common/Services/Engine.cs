@@ -117,7 +117,7 @@ internal sealed class Engine
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));
         var audio = sega.Audio ?? new AudioConfiguration();
-        return FirmwareConfigurationFunctions.Apply(sega with
+        var result = FirmwareConfigurationFunctions.Apply(sega with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : sega.AudioEnabled,
@@ -127,6 +127,8 @@ internal sealed class Engine
                 LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         }, values, this.Adapter(sega));
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
+        return result;
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
@@ -287,4 +289,8 @@ internal sealed class Engine
     private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.DefaultFor(machineId);
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection enregistrée.</param>
+    /// <returns>Adaptateur du catalogue existant, ou null sans sélection correspondante.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorId == configuration.EmulatorId);
 }

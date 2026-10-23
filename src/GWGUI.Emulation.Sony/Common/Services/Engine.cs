@@ -127,7 +127,7 @@ internal sealed class Engine
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));
         var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
-        var applied = adapter is IEmulatorSettingsApplication settingsApplication ? settingsApplication.ApplySettings(sony with { Options = options }, values) : sony with { Options = options };
+        var applied = adapter is { } ? adapter.ApplySettings(sony with { Options = options }, values) : sony with { Options = options };
         var updated = applied with
         {
             FirmwarePaths = adapter is null ? sony.FirmwarePaths : FirmwareConfigurationFunctions.Apply(sony, values, adapter).FirmwarePaths,

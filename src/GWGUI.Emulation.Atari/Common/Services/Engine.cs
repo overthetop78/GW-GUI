@@ -144,12 +144,14 @@ internal sealed class Engine
             HardDisks = values.GetValueOrDefault(SettingsConstants.HardDiskFolder)
                 ?? atari.Folders.HardDisks
         };
-        return atari with
+        var result = atari with
         {
             Firmwares = firmwares, Options = options, Folders = folders,
             AudioEnabled = values.GetValueOrDefault(SettingsConstants.AudioEnabled)
                 == SettingsDescriptionFunctionsConstants.Enabled
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
+        return result;
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)

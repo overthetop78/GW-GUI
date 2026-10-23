@@ -100,6 +100,7 @@ internal sealed class Engine
             Firmware = FirmwareFunctions.Apply(current, values),
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
         ConfigurationFunctions.Validate(result);
         return result;
     }

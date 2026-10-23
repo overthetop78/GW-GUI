@@ -119,7 +119,9 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
         CommonCoreHostFunctions.OptionProcessing.ApplyValues(options, values);
-        return current with { Options = options };
+        var result = current with { Options = options };
+        result = SelectedAdapter(result)?.ApplySettings(result, values) ?? result;
+        return result;
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)

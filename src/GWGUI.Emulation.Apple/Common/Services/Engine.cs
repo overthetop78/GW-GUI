@@ -125,7 +125,7 @@ internal sealed class Engine
             Options = options, Folders = folders,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
-        if (this.Adapter(result) is IEmulatorSettingsApplication settingsAdapter)
+        if (this.Adapter(result) is { } settingsAdapter)
             result = settingsAdapter.ApplySettings(result, values.Where(value => editable.Contains(value.Key)).ToDictionary(value => value.Key, value => value.Value, StringComparer.Ordinal));
         ConfigurationFunctions.Validate(result);
         return result;
