@@ -10,6 +10,10 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
+    decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model)?.MainMemoryBytes / 1024m;
+
+
     /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
     AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => new(
         CommonAudioFunctions.Processing.ResolveRuntimeOutput(configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),

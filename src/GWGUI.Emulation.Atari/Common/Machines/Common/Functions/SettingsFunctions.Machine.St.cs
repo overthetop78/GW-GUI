@@ -54,7 +54,7 @@ internal static partial class SettingsDescriptionFunctions
                     model.CpuFrequenciesMhz.Select(HardwareSettingsFunctions.FrequencyMhz))),
             Block(SettingsDescriptionFunctionsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, SettingsDescriptionFunctionsConstants.Value4, 2,
                 Select(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.MainMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
-                    Value(configuration, SettingsConstants.MainMemory, ((long)model.DefaultMainMemoryKib * HardwareSettingsConstants.BytesPerKibibyte).ToString()),
+                    Value(configuration, SettingsConstants.MainMemory, checked((long)((new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.DefaultMainMemoryKib) * HardwareSettingsConstants.BytesPerKibibyte)).ToString()),
                     model.MainMemoryKib.Select(HardwareSettingsFunctions.MemoryKib))),
             Block(SettingsDescriptionFunctionsConstants.ExtensionMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ResourceMemoryExtensions, SettingsDescriptionFunctionsConstants.Value4, 1,
                 Select(SettingsConstants.AlternateMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ExtensionMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryExtensions,

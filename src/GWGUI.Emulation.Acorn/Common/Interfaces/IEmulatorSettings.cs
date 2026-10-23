@@ -5,6 +5,14 @@ namespace GWGUI.Emulation.Acorn.Common.Interfaces;
 /// de présentation et ne possède aucune session, sortie audio ou surface vidéo.</remarks>
 internal interface IEmulatorSettings
 {
+    /// <summary>Résout la capacité de mémoire principale décrite par le profil et ses réglages natifs.</summary>
+    /// <param name="configuration">Configuration empruntée fournissant le modèle et ses options.</param>
+    /// <returns>Capacité exacte en KiB, ou null lorsque le profil ne renseigne pas sa mémoire principale.</returns>
+    /// <remarks>Un KiB contient 1 024 octets. Le type décimal conserve les mémoires inférieures au KiB
+    /// sans les transformer en zéro ; null reste distinct d'une capacité réellement nulle.
+    /// Cette consultation ne réserve aucune mémoire pour le cœur et ne modifie pas la configuration.</remarks>
+    decimal? GetMemoryKib(MachineConfiguration configuration);
+
     /// <summary>Résout les valeurs audio à transmettre à la sortie possédée par la session.</summary>
     /// <param name="configuration">Configuration empruntée contenant les options ou valeurs audio enregistrées.</param>
     /// <returns>Valeurs de sortie, latence et séparation stéréo, après les adaptations natives existantes.</returns>

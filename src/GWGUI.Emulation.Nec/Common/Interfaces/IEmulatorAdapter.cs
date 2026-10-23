@@ -3,6 +3,10 @@ using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.Controlle
 namespace GWGUI.Emulation.Nec.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
+    decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;
+
+
     /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
     AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
 

@@ -7,7 +7,8 @@ internal static partial class SettingsDescriptionFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = new Engine().Adapter(configuration);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var ram = model.RamBytes is { } bytes ? bytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + ModelConstants.BytesUnit : options.GetValueOrDefault(SettingsConstants.Ram, model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        var memoryKib = adapter.GetMemoryKib(configuration);
+        var ram = model.RamBytes is not null ? memoryKib is decimal main ? checked((long)(main * 1024m)).ToString(System.Globalization.CultureInfo.InvariantCulture) + ModelConstants.BytesUnit : string.Empty : options.GetValueOrDefault(SettingsConstants.Ram, memoryKib?.ToString(System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty);
         var processors = string.Join(" / ", model.Processors);
         var hardwareFields = model.Id switch
         {

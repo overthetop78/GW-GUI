@@ -8,6 +8,7 @@ internal static class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         var cpuResource = SettingsConstants.CpuResourcePrefix + hardware.DefaultCpu;
         var blocks = new List<EmulationSettingsBlock>
         {
@@ -15,7 +16,7 @@ internal static class SettingsDescriptionFunctions
                 new EmulationSettingsField(SettingsConstants.Cpu, EmulationMachineTab.Cpu, EmulationMachineTab.Cpu.ToString(), SettingsConstants.ResourceCpu, EmulationSettingsEditor.Information, cpuResource, [new(cpuResource, cpuResource)]),
                 Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, CommonCoreHostFunctions.HardwareSettings.FormatMegahertz(hardware.DefaultCpuFrequencyHz, "0.##"))),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
+                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{memoryKib} KiB")),
             Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo,
                 Information(SettingsConstants.Video + "_controller", EmulationMachineTab.Video, SettingsConstants.ResourceVideoController, "Motorola MC6845"),
                 Information(SettingsConstants.Video + "_pixels", EmulationMachineTab.Video, SettingsConstants.ResourceVideoPixels, "Acorn Video ULA"),

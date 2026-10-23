@@ -42,7 +42,7 @@ internal static class SettingsDescriptionFunctions
                 string.Join(MachineSettingsConstants.ProcessorSeparator, model.CpuModels.Select(CpuDisplayFunctions.DisplayName))),
             Information(SettingsBlocks.MainMemory, EmulationMachineTab.Ram, SettingsResourceKeys.MemoryMain,
                 SettingsGlyphs.Memory, MachineSettingsConstants.RamField,
-                string.Format(CultureInfo.InvariantCulture, MachineSettingsConstants.RamKibFormat, model.RamKib)),
+                string.Format(CultureInfo.InvariantCulture, MachineSettingsConstants.RamKibFormat, new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.RamKib)),
             Information(SettingsBlocks.Display, EmulationMachineTab.Video, SettingsResourceKeys.VideoSettingsDisplay, SettingsGlyphs.Video, MachineSettingsConstants.ChipsetField, model.Chipset)
         };
         blocks.Add(new EmulationSettingsBlock(SettingsBlocks.Audio, EmulationMachineTab.Audio,

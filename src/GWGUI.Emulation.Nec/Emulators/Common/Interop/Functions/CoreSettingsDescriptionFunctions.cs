@@ -26,8 +26,9 @@ internal static partial class CoreSettingsDescriptionFunctions
         var geargrafx = configuration.EmulatorId == GeargrafxConstants.Id;
         var cd = model.Id == PcEngineDuoMachineConstants.Id;
         var cdCapable = model.SupportsCdDrive && model.SupportsCartridgeSlot;
-        var ram = model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture);
-        var ramDisplay = model.RamKib >= SettingsDescriptionFunctionsConstants.KibPerMib ? $"{model.RamKib / SettingsDescriptionFunctionsConstants.KibPerMib}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}" : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
+        var ramKib = new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.RamKib;
+        var ram = ramKib.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        var ramDisplay = ramKib >= SettingsDescriptionFunctionsConstants.KibPerMib ? $"{checked((long)(ramKib / SettingsDescriptionFunctionsConstants.KibPerMib))}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}" : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
         var video = coreOptions ? [] : pcfx ? BeetlePcfxSettingsDescriptionFunctions.Video(options) : sgx ? BeetleSgxSettingsDescriptionFunctions.Video(options) : geargrafx ? GeargrafxSettingsDescriptionFunctions.Video(model.Id, options) : BeetlePceFastSettingsDescriptionFunctions.Video(options);
         var audio = new List<EmulationSettingsField>
         {
@@ -79,7 +80,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 Select(SettingsConstants.Ram, EmulationMachineTab.Ram,
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain, ram,
-                    [Invariant(ram, ramDisplay, model.RamKib)], isEnabled: false)),
+                    [Invariant(ram, ramDisplay, checked((long)ramKib))], isEnabled: false)),
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware,

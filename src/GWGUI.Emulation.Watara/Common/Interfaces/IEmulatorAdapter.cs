@@ -8,6 +8,10 @@ using GWGUI.Emulation.Watara.Common.Services;
 namespace GWGUI.Emulation.Watara.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
+    decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model)?.MainMemoryBytes / 1024m;
+
+
     /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
     AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => new(
         CommonAudioFunctions.Processing.ResolveRuntimeOutput(configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),

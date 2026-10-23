@@ -11,9 +11,4 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// Un backend qui en a besoin doit le demander à son appelant, sans conserver ni détruire les services empruntés.</param>
     /// <returns>Descriptions d’options, choix disponibles et métadonnées de présentation.</returns>
     IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
-
-    /// <summary>Résout la quantité de RAM correspondant au modèle et à ses options.</summary>
-    /// <param name="configuration">Configuration empruntée à décrire.</param>
-    /// <returns>Capacité de mémoire principale en KiB.</returns>
-    int GetMemoryKib(MachineConfiguration configuration);
 }

@@ -8,7 +8,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         if (configuration.EmulatorId == CrocoDSProfile.Id) return CreateCrocoDS(configuration, coreOptions ?? []);
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var ram = options.GetValueOrDefault(SettingsConstants.Ram, model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        var ram = options.GetValueOrDefault(SettingsConstants.Ram, (new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.RamKib).ToString(System.Globalization.CultureInfo.InvariantCulture));
         return
         [
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,

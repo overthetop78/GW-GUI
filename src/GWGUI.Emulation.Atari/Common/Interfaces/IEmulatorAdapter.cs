@@ -3,6 +3,14 @@ using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.Control
 namespace GWGUI.Emulation.Atari.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
+    decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration)
+    {
+        if ((configuration.Family == MachineFamily.St || configuration.Model == MachineModel.XlXe) && configuration.Options.TryGetValue(SettingsConstants.MainMemory, out var selected) && long.TryParse(selected, out var bytes)) return bytes / 1024m;
+        return configuration.Family == MachineFamily.St ? StModelCatalog.Get(configuration.Model).DefaultMainMemoryKib : HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes / 1024m;
+    }
+
+
     /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
     AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration)
     {

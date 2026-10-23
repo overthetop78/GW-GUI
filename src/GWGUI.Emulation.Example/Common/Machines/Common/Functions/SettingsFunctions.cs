@@ -12,13 +12,14 @@ internal static class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         var blocks = new List<EmulationSettingsBlock>
         {
             new("hardware", EmulationMachineTab.General, "Emulation.Tab.General",
             [
                 new(SettingsConstants.Cpu, EmulationMachineTab.General, "hardware", "Emulation.Cpu.Model", EmulationSettingsEditor.Information, hardware.DefaultCpu.ToString()),
                 new(SettingsConstants.CpuFrequency, EmulationMachineTab.General, "hardware", "Emulation.Cpu.SpeedOriginal", EmulationSettingsEditor.Information, hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture) + " Hz"),
-                new(SettingsConstants.MainMemory, EmulationMachineTab.General, "hardware", "Emulation.Memory.Main", EmulationSettingsEditor.Information, hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture) + " B")
+                new(SettingsConstants.MainMemory, EmulationMachineTab.General, "hardware", "Emulation.Memory.Main", EmulationSettingsEditor.Information, memoryKib is decimal mainMemory ? checked((long)(mainMemory * 1024m)).ToString(CultureInfo.InvariantCulture) + " B" : null)
             ]),
             new("audio", EmulationMachineTab.Audio, "Emulation.Audio",
             [

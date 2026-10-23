@@ -22,9 +22,10 @@ internal static class SettingsDescriptionFunctions
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         CommonCoreHostFunctions.HardwareSettings.AddBlocks(blocks, "mattel", hardware.CpuResourceKey,
             () => hardware.CpuFrequencyHz is long frequency ? CommonCoreHostFunctions.HardwareSettings.FormatFrequency(frequency) : null,
-            () => hardware.MainMemoryBytes is long main ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(main) : null,
+            () => memoryKib is decimal main ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(checked((long)(main * 1024m))) : null,
             () => hardware.DisplayMemoryBytes is long display ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(display) : null,
             SettingsConstants.ResourceDisplayMemory,
             () =>

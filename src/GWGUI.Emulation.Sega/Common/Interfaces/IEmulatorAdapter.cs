@@ -3,6 +3,15 @@ using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.Controll
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la capacité du catalogue et les réglages de RAM déjà décrits par la famille.</summary>
+    decimal? IEmulatorSettings.GetMemoryKib(MachineConfiguration configuration)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        if (model.RamBytes is { } bytes) return bytes / 1024m;
+        return configuration.Options is { } options && options.TryGetValue(SettingsConstants.Ram, out var selected) && int.TryParse(selected, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var kib) ? kib : model.RamKib;
+    }
+
+
     /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
     AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
 

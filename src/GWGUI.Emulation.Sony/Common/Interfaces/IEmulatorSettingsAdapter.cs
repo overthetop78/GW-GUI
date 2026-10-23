@@ -6,5 +6,4 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
         SettingsDescriptionFunctions.MachineBlocks(this, configuration);
     IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
         SettingsDescriptionFunctions.StorageFields(this, configuration, category);
-    int GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;
 }

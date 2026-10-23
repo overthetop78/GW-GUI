@@ -7,6 +7,7 @@ internal static class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         var blocks = new List<EmulationSettingsBlock>();
         blocks.Add(FirmwareFunctions.Describe(configuration));
         blocks.Add(new(
@@ -34,7 +35,7 @@ internal static class SettingsDescriptionFunctions
                         EmulationMachineTab.Ram,
                         SettingsConstants.ResourceMemoryMain,
                         hardware.MemoryResourceKey,
-                        $"{hardware.MainMemoryBytes / SettingsConstants.BytesPerKibibyte} {SettingsConstants.KibibyteUnit}"
+                        $"{memoryKib} {SettingsConstants.KibibyteUnit}"
                     )],
                 IsCompact: true
             ));

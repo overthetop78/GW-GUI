@@ -23,7 +23,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Memory, EmulationMachineTab.Ram,
                 SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
                 SettingsDescriptionFunctionsConstants.IconMemory, 1,
-                Information(SettingsConstants.Ram, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.Memory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, $"{model.RamKib} KiB")),
+                Information(SettingsConstants.Ram, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.Memory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, $"{(new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.RamKib)} KiB")),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,

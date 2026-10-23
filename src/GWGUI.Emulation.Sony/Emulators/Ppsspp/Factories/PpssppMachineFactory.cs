@@ -13,7 +13,7 @@ internal sealed class PpssppMachineFactory : CoreMachineFactory
         CoreSettingsFunctions.Blocks(PpssppOptionFunctions.Options(configuration), configuration);
     public override MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         PpssppOptionFunctions.ToNative(configuration with { GraphicsApi = graphicsApi });
-    public override int GetMemoryKib(MachineConfiguration configuration) =>
+    public override decimal? GetMemoryKib(MachineConfiguration configuration) =>
         configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;
     public override int GetMemoryCardCount(MachineConfiguration configuration) => 1;
     public override string? MemoryCardInsertedOptionKey => OptionConstants.MemstickInsertedKey;

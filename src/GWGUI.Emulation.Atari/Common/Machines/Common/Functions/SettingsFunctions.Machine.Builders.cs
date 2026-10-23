@@ -74,12 +74,13 @@ internal static partial class SettingsDescriptionFunctions
 
     private static EmulationSettingsField HardwareMemory(MachineConfiguration configuration, HardwareModelDefinition model)
     {
+        var memoryBytes = checked((long)((new Engine().SelectedAdapter(configuration)?.GetMemoryKib(configuration) ?? model.MainMemoryBytes / 1024m) * 1024m));
         if (configuration.Model != MachineModel.XlXe)
             return Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram,
-                SettingsDescriptionFunctionsConstants.MainMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, HardwareSettingsFunctions.FormatBytes(model.MainMemoryBytes),
-                model.MainMemoryBytes);
+                SettingsDescriptionFunctionsConstants.MainMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, HardwareSettingsFunctions.FormatBytes(memoryBytes),
+                memoryBytes);
         var choices = new[] { 320L, 576L, 1088L }.Select(value => HardwareSettingsFunctions.MemoryKib((int)value)).ToArray();
         return Select(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.MainMemory,
-            SettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, SettingsConstants.MainMemory, model.MainMemoryBytes.ToString()), choices);
+            SettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, SettingsConstants.MainMemory, memoryBytes.ToString()), choices);
     }
 }

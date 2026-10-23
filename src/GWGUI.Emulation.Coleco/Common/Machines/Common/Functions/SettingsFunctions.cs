@@ -21,9 +21,10 @@ internal static class SettingsDescriptionFunctions
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
         CommonCoreHostFunctions.HardwareSettings.AddBlocks(blocks, "coleco", hardware.CpuResourceKey,
             () => CommonCoreHostFunctions.HardwareSettings.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true),
-            () => CommonCoreHostFunctions.HardwareSettings.FormatMemory(hardware.MainMemoryBytes),
+            () => memoryKib is decimal main ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(checked((long)(main * 1024m))) : null,
             () => hardware.DisplayMemoryBytes > 0 ? CommonCoreHostFunctions.HardwareSettings.FormatMemory(hardware.DisplayMemoryBytes) : null,
             SettingsConstants.ResourceDisplayMemory, () => $"{hardware.DisplayWidth} × {hardware.DisplayHeight}",
             isCompactCpu: false);

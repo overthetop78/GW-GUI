@@ -2236,7 +2236,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 5 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 6 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -2532,6 +2532,109 @@ public sealed class ArchitectureValidationTests
         }
     }
 
+    [Fact]
+    public async Task EveryCommonResolvesMainMemoryThroughTheSettingsContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var fractions = 0;
+        var unreported = 0;
+        var pspVariants = 0;
+        var configuredMemory = 0;
+        var amstradMemory = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            var operation = contract.GetMethod("GetMemoryKib")!;
+            Assert.NotNull(operation);
+            Assert.True(operation.IsAbstract);
+            Assert.Equal(typeof(decimal?), operation.ReturnType);
+            Assert.Equal(configurationType, Assert.Single(operation.GetParameters()).ParameterType);
+            var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+            if (extension is not null) Assert.Null(extension.GetMethod(operation.Name));
+            var defaults = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".GetMemoryKib", StringComparison.Ordinal));
+            var callers = assembly.GetTypes().Where(type => type.FullName!.Contains(".Functions.", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null && GetCompiledCalls(method).Any(call => call.Method == operation)).ToArray();
+            Assert.NotEmpty(callers);
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                Assert.Equal(adapter.GetType().GetMethod(operation.Name) ?? defaults, map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)]);
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configurationType);
+                    var memory = (decimal?)operation.Invoke(adapter, [configuration]);
+                    if (memory is null) unreported++;
+                    else
+                    {
+                        Assert.True(memory >= 0);
+                        Assert.Equal(decimal.Truncate(memory.Value * 1024m), memory.Value * 1024m);
+                        if (memory > 0 && memory < 1) fractions++;
+                    }
+                    if (root == "GWGUI.Emulation.Fairchild") Assert.Equal(0.0625m, memory);
+                    if (root == "GWGUI.Emulation.Atari" && machine.Id == "Atari2600") Assert.Equal(0.125m, memory);
+                    object WithOptions(IReadOnlyDictionary<string, string> options)
+                    {
+                        var copy = typeof(object).GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(configuration, null)!;
+                        configurationType.GetProperty("Options")!.SetValue(copy, options);
+                        return copy;
+                    }
+                    var values = new Dictionary<string, string>((IReadOnlyDictionary<string, string>?)configurationType.GetProperty("Options")!.GetValue(configuration) ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+                    if (root == "GWGUI.Emulation.Sony" && definition.Id == "ppsspp")
+                    {
+                        var constants = assembly.GetType(root + ".Emulators.Ppsspp.Constants.PpssppConstants", throwOnError: true)!;
+                        var options = assembly.GetType(root + ".Emulators.Ppsspp.Constants.OptionConstants", throwOnError: true)!;
+                        var key = (string)options.GetField("PspModelKey", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+                        values[key] = (string)constants.GetField("Psp1000Model", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+                        var basic = (decimal?)operation.Invoke(adapter, [WithOptions(values)]);
+                        values.Remove(key);
+                        var expanded = (decimal?)operation.Invoke(adapter, [WithOptions(values)]);
+                        Assert.Equal((decimal)(int)constants.GetField("ExpandedMemoryKib", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!, expanded);
+                        Assert.True(expanded > basic);
+                        pspVariants++;
+                    }
+                    if (root == "GWGUI.Emulation.Atari" && machine.Id == "St")
+                    {
+                        var constants = assembly.GetType(root + ".Common.Machines.Common.Constants.SettingsConstants", throwOnError: true)!;
+                        var key = (string)constants.GetField("MainMemory", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+                        values[key] = "4194304";
+                        Assert.Equal(4096m, (decimal?)operation.Invoke(adapter, [WithOptions(values)]));
+                        configuredMemory++;
+                    }
+                    if (root == "GWGUI.Emulation.Amstrad" && machine.Id.Contains("464", StringComparison.OrdinalIgnoreCase) && definition.Id != "crocods")
+                    {
+                        var constants = assembly.GetType(root + ".Common.Machines.Common.Constants.SettingsConstants", throwOnError: true)!;
+                        var key = (string)constants.GetField("Ram", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+                        values[key] = "576";
+                        Assert.Equal(576m, (decimal?)operation.Invoke(adapter, [WithOptions(values)]));
+                        amstradMemory++;
+                        configuredMemory++;
+                    }
+                    Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configurationType));
+                }
+            }
+        }
+        Assert.True(fractions > 0);
+        Assert.True(unreported > 0);
+        Assert.True(pspVariants > 0);
+        Assert.True(configuredMemory > 0);
+        Assert.True(amstradMemory > 0);
+    }
     [Fact]
     public async Task EveryCommonResolvesAudioThroughTheSettingsContract()
     {

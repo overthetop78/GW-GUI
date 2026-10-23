@@ -43,7 +43,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Ram, EmulationMachineTab.Ram,
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
-                    $"{(settingsAdapter?.GetMemoryKib(configuration) ?? model.RamKib)} KiB")),
+                    $"{(adapter?.GetMemoryKib(configuration) ?? model.RamKib)} KiB")),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
