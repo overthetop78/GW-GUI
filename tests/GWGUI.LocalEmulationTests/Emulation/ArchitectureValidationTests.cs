@@ -78,7 +78,7 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void EveryCommonCreatesIndependentFrameStoresWithBothExistingPolicies()
+    public void EveryCommonCreatesIndependentFrameStoresWithTheSameAccumulationAsExample()
     {
         var implementation = typeof(IEmulationInputFrames).Assembly.GetType("GWGUI.Emulation.Services.EmulationInputFrameStore", throwOnError: true)!;
         Assert.False(implementation.IsVisible);
@@ -92,39 +92,36 @@ public sealed class ArchitectureValidationTests
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var common = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
-            var create = common.GetMethod("CreateInputFrames", BindingFlags.NonPublic | BindingFlags.Static, [typeof(bool)])!;
+            var create = Assert.Single(common.GetMethods(BindingFlags.NonPublic | BindingFlags.Static), method => method.Name == "CreateInputFrames");
             Assert.Equal(typeof(IEmulationInputFrames), create.ReturnType);
-            Assert.Equal(true, Assert.Single(create.GetParameters()).DefaultValue);
-            foreach (var relative in new[] { true, false })
-            {
-                var first = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, [relative]));
-                var second = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, [relative]));
-                Assert.NotSame(first, second);
-                var keys = new HashSet<EmulationKey> { EmulationKey.A };
-                var input = EmulationInputSnapshot.Empty with { Keys = keys, Pointer = new(3, -4, 2, true, false, false) { HorizontalWheel = -2 } };
-                first.Update(input);
-                first.Update(input);
-                keys.Clear();
-                first.Poll();
-                Assert.Contains(EmulationKey.A, first.Polled.Keys);
-                Assert.Equal(relative ? 6 : 3, first.Polled.Pointer.DeltaX);
-                Assert.Equal(relative ? -8 : -4, first.Polled.Pointer.DeltaY);
-                Assert.Equal(relative ? 4 : 2, first.Polled.Pointer.Wheel);
-                Assert.Equal(relative ? -4 : -2, first.Polled.Pointer.HorizontalWheel);
-                first.Poll();
-                Assert.Equal(relative ? 0 : 3, first.Polled.Pointer.DeltaX);
-                Assert.Equal(relative ? 0 : -4, first.Polled.Pointer.DeltaY);
-                Assert.Equal(relative ? 0 : 2, first.Polled.Pointer.Wheel);
-                Assert.Equal(relative ? 0 : -2, first.Polled.Pointer.HorizontalWheel);
-                Assert.True(first.Polled.Pointer.Left);
-                second.Poll();
-                Assert.Empty(second.Polled.Keys);
-                Assert.Equal(0, second.Polled.Pointer.DeltaX);
-                first.Update(null);
-                first.Poll();
-                Assert.Empty(first.Polled.Keys);
-                Assert.False(first.Polled.Pointer.Left);
-            }
+            Assert.Empty(create.GetParameters());
+            var first = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, null));
+            var second = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, null));
+            Assert.NotSame(first, second);
+            var keys = new HashSet<EmulationKey> { EmulationKey.A };
+            var input = EmulationInputSnapshot.Empty with { Keys = keys, Pointer = new(3, -4, 2, true, false, false) { HorizontalWheel = -2 } };
+            first.Update(input);
+            first.Update(input);
+            keys.Clear();
+            first.Poll();
+            Assert.Contains(EmulationKey.A, first.Polled.Keys);
+            Assert.Equal(6, first.Polled.Pointer.DeltaX);
+            Assert.Equal(-8, first.Polled.Pointer.DeltaY);
+            Assert.Equal(4, first.Polled.Pointer.Wheel);
+            Assert.Equal(-4, first.Polled.Pointer.HorizontalWheel);
+            first.Poll();
+            Assert.Equal(0, first.Polled.Pointer.DeltaX);
+            Assert.Equal(0, first.Polled.Pointer.DeltaY);
+            Assert.Equal(0, first.Polled.Pointer.Wheel);
+            Assert.Equal(0, first.Polled.Pointer.HorizontalWheel);
+            Assert.True(first.Polled.Pointer.Left);
+            second.Poll();
+            Assert.Empty(second.Polled.Keys);
+            Assert.Equal(0, second.Polled.Pointer.DeltaX);
+            first.Update(null);
+            first.Poll();
+            Assert.Empty(first.Polled.Keys);
+            Assert.False(first.Polled.Pointer.Left);
         }
     }
 

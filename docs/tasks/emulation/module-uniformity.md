@@ -7963,3 +7963,37 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : utiliser le callback explicite, puis RequiresMediaRestart sur la politique empruntée, puis false, sans modifier les autres commandes.
   - [x] Vérifier les décisions conservées et le parcours des politiques.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les appels compilés dans les quinze parcours et les règles de base sur des emplacements variés ; comparer les règles natives, exécuter les tests locaux et construire le Debug avec tous les modules.
+
+## Politique unique des mouvements relatifs dans tous les Common
+- [x] Uniformiser le stockage des entrées sur le comportement accumulé et consommé présenté par Example.
+  - [x] Retirer le choix de remplacement inutilisé du service partagé et des relais Common.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputProcessing.cs : retirer le paramètre de CreateInputFrames et documenter la copie, la somme des quatre composantes et leur consommation au Poll.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputFrameStore.cs : supprimer le champ et le constructeur de sélection de politique ainsi que les deux branches de remplacement ; conserver les échanges atomiques, la copie et la saturation existants.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputProcessingService.cs : construire le stockage unique sans argument.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/ControllerFunctions.cs : exposer CreateInputFrames sans choix de politique et commenter son comportement identique à Example.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputFrames.cs : décrire uniquement la copie des collections, la somme puis la consommation des quatre composantes relatives et la conservation des états absolus.
+  - [x] Vérifier le comportement unique dans les 24 Common et leur construction.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : adapter le test existant des 24 Common au contrat sans argument, vérifier accumulation, consommation, isolation et copie ; exécuter les tests locaux puis construire le Debug avec tous les modules et vérifier les fichiers produits.

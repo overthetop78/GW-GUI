@@ -12,9 +12,9 @@ public interface IEmulationInputProcessing
     IEmulationInputAccumulator CreateInputAccumulator();
 
     /// <summary>Crée un stockage indépendant qui copie les collections et publie un instantané stable par frame.</summary>
-    /// <param name="accumulateRelativePointer">True pour additionner les mouvements puis les consommer au Poll ; false pour remplacer le dernier instantané et conserver ses mouvements aux Poll suivants.</param>
+    /// <remarks>Update additionne les quatre composantes relatives avec saturation ; Poll les consomme une fois et conserve le dernier état absolu.</remarks>
     /// <returns>Stockage appartenant à l’appelant, sans périphérique ni ressource native possédée.</returns>
-    IEmulationInputFrames CreateInputFrames(bool accumulateRelativePointer = true);
+    IEmulationInputFrames CreateInputFrames();
 
     /// <summary>Convertit les noms de touches reconnus en valeurs typées, en conservant la comparaison ordinale des commandes.</summary>
     IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values);
