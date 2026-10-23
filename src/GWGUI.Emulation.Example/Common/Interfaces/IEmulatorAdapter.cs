@@ -1,3 +1,4 @@
+using CommonFirmwareProcessing = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using CommonAudioFunctions = GWGUI.Emulation.Example.Common.Functions.AudioFunctions;
 using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
@@ -10,6 +11,14 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Réutilise le parcours plat du service Common et l'inspecteur natif sans modifier ses résultats.</summary>
+    async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> IEmulatorFirmwareAdapter.ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = await CommonFirmwareProcessing.FirmwareProcessing.ScanDirectoryAsync(directory,
+            (path, token) => ((IEmulatorFirmwareAdapter)this).ScanFirmwareFileAsync(configuration, path, token), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
+    }
+
     /// <summary>Reprend les blocs natifs dans leur portée de présentation existante.</summary>
     IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context) => ((IEmulatorSettings)this).DescribeSettings(configuration, context);
 

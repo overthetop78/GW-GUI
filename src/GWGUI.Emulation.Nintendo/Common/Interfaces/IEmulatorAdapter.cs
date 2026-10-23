@@ -1,8 +1,17 @@
+using CommonFirmwareProcessing = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Nintendo.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Nintendo.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Réutilise le parcours plat du service Common et l'inspecteur natif sans modifier ses résultats.</summary>
+    async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> IEmulatorFirmwareAdapter.ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = await CommonFirmwareProcessing.FirmwareProcessing.ScanDirectoryAsync(directory,
+            (path, token) => ((IEmulatorFirmwareAdapter)this).ScanFirmwareFileAsync(configuration, path, token), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
+    }
+
     /// <summary>Reprend les blocs natifs dans leur portée de présentation existante.</summary>
     IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context) => ((IEmulatorSettings)this).DescribeSettings(configuration, context);
 

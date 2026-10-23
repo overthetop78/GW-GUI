@@ -263,13 +263,15 @@ internal sealed class Engine
         var current = RequireConfiguration(configuration);
         if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException(nameof(configuration));
         var directory = GetFirmwareDirectory(machineId);
+        var adapter = SelectedAdapter(current);
+        if (adapter is not null) return await adapter.ScanFirmwareAsync(current, directory, cancellationToken).ConfigureAwait(false);
         var paths = FirmwareFunctions.Slots(current).Count != 0
             ? Directory.Exists(directory) ? Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories) : []
             : ModelCatalog.Get(machineId).SupportsCdDrive ? FirmwareCatalog.EnumerateCandidates(directory) : [];
-        var adapter = SelectedAdapter(current);
+
         var candidates = new List<EmulationFirmwareCandidate>();
         foreach (var path in paths)
-            candidates.AddRange(await (adapter?.ScanFirmwareFileAsync(current, path, cancellationToken) ?? FirmwareFunctions.ScanFileAsync(current, path, cancellationToken)).ConfigureAwait(false));
+            candidates.AddRange(await FirmwareFunctions.ScanFileAsync(current, path, cancellationToken).ConfigureAwait(false));
         cancellationToken.ThrowIfCancellationRequested();
         return candidates;
     }

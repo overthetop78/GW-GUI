@@ -283,9 +283,7 @@ internal sealed class Engine
         if (((IEmulationConfiguration)current).MachineId != machineId) throw new ArgumentException(nameof(machineId));
         var directory = GetFirmwareDirectory(machineId);
         if (SelectedAdapter(current) is not { } adapter) return [];
-        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
-            (path, token) => adapter.ScanFirmwareFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
-        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
+        return await adapter.ScanFirmwareAsync(current, directory, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Revalide le candidat et transmet son rôle au parcours de réglages existant.</summary>

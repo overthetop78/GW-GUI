@@ -10,8 +10,21 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var paths = CommonFirmwareInspection.Slots(configuration).Count != 0
+            ? Directory.Exists(directory) ? Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories) : []
+            : ModelCatalog.Get(configuration.Model).SupportsCdDrive ? FirmwareCatalog.EnumerateCandidates(directory) : [];
+        var candidates = new List<EmulationFirmwareCandidate>();
+        foreach (var path in paths) candidates.AddRange(await ScanFirmwareFileAsync(configuration, path, cancellationToken).ConfigureAwait(false));
+        cancellationToken.ThrowIfCancellationRequested();
+        return candidates;
+    }
+
+
     /// <summary>Décrit le champ de ROM unique déjà présenté par les modèles CD.</summary>
     /// <remarks>Les adaptations possédant un catalogue de fichiers nommés redéfinissent cette méthode.
     /// Le constructeur de champ reste la source de ses identifiants et aides ; aucun appel à DescribeSettings

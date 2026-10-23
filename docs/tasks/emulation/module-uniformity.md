@@ -10562,3 +10562,96 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter les deux opérations aux appels Common attendus.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/RuntimeOptionTests.cs : employer les contrats de réglages obligatoires à la place du contrat supprimé.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : vérifier les mêmes champs via les deux contrats Common obligatoires.
+
+## Recherche de firmware par le contrat Common
+
+- [x] Uniformiser la recherche des candidats dans les 24 familles.
+  - [x] Raccorder la recherche et préserver ses règles existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer ScanFirmwareAsync avec la configuration, le dossier et le jeton, et documenter les résultats multiples.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : reprendre le parcours plat existant par le service Common de traitement des firmwares.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Engine.cs : transmettre la recherche au contrat sans modifier les contrôles de modèle ni les parcours sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : conserver le parcours natif, son ordre et ses règles de reconnaissance dans ScanFirmwareAsync.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer la recherche désormais portée par le contrat obligatoire.
+    - [x] Supprimer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : préserver la validation du couple modèle-cœur et la résolution du chemin absolu pendant la recherche par dossier.
+  - [x] Valider les recherches et leur raccordement.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler le contrat, les implémentations et les appels des 24 familles ; vérifier la compilation et la suite existante.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter ScanFirmwareAsync aux opérations communes attendues.

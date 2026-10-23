@@ -1,3 +1,4 @@
+using CommonFirmwareProcessing = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using CommonFirmwareInspection = GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreReleaseFunctions;
@@ -13,8 +14,17 @@ using NativeMedia = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.MediaRun
 using NativeSettings = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.SettingsDescriptionFunctions;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Factories;
-internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities
+internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = new List<EmulationFirmwareCandidate>();
+        CommonFirmwareProcessing.FirmwareProcessing.ScanRecursive(directory, path => candidates.AddRange(ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()), cancellationToken);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
+    }
+
+
     /// <inheritdoc/>
     public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
 

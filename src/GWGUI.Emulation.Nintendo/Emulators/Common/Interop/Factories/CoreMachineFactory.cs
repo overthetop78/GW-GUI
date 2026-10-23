@@ -10,8 +10,17 @@ using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        if (!Directory.Exists(directory)) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories)
+            .SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
+    }
+
+
     /// <inheritdoc/>
     public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
 

@@ -1408,7 +1408,7 @@ public sealed class ArchitectureValidationTests
     [Theory]
     [InlineData("Apple", "PrepareFirmware")]
     [InlineData("Commodore", "GetFirmwareSlots")]
-    [InlineData("Commodore", "ScanFirmware")]
+    [InlineData("Commodore", "ScanFirmwareAsync")]
     [InlineData("Nec", "GetFirmwareSlots")]
     [InlineData("Nintendo", "GetFirmwareSlots")]
     [InlineData("Sega", "GetFirmwareSlots")]
@@ -1419,7 +1419,7 @@ public sealed class ArchitectureValidationTests
     public void FirmwareSettingsUseTheSameOperationsAsExample(string family, string operation)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var contractName = operation is "PrepareFirmware" or "GetFirmwareSlots" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
+        var contractName = operation is "PrepareFirmware" or "GetFirmwareSlots" or "ScanFirmwareAsync" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
         var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{contractName}", throwOnError: true)!;
         var exampleAssembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
         var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces." + contractName, throwOnError: true)!;
@@ -2943,7 +2943,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(3, contract.GetMethods().Length);
+            Assert.Equal(4, contract.GetMethods().Length);
             var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
@@ -2970,7 +2970,7 @@ public sealed class ArchitectureValidationTests
                 Assert.True(target.IsPublic);
                 Assert.False(target.DeclaringType!.IsInterface);
                 Assert.Null(implementation.GetMethod("InspectFirmwareAsync"));
-                Assert.Null(implementation.GetMethod("ScanFirmwareAsync"));
+                Assert.Null(implementation.GetMethod("ScanFirmware"));
             }
             foreach (var implementation in implementations)
             {
@@ -3014,9 +3014,7 @@ public sealed class ArchitectureValidationTests
 
             // Les callbacks et leurs machines d'état restent dans Common. Les deux parcours de dossier existants
             // passent par le contrat de catalogue du backend, qui conserve ses filtres avant l'inspection par fichier.
-            var inspection = root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Example"
-                ? assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareSettings")!.GetMethod("ScanFirmware")!
-                : scan;
+            var inspection = contract.GetMethod("ScanFirmwareAsync")!;
             var commonMethods = assembly.GetTypes().Where(type => type.FullName!.StartsWith(root + ".Common.", StringComparison.Ordinal))
                 .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null);
@@ -3690,5 +3688,52 @@ public sealed class ArchitectureValidationTests
         }
         Assert.True(probed > 24);
         Assert.True(cartridgeFields > 0);
+    }
+    [Fact]
+    public void EveryCommonRoutesDirectoryFirmwareSearchThroughItsContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeSearches = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var operation = contract.GetMethod("ScanFirmwareAsync")!;
+            Assert.True(operation.IsAbstract);
+            Assert.Equal(typeof(ValueTask<IReadOnlyList<EmulationFirmwareCandidate>>), operation.ReturnType);
+            Assert.Equal(new[] { assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration")!, typeof(string), typeof(CancellationToken) }, operation.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { "configuration", "directory", "cancellationToken" }, operation.GetParameters().Select(parameter => parameter.Name));
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith(".ScanFirmwareAsync", StringComparison.Ordinal));
+            var state = defaults.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+            var body = state.GetMethod("MoveNext", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.Contains(GetCompiledCalls(body), call => call.Method.Name == "ScanDirectoryAsync" && call.Method.DeclaringType == typeof(IEmulationFirmwareProcessing));
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var entry = engine.GetMethod("ScanFirmwareAsync")!;
+            var execution = entry.GetCustomAttribute<AsyncStateMachineAttribute>()?.StateMachineType.GetMethod("MoveNext", BindingFlags.NonPublic | BindingFlags.Instance) ?? entry;
+            Assert.Contains(GetCompiledCalls(execution), call => call.Method == operation);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                Assert.Null(implementation.GetMethod("ScanFirmware"));
+                var map = implementation.GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                var native = implementation.GetMethod("ScanFirmwareAsync");
+                Assert.Equal(native ?? defaults, target);
+                if (native is not null) nativeSearches++;
+                if (root is "GWGUI.Emulation.Atari" or "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Nec" or "GWGUI.Emulation.Nintendo" or "GWGUI.Emulation.Panasonic" or "GWGUI.Emulation.Sega" or "GWGUI.Emulation.Sony" or "GWGUI.Emulation.Wenquxing") Assert.NotNull(native);
+            }
+            var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareSettings");
+            if (settings is not null) Assert.Null(settings.GetMethod("ScanFirmware"));
+            if (root == "GWGUI.Emulation.Commodore") Assert.Null(settings);
+        }
+        Assert.True(nativeSearches > 24);
     }
 }

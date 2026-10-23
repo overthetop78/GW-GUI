@@ -266,8 +266,9 @@ internal sealed class Engine
 
         var directory = GetFirmwareDirectory(machineId);
         var adapter = SelectedAdapter(current);
-        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
-            async (path, token) => adapter is null ? [await FirmwareFunctions.ScanFileAsync(path, current.Model, token).ConfigureAwait(false)] : await adapter.ScanFirmwareFileAsync(current, path, token).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
+        if (adapter is not null) return await adapter.ScanFirmwareAsync(current, directory, cancellationToken).ConfigureAwait(false);
+        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync<IReadOnlyList<EmulationFirmwareCandidate>>(directory,
+            async (path, token) => [await FirmwareFunctions.ScanFileAsync(path, current.Model, token).ConfigureAwait(false)], cancellationToken).ConfigureAwait(false);
         return candidates.SelectMany(candidateSet => candidateSet).ToArray();
     }
 

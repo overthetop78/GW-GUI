@@ -326,8 +326,7 @@ internal sealed class Engine
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
         var directory = GetFirmwareDirectory(machineId);
         Directory.CreateDirectory(directory);
-        var entries = this.Adapter(current).ScanFirmware(current, directory, cancellationToken);
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
+        return this.Adapter(current).ScanFirmwareAsync(current, directory, cancellationToken);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

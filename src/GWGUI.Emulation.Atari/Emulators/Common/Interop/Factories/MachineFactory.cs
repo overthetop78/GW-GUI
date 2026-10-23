@@ -5,8 +5,19 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var root = Path.GetDirectoryName(directory) ?? directory;
+        var paths = FirmwareScanFunctions.EnumerateCandidates(root).Where(path => string.Equals(Path.GetDirectoryName(path), directory, StringComparison.OrdinalIgnoreCase));
+        var entries = new List<EmulationFirmwareCandidate>();
+        foreach (var path in paths) entries.AddRange(await ScanFirmwareFileAsync(configuration, path, cancellationToken).ConfigureAwait(false));
+        return entries;
+    }
+
+
     /// <inheritdoc/>
     public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => GWGUI.Emulation.Atari.Common.Services.Engine.ScanFirmwareFileAsync(configuration, path, cancellationToken);
 

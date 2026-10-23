@@ -268,6 +268,7 @@ internal sealed class Engine
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
 
         var directory = GetFirmwareDirectory(machineId);
+        if (SelectedAdapter(current) is { } adapter) return await adapter.ScanFirmwareAsync(current, directory, cancellationToken).ConfigureAwait(false);
         var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
             (path, token) => FirmwareFunctions.ScanFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
         return candidates.SelectMany(candidateSet => candidateSet).ToArray();

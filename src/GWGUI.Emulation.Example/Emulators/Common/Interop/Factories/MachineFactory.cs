@@ -15,7 +15,7 @@ namespace GWGUI.Emulation.Example.Emulators.Common.Interop.Factories;
 /// <remarks>Les classes Libretro, External et Internal fournissent uniquement ces métadonnées.
 /// Cette fabrique réutilise les règles du Common pour les deux profils. Les fichiers utilisateur sont empruntés.
 /// Une machine créée possède son cœur et sa session ; en cas d’échec de création, le finally reprend leur nettoyage.</remarks>
-internal abstract class MachineFactory(Emulator emulator, string id, string name, string descriptionResourceKey) : IEmulatorAdapter
+internal abstract class MachineFactory(Emulator emulator, string id, string name, string descriptionResourceKey) : IEmulatorAdapter, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => InputSettingsFunctions.SupportsPointerCapture(configuration.Input);
@@ -244,7 +244,12 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         return length > 0 && length <= hardware.MainMemoryBytes;
     }
     /// <inheritdoc/>
-    public IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) => FirmwareScanFunctions.EnumerateCandidates(directory).SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray();
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = new List<EmulationFirmwareCandidate>();
+        foreach (var path in FirmwareScanFunctions.EnumerateCandidates(directory)) candidates.AddRange(await ScanFirmwareFileAsync(configuration, path, cancellationToken).ConfigureAwait(false));
+        return candidates;
+    }
     /// <inheritdoc/>
     public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {

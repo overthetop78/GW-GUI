@@ -6,6 +6,17 @@ namespace GWGUI.Emulation.Sega.Common.Interfaces;
 /// L’adaptateur réutilise son identification existante et laisse le fichier d’origine sous la responsabilité de son appelant.</remarks>
 internal interface IEmulatorFirmwareAdapter
 {
+    /// <summary>Recherche les candidats dans le dossier de firmware de la configuration.</summary>
+    /// <param name="configuration">Configuration empruntée déterminant les rôles et compatibilités attendus.</param>
+    /// <param name="directory">Dossier de recherche fourni par Common ; les fichiers sources restent empruntés.</param>
+    /// <param name="cancellationToken">Annulation du parcours et des lectures nécessaires à la reconnaissance.</param>
+    /// <returns>Candidats dans l'ordre du parcours natif ; plusieurs rôles d'un même fichier restent distincts.</returns>
+    /// <remarks>Le parcours de base inspecte les fichiers du dossier dans l'ordre ordinal insensible à la casse
+    /// avec le service de firmware Common. Le backend conserve son parcours récursif ou son catalogue
+    /// lorsqu'il en possède un. L'inspection par fichier reste portée par ScanFirmwareFileAsync ; aucune
+    /// recherche n'installe de firmware ni ne conserve de flux ouvert après son retour.</remarks>
+    ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);
+
     /// <summary>Décrit les emplacements de firmware de la configuration complète.</summary>
     /// <param name="configuration">Modèle, cœur et options déterminant les champs et leurs contraintes.</param>
     /// <returns>Emplacements dans l'ordre du catalogue natif, avec leurs métadonnées disponibles.</returns>

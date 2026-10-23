@@ -304,7 +304,7 @@ internal sealed class Engine
         var directory = GetFirmwareDirectory(machineId);
         if (!Directory.Exists(directory)) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
         var adapter = this.Adapter(sega);
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).SelectMany(path => adapter.ScanFirmwareFileAsync(sega, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
+        return adapter.ScanFirmwareAsync(sega, directory, cancellationToken);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

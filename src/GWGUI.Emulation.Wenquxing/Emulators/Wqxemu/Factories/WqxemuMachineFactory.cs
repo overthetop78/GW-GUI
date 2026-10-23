@@ -1,3 +1,4 @@
+using CommonFirmwareProcessing = GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions;
 using CommonFirmwareInspection = GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreReleaseFunctions;
@@ -11,8 +12,17 @@ using NativeFirmware = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.Firm
 using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
-internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities
+internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = new List<EmulationFirmwareCandidate>();
+        CommonFirmwareProcessing.FirmwareProcessing.ScanRecursive(directory, path => candidates.AddRange(ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()), cancellationToken);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
+    }
+
+
     /// <inheritdoc/>
     public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
 

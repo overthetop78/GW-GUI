@@ -55,10 +55,10 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdap
         };
     }
     public abstract IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
-    public virtual IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {
-        return Directory.EnumerateFiles(directory, MachineSettingsConstants.AllFirmwareFiles, SearchOption.AllDirectories)
-            .SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, MachineSettingsConstants.AllFirmwareFiles, SearchOption.AllDirectories)
+            .SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
     }
 
     /// <inheritdoc/>

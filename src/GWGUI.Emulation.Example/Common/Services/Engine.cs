@@ -241,7 +241,7 @@ internal sealed class Engine
     {
         var current = Require(configuration);
         if (current.MachineId != machineId) throw new ArgumentException(nameof(machineId));
-        return ValueTask.FromResult(Adapter(current).ScanFirmware(current, GetFirmwareDirectory(machineId), cancellationToken));
+        return Adapter(current).ScanFirmwareAsync(current, GetFirmwareDirectory(machineId), cancellationToken);
     }
     /// <summary>Applique le firmware facultatif uniquement après validation de son rôle et de son fichier.</summary>
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

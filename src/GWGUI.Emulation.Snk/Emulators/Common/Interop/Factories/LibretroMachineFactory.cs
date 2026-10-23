@@ -1,3 +1,5 @@
+using CommonFirmwareProcessing = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
+using CommonFirmwareInspection = GWGUI.Emulation.Snk.Common.Machines.Common.Functions.FirmwareFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
@@ -12,6 +14,14 @@ namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        var candidates = await CommonFirmwareProcessing.FirmwareProcessing.ScanDirectoryAsync(directory,
+            (path, token) => CommonFirmwareInspection.ScanFileAsync(configuration, path, token), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
+    }
+
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration, GetControllerPortCount(configuration));
 
     internal virtual int DirectoryStringBufferCapacity => 0;
