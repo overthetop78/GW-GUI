@@ -14,6 +14,124 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    private static List<(int Offset, MethodBase Method)> GetCompiledCalls(MethodInfo source)
+    {
+        var opcodes = typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.FieldType == typeof(OpCode))
+            .Select(field => (OpCode)field.GetValue(null)!).GroupBy(opcode => unchecked((ushort)opcode.Value)).ToDictionary(group => group.Key, group => group.First());
+        var code = source.GetMethodBody()!.GetILAsByteArray()!;
+        var result = new List<(int, MethodBase)>();
+        for (var offset = 0; offset < code.Length;)
+        {
+            var start = offset;
+            ushort value = code[offset++];
+            if (value == 0xfe) value = (ushort)(0xfe00 | code[offset++]);
+            var opcode = opcodes[value];
+            if (opcode.OperandType == OperandType.InlineMethod)
+                result.Add((start, source.Module.ResolveMethod(BitConverter.ToInt32(code, offset), source.DeclaringType?.GetGenericArguments(), source.GetGenericArguments())!));
+            offset += opcode.OperandType switch
+            {
+                OperandType.InlineNone => 0,
+                OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar => 1,
+                OperandType.InlineVar => 2,
+                OperandType.InlineBrTarget or OperandType.InlineField or OperandType.InlineI or OperandType.InlineMethod or OperandType.InlineSig or OperandType.InlineString or OperandType.InlineType or OperandType.ShortInlineR => 4,
+                OperandType.InlineI8 or OperandType.InlineR => 8,
+                OperandType.InlineSwitch => 4 + 4 * BitConverter.ToInt32(code, offset),
+                _ => throw new InvalidOperationException(opcode.Name)
+            };
+        }
+        return result;
+    }
+
+    [Fact]
+    public void EveryProcessHostAndReaderUseTheSharedFeedbackCodec()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var checkedPairs = 0;
+        foreach (var assembly in modules)
+        {
+            var clients = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && type.Name == "ProcessCore").ToArray();
+            if (assembly.GetName().Name == "gwgui.emulation.microsoft") { Assert.Empty(clients); continue; }
+            var client = Assert.Single(clients);
+            var host = assembly.GetType(client.Namespace + ".CoreHost", throwOnError: true)!;
+            var property = client.GetProperty("ControllerFeedback", BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)!;
+            Assert.Equal(typeof(IReadOnlyList<ControllerFeedbackState>), property.PropertyType);
+            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
+            MethodInfo[] Methods(Type owner) => assembly.GetTypes().Where(type => type == owner || type.FullName!.StartsWith(owner.FullName + "+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(flags)).Where(method => method.GetMethodBody() is not null).ToArray();
+            var writes = Methods(host).SelectMany(method => GetCompiledCalls(method)).Where(call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == nameof(IEmulationHostProtocol.WriteControllerFeedback)).ToArray();
+            Assert.Equal(2, writes.Length);
+            var reads = Methods(client).Where(method => GetCompiledCalls(method).Any(call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == nameof(IEmulationHostProtocol.ReadControllerFeedback))).ToArray();
+            Assert.Equal(2, reads.Length);
+            foreach (var reader in reads)
+                Assert.Contains(GetCompiledCalls(reader), call => call.Method.DeclaringType == client && call.Method.Name == property.SetMethod!.Name);
+            Assert.Null(assembly.GetType("GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol"));
+            checkedPairs++;
+        }
+        Assert.Equal(23, checkedPairs);
+    }
+
+    [Fact]
+    public void SharedFeedbackCodecPreservesBothMotorsAtItsCapacityAndTheFollowingField()
+    {
+        var states = Enumerable.Range(0, 10).SelectMany(port => new[]
+        {
+            new ControllerFeedbackState(port, EmulationControllerFeedbackCommands.Strong, 1f),
+            new ControllerFeedbackState(port, EmulationControllerFeedbackCommands.Weak, 0f)
+        }).ToArray();
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+        EmulationSdk.HostProtocol.WriteControllerFeedback(writer, states);
+        EmulationSdk.HostProtocol.WriteControllerFeedback(writer, []);
+        writer.Write(123456);
+        writer.Flush();
+        stream.Position = 0;
+        using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+        Assert.Equal(states, EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
+        Assert.Empty(EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
+        Assert.Equal(123456, reader.ReadInt32());
+        Assert.Equal(stream.Length, stream.Position);
+    }
+
+    [Theory]
+    [InlineData(-1, "RumbleStrong", .5f)]
+    [InlineData(10, "RumbleWeak", .5f)]
+    [InlineData(0, "Unknown", .5f)]
+    [InlineData(0, "RumbleStrong", float.NaN)]
+    [InlineData(0, "RumbleWeak", float.PositiveInfinity)]
+    [InlineData(0, "RumbleWeak", -1f)]
+    [InlineData(0, "RumbleWeak", 2f)]
+    public void SharedFeedbackCodecRejectsInvalidStatesBeforeWriting(int port, string command, float strength)
+    {
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream);
+        Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.WriteControllerFeedback(writer, [new(port, command, strength)]));
+        Assert.Equal(0, stream.Length);
+    }
+
+    [Fact]
+    public void SharedFeedbackCodecRejectsDuplicatesOversizedSnapshotsAndTruncatedPackets()
+    {
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+        var state = new ControllerFeedbackState(0, EmulationControllerFeedbackCommands.Strong, .5f);
+        Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.WriteControllerFeedback(writer, [state, state]));
+        Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.WriteControllerFeedback(writer, Enumerable.Repeat(state, 21).ToArray()));
+        Assert.Equal(0, stream.Length);
+        using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+        foreach (var count in new[] { -1, 21, int.MaxValue })
+        {
+            stream.SetLength(0); stream.Position = 0;
+            writer.Write(count); writer.Flush(); stream.Position = 0;
+            Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
+        }
+        stream.SetLength(0); stream.Position = 0;
+        writer.Write(1); writer.Write(0); writer.Write(true); writer.Flush(); stream.Position = 0;
+        Assert.Throws<EndOfStreamException>(() => EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
+    }
+
     [Fact]
     public void EveryCoreUsesTheSharedFeedbackContractAndNativeReceiversKeepEffects()
     {
@@ -358,33 +476,6 @@ public sealed class ArchitectureValidationTests
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
             .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
         Assert.Equal(24, modules.Length);
-        var opcodes = typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.FieldType == typeof(OpCode))
-            .Select(field => (OpCode)field.GetValue(null)!).GroupBy(opcode => unchecked((ushort)opcode.Value)).ToDictionary(group => group.Key, group => group.First());
-        List<(int Offset, MethodBase Method)> Calls(MethodInfo source)
-        {
-            var code = source.GetMethodBody()!.GetILAsByteArray()!;
-            var result = new List<(int, MethodBase)>();
-            for (var offset = 0; offset < code.Length;)
-            {
-                var start = offset;
-                ushort value = code[offset++];
-                if (value == 0xfe) value = (ushort)(0xfe00 | code[offset++]);
-                var opcode = opcodes[value];
-                if (opcode.OperandType == OperandType.InlineMethod)
-                    result.Add((start, source.Module.ResolveMethod(BitConverter.ToInt32(code, offset), source.DeclaringType?.GetGenericArguments(), source.GetGenericArguments())!));
-                offset += opcode.OperandType switch
-                {
-                    OperandType.InlineNone => 0,
-                    OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar => 1,
-                    OperandType.InlineVar => 2,
-                    OperandType.InlineBrTarget or OperandType.InlineField or OperandType.InlineI or OperandType.InlineMethod or OperandType.InlineSig or OperandType.InlineString or OperandType.InlineTok or OperandType.InlineType or OperandType.ShortInlineR => 4,
-                    OperandType.InlineI8 or OperandType.InlineR => 8,
-                    OperandType.InlineSwitch => 4 + 4 * BitConverter.ToInt32(code, offset),
-                    _ => throw new InvalidOperationException(opcode.Name)
-                };
-            }
-            return result;
-        }
         var creationMethods = new HashSet<MethodInfo>();
         foreach (var assembly in modules)
         {
@@ -415,7 +506,7 @@ public sealed class ArchitectureValidationTests
                 else
                 {
                     Assert.Equal(adapter, target.DeclaringType);
-                    Assert.Empty(Calls(target)); // Vérification préalable : ce défaut n'appelle aucune API de fichiers.
+                    Assert.Empty(GetCompiledCalls(target)); // Vérification préalable : ce défaut n'appelle aucune API de fichiers.
                     Assert.Null(prepare.Invoke(RuntimeHelpers.GetUninitializedObject(implementation), [RuntimeHelpers.GetUninitializedObject(configuration), "unused"]));
                 }
                 var create = implementation.GetMethod("Create", BindingFlags.Public | BindingFlags.Instance)!;
@@ -423,7 +514,7 @@ public sealed class ArchitectureValidationTests
                 create = create.DeclaringType!.GetMethod(create.Name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly,
                     create.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
                 if (!creationMethods.Add(create)) continue;
-                var calls = Calls(create);
+                var calls = GetCompiledCalls(create);
                 var preparation = Assert.Single(calls, call => call.Method == prepare);
                 var resolver = Assert.Single(calls, call => call.Method.Name == "Invoke" && call.Method.GetParameters().Select(parameter => parameter.ParameterType).SequenceEqual([configuration]) && call.Method is MethodInfo { ReturnType: var result } && result == typeof(string));
                 Assert.True(resolver.Offset < preparation.Offset, create.DeclaringType!.FullName);

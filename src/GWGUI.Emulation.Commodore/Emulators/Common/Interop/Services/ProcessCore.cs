@@ -16,6 +16,9 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 internal sealed class ProcessCore : IEmulatorCore
 {
+    /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
+
     private readonly string _hostExecutablePath;
     private readonly string? _corePath;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
@@ -92,6 +95,7 @@ internal sealed class ProcessCore : IEmulatorCore
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
+            ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
             _initialized = true;
         }
         finally
@@ -118,6 +122,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CoreHostProtocol.ReadLedStates(Response);
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
     }
 
     public void HardReset() => SimpleRequest(HostCommand.HardReset);
@@ -160,6 +165,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         if (_disposed) return;
         _disposed = true;
+        ControllerFeedback = [];
         Exception? failure = null;
         try
         {

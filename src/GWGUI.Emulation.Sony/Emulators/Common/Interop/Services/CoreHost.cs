@@ -46,7 +46,7 @@ internal static class CoreHost
                                 CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                                 writer.Write(core.ShutdownRequested);
-                                ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);
+                                CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
                                 break;
                             case HostCommand.RunFrame:
                                 var activeCore = EnsureCore(core);
@@ -56,7 +56,7 @@ internal static class CoreHost
                                     CommonCoreHostFunctions.Protocol.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
                                 writer.Write(activeCore.ShutdownRequested);
-                                ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);
+                                CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
                                 break;
                             case HostCommand.SoftReset:
                                 EnsureCore(core).SoftReset();

@@ -1,4 +1,6 @@
 using System.IO;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Constants;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.Text;
@@ -8,6 +10,45 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    /// <summary>Écrit le codec existant des deux moteurs après validation de tous les effets.</summary>
+    internal static void WriteControllerFeedback(BinaryWriter writer, IReadOnlyList<ControllerFeedbackState> states)
+    {
+        ValidateControllerFeedback(states);
+        writer.Write(states.Count);
+        foreach (var state in states)
+        {
+            writer.Write(state.Port);
+            writer.Write(state.CommandId == EmulationControllerFeedbackCommands.Strong);
+            writer.Write(state.Strength);
+        }
+    }
+
+    /// <summary>Lit une collection bornée puis contrôle ses ports, commandes, intensités et doublons.</summary>
+    internal static IReadOnlyList<ControllerFeedbackState> ReadControllerFeedback(BinaryReader reader)
+    {
+        var count = reader.ReadInt32();
+        if (count is < 0 or > EmulationHostProtocolConstants.MaximumControllerFeedbackCount)
+            throw new InvalidDataException(EmulationHostProtocolConstants.InvalidControllerFeedbackCount);
+        var states = new ControllerFeedbackState[count];
+        for (var index = 0; index < count; index++)
+            states[index] = new(reader.ReadInt32(), reader.ReadBoolean() ? EmulationControllerFeedbackCommands.Strong : EmulationControllerFeedbackCommands.Weak, reader.ReadSingle());
+        ValidateControllerFeedback(states);
+        return states;
+    }
+
+    private static void ValidateControllerFeedback(IReadOnlyList<ControllerFeedbackState> states)
+    {
+        if (states.Count > EmulationHostProtocolConstants.MaximumControllerFeedbackCount)
+            throw new InvalidDataException(EmulationHostProtocolConstants.InvalidControllerFeedbackCount);
+        var seen = new HashSet<(int, string)>();
+        foreach (var state in states)
+            if (state.Port is < 0 or >= EmulationHostProtocolConstants.MaximumInputControllerCount
+                || state.CommandId is not (EmulationControllerFeedbackCommands.Strong or EmulationControllerFeedbackCommands.Weak)
+                || !float.IsFinite(state.Strength) || state.Strength is < 0 or > 1
+                || !seen.Add((state.Port, state.CommandId)))
+                throw new InvalidDataException(EmulationHostProtocolConstants.InvalidControllerFeedbackState);
+    }
+
     /// <summary>Prépare le lancement sans fenêtre de l’hôte ; son lancement et sa destruction restent à la charge de l’appelant.</summary>
     internal static ProcessStartInfo CreateHostStartInfo(string executablePath, string workingDirectory,
         string hostCommand, string pipeName, string videoMapName)

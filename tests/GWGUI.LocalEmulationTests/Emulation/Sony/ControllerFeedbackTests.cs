@@ -109,12 +109,12 @@ public sealed class ControllerFeedbackTests
         ControllerFeedbackState[] states = [new(0, EmulationControllerFeedbackCommands.Strong, .25f), new(7, EmulationControllerFeedbackCommands.Weak, 1f)];
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
-        ControllerFeedbackProtocol.Write(writer, states);
+        EmulationSdk.HostProtocol.WriteControllerFeedback(writer, states);
         writer.Write(123456);
         writer.Flush();
         stream.Position = 0;
         using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
-        Assert.Equal(states, ControllerFeedbackProtocol.Read(reader));
+        Assert.Equal(states, EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
         Assert.Equal(123456, reader.ReadInt32());
     }
 
@@ -133,7 +133,7 @@ public sealed class ControllerFeedbackTests
         writer.Write(count); writer.Write(port); writer.Write(true); writer.Write(strength); writer.Flush();
         stream.Position = 0;
         using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
-        Assert.Throws<InvalidDataException>(() => ControllerFeedbackProtocol.Read(reader));
+        Assert.Throws<InvalidDataException>(() => EmulationSdk.HostProtocol.ReadControllerFeedback(reader));
     }
 
     [Theory]

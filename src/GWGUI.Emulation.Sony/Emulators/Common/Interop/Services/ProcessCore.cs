@@ -110,7 +110,7 @@ internal sealed class ProcessCore : IEmulatorCore
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
             ShutdownRequested = Response.ReadBoolean();
-            ControllerFeedback = ControllerFeedbackProtocol.Read(Response);
+            ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
             _initialized = true;
         }
         finally
@@ -138,7 +138,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CoreHostProtocol.ReadLedStates(Response);
         ShutdownRequested = Response.ReadBoolean();
-        ControllerFeedback = ControllerFeedbackProtocol.Read(Response);
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
     }
 
     public void HardReset()

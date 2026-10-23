@@ -20,6 +20,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 internal sealed class ProcessCore : IEmulatorCore
 {
+    /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
+
     private readonly string _hostExecutablePath;
     private readonly string _hostCommand;
     public bool SupportsPointerCapture { get; }
@@ -106,6 +109,7 @@ internal sealed class ProcessCore : IEmulatorCore
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
+            ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
             _initialized = true;
         }
         finally
@@ -132,6 +136,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CoreHostProtocol.ReadLedStates(Response);
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
     }
 
     public void HardReset()
@@ -186,6 +191,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         if (_disposed) return;
         _disposed = true;
+        ControllerFeedback = [];
         ReleaseHost();
     }
 

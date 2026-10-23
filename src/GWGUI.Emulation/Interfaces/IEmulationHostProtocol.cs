@@ -13,6 +13,18 @@ namespace GWGUI.Emulation.Interfaces;
 /// Le propriétaire de session ferme ses ressources dans son bloc finally après la fin effective des échanges.</remarks>
 public interface IEmulationHostProtocol
 {
+    /// <summary>Écrit un instantané de retours de contrôleur après validation complète des états.</summary>
+    /// <param name="writer">Rédacteur binaire emprunté ; reste ouvert après cet appel.</param>
+    /// <param name="states">Effets forts et faibles des ports, avec des intensités finies entre zéro et un.</param>
+    /// <remarks>Chaque couple port/commande est unique. Une liste vide arrête les effets précédents.
+    /// Les limites sont celles des ports du protocole commun. Le service ne conserve pas la collection.</remarks>
+    void WriteControllerFeedback(BinaryWriter writer, IReadOnlyList<ControllerFeedbackState> states);
+
+    /// <summary>Lit et valide un instantané binaire de retours sans consommer le champ suivant.</summary>
+    /// <param name="reader">Lecteur emprunté positionné avant le nombre des effets ; reste ouvert.</param>
+    /// <returns>Copie des états validés ; une liste vide signale la fin des effets précédents.</returns>
+    IReadOnlyList<ControllerFeedbackState> ReadControllerFeedback(BinaryReader reader);
+
 
     /// <summary>Capacité maximale en octets d’un emplacement du transport vidéo fixe.</summary>
     int VideoSlotCapacity { get; }

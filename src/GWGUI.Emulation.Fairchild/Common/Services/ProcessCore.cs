@@ -19,6 +19,9 @@ namespace GWGUI.Emulation.Fairchild.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
+    /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
+
     private readonly string _hostExecutablePath;
     private readonly string _hostCommand;
     private readonly string _corePath;

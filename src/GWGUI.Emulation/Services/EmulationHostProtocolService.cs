@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.Emulation.Contracts;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
@@ -11,6 +12,10 @@ namespace GWGUI.Emulation.Services;
 /// <remarks>Ce service ne conserve aucun état de session et ne modifie ni l’ordre des champs ni les règles de transport.</remarks>
 internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
 {
+    /// <inheritdoc/>
+    public void WriteControllerFeedback(BinaryWriter writer, IReadOnlyList<ControllerFeedbackState> states) => EmulationHostProtocolFunctions.WriteControllerFeedback(writer, states);
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ReadControllerFeedback(BinaryReader reader) => EmulationHostProtocolFunctions.ReadControllerFeedback(reader);
 
     /// <inheritdoc/>
     public int VideoSlotCapacity => EmulationHostProtocolConstants.VideoSlotCapacity;

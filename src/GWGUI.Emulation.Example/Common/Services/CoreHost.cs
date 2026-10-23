@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using System.IO;
 using System.Globalization;
 using System.IO.Pipes;
@@ -126,7 +127,7 @@ internal static class CoreHost
             });
         CoreHostFunctions.WriteLedStates(writer, initializedCore.LedStates);
         writer.Write(initializedCore.ShutdownRequested);
-        writer.Write(JsonSerializer.Serialize(initializedCore.ControllerFeedback, CoreHostFunctions.JsonOptions));
+        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, initializedCore.ControllerFeedback);
     }
 
     /// <summary>Applique les entrées, exécute une image et publie les sorties du cœur.</summary>
@@ -139,7 +140,7 @@ internal static class CoreHost
     /// <remarks>La requête contient les entrées puis un booléen de présence du statut audio ; s’il est présent,
     /// quatre valeurs suivent : fréquence, remplissage, capacité et activité. La réponse commune écrit la vidéo,
     /// l’audio, la latence minimale, le statut, le support des états, les diagnostics, les LED, la demande
-    /// de fermeture et les retours de contrôleurs sérialisés en JSON.
+    /// de fermeture et les retours de contrôleurs encodés par le protocole binaire commun.
     /// Le lecteur de ProcessCore doit consommer exactement les mêmes champs, même si le cœur n’émet aucun son.</remarks>
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
@@ -154,7 +155,7 @@ internal static class CoreHost
             writeStateSupport: static (statusWriter, currentCore) => statusWriter.Write(currentCore.SupportsSaveStates),
             writeAudioStatus: static (statusWriter, currentCore) => statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds));
         writer.Write(core.ShutdownRequested);
-        writer.Write(JsonSerializer.Serialize(core.ControllerFeedback, CoreHostFunctions.JsonOptions));
+        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
     }
 
     /// <summary>Désérialise la description d’un média reçue du client.</summary>

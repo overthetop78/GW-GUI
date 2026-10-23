@@ -94,6 +94,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         finally
         {
             _disposed = true;
+            ControllerFeedback = [];
             CommonCoreHostFunctions.Protocol.DisposeTransport(_writer);
             CommonCoreHostFunctions.Protocol.DisposeTransport(_pipe);
             _videoMap?.Dispose();

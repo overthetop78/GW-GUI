@@ -23,6 +23,9 @@ internal static class EmulationHostProtocolConstants
     internal const long VideoMapCapacity = (long)VideoSlotCapacity * VideoSlotCount;
     internal const int MaximumInputKeyCount = 512;
     internal const int MaximumInputControllerCount = 10;
+    internal const int MaximumControllerFeedbackCount = MaximumInputControllerCount * 2;
+    internal const string InvalidControllerFeedbackCount = "Invalid controller feedback count.";
+    internal const string InvalidControllerFeedbackState = "Invalid controller feedback state.";
     internal const int MaximumControllerControlCount = 4096;
     internal const int MaximumAudioChunkCount = 1024;
     internal const int MaximumLedStateCount = 256;

@@ -98,6 +98,7 @@ internal static class CoreHost
                 CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
             });
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
+        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
@@ -112,6 +113,7 @@ internal static class CoreHost
             ref lastVideoSequence, ref lastDiagnosticCount,
             writeStateSupport: static (statusWriter, currentCore) => statusWriter.Write(currentCore.SupportsSaveStates),
             writeAudioStatus: static (statusWriter, currentCore) => statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds));
+        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
     }
 
     private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);

@@ -38,6 +38,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         CoreVersion = reader.ReadString();
         SupportedContentExtensions = reader.ReadString() .Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries) .ToHashSet(StringComparer.OrdinalIgnoreCase);
         LedStates = CoreHostFunctions.ReadLedStates(reader);
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
     private void ReadFrame(BinaryReader reader)
@@ -55,6 +56,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         SupportsSaveStates = reader.ReadBoolean();
         if (reader.ReadBoolean()) Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
     private void ReadRuntimeStatus(BinaryReader reader)

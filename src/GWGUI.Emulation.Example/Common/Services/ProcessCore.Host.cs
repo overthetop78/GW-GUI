@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Example.Common.Functions;
 using System.IO;
 using System.Buffers.Binary;
@@ -42,7 +43,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <param name="reader">Lecteur emprunté de la réponse réussie.</param>
     /// <remarks>La réponse fournit empreinte, cadence vidéo, fréquence audio, latence minimale, support des états,
     /// statut audio, options, diagnostics, identité du cœur, extensions, LED, demande de fermeture et retours de
-    /// contrôleurs. Un JSON null pour les collections devient une liste vide. Les identités et compteurs restent
+    /// contrôleurs. Les collections JSON null des options et diagnostics deviennent des listes vides.
+    /// Les retours utilisent le codec binaire commun, qui contrôle ports, commandes, intensités et doublons.
+    /// Les identités et compteurs restent
     /// des valeurs locales : ce décodage n’appelle pas les exports de la bibliothèque distante.</remarks>
     private void ReadInitialization(BinaryReader reader)
     {
@@ -59,7 +62,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         SupportedContentExtensions = reader.ReadString().Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
         LedStates = CoreHostFunctions.ReadLedStates(reader);
         ShutdownRequested = reader.ReadBoolean();
-        ControllerFeedback = JsonSerializer.Deserialize<IReadOnlyList<ControllerFeedbackState>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
     /// <summary>Décode les sorties produites par une image et actualise les dernières valeurs reçues.</summary>
@@ -84,7 +87,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
         ShutdownRequested = reader.ReadBoolean();
-        ControllerFeedback = JsonSerializer.Deserialize<IReadOnlyList<ControllerFeedbackState>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
+        ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
     /// <summary>Décode la région vidéo et les mesures du tampon audio.</summary>

@@ -93,6 +93,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         finally
         {
             _disposed = true;
+            ControllerFeedback = [];
             using var process = _process;
             using var videoMemory = _videoMemory;
             using var videoMap = _videoMap;
