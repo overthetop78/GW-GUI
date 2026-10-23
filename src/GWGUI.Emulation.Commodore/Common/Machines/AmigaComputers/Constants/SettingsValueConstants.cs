@@ -59,7 +59,6 @@ internal static class SettingsValueConstants
     internal const int RatioStepCount = 30;
     internal const double RatioStepsPerUnit = 10d;
     internal const int InclusiveRangeEndpointCount = 1;
-    internal static IReadOnlyList<int> AudioLatencyChoicesMilliseconds { get; } = [20, 35, 50, 75, 100, 150, 250];
     internal const string ShortHelpSuffix = ".Short";
     internal const string DetailedHelpSuffix = ".Detailed";
 }

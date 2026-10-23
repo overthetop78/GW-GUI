@@ -6,6 +6,9 @@ namespace GWGUI.Emulation.Example.Common.Constants;
 /// dans les tableaux. Les gains sont normalisés entre zéro et un, indépendamment des valeurs PCM signées.</remarks>
 internal static class AudioConstants
 {
+    /// <summary>Séparation stéréo complète en pourcentage, conservée lorsque ce réglage est applicable au cœur.</summary>
+    internal const int FullStereoSeparation = 100;
+
     /// <summary>Nombre de canaux du format PCM stéréo entrelacé reçu par les callbacks natifs : deux.</summary>
     /// <remarks>Cette valeur décrit ce format précis ; elle ne limite pas les sorties multicanales décrites par leur layout.</remarks>
     internal const int StereoChannelCount = 2;

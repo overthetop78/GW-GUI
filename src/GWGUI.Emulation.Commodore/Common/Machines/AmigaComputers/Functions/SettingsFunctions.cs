@@ -218,8 +218,8 @@ internal static partial class AmigaSettingsDescriptionFunctions
                     EmulationMachineTab.Audio,
                     SettingsBlocks.Audio,
                     SettingsResourceKeys.AudioLatencyLabel,
-                    (configuration.Audio?.LatencyMilliseconds ?? MachineSettingsConstants.DefaultAudioLatencyMilliseconds).ToString(),
-                    SettingsValueConstants.AudioLatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), string.Format(SettingsValueConstants.MillisecondsLabelFormat, value)))
+                    (configuration.Audio?.LatencyMilliseconds ?? AudioConstants.DefaultLatencyMilliseconds).ToString(),
+                    AudioConstants.LatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), string.Format(SettingsValueConstants.MillisecondsLabelFormat, value)))
                 ),
                 Select(
                     SettingsConstants.OptionSoundInterpol,
@@ -250,7 +250,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
                     EmulationMachineTab.Audio,
                     SettingsBlocks.Audio,
                     SettingsResourceKeys.AudioStereoSeparation,
-                    $"{configuration.Audio?.StereoSeparation ?? MachineSettingsConstants.FullStereoSeparation}",
+                    $"{configuration.Audio?.StereoSeparation ?? AudioConstants.FullStereoSeparation}",
                     PercentageChoices(SettingsValueConstants.MinimumPercentage, SettingsValueConstants.MaximumPercentage, SettingsValueConstants.StereoPercentageStep)
                 ),
                 Select(

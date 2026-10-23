@@ -14,8 +14,8 @@ internal static partial class SettingsDescriptionFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = new Engine().SelectedAdapter(configuration);
         var settingsAdapter = adapter as IEmulatorSettingsAdapter;
-        var audio = settingsAdapter?.GetAudioConfiguration(configuration) ?? configuration.Audio ?? new AudioConfiguration();
-        var latencies = settingsAdapter?.GetAudioLatencyChoices(configuration) ?? AudioConstants.LatencyMilliseconds;
+        var audio = adapter?.GetAudioConfiguration(configuration) ?? configuration.Audio ?? new AudioConfiguration();
+        var latencies = adapter?.GetAudioLatencyChoices(configuration) ?? AudioConstants.LatencyChoicesMilliseconds;
         var blocks = new List<EmulationSettingsBlock>
         {
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,

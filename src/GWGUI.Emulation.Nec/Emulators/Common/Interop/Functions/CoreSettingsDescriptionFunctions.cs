@@ -36,8 +36,8 @@ internal static partial class CoreSettingsDescriptionFunctions
             Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
-                (configuration.Audio?.LatencyMilliseconds ?? SettingsDescriptionFunctionsConstants.ThirdAudioLatency).ToString(),
-                SettingsDescriptionFunctionsConstants.AudioLatencies.Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
+                (configuration.Audio?.LatencyMilliseconds ?? AudioConstants.DefaultLatencyMilliseconds).ToString(),
+                AudioConstants.LatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
         };
         if (coreOptions) { }
         else if (pcfx) BeetlePcfxSettingsDescriptionFunctions.AddAudio(audio, options);

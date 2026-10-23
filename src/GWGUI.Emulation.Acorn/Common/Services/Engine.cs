@@ -3,7 +3,6 @@ using GWGUI.Emulation;
 
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
-using AudioFunctions = GWGUI.Emulation.Acorn.Common.Functions.AudioFunctions;
 using System.Globalization;
 using System.IO;
 using GWGUI.Emulation.Acorn.Modules;
@@ -231,10 +230,9 @@ internal sealed class Engine
         var current = Require(configuration);
         var adapter = PreferredAdapter(current.MachineId);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var output = AudioFunctions.Processing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
-        var latency = AudioFunctions.Processing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
+        var audio = adapter.GetAudioConfiguration(current);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
-            services.HostExecutablePath, () => services.CreateAudioOutput(output, latency),
+            services.HostExecutablePath, () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
         var storage = StorageSettingsFunctions.Describe(current);
         return new EmulationMachineRuntime(current, media =>

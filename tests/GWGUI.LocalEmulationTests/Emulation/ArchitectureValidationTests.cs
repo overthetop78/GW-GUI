@@ -2236,7 +2236,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 3 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 5 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -2532,6 +2532,124 @@ public sealed class ArchitectureValidationTests
         }
     }
 
+    [Fact]
+    public async Task EveryCommonResolvesAudioThroughTheSettingsContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var constrained = 0;
+        var runtimeConsumers = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var audioType = assembly.GetType(root + ".Common.Machines.Common.Contracts.AudioConfiguration", throwOnError: true)!;
+            Assert.Equal(new[] { "LatencyMilliseconds", "OutputDeviceId", "StereoSeparation" }, audioType.GetProperties().Select(property => property.Name).Order(StringComparer.Ordinal));
+            var resolve = contract.GetMethod("GetAudioConfiguration")!;
+            var choices = contract.GetMethod("GetAudioLatencyChoices")!;
+            Assert.Equal(audioType, resolve.ReturnType);
+            Assert.Equal(typeof(IReadOnlyList<int>), choices.ReturnType);
+            Assert.True(resolve.IsAbstract);
+            Assert.True(choices.IsAbstract);
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Equal(configurationType, Assert.Single(resolve.GetParameters()).ParameterType);
+            Assert.Equal(configurationType, Assert.Single(choices.GetParameters()).ParameterType);
+            var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+            if (extension is not null)
+            {
+                Assert.Null(extension.GetMethod(resolve.Name));
+                Assert.Null(extension.GetMethod(choices.Name));
+            }
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var runtime = engineType.GetMethod("CreateRuntimeAsync")!;
+            var state = runtime.GetCustomAttribute<AsyncStateMachineAttribute>()?.StateMachineType;
+            var methods = state is null ? new[] { runtime } : state.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            var calls = methods.Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft")
+                Assert.DoesNotContain(calls, call => call.Method == resolve);
+            else
+            {
+                Assert.Contains(calls, call => call.Method == resolve);
+                runtimeConsumers++;
+            }
+            var engine = Activator.CreateInstance(engineType)!;
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                foreach (var operation in new[] { resolve, choices })
+                {
+                    var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                    var fallback = adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith("." + operation.Name, StringComparison.Ordinal));
+                    Assert.Equal(adapter.GetType().GetMethod(operation.Name) ?? fallback, target);
+                }
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configurationType);
+                    var latencies = Assert.IsAssignableFrom<IReadOnlyList<int>>(choices.Invoke(adapter, [configuration]));
+                    Assert.NotEmpty(latencies);
+                    Assert.All(latencies, latency => Assert.True(latency > 0));
+                    Assert.Equal(latencies.Count, latencies.Distinct().Count());
+                    var modified = typeof(object).GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(configuration, null)!;
+                    var stored = configurationType.GetProperty("Audio");
+                    object Probe()
+                    {
+                        var audio = resolve.Invoke(adapter, [modified])!;
+                        Assert.Equal(stored is null ? 100 : 37, audioType.GetProperty("StereoSeparation")!.GetValue(audio));
+                        return audio;
+                    }
+                    if (stored is not null)
+                    {
+                        var audio = Activator.CreateInstance(audioType, ["audio-contract-device", 87, 37])!;
+                        stored.SetValue(modified, audio);
+                        var resolved = Probe();
+                        Assert.Equal("audio-contract-device", audioType.GetProperty("OutputDeviceId")!.GetValue(resolved));
+                        var latency = (int)audioType.GetProperty("LatencyMilliseconds")!.GetValue(resolved)!;
+                        if (root == "GWGUI.Emulation.Sony" && definition.Id == "pcee2")
+                        {
+                            Assert.Contains(latency, latencies);
+                            Assert.NotEqual(87, latency);
+                            constrained++;
+                        }
+                        else Assert.Equal(87, latency);
+                    }
+                    else
+                    {
+                        var constants = assembly.GetType(root + ".Common.Machines.Common.Constants." + (root == "GWGUI.Emulation.Atari" ? "VideoAudioSettingsConstants" : "SettingsConstants"), throwOnError: true)!;
+                        string Key(string name) => (string)constants.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)!.GetRawConstantValue()!;
+                        var output = Key(root == "GWGUI.Emulation.Atari" ? "AudioOutputOption" : "AudioOutput");
+                        var latency = Key(root == "GWGUI.Emulation.Atari" ? "AudioLatencyOption" : "AudioLatency");
+                        var defaults = Key(root == "GWGUI.Emulation.Atari" ? "DefaultAudioOutput" : "DefaultOutput");
+                        var options = new Dictionary<string, string>((IReadOnlyDictionary<string, string>)configurationType.GetProperty("Options")!.GetValue(configuration)!, StringComparer.Ordinal)
+                        { [output] = "audio-contract-device", [latency] = "87" };
+                        configurationType.GetProperty("Options")!.SetValue(modified, options);
+                        var resolved = Probe();
+                        Assert.Equal("audio-contract-device", audioType.GetProperty("OutputDeviceId")!.GetValue(resolved));
+                        Assert.Equal(87, audioType.GetProperty("LatencyMilliseconds")!.GetValue(resolved));
+                        options[output] = defaults;
+                        options[latency] = "50";
+                        Assert.Null(audioType.GetProperty("OutputDeviceId")!.GetValue(Probe()));
+                        options[latency] = "invalid";
+                        if (root == "GWGUI.Emulation.Example")
+                            Assert.IsType<FormatException>(Assert.Throws<TargetInvocationException>(() => resolve.Invoke(adapter, [modified])).InnerException);
+                        else Assert.Equal(50, audioType.GetProperty("LatencyMilliseconds")!.GetValue(Probe()));
+                    }
+                    Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configurationType));
+                }
+            }
+        }
+        Assert.Equal(23, runtimeConsumers);
+        Assert.True(constrained > 0);
+    }
     [Fact]
     public async Task EveryCommonRoutesGraphicsSettingsThroughItsVideoContract()
     {

@@ -179,7 +179,7 @@ internal sealed class Engine
                 || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) return true;
                 return false;
             });
-        var audio = necConfiguration.Audio ?? new AudioConfiguration();
+        var audio = SelectedAdapter(necConfiguration)?.GetAudioConfiguration(necConfiguration) ?? necConfiguration.Audio ?? new AudioConfiguration();
         var result = FirmwareFunctions.Apply(necConfiguration, values) with
         {
             Options = options,
@@ -356,7 +356,7 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(necConfiguration);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = necConfiguration.Audio ?? new AudioConfiguration();
+        var audio = adapter.GetAudioConfiguration(necConfiguration);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

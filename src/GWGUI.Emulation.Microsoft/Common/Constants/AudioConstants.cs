@@ -2,6 +2,11 @@ namespace GWGUI.Emulation.Microsoft.Common.Constants;
 
 internal static class AudioConstants
 {
+    /// <summary>Séparation stéréo complète en pourcentage, conservée lorsque ce réglage est applicable au cœur.</summary>
+    internal const int FullStereoSeparation = 100;
+    /// <summary>Choix de latence déjà proposés par les réglages du module, en millisecondes.</summary>
+    internal static IReadOnlyList<int> LatencyChoicesMilliseconds { get; } = Array.AsReadOnly<int>([20, 35, 50, 75, 100, 150, 250]);
+
     internal const int StereoChannelCount = 2;
     internal const int LeftChannelIndex = 0;
     internal const int RightChannelIndex = 1;

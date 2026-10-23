@@ -175,7 +175,7 @@ internal sealed class Engine
             optionKey => firmwareFields.Contains(optionKey) || optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));
-        var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
+        var audio = adapter?.GetAudioConfiguration(sony) ?? sony.Audio ?? new AudioConfiguration();
         var applied = adapter is { } ? adapter.ApplySettings(sony with { Options = options }, values) : sony with { Options = options };
         var updated = applied with
         {
@@ -187,8 +187,8 @@ internal sealed class Engine
                 LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
-        if (adapter is not IEmulatorSettingsAdapter settingsAdapter) return updated;
-        updated = updated with { Audio = settingsAdapter.GetAudioConfiguration(updated) };
+        if (adapter is null) return updated;
+        updated = updated with { Audio = adapter.GetAudioConfiguration(updated) };
         return updated.GraphicsApi is { } api ? adapter.ApplyVideoSettings(updated, api) : updated;
     }
 
@@ -310,7 +310,7 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(sony);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = adapter is IEmulatorSettingsAdapter settingsAdapter ? settingsAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
+        var audio = adapter.GetAudioConfiguration(sony);
         sony = sony with { Audio = audio };
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,

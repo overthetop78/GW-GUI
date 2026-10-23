@@ -1,3 +1,4 @@
+using CommonAudioFunctions = GWGUI.Emulation.Example.Common.Functions.AudioFunctions;
 using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Example.Common.Interfaces;
@@ -9,6 +10,15 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
+    AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => new(
+        CommonAudioFunctions.Processing.ResolveRuntimeOutput(configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
+        CommonAudioFunctions.Processing.ResolveRuntimeLatency(configuration.Options, SettingsConstants.AudioLatency));
+
+    /// <summary>Conserve les choix de latence existants, remplacés par les contraintes du cœur lorsqu’il les redéfinit.</summary>
+    IReadOnlyList<int> IEmulatorSettings.GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConstants.LatencyChoicesMilliseconds;
+
+
     /// <summary>Conserve les options lorsque le cœur ne possède aucune conversion du choix graphique de l'hôte.</summary>
     /// <remarks>La présentation des images reste sous la responsabilité de l'hôte ; cette opération ne démarre aucun cœur et ne possède aucune surface graphique.</remarks>
     MachineConfiguration IEmulatorVideoSettings.ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) => configuration;

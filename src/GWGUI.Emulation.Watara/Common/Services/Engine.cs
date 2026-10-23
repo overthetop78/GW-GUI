@@ -3,7 +3,6 @@ using GWGUI.Emulation.Watara.Common.Dictionaries;
 
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
-using AudioFunctions = GWGUI.Emulation.Watara.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
 using System.Globalization;
 using System.IO;
@@ -219,13 +218,12 @@ internal sealed class Engine
         var current = Require(configuration);
         var adapter = this.Adapter(current);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var output = AudioFunctions.Processing.ResolveRuntimeOutput(current.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput);
-        var latency = AudioFunctions.Processing.ResolveRuntimeLatency(current.Options, SettingsConstants.AudioLatency);
+        var audio = adapter.GetAudioConfiguration(current);
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,
             services.HostExecutablePath,
-            () => services.CreateAudioOutput(output, latency),
+            () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat))
         );
         var storage = StorageSettingsFunctions.Describe(current);

@@ -176,7 +176,7 @@ internal sealed class Engine
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) return true;
                 return false;
             });
-        var audio = nintendo.Audio ?? new AudioConfiguration();
+        var audio = SelectedAdapter(nintendo)?.GetAudioConfiguration(nintendo) ?? nintendo.Audio ?? new AudioConfiguration();
         var result = FirmwareConfigurationFunctions.Apply(nintendo, values, this.Adapter(nintendo)) with
         {
             Options = options,
@@ -302,7 +302,7 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(nintendo);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = nintendo.Audio ?? new AudioConfiguration();
+        var audio = adapter.GetAudioConfiguration(nintendo);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

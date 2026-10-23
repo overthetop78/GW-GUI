@@ -173,7 +173,7 @@ internal sealed class Engine
             optionKey => optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ConfigurationStoreConstants.TemporaryNameSeparator, StringComparison.Ordinal));
-        var audio = amstrad.Audio ?? new AudioConfiguration();
+        var audio = SelectedAdapter(amstrad)?.GetAudioConfiguration(amstrad) ?? amstrad.Audio ?? new AudioConfiguration();
         var result = amstrad with
         {
             Options = options,
@@ -307,7 +307,7 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(amstrad);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = amstrad.Audio ?? new AudioConfiguration();
+        var audio = adapter.GetAudioConfiguration(amstrad);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

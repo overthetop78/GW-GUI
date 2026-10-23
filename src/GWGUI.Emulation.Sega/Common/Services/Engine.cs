@@ -170,7 +170,7 @@ internal sealed class Engine
             optionKey => optionKey is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || optionKey.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal));
-        var audio = sega.Audio ?? new AudioConfiguration();
+        var audio = SelectedAdapter(sega)?.GetAudioConfiguration(sega) ?? sega.Audio ?? new AudioConfiguration();
         var result = FirmwareConfigurationFunctions.Apply(sega with
         {
             Options = options,
@@ -323,7 +323,7 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(sega);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
-        var audio = sega.Audio ?? new AudioConfiguration();
+        var audio = adapter.GetAudioConfiguration(sega);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

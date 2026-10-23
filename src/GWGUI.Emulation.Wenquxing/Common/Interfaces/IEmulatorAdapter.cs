@@ -1,3 +1,4 @@
+using CommonAudioFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.AudioFunctions;
 using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.ControllerFunctions;
 using PeripheralCategory = GWGUI.Emulation.Enums.EmulationPeripheralCategory;
@@ -8,6 +9,15 @@ using GWGUI.Emulation.Wenquxing.Common.Services;
 namespace GWGUI.Emulation.Wenquxing.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la résolution des valeurs audio déjà utilisée par la famille.</summary>
+    AudioConfiguration IEmulatorSettings.GetAudioConfiguration(MachineConfiguration configuration) => new(
+        CommonAudioFunctions.Processing.ResolveRuntimeOutput(configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
+        CommonAudioFunctions.Processing.ResolveRuntimeLatency(configuration.Options, SettingsConstants.AudioLatency));
+
+    /// <summary>Conserve les choix de latence existants, remplacés par les contraintes du cœur lorsqu’il les redéfinit.</summary>
+    IReadOnlyList<int> IEmulatorSettings.GetAudioLatencyChoices(MachineConfiguration configuration) => EmulationSettingConstants.AudioLatencyMillisecondsChoices;
+
+
     /// <summary>Conserve les options lorsque le cœur ne possède aucune conversion du choix graphique de l'hôte.</summary>
     /// <remarks>La présentation des images reste sous la responsabilité de l'hôte ; cette opération ne démarre aucun cœur et ne possède aucune surface graphique.</remarks>
     MachineConfiguration IEmulatorVideoSettings.ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) => configuration;

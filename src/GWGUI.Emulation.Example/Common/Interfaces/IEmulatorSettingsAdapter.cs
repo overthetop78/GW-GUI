@@ -16,14 +16,4 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// <param name="configuration">Configuration empruntée à décrire.</param>
     /// <returns>Capacité de mémoire principale en KiB.</returns>
     int GetMemoryKib(MachineConfiguration configuration);
-
-    /// <summary>Décrit les latences audio autorisées pour cette configuration.</summary>
-    /// <param name="configuration">Configuration dont les contraintes de sortie sont consultées.</param>
-    /// <returns>Choix de latence en millisecondes, conservés dans leur ordre de présentation.</returns>
-    IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration);
-
-    /// <summary>Résout les réglages audio effectifs, y compris les choix propres au backend.</summary>
-    /// <param name="configuration">Configuration empruntée contenant les valeurs enregistrées.</param>
-    /// <returns>Réglages audio utilisables par le contrôleur de sortie Common.</returns>
-    AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration);
 }

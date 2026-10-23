@@ -12,8 +12,8 @@ internal static partial class SettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.ResourceAudioOutput, Value(configuration, VideoAudioSettingsConstants.AudioOutputOption, VideoAudioSettingsConstants.DefaultAudioOutput), DefaultAudioOutput()) with
             { ChoiceSource = EmulationSettingsChoiceSource.AudioOutputDevices },
             Select(VideoAudioSettingsConstants.AudioLatencyOption, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio,
-                SettingsDescriptionFunctionsConstants.ResourceAudioLatency, Value(configuration, VideoAudioSettingsConstants.AudioLatencyOption, VideoAudioSettingsConstants.DefaultAudioLatencyMilliseconds.ToString()),
-                VideoAudioSettingsConstants.AudioLatenciesMilliseconds.Select(Milliseconds)),
+                SettingsDescriptionFunctionsConstants.ResourceAudioLatency, Value(configuration, VideoAudioSettingsConstants.AudioLatencyOption, AudioConstants.DefaultLatencyMilliseconds.ToString()),
+                AudioConstants.LatencyChoicesMilliseconds.Select(Milliseconds)),
             Select(VideoAudioSettingsConstants.AudioVolumeOption, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio,
                 SettingsDescriptionFunctionsConstants.ExplorerVolume, Value(configuration, VideoAudioSettingsConstants.AudioVolumeOption, VideoAudioSettingsConstants.DefaultAudioVolumePercent.ToString()), Percentages(
                         VideoAudioSettingsConstants.MinimumVolumePercent,

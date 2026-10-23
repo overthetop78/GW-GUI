@@ -168,7 +168,7 @@ internal sealed class Engine
             optionKey => firmwareFields.Contains(optionKey) || optionKey is StorageDirectorySettings.HardDiskDirectory or MachineSettingsConstants.AudioEnabled
                 or MachineSettingsConstants.AudioOutput
                 or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation);
-        var currentAudio = current.Audio ?? new AudioConfiguration();
+        var currentAudio = SelectedAdapter(current)?.GetAudioConfiguration(current) ?? current.Audio ?? new AudioConfiguration();
         var hasOutput = values.TryGetValue(MachineSettingsConstants.AudioOutput, out var output);
         var latency = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioLatency), out var latencyValue) ? latencyValue : currentAudio.LatencyMilliseconds;
         var stereo = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioStereoSeparation), out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
@@ -351,7 +351,7 @@ internal sealed class Engine
         var emulator = this.Adapter(runtime);
         var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken).ConfigureAwait(false)
             ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(emulator.EmulatorId);
-        var audio = runtime.Audio ?? new AudioConfiguration();
+        var audio = emulator.GetAudioConfiguration(runtime);
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

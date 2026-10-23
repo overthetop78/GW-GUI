@@ -351,12 +351,10 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var corePath = await this.Adapter(atari).FindInstalledCorePathAsync(ManagementContext, cancellationToken).ConfigureAwait(false)
             ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(this.Adapter(atari).EmulatorId);
-        var audioDevice = atari.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioOutputOption);
-        if (string.Equals(audioDevice, VideoAudioSettingsConstants.DefaultAudioOutput, StringComparison.Ordinal)) audioDevice = null;
-        var latency = atari.Options.TryGetValue(VideoAudioSettingsConstants.AudioLatencyOption, out var configuredLatency) && int.TryParse(configuredLatency, out var parsedLatency) ? parsedLatency : VideoAudioSettingsConstants.DefaultAudioLatencyMilliseconds;
+        var audio = this.Adapter(atari).GetAudioConfiguration(atari);
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
-            () => services.CreateAudioOutput(audioDevice, latency),
+            () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
         var storage = StorageSettingsFunctions.Describe(atari);
         var devices = storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
