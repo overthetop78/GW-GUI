@@ -19,8 +19,11 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation ? [PlayStationFirmware.Selected] : CoreDefinition.Firmware;
     public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
-    public virtual void ApplySettingsOptions(Dictionary<string, string> options, IReadOnlyDictionary<string, string?> values)
+    /// <summary>Applique les choix de multitap aux options préparées et conserve les autres données de configuration.</summary>
+    /// <remarks>Les clés temporaires de ports sont remplacées par la valeur native combinée ; les options empruntées restent inchangées.</remarks>
+    public virtual MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
+        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var (multitap, mode) in ControllerOptionConstants.MultitapModes)
         {
             if (!values.ContainsKey(multitap + ".port1") && !values.ContainsKey(multitap + ".port2")) continue;
@@ -34,6 +37,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
             options.Remove(multitap + ".port1");
             options.Remove(multitap + ".port2");
         }
+        return configuration with { Options = options };
     }
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
     public virtual IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => [];

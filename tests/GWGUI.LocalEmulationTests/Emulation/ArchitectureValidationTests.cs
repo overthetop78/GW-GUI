@@ -262,9 +262,9 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void SettingsApplicationUsesTheSameContractInAppleCommodoreAndExample()
+    public void SettingsApplicationUsesTheSameContractInAppleCommodoreSonyAndExample()
     {
-        foreach (var family in new[] { "Apple", "Commodore", "Example" })
+        foreach (var family in new[] { "Apple", "Commodore", "Sony", "Example" })
         {
             var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
             var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorSettingsApplication", throwOnError: true)!;
@@ -279,7 +279,7 @@ public sealed class ArchitectureValidationTests
             Assert.NotEmpty(implementations);
             foreach (var implementation in implementations)
                 Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
-            Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetMethods()), candidate => candidate.Name == "ApplyBackendSettings");
+            Assert.DoesNotContain(assembly.GetTypes().SelectMany(type => type.GetMethods()), candidate => candidate.Name is "ApplyBackendSettings" or "ApplySettingsOptions");
             if (family == "Example")
             {
                 Assert.Equal(3, implementations.Length);
@@ -713,7 +713,7 @@ public sealed class ArchitectureValidationTests
             if (contractName == "IEmulatorSettings")
             {
                 var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
-                if (extension is not null && root != "GWGUI.Emulation.Snk")
+                if (extension is not null)
                     Assert.Contains(contract, extension.GetInterfaces());
             }
             if (contractName == "IEmulatorPointerCapabilities")

@@ -87,7 +87,7 @@ public sealed class AdapterPresentationPolicyTests
     [InlineData("pcsx2_multitap", "disabled", "port1", "port2", "both")]
     public void MultitapUpdatesMergeOtherPortAndRemoveTemporaryKeys(string key, string disabled, string port1, string port2, string both)
     {
-        IEmulatorSettingsAdapter adapter = new Pcsx2MachineFactory();
+        IEmulatorSettingsApplication adapter = new Pcsx2MachineFactory();
         foreach (var previous in new[] { disabled, port1, port2, both })
         foreach (var selected in new[] { false, true })
         {
@@ -95,15 +95,21 @@ public sealed class AdapterPresentationPolicyTests
             {
                 [key] = previous, [key + ".port1"] = "temporary", [key + ".port2"] = "temporary", ["other"] = "kept"
             };
-            adapter.ApplySettingsOptions(options, new Dictionary<string, string?>
+            var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2", Options: options);
+            var updated = adapter.ApplySettings(configuration, new Dictionary<string, string?>
             {
                 [key + ".port1"] = selected ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled
             });
             var second = previous == port2 || previous == both;
-            Assert.Equal(selected ? second ? both : port1 : second ? port2 : disabled, options[key]);
-            Assert.False(options.ContainsKey(key + ".port1"));
-            Assert.False(options.ContainsKey(key + ".port2"));
-            Assert.Equal("kept", options["other"]);
+            Assert.Equal(selected ? second ? both : port1 : second ? port2 : disabled, updated.Options![key]);
+            Assert.False(updated.Options!.ContainsKey(key + ".port1"));
+            Assert.False(updated.Options!.ContainsKey(key + ".port2"));
+            Assert.Equal("kept", updated.Options!["other"]);
+            Assert.Equal(configuration with { Options = updated.Options }, updated);
+            Assert.Same(options, configuration.Options);
+            Assert.Equal(previous, options[key]);
+            Assert.Equal("temporary", options[key + ".port1"]);
+            Assert.Equal("temporary", options[key + ".port2"]);
         }
     }
 }

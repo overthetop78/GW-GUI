@@ -7322,3 +7322,19 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs : rendre la classe interne, conserver ses membres et ses traitements d’installation, de recherche ou d’hébergement du cœur.
   - [x] Vérifier les contrats et les chemins d’exécution des 24 familles.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : étendre le contrôle de visibilité aux services des backends de chaque famille ; comparer les corps de code, exécuter les tests locaux et vérifier le build Debug des 23 modules et d’Example.
+
+## Application et description des réglages par les contrats d’Example
+
+- [x] Raccorder les traitements de réglages existants aux contrats Common correspondants.
+  - [x] Séparer l’application des réglages Sony de leur description.
+    - [x] Créer src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsApplication.cs : reprendre le contrat ApplySettings(configuration, values) documenté dans Example.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat d’application des réglages.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer ApplySettingsOptions du contrat de description.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : reprendre le traitement multitap dans ApplySettings, retourner une configuration avec les options traitées sans modifier le dictionnaire initial.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : appeler le contrat ApplySettings au même emplacement dans la préparation, conserver les règles audio, firmware et vidéo existantes.
+  - [x] Raccorder la description SNK au contrat de réglages.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorSettingsAdapter.cs : hériter de IEmulatorSettings et reprendre la description Common déjà utilisée par IEmulatorAdapter.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorSettingsAdapter et retirer la déclaration de description déplacée.
+  - [x] Vérifier les contrats et les comportements conservés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/AdapterPresentationPolicyTests.cs : appeler ApplySettings pour vérifier les mêmes fusions multitap et la préservation de la configuration initiale.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : inclure Sony dans le contrôle du contrat d’application, retirer l’exception SNK du contrôle d’héritage ; exécuter les tests locaux et vérifier le build Debug des 23 modules et d’Example.
