@@ -38,14 +38,29 @@ internal static class FirmwareConfigurationFunctions
         var candidates = new List<EmulationFirmwareCandidate>();
         var slots = Slots(configuration, adapter);
         foreach (var path in Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            using var stream = File.OpenRead(path);
-            var digest = CommonCoreHostFunctions.StateFiles.HashStream(stream);
-            var name = Path.GetFileName(path);
-            foreach (var slot in MatchingSlots(configuration.Model, slots, name))
-                candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
-        }
+            candidates.AddRange(InspectFile(configuration, path, slots, cancellationToken));
+        return candidates;
+    }
+
+    /// <summary>Inspecte un fichier et conserve tous ses rôles de firmware possibles.</summary>
+    /// <param name="configuration">Configuration empruntée dont les emplacements sont consultés.</param>
+    /// <param name="path">Fichier source, conservé en lecture seule.</param>
+    /// <param name="adapter">Backend emprunté fournissant ses emplacements de firmware.</param>
+    /// <param name="cancellationToken">Annulation contrôlée avant la lecture du fichier.</param>
+    /// <returns>Tous les candidats reconnus ou possibles, avec leurs identités et destinations.</returns>
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, IEmulatorAdapter adapter, CancellationToken cancellationToken) =>
+        ValueTask.FromResult(InspectFile(configuration, path, Slots(configuration, adapter), cancellationToken));
+
+    /// <summary>Réutilise les emplacements déjà obtenus par le parcours de dossier et libère les lectures avant le retour.</summary>
+    private static IReadOnlyList<EmulationFirmwareCandidate> InspectFile(MachineConfiguration configuration, string path, IReadOnlyList<FirmwareSlot> slots, CancellationToken cancellationToken)
+    {
+        var candidates = new List<EmulationFirmwareCandidate>();
+        cancellationToken.ThrowIfCancellationRequested();
+        using var stream = File.OpenRead(path);
+        var digest = CommonCoreHostFunctions.StateFiles.HashStream(stream);
+        var name = Path.GetFileName(path);
+        foreach (var slot in MatchingSlots(configuration.Model, slots, name))
+            candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
         return candidates;
     }
 

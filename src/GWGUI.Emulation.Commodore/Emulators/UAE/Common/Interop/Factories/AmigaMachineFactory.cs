@@ -27,6 +27,8 @@ internal abstract class AmigaMachineFactory : MachineFactory
     public override IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => AmigaInputSettingsFunctions.KeyboardDefinitions(configuration);
     public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => AmigaInputSettingsFunctions.Apply(configuration);
     public override IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) => AmigaFirmwareFunctions.Scan(configuration.Model, directory, cancellationToken);
+    /// <inheritdoc/>
+    public override ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => AmigaFirmwareFunctions.ScanFileAsync(configuration.Model, path, cancellationToken);
     public override ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => AmigaRuntimeMediaFunctions.PrepareMediaAsync(media, conversionDirectory);
     public override Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => AmigaRuntimeMediaFunctions.PrepareConfigurationAsync(configuration, conversionDirectory);
     public override IReadOnlySet<EmulationKey> SoftResetKeys { get; } = new HashSet<EmulationKey>

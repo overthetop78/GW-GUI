@@ -8,7 +8,17 @@ internal static class AmigaFirmwareFunctions
         new AmigaFirmwareCatalog(directory).Scan().Select(firmware =>
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
+            return ToCandidate(firmware, machineId);
+        }).ToArray();
+
+    /// <summary>Inspecte un fichier avec le même catalogue et les mêmes destinations que le parcours du dossier.</summary>
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(string machineId, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([ToCandidate(AmigaFirmwareCatalog.Inspect(path), machineId)]);
+    }
+
+    private static EmulationFirmwareCandidate ToCandidate(AmigaFirmware firmware, string machineId) => new(firmware.Sha256, firmware.Path,
                 firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
                 Compatibility(firmware, machineId), firmware.Type switch
                 {
@@ -17,7 +27,6 @@ internal static class AmigaFirmwareFunctions
                     FirmwareType.RomKey => SettingsConstants.RomKeyPath,
                     _ => null
                 });
-        }).ToArray();
 
     private static EmulationFirmwareCompatibility Compatibility(AmigaFirmware firmware, string machineId)
     {

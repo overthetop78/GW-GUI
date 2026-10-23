@@ -13,6 +13,13 @@ namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
 internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
     /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+    }
+
+    /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 
     /// <inheritdoc/>

@@ -47,7 +47,7 @@ public sealed class EmulationArchitectureTests
         {
             "ApplyDeviceSettings", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "Create", "Definition", "DescribeDeviceSettings", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
             "FindReleasesAsync", "GetInstallationAsync", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetOutputResolution", "HasFixedMemoryCardDirectories", "InstallAsync", "MapInput", "MemoryCardInsertedOptionKey", "RequiresMediaRestart", "RequiresOptionRestart",
-            "ResolveConfiguredMedia", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
+            "ResolveConfiguredMedia", "ScanFirmwareFileAsync", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey"
         }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));

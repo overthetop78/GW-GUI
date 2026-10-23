@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Nec.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication
+internal interface IEmulatorAdapter : IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication
 {
     /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>

@@ -12,6 +12,14 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
 {
     /// <inheritdoc/>
+    /// <remarks>Le firmware de ce backend est intégré ; les adaptations à firmware sélectionnable redéfinissent cette inspection.</remarks>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+    }
+
+    /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.DescribeBasic(configuration);
 
     /// <inheritdoc/>

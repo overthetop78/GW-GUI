@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Epoch.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Epoch.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CommonMediaRuntimeFunctions = GWGUI.Emulation.Epoch.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Epoch.Common.Functions.CoreReleaseFunctions;
@@ -13,6 +14,9 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await CommonFirmwareInspection.ScanFileAsync(path, configuration.Model, cancellationToken).ConfigureAwait(false)];
+
     /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 

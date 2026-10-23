@@ -8,6 +8,9 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
 {
     /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => GWGUI.Emulation.Atari.Common.Services.Engine.ScanFirmwareFileAsync(configuration, path, cancellationToken);
+
+    /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 
     /// <inheritdoc/>

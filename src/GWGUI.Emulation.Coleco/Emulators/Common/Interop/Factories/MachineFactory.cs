@@ -14,6 +14,9 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await GWGUI.Emulation.Coleco.Common.Machines.Common.Functions.FirmwareFunctions.ScanFileAsync(path, configuration.Model, cancellationToken).ConfigureAwait(false)];
+
+    /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 
     /// <inheritdoc/>

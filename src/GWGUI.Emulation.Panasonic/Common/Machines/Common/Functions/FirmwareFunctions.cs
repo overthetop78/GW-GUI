@@ -41,16 +41,34 @@ internal static class FirmwareFunctions
         if (capabilities is null)
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
         var requirements = capabilities.DescribeFirmware(configuration);
-        CommonCoreHostFunctions.FirmwareProcessing.ScanRecursive(directory, path =>
-        {
-            var matches = requirements.Where(requirement => capabilities.IsFirmwareCompatible(configuration, requirement.Role, path)).ToArray();
-            if (matches.Length == 0)
-                result.Add(new(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Unknown));
-            foreach (var requirement in matches)
-                result.Add(new(requirement.Role + ":" + path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Compatible, requirement.FieldId));
-        }, cancellationToken);
+        CommonCoreHostFunctions.FirmwareProcessing.ScanRecursive(directory, path => result.AddRange(InspectFile(configuration, path, capabilities, requirements, cancellationToken)), cancellationToken);
 
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
+    }
+
+    /// <summary>Inspecte un fichier avec les exigences et compatibilités déjà décrites par le backend.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et de son cœur.</param>
+    /// <param name="path">Fichier source conservé sous la responsabilité de son propriétaire.</param>
+    /// <param name="cancellationToken">Annulation contrôlée avant les vérifications.</param>
+    /// <returns>Tous les rôles compatibles, ou le candidat inconnu conservé par le parcours existant.</returns>
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var capabilities = Capabilities(configuration);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(capabilities is null ? [] : InspectFile(configuration, path, capabilities, capabilities.DescribeFirmware(configuration), cancellationToken));
+    }
+
+    /// <summary>Réutilise les capacités empruntées et les exigences déjà résolues pour un parcours de dossier.</summary>
+    private static IReadOnlyList<EmulationFirmwareCandidate> InspectFile(MachineConfiguration configuration, string path, IEmulatorFirmwareCapabilities capabilities, IReadOnlyList<FirmwareRequirement> requirements, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var result = new List<EmulationFirmwareCandidate>();
+        var matches = requirements.Where(requirement => capabilities.IsFirmwareCompatible(configuration, requirement.Role, path)).ToArray();
+        if (matches.Length == 0)
+            result.Add(new(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Unknown));
+        foreach (var requirement in matches)
+            result.Add(new(requirement.Role + ":" + path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Compatible, requirement.FieldId));
+        return result;
     }
 
     internal static MachineConfiguration Select(MachineConfiguration configuration, EmulationFirmwareCandidate candidate)

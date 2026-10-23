@@ -12,6 +12,13 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Factories;
 internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings
 {
     /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+    }
+
+    /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 
     /// <inheritdoc/>

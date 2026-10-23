@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
@@ -12,6 +13,9 @@ using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.Runti
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
 internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities
 {
+    /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, cancellationToken);
+
     /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 

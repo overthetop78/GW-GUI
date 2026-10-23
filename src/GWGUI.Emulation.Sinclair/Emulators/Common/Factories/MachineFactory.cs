@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
@@ -6,6 +7,9 @@ using System.IO;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorInitialContentSettings, IEmulatorCapabilities, IEmulatorControllerAdapter
 {
+    /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await CommonFirmwareInspection.ScanFileAsync(path, configuration.Model, configuration.Core, cancellationToken).ConfigureAwait(false)];
+
     /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 

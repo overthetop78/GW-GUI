@@ -46,15 +46,18 @@ internal abstract class MachineFactory : IEmulatorAdapter
     public abstract IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
     public virtual IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {
-        var slots = GetFirmwareSlots(configuration);
         return Directory.EnumerateFiles(directory, MachineSettingsConstants.AllFirmwareFiles, SearchOption.AllDirectories)
-            .SelectMany(path =>
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                using var stream = File.OpenRead(path);
-                var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
-                return slots.Select(slot => new EmulationFirmwareCandidate( sha256 + MachineSettingsConstants.CandidateRoleSeparator + slot.FieldId, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.PartiallyCompatible, slot.FieldId));
-            }).ToArray();
+            .SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray();
+    }
+
+    /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var slots = GetFirmwareSlots(configuration);
+        using var stream = File.OpenRead(path);
+        var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(slots.Select(slot => new EmulationFirmwareCandidate(sha256 + MachineSettingsConstants.CandidateRoleSeparator + slot.FieldId, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.PartiallyCompatible, slot.FieldId)).ToArray());
     }
     public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
     public virtual Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);

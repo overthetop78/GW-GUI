@@ -1185,17 +1185,20 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration"), parameters[0].ParameterType);
             Assert.Equal(typeof(string), parameters[1].ParameterType);
             Assert.Equal(typeof(CancellationToken), parameters[2].ParameterType);
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
             var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
             foreach (var implementation in implementations)
             {
-                Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+                var target = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                Assert.False(target.IsAbstract);
+                Assert.True(target.IsPublic);
+                Assert.False(target.DeclaringType!.IsInterface);
                 Assert.Null(implementation.GetMethod("InspectFirmwareAsync"));
                 Assert.Null(implementation.GetMethod("ScanFirmwareAsync"));
             }
-            if (root is "GWGUI.Emulation.Apple" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Philips" or "GWGUI.Emulation.Snk")
+            if (root != "GWGUI.Emulation.Microsoft")
                 Assert.NotEmpty(implementations);
-            if (root == "GWGUI.Emulation.Example")
-                Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
         }
     }
 

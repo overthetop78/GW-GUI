@@ -253,14 +253,22 @@ internal sealed class Engine
         var paths = FirmwareScanFunctions.EnumerateCandidates(_firmwareDirectory).Where(path => string.Equals(Path.GetDirectoryName(path), GetFirmwareDirectory(machineId), StringComparison.OrdinalIgnoreCase));
         var entries = new List<EmulationFirmwareCandidate>();
         foreach (var path in paths)
-        {
-            var scanned = await FirmwareScanFunctions.ScanFileAsync(path, atari.Model, null, cancellationToken).ConfigureAwait(false);
-            var name = scanned.Definition?.Category == FirmwareCategory.Tos ? $"{MachineConfigurationConstants.TosLabel} {scanned.Definition.Version}" : Path.GetFileName(scanned.Path);
-            var compatibility = ToFirmwareCompatibility(scanned.Compatibility);
-            entries.Add(new EmulationFirmwareCandidate(scanned.Md5 ?? scanned.Path, scanned.Path, name, null,
-                compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible || scanned.Definition?.Category is null ? null : FirmwareSelectionFunctions.FieldId(atari.Model, scanned.Definition.Category.Value) ?? SettingsConstants.SystemFirmware));
-        }
+            entries.AddRange(await ScanFirmwareFileAsync(atari, path, cancellationToken).ConfigureAwait(false));
         return entries;
+    }
+
+    /// <summary>Inspecte un fichier par les catalogues existants et conserve sa projection vers le champ de firmware.</summary>
+    /// <param name="configuration">Configuration empruntée portant le modèle et les options.</param>
+    /// <param name="path">Fichier source ouvert uniquement par le lecteur existant.</param>
+    /// <param name="cancellationToken">Annulation transmise aux lectures et empreintes.</param>
+    /// <returns>Le candidat avec la même identité, le même libellé et la même destination que dans le parcours de dossier.</returns>
+    internal static async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        var scanned = await FirmwareScanFunctions.ScanFileAsync(path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
+        var name = scanned.Definition?.Category == FirmwareCategory.Tos ? $"{MachineConfigurationConstants.TosLabel} {scanned.Definition.Version}" : Path.GetFileName(scanned.Path);
+        var compatibility = ToFirmwareCompatibility(scanned.Compatibility);
+        return [new EmulationFirmwareCandidate(scanned.Md5 ?? scanned.Path, scanned.Path, name, null,
+            compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible || scanned.Definition?.Category is null ? null : FirmwareSelectionFunctions.FieldId(configuration.Model, scanned.Definition.Category.Value) ?? SettingsConstants.SystemFirmware)];
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)

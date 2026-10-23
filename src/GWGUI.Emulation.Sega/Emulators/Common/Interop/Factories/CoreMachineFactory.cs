@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.FirmwareConfigurationFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
@@ -11,6 +12,9 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, this, cancellationToken);
+
     /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 

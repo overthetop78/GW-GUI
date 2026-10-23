@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Nec.Common.Machines.Common.Functions.FirmwareFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
@@ -11,6 +12,9 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, cancellationToken);
+
     /// <inheritdoc/>
     public virtual bool SupportsPointer(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).MouseButtonCount > 0;
     /// <inheritdoc/>

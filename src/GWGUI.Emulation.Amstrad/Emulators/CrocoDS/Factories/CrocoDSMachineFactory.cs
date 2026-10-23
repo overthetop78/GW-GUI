@@ -11,6 +11,14 @@ namespace GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories;
 internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation, IEmulatorStorageSettings
 {
     /// <inheritdoc/>
+    /// <remarks>Le firmware de ce backend est intégré ; les adaptations à firmware sélectionnable redéfinissent cette inspection.</remarks>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+    }
+
+    /// <inheritdoc/>
     public bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration) && ModelCatalog.Get(configuration.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount;
 
     /// <inheritdoc/>

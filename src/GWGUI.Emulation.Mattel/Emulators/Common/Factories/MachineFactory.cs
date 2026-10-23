@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Mattel.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Mattel.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
 using GWGUI.Emulation.Mattel.Emulators.Common.Dictionaries;
@@ -7,6 +8,9 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await CommonFirmwareInspection.ScanFileAsync(path, configuration.Model, configuration.Core, cancellationToken).ConfigureAwait(false)];
+
     /// <inheritdoc/>
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 

@@ -1,3 +1,4 @@
+using CommonFirmwareInspection = GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
@@ -14,6 +15,9 @@ using NativeSettings = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.Setti
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Factories;
 internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities
 {
+    /// <inheritdoc/>
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, cancellationToken);
+
     /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
 
