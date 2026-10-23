@@ -25,7 +25,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
     private ExternalCoreExports? _exports;
     private VideoCallbackHost? _video;
     private AudioCallbackHost? _audio;
-    private EnvironmentCallbackHost? _environment;
+    private IEmulationEnvironmentCallbackHost? _environment;
     private InputCallbackHost? _input;
     private LoadedContent? _content;
     private bool _initialized, _loaded, _disposed;
@@ -67,7 +67,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
             _exports = CoreFunctions.ResolveExports(_library);
             _video = CommonCoreHostFunctions.NativeResources.CreateVideoCallbackHost();
             _audio = CommonCoreHostFunctions.NativeResources.CreateAudioCallbackHost();
-            _environment = new EnvironmentCallbackHost(_video, _audio, configuration.Options, Path.Combine(sessionDirectory, "System"), Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"));
+            _environment = CommonCoreHostFunctions.NativeResources.CreateEnvironmentCallbackHost(_video, _audio, configuration.Options, Path.Combine(sessionDirectory, "System"), Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"), OptionCallbackHost.Create);
             _input = new InputCallbackHost();
             CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(_exports, this);
             _exports.Initialize();
@@ -96,7 +96,11 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
 
     public void RunFrame() { RequireExports().Run(); ThrowCallbackFailure(); }
     public void HardReset() { _input?.Release(); RequireExports().Reset(); }
-    public void SetInput(EmulationInputSnapshot snapshot) => (_input ?? throw new InvalidOperationException()).Update(snapshot);
+    public void SetInput(EmulationInputSnapshot snapshot)
+    {
+        (_input ?? throw new InvalidOperationException()).Update(snapshot);
+        _environment?.SetInput(snapshot);
+    }
     public void SetOption(string key, string value) => (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { if (port < 0 || port >= ControllerConstants.PortCount || peripheral != PeripheralCategory.Supervision) throw new ArgumentException(nameof(port)); RequireExports().SetControllerPortDevice((uint)port, 1u); }
     public void InsertMedia(MediaConfiguration media) => throw MediaUnsupported();

@@ -5,11 +5,17 @@ using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Functions;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Emulation.Services;
 
 internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmentCallbackHost
 {
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void AudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
+    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyboardMap = ExternalCoreKeyboardFunctions.CreateKeyMap();
+    private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
+    private ExternalCoreApi.KeyboardEvent? _keyboard;
+    private AudioBufferStatusCallback? _audioBufferStatus;
     private enum NativePixelFormat { Rgb1555 = 0, Xrgb8888 = 1, Rgb565 = 2 }
     private const int EnglishLanguage = 0;
     private const int FrenchLanguage = 2;
@@ -41,13 +47,36 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
         finally { if (!completed) Dispose(); }
     }
     public ExternalCoreApi.EnvironmentCallback Callback { get; }
-    public ExternalCoreApi.KeyboardEvent? Keyboard { get; private set; }
+    public ExternalCoreApi.KeyboardEvent? Keyboard => _keyboard;
     public IReadOnlyList<EmulationEnabledOption> Options => _options.Options;
     public List<string> Diagnostics { get; } = [];
     public bool SupportsNoGame { get; private set; }
     public double FramesPerSecond { get; private set; }
     public Exception? Failure { get; private set; }
     public void SetOption(string key, string value) => _options.SetValue(key, value);
+    public int MinimumAudioLatencyMilliseconds { get; private set; }
+
+    public void SetInput(EmulationInputSnapshot snapshot)
+    {
+        if (_keyboard is null)
+        {
+            _previousKeys = new HashSet<EmulationKey>();
+            return;
+        }
+        ExternalCoreKeyboardFunctions.PublishTransitions(snapshot.Keys, KeyboardMap, ExternalCoreKeyboardFunctions.Modifiers(snapshot.Keys),
+            ref _previousKeys, ref _keyboard,
+            static key => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt,
+            ExternalCoreKeyboardFunctions.Character);
+    }
+
+    public void PublishAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_audioBufferStatus is not { } callback) return;
+        var active = status is { IsActive: true, CapacityFrames: > 0, SampleRate: > 0 };
+        var occupancy = active ? (uint)Math.Clamp((long)status!.Value.BufferedFrames * 100 / status.Value.CapacityFrames, 0, 100) : 0;
+        var underrun = active && status!.Value.BufferedFrames < Math.Ceiling(status.Value.SampleRate / Math.Max(1, FramesPerSecond));
+        callback(active, occupancy, underrun);
+    }
 
     public void ApplyAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
@@ -64,6 +93,13 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
             if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
             switch (command)
             {
+                case ExternalCoreApiConstants.SetAudioBufferStatusCallback:
+                    var audioCallback = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
+                    _audioBufferStatus = ExternalCoreEnvironmentFunctions.OptionalDelegate<AudioBufferStatusCallback>(audioCallback);
+                    return true;
+                case ExternalCoreApiConstants.SetMinimumAudioLatency:
+                    MinimumAudioLatencyMilliseconds = data == nint.Zero ? 0 : Math.Clamp(Marshal.ReadInt32(data), 0, 512);
+                    return true;
                 case ExternalCoreApiConstants.SetVariables: return _options.Register(data);
                 case ExternalCoreApiConstants.GetVariable: return _options.ReturnValue(data);
                 case ExternalCoreApiConstants.GetVariableUpdate: return _options.ReturnUpdated(data);
@@ -74,7 +110,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
                 case ExternalCoreApiConstants.SetControllerInfo: return data != nint.Zero;
                 case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
                 case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage);
-                case ExternalCoreApiConstants.SetKeyboardCallback: if (data == nint.Zero) return false; var pointer = Marshal.ReadIntPtr(data); Keyboard = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer); return true;
+                case ExternalCoreApiConstants.SetKeyboardCallback: if (data == nint.Zero) return false; var pointer = Marshal.ReadIntPtr(data); _keyboard = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer); return true;
                 case ExternalCoreApiConstants.GetLogInterface: return ExternalCoreEnvironmentFunctions.SetLogInterface(data, _log);
                 case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; ExternalCoreEnvironmentFunctions.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
                 case ExternalCoreApiConstants.SetPixelFormat:
@@ -101,11 +137,14 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     {
         if (_disposed) return;
         _disposed = true;
+        _audioBufferStatus = null;
+        MinimumAudioLatencyMilliseconds = 0;
+        _previousKeys = new HashSet<EmulationKey>();
         try { _files?.Dispose(); }
         finally
         {
             try { _options?.Dispose(); }
-            finally { foreach (var directory in _directories.Values) directory.Dispose(); _directories.Clear(); Keyboard = null; Diagnostics.Clear(); Failure = null; }
+            finally { foreach (var directory in _directories.Values) directory.Dispose(); _directories.Clear(); _keyboard = null; Diagnostics.Clear(); Failure = null; }
         }
     }
 }

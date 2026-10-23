@@ -93,6 +93,8 @@ public static class ExternalCoreApiConstants
     public const uint SetDiskControlExtended = 58;
     public const uint GetMessageInterfaceVersion = 59;
     public const uint SetMessageExtended = 60;
+    public const uint SetAudioBufferStatusCallback = 62;
+    public const uint SetMinimumAudioLatency = 63;
     public const uint SetFastForwardingOverride = 64;
     public const uint SetContentInfoOverride = 65;
     public const uint SetCoreOptionsV2 = 67;

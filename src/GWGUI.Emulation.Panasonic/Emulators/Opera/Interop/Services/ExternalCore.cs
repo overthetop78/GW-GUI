@@ -10,7 +10,7 @@ using NativeFirmware = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.Firmw
 using NativeOptions = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
-internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
     ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
@@ -25,7 +25,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
     private ExternalCoreExports? _exports;
     private VideoCallbackHost? _video;
     private AudioCallbackHost? _audio;
-    private EnvironmentCallbackHost? _environment;
+    private IEmulationEnvironmentCallbackHost? _environment;
     private InputCallbackHost? _input;
     private MachineConfiguration? _configuration;
     private MediaConfiguration? _content;
@@ -40,6 +40,8 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
     }
 
     public Emulator Emulator => Emulator.Opera;
+    public int MinimumAudioLatencyMilliseconds => _environment?.MinimumAudioLatencyMilliseconds ?? 0;
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => _environment?.PublishAudioBufferStatus(status);
     public VideoFrame? LatestVideoFrame => _video?.LatestFrame;
     public AudioChunk? LatestAudioChunk => _audio?.LatestChunk;
     public IReadOnlyList<CoreOption> Options => _environment?.Options ?? [];
@@ -83,7 +85,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
             _exports = CoreFunctions.ResolveExports(_library);
             _video = CommonCoreHostFunctions.NativeResources.CreateVideoCallbackHost();
             _audio = CommonCoreHostFunctions.NativeResources.CreateAudioCallbackHost();
-            _environment = new EnvironmentCallbackHost(_video, _audio, NativeOptions.Prepare(configuration), system, Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"));
+            _environment = CommonCoreHostFunctions.NativeResources.CreateEnvironmentCallbackHost(_video, _audio, NativeOptions.Prepare(configuration), system, Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"), OptionCallbackHost.Create);
             _input = new InputCallbackHost();
             CommonCoreHostFunctions.EnvironmentProcessing.InstallCallbacks(_exports, this);
             _exports.Initialize();
@@ -180,7 +182,11 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         ThrowCallbackFailure();
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => (_input ?? throw new InvalidOperationException()).Update(snapshot, _video?.LatestFrame?.Width ?? 320, _video?.LatestFrame?.Height ?? 240);
+    public void SetInput(EmulationInputSnapshot snapshot)
+    {
+        (_input ?? throw new InvalidOperationException()).Update(snapshot, _video?.LatestFrame?.Width ?? 320, _video?.LatestFrame?.Height ?? 240);
+        _environment?.SetInput(snapshot);
+    }
     public void SetOption(string key, string value)
     {
         (_environment ?? throw new InvalidOperationException()).SetOption(key, value);

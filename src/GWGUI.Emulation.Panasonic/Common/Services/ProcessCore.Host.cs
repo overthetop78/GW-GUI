@@ -15,7 +15,7 @@ using GWGUI.Emulation.Functions;
 namespace GWGUI.Emulation.Panasonic.Common.Services;
 
 [SupportedOSPlatform(CoreHostConstants.Windows)]
-internal sealed partial class ProcessCore : IEmulatorCore
+internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
 {
     private Process StartHostProcess(string pipeName, string videoMapName)
     {
@@ -53,6 +53,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         SupportsSaveStates = reader.ReadBoolean();
         if (reader.ReadBoolean()) Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
+        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
     }
 
     private void ReadRuntimeStatus(BinaryReader reader)

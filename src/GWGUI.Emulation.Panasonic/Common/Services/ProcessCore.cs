@@ -17,7 +17,7 @@ using GWGUI.Emulation.Functions;
 namespace GWGUI.Emulation.Panasonic.Common.Services;
 
 [SupportedOSPlatform(CoreHostConstants.Windows)]
-internal sealed partial class ProcessCore : IEmulatorCore
+internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
 {
     private readonly string _hostExecutablePath;
     private readonly string _hostCommand;
@@ -34,6 +34,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
     private Process? _process;
     private MemoryMappedFile? _videoMemory;
     private MemoryMappedViewAccessor? _videoMap;
+    private AudioOutputBufferStatus? _audioBufferStatus;
+    public int MinimumAudioLatencyMilliseconds { get; private set; }
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => _audioBufferStatus = status;
     private bool _initialized;
     private bool _connectionFailed;
     private bool _disposed;
@@ -108,7 +111,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => Request(HostCommand.RunFrame, writer => CoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
+    public void RunFrame() => Request(HostCommand.RunFrame, writer => { writer.Write(JsonSerializer.Serialize(_audioBufferStatus, CoreHostFunctions.JsonOptions)); CoreHostFunctions.WriteInput(writer, _input.Consume()); }, ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);
     public void Stop()

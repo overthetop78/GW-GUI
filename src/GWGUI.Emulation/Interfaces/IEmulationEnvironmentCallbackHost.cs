@@ -25,6 +25,16 @@ public interface IEmulationEnvironmentCallbackHost : IDisposable
     Exception? Failure { get; }
     /// <summary>Applique une valeur d’option avec les validations et la notification du propriétaire d’options.</summary>
     void SetOption(string key, string value);
+    /// <summary>Publie les transitions des touches vers le callback clavier enregistré par le cœur.</summary>
+    /// <param name="snapshot">Instantané emprunté ; le propriétaire conserve une copie des touches après publication.</param>
+    /// <remarks>Les relâchements précèdent les pressions. Sans callback, aucun événement natif n’est émis.</remarks>
+    void SetInput(EmulationInputSnapshot snapshot);
+    /// <summary>Latence minimale demandée par le cœur, en millisecondes ; zéro signifie aucune demande.</summary>
+    int MinimumAudioLatencyMilliseconds { get; }
+    /// <summary>Transmet le remplissage de la sortie audio au callback enregistré par le cœur.</summary>
+    /// <param name="status">État emprunté de la sortie physique ; null indique une sortie indisponible.</param>
+    /// <remarks>Le callback natif reste emprunté. Cette publication ne crée ni ne ferme la sortie audio.</remarks>
+    void PublishAudioBufferStatus(AudioOutputBufferStatus? status);
     /// <summary>Applique cadence, fréquence audio et rapport d’image annoncés par le cœur aux propriétaires empruntés.</summary>
     void ApplyAvInfo(ExternalCoreApi.SystemAvInfo info);
 }

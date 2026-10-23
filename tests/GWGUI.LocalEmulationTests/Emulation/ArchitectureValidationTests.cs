@@ -1125,6 +1125,29 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void SimpleEnvironmentCallbacksUseTheSharedOwnerAndKeepTheirOptionFactories()
+    {
+        foreach (var (family, emulator) in new[] { ("Panasonic", "Opera"), ("Watara", "Potator") })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = $"GWGUI.Emulation.{family}.Emulators.{emulator}.Interop.Services.";
+            Assert.Null(assembly.GetType(root + "EnvironmentCallbackHost"));
+            var core = assembly.GetType(root + "ExternalCore", throwOnError: true)!;
+            Assert.Equal(typeof(IEmulationEnvironmentCallbackHost), core.GetField("_environment", BindingFlags.NonPublic | BindingFlags.Instance)!.FieldType);
+            var feedback = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
+            Assert.True(feedback.IsAssignableFrom(core));
+            var process = assembly.GetType($"GWGUI.Emulation.{family}.Common.Services.ProcessCore", throwOnError: true)!;
+            Assert.True(feedback.IsAssignableFrom(process));
+            var optionsFactory = assembly.GetType(root + "OptionCallbackHost", throwOnError: true)!;
+            Assert.True(optionsFactory.IsAbstract && optionsFactory.IsSealed);
+            var create = optionsFactory.GetMethod("Create", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.Equal(typeof(IEmulationVariableOptionHost<EmulationEnabledOption>), create.ReturnType);
+            using var options = Assert.IsAssignableFrom<IEmulationVariableOptionHost<EmulationEnabledOption>>(create.Invoke(null, [new Dictionary<string, string>()]));
+            Assert.Empty(options.Options);
+        }
+    }
+
+    [Fact]
     public void EnvironmentFactoryDisposesOwnedOptionsAfterDirectoryValidationFails()
     {
         using var audio = EmulationSdk.NativeResources.CreateAudioCallbackHost();

@@ -7464,3 +7464,24 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier le raccordement et les décisions conservées.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure SupportsPointer et SupportsPointerCapture dans les opérations Common attendues, en conservant le contrôle des autres membres et des dépendances.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les deux opérations du contrat dans les 24 familles, leurs implémentations et les appels compilés des 23 runtimes ; comparer les calculs avant et après, exécuter les tests locaux et vérifier le Debug avec tous les modules.
+## Hôte d’environnement partagé pour les cœurs qui utilisent le même protocole
+
+- [x] Remplacer les copies par le service SDK existant en conservant les options et les échanges audio.
+  - [x] Raccorder le propriétaire partagé et les deux modules.
+    - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : centraliser les deux identifiants natifs de retour audio déjà utilisés par Watara.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationEnvironmentCallbackHost.cs : documenter la publication du clavier, du remplissage audio et de la latence minimale par cette interface existante.
+    - [x] Modifier src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs : reprendre le retour audio de Watara, réutiliser les fonctions clavier existantes et libérer les callbacks empruntés avec les autres ressources possédées.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/OptionCallbackHost.cs : remplacer le relais d’options par une fabrique renvoyant le propriétaire SDK existant, avec les mêmes descriptions et validations.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : créer et utiliser l’hôte par Common et son interface, transmettre les touches et exposer le retour audio sans changer la libération des propriétaires.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : reprendre les échanges de remplissage et de latence déjà présents dans la boucle Watara, avant et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : reprendre le contrat et les champs de retour audio ainsi que leur sérialisation déjà utilisés par Watara.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Host.cs : reprendre la lecture de latence du protocole Watara et le contrat de retour audio.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : reprendre la réception du remplissage et l’émission de la latence du protocole Watara, en conservant l’ordre des autres champs.
+    - [x] Supprimer src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs : supprimer la copie après raccordement au propriétaire partagé.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/OptionCallbackHost.cs : remplacer le relais d’options par une fabrique renvoyant le propriétaire SDK existant, avec les mêmes descriptions et validations.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs : créer et utiliser l’hôte par Common et son interface, transmettre les touches et conserver les échanges audio existants.
+    - [x] Supprimer src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs : supprimer la copie après reprise de ses commandes audio par le propriétaire partagé.
+  - [x] Vérifier les chemins d’exécution et les ressources.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : ajouter une vérification temporaire des commandes natives de démarrage sans média, clavier, remplissage audio et latence ; emprunter le dossier de sortie existant, libérer la mémoire native dans finally et disposer les propriétaires.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : retirer uniquement la vérification et son capteur temporaires après leur exécution, en conservant les contrôles durables et les ressources préexistantes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement des deux cœurs à l’interface et les fabriques d’options, conserver les contrôles de propriété des ressources ; exécuter les tests locaux puis vérifier le Debug avec tous les modules.
