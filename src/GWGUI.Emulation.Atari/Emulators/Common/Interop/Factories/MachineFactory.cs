@@ -6,6 +6,11 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
 {
+    /// <inheritdoc/>
+    public virtual bool SupportsPointer(MachineConfiguration configuration) => CompatibilityCatalog.Get(configuration.Model).VisibleTabs.Contains(SettingsTab.Mouse);
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;

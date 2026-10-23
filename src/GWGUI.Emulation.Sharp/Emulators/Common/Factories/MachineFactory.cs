@@ -5,6 +5,9 @@ using System.IO;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorCapabilities
 {
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => this is IEmulatorCapabilities { SupportsNoContent: true };
+
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;
     public string EmulatorId => CatalogEntry.Id;

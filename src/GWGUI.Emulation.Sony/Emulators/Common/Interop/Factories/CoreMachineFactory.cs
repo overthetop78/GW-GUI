@@ -12,6 +12,11 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats
 {
+    /// <inheritdoc/>
+    public virtual bool SupportsPointer(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).MouseButtonCount > 0;
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     protected abstract CoreDefinition CoreDefinition { get; }

@@ -286,14 +286,13 @@ internal sealed class Engine
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audioDevice, latency),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
-        var compatibility = CompatibilityCatalog.Get(atari.Model);
         var storage = StorageSettingsFunctions.Describe(atari);
         var devices = storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
         var mounted = atari.Media.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
         return new EmulationMachineRuntime(atari,
             CreateMachineFactory(this, atari, creationContext), devices, mounted,
             MachineCatalog.All.First(model => model.Id == atari.MachineId).DisplayResourceKey,
-            compatibility.VisibleTabs.Contains(SettingsTab.Mouse));
+            this.Adapter(atari).SupportsPointerCapture(atari));
     }
 
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(Engine engine, MachineConfiguration configuration, EmulatorCreationContext context) => media => engine.CreateMachine(WithMedia(configuration, media), context);

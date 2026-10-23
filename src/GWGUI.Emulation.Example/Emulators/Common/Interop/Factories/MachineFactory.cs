@@ -16,6 +16,9 @@ namespace GWGUI.Emulation.Example.Emulators.Common.Interop.Factories;
 /// Une machine créée possède son cœur et sa session ; en cas d’échec de création, le finally reprend leur nettoyage.</remarks>
 internal abstract class MachineFactory(Emulator emulator, string id, string name, string descriptionResourceKey) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => InputSettingsFunctions.SupportsPointerCapture(configuration.Input);
+
     /// <summary>Voie d’exécution choisie par cette fabrique.</summary>
     public Emulator Emulator { get; } = emulator;
     /// <inheritdoc/>

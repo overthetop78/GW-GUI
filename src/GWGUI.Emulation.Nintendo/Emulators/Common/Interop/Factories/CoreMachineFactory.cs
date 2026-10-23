@@ -11,6 +11,11 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Factories;
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual bool SupportsPointer(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).MouseButtonCount > 0;
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

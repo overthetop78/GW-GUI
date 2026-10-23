@@ -1,6 +1,9 @@
 namespace GWGUI.Emulation.Atari.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettings, IEmulatorInputMapper
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities
 {
+    /// <summary>Annonce par défaut l’absence d’entrées de pointage ; le backend déclare sa prise en charge effective.</summary>
+    bool IEmulatorPointerCapabilities.SupportsPointer(MachineConfiguration configuration) => false;
+
     /// <summary>Réutilise la projection Common existante sans changer les associations ni les règles matérielles.</summary>
     EmulationInputSnapshot IEmulatorInputMapper.MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => InputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model);
     /// <summary>Réutilise la description Common existante pour le contrat commun de réglages.</summary>

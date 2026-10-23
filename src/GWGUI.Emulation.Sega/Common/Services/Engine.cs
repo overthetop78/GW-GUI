@@ -267,7 +267,7 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(sega, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + sega.Model,
-            SupportsPointerCapture: ModelCatalog.Get(sega.Model).MouseButtonCount > 0);
+            SupportsPointerCapture: adapter.SupportsPointerCapture(sega));
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

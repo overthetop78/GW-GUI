@@ -670,7 +670,9 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces." + contractName, throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            var method = Assert.Single(contract.GetMethods());
+            var methods = contract.GetMethods();
+            Assert.Equal(contractName == "IEmulatorPointerCapabilities" ? 2 : 1, methods.Length);
+            var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
             Assert.Equal(returnType, method.ReturnType);
@@ -701,7 +703,7 @@ public sealed class ArchitectureValidationTests
             }
             foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
             {
-                Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
+                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, target => Assert.False(target.IsAbstract));
                 if (contractName == "IEmulatorPointerCapabilities")
                 {
                     Assert.Null(implementation.GetProperty("SupportsPointerCapture", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
@@ -718,6 +720,35 @@ public sealed class ArchitectureValidationTests
             }
             if (contractName == "IEmulatorPointerCapabilities")
             {
+                var capture = contract.GetMethod("SupportsPointerCapture")!;
+                Assert.True(capture.IsAbstract);
+                Assert.Equal(typeof(bool), capture.ReturnType);
+                var captureParameter = Assert.Single(capture.GetParameters());
+                Assert.Equal("configuration", captureParameter.Name);
+                Assert.Equal(parameter.ParameterType, captureParameter.ParameterType);
+                var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+                Assert.Contains(contract, adapterContract.GetInterfaces());
+                var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapterContract.IsAssignableFrom(type)).ToArray();
+                if (root == "GWGUI.Emulation.Microsoft")
+                    Assert.Empty(adapters);
+                else
+                {
+                    Assert.NotEmpty(adapters);
+                    var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+                    var runtime = engine.GetMethod("CreateRuntimeAsync")!;
+                    var stateMachine = runtime.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+                    var code = stateMachine.GetMethod("MoveNext", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)!.GetMethodBody()!.GetILAsByteArray()!;
+                    byte[] call = [0x6f, .. BitConverter.GetBytes(capture.MetadataToken)];
+                    Assert.True(code.AsSpan().IndexOf(call) >= 0, root);
+                }
+                foreach (var implementation in adapters)
+                {
+                    var mapping = implementation.GetInterfaceMap(contract);
+                    var target = mapping.TargetMethods[Array.FindIndex(mapping.InterfaceMethods, candidate => candidate.Name == "SupportsPointerCapture")];
+                    Assert.True(target.DeclaringType!.IsClass);
+                    Assert.Equal(implementation.GetMethod("SupportsPointerCapture"), target);
+                }
+
                 if (root == "GWGUI.Emulation.Amstrad")
                 {
                     var capabilities = assembly.GetType(root + ".Common.Interfaces.IEmulatorCapabilities")!;

@@ -299,7 +299,7 @@ internal sealed class Engine
         var mounted = emulator.ResolveConfiguredMedia(runtime);
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(this, runtime, creationContext), devices, mounted,
-            MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,
+            MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, emulator.SupportsPointerCapture(runtime),
             (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(runtime, media, services.ConvertedMediaDirectory));
     }
 

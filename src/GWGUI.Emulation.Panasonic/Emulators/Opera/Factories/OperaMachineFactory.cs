@@ -13,6 +13,11 @@ using NativeSettings = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.Setti
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Factories;
 internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities
 {
+    /// <inheritdoc/>
+    public bool SupportsPointer(MachineConfiguration configuration) => InputSettingsFunctions.SupportsPointerCapture(configuration.Input);
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Opera.ToString();

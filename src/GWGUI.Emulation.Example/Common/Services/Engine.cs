@@ -180,7 +180,7 @@ internal sealed class Engine
         var audio = adapter.GetAudioConfiguration(current);
         var context = new EmulatorCreationContext(services.SessionsDirectory, path, services.HostExecutablePath, () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds), value => Store.MemoryDirectory(value.Id));
         var storage = StorageSettingsFunctions.Describe(current);
-        return new(current, media => CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context), storage.AvailableDevices, storage.MountedMedia, HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, InputSettingsFunctions.SupportsPointerCapture(current.Input), (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
+        return new(current, media => CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context), storage.AvailableDevices, storage.MountedMedia, HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, adapter.SupportsPointerCapture(current), (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
     /// <summary>Résout la racine des firmwares après validation du modèle ; ne la crée pas implicitement.</summary>
     public string GetFirmwareDirectory(string machineId) { _ = ModelCatalog.Parse(machineId); return _firmwareDirectory ?? throw new InvalidOperationException(nameof(EmulationModuleContext)); }

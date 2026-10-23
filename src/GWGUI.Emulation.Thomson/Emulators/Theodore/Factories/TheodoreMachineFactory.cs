@@ -11,6 +11,9 @@ using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.Runti
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
 internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture(MachineConfiguration configuration) => true;
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Theodore.ToString();

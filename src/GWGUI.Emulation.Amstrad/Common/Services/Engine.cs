@@ -252,7 +252,7 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(amstrad, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + amstrad.Model,
-            SupportsPointerCapture: (adapter is not IEmulatorPointerCapabilities capabilities || capabilities.SupportsPointer(amstrad)) && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
+            SupportsPointerCapture: adapter.SupportsPointerCapture(amstrad));
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

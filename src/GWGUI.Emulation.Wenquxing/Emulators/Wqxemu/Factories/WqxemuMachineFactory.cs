@@ -11,6 +11,9 @@ using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.Runti
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
 internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities
 {
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture(MachineConfiguration configuration) => false;
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Wqxemu.ToString();

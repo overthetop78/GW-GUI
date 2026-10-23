@@ -10,6 +10,9 @@ using NativeMedia = GWGUI.Emulation.Watara.Emulators.Potator.Functions.MediaRunt
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Factories;
 internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings
 {
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture(MachineConfiguration configuration) => false;
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Potator.ToString();

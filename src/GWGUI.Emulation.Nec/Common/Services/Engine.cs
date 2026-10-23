@@ -312,7 +312,7 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(necConfiguration, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + necConfiguration.Model,
-            SupportsPointerCapture: ModelCatalog.Get(necConfiguration.Model).MouseButtonCount > 0);
+            SupportsPointerCapture: adapter.SupportsPointerCapture(necConfiguration));
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

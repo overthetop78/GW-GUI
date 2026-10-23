@@ -169,7 +169,7 @@ internal sealed class Engine
             storage.AvailableDevices,
             storage.MountedMedia,
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            false
+            adapter.SupportsPointerCapture(current)
         );
     }
 

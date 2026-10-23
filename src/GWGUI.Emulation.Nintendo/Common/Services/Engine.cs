@@ -253,7 +253,7 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(nintendo, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + nintendo.Model,
-            SupportsPointerCapture: ModelCatalog.Get(nintendo.Model).MouseButtonCount > 0);
+            SupportsPointerCapture: adapter.SupportsPointerCapture(nintendo));
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

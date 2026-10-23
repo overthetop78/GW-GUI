@@ -189,7 +189,7 @@ internal sealed class Engine
             };
             return this.CreateMachine(selected, context);
         }, storage.AvailableDevices, storage.MountedMedia,
-            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, false);
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, adapter.SupportsPointerCapture(current));
     }
 
     private IEmulatorAdapter PreferredAdapter(string machineId) =>

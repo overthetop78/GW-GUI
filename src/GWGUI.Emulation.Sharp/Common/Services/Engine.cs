@@ -214,7 +214,7 @@ internal sealed class Engine
             storage.AvailableDevices,
             storage.MountedMedia,
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            adapter is IEmulatorCapabilities { SupportsNoContent: true }
+            adapter.SupportsPointerCapture(current)
         );
     }
 

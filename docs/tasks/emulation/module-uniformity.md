@@ -7338,3 +7338,129 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les contrats et les comportements conservés.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/AdapterPresentationPolicyTests.cs : appeler ApplySettings pour vérifier les mêmes fusions multitap et la préservation de la configuration initiale.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : inclure Sony dans le contrôle du contrat d’application, retirer l’exception SNK du contrôle d’héritage ; exécuter les tests locaux et vérifier le build Debug des 23 modules et d’Example.
+
+## Capture du pointeur par le même contrat Common dans les 24 familles
+
+- [x] Raccorder la capacité de capture au contrat de pointeur et aux adaptateurs, avec les décisions déjà utilisées par chaque runtime.
+  - [x] Raccorder Acorn.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Amstrad.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Apple.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Atari.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Bandai.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Coleco.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Commodore.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Example.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Microsoft.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+  - [x] Raccorder Nec.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Nintendo.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Panasonic.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Sega.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Sharp.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Sinclair.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Snk.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Factories/MachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Sony.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Thomson.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Watara.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Raccorder Wenquxing.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorPointerCapabilities.cs : documenter SupportsPointerCapture(configuration), distinct de la prise en charge des entrées de pointage.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de pointeur et conserver false par défaut pour les entrées de pointage sans prise en charge déclarée.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : annoncer la capture avec le calcul existant du runtime, sans modifier les réglages ni créer de ressource ; réutiliser la prise en charge du pointeur quand le calcul est identique.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Engine.cs : demander SupportsPointerCapture à l’adaptateur sélectionné, retirer le calcul local transféré et ses seules variables devenues inutiles.
+  - [x] Vérifier le raccordement et les décisions conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure SupportsPointer et SupportsPointerCapture dans les opérations Common attendues, en conservant le contrôle des autres membres et des dépendances.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les deux opérations du contrat dans les 24 familles, leurs implémentations et les appels compilés des 23 runtimes ; comparer les calculs avant et après, exécuter les tests locaux et vérifier le Debug avec tous les modules.

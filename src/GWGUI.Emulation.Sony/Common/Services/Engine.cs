@@ -270,7 +270,7 @@ internal sealed class Engine
             media => this.CreateMachine(EmulationMediaConversionFunctions.WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourceKey(sony.Model),
-            SupportsPointerCapture: ModelCatalog.Get(sony.Model).MouseButtonCount > 0);
+            SupportsPointerCapture: adapter.SupportsPointerCapture(sony));
     }
 
     public string GetFirmwareDirectory(string machineId)

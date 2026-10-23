@@ -175,7 +175,7 @@ internal sealed class Engine
             [],
             [],
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            false
+            adapter.SupportsPointerCapture(current)
         );
     }
 

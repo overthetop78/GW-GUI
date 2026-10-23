@@ -11,6 +11,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
 {
     /// <inheritdoc/>
+    public bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration) && ModelCatalog.Get(configuration.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount;
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
 
     public bool SupportsPointer(MachineConfiguration configuration) => true;

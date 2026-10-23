@@ -179,7 +179,7 @@ internal sealed class Engine
             };
             return this.CreateMachine(selected, context);
         }, storage.AvailableDevices, storage.MountedMedia,
-            HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, false);
+            HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, adapter.SupportsPointerCapture(current));
     }
 
     private IEmulatorAdapter PreferredAdapter(string machineId) => this.Adapters(ModelCatalog.Parse(machineId).ToString()).SingleOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));
