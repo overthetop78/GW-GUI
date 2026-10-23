@@ -1791,6 +1791,132 @@ public sealed class ArchitectureValidationTests
         Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
     }
 
+    public class DefaultAdapterProbe : DispatchProxy
+    {
+        public object Adapter { get; set; } = null!;
+        public string MachineId { get; set; } = string.Empty;
+        public bool Preferred { get; set; }
+        public List<IEmulationConfiguration> Selections { get; } = [];
+
+        protected override object? Invoke(MethodInfo? method, object?[]? arguments)
+        {
+            ArgumentNullException.ThrowIfNull(method);
+            if (method.Name.EndsWith("IsDefaultFor", StringComparison.Ordinal)) return Preferred && arguments is [string machineId] && machineId == MachineId;
+            if (method.Name.EndsWith("SelectConfiguration", StringComparison.Ordinal)) Selections.Add((IEmulationConfiguration)arguments![0]!);
+            return method.Invoke(Adapter, arguments);
+        }
+    }
+
+    [Fact]
+    public void EveryCommonUsesTheSameDefaultRecommendationContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var simulatedChoices = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorMachineDefaults", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            var recommend = Assert.Single(contract.GetMethods());
+            Assert.Equal("IsDefaultFor", recommend.Name);
+            Assert.True(recommend.IsAbstract);
+            Assert.Equal(typeof(bool), recommend.ReturnType);
+            Assert.Equal(typeof(string), Assert.Single(recommend.GetParameters()).ParameterType);
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var select = engineType.GetMethod("SelectConfiguration", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            var selectedAdapter = engineType.GetMethod("SelectedAdapter", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)!;
+            Assert.Contains(GetCompiledCalls(select), call => call.Method.DeclaringType == contract && call.Method.Name == recommend.Name);
+            Assert.Contains(GetCompiledCalls(select), call => call.Method.DeclaringType!.Name == "IEmulatorConfigurationSelection" && call.Method.Name == "SelectConfiguration");
+            var callers = engineType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(method => method.GetMethodBody() is not null && GetCompiledCalls(method).Any(call => call.Method == select)).ToArray();
+            Assert.Equal("CreateConfiguration", Assert.Single(callers).Name);
+            var dictionary = (System.Collections.IDictionary)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var entries = dictionary.Keys.Cast<object>().Select(key => (Key: key, Adapter: dictionary[key]!)).ToArray();
+            var definitionProperty = adapterContract.GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition");
+            foreach (var entry in entries)
+            {
+                var target = Assert.Single(entry.Adapter.GetType().GetInterfaceMap(contract).TargetMethods);
+                Assert.False(target.IsAbstract);
+                var concrete = entry.Adapter.GetType().GetMethod(recommend.Name);
+                Assert.Equal(concrete ?? adapterContract.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(method => method.Name.EndsWith(".IsDefaultFor", StringComparison.Ordinal)), target);
+                if (concrete is null) Assert.False((bool)recommend.Invoke(entry.Adapter, ["unknown-machine"])!);
+            }
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            var configurations = machines.Select(machine => (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!).ToArray();
+            foreach (var configuration in configurations)
+            {
+                var current = selectedAdapter.Invoke(engine, [configuration]);
+                var recommended = entries.Where(entry => ((EmulationEmulatorDefinition)definitionProperty.GetValue(entry.Adapter)!).MachineIds.Contains(configuration.MachineId))
+                    .Where(entry => (bool)recommend.Invoke(entry.Adapter, [configuration.MachineId])!).ToArray();
+                if (current is not null && (bool)recommend.Invoke(current, [configuration.MachineId])!) Assert.Same(configuration, select.Invoke(engine, [configuration]));
+                if (recommended.Length == 0) Assert.Same(configuration, select.Invoke(engine, [configuration]));
+            }
+            if (entries.Length == 0) { Assert.Equal("GWGUI.Emulation.Microsoft", root); continue; }
+            var chosen = entries.Last();
+            var definition = (EmulationEmulatorDefinition)definitionProperty.GetValue(chosen.Adapter)!;
+            var source = configurations.First(configuration => definition.MachineIds.Contains(configuration.MachineId));
+            var withoutCore = (IEmulationConfiguration)typeof(object).GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(source, null)!;
+            var needsSelection = !ReferenceEquals(selectedAdapter.Invoke(engine, [source]), chosen.Adapter);
+            if (!needsSelection)
+            {
+                var emulatorId = configurationType.GetProperty("EmulatorId");
+                if (emulatorId is not null) { emulatorId.SetValue(withoutCore, string.Empty); needsSelection = true; }
+                else
+                {
+                    var core = configurationType.GetProperty("Core")!;
+                    if (Enum.TryParse(core.PropertyType, "None", out var none) && Enum.IsDefined(core.PropertyType, none!))
+                    {
+                        core.SetValue(withoutCore, none);
+                        needsSelection = true;
+                    }
+                    else
+                    {
+                        var other = entries.FirstOrDefault(entry => !ReferenceEquals(entry.Adapter, chosen.Adapter));
+                        if (other.Adapter is not null)
+                        {
+                            var key = adapterContract.GetInterfaces().Append(adapterContract).SelectMany(type => type.GetProperties()).First(property => property.Name == "EmulatorKey").GetValue(other.Adapter)!;
+                            core.SetValue(withoutCore, Enum.Parse(core.PropertyType, (string)key));
+                            needsSelection = true;
+                        }
+                    }
+                }
+            }
+            DefaultAdapterProbe? preferred = null;
+            try
+            {
+                foreach (var entry in entries)
+                {
+                    var proxy = DispatchProxy.Create(adapterContract, typeof(DefaultAdapterProbe));
+                    var state = (DefaultAdapterProbe)proxy;
+                    state.Adapter = entry.Adapter;
+                    state.MachineId = source.MachineId;
+                    state.Preferred = ReferenceEquals(entry.Adapter, chosen.Adapter);
+                    if (state.Preferred) preferred = state;
+                    dictionary[entry.Key] = proxy;
+                }
+                var result = Assert.IsAssignableFrom<IEmulationConfiguration>(select.Invoke(engine, [withoutCore]));
+                var selected = Assert.IsAssignableFrom<DefaultAdapterProbe>(selectedAdapter.Invoke(engine, [result]));
+                Assert.Same(preferred, selected);
+                Assert.Equal(needsSelection ? 1 : 0, preferred!.Selections.Count);
+                if (needsSelection) Assert.NotSame(withoutCore, result); else Assert.Same(withoutCore, result);
+                Assert.Equal(source.MachineId, result.MachineId);
+                Assert.Equal(source.Id, result.Id);
+                simulatedChoices++;
+            }
+            finally
+            {
+                foreach (var entry in entries) dictionary[entry.Key] = entry.Adapter;
+            }
+        }
+        Assert.Equal(23, simulatedChoices);
+    }
+
     [Fact]
     public async Task EveryCommonProvidesTheSameInitialContentContract()
     {

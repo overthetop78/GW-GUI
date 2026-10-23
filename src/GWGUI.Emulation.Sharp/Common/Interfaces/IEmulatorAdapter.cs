@@ -1,8 +1,11 @@
 using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sharp.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
-, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings
+, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve le choix initial du module tant que le cœur ne déclare aucune recommandation.</summary>
+    bool IEmulatorMachineDefaults.IsDefaultFor(string machineId) => false;
+
     /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
     bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
 

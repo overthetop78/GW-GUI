@@ -14,10 +14,10 @@ internal static class EmulatorCatalog
     /// <param name="AdapterType">Type concret à instancier pour chaque demande d’adaptateur.</param>
     /// <param name="Emulator">Identité typée correspondant à la clé de l’adaptateur.</param>
     /// <param name="Definition">Description publique du cœur et de ses machines compatibles.</param>
-    /// <param name="Defaults">Déclaration facultative de préférence pour les modèles, conservée pour consultation.</param>
+    /// <param name="Defaults">Déclaration partagée de préférence pour les modèles, conservée pour consultation.</param>
     /// <remarks>Les constructeurs des adaptateurs et leurs déclarations de préférence doivent rester des opérations
     /// de description, sans acquérir de ressources de session nécessitant une destruction.</remarks>
-    private sealed record Registration(Type AdapterType, Emulator Emulator, EmulationEmulatorDefinition Definition, IEmulatorMachineDefaults? Defaults);
+    private sealed record Registration(Type AdapterType, Emulator Emulator, EmulationEmulatorDefinition Definition, IEmulatorMachineDefaults Defaults);
 
     /// <summary>Inscriptions découvertes une seule fois, triées par identifiant public ordinal.</summary>
     private static readonly IReadOnlyList<Registration> Registrations = Discover();
@@ -31,7 +31,7 @@ internal static class EmulatorCatalog
     /// <summary>Découvre les adaptateurs et projette les informations nécessaires au catalogue.</summary>
     /// <returns>Inscriptions triées ; une clé d’émulateur invalide échoue lors de sa conversion typée.</returns>
     private static IReadOnlyList<Registration> Discover() => EmulationSdk.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
-        .Select(adapter => new Registration(adapter.GetType(), Enum.Parse<Emulator>(adapter.EmulatorKey), adapter.Definition, adapter as IEmulatorMachineDefaults))
+        .Select(adapter => new Registration(adapter.GetType(), Enum.Parse<Emulator>(adapter.EmulatorKey), adapter.Definition, adapter))
         .OrderBy(entry => entry.Definition.Id, StringComparer.Ordinal).ToArray();
 
     /// <summary>Crée de nouvelles instances pour toutes les inscriptions connues.</summary>
@@ -69,7 +69,7 @@ internal static class EmulatorCatalog
         if (!Enum.IsDefined(model)) throw new ArgumentOutOfRangeException(nameof(model));
         var machineId = HardwareModelCatalog.Get(model).StableModelId;
         var compatible = Registrations.Where(entry => entry.Definition.MachineIds.Contains(machineId)).ToArray();
-        return (compatible.FirstOrDefault(entry => entry.Defaults?.IsDefaultFor(machineId) == true)
+        return (compatible.FirstOrDefault(entry => entry.Defaults.IsDefaultFor(machineId))
             ?? compatible.OrderBy(entry => entry.Emulator).FirstOrDefault())?.Emulator ?? Emulator.None;
     }
 }

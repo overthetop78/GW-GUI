@@ -8,7 +8,7 @@ public static class EmulatorCatalog
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
 
     public static string DefaultFor(string machineId) => CreateAdapters()
-        .FirstOrDefault(adapter => adapter is IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machineId))?.EmulatorId
+        .FirstOrDefault(adapter => adapter.Definition.MachineIds.Contains(machineId) && adapter.IsDefaultFor(machineId))?.EmulatorId
         ?? throw new NotSupportedException(machineId);
 
     public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();

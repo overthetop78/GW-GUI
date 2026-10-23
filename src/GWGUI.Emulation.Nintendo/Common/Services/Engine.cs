@@ -97,6 +97,24 @@ internal sealed class Engine
         return result;
     }
 
+    /// <summary>Consulte les recommandations compatibles avant de préparer une nouvelle configuration.</summary>
+    /// <param name="configuration">Choix initial du module, déjà construit avec les données du modèle.</param>
+    /// <returns>La configuration initiale sans recommandation différente, ou sa sélection adaptée par le cœur recommandé.</returns>
+    /// <remarks>Un choix initial déjà recommandé reste prioritaire. Les autres recommandations sont départagées
+    /// par identifiant ordinal, parmi les adaptateurs compatibles uniquement. Cette étape est réservée à la
+    /// création initiale ; les changements explicites et les documents persistés conservent leur propre choix.</remarks>
+    private MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
+    {
+        var machineId = ((IEmulationConfiguration)configuration).MachineId;
+        var current = SelectedAdapter(configuration);
+        if (current?.IsDefaultFor(machineId) == true) return configuration;
+        var preferred = _adapters.Values.Where(adapter => adapter.Definition.MachineIds.Contains(machineId))
+            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).FirstOrDefault(adapter => adapter.IsDefaultFor(machineId));
+        if (preferred is null || preferred.EmulatorId == current?.EmulatorId) return configuration;
+        return preferred.SelectConfiguration(configuration with { EmulatorId = preferred.EmulatorId });
+    }
+
+
     /// <summary>Prépare les valeurs initiales du cœur sélectionné par le contrat Common.</summary>
     /// <param name="configuration">Nouvelle configuration, entièrement construite et conservée immuable.</param>
     /// <returns>La même instance si les options restent identiques ; sinon une copie contenant les valeurs préparées.</returns>
@@ -119,10 +137,10 @@ internal sealed class Engine
     public IEmulationConfiguration CreateConfiguration(string machineId)
     {
         var model = ModelCatalog.Get(machineId);
-        return InitializeOptions(new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
+        return InitializeOptions(SelectConfiguration(new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
             Controllers: Enumerable.Repeat(PeripheralCategory.Joystick, model.ControllerPortCount).ToArray(),
-            Input: new InputConfiguration(), Media: []));
+            Input: new InputConfiguration(), Media: [])));
     }
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)

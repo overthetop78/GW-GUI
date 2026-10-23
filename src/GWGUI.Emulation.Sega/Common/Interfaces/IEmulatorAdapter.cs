@@ -1,7 +1,10 @@
 using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve le choix initial du module tant que le cœur ne déclare aucune recommandation.</summary>
+    bool IEmulatorMachineDefaults.IsDefaultFor(string machineId) => false;
+
     /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
     bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
 

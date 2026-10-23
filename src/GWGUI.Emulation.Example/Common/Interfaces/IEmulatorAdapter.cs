@@ -6,8 +6,11 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
-    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
+    IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve le choix initial du module tant que le cœur ne déclare aucune recommandation.</summary>
+    bool IEmulatorMachineDefaults.IsDefaultFor(string machineId) => false;
+
     /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
     bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
 

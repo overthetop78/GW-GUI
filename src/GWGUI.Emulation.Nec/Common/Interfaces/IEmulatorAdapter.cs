@@ -1,7 +1,10 @@
 using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Nec.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve le choix initial du module tant que le cœur ne déclare aucune recommandation.</summary>
+    bool IEmulatorMachineDefaults.IsDefaultFor(string machineId) => false;
+
     /// <summary>Conserve la sélection séparée désactivée tant que le cœur ne la déclare pas.</summary>
     bool IEmulatorInitialContentSettings.SupportsInitialContent => false;
 
