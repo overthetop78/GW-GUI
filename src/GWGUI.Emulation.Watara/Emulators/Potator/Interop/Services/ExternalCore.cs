@@ -1,3 +1,4 @@
+using CommonEmulatorCatalog = GWGUI.Emulation.Watara.Common.Dictionaries.EmulatorCatalog;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Interop;
@@ -30,7 +31,9 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
     private LoadedContent? _content;
     private bool _initialized, _loaded, _disposed;
     private IReadOnlyList<string> _lastDiagnostics = [];
-    internal ExternalCore(string path) { _path = Path.GetFullPath(path); _info = CoreProbeFunctions.Inspect(_path); using var stream = File.OpenRead(_path); CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream); }
+    internal ExternalCore(string path) { _path = Path.GetFullPath(path); _info = CoreProbeFunctions.Inspect(_path);
+        var formats = CommonEmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorKey == Emulator.ToString());
+        _info = _info with { Extensions = formats.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) }; using var stream = File.OpenRead(_path); CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream); }
     public Emulator Emulator => Emulator.Potator;
     public int MinimumAudioLatencyMilliseconds => _environment?.MinimumAudioLatencyMilliseconds ?? 0;
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => _environment?.PublishAudioBufferStatus(status);

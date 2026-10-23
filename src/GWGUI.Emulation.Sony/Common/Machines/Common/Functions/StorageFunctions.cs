@@ -41,7 +41,7 @@ internal static class StorageSettingsFunctions
         {
             var discFields = (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? [];
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                (adapter as IEmulatorContentFormats)?.SupportedContentExtensions ?? [],
+                adapter.SupportedContentExtensions,
                 RequiresMachineRecreation: true,
                 DisplayLabel: model.Id == ModelConstants.Psp ? "UMD" : model.Id == ModelConstants.PlayStation2 ? "DVD" : model.Id == ModelConstants.PlayStation3 ? "Blu-ray" : StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
                 ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : model.Id == ModelConstants.PlayStation2 ? "Emulation.Sony.Storage.DVD" : model.Id == ModelConstants.PlayStation3 ? "Emulation.Sony.Storage.BluRay" : StorageSettingsFunctionsConstants.CdModelResource,

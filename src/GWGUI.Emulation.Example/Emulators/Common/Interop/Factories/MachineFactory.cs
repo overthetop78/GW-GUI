@@ -245,11 +245,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.Cartridge) ? MediaConstants.CartridgeExtensions.ToHashSet(StringComparer.OrdinalIgnoreCase) : null;
     /// <inheritdoc/>
-    public IReadOnlySet<string> ResolveContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath) => declaredExtensions;
-    /// <summary>Les contenus opaques de ces deux profils n’exigent pas de pistes ou fichiers annexes.</summary>
-    /// <inheritdoc/>
-    public IReadOnlyList<string> GetMediaDependencies(string path) => [];
-    /// <inheritdoc/>
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRoles(configuration.Model).Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", IsFirmwareRequired(configuration.Model, role))).ToArray();
     /// <inheritdoc/>
     public IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => HardwareModelCatalog.Get(model).Firmware;

@@ -96,7 +96,8 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(CoreExceptions.FullContentPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(systemInfo.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(systemInfo.ValidExtensions);
+            var declaredExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(systemInfo.ValidExtensions);
+            SupportedContentExtensions = ((IEmulatorContentFormats)adapter).ResolveContentExtensions(declaredExtensions, systemInfo.NeedFullPath);
             if (contentPath is not null && !Directory.Exists(contentPath))
             {
                 var extension = Path.GetExtension(contentPath).TrimStart(MediaConstants.ExtensionPrefix);

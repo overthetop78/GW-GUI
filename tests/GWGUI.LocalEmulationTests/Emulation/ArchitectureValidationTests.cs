@@ -15,6 +15,87 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonResolvesNativeContentFormatsThroughTheSameContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeBridges = 0;
+        var specializedResolvers = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorContentFormats", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            Assert.Equal(new[] { "GetMediaDependencies", "ResolveContentExtensions", "get_SupportedContentExtensions" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            var resolve = contract.GetMethod("ResolveContentExtensions")!;
+            Assert.Equal(typeof(IReadOnlySet<string>), resolve.ReturnType);
+            Assert.Equal(new[] { typeof(IReadOnlySet<string>), typeof(bool) }, resolve.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { "declaredExtensions", "requiresFilePath" }, resolve.GetParameters().Select(parameter => parameter.Name));
+            var dependencies = contract.GetMethod("GetMediaDependencies")!;
+            Assert.Equal(typeof(IReadOnlyList<string>), dependencies.ReturnType);
+            Assert.Equal(typeof(string), Assert.Single(dependencies.GetParameters()).ParameterType);
+            Assert.Equal("path", Assert.Single(dependencies.GetParameters()).Name);
+            var supported = contract.GetProperty("SupportedContentExtensions")!.GetMethod!;
+            Assert.Equal(typeof(IReadOnlyList<string>), supported.ReturnType);
+            Assert.All(contract.GetMethods(), method => Assert.True(method.IsAbstract));
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var map = implementation.GetInterfaceMap(contract);
+                foreach (var (operation, target) in map.InterfaceMethods.Zip(map.TargetMethods))
+                {
+                    var concrete = implementation.GetMethod(operation.Name, BindingFlags.Public | BindingFlags.Instance, operation.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
+                    if (concrete is not null) Assert.Equal(concrete, target);
+                    else
+                    {
+                        Assert.Equal(adapter, target.DeclaringType);
+                        var backend = RuntimeHelpers.GetUninitializedObject(implementation);
+                        if (operation == resolve)
+                        {
+                            IReadOnlySet<string> declared = new HashSet<string>(["rom", "BIN"], StringComparer.Ordinal);
+                            Assert.Same(declared, operation.Invoke(backend, [declared, false]));
+                            Assert.Same(declared, operation.Invoke(backend, [declared, true]));
+                            Assert.Equal(new[] { "rom", "BIN" }, declared);
+                        }
+                        else Assert.Empty(Assert.IsAssignableFrom<IEnumerable<string>>(operation.Invoke(backend, operation == dependencies ? ["unused"] : [])));
+                    }
+                }
+                if (implementation.Name is "BeetleWonderSwanMachineFactory" or "BlueMSXMachineFactory")
+                {
+                    specializedResolvers++;
+                    var constants = assembly.GetType(implementation.Namespace!.Replace(".Factories", ".Constants", StringComparison.Ordinal) + ".EmulatorConstants")!;
+                    var extension = Assert.IsType<string>(constants.GetField("RawCartridgeExtension", BindingFlags.NonPublic | BindingFlags.Static)!.GetRawConstantValue());
+                    IReadOnlySet<string> declared = new HashSet<string>(["native", "zip"], StringComparer.Ordinal);
+                    foreach (var requiresPath in new[] { false, true })
+                    {
+                        var extensions = Assert.IsAssignableFrom<IReadOnlySet<string>>(resolve.Invoke(RuntimeHelpers.GetUninitializedObject(implementation), [declared, requiresPath]));
+                        Assert.True(declared.IsSubsetOf(extensions));
+                        Assert.Equal(implementation.Name == "BlueMSXMachineFactory" || !requiresPath, extensions.Contains(extension));
+                        Assert.Equal(new[] { "native", "zip" }, declared);
+                    }
+                }
+            }
+            if (root == "GWGUI.Emulation.Microsoft") continue;
+            var bridge = Assert.Single(assembly.GetTypes(), type => type.IsClass && type.Name == "ExternalCore" && type.Namespace!.StartsWith(root + ".Emulators.", StringComparison.Ordinal));
+            var code = bridge.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly).Cast<MethodBase>()
+                .Concat(bridge.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)).Select(method => method.GetMethodBody()?.GetILAsByteArray()).Where(body => body is not null).Cast<byte[]>();
+            Assert.Contains(code, body => new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(resolve.MetadataToken)).ToArray()) >= 0));
+            nativeBridges++;
+        }
+        Assert.Equal(23, nativeBridges);
+        Assert.Equal(2, specializedResolvers);
+    }
+
+    [Fact]
     public void EveryCommonPreparesPersistentStorageBeforeCreatingOwnedCores()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

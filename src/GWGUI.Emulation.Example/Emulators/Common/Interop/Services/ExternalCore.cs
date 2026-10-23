@@ -97,6 +97,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     /// <inheritdoc/>
     public IReadOnlyList<string> Diagnostics => [];
     /// <inheritdoc/>
+    /// <remarks>Les formats du profil passent par le contrat Common, qui conserve ici les extensions déclarées et leur comparateur.</remarks>
     public IReadOnlySet<string> SupportedContentExtensions => _configuration is null ? new HashSet<string>() : _contentFormats.ResolveContentExtensions(StorageSettingsFunctions.DescribeDevices(_configuration.Model).SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase), requiresFilePath: true);
 
     /// <summary>Valide le profil, alloue la RAM et raccorde les callbacks avant de rendre le cœur exécutable.</summary>

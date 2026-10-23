@@ -125,7 +125,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(fullPathError());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(info.ValidExtensions);
+            var declaredExtensions = CommonCoreHostFunctions.NativeResources.ParseExtensions(info.ValidExtensions);
+            SupportedContentExtensions = new Engine().SelectedAdapter(configuration)?.ResolveContentExtensions(declaredExtensions, info.NeedFullPath) ?? declaredExtensions;
             ValidateExtension(contentPath);
             foreach (var path in contentPlan?.Paths ?? []) ValidateExtension(path);
 

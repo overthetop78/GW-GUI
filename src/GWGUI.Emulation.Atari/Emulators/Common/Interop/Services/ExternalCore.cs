@@ -35,6 +35,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _adapter = EmulatorCatalog.CreateAdapter(emulator);
         _mediaAdapter = (MachineFactory)_adapter;
         _info = ExternalCoreProbe.Inspect(absoluteCorePath, emulator);
+        _info = _info with { Extensions = _adapter.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) };
         CoreSha256 = CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(_corePath)).ToLowerInvariant();
     }
 

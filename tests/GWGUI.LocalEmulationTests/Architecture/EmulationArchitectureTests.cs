@@ -46,9 +46,9 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(new[]
         {
             "ApplyDeviceSettings", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "Create", "Definition", "DescribeDeviceSettings", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "EnsurePersistentStorage", "FindInstalledCorePathAsync",
-            "FindReleasesAsync", "GetInstallationAsync", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetOutputResolution", "HasFixedMemoryCardDirectories", "InstallAsync", "MapInput", "MemoryCardInsertedOptionKey", "RequiresMediaRestart", "RequiresOptionRestart",
-            "ResolveConfiguredMedia", "ScanFirmwareFileAsync", "SelectConfiguration", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
-            "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey"
+            "FindReleasesAsync", "GetInstallationAsync", "GetMediaDependencies", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetOutputResolution", "HasFixedMemoryCardDirectories", "InstallAsync", "MapInput", "MemoryCardInsertedOptionKey", "RequiresMediaRestart", "RequiresOptionRestart",
+            "ResolveConfiguredMedia", "ResolveContentExtensions", "ScanFirmwareFileAsync", "SelectConfiguration", "SupportedContentExtensions", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
+            "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey", "get_SupportedContentExtensions"
         }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));
         foreach (var row in FamilyModules())

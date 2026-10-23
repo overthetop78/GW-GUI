@@ -189,8 +189,12 @@ public sealed class ColecoModuleTests
         Assert.Contains("bin", supported);
         Assert.Contains("col", supported);
         Assert.DoesNotContain("bin", declared);
-        Assert.False(engine.Adapter(Emulator.GearColeco) is GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats);
-        Assert.False(engine.Adapter(Emulator.JollyCV) is GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats);
+        foreach (var emulator in new[] { Emulator.GearColeco, Emulator.JollyCV })
+        {
+            var unchanged = engine.Adapter(emulator).ResolveContentExtensions(declared, requiresFilePath);
+            Assert.Same(declared, unchanged);
+            Assert.DoesNotContain("bin", unchanged);
+        }
     }
     [Fact]
     public void CartridgeMapperIsConfiguredAndPersistedThroughItsDevice()

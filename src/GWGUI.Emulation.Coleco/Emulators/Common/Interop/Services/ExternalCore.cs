@@ -1,3 +1,4 @@
+using CommonEmulatorCatalog = GWGUI.Emulation.Coleco.Common.Dictionaries.EmulatorCatalog;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Coleco.Emulators.Common.Constants;
@@ -33,8 +34,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _corePath = Path.GetFullPath(absoluteCorePath);
         Emulator = emulator;
         _info = ExternalCoreProbe.Inspect(_corePath, emulator);
-        if (new Engine().Adapter(emulator) is IEmulatorContentFormats formats)
-            _info = _info with { Extensions = formats.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) };
+        var formats = CommonEmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorKey == emulator.ToString());
+        _info = _info with { Extensions = formats.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) };
+
         CoreSha256 = CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(_corePath)).ToLowerInvariant();
     }
 

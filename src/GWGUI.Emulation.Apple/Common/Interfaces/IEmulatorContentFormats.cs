@@ -1,12 +1,21 @@
 namespace GWGUI.Emulation.Apple.Common.Interfaces;
 
-/// <summary>Description des fichiers associés au contenu chargé par le cœur.</summary>
-/// <remarks>Common utilise ces chemins pour identifier un contenu complet. Les fichiers de l’utilisateur
-/// restent empruntés ; cette description ne prépare ni ne monte elle-même un média.</remarks>
+/// <summary>Formats de contenu, contraintes de chargement et fichiers associés décrits par le backend.</summary>
+/// <remarks>Ces opérations décrivent le contenu utilisable ; elles ne le montent ni ne le convertissent.
+/// Les fichiers éventuellement consultés pour identifier les dépendances restent sous la propriété de l’appelant.</remarks>
 internal interface IEmulatorContentFormats
 {
-    /// <summary>Décrit les dépendances du fichier principal suivant les règles de son format.</summary>
-    /// <param name="path">Chemin du contenu principal dont les fichiers associés sont demandés.</param>
-    /// <returns>Chemins des fichiers associés, dans l’ordre déterminé par le backend ; une liste vide indique un fichier autonome.</returns>
+    /// <summary>Extensions de contenus annoncées par l’adaptateur sans démarrer une machine.</summary>
+    IReadOnlyList<string> SupportedContentExtensions { get; }
+
+    /// <summary>Résout les extensions effectivement utilisables à partir des déclarations natives.</summary>
+    /// <param name="declaredExtensions">Ensemble emprunté d’extensions annoncé par le cœur.</param>
+    /// <param name="requiresFilePath">True si le cœur exige un chemin plutôt qu’un contenu en mémoire.</param>
+    /// <returns>Extensions conservées après application des contraintes de l’adaptateur.</returns>
+    IReadOnlySet<string> ResolveContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath);
+
+    /// <summary>Décrit les fichiers nécessaires au chargement d’un média, notamment les pistes référencées par un conteneur.</summary>
+    /// <param name="path">Chemin du média principal.</param>
+    /// <returns>Chemins des dépendances du média ; une liste vide indique qu’aucun fichier associé n’est nécessaire.</returns>
     IReadOnlyList<string> GetMediaDependencies(string path);
 }

@@ -1,6 +1,20 @@
 namespace GWGUI.Emulation.Coleco.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
+internal interface IEmulatorAdapter : IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
+    /// <summary>Laisse le cœur annoncer ses extensions lorsque le catalogue ne fournit aucune liste statique.</summary>
+    /// <remarks>Une liste vide ne refuse aucun format : la déclaration native reste disponible au runtime.</remarks>
+    IReadOnlyList<string> IEmulatorContentFormats.SupportedContentExtensions => [];
+
+    /// <summary>Conserve les extensions natives sans modifier la collection empruntée lorsque le backend ne demande aucune adaptation.</summary>
+    /// <param name="declaredExtensions">Ensemble annoncé par le cœur, dont le comparateur et les valeurs sont conservés.</param>
+    /// <param name="requiresFilePath">Contrainte native disponible pour les adaptations concrètes.</param>
+    /// <returns>La même instance de collection, sans copie ni ajout de format.</returns>
+    IReadOnlySet<string> IEmulatorContentFormats.ResolveContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath) => declaredExtensions;
+
+    /// <summary>Ne déclare aucun fichier associé lorsque le backend ne décrit pas de dépendance de média.</summary>
+    /// <param name="path">Chemin emprunté ; ce comportement ne le consulte pas et ne modifie aucun fichier.</param>
+    IReadOnlyList<string> IEmulatorContentFormats.GetMediaDependencies(string path) => [];
+
     /// <summary>Conserve les fichiers persistants existants si le backend ne demande aucune préparation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée décrivant les supports de la machine.</param>
     /// <param name="directory">Dossier persistant fourni par Common, distinct du dossier temporaire de session.</param>

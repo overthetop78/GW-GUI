@@ -1,3 +1,4 @@
+using CommonEmulatorCatalog = GWGUI.Emulation.Panasonic.Common.Dictionaries.EmulatorCatalog;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions;
 using System.IO;
@@ -35,6 +36,8 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
     {
         _path = Path.GetFullPath(path);
         _info = CoreProbeFunctions.Inspect(_path);
+        var formats = CommonEmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorKey == Emulator.ToString());
+        _info = _info with { Extensions = formats.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) };
         using var stream = File.OpenRead(_path);
         CoreSha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
     }
