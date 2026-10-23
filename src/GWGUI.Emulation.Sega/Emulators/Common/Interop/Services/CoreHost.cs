@@ -69,7 +69,7 @@ internal static class CoreHost
                                 break;
                             default:
                                 if (!CommonCoreHostFunctions.Protocol.TryExecutePathMediaCommand((byte)command, reader, writer,
-                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
+                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CoreHostProtocol.JsonOptions))))
                                     throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                                 break;
                         }

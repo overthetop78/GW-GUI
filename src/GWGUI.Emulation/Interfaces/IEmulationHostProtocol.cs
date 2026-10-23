@@ -116,8 +116,9 @@ public interface IEmulationHostProtocol
     /// <param name="readBytes">Codec des données binaires nécessaires aux commandes d’état.</param>
     /// <param name="writeSuccess">Écriture du succès selon l’enveloppe du module.</param>
     /// <returns>True si la commande a été traitée ; false pour laisser le propriétaire choisir le traitement suivant.</returns>
+    /// <param name="writeDiskStatus">Codec emprunté du statut détaillé ; null laisse la requête de statut au traitement suivant.</param>
     bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
-        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess);
+        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess, Action<BinaryWriter, DiskStatus>? writeDiskStatus = null);
 
     /// <summary>Convertit le code de région du cœur natif en standard vidéo.</summary>
     /// <param name="nativeRegion">Code natif : zéro pour NTSC et un pour PAL.</param>
@@ -337,7 +338,6 @@ public interface IEmulationHostProtocol
     /// <summary>Exécute une commande commune reconnue et laisse les commandes spécifiques à l’appelant.</summary>
     /// <typeparam name="TMedia">Type de média accepté par le cœur.</typeparam>
     /// <typeparam name="TPeripheral">Type de périphérique reconnu par le cœur.</typeparam>
-    /// <typeparam name="TDiskStatus">Type du statut de disque exposé par le cœur.</typeparam>
     /// <param name="command">Code binaire de la commande à reconnaître.</param>
     /// <param name="reader">Lecteur binaire emprunté, positionné au début des données attendues.</param>
     /// <param name="writer">Rédacteur binaire emprunté, positionné au début des données à écrire.</param>
@@ -346,7 +346,7 @@ public interface IEmulationHostProtocol
     /// <param name="readBytes">Codec des blocs d’état binaire.</param>
     /// <param name="writeDiskStatus">Codec du statut de disque propre au module.</param>
     /// <param name="decodePeripheral">Conversion de l’identifiant binaire vers le périphérique du module.</param>
-    bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, TDiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral);
+    bool TryExecuteCoreCommand<TMedia, TPeripheral>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral);
 
     /// <summary>Possède la connexion cliente et ses codecs pendant l’exécution du traitement de session.</summary>
     /// <param name="pipeName">Nom du tube de commande propre à cette session.</param>

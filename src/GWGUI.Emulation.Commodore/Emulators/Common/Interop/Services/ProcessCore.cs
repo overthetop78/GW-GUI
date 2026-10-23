@@ -17,6 +17,14 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public DiskStatus GetDiskStatus()
+    {
+        Begin(HostCommand.GetDiskStatus);
+        CompleteRequest();
+        return System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException();
+    }
+
+    /// <inheritdoc/>
     public void SoftReset() => SimpleRequest(HostCommand.SoftReset);
 
     /// <inheritdoc/>

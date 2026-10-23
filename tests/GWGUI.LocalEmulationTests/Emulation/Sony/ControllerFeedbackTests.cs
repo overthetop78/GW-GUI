@@ -165,6 +165,7 @@ public sealed class ControllerFeedbackTests
 
     private sealed class FeedbackCore : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested => false;
         internal int FeedbackReads;
         internal bool Disposed;

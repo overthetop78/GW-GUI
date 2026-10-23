@@ -90,6 +90,7 @@ internal static class MachineAdapterFailureScenarios
     }
     private sealed class Core : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public void SoftReset() => HardReset();
         public bool ShutdownRequested => false;
         public Exception? InitializeError, FrameError, MediaError;

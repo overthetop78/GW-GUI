@@ -14,6 +14,9 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.GetStatus();
+
     private readonly string _corePath;
     private readonly CoreDefinition _definition;
     private IEmulationCoreLibrary? _library;

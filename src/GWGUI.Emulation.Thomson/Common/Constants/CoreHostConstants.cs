@@ -3,6 +3,9 @@ namespace GWGUI.Emulation.Thomson.Common.Constants;
 
 public static class CoreHostConstants
 {
+    /// <summary>Commande commune de consultation du statut des disques.</summary>
+    internal const byte GetDiskStatusCommand = 13;
+
     /// <summary>Commande logicielle commune, distincte de la remise à zéro matérielle.</summary>
     internal const byte SoftResetCommand = 16;
 

@@ -9,6 +9,20 @@ namespace GWGUI.Emulation.Philips.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Consulte le jeu de disques courant par la file de commandes du cœur.</summary>
+    /// <param name="cancellationToken">Annulation de la commande en attente.</param>
+    /// <returns>Instantané partagé du nombre et de la sélection des images, de leur éjection, de leurs chemins et libellés.</returns>
+    /// <remarks>La consultation suit les mêmes règles de session active que les autres commandes.
+    /// Elle ne monte ni ne retire de média. Les données retournées sont des valeurs gérées
+    /// et ne transfèrent aucune ressource native du cœur au consommateur.</remarks>
+    public async ValueTask<DiskStatus> GetDiskStatusAsync(CancellationToken cancellationToken = default)
+    {
+        DiskStatus? status = null;
+        await QueueCommand(() => status = _core.GetDiskStatus(), cancellationToken).ConfigureAwait(false);
+        // La file ne termine avec succès que lorsque la consultation a effectivement renseigné le résultat.
+        return status!;
+    }
+
     public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         Task started;

@@ -45,7 +45,7 @@ internal static class CoreHost
                             CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                             break;
                         default:
-                            if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
+                            if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory>(
                                 (byte)command, reader, writer, () => EnsureCore(core), ReadMedia,
                                 CoreHostFunctions.ReadBytes, CoreHostFunctions.WriteDiskStatus,
                                 static value => (PeripheralCategory)value))

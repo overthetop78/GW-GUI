@@ -4250,4 +4250,64 @@ public sealed class ArchitectureValidationTests
         }
         Assert.True(profilesWithKeys > 0);
     }
+    [Fact]
+    public void EveryCommonExposesTheSharedDiskStatusThroughTheMediaQueue()
+    {
+        var operation = typeof(IEmulationCoreStateCommands).GetMethod("GetDiskStatus")!;
+        Assert.NotNull(operation);
+        Assert.True(operation.IsAbstract);
+        Assert.Equal(typeof(DiskStatus), operation.ReturnType);
+        Assert.Empty(operation.GetParameters());
+        Assert.Null(typeof(DiskStatus).Assembly.GetType("GWGUI.Emulation.Interfaces.IEmulationCoreCommands" + (char)96 + "3"));
+        Assert.Equal(2, typeof(IEmulationCoreCommands<,>).GetGenericArguments().Length);
+        var query = typeof(IEmulationMedia).GetMethod("GetDiskStatusAsync")!;
+        Assert.Equal(typeof(ValueTask<DiskStatus>), query.ReturnType);
+        Assert.Equal(typeof(CancellationToken), Assert.Single(query.GetParameters()).ParameterType);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var processes = 0;
+        var nativeCores = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            Assert.Contains(typeof(IEmulationCoreStateCommands), contract.GetInterfaces());
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            foreach (var implementation in implementations)
+            {
+                var map = implementation.GetInterfaceMap(typeof(IEmulationCoreStateCommands));
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                Assert.Equal(implementation.GetMethod("GetDiskStatus"), target);
+                Assert.Equal(typeof(DiskStatus), target.ReturnType);
+                Assert.False(target.IsAbstract);
+                if (implementation.Name == "ProcessCore") processes++;
+                else nativeCores++;
+            }
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var mediaMap = machine.GetInterfaceMap(typeof(IEmulationMedia));
+            var endpoint = mediaMap.TargetMethods[Array.IndexOf(mediaMap.InterfaceMethods, query)];
+            Assert.Equal(machine.GetMethod("GetDiskStatusAsync"), endpoint);
+            var state = endpoint.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+            var stateCalls = state.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(stateCalls, call => call.Method.Name == "QueueCommand");
+            var calls = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.Machine" || type.FullName!.StartsWith(root + ".Common.Services.Machine+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method == operation);
+            var commands = assembly.GetTypes().Where(type => type.IsEnum && type.Name == "HostCommand").ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") { Assert.Empty(implementations); Assert.Empty(commands); }
+            else
+            {
+                Assert.NotEmpty(commands);
+                foreach (var command in commands)
+                    Assert.Equal((byte)13, Convert.ToByte(Enum.Parse(command, "GetDiskStatus")));
+            }
+        }
+        Assert.Equal(23, processes);
+        Assert.Equal(23, nativeCores);
+    }
 }

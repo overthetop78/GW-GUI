@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Contracts;
 using System.IO;
 using System.Text;
 using GWGUI.Emulation.Functions;
@@ -113,6 +114,7 @@ public sealed class CoreStateCommandTests
 
     private sealed class Core(List<string> events) : IEmulationCoreStateCommands
     {
+        public DiskStatus GetDiskStatus() => new(0, -1, true, []);
         internal Exception? Failure { get; init; }
         internal byte[] State { get; private set; } = [];
         internal (string, string) Option { get; private set; }

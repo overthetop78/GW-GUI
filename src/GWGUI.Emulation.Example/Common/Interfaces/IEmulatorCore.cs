@@ -7,7 +7,7 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// les options, les états et les commandes de médias. Common sérialise les accès au cœur pendant l’exécution.
 /// La machine qui possède le cœur arrête sa boucle puis le détruit dans finally ; les fichiers de médias reçus
 /// restent possédés par leurs appelants. L’hébergement peut être local ou confié à un processus séparé.</remarks>
-internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
+internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation.Interfaces.IEmulationCoreRuntimeStatus, GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>
 {
     /// <summary>Identité du backend utilisé par ce cœur, distincte du modèle matériel émulé.</summary>
     Emulator Emulator { get; }

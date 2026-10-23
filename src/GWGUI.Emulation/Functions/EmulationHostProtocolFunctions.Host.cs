@@ -269,10 +269,15 @@ internal static partial class EmulationHostProtocolFunctions
     /// <summary>Exécute une commande de média par chemin ; une commande inconnue ne consomme pas de contenu.</summary>
     internal static bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
-        Action<BinaryWriter> writeSuccess)
+        Action<BinaryWriter> writeSuccess, Action<BinaryWriter, DiskStatus>? writeDiskStatus = null)
     {
         switch (command)
         {
+            case EmulationHostProtocolConstants.GetDiskStatusCommand when writeDiskStatus is not null:
+                var status = ensureCore().GetDiskStatus();
+                writeSuccess(writer);
+                writeDiskStatus(writer, status);
+                return true;
             case EmulationHostProtocolConstants.InsertMediaCommand:
                 ensureCore().InsertMedia(reader.ReadString());
                 break;
@@ -377,11 +382,11 @@ internal static partial class EmulationHostProtocolFunctions
     // The caller owns the core and codecs. Unknown commands must not acquire a core
     // or consume a payload; initialization, frames and disposal stay in their host.
     /// <summary>Décode les commandes typées communes sans acquérir de cœur ni lire de charge utile pour une commande inconnue.</summary>
-    internal static bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(
+    internal static bool TryExecuteCoreCommand<TMedia, TPeripheral>(
         byte command, BinaryReader reader, BinaryWriter writer,
-        Func<IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus>> ensureCore,
+        Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore,
         Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes,
-        Action<BinaryWriter, TDiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
+        Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
     {
         switch (command)
         {

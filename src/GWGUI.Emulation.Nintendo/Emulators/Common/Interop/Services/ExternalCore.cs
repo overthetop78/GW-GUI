@@ -11,6 +11,9 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.GetStatus();
+
+    /// <inheritdoc/>
     public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
 
     /// <inheritdoc/>

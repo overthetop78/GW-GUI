@@ -23,6 +23,14 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
 internal sealed class ProcessCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public DiskStatus GetDiskStatus()
+    {
+        Begin(HostCommand.GetDiskStatus);
+        CompleteRequest();
+        return System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException();
+    }
+
     private readonly string _hostExecutablePath;
     private readonly string? _corePath;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();

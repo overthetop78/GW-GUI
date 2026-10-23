@@ -62,7 +62,7 @@ internal static class CoreHost
                             EmulationSdk.HostProtocol.DisposePreviousCore(ref core);
                             break;
                         default:
-                            if (!EmulationSdk.HostProtocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
+                            if (!EmulationSdk.HostProtocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory>(
                                 (byte)command, reader, writer, () => EnsureCore(core), ReadMedia,
                                 CoreHostFunctions.ReadBytes, CoreHostFunctions.WriteDiskStatus,
                                 static value => (PeripheralCategory)value))

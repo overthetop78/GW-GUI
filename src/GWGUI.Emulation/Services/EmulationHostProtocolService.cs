@@ -63,8 +63,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
 
     /// <inheritdoc/>
     public bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
-        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess)
-        => EmulationHostProtocolFunctions.TryExecutePathMediaCommand(command, reader, writer, ensureCore, readBytes, writeSuccess);
+        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess, Action<BinaryWriter, DiskStatus>? writeDiskStatus = null)
+        => EmulationHostProtocolFunctions.TryExecutePathMediaCommand(command, reader, writer, ensureCore, readBytes, writeSuccess, writeDiskStatus);
 
     /// <inheritdoc/>
     public EmulationVideoStandard? Region(uint nativeRegion)
@@ -185,8 +185,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
         => EmulationHostProtocolFunctions.ReadRuntimeStatus(reader, setRegion, setBufferedAudioFrames, setAudioOverrunCount, setAudioUnderrunCount);
 
     /// <inheritdoc/>
-    public bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, TDiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
-        => EmulationHostProtocolFunctions.TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(command, reader, writer, ensureCore, readMedia, readBytes, writeDiskStatus, decodePeripheral);
+    public bool TryExecuteCoreCommand<TMedia, TPeripheral>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
+        => EmulationHostProtocolFunctions.TryExecuteCoreCommand<TMedia, TPeripheral>(command, reader, writer, ensureCore, readMedia, readBytes, writeDiskStatus, decodePeripheral);
 
     /// <inheritdoc/>
     public void RunConnectedSession(string pipeName, string serverName, int connectionTimeoutMilliseconds, Action<BinaryReader, BinaryWriter> run)

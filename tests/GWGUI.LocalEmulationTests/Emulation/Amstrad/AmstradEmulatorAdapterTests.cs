@@ -579,6 +579,7 @@ public sealed class AmstradEmulatorAdapterTests
 
     private sealed class RecordingCore : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested => false;
         public VideoFrame? LatestVideoFrame => null;
         public AudioChunk? LatestAudioChunk => null;

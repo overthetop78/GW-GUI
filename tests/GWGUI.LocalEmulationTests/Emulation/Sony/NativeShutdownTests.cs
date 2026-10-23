@@ -115,6 +115,7 @@ public sealed class NativeShutdownTests
 
     private sealed class ShutdownCore(bool duringInitialize) : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested { get; private set; }
         public int Frames { get; private set; }
         public int Stops { get; private set; }

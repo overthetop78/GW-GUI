@@ -246,10 +246,10 @@ public sealed class CoreHostCommandTests
             static input => EmulationHostProtocolFunctions.ReadBytes(input, "test"),
             static output => output.Write(true));
     private static bool Handle(byte command, BinaryReader reader, BinaryWriter writer, Func<Core> acquire) =>
-        EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral, string>(
+        EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral>(
             command, reader, writer, () => acquire(), static input => input.ReadString(),
             static input => EmulationHostProtocolFunctions.ReadBytes(input, "test"),
-            static (output, status) => output.Write(status), static value => (TestPeripheral)value);
+            static (output, status) => output.Write("disk:" + status.ImageCount), static value => (TestPeripheral)value);
 
     private enum TestPeripheral { Pointer = 37 }
 
@@ -266,7 +266,33 @@ public sealed class CoreHostCommandTests
         Assert.Equal(new byte[] { 1 }, response.ToArray());
         Assert.Equal(0, payload.Position);
     }
-    private sealed class Core : IEmulationCoreCommands<string, TestPeripheral, string>, IEmulationCorePathMediaCommands
+    [Fact]
+    public void PathDiskStatusPreservesTheSharedRecordAndSuccessAcknowledgement()
+    {
+        using var payload = new MemoryStream();
+        using var reader = new BinaryReader(payload);
+        using var response = new MemoryStream();
+        using var writer = new BinaryWriter(response);
+        var core = new Core();
+        Assert.True(EmulationSdk.HostProtocol.TryExecutePathMediaCommand(13, reader, writer, () => core,
+            _ => throw new InvalidOperationException("Aucun argument binaire ne doit être lu."),
+            output => output.Write(true), (output, status) => output.Write(System.Text.Json.JsonSerializer.Serialize(status))));
+        response.Position = 0;
+        using var decoder = new BinaryReader(response, Encoding.UTF8, leaveOpen: true);
+        Assert.True(decoder.ReadBoolean());
+        var status = System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(decoder.ReadString())!;
+        Assert.Equal(new[] { "GetDiskStatus" }, core.Calls);
+        Assert.Equal(4, status.ImageCount);
+        Assert.Equal(2, status.CurrentIndex);
+        Assert.False(status.IsEjected);
+        var image = Assert.Single(status.Images);
+        Assert.Equal(2, image.Index);
+        Assert.Equal("disk-two.adf", image.Path);
+        Assert.Equal("Disque 2", image.Label);
+        Assert.Equal(0, payload.Position);
+        Assert.Equal(response.Length, response.Position);
+    }
+    private sealed class Core : IEmulationCoreCommands<string, TestPeripheral>, IEmulationCorePathMediaCommands
     {
         internal List<string> Calls { get; } = [];
         internal string? Media { get; private set; }
@@ -292,7 +318,7 @@ public sealed class CoreHostCommandTests
         public void LoadState(ReadOnlySpan<byte> state) { Calls.Add(nameof(LoadState)); State = state.ToArray(); }
         public void SetOption(string key, string value) { Calls.Add(nameof(SetOption)); Option = (key, value); }
         public void SelectDisk(int index) { Calls.Add(nameof(SelectDisk)); Disk = index; }
-        public string GetDiskStatus() { Calls.Add(nameof(GetDiskStatus)); return "disk:4"; }
+        public DiskStatus GetDiskStatus() { Calls.Add(nameof(GetDiskStatus)); return new(4, 2, false, [new(2, "disk-two.adf", "Disque 2")]); }
         public void SetControllerPortDevice(int port, TestPeripheral peripheral)
         { Calls.Add(nameof(SetControllerPortDevice)); Controller = (port, peripheral); }
     }

@@ -23,6 +23,14 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public DiskStatus GetDiskStatus()
+    {
+        Begin(HostCommand.GetDiskStatus);
+        CompleteRequest();
+        return System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException();
+    }
+
+    /// <inheritdoc/>
     public bool ShutdownRequested { get; private set; }
 
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>

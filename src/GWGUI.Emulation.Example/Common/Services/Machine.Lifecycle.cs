@@ -26,6 +26,20 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// de la machine ; l’arrêt attend la fin effective du thread, y compris lorsque l’attente appelante est annulée.</remarks>
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Consulte le jeu de disques courant par la file de commandes du cœur.</summary>
+    /// <param name="cancellationToken">Annulation de la commande en attente.</param>
+    /// <returns>Instantané partagé du nombre et de la sélection des images, de leur éjection, de leurs chemins et libellés.</returns>
+    /// <remarks>La consultation suit les mêmes règles de session active que les autres commandes.
+    /// Elle ne monte ni ne retire de média. Les données retournées sont des valeurs gérées
+    /// et ne transfèrent aucune ressource native du cœur au consommateur.</remarks>
+    public async ValueTask<DiskStatus> GetDiskStatusAsync(CancellationToken cancellationToken = default)
+    {
+        DiskStatus? status = null;
+        await QueueCommand(() => status = _core.GetDiskStatus(), cancellationToken).ConfigureAwait(false);
+        // La file ne termine avec succès que lorsque la consultation a effectivement renseigné le résultat.
+        return status!;
+    }
+
     /// <summary>Lance le thread du cœur et attend que son initialisation soit terminée.</summary>
     /// <param name="cancellationToken">Annulation du démarrage ; le traitement commun demande alors l’arrêt.</param>
     /// <returns>Attente du démarrage réussi ou de son erreur.</returns>

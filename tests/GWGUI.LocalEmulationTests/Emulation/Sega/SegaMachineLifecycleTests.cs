@@ -869,6 +869,7 @@ public sealed class SegaMachineLifecycleTests
 
     private sealed class Core : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested => false;
         public readonly ManualResetEventSlim FrameEntered = new();
         public readonly ManualResetEventSlim FrameRelease = new();

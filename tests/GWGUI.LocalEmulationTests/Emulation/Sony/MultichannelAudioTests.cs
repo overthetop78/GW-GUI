@@ -178,6 +178,7 @@ public sealed class MultichannelAudioTests
 
     private sealed class AudioCore(IEnumerable<AudioChunk> chunks) : IEmulatorCore
     {
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         private readonly Queue<AudioChunk> _chunks = new(chunks);
         private int _frames;
         internal bool Disposed;
