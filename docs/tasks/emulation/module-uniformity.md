@@ -11705,6 +11705,237 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : conserver la capacité de sauvegarde déclarée avant démarrage par SavedStates.IsSupported et réserver la capacité native mesurée au runtime, sans modifier les gardes des commandes existantes.
     - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : conserver la capacité de sauvegarde déclarée avant démarrage par SavedStates.IsSupported et réserver la capacité native mesurée au runtime, sans modifier les gardes des commandes existantes.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, les capacités natives, le codec hôte/client et les projections publiques ; exécuter les vérifications et le build complet.
+  - [x] Uniformiser le retour du tampon audio et la latence pour tous les cœurs.
+    - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationAudioBufferFeedback.cs : Créer le contrat public de remplissage et de latence audio repris par Common.
+    - [x] Modifier src/GWGUI.Emulation/Interop/ExternalCoreApi.cs : Ajouter le délégué ABI commun de notification du remplissage audio.
+    - [x] Modifier src/GWGUI.Emulation/Constants/ExternalCoreApiConstants.cs : Nommer la borne de latence du traitement SDK existant.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreEnvironmentProcessing.cs : Exposer par interface la négociation et la publication audio existantes.
+    - [x] Modifier src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs : Réunir la capture du callback audio, la demande de latence et la notification de remplissage existantes.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationCoreEnvironmentService.cs : Raccorder les opérations audio communes à leur implémentation interne.
+    - [x] Modifier src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs : Réutiliser le traitement audio partagé et libérer le callback emprunté à la fermeture.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : Déclarer le codec du tampon audio et le contrat obligatoire des réponses de frame.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : Sérialiser le tampon audio et écrire la latence à position fixe dans chaque frame.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : Raccorder le codec audio commun sans recopier ses lectures et écritures.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : conserver le relais Common existant pour écrire les entrées avec le statut audio.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs : Remplacer les calculs audio locaux par le traitement partagé en conservant les notifications existantes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs : Transmettre le remplissage aux callbacks existants, exposer leur latence et les notifier avant le calcul natif.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : Négocier les commandes audio avec le traitement commun et conserver leur état par session.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : Relâcher le callback audio et ses données dans le nettoyage existant des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAudioBufferFeedback.cs : Reprendre le même contrat SDK de remplissage et de latence audio.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorCore.cs : Rendre le retour audio obligatoire pour chaque implémentation de cœur.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : Transmettre directement le tampon avant la frame et appliquer la latence après la frame et au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : Conserver et envoyer le tampon audio à chaque frame ; lire la latence du même protocole.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Host.cs : Lire la latence initiale et courante à la position partagée.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : Lire le tampon audio avant chaque frame et transmettre la latence initiale avec les capacités.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : nettoyer le statut audio par la même opération que les autres callbacks lors de la fermeture.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostResponseTests.cs : Vérifier la position obligatoire de la latence et la conservation des instantanés audio en mémoire.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/LegacyHostFrameResponseTests.cs : Vérifier la réception du tampon audio avant le calcul et la latence dans la réponse de frame.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : corriger le raccordement des identifiants et du nettoyage audio détecté à la compilation.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/MultichannelAudioTests.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : compléter les cœurs synthétiques avec le contrat audio obligatoire sans changer leurs scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/EnvironmentCallbackCommandTests.cs : vérifier la négociation et la notification audio communes sans bibliothèque ni fichier externe.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Constants/EnvironmentConstants.cs : supprimer les cinq constantes audio locales remplacées par le traitement partagé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : Vérifier les contrats et raccordements compilés des 24 familles ; exécuter les vérifications et le build complet.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

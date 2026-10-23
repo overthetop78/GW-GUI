@@ -124,7 +124,11 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => Request(HostCommand.RunFrame, writer => CoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
+    public void RunFrame() => Request(HostCommand.RunFrame, writer =>
+    {
+        CoreHostFunctions.WriteInput(writer, _input.Consume());
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(writer, OutputAudioStatus);
+    }, ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);
     public void Stop()
@@ -170,4 +174,10 @@ internal sealed partial class ProcessCore : IEmulatorCore
         writer.Write(key);
         writer.Write(value);
     });
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds { get; private set; }
+    /// <summary>Valeurs de la sortie empruntée, copiées dans chaque requête de frame.</summary>
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
 }

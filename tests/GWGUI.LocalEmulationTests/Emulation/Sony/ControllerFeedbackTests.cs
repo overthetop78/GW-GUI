@@ -165,6 +165,8 @@ public sealed class ControllerFeedbackTests
 
     private sealed class FeedbackCore : IEmulatorCore
     {
+        public int MinimumAudioLatencyMilliseconds => 0;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
         public bool SupportsSaveStates => true;
         public EmulationVideoStandard? Region => null;
         public int BufferedAudioFrames => 0;

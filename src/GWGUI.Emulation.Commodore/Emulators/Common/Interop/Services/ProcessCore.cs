@@ -117,6 +117,7 @@ internal sealed class ProcessCore : IEmulatorCore
             CoreSha256 = Response.ReadString();
             FramesPerSecond = Response.ReadDouble();
             SampleRate = Response.ReadInt32();
+            MinimumAudioLatencyMilliseconds = Response.ReadInt32();
             SupportsSaveStates = Response.ReadBoolean();
             ReadRuntimeStatus(Response);
             Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
@@ -141,6 +142,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         Begin(HostCommand.RunFrame);
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(_writer!, OutputAudioStatus);
         CompleteRequest();
         LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(CoreExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
@@ -150,6 +152,7 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         FramesPerSecond = Response.ReadDouble();
         SampleRate = Response.ReadInt32();
+        MinimumAudioLatencyMilliseconds = Response.ReadInt32();
         ReadRuntimeStatus(Response);
         DiskCount = Response.ReadInt32();
         CurrentDiskIndex = Response.ReadInt32();
@@ -292,4 +295,10 @@ internal sealed class ProcessCore : IEmulatorCore
 
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(CoreExceptions.HostResponseUnavailable());
 
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds { get; private set; }
+    /// <summary>Valeurs de la sortie empruntée, copiées dans chaque requête de frame.</summary>
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
 }

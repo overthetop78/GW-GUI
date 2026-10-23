@@ -20,9 +20,4 @@ internal static class EnvironmentConstants
     internal const string NativeLogArgumentMarker = "<native-argument>";
     internal const string NativeLogConversionCharacters = "diuoxXfFeEgGaAcspn";
     internal const float NoSensorInput = 0f;
-    internal const uint SetAudioBufferStatusCallback = 62;
-    internal const uint SetMinimumAudioLatency = 63;
-    internal const int MaximumAudioLatencyMilliseconds = 500;
-    internal const int MinimumAudioBufferValue = 0;
-    internal const uint MaximumAudioOccupancyPercent = 100;
 }

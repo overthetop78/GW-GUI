@@ -121,8 +121,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public void RunFrame() => Request(HostCommand.RunFrame, writer =>
     {
         CoreHostFunctions.WriteInput(writer, _input.Consume());
-        writer.Write(OutputAudioStatus.HasValue);
-        if (OutputAudioStatus is { } status) { writer.Write(status.SampleRate); writer.Write(status.BufferedFrames); writer.Write(status.CapacityFrames); writer.Write(status.IsActive); }
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(writer, OutputAudioStatus);
     }, ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);

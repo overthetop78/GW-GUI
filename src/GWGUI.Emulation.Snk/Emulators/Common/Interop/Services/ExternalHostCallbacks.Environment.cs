@@ -18,22 +18,15 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     {
         if (command == ExternalCoreApiConstants.Shutdown) { ShutdownRequested = true; return true; }
         _environmentCommands.Add(command);
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleAudioBufferCommand(command, data, ref _audioBufferStatusCallback, ref _minimumAudioLatencyMilliseconds, out var audioResult)) return audioResult;
         if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleStatelessCommand(command, data,
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
                 _inputCapabilities, out var commonResult))
             return commonResult;
         if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleCallbackCommand(command, data, this, out var callbackResult))
             return callbackResult;
-        switch (command)
-        {
-            case EnvironmentConstants.SetAudioBufferStatusCallback:
-                return CaptureAudioBufferStatus(data);
-            case EnvironmentConstants.SetMinimumAudioLatency:
-                return SetMinimumAudioLatency(data);
-            default:
-                return CommonCoreHostFunctions.EnvironmentProcessing.HandleRemainingCommand(command, data, _optionHost,
+        return CommonCoreHostFunctions.EnvironmentProcessing.HandleRemainingCommand(command, data, _optionHost,
                     _unknownEnvironmentCommands, Diagnostics, EnvironmentFunctions.CreateUnknownCommandDiagnostic);
-        }
     }
 
     bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)

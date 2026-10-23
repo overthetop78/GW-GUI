@@ -67,6 +67,7 @@ internal static class CoreHost
             static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
+                statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                 statusWriter.Write(currentCore.SupportsSaveStates);
                 CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
             }, CoreHostFunctions.WriteLedStates);
@@ -77,17 +78,14 @@ internal static class CoreHost
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
-        var audioStatus = JsonSerializer.Deserialize<AudioOutputBufferStatus?>(reader.ReadString(), CoreHostFunctions.JsonOptions);
-        if (core is IEmulatorAudioBufferFeedback feedback)
-            feedback.SetAudioBufferStatus(audioStatus);
         core.SetInput(CoreHostFunctions.ReadInput(reader));
+        core.SetAudioBufferStatus(CommonCoreHostFunctions.Protocol.ReadAudioBufferStatus(reader));
         core.RunFrame();
         CommonCoreHostFunctions.Protocol.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
             writer, core, (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),
             CoreHostFunctions.WriteLedStates, static () => CoreHostFunctions.JsonOptions,
             ref lastVideoSequence, ref lastDiagnosticCount,
             writeStateSupport: static (statusWriter, currentCore) => statusWriter.Write(currentCore.SupportsSaveStates));
-        writer.Write(core is IEmulatorAudioBufferFeedback latency ? latency.MinimumAudioLatencyMilliseconds : 0);
         writer.Write(core.ShutdownRequested);
         CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
     }

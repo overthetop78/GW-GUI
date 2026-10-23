@@ -84,6 +84,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
+        ClearAudioBufferFeedback();
         try
         {
             _optionHost.Dispose();

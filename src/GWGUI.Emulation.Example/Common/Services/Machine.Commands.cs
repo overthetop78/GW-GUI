@@ -87,11 +87,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                             input = _cassetteInput.NextFrame();
                         }
                         _core.SetInput(input);
-                        if (_core is IEmulatorAudioBufferFeedback feedback)
-                            feedback.SetAudioBufferStatus(_audio.BufferStatus);
+                        _core.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
-                        if (_core is IEmulatorAudioBufferFeedback latency)
-                            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+                        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
                         PublishOutputs(ref videoSequence);
                         if (_core.ShutdownRequested) _stopSource?.Cancel();
                     },
@@ -185,8 +183,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// interprétée par le même contrôleur commun pour les sorties multicanales.</remarks>
     private void StartAudio()
     {
-        if (_core is IEmulatorAudioBufferFeedback latency)
-            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
         _audio.Start(_core.SampleRate);
     }
 

@@ -13,11 +13,10 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
 {
     private readonly IEmulationControllerFeedbackAccumulator _feedback = new EmulationControllerFeedbackAccumulator(EmulationHostProtocolConstants.MaximumInputControllerCount);
     private readonly ExternalCoreApi.SetRumbleState _setRumbleState;
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void AudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
     private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyboardMap = ExternalCoreKeyboardFunctions.CreateKeyMap();
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
     private ExternalCoreApi.KeyboardEvent? _keyboard;
-    private AudioBufferStatusCallback? _audioBufferStatus;
+    private ExternalCoreApi.AudioBufferStatusCallback? _audioBufferStatus;
     private enum NativePixelFormat { Rgb1555 = 0, Xrgb8888 = 1, Rgb565 = 2 }
     private const int EnglishLanguage = 0;
     private const int FrenchLanguage = 2;
@@ -61,7 +60,8 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     public void SetOption(string key, string value) => _options.SetValue(key, value);
     /// <inheritdoc/>
     public bool ShutdownRequested { get; private set; }
-    public int MinimumAudioLatencyMilliseconds { get; private set; }
+    private int _minimumAudioLatencyMilliseconds;
+    public int MinimumAudioLatencyMilliseconds => _minimumAudioLatencyMilliseconds;
 
     public void SetInput(EmulationInputSnapshot snapshot)
     {
@@ -76,14 +76,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
             ExternalCoreKeyboardFunctions.Character);
     }
 
-    public void PublishAudioBufferStatus(AudioOutputBufferStatus? status)
-    {
-        if (_audioBufferStatus is not { } callback) return;
-        var active = status is { IsActive: true, CapacityFrames: > 0, SampleRate: > 0 };
-        var occupancy = active ? (uint)Math.Clamp((long)status!.Value.BufferedFrames * 100 / status.Value.CapacityFrames, 0, 100) : 0;
-        var underrun = active && status!.Value.BufferedFrames < Math.Ceiling(status.Value.SampleRate / Math.Max(1, FramesPerSecond));
-        callback(active, occupancy, underrun);
-    }
+    public void PublishAudioBufferStatus(AudioOutputBufferStatus? status) => ExternalCoreEnvironmentFunctions.PublishAudioBufferStatus(_audioBufferStatus, status, FramesPerSecond);
 
     public void ApplyAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
@@ -97,6 +90,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
         if (_disposed) return false;
         try
         {
+            if (ExternalCoreEnvironmentFunctions.TryHandleAudioBufferCommand(command, data, ref _audioBufferStatus, ref _minimumAudioLatencyMilliseconds, out var audioResult)) return audioResult;
             if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
             switch (command)
             {
@@ -104,13 +98,6 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
                     ShutdownRequested = true;
                     return true;
                 case ExternalCoreApiConstants.GetRumbleInterface: return ExternalCoreEnvironmentFunctions.SetRumbleInterface(data, _setRumbleState);
-                case ExternalCoreApiConstants.SetAudioBufferStatusCallback:
-                    var audioCallback = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
-                    _audioBufferStatus = ExternalCoreEnvironmentFunctions.OptionalDelegate<AudioBufferStatusCallback>(audioCallback);
-                    return true;
-                case ExternalCoreApiConstants.SetMinimumAudioLatency:
-                    MinimumAudioLatencyMilliseconds = data == nint.Zero ? 0 : Math.Clamp(Marshal.ReadInt32(data), 0, 512);
-                    return true;
                 case ExternalCoreApiConstants.SetVariables: return _options.Register(data);
                 case ExternalCoreApiConstants.GetVariable: return _options.ReturnValue(data);
                 case ExternalCoreApiConstants.GetVariableUpdate: return _options.ReturnUpdated(data);
@@ -151,7 +138,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
         {
             _disposed = true;
             _audioBufferStatus = null;
-            MinimumAudioLatencyMilliseconds = 0;
+            _minimumAudioLatencyMilliseconds = 0;
             _previousKeys = new HashSet<EmulationKey>();
             try { _files?.Dispose(); }
             finally

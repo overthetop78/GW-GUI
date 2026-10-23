@@ -168,6 +168,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                     _previousKeys = new HashSet<EmulationKey>();
                 }
                 _disposed = true;
+        ClearAudioBufferFeedback();
             }
         }
         finally

@@ -15,7 +15,7 @@ public sealed class LegacyHostFrameResponseTests
     public void ResponseKeepsBinaryOrderAndUpdatesCountersAtOriginalPoints()
     {
         using var core = new Core();
-        using var input = new MemoryStream();
+        using var input = AudioRequest();
         using var reader = new BinaryReader(input, Encoding.UTF8, leaveOpen: true);
         using var output = new MemoryStream();
         using var writer = new BinaryWriter(output, Encoding.UTF8, leaveOpen: true);
@@ -57,7 +57,7 @@ public sealed class LegacyHostFrameResponseTests
                 return JsonOptions;
             }, ref sequence, ref diagnosticCount);
 
-        Assert.Equal(["input", "set-input", "run", "video", "media", "json", "led"], core.Events);
+        Assert.Equal(["input", "set-input", "buffer", "run", "video", "media", "json", "led"], core.Events);
         Assert.Equal(7, sequence);
         Assert.Equal(1, diagnosticCount);
         Assert.Equal(1, optionsRead);
@@ -71,6 +71,7 @@ public sealed class LegacyHostFrameResponseTests
         Assert.Equal(3, audio.Sequence);
         Assert.Equal(50d, response.ReadDouble());
         Assert.Equal(44100, response.ReadInt32());
+        Assert.Equal(35, response.ReadInt32());
         Assert.Equal(1, response.ReadInt32());
         Assert.Equal(1, response.ReadInt32());
         Assert.Equal(11, response.ReadInt64());
@@ -93,7 +94,7 @@ public sealed class LegacyHostFrameResponseTests
         using var core = new Core();
         core.Frame = repeated ? Frame(6) : null;
         core.OnRun = () => core.DiagnosticItems[0] = "same count, changed text";
-        using var input = new MemoryStream();
+        using var input = AudioRequest();
         using var reader = new BinaryReader(input);
         using var output = new MemoryStream();
         using var writer = new BinaryWriter(output);
@@ -123,7 +124,7 @@ public sealed class LegacyHostFrameResponseTests
         using var core = new Core();
         var expected = new InvalidOperationException(stage);
         core.OnRun = () => { if (stage == "run") throw expected; };
-        using var input = new MemoryStream();
+        using var input = AudioRequest();
         using var reader = new BinaryReader(input);
         using var output = new MemoryStream();
         using var writer = new BinaryWriter(output);
@@ -159,8 +160,26 @@ public sealed class LegacyHostFrameResponseTests
     private static VideoFrame Frame(long sequence)
         => new(ReadOnlyMemory<byte>.Empty, 0, 0, 0, EmulationPixelFormat.Xrgb8888, 1, sequence, TimeSpan.Zero);
 
-    private sealed class Core : IEmulationCoreRuntime<object, string>, IEmulationCoreRuntimeStatus
+    private static MemoryStream AudioRequest()
     {
+        var stream = new MemoryStream();
+        try
+        {
+            using (var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true))
+                EmulationSdk.HostProtocol.WriteAudioBufferStatus(writer, new AudioOutputBufferStatus(44100, 8, 16, true));
+            stream.Position = 0;
+            return stream;
+        }
+        catch { stream.Dispose(); throw; }
+    }
+    private sealed class Core : IEmulationCoreRuntime<object, string>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+    {
+        public int MinimumAudioLatencyMilliseconds => 35;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+        {
+            Assert.Equal(new AudioOutputBufferStatus(44100, 8, 16, true), status);
+            Events.Add("buffer");
+        }
         public VideoFrame? Frame = LegacyHostFrameResponseTests.Frame(7);
         public readonly Queue<AudioChunk?> Audio = new(
             [new AudioChunk(ReadOnlyMemory<short>.Empty, 44100, 0, 3, TimeSpan.Zero)]);

@@ -210,6 +210,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void RunFrame()
     {
+        _host?.NotifyAudioBufferStatus();
         (_run ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized)))();
         _host?.DiagnosticMonitor.ThrowIfFailed();
     }
@@ -418,5 +419,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
         }
         finally { _disposing = false; }
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _host?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_host is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }

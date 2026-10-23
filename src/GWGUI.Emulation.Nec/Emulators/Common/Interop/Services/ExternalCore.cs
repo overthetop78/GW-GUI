@@ -198,7 +198,11 @@ internal sealed class ExternalCore : IEmulatorCore
         return media.Count == 0 ? null : Path.GetFullPath(media[0].Path);
     }
 
-    public void RunFrame() => (_run ?? throw new InvalidOperationException(Error("CoreNotInitialized")))();
+    public void RunFrame()
+    {
+        _host?.NotifyAudioBufferStatus();
+        (_run ?? throw new InvalidOperationException(Error("CoreNotInitialized")))();
+    }
     public void HardReset()
     {
         var configuration = _configuration ?? throw new InvalidOperationException(Error("CoreNotInitialized"));
@@ -395,6 +399,13 @@ internal sealed class ExternalCore : IEmulatorCore
                 }
             }
         }
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _host?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_host is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }
 

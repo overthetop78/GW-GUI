@@ -101,7 +101,7 @@ public interface IEmulationHostProtocol
     void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus;
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback;
 
     /// <summary>Écrit le disque sélectionné et le nombre de disques selon le protocole des médias par chemin.</summary>
     /// <param name="writer">Rédacteur binaire emprunté.</param>
@@ -316,9 +316,8 @@ public interface IEmulationHostProtocol
     /// <param name="lastVideoSequence">Dernière séquence vidéo transmise, actualisée après publication.</param>
     /// <param name="lastDiagnosticCount">Nombre de diagnostics déjà transmis, actualisé après écriture.</param>
     /// <param name="writeStateSupport">Écriture facultative des capacités de sauvegarde d’état.</param>
-    /// <param name="writeAudioStatus">Écriture facultative des compteurs et capacités audio.</param>
     /// <param name="writeMediaStatus">Codec emprunté des champs de médias ajoutés après le statut partagé, ou null lorsque ces champs sont absents.</param>
-    void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeAudioStatus = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus;
+    void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback;
 
     /// <summary>Écrit le standard vidéo et les compteurs du tampon audio.</summary>
     /// <param name="writer">Rédacteur binaire emprunté, positionné au début des données à écrire.</param>
@@ -387,4 +386,12 @@ public interface IEmulationHostProtocol
     /// <param name="minimumSlotCapacity">Capacité minimale d’un emplacement vidéo, en octets.</param>
     [SupportedOSPlatform("windows")]
     VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName, int minimumSlotCapacity);
+    /// <summary>Lit l’instantané audio après les entrées d’une requête de frame.</summary>
+    /// <param name="reader">Lecteur emprunté, positionné sur la présence du statut.</param>
+    /// <returns>Valeurs de fréquence, remplissage, capacité et activité, ou null si aucun statut n’est disponible.</returns>
+    AudioOutputBufferStatus? ReadAudioBufferStatus(BinaryReader reader);
+    /// <summary>Écrit le même instantané dans une requête de frame destinée au cœur hébergé.</summary>
+    /// <param name="writer">Rédacteur emprunté ; sa durée de vie reste possédée par le transport.</param>
+    /// <param name="status">Valeurs copiées du tampon de sortie ; null représente une sortie indisponible.</param>
+    void WriteAudioBufferStatus(BinaryWriter writer, AudioOutputBufferStatus? status);
 }

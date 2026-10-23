@@ -178,6 +178,8 @@ public sealed class MultichannelAudioTests
 
     private sealed class AudioCore(IEnumerable<AudioChunk> chunks) : IEmulatorCore
     {
+        public int MinimumAudioLatencyMilliseconds => 0;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
         public bool SupportsSaveStates => true;
         public EmulationVideoStandard? Region => null;
         public int BufferedAudioFrames => 0;

@@ -81,9 +81,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             }
             finally
             {
-                _audioBufferStatusCallback = null;
-                OutputAudioStatus = null;
-                MinimumAudioLatencyMilliseconds = default;
+                ClearAudioBufferFeedback();
                 _diskControl.Clear();
             }
         }

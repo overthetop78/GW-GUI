@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using System.IO;
 using System.Buffers.Binary;
@@ -215,15 +216,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     {
         _input.Poll();
         CoreHostFunctions.WriteInput(writer, _input.Polled);
-        var status = OutputAudioStatus;
-        writer.Write(status.HasValue);
-        if (status is { } buffer)
-        {
-            writer.Write(buffer.SampleRate);
-            writer.Write(buffer.BufferedFrames);
-            writer.Write(buffer.CapacityFrames);
-            writer.Write(buffer.IsActive);
-        }
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(writer, OutputAudioStatus);
     }, ReadFrame);
 
     /// <summary>Transmet la commande de réinitialisation matérielle et attend sa réponse.</summary>

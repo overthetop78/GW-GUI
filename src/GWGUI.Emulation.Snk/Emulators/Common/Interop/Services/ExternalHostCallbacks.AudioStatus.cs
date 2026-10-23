@@ -1,45 +1,24 @@
+using CoreAudioBufferStatusCallback = GWGUI.Emulation.Interop.ExternalCoreApi.AudioBufferStatusCallback;
 using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
-using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks
 {
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    private delegate void NativeAudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
-
-    private NativeAudioBufferStatusCallback? _audioBufferStatusCallback;
+    /// <summary>Callback natif emprunté, conservé uniquement pendant la session du cœur.</summary>
+    private CoreAudioBufferStatusCallback? _audioBufferStatusCallback;
+    private int _minimumAudioLatencyMilliseconds;
+    /// <summary>Instantané de la sortie physique transmis par Common avant le calcul de la frame.</summary>
     internal AudioOutputBufferStatus? OutputAudioStatus { get; set; }
-    internal int MinimumAudioLatencyMilliseconds { get; private set; }
-
-    private bool CaptureAudioBufferStatus(nint data)
+    /// <summary>Latence minimale négociée avec le cœur, en millisecondes.</summary>
+    internal int MinimumAudioLatencyMilliseconds => _minimumAudioLatencyMilliseconds;
+    /// <summary>Notifie le délégué du cœur avec le calcul commun de remplissage et de sous-alimentation.</summary>
+    internal void NotifyAudioBufferStatus() => CommonCoreHostFunctions.EnvironmentProcessing.PublishAudioBufferStatus(_audioBufferStatusCallback, OutputAudioStatus, FramesPerSecond);
+    /// <summary>Retire les références empruntées avant le déchargement du code natif.</summary>
+    private void ClearAudioBufferFeedback()
     {
-        var pointer = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
-        _audioBufferStatusCallback = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<NativeAudioBufferStatusCallback>(pointer);
-        return true;
-    }
-
-    private bool SetMinimumAudioLatency(nint data)
-    {
-        if (data == nint.Zero) return false;
-        var latency = Marshal.ReadInt32(data);
-        if (latency < EnvironmentConstants.MinimumAudioBufferValue || latency > EnvironmentConstants.MaximumAudioLatencyMilliseconds) return false;
-        MinimumAudioLatencyMilliseconds = latency;
-        return true;
-    }
-
-    internal void NotifyAudioBufferStatus()
-    {
-        if (_audioBufferStatusCallback is not { } callback) return;
-        if (OutputAudioStatus is not { IsActive: true, CapacityFrames: > 0, SampleRate: > 0 } status)
-        {
-            callback(false, EnvironmentConstants.MinimumAudioBufferValue, false);
-            return;
-        }
-        var buffered = Math.Clamp(status.BufferedFrames, EnvironmentConstants.MinimumAudioBufferValue, status.CapacityFrames);
-        var occupancy = checked((uint)((long)buffered * EnvironmentConstants.MaximumAudioOccupancyPercent / status.CapacityFrames));
-        var underrunLikely = FramesPerSecond > EnvironmentConstants.MinimumAudioBufferValue && buffered < Math.Ceiling(status.SampleRate / FramesPerSecond);
-        callback(true, occupancy, underrunLikely);
+        _audioBufferStatusCallback = null;
+        OutputAudioStatus = null;
+        _minimumAudioLatencyMilliseconds = 0;
     }
 }

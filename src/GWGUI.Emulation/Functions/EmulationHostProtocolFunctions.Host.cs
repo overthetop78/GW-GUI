@@ -214,9 +214,10 @@ internal static partial class EmulationHostProtocolFunctions
         Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount)
-        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
     {
         core.SetInput(readInput(reader));
+        core.SetAudioBufferStatus(ReadAudioBufferStatus(reader));
         core.RunFrame();
         writer.Write(true);
         WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions,
@@ -229,15 +230,15 @@ internal static partial class EmulationHostProtocolFunctions
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount,
         Action<BinaryWriter, TCore>? writeStateSupport = null,
-        Action<BinaryWriter, TCore>? writeAudioStatus = null, Action<BinaryWriter, TCore>? writeMediaStatus = null)
-        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
+        Action<BinaryWriter, TCore>? writeMediaStatus = null)
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
     {
         WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
         var bufferedAudioFrames = core.BufferedAudioFrames;
         var audioOverrunCount = core.AudioOverrunCount;
         var audioUnderrunCount = core.AudioUnderrunCount;
         WriteCoreAudio(writer, core);
-        writeAudioStatus?.Invoke(writer, core);
+        writer.Write(core.MinimumAudioLatencyMilliseconds);
         WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         writeStateSupport?.Invoke(writer, core);
         writeMediaStatus?.Invoke(writer, core);
@@ -461,5 +462,18 @@ internal static partial class EmulationHostProtocolFunctions
             WriteResponse(transportWriter, writer => execute(command, writer), writeFailure);
             if (exit) break;
         }
+    }
+    /// <summary>Lit le codec de remplissage présent après les entrées de chaque requête de frame.</summary>
+    internal static AudioOutputBufferStatus? ReadAudioBufferStatus(BinaryReader reader) => reader.ReadBoolean() ? new AudioOutputBufferStatus(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadBoolean()) : null;
+
+    /// <summary>Écrit un instantané emprunté sans conserver ni posséder la sortie audio.</summary>
+    internal static void WriteAudioBufferStatus(BinaryWriter writer, AudioOutputBufferStatus? status)
+    {
+        writer.Write(status.HasValue);
+        if (status is not { } value) return;
+        writer.Write(value.SampleRate);
+        writer.Write(value.BufferedFrames);
+        writer.Write(value.CapacityFrames);
+        writer.Write(value.IsActive);
     }
 }

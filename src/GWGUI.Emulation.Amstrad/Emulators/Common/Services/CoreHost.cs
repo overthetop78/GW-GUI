@@ -50,6 +50,7 @@ internal static class CoreHost
                                     writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator,
                                     static (statusWriter, currentCore) =>
                                     {
+                                        statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                                         statusWriter.Write(currentCore.SupportsSaveStates);
                                         CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
                                     });

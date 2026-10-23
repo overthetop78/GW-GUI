@@ -120,7 +120,11 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
         }
     }
 
-    public void RunFrame() => Request(HostCommand.RunFrame, writer => { writer.Write(JsonSerializer.Serialize(_audioBufferStatus, CoreHostFunctions.JsonOptions)); CoreHostFunctions.WriteInput(writer, _input.Consume()); }, ReadFrame);
+    public void RunFrame() => Request(HostCommand.RunFrame, writer =>
+    {
+        CoreHostFunctions.WriteInput(writer, _input.Consume());
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(writer, _audioBufferStatus);
+    }, ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);
     public void Stop()

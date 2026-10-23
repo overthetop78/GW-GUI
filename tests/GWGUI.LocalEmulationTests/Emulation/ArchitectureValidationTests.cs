@@ -2518,70 +2518,78 @@ public sealed class ArchitectureValidationTests
     [Fact]
     public void EveryCommonUsesTheSameAudioBufferFeedbackContract()
     {
+        var contract = typeof(IEmulationAudioBufferFeedback);
+        Assert.Equal(2, contract.GetMethods().Length);
+        var latency = Assert.Single(contract.GetProperties());
+        Assert.Equal("MinimumAudioLatencyMilliseconds", latency.Name);
+        Assert.Equal(typeof(int), latency.PropertyType);
+        Assert.Null(latency.SetMethod);
+        Assert.True(latency.GetMethod!.IsAbstract);
+        var publish = contract.GetMethod("SetAudioBufferStatus")!;
+        Assert.True(publish.IsAbstract);
+        Assert.Equal(typeof(void), publish.ReturnType);
+        Assert.Equal(typeof(AudioOutputBufferStatus?), Assert.Single(publish.GetParameters()).ParameterType);
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
-            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
-            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly)
-            .Distinct().OrderBy(assembly => assembly.GetName().Name, StringComparer.Ordinal).ToArray();
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
         Assert.Equal(24, modules.Length);
-        foreach (var assembly in modules)
+        var coreCount = 0;
+        var processCount = 0;
+        var callbackCount = 0;
+        static IEnumerable<(int Offset, MethodBase Method)> Calls(Type type)
         {
-            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
-            var factoryNamespace = factory.Namespace!;
-            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
-            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
-            Assert.True(contract.IsInterface);
-            Assert.False(contract.IsVisible);
-            Assert.Equal(2, contract.GetMethods().Length);
-            var latency = Assert.Single(contract.GetProperties());
-            Assert.Equal("MinimumAudioLatencyMilliseconds", latency.Name);
-            Assert.Equal(typeof(int), latency.PropertyType);
-            Assert.Null(latency.SetMethod);
-            Assert.True(latency.GetMethod!.IsAbstract);
-            var publish = contract.GetMethod("SetAudioBufferStatus")!;
-            Assert.NotNull(publish);
-            Assert.True(publish.IsAbstract);
-            Assert.Equal(typeof(void), publish.ReturnType);
-            Assert.Equal(typeof(AudioOutputBufferStatus?), Assert.Single(publish.GetParameters()).ParameterType);
-            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
-            var owners = new[] { machine }.Concat(machine.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
-            var bodies = owners.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
-                .Select(method => method.GetMethodBody()?.GetILAsByteArray()).Where(body => body is not null).Cast<byte[]>().ToArray();
-            bool Calls(int token) => bodies.Any(body => new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(token)).ToArray()) >= 0));
-            Assert.True(Calls(publish.MetadataToken), root + ".SetAudioBufferStatus");
-            Assert.True(Calls(latency.GetMethod.MetadataToken), root + ".MinimumAudioLatencyMilliseconds");
-            var controller = assembly.GetType(root + ".Common.Services.AudioOutputController", throwOnError: true)!;
-            var applyLatency = controller.GetMethod("TrySetMinimumLatency", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)!;
-            Assert.True(Calls(applyLatency.MetadataToken), root + ".TrySetMinimumLatency");
-            var startAudio = machine.GetMethod("StartAudio", BindingFlags.NonPublic | BindingFlags.Instance)!;
-            Assert.NotNull(startAudio);
-            var startup = startAudio.GetMethodBody()!.GetILAsByteArray()!;
-            int StartupCall(int token) => new byte[] { 0x28, 0x6f }
-                .Select(opcode => startup.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(token)).ToArray()))
-                .Where(index => index >= 0).DefaultIfEmpty(-1).Min();
-            var readMinimum = StartupCall(latency.GetMethod.MetadataToken);
-            var applyMinimum = StartupCall(applyLatency.MetadataToken);
-            var startOutput = StartupCall(controller.GetMethod("Start", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, [typeof(int)])!.MetadataToken);
-            Assert.True(readMinimum >= 0, root + ".StartAudio.MinimumAudioLatencyMilliseconds");
-            Assert.True(applyMinimum > readMinimum, root + ".StartAudio.TrySetMinimumLatency");
-            Assert.True(startOutput > applyMinimum, root + ".StartAudio.Start");
-            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
-            foreach (var implementation in implementations)
-            {
-                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
-                Assert.Null(implementation.GetProperty("OutputAudioStatus", BindingFlags.Public | BindingFlags.Instance));
-            }
-            if (root is "GWGUI.Emulation.Example" or "GWGUI.Emulation.Snk")
-            {
-                var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore")!;
-                Assert.Contains(contract, core.GetInterfaces());
-                Assert.Null(core.GetProperty("OutputAudioStatus"));
-                Assert.Equal(2, implementations.Length);
-            }
-            if (root == "GWGUI.Emulation.Watara")
-                Assert.Equal(2, implementations.Length);
+            return type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                .Concat(type.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public).SelectMany(nested => nested.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls);
         }
+        foreach (var module in modules)
+        {
+            var factory = Assert.Single(module.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = module.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            var feedback = module.GetType(root + ".Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
+            Assert.True(feedback.IsInterface);
+            Assert.False(feedback.IsVisible);
+            Assert.Empty(feedback.GetMethods());
+            Assert.Contains(contract, feedback.GetInterfaces());
+            Assert.Contains(feedback, common.GetInterfaces());
+            foreach (var core in module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && common.IsAssignableFrom(type)))
+            {
+                coreCount++;
+                var map = core.GetInterfaceMap(contract);
+                Assert.Equal(2, map.TargetMethods.Length);
+                Assert.All(map.TargetMethods, method => Assert.False(method.IsAbstract));
+                if (core.Name == "ProcessCore")
+                {
+                    processCount++;
+                    Assert.Contains(Calls(core), call => call.Method.Name == "WriteAudioBufferStatus" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
+                }
+            }
+            var machine = module.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var calls = Calls(machine).ToArray();
+            Assert.Contains(calls, call => call.Method.Name == "SetAudioBufferStatus" && call.Method.DeclaringType == contract);
+            Assert.Contains(calls, call => call.Method.Name == "get_MinimumAudioLatencyMilliseconds" && call.Method.DeclaringType == contract);
+            var controller = module.GetType(root + ".Common.Services.AudioOutputController", throwOnError: true)!;
+            var startup = GetCompiledCalls(machine.GetMethod("StartAudio", BindingFlags.Instance | BindingFlags.NonPublic)!).ToArray();
+            var readMinimum = Assert.Single(startup, call => call.Method == latency.GetMethod).Offset;
+            var applyMinimum = Assert.Single(startup, call => call.Method.Name == "TrySetMinimumLatency" && call.Method.DeclaringType == controller).Offset;
+            var startOutput = Assert.Single(startup, call => call.Method.Name == "Start" && call.Method.DeclaringType == controller).Offset;
+            Assert.True(applyMinimum > readMinimum, root);
+            Assert.True(startOutput > applyMinimum, root);
+            foreach (var callbacks in module.GetTypes().Where(type => type.Name == "ExternalHostCallbacks"))
+            {
+                callbackCount++;
+                Assert.Contains(Calls(callbacks), call => call.Method.Name == "TryHandleAudioBufferCommand" && call.Method.DeclaringType == typeof(IEmulationCoreEnvironmentProcessing));
+                Assert.Contains(Calls(callbacks), call => call.Method.Name == "PublishAudioBufferStatus" && call.Method.DeclaringType == typeof(IEmulationCoreEnvironmentProcessing));
+            }
+            var host = module.GetTypes().SingleOrDefault(type => type.Name == "CoreHost");
+            if (host is not null)
+                Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name is "ReadAudioBufferStatus" or "RunCoreFrame");
+        }
+        Assert.Equal(46, coreCount);
+        Assert.Equal(23, processCount);
+        Assert.Equal(18, callbackCount);
     }
-
     [Fact]
     public async Task EveryCommonResolvesMainMemoryThroughTheSettingsContract()
     {
@@ -3611,7 +3619,7 @@ public sealed class ArchitectureValidationTests
 
     [Theory]
     [InlineData(typeof(IEmulationCoreOptionProcessing), "EmulationCoreOptionFunctions", 24)]
-    [InlineData(typeof(IEmulationCoreEnvironmentProcessing), "ExternalCoreEnvironmentFunctions", 34)]
+    [InlineData(typeof(IEmulationCoreEnvironmentProcessing), "ExternalCoreEnvironmentFunctions", 36)]
     [InlineData(typeof(IEmulationHardwareSettings), "EmulationHardwareSettingsFunctions", 12)]
     public void ProcessingContractsRetainEveryInternalOperationWithItsSignatureAndDefaults(Type contract, string implementation, int operationCount)
     {

@@ -1,3 +1,4 @@
+using CoreAudioBufferStatusCallback = GWGUI.Emulation.Interop.ExternalCoreApi.AudioBufferStatusCallback;
 using CommonCoreHostFunctions = GWGUI.Emulation.Bandai.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
@@ -19,6 +20,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     {
         if (command == ExternalCoreApiConstants.Shutdown) { ShutdownRequested = true; return true; }
         _environmentCommands.Add(command);
+        if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleAudioBufferCommand(command, data, ref _audioBufferStatusCallback, ref _minimumAudioLatencyMilliseconds, out var audioResult)) return audioResult;
         if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleStatelessCommand(command, data,
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
                 EnvironmentConstants.JoypadCapability, out var commonResult))
@@ -97,5 +99,21 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
     {
         return false;
+    }
+    /// <summary>Callback natif emprunté, conservé uniquement pendant la session du cœur.</summary>
+    private CoreAudioBufferStatusCallback? _audioBufferStatusCallback;
+    private int _minimumAudioLatencyMilliseconds;
+    /// <summary>Instantané de la sortie physique transmis par Common avant le calcul de la frame.</summary>
+    internal AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <summary>Latence minimale négociée avec le cœur, en millisecondes.</summary>
+    internal int MinimumAudioLatencyMilliseconds => _minimumAudioLatencyMilliseconds;
+    /// <summary>Notifie le délégué du cœur avec le calcul commun de remplissage et de sous-alimentation.</summary>
+    internal void NotifyAudioBufferStatus() => CommonCoreHostFunctions.EnvironmentProcessing.PublishAudioBufferStatus(_audioBufferStatusCallback, OutputAudioStatus, FramesPerSecond);
+    /// <summary>Retire les références empruntées avant le déchargement du code natif.</summary>
+    private void ClearAudioBufferFeedback()
+    {
+        _audioBufferStatusCallback = null;
+        OutputAudioStatus = null;
+        _minimumAudioLatencyMilliseconds = 0;
     }
 }

@@ -181,4 +181,6 @@ public static class ExternalCoreApiConstants
     public const short ActiveState = 1;
     public const short InactiveState = 0;
     public const int ConsumedRelativeValue = 0;
+    /// <summary>Latence minimale maximale acceptée par le traitement audio natif commun, en millisecondes.</summary>
+    public const int MaximumAudioLatencyMilliseconds = 512;
 }

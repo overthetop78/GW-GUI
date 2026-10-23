@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Interop;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Functions;
@@ -322,5 +325,46 @@ public sealed class EnvironmentCallbackCommandTests
         public bool CaptureDiskControl(nint data) => Record(nameof(CaptureDiskControl), data);
         public bool CaptureExtendedDiskControl(nint data) => Record(nameof(CaptureExtendedDiskControl), data);
         public bool GetDiskControlVersion(nint data) => Record(nameof(GetDiskControlVersion), data);
+    }
+    [Fact]
+    public void AudioNegotiationKeepsBorrowedCallbacksAndPublishesBoundedOccupancy()
+    {
+        var events = new List<(bool Active, uint Occupancy, bool Underrun)>();
+        ExternalCoreApi.AudioBufferStatusCallback handler = (active, occupancy, underrun) => events.Add((active, occupancy, underrun));
+        ExternalCoreApi.AudioBufferStatusCallback? callback = null;
+        var minimumLatency = 35;
+        var pointer = Marshal.AllocHGlobal(IntPtr.Size);
+        try
+        {
+            Marshal.WriteIntPtr(pointer, Marshal.GetFunctionPointerForDelegate(handler));
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleAudioBufferCommand(ExternalCoreApiConstants.SetAudioBufferStatusCallback, pointer, ref callback, ref minimumLatency, out var result));
+            Assert.True(result);
+            EmulationSdk.EnvironmentProcessing.PublishAudioBufferStatus(callback, new AudioOutputBufferStatus(48000, 480, 960, true), 50);
+            EmulationSdk.EnvironmentProcessing.PublishAudioBufferStatus(callback, new AudioOutputBufferStatus(48000, 2000, 960, true), 50);
+            EmulationSdk.EnvironmentProcessing.PublishAudioBufferStatus(callback, null, 50);
+            Assert.Equal(new[] { (true, 50u, true), (true, 100u, false), (false, 0u, false) }, events);
+            Assert.False(EmulationSdk.EnvironmentProcessing.TryHandleAudioBufferCommand(uint.MaxValue, nint.Zero, ref callback, ref minimumLatency, out result));
+            Assert.False(result);
+            Assert.NotNull(callback);
+            Assert.Equal(35, minimumLatency);
+            Marshal.WriteInt32(pointer, int.MaxValue);
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleAudioBufferCommand(ExternalCoreApiConstants.SetMinimumAudioLatency, pointer, ref callback, ref minimumLatency, out result));
+            Assert.True(result);
+            Assert.Equal(ExternalCoreApiConstants.MaximumAudioLatencyMilliseconds, minimumLatency);
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleAudioBufferCommand(ExternalCoreApiConstants.SetMinimumAudioLatency, nint.Zero, ref callback, ref minimumLatency, out result));
+            Assert.True(result);
+            Assert.Equal(0, minimumLatency);
+            Assert.True(EmulationSdk.EnvironmentProcessing.TryHandleAudioBufferCommand(ExternalCoreApiConstants.SetAudioBufferStatusCallback, nint.Zero, ref callback, ref minimumLatency, out result));
+            Assert.True(result);
+            Assert.Null(callback);
+            EmulationSdk.EnvironmentProcessing.PublishAudioBufferStatus(callback, null, 50);
+            Assert.Equal(3, events.Count);
+        }
+        finally
+        {
+            callback = null;
+            Marshal.FreeHGlobal(pointer);
+            GC.KeepAlive(handler);
+        }
     }
 }

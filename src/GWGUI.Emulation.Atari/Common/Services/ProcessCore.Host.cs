@@ -29,6 +29,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         CoreSha256 = reader.ReadString();
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
         SupportsSaveStates = reader.ReadBoolean();
         ReadRuntimeStatus(reader);
         Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
@@ -51,6 +52,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
         ReadRuntimeStatus(reader);
         if (reader.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];

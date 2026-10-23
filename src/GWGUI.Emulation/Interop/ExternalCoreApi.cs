@@ -350,4 +350,10 @@ public static class ExternalCoreApi
         public nint SetState;
         public nint GetInput;
     }
+    /// <summary>Notification native du remplissage de la sortie audio, empruntée au cœur.</summary>
+    /// <param name="active">Indique que la sortie audio accepte des échantillons.</param>
+    /// <param name="occupancy">Pourcentage de remplissage borné entre zéro et cent.</param>
+    /// <param name="underrunLikely">Indique que moins d’une frame d’émulation reste disponible.</param>
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void AudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
 }

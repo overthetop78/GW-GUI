@@ -105,8 +105,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void StartAudio()
     {
-        if (_core is IEmulatorAudioBufferFeedback latency)
-            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
         _audio.Start(_core.SampleRate);
     }
 

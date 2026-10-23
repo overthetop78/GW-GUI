@@ -153,4 +153,10 @@ internal sealed class EmulationCoreEnvironmentService : IEmulationCoreEnvironmen
     /// <inheritdoc/>
     public bool WriteUnsignedLong(nint destination, ulong value)
         => ExternalCoreEnvironmentFunctions.WriteUnsignedLong(destination, value);
+    /// <inheritdoc/>
+    public bool TryHandleAudioBufferCommand(uint command, nint data, ref ExternalCoreApi.AudioBufferStatusCallback? callback, ref int minimumLatency, out bool result)
+        => ExternalCoreEnvironmentFunctions.TryHandleAudioBufferCommand(command, data, ref callback, ref minimumLatency, out result);
+    /// <inheritdoc/>
+    public void PublishAudioBufferStatus(ExternalCoreApi.AudioBufferStatusCallback? callback, AudioOutputBufferStatus? status, double framesPerSecond)
+        => ExternalCoreEnvironmentFunctions.PublishAudioBufferStatus(callback, status, framesPerSecond);
 }

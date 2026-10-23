@@ -275,4 +275,18 @@ public interface IEmulationCoreEnvironmentProcessing
     /// <param name="value">Valeur ou adresse à écrire selon la surcharge ; aucune propriété de l’adresse n’est transférée.</param>
     /// <returns>Résultat du traitement existant, sans transfert de propriété des entrées empruntées.</returns>
     bool WriteUnsignedLong(nint destination, ulong value);
+    /// <summary>Négocie le callback de remplissage et la demande de latence du cœur.</summary>
+    /// <param name="command">Commande ABI annoncée par le cœur.</param>
+    /// <param name="data">Structure empruntée pendant cet appel ; null retire le callback ou remet la latence à zéro.</param>
+    /// <param name="callback">Délégué emprunté conservé par le propriétaire de session jusqu’à son arrêt.</param>
+    /// <param name="minimumLatency">Latence courante ; les demandes sont bornées par la limite commune.</param>
+    /// <param name="result">Réponse ABI pour une commande reconnue.</param>
+    /// <returns>True si cette commande concerne le remplissage ou la latence audio.</returns>
+    bool TryHandleAudioBufferCommand(uint command, nint data, ref ExternalCoreApi.AudioBufferStatusCallback? callback, ref int minimumLatency, out bool result);
+
+    /// <summary>Publie les valeurs du tampon au callback emprunté sans créer ni fermer de sortie audio.</summary>
+    /// <param name="callback">Délégué du cœur, ou null si aucun callback n’a été annoncé.</param>
+    /// <param name="status">Instantané de la sortie, ou null lorsque son état est indisponible.</param>
+    /// <param name="framesPerSecond">Cadence du cœur utilisée pour estimer la sous-alimentation.</param>
+    void PublishAudioBufferStatus(ExternalCoreApi.AudioBufferStatusCallback? callback, AudioOutputBufferStatus? status, double framesPerSecond);
 }

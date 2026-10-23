@@ -115,6 +115,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void RunFrame()
     {
+        _callbacks?.NotifyAudioBufferStatus();
         var exports = RequireExports();
         exports.Run();
         if (!_supportsSaveStates)
@@ -139,5 +140,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
         ControllerPortFunctions.Configure(RequireExports(), next);
         _configuration = next;
         _callbacks?.Feedback.ResetPort(port);
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _callbacks?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }

@@ -676,4 +676,33 @@ internal static class ExternalCoreEnvironmentFunctions
             Marshal.FreeHGlobal(buffer);
         }
     }
+    /// <summary>Réunit la négociation du callback audio et la borne de latence déjà appliquée par l’hôte commun.</summary>
+    internal static bool TryHandleAudioBufferCommand(uint command, nint data, ref ExternalCoreApi.AudioBufferStatusCallback? callback, ref int minimumLatency, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.SetAudioBufferStatusCallback:
+                var pointer = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
+                callback = OptionalDelegate<ExternalCoreApi.AudioBufferStatusCallback>(pointer);
+                result = true;
+                return true;
+            case ExternalCoreApiConstants.SetMinimumAudioLatency:
+                minimumLatency = data == nint.Zero ? 0 : Math.Clamp(Marshal.ReadInt32(data), 0, ExternalCoreApiConstants.MaximumAudioLatencyMilliseconds);
+                result = true;
+                return true;
+            default:
+                result = false;
+                return false;
+        }
+    }
+
+    /// <summary>Publie le remplissage borné et l’estimation de sous-alimentation au délégué natif de la session.</summary>
+    internal static void PublishAudioBufferStatus(ExternalCoreApi.AudioBufferStatusCallback? callback, AudioOutputBufferStatus? status, double framesPerSecond)
+    {
+        if (callback is null) return;
+        var active = status is { IsActive: true, CapacityFrames: > 0, SampleRate: > 0 };
+        var occupancy = active ? (uint)Math.Clamp((long)status!.Value.BufferedFrames * 100 / status.Value.CapacityFrames, 0, 100) : 0;
+        var underrun = active && status!.Value.BufferedFrames < Math.Ceiling(status.Value.SampleRate / Math.Max(1, framesPerSecond));
+        callback(active, occupancy, underrun);
+    }
 }

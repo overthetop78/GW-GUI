@@ -50,12 +50,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
                 CommonCoreHostFunctions.MachineExecution.RunLoop(_gate, _commands, () => _pauseRequested,
                     () => {
-                        if (_core is IEmulatorAudioBufferFeedback feedback)
-                            feedback.SetAudioBufferStatus(_audio.BufferStatus);
+                        _core.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
                         if (_core.ShutdownRequested) return false;
-                        if (_core is IEmulatorAudioBufferFeedback latency)
-                            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+                        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
                         CommonCoreHostFunctions.MachineExecution.PublishOutputs(this, ref videoSequence,
                             static machine => machine._core.LatestVideoFrame,
                             static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
@@ -128,8 +126,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private void StartAudio()
     {
-        if (_core is IEmulatorAudioBufferFeedback latency)
-            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
         _audio.Start(_core.SampleRate);
     }
 }

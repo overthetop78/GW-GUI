@@ -148,6 +148,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void RunFrame()
     {
+        _callbacks?.NotifyAudioBufferStatus();
         RequireCallbacks().BeginFrame();
         RequireExports().Run();
     }
@@ -163,5 +164,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         var options = _mediaAdapter.PrepareOptions(new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value });
         foreach (var option in options) RequireCallbacks().SetOption(option.Key, option.Value);
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _callbacks?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }

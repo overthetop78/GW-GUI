@@ -29,6 +29,7 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
         CoreSha256 = reader.ReadString();
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
         SupportsSaveStates = reader.ReadBoolean();
         ReadRuntimeStatus(reader);
         Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
@@ -51,11 +52,11 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
         }
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
         ReadRuntimeStatus(reader);
         SupportsSaveStates = reader.ReadBoolean();
         if (reader.ReadBoolean()) Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
-        MinimumAudioLatencyMilliseconds = reader.ReadInt32();
         ShutdownRequested = reader.ReadBoolean();
         ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }

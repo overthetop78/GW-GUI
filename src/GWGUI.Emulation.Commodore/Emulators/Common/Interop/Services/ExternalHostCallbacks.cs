@@ -177,6 +177,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                     _previousKeys = new HashSet<EmulationKey>();
                 }
                 _disposed = true;
+        ClearAudioBufferFeedback();
             }
             if (failure is not null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
         }

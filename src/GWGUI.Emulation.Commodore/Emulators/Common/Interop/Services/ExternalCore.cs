@@ -196,7 +196,11 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void RunFrame()
+    {
+        _host?.NotifyAudioBufferStatus();
+        (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    }
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration)
     {
@@ -347,5 +351,12 @@ internal sealed class ExternalCore : IEmulatorCore
             }
             }
         }
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _host?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_host is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }

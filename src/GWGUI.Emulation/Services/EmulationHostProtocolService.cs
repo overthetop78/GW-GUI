@@ -54,7 +54,7 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     public void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
         => EmulationHostProtocolFunctions.RunCoreFrame<TCore, TConfiguration, TOption>(reader, writer, core, readInput, writeFrame, writeMediaStatus, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount);
 
     /// <inheritdoc/>
@@ -173,8 +173,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
         => EmulationHostProtocolFunctions.WriteCoreInitialization<TCore, TConfiguration, TOption>(writer, core, jsonOptions, ref lastDiagnosticCount, extensionSeparator, writeStatus);
 
     /// <inheritdoc/>
-    public void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeAudioStatus = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
-        => EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount, writeStateSupport, writeAudioStatus, writeMediaStatus);
+    public void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+        => EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount, writeStateSupport, writeMediaStatus);
 
     /// <inheritdoc/>
     public void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
@@ -209,4 +209,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     [SupportedOSPlatform("windows")]
     public VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName, int minimumSlotCapacity)
         => EmulationHostProtocolFunctions.ReadResizableSharedFrame(reader, ref memory, ref view, ref activeName, minimumSlotCapacity);
+    /// <inheritdoc/>
+    public AudioOutputBufferStatus? ReadAudioBufferStatus(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudioBufferStatus(reader);
+    /// <inheritdoc/>
+    public void WriteAudioBufferStatus(BinaryWriter writer, AudioOutputBufferStatus? status) => EmulationHostProtocolFunctions.WriteAudioBufferStatus(writer, status);
 }

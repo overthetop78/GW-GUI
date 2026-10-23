@@ -73,6 +73,7 @@ internal static class CoreHost
             static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
+                statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                 statusWriter.Write(currentCore.SupportsSaveStates);
                 CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
             }, CoreHostFunctions.WriteLedStates);
@@ -84,6 +85,7 @@ internal static class CoreHost
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
+        core.SetAudioBufferStatus(CommonCoreHostFunctions.Protocol.ReadAudioBufferStatus(reader));
         core.RunFrame();
         CommonCoreHostFunctions.Protocol.WriteNativeCoreFrameResponse<IEmulatorCore, MachineConfiguration, CoreOption>(
             writer, core, (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video),

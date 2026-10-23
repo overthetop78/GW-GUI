@@ -155,7 +155,7 @@ public sealed class CoreHostResponseTests
     {
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
-        using var core = new Core();
+        using var core = new Core { Latency = latency ? 33 : 0 };
         long sequence = 17;
         var count = changed ? 0 : 1;
         EmulationSdk.HostProtocol.WriteNativeCoreFrameResponse<Core, Configuration, Option>(
@@ -175,12 +175,11 @@ public sealed class CoreHostResponseTests
                 return new JsonSerializerOptions(JsonSerializerDefaults.Web);
             }, ref sequence, ref count,
             support ? static (output, source) => output.Write(source.SupportsSaveStates) : null,
-            latency ? (output, _) => { core.Trace.Add("latency"); output.Write(33); } : null,
             media ? (output, _) => { core.Trace.Add("media"); output.Write(55); } : null);
         writer.Flush();
 
         var trace = new List<string> { "video", "frame", "buffered", "overrun", "underrun", "dequeue", "fps", "rate" };
-        if (latency) trace.Add("latency");
+        trace.Add("latency");
         trace.Add("region");
         if (support) trace.Add("support");
         if (media) trace.Add("media");
@@ -198,7 +197,7 @@ public sealed class CoreHostResponseTests
         Assert.Empty(EmulationSdk.HostProtocol.ReadAudio(reader, "native-response-test"));
         Assert.Equal(72.5, reader.ReadDouble());
         Assert.Equal(22050, reader.ReadInt32());
-        if (latency) Assert.Equal(33, reader.ReadInt32());
+        Assert.Equal(latency ? 33 : 0, reader.ReadInt32());
         Assert.Equal(1, reader.ReadInt32());
         Assert.Equal(9, reader.ReadInt32());
         Assert.Equal(10, reader.ReadInt64());
@@ -239,8 +238,11 @@ public sealed class CoreHostResponseTests
     private sealed record Configuration;
     private sealed record Option(int Code, [property: JsonPropertyName("profileDetail")] string Detail);
 
-    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>, IEmulationCoreRuntimeStatus
+    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
     {
+        internal int Latency;
+        public int MinimumAudioLatencyMilliseconds => Read("latency", Latency);
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
         private int _diagnosticReads;
         private double _fps = 59.5;
         private int _sampleRate = 44100;

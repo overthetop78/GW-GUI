@@ -118,7 +118,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => RequireExports().Run();
+    public void RunFrame()
+    {
+        _callbacks?.NotifyAudioBufferStatus();
+        RequireExports().Run();
+    }
     public void HardReset() => RequireExports().Reset();
     public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
     public void SetOption(string key, string value) => RequireCallbacks().SetOption(key, value);
@@ -132,5 +136,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _configuration = configuration with { Input = configuration.Input with { Controllers = bindings } };
         RequireCallbacks().ConfigureInput(_configuration.Input);
         _callbacks?.Feedback.ResetPort(port);
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _callbacks?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status;
     }
 }
