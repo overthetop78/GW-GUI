@@ -1127,7 +1127,7 @@ public sealed class ArchitectureValidationTests
     [Fact]
     public void SimpleEnvironmentCallbacksUseTheSharedOwnerAndKeepTheirOptionFactories()
     {
-        foreach (var (family, emulator) in new[] { ("Panasonic", "Opera"), ("Watara", "Potator") })
+        foreach (var (family, emulator) in new[] { ("Panasonic", "Opera"), ("Thomson", "Theodore"), ("Watara", "Potator"), ("Wenquxing", "Wqxemu") })
         {
             var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
             var root = $"GWGUI.Emulation.{family}.Emulators.{emulator}.Interop.Services.";
@@ -1138,9 +1138,9 @@ public sealed class ArchitectureValidationTests
             Assert.True(feedback.IsAssignableFrom(core));
             var process = assembly.GetType($"GWGUI.Emulation.{family}.Common.Services.ProcessCore", throwOnError: true)!;
             Assert.True(feedback.IsAssignableFrom(process));
-            var optionsFactory = assembly.GetType(root + "OptionCallbackHost", throwOnError: true)!;
+            var optionsFactory = assembly.GetType(root + "OptionCallbackHost") ?? assembly.GetType($"GWGUI.Emulation.{family}.Emulators.{emulator}.Functions.RuntimeOptionFunctions", throwOnError: true)!;
             Assert.True(optionsFactory.IsAbstract && optionsFactory.IsSealed);
-            var create = optionsFactory.GetMethod("Create", BindingFlags.NonPublic | BindingFlags.Static)!;
+            var create = optionsFactory.GetMethod("Create", BindingFlags.NonPublic | BindingFlags.Static) ?? optionsFactory.GetMethod("CreateCallbackHost", BindingFlags.NonPublic | BindingFlags.Static)!;
             Assert.Equal(typeof(IEmulationVariableOptionHost<EmulationEnabledOption>), create.ReturnType);
             using var options = Assert.IsAssignableFrom<IEmulationVariableOptionHost<EmulationEnabledOption>>(create.Invoke(null, [new Dictionary<string, string>()]));
             Assert.Empty(options.Options);

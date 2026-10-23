@@ -7485,3 +7485,19 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : ajouter une vérification temporaire des commandes natives de démarrage sans média, clavier, remplissage audio et latence ; emprunter le dossier de sortie existant, libérer la mémoire native dans finally et disposer les propriétaires.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : retirer uniquement la vérification et son capteur temporaires après leur exécution, en conservant les contrôles durables et les ressources préexistantes.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement des deux cœurs à l’interface et les fabriques d’options, conserver les contrôles de propriété des ressources ; exécuter les tests locaux puis vérifier le Debug avec tous les modules.
+## Retour audio raccordé chez tous les consommateurs de l’hôte partagé
+
+- [x] Raccorder les quatre consommateurs au même échange audio, jusqu’à la machine et à son processus.
+  - [x] Compléter Thomson et Wenquxing.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : reprendre la réception du remplissage et l’émission de la latence du protocole déjà raccordé à l’hôte partagé.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : transmettre le remplissage avant la frame et appliquer la latence demandée après la frame, comme les autres consommateurs du même hôte.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : raccorder le contrat de retour audio, conserver son instantané et sérialiser ce statut avant les entrées de la frame.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Host.cs : reprendre la lecture de la latence supplémentaire du protocole partagé, sans changer les autres champs.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs : exposer la latence et transmettre le remplissage par l’interface de l’hôte SDK existant ; conserver le clavier spécifique et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : reprendre la réception du remplissage et l’émission de la latence du protocole déjà raccordé à l’hôte partagé.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : transmettre le remplissage avant la frame et appliquer la latence demandée après la frame, comme les autres consommateurs du même hôte.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : raccorder le contrat de retour audio, conserver son instantané et sérialiser ce statut avant les entrées de la frame.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Host.cs : reprendre la lecture de la latence supplémentaire du protocole partagé, sans changer les autres champs.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : exposer la latence et transmettre le remplissage par l’interface de l’hôte SDK existant ; conserver le clavier spécifique et la libération des ressources.
+  - [x] Vérifier le raccordement complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement audio des quatre consommateurs de l’hôte partagé, en conservant les vérifications des fabriques d’options ; comparer les protocoles et les libérations de ressources, exécuter les contrôles locaux puis vérifier le Debug avec tous les modules.

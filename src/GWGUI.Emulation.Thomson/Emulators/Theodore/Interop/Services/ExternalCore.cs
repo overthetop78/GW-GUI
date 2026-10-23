@@ -10,7 +10,7 @@ using NativeMedia = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.MediaRu
 using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;
-internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
     ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
@@ -39,6 +39,10 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
     }
 
     public Emulator Emulator => Emulator.Theodore;
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _environment?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => _environment?.PublishAudioBufferStatus(status);
     public VideoFrame? LatestVideoFrame => _video?.LatestFrame;
     public AudioChunk? LatestAudioChunk => _audio?.LatestChunk;
     public IReadOnlyList<CoreOption> Options => _environment?.Options ?? [];
