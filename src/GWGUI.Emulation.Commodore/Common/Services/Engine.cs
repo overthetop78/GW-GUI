@@ -37,6 +37,11 @@ internal sealed class Engine
         return Adapter(configuration).Create(configuration, context);
     }
 
+    /// <summary>Résout le backend choisi dans le catalogue possédé par cette instance Common.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection du backend.</param>
+    /// <returns>La même instance du catalogue, ou null lorsque la sélection ne correspond à aucun backend.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorKey == configuration.Core.ToString());
+
     internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => _adapters[EmulatorCatalog.Get(configuration.Core).Id];
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
@@ -145,7 +150,7 @@ internal sealed class Engine
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
     {
         var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var adapter = _adapters.Values.FirstOrDefault(candidate => candidate.EmulatorKey == current.Core.ToString());
+        var adapter = SelectedAdapter(current);
         return adapter?.GetRuntimeOptions(current) ?? new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>());
     }
 

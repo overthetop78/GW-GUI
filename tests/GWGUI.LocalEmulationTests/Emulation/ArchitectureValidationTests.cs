@@ -14,6 +14,64 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonSelectsTheSameCatalogInstanceAndAllowsAnIncompleteSelection()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var selector = Assert.Single(engineType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name == "SelectedAdapter");
+            var parameter = Assert.Single(selector.GetParameters());
+            Assert.Equal("configuration", parameter.Name);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
+            Assert.Equal(assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true), selector.ReturnType);
+            var engine = Activator.CreateInstance(engineType, nonPublic: true)!;
+            var adapters = Assert.IsAssignableFrom<System.Collections.IDictionary>(engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine));
+            var core = parameter.ParameterType.GetProperty("Core");
+            var identifier = parameter.ParameterType.GetProperty("EmulatorId");
+            foreach (System.Collections.DictionaryEntry entry in adapters)
+            {
+                var configuration = RuntimeHelpers.GetUninitializedObject(parameter.ParameterType);
+                if (core?.PropertyType.IsEnum == true)
+                {
+                    var key = Assert.IsType<string>(entry.Value!.GetType().GetProperty("EmulatorKey")!.GetValue(entry.Value));
+                    core.SetValue(configuration, Enum.Parse(core.PropertyType, key));
+                }
+                else
+                {
+                    Assert.NotNull(identifier);
+                    identifier.SetValue(configuration, entry.Key);
+                }
+                Assert.Same(entry.Value, selector.Invoke(engine, [configuration]));
+                Assert.Same(entry.Value, selector.Invoke(engine, [configuration]));
+            }
+            var incomplete = RuntimeHelpers.GetUninitializedObject(parameter.ParameterType);
+            if (core?.PropertyType.IsEnum == true)
+            {
+                var hasNone = Enum.GetNames(core.PropertyType).Contains("None", StringComparer.Ordinal);
+                var absent = hasNone ? Enum.Parse(core.PropertyType, "None") : Enum.ToObject(core.PropertyType, -1);
+                if (!hasNone) Assert.False(Enum.IsDefined(core.PropertyType, absent));
+                core.SetValue(incomplete, absent);
+                Assert.Null(selector.Invoke(engine, [incomplete]));
+            }
+            else
+            {
+                Assert.NotNull(identifier);
+                foreach (var key in new[] { null, string.Empty, "__missing_emulator__" })
+                {
+                    identifier.SetValue(incomplete, key);
+                    Assert.Null(selector.Invoke(engine, [incomplete]));
+                }
+            }
+        }
+    }
+
+    [Fact]
     public void EveryEngineAppliesSettingsThroughTheSameAdapterContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

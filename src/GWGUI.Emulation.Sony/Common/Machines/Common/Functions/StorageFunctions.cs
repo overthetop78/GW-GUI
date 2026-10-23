@@ -9,7 +9,7 @@ internal static class StorageSettingsFunctions
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var adapter = new Engine().SelectedAdapter(configuration);
         var mediaAdapter = adapter as IEmulatorStorageSettings;
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
@@ -80,7 +80,7 @@ internal static class StorageSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var adapter = new Engine().SelectedAdapter(configuration);
         var mediaAdapter = adapter as IEmulatorStorageSettings;
         var adapterDevices = adapter?.DescribeMediaDevices(configuration) ?? [];
         var hardDisks = settings.MountedMedia.Where(item => item.Type == EmulationMediaType.HardDisk && settings.ConfiguredSlots.Contains(item.Slot)).ToArray();

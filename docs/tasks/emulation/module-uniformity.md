@@ -8154,3 +8154,15 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Engine.cs : réutiliser SelectedAdapter dans le nouveau relais des réglages et reprendre ce nom et la sélection existante de Example si cette entrée manque, sans changer les autres appels de sélection.
     - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Engine.cs : réutiliser SelectedAdapter dans le nouveau relais des réglages et reprendre ce nom et la sélection existante de Example si cette entrée manque, sans changer les autres appels de sélection.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, les appels compilés de chaque Engine, la sélection des méthodes natives et la conservation de la même instance par défaut ; exécuter les tests locaux puis construire le Debug avec tous les modules et vérifier les sorties.
+
+## Sélection facultative des adaptateurs réunie dans Engine
+- [x] Terminer le point de sélection SelectedAdapter dans les 24 Common et réutiliser le catalogue existant.
+  - [x] Retirer les recherches répétées des parcours concernés.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : reprendre la recherche facultative existante de RuntimeOptions dans SelectedAdapter puis appeler ce point commun, en conservant les appels stricts et les autres règles.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : ajouter SelectedAdapter par la recherche existante sur les identifiants et remplacer les trois recherches répétées dans les réglages, la vidéo et les options runtime sans changer leurs branches ou conversions.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs : obtenir le backend par Engine.SelectedAdapter au lieu de rechercher directement dans le catalogue, avec les mêmes descriptions et replis.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs : remplacer les deux recherches directes de backend par Engine.SelectedAdapter et conserver toutes les règles de stockage.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/ConfigurationFunctions.cs : retrouver le validateur par Engine.SelectedAdapter au même point après les contrôles existants.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/FirmwareFunctions.cs : utiliser Engine.SelectedAdapter pour les slots et conserver le filtre du contrat firmware et la liste vide de repli.
+  - [x] Vérifier la sélection effective des 24 Common.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que les 24 Engine exposent SelectedAdapter, que chaque sélection retrouve la même instance du catalogue, et que les choix absents retournent null sans charger de cœur ; exécuter les tests locaux, construire le Debug avec tous les modules et vérifier les sorties.

@@ -8,7 +8,7 @@ internal static class FirmwareFunctions
     /// <param name="configuration">Configuration du modèle et du cœur sélectionnés.</param>
     /// <returns>Emplacements du backend, ou liste vide s’il ne fournit pas ce catalogue.</returns>
     internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) =>
-        EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == configuration.EmulatorId) is IEmulatorFirmwareSettings settings ? settings.GetFirmwareSlots(configuration) : [];
+        new Engine().SelectedAdapter(configuration) is IEmulatorFirmwareSettings settings ? settings.GetFirmwareSlots(configuration) : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {

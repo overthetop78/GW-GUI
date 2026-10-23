@@ -35,6 +35,11 @@ internal sealed class Engine
         return Adapter(configuration).Create(configuration, context);
     }
 
+    /// <summary>Résout le backend choisi dans le catalogue possédé par cette instance Common.</summary>
+    /// <param name="configuration">Configuration empruntée portant la sélection du backend.</param>
+    /// <returns>La même instance du catalogue, ou null lorsque la sélection ne correspond à aucun backend.</returns>
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => _adapters.Values.FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+
     internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => Adapter(configuration.EmulatorId);
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
@@ -117,7 +122,7 @@ internal sealed class Engine
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var sony = RequireConfiguration(configuration);
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
+        var adapter = SelectedAdapter(sony);
         var firmwareFields = (adapter is null ? [] : FirmwareConfigurationFunctions.Slots(sony, adapter)).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         if (sony.Model == ModelConstants.Psp && string.IsNullOrWhiteSpace(options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0)))
@@ -146,14 +151,14 @@ internal sealed class Engine
     public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
     {
         var sony = RequireConfiguration(configuration);
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId) as IEmulatorSettingsAdapter;
+        var adapter = SelectedAdapter(sony) as IEmulatorSettingsAdapter;
         return adapter?.ApplyVideoSettings(sony, graphicsApi) ?? sony with { GraphicsApi = graphicsApi };
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
     {
         var sony = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
+        var adapter = SelectedAdapter(sony);
         return adapter?.GetRuntimeOptions(sony) ?? sony.Options ?? new Dictionary<string, string>();
     }
 

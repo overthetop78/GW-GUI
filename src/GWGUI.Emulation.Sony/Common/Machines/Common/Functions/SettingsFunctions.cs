@@ -12,7 +12,7 @@ internal static partial class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var adapter = new Engine().SelectedAdapter(configuration);
         var settingsAdapter = adapter as IEmulatorSettingsAdapter;
         var audio = settingsAdapter?.GetAudioConfiguration(configuration) ?? configuration.Audio ?? new AudioConfiguration();
         var latencies = settingsAdapter?.GetAudioLatencyChoices(configuration) ?? AudioConstants.LatencyMilliseconds;
