@@ -154,7 +154,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;
     bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;
-    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => CommonCoreHostFunctions.EnvironmentProcessing.SetRumbleInterface(data, _setRumbleState);
     bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
 
     void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)

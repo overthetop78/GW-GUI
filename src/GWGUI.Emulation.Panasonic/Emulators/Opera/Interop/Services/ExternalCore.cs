@@ -13,6 +13,9 @@ using NativeOptions = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.Runtim
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _environment?.ControllerFeedback ?? [];
+
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
     ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
     ExternalCoreApi.AudioSampleCallback IEmulationCoreCallbacks.AudioSample => _audio!.SampleCallback;
@@ -202,6 +205,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
             throw new ArgumentException(nameof(peripheral));
         _input.SetPeripheral(port, peripheral);
         RequireExports().SetControllerPortDevice(checked((uint)port), (uint)InputCallbackHost.Device(peripheral));
+        _environment?.ResetControllerFeedback(port);
     }
 
     public void InsertMedia(MediaConfiguration media) => LoadContent(media with { IsInserted = true });

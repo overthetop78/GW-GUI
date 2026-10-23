@@ -98,7 +98,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
         return CommonCoreHostFunctions.EnvironmentProcessing.SetLedInterface(data, Led);
     }
 
-    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => CommonCoreHostFunctions.EnvironmentProcessing.SetRumbleInterface(data, _setRumbleState);
 
     bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
 

@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Functions;
@@ -9,6 +10,10 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Relie le contrat d’environnement aux fonctions existantes sans reproduire leurs traitements.</summary>
 internal sealed class EmulationCoreEnvironmentService : IEmulationCoreEnvironmentProcessing
 {
+    /// <inheritdoc/>
+    public IEmulationControllerFeedbackAccumulator CreateControllerFeedbackAccumulator(int? maximumPortCount = null)
+        => new EmulationControllerFeedbackAccumulator(maximumPortCount ?? EmulationHostProtocolConstants.MaximumInputControllerCount);
+
     /// <inheritdoc/>
     public bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct
         => ExternalCoreEnvironmentFunctions.ApplyStructure<T>(data, apply);

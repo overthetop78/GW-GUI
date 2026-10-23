@@ -10,6 +10,9 @@ namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
     private IEmulationCoreLibrary? _library;
@@ -122,5 +125,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
         ConfigurationFunctions.Validate(next);
         ControllerPortFunctions.Configure(RequireExports());
         _configuration = next;
+        _callbacks?.Feedback.ResetPort(port);
     }
 }

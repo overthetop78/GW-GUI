@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Emulation.Interfaces;
 
@@ -18,6 +19,11 @@ public interface IEmulationCoreRuntime<in TConfiguration, out TOption> : IDispos
     IReadOnlyList<string> Diagnostics { get; }
     /// <summary>État d’activité des lecteurs, indexés selon le contrat du module.</summary>
     IReadOnlyDictionary<int, bool> LedStates { get; }
+    /// <summary>Effets actifs des ports émulés, indépendants des périphériques physiques de l’hôte.</summary>
+    /// <remarks>Une liste vide signale l’absence d’effets actifs. Le consommateur contrôle les intensités
+    /// et les associations de sortie avant leur transmission. Les instantanés ne doivent plus être lus après
+    /// la destruction du cœur ; le défaut ne déclare aucun effet produit par le backend.</remarks>
+    IReadOnlyList<ControllerFeedbackState> ControllerFeedback => [];
     /// <summary>Nom du cœur utilisé aussi pour vérifier l’identité des sauvegardes.</summary>
     string CoreName { get; }
     /// <summary>Version du cœur réellement chargé.</summary>

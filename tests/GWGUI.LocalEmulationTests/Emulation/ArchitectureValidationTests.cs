@@ -15,6 +15,66 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCoreUsesTheSharedFeedbackContractAndNativeReceiversKeepEffects()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        string[] receivers = ["Acorn", "Amstrad", "Apple", "Atari", "Bandai", "Coleco", "Commodore", "Epoch", "Fairchild", "Mattel", "Nec", "Nintendo", "Philips", "Sega", "Sharp", "Sinclair", "Snk"];
+        var checkedReceivers = 0;
+        var sharedHosts = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Contracts.ControllerFeedbackState"));
+            var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            var runtime = Assert.Single(core.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            var property = runtime.GetProperty("ControllerFeedback")!;
+            Assert.Equal(typeof(IReadOnlyList<ControllerFeedbackState>), property.PropertyType);
+            Assert.Null(core.GetProperty(property.Name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly));
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && core.IsAssignableFrom(type)))
+            {
+                var map = implementation.GetInterfaceMap(runtime);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, property.GetMethod!)];
+                Assert.False(target.IsAbstract);
+            }
+            var nativeName = root switch
+            {
+                "GWGUI.Emulation.Panasonic" => "Opera",
+                "GWGUI.Emulation.Thomson" => "Theodore",
+                "GWGUI.Emulation.Watara" => "Potator",
+                "GWGUI.Emulation.Wenquxing" => "Wqxemu",
+                _ => null
+            };
+            if (nativeName is not null)
+            {
+                var native = assembly.GetType(root + ".Emulators." + nativeName + ".Interop.Services.ExternalCore", throwOnError: true)!;
+                Assert.Equal(typeof(IReadOnlyList<ControllerFeedbackState>), native.GetProperty("ControllerFeedback", BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)!.PropertyType);
+                Assert.Equal(typeof(IEmulationEnvironmentCallbackHost), native.GetField("_environment", BindingFlags.Instance | BindingFlags.NonPublic)!.FieldType);
+                sharedHosts++;
+            }
+            if (!receivers.Any(family => root == "GWGUI.Emulation." + family)) continue;
+            var callbacks = assembly.GetType(root + ".Emulators.Common.Interop.Services.ExternalHostCallbacks", throwOnError: true)!;
+            var feedback = callbacks.GetProperty("Feedback", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            Assert.Equal(typeof(IEmulationControllerFeedbackAccumulator), feedback.PropertyType);
+            // Ce récepteur non initialisé ne possède ni cœur, ni flux, ni ressource native : seul son stockage est fourni.
+            var receiver = RuntimeHelpers.GetUninitializedObject(callbacks);
+            using var states = EmulationSdk.EnvironmentProcessing.CreateControllerFeedbackAccumulator(2);
+            callbacks.GetField("<Feedback>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(receiver, states);
+            var receive = callbacks.GetMethod("OnSetRumbleState", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            Assert.True(Assert.IsType<bool>(receive.Invoke(receiver, [0u, 0u, ushort.MaxValue])));
+            Assert.Equal(new ControllerFeedbackState(0, EmulationControllerFeedbackCommands.Strong, 1f), Assert.Single(states.Snapshot()));
+            Assert.False(Assert.IsType<bool>(receive.Invoke(receiver, [2u, 0u, ushort.MaxValue])));
+            checkedReceivers++;
+        }
+        Assert.Equal(17, checkedReceivers);
+        Assert.Equal(4, sharedHosts);
+    }
+
+    [Fact]
     public void EveryCommonPreservesControllerOutputBindingsInSettingsAndConfiguration()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -2104,6 +2164,17 @@ public sealed class ArchitectureValidationTests
         var owner = typeof(EmulationSdk).Assembly.GetType("GWGUI.Emulation.Functions." + implementation, throwOnError: true)!;
         var algorithms = owner.GetMethods(BindingFlags.Static | BindingFlags.NonPublic).Where(method => method.IsAssembly).ToArray();
         var api = contract.GetMethods();
+        if (contract == typeof(IEmulationCoreEnvironmentProcessing))
+        {
+            var factory = Assert.Single(api, method => method.Name == nameof(IEmulationCoreEnvironmentProcessing.CreateControllerFeedbackAccumulator));
+            Assert.Equal(typeof(IEmulationControllerFeedbackAccumulator), factory.ReturnType);
+            var capacity = Assert.Single(factory.GetParameters());
+            Assert.Equal(typeof(int?), capacity.ParameterType);
+            Assert.Equal("maximumPortCount", capacity.Name);
+            Assert.True(capacity.HasDefaultValue);
+            Assert.Null(capacity.DefaultValue);
+            api = api.Where(method => method != factory).ToArray();
+        }
         Assert.Equal(operationCount, algorithms.Length);
         Assert.Equal(algorithms.Length, api.Length);
         static string Signature(MethodInfo method) => method.Name + "`" + method.GetGenericArguments().Length + "(" +

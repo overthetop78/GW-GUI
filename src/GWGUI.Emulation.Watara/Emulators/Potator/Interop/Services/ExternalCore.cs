@@ -13,6 +13,9 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _environment?.ControllerFeedback ?? [];
+
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
     ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
     ExternalCoreApi.AudioSampleCallback IEmulationCoreCallbacks.AudioSample => _audio!.SampleCallback;
@@ -105,7 +108,8 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         _environment?.SetInput(snapshot);
     }
     public void SetOption(string key, string value) => (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
-    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { if (port < 0 || port >= ControllerConstants.PortCount || peripheral != PeripheralCategory.Supervision) throw new ArgumentException(nameof(port)); RequireExports().SetControllerPortDevice((uint)port, 1u); }
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { if (port < 0 || port >= ControllerConstants.PortCount || peripheral != PeripheralCategory.Supervision) throw new ArgumentException(nameof(port)); RequireExports().SetControllerPortDevice((uint)port, 1u);
+        _environment?.ResetControllerFeedback(port); }
     public void InsertMedia(MediaConfiguration media) => throw MediaUnsupported();
     public void EjectMedia(EmulationMediaSlot slot) => throw MediaUnsupported();
     public void SelectDisk(int index) { if (index != 0) throw new ArgumentOutOfRangeException(nameof(index)); }

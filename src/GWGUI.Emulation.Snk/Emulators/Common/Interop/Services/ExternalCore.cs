@@ -12,6 +12,9 @@ namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
     private IEmulationCoreLibrary? _library;
@@ -140,5 +143,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
         foreach (var option in NativeRuntimeOptionFunctions.Prepare(next)) if (!previousOptions.TryGetValue(option.Key, out var previousValue) || previousValue != option.Value) RequireCallbacks().SetOption(option.Key, option.Value);
         ControllerPortFunctions.Configure(RequireExports(), next);
         _configuration = next;
+        _callbacks?.Feedback.ResetPort(port);
     }
 }

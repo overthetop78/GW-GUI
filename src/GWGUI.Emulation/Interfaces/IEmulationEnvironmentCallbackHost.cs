@@ -23,6 +23,10 @@ public interface IEmulationEnvironmentCallbackHost : IDisposable
     double FramesPerSecond { get; }
     /// <summary>Première erreur interceptée par le callback d’environnement ou de journalisation.</summary>
     Exception? Failure { get; }
+    /// <summary>Effets actifs reçus du cœur par son callback de vibration, en intensités normalisées.</summary>
+    IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; }
+    /// <summary>Arrête les effets du port dont le périphérique émulé vient de changer.</summary>
+    void ResetControllerFeedback(int port);
     /// <summary>Applique une valeur d’option avec les validations et la notification du propriétaire d’options.</summary>
     void SetOption(string key, string value);
     /// <summary>Publie les transitions des touches vers le callback clavier enregistré par le cœur.</summary>

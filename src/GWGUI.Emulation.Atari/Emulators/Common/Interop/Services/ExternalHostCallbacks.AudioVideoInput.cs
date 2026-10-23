@@ -70,7 +70,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (length > 0 && _emulator == Emulator.VirtualJaguar && _opticalActivityPaths.Contains(path))
             _ledStates[0] = true;
     }
-    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => Feedback.SetState(port, effect, strength);
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;
     private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;
 
@@ -84,12 +84,19 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
-        _optionHost.Dispose();
-        _videoBuffers.Dispose();
-        _virtualFileSystem.Dispose();
-        _systemDirectory.Dispose();
-        _contentDirectory.Dispose();
-        _saveDirectory.Dispose();
-        _assetsDirectory.Dispose();
+        try
+        {
+            _optionHost.Dispose();
+            _videoBuffers.Dispose();
+            _virtualFileSystem.Dispose();
+            _systemDirectory.Dispose();
+            _contentDirectory.Dispose();
+            _saveDirectory.Dispose();
+            _assetsDirectory.Dispose();
+        }
+        finally
+        {
+            Feedback.Dispose();
+        }
     }
 }

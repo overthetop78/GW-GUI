@@ -16,6 +16,9 @@ using GWGUI.Emulation.Services;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreCallbacks
 {
+    /// <summary>Effets des callbacks natifs conservés par Common pendant leur activation.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+
     private readonly CoreOptionHost _optionHost;
     private readonly int _inputDescriptorLimit;
     private readonly IReadOnlyDictionary<ControllerCommand, uint> _controllerButtonIds;

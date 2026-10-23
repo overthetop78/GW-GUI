@@ -18,6 +18,9 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreCallbacks
 {
+    /// <summary>Effets des callbacks natifs conservés par Common pendant leur activation.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+
     private readonly CoreOptionHost _optionHost;
     private readonly int _inputDescriptorLimit;
     private readonly Emulator _emulator;

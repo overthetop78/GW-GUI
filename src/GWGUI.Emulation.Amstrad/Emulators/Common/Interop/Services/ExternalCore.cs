@@ -10,6 +10,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private readonly CoreDefinition _definition;
     private IEmulationCoreLibrary? _library;

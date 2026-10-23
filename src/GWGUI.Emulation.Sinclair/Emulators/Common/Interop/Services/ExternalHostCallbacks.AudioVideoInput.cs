@@ -59,7 +59,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
     private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, _keyboard.Codes, port, device, index, id, _emulator);
     private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
-    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => Feedback.SetState(port, effect, strength);
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;
     private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;
 
@@ -75,13 +75,20 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _disposed = true;
         try
         {
-            CommonCoreHostFunctions.MachineExecution.DisposeCallbackResources(
-                _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);
+            try
+            {
+                CommonCoreHostFunctions.MachineExecution.DisposeCallbackResources(
+                    _systemDirectory, _contentDirectory, _saveDirectory, _assetsDirectory, _virtualFileSystem, _videoBuffers, _optionHost);
+            }
+            finally
+            {
+                KeyboardCallbackPointer = nint.Zero;
+                _diskControl.Clear();
+            }
         }
         finally
         {
-            KeyboardCallbackPointer = nint.Zero;
-            _diskControl.Clear();
+            Feedback.Dispose();
         }
     }
 }

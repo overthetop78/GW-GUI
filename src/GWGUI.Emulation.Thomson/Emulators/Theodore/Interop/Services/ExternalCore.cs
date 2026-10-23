@@ -13,6 +13,9 @@ using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.Runti
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _environment?.ControllerFeedback ?? [];
+
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
     ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
     ExternalCoreApi.AudioSampleCallback IEmulationCoreCallbacks.AudioSample => _audio!.SampleCallback;
@@ -152,6 +155,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         if (port < 0 || port >= ControllerConstants.PortCount || !Enum.IsDefined(peripheral))
             throw new ArgumentException(nameof(port));
         RequireExports().SetControllerPortDevice((uint)port, peripheral == PeripheralCategory.None ? 0u : 1u);
+        _environment?.ResetControllerFeedback(port);
     }
 
     public void InsertMedia(MediaConfiguration media) => throw MediaUnsupported();

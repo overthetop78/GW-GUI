@@ -11,6 +11,8 @@ namespace GWGUI.Emulation.Services;
 
 internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmentCallbackHost
 {
+    private readonly IEmulationControllerFeedbackAccumulator _feedback = new EmulationControllerFeedbackAccumulator(EmulationHostProtocolConstants.MaximumInputControllerCount);
+    private readonly ExternalCoreApi.SetRumbleState _setRumbleState;
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void AudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
     private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyboardMap = ExternalCoreKeyboardFunctions.CreateKeyMap();
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
@@ -29,6 +31,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     internal ExternalCoreEnvironmentCallbackHost(IEmulationVideoCallbackHost video, IEmulationAudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory,
         Func<IReadOnlyDictionary<string, string>, IEmulationVariableOptionHost<EmulationEnabledOption>> createOptions)
     {
+        _setRumbleState = _feedback.SetState;
         _video = video;
         _audio = audio;
         Callback = OnEnvironment;
@@ -53,6 +56,8 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     public bool SupportsNoGame { get; private set; }
     public double FramesPerSecond { get; private set; }
     public Exception? Failure { get; private set; }
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _feedback.Snapshot();
+    public void ResetControllerFeedback(int port) => _feedback.ResetPort(port);
     public void SetOption(string key, string value) => _options.SetValue(key, value);
     public int MinimumAudioLatencyMilliseconds { get; private set; }
 
@@ -93,6 +98,7 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
             if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
             switch (command)
             {
+                case ExternalCoreApiConstants.GetRumbleInterface: return ExternalCoreEnvironmentFunctions.SetRumbleInterface(data, _setRumbleState);
                 case ExternalCoreApiConstants.SetAudioBufferStatusCallback:
                     var audioCallback = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
                     _audioBufferStatus = ExternalCoreEnvironmentFunctions.OptionalDelegate<AudioBufferStatusCallback>(audioCallback);
@@ -136,15 +142,22 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     public void Dispose()
     {
         if (_disposed) return;
-        _disposed = true;
-        _audioBufferStatus = null;
-        MinimumAudioLatencyMilliseconds = 0;
-        _previousKeys = new HashSet<EmulationKey>();
-        try { _files?.Dispose(); }
+        try
+        {
+            _disposed = true;
+            _audioBufferStatus = null;
+            MinimumAudioLatencyMilliseconds = 0;
+            _previousKeys = new HashSet<EmulationKey>();
+            try { _files?.Dispose(); }
+            finally
+            {
+                try { _options?.Dispose(); }
+                finally { foreach (var directory in _directories.Values) directory.Dispose(); _directories.Clear(); _keyboard = null; Diagnostics.Clear(); Failure = null; }
+            }
+        }
         finally
         {
-            try { _options?.Dispose(); }
-            finally { foreach (var directory in _directories.Values) directory.Dispose(); _directories.Clear(); _keyboard = null; Diagnostics.Clear(); Failure = null; }
+            _feedback.Dispose();
         }
     }
 }

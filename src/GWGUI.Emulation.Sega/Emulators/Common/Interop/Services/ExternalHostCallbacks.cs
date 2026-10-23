@@ -18,6 +18,11 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
+    /// <summary>Effets natifs conservés par le stockage partagé via Common.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+    private readonly ExternalCoreApi.SetRumbleState _setRumbleState;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => Feedback.SetState(port, effect, strength);
+
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
@@ -43,6 +48,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options)
     {
+        _setRumbleState = OnSetRumbleState;
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -134,31 +140,38 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         try
         {
-            try { DestroyHardwareContext(); }
+            try
+            {
+                try { DestroyHardwareContext(); }
+                finally
+                {
+                foreach (var pointer in _nativeStrings.Values)
+                {
+                    CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
+                }
+                }
+            }
             finally
             {
-            foreach (var pointer in _nativeStrings.Values)
-            {
-                CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(pointer);
-            }
+                ReleaseExtendedGameInfo();
+                _contentPathOverrides.Clear();
+                _nativeStrings.Clear();
+                _keyboardEvent = null;
+                _updateOptionsDisplay = null;
+                LatestVideoFrame = null;
+                _audioBuffer.ClearNative(() => LatestAudioChunk = null);
+                lock (_inputGate)
+                {
+                    _pendingInput = EmulationInputSnapshot.Empty;
+                    _polledInput = EmulationInputSnapshot.Empty;
+                    _previousKeys = new HashSet<EmulationKey>();
+                }
+                _disposed = true;
             }
         }
         finally
         {
-            ReleaseExtendedGameInfo();
-            _contentPathOverrides.Clear();
-            _nativeStrings.Clear();
-            _keyboardEvent = null;
-            _updateOptionsDisplay = null;
-            LatestVideoFrame = null;
-            _audioBuffer.ClearNative(() => LatestAudioChunk = null);
-            lock (_inputGate)
-            {
-                _pendingInput = EmulationInputSnapshot.Empty;
-                _polledInput = EmulationInputSnapshot.Empty;
-                _previousKeys = new HashSet<EmulationKey>();
-            }
-            _disposed = true;
+            Feedback.Dispose();
         }
     }
 }

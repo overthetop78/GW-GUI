@@ -19,6 +19,9 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private string _errorResourcePrefix = "Emulation.Error.Core";
     private readonly List<nint> _contentBuffers = [];

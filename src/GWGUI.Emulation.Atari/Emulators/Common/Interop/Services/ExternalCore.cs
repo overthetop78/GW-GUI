@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private readonly IEmulatorAdapter _adapter;
     private readonly MachineFactory _mediaAdapter;
@@ -147,6 +150,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         _mediaAdapter.ConfigureController(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
+        _callbacks?.Feedback.ResetPort(port);
     }
     public void SetOption(string key, string value)
     {

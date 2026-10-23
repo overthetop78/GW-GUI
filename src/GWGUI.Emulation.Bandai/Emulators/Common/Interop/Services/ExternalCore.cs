@@ -11,6 +11,9 @@ namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private readonly ExternalCoreInfo _info;
     private IEmulationCoreLibrary? _library;
@@ -121,5 +124,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
         bindings.Add(previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral });
         _configuration = configuration with { Input = configuration.Input with { Controllers = bindings } };
         RequireCallbacks().ConfigureInput(_configuration.Input);
+        _callbacks?.Feedback.ResetPort(port);
     }
 }

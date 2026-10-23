@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Commodore.Common.Functions.AudioFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
@@ -10,6 +11,11 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
+    /// <summary>Effets natifs conservés par le stockage partagé via Common.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+    private readonly ExternalCoreApi.SetRumbleState _setRumbleState;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => Feedback.SetState(port, effect, strength);
+
     private readonly IReadOnlyDictionary<uint, EmulationKey> _keyboardMap;
     private readonly IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> _keyboardExpansions;
     private readonly IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> _keyboardToggleExpansions;
@@ -46,6 +52,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardToggleExpansions = null
     )
     {
+        _setRumbleState = OnSetRumbleState;
         _keyboardMap = CreateKeyboardMap(keyboardOverrides);
         _keyboardExpansions = keyboardExpansions ?? new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
         _keyboardToggleExpansions = keyboardToggleExpansions ?? new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
@@ -146,26 +153,33 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     public void Dispose()
     {
         if (_disposed) return;
-        Exception? failure = null;
         try
         {
-            foreach (var text in _nativeStrings.Values)
+            Exception? failure = null;
+            try
             {
-                try { text.Dispose(); }
-                catch (Exception error) { failure ??= error; }
+                foreach (var text in _nativeStrings.Values)
+                {
+                    try { text.Dispose(); }
+                    catch (Exception error) { failure ??= error; }
+                }
             }
+            finally
+            {
+                _nativeStrings.Clear();
+                lock (_inputGate)
+                {
+                    _activeKeyboardToggles.Clear();
+                    _previousKeyboardToggleSources.Clear();
+                    _previousKeys = new HashSet<EmulationKey>();
+                }
+                _disposed = true;
+            }
+            if (failure is not null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
         }
         finally
         {
-            _nativeStrings.Clear();
-            lock (_inputGate)
-            {
-                _activeKeyboardToggles.Clear();
-                _previousKeyboardToggleSources.Clear();
-                _previousKeys = new HashSet<EmulationKey>();
-            }
-            _disposed = true;
+            Feedback.Dispose();
         }
-        if (failure is not null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
     }
 }

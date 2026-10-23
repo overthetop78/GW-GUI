@@ -10,6 +10,9 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
+
     private readonly string _corePath;
     private IEmulationCoreLibrary? _library;
     private ExternalHostCallbacks? _host;

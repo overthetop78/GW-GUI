@@ -165,6 +165,11 @@ public interface IEmulationCoreEnvironmentProcessing
     /// <returns>Résultat du traitement existant, sans transfert de propriété des entrées empruntées.</returns>
     bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState);
 
+    /// <summary>Crée un stockage indépendant pour les effets reçus par un adaptateur de cœur.</summary>
+    /// <param name="maximumPortCount">Capacité des ports, ou null pour la limite du protocole commun.</param>
+    /// <returns>Stockage possédé par l’appelant, à fermer après détachement des callbacks qui l’utilisent.</returns>
+    IEmulationControllerFeedbackAccumulator CreateControllerFeedbackAccumulator(int? maximumPortCount = null);
+
     /// <summary>Écrit les callbacks d’activation et de lecture des capteurs dans la table native empruntée.</summary>
     /// <param name="data">Adresse native empruntée de la structure prévue par la commande, valide pendant l’appel.</param>
     /// <param name="setState">Délégué emprunté d’activation ou d’état, conservé vivant par son fournisseur pendant l’enregistrement natif.</param>

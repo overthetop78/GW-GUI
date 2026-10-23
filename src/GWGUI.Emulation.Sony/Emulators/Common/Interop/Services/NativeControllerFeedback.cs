@@ -1,13 +1,14 @@
 using System.Runtime.InteropServices;
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
+/// <summary>Maintient le délégué ABI vivant et confie les intensités au stockage partagé via Common.</summary>
 internal sealed class NativeControllerFeedback : IDisposable
 {
-    private const uint StrongEffect = 0;
-    private const uint WeakEffect = 1;
     private readonly object _gate = new();
-    private readonly ushort[,] _values = new ushort[ControllerPortConstants.MaximumGamepadPortCount, 2];
+    private readonly IEmulationControllerFeedbackAccumulator _feedback = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator(ControllerPortConstants.MaximumGamepadPortCount);
     private readonly ExternalCoreApi.SetRumbleState _setState;
     private bool _disposed;
 
@@ -24,50 +25,18 @@ internal sealed class NativeControllerFeedback : IDisposable
         }
     }
 
-    internal bool SetState(uint port, uint effect, ushort strength)
-    {
-        if (port >= ControllerPortConstants.MaximumGamepadPortCount || effect > WeakEffect) return false;
-        lock (_gate)
-        {
-            if (_disposed) return false;
-            _values[port, effect] = strength;
-            return true;
-        }
-    }
+    internal bool SetState(uint port, uint effect, ushort strength) => _feedback.SetState(port, effect, strength);
 
-    internal IReadOnlyList<ControllerFeedbackState> Snapshot()
-    {
-        lock (_gate)
-        {
-            if (_disposed) return [];
-            var result = new List<ControllerFeedbackState>();
-            for (var port = 0; port < ControllerPortConstants.MaximumGamepadPortCount; port++)
-            {
-                if (_values[port, StrongEffect] != 0)
-                    result.Add(new(port, EmulationControllerFeedbackCommands.Strong, _values[port, StrongEffect] / (float)ushort.MaxValue));
-                if (_values[port, WeakEffect] != 0)
-                    result.Add(new(port, EmulationControllerFeedbackCommands.Weak, _values[port, WeakEffect] / (float)ushort.MaxValue));
-            }
-            return result;
-        }
-    }
+    internal IReadOnlyList<ControllerFeedbackState> Snapshot() => _feedback.Snapshot();
 
-    internal void ResetPort(int port)
-    {
-        if (port is < 0 or >= ControllerPortConstants.MaximumGamepadPortCount) return;
-        lock (_gate)
-        {
-            _values[port, StrongEffect] = 0;
-            _values[port, WeakEffect] = 0;
-        }
-    }
+    internal void ResetPort(int port) => _feedback.ResetPort(port);
 
     public void Dispose()
     {
         lock (_gate)
         {
             _disposed = true;
-            Array.Clear(_values);
+            _feedback.Dispose();
         }
     }
 }

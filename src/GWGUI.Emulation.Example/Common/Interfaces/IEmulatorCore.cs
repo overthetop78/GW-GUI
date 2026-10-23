@@ -14,10 +14,6 @@ internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation
     /// <summary>Indique que le cœur demande la fermeture de sa session.</summary>
     /// <remarks>La boucle du propriétaire doit examiner ce signal et effectuer son arrêt et sa destruction habituels.</remarks>
     bool ShutdownRequested { get; }
-    /// <summary>Retours de périphériques émulés disponibles pour les associations de sortie de la machine.</summary>
-    /// <remarks>Une liste vide décrit l’absence d’effets actifs. Le consommateur contrôle la force et les associations
-    /// avant de transmettre une commande à un périphérique de l’hôte.</remarks>
-    IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; }
     /// <summary>État du processus d’hébergement, distinct de l’état actif ou en pause de la machine.</summary>
     HostProcessState HostProcessState { get; }
     /// <summary>Identifiant du processus d’hôte lorsqu’il existe ; null en l’absence d’un processus à exposer.</summary>
