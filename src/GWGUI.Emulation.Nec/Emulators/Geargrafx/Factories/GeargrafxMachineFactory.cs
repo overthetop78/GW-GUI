@@ -16,9 +16,9 @@ using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Factories;
 
-internal sealed class GeargrafxMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults, IEmulatorFirmwareInspection
+internal sealed class GeargrafxMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults, IEmulatorFirmwareAdapter
 {
-    public ScannedFirmware? IdentifyFirmware(ScannedFirmware firmware) => GeargrafxFirmwareFunctions.Identify(firmware);
+    public EmulationFirmwareObservation<TDefinition>? IdentifyFirmware<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) where TDefinition : class => GeargrafxFirmwareFunctions.Identify(firmware);
 
     public bool IsDefaultFor(string machineId) => machineId == LaserActiveMachineConstants.Id;
 

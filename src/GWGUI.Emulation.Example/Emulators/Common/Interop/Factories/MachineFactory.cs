@@ -226,9 +226,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// exigences individuelles avec IsRequired et peut préciser une obligation globale entre alternatives
     /// par RequiresExternalFirmware. Les règles ne sont pas répétées dans un second catalogue de rôles.</remarks>
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Firmware.Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", false)).ToArray();
-    /// <summary>Le catalogue de simulation ne prétend pas identifier une ROM réelle inconnue.</summary>
-    /// <inheritdoc/>
-    public ScannedFirmware? IdentifyFirmware(ScannedFirmware firmware) => null;
     /// <inheritdoc/>
     public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
     {
@@ -248,7 +245,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
         var scanned = await FirmwareScanFunctions.ScanFileAsync([this], path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
-        return [new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Definition?.Version,
+        return [new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Version ?? scanned.Definition?.Version,
             scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem.ToString(), path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
             FirmwareCategory.OperatingSystem.ToString())];
     }

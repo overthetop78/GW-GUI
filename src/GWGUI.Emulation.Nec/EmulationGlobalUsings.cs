@@ -30,3 +30,6 @@ global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleas
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Nec.Common.Machines.Common.Enums.Emulator>;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
+
+// Le catalogue utilise les métadonnées observées sans définition supplémentaire.
+global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<object>;

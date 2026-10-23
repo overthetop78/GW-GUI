@@ -85,3 +85,8 @@ global using StateFile = GWGUI.Emulation.Contracts.EmulationSavedStateFile<GWGUI
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationDocument<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.FolderConfiguration>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration>;
+
+// Les observations partagées conservent la définition typée du catalogue du module.
+global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.FirmwareDefinition>;
+global using FirmwareCompatibility = GWGUI.Emulation.Enums.EmulationFirmwareCompatibility;
+global using FirmwareDetectionStatus = GWGUI.Emulation.Enums.EmulationFirmwareDetectionStatus;

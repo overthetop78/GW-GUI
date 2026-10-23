@@ -6,6 +6,15 @@ namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 /// L’adaptateur réutilise son identification existante et laisse le fichier d’origine sous la responsabilité de son appelant.</remarks>
 internal interface IEmulatorFirmwareAdapter
 {
+    /// <summary>Complète l'identité d'un candidat à partir de ses observations déjà calculées.</summary>
+    /// <typeparam name="TDefinition">Type de définition conservé par le catalogue du module.</typeparam>
+    /// <param name="firmware">Observations empruntées, y compris la définition et les métadonnées déjà disponibles.</param>
+    /// <returns>Copie complétée si une règle reconnaît le candidat, ou null sans reconnaissance.</returns>
+    /// <remarks>L'inspecteur conserve les observations et le contenu de catalogue typé. Il ne reçoit aucun
+    /// flux et ne relit pas le fichier. Le comportement commun retourne null lorsqu'aucune règle native
+    /// ne complète le catalogue ; Common conserve alors le résultat initial.</remarks>
+    EmulationFirmwareObservation<TDefinition>? IdentifyFirmware<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) where TDefinition : class;
+
     /// <summary>Indique si la configuration exige au moins un firmware externe.</summary>
     /// <param name="configuration">Configuration empruntée dont le modèle, le cœur et les options déterminent les exigences.</param>
     /// <returns>True lorsqu'un fichier externe est nécessaire selon les règles du backend.</returns>

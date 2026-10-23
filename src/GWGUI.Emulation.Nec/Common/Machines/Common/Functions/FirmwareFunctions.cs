@@ -35,7 +35,7 @@ internal static class FirmwareFunctions
         if (!ModelCatalog.Get(configuration.Model).SupportsCdDrive) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
         var firmware = FirmwareCatalog.Inspect(path);
         var compatible = firmware.CompatibleModels.Contains(configuration.Model, StringComparer.OrdinalIgnoreCase);
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new(firmware.Sha256, firmware.Path,
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new(firmware.Sha256 ?? firmware.Path, firmware.Path,
             firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
             compatible ? !firmware.IsVerified ? EmulationFirmwareCompatibility.Unknown : firmware.IsOfficial ? EmulationFirmwareCompatibility.Official : EmulationFirmwareCompatibility.Compatible
                 : firmware.IsKnown ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.Unknown,

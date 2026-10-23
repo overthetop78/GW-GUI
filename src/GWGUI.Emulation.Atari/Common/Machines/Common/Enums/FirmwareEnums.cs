@@ -16,9 +16,7 @@ public enum FirmwareCategory
     JaguarCdBios
 }
 
-public enum FirmwareCompatibility { Compatible, PartiallyCompatible, Incompatible }
 
-public enum FirmwareDetectionStatus { Known, Unknown, Unreadable }
 
 public enum FirmwareDistribution { UserSuppliedCopyrighted, BuiltInOpenReplacement, NoExternalFile }
 

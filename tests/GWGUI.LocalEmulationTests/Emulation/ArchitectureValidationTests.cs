@@ -2942,7 +2942,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(6, contract.GetMethods().Length);
+            Assert.Equal(7, contract.GetMethods().Length);
             var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
@@ -3130,35 +3130,72 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(image.Value, actual[image.Key]);
     }
 
-    [Theory]
-    [InlineData("Example")]
-    [InlineData("Nec")]
-    public void FirmwareIdentificationUsesObservedCandidatesWithoutOwningOtherCapabilities(string family)
+    [Fact]
+    public void EveryCommonIdentifiesFirmwareThroughTheSharedObservedDataContract()
     {
-        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var root = "GWGUI.Emulation." + family;
-        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection", throwOnError: true)!;
-        var observed = assembly.GetType(root + ".Common.Machines.Common.Contracts.ScannedFirmware", throwOnError: true)!;
-        Assert.True(contract.IsInterface);
-        Assert.False(contract.IsVisible);
-        Assert.Empty(contract.GetInterfaces());
-        var identify = Assert.Single(contract.GetMethods());
-        Assert.Equal("IdentifyFirmware", identify.Name);
-        Assert.True(identify.IsAbstract);
-        Assert.Equal(observed, identify.ReturnType);
-        Assert.Equal(observed, Assert.Single(identify.GetParameters()).ParameterType);
-        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
-        Assert.NotEmpty(implementations);
-        foreach (var implementation in implementations)
-            Assert.False(Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods).IsAbstract);
-        if (family == "Nec")
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var recognizedCount = 0;
+        foreach (var assembly in modules)
         {
-            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Contracts.Firmware"));
-            Assert.Equal(new[] { "Path", "Size", "Md5", "Sha256", "LastWriteTimeUtc", "Type", "IsKnown", "IsOfficial", "Name", "Version", "CompatibleModels", "IsVerified" },
-                observed.GetProperties().Select(property => property.Name));
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareInspection"));
+            var identify = contract.GetMethod("IdentifyFirmware")!;
+            Assert.True(identify.IsAbstract);
+            Assert.True(identify.IsGenericMethodDefinition);
+            var definition = Assert.Single(identify.GetGenericArguments());
+            Assert.True((definition.GenericParameterAttributes & GenericParameterAttributes.ReferenceTypeConstraint) != 0);
+            var observed = typeof(EmulationFirmwareObservation<>).MakeGenericType(definition);
+            Assert.Equal(observed, identify.ReturnType);
+            Assert.Equal(observed, Assert.Single(identify.GetParameters()).ParameterType);
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith(".IdentifyFirmware", StringComparison.Ordinal));
+            Assert.Empty(GetCompiledCalls(defaults));
+            var probe = new EmulationFirmwareObservation<string>(Path.Combine("firmware", "pac-n10.bin"), 4096, "md5", EmulationFirmwareDetectionStatus.Unknown, "typed-catalogue-data", EmulationFirmwareCompatibility.Unknown, true, null,
+                Sha256: "sha256", LastWriteTimeUtc: DateTime.UnixEpoch, Type: "Unknown", IsVerified: false);
+            var operation = identify.MakeGenericMethod(typeof(string));
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)))
+            {
+                var map = implementation.GetInterfaceMap(contract);
+                var native = implementation.GetMethod("IdentifyFirmware");
+                Assert.Equal(native ?? defaults, map.TargetMethods[Array.IndexOf(map.InterfaceMethods, identify)]);
+                var instance = RuntimeHelpers.GetUninitializedObject(implementation);
+                var result = (EmulationFirmwareObservation<string>?)operation.Invoke(instance, [probe]);
+                if (native is null) Assert.Null(result);
+                else
+                {
+                    Assert.NotNull(result);
+                    Assert.True(result.IsKnown);
+                    Assert.False(result.IsOfficial);
+                    Assert.Equal(probe.Path, result.Path);
+                    Assert.Equal(probe.SizeBytes, result.SizeBytes);
+                    Assert.Equal(probe.Md5, result.Md5);
+                    Assert.Equal(probe.Sha256, result.Sha256);
+                    Assert.Equal(probe.LastWriteTimeUtc, result.LastWriteTimeUtc);
+                    Assert.Same(probe.Definition, result.Definition);
+                    Assert.Equal(probe.Compatibility, result.Compatibility);
+                    Assert.Equal(probe.IsDuplicate, result.IsDuplicate);
+                    Assert.Equal(probe.IsVerified, result.IsVerified);
+                    Assert.Equal("SystemRom", result.Type);
+                    recognizedCount++;
+                }
+            }
+            if (root is "GWGUI.Emulation.Example" or "GWGUI.Emulation.Nec")
+            {
+                var calls = assembly.GetTypes().Where(type => type.FullName!.StartsWith(root + ".Common.", StringComparison.Ordinal))
+                    .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                    .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls);
+                Assert.Contains(calls, call => call.Method is MethodInfo { IsGenericMethod: true } info && info.GetGenericMethodDefinition() == identify);
+            }
+            Assert.False(probe.IsKnown);
         }
+        Assert.Equal(1, recognizedCount);
     }
-
     [Theory]
     [InlineData("pac-n1.bin", true)]
     [InlineData("pce-lp1.bin", true)]
@@ -3166,27 +3203,27 @@ public sealed class ArchitectureValidationTests
     [InlineData("unknown.bin", false)]
     public void NecFirmwareIdentificationPreservesObservedMetadata(string fileName, bool known)
     {
-        var candidate = new GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.ScannedFirmware(
-            Path.Combine("firmware", fileName), 4096, "observed-md5", "observed-sha256", DateTime.UnixEpoch,
-            GWGUI.Emulation.Nec.Common.Machines.Common.Enums.FirmwareType.Unknown, false, false, null, null, [], false);
-        var owner = candidate.GetType().Assembly.GetType("GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions.GeargrafxFirmwareFunctions", throwOnError: true)!;
-        var identify = owner.GetMethod("Identify", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var candidate = new EmulationFirmwareObservation<string>(
+            Path.Combine("firmware", fileName), 4096, "observed-md5", EmulationFirmwareDetectionStatus.Unknown, "catalogue", EmulationFirmwareCompatibility.Unknown, false, null,
+            Sha256: "observed-sha256", LastWriteTimeUtc: DateTime.UnixEpoch, Type: "Unknown", IsVerified: false);
+        var owner = Assembly.Load("gwgui.emulation.nec").GetType("GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions.GeargrafxFirmwareFunctions", throwOnError: true)!;
+        var identify = owner.GetMethod("Identify", BindingFlags.Static | BindingFlags.NonPublic)!.MakeGenericMethod(typeof(string));
         var result = identify.Invoke(null, [candidate]);
         if (!known)
         {
             Assert.Null(result);
             return;
         }
-        var recognized = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.ScannedFirmware>(result);
+        var recognized = Assert.IsType<EmulationFirmwareObservation<string>>(result);
         Assert.True(recognized.IsKnown);
         Assert.False(recognized.IsOfficial);
         Assert.False(recognized.IsVerified);
         Assert.Equal(candidate.Path, recognized.Path);
-        Assert.Equal(candidate.Size, recognized.Size);
+        Assert.Equal(candidate.SizeBytes, recognized.SizeBytes);
         Assert.Equal(candidate.Md5, recognized.Md5);
         Assert.Equal(candidate.Sha256, recognized.Sha256);
         Assert.Equal(candidate.LastWriteTimeUtc, recognized.LastWriteTimeUtc);
-        Assert.Equal(GWGUI.Emulation.Nec.Common.Machines.Common.Enums.FirmwareType.SystemRom, recognized.Type);
+        Assert.Equal("SystemRom", recognized.Type);
         Assert.Equal(Path.GetFileNameWithoutExtension(fileName), recognized.Name);
         Assert.Single(recognized.CompatibleModels);
     }

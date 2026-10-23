@@ -33,14 +33,3 @@ public sealed record FirmwareDefinition(string Id, FirmwareCategory? Category, s
     /// <summary>Indique que les règles de distribution autorisent la fourniture du contenu par le module.</summary>
     public bool CanBePackaged => Distribution != FirmwareDistribution.UserSuppliedCopyrighted;
 }
-
-/// <summary>Résultat d’inspection d’un fichier, sans conserver de flux ouvert.</summary>
-/// <param name="Path">Chemin du candidat inspecté.</param>
-/// <param name="SizeBytes">Taille observée en octets.</param>
-/// <param name="Md5">Empreinte observée, ou null après un échec de lecture.</param>
-/// <param name="Detection">Résultat de reconnaissance.</param>
-/// <param name="Definition">Définition reconnue dans le catalogue, ou null.</param>
-/// <param name="Compatibility">Compatibilité avec le profil demandé.</param>
-/// <param name="IsDuplicate">Indique si un autre candidat possède la même empreinte.</param>
-/// <param name="ReadError">Diagnostic de lecture, ou null lorsque la lecture a réussi.</param>
-public sealed record ScannedFirmware(string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection, FirmwareDefinition? Definition, FirmwareCompatibility Compatibility, bool IsDuplicate, string? ReadError);

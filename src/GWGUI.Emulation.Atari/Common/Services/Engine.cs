@@ -321,7 +321,7 @@ internal sealed class Engine
     {
         var scanned = await FirmwareScanFunctions.ScanFileAsync(path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
         var name = scanned.Definition?.Category == FirmwareCategory.Tos ? $"{MachineConfigurationConstants.TosLabel} {scanned.Definition.Version}" : Path.GetFileName(scanned.Path);
-        var compatibility = ToFirmwareCompatibility(scanned.Compatibility);
+        var compatibility = scanned.Compatibility;
         return [new EmulationFirmwareCandidate(scanned.Md5 ?? scanned.Path, scanned.Path, name, null,
             compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible || scanned.Definition?.Category is null ? null : FirmwareSelectionFunctions.FieldId(configuration.Model, scanned.Definition.Category.Value) ?? SettingsConstants.SystemFirmware)];
     }
@@ -339,12 +339,6 @@ internal sealed class Engine
         return atari with { Firmwares = configured };
     }
 
-    private static EmulationFirmwareCompatibility ToFirmwareCompatibility(FirmwareCompatibility compatibility) => compatibility switch
-        {
-            FirmwareCompatibility.Compatible => EmulationFirmwareCompatibility.Compatible,
-            FirmwareCompatibility.PartiallyCompatible => EmulationFirmwareCompatibility.PartiallyCompatible,
-            _ => EmulationFirmwareCompatibility.Incompatible
-        };
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {

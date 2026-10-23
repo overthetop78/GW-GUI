@@ -4,6 +4,9 @@ using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.Controll
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve les observations initiales lorsque le backend ne fournit aucune règle de reconnaissance.</summary>
+    EmulationFirmwareObservation<TDefinition>? IEmulatorFirmwareAdapter.IdentifyFirmware<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) => null;
+
     /// <summary>Résout le besoin global depuis les emplacements obligatoires, sans choisir une alternative native.</summary>
     bool IEmulatorFirmwareAdapter.RequiresExternalFirmware(MachineConfiguration configuration) => ((IEmulatorFirmwareAdapter)this).GetFirmwareSlots(configuration).Any(slot => slot.IsRequired);
 

@@ -70,21 +70,21 @@ public sealed class FirmwareCatalog
             FirmwareCatalogConstants.PcFxFrenchBiosMd5 => PcFx("PC-FX BIOS (FR)", "1.00", verified: false),
             FirmwareCatalogConstants.PcFxBios101Md5 => PcFx("PC-FX BIOS", "1.01", verified: false),
             FirmwareCatalogConstants.PcFxGaBiosMd5 => PcFx("PC-FX GA BIOS", null, verified: false),
-            FirmwareCatalogConstants.PcFxScsiMd5 => new ScannedFirmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true, IsOfficial: false, Name: "PC-FX SCSI ROM", Version: null, CompatibleModels: []),
-            _ => new ScannedFirmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.Unknown, IsKnown: false, IsOfficial: false, Name: null, Version: null, CompatibleModels: [])
+            FirmwareCatalogConstants.PcFxScsiMd5 => new ScannedFirmware(file.FullName, file.Length, md5, EmulationFirmwareDetectionStatus.Known, null, EmulationFirmwareCompatibility.Unknown, false, null, Sha256: sha256, LastWriteTimeUtc: file.LastWriteTimeUtc, Type: FirmwareType.SystemRom.ToString(), IsOfficial: false, Name: "PC-FX SCSI ROM", Version: null, CompatibleModels: []),
+            _ => new ScannedFirmware(file.FullName, file.Length, md5, EmulationFirmwareDetectionStatus.Unknown, null, EmulationFirmwareCompatibility.Unknown, false, null, Sha256: sha256, LastWriteTimeUtc: file.LastWriteTimeUtc, Type: FirmwareType.Unknown.ToString(), IsOfficial: false, Name: null, Version: null, CompatibleModels: [])
         };
         if (identified.IsKnown) return identified;
-        foreach (var adapter in EmulatorCatalog.CreateAdapters().OfType<IEmulatorFirmwareInspection>())
+        foreach (var adapter in EmulatorCatalog.CreateAdapters())
             if (adapter.IdentifyFirmware(identified) is { } recognized) return recognized;
         return identified;
 
-        ScannedFirmware Pce(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, sha256,
-            file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true,
+        ScannedFirmware Pce(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, EmulationFirmwareDetectionStatus.Known, null, EmulationFirmwareCompatibility.Unknown, false, null,
+            Sha256: sha256, LastWriteTimeUtc: file.LastWriteTimeUtc, Type: FirmwareType.SystemRom.ToString(),
             IsOfficial: official, Name: firmwareName, Version: version,
             CompatibleModels: PcEngineCdModels, IsVerified: verified);
 
-        ScannedFirmware PcFx(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, sha256,
-            file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true,
+        ScannedFirmware PcFx(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, EmulationFirmwareDetectionStatus.Known, null, EmulationFirmwareCompatibility.Unknown, false, null,
+            Sha256: sha256, LastWriteTimeUtc: file.LastWriteTimeUtc, Type: FirmwareType.SystemRom.ToString(),
             IsOfficial: official, Name: firmwareName, Version: version,
             CompatibleModels: [PcFxMachineConstants.Id], IsVerified: verified);
     }

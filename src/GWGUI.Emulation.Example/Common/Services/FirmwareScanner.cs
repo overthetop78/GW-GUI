@@ -22,7 +22,7 @@ internal sealed class FirmwareScanner(string firmwareRoot)
     {
         var candidates = await Task.Run(() => FirmwareScanFunctions.EnumerateCandidates(_firmwareRoot), cancellationToken).ConfigureAwait(false);
         var scanned = new List<ScannedFirmware>(candidates.Count);
-        var inspections = EmulatorCatalog.CreateAdapters().OfType<IEmulatorFirmwareInspection>().ToArray();
+        var inspections = EmulatorCatalog.CreateAdapters().ToArray();
         foreach (var path in candidates)
         {
             cancellationToken.ThrowIfCancellationRequested();

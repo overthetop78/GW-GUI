@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 internal static class GeargrafxFirmwareFunctions
 {
-    internal static ScannedFirmware? Identify(ScannedFirmware firmware)
+    internal static EmulationFirmwareObservation<TDefinition>? Identify<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) where TDefinition : class
     {
         var name = Path.GetFileName(firmware.Path);
         if (!name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)
@@ -13,7 +13,7 @@ internal static class GeargrafxFirmwareFunctions
             && !name.Equals(GeargrafxFirmwareConstants.PacN10, StringComparison.OrdinalIgnoreCase)) return null;
         return firmware with
         {
-            Type = FirmwareType.SystemRom, IsKnown = true, IsOfficial = false,
+            Type = FirmwareType.SystemRom.ToString(), Detection = EmulationFirmwareDetectionStatus.Known, IsOfficial = false,
             Name = Path.GetFileNameWithoutExtension(name), Version = null,
             CompatibleModels = [GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants.LaserActiveMachineConstants.Id]
         };

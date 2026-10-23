@@ -23,3 +23,8 @@ global using GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 global using ConfigurationDocument = GWGUI.Emulation.Contracts.EmulationConfigurationSlotsDocument<GWGUI.Emulation.Example.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Example.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Example.Common.Machines.Common.Contracts.FirmwareConfiguration, GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MediaConfiguration, GWGUI.Emulation.Example.Common.Machines.Common.Contracts.InputConfiguration, GWGUI.Emulation.Example.Common.Machines.Common.Contracts.FolderConfiguration>;
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MachineConfiguration>;
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Example.Common.Enums.ErrorCategory, GWGUI.Emulation.Example.Common.Enums.ErrorCode>;
+
+// Les observations partagées conservent la définition typée du catalogue du module.
+global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<GWGUI.Emulation.Example.Common.Machines.Common.Contracts.FirmwareDefinition>;
+global using FirmwareCompatibility = GWGUI.Emulation.Enums.EmulationFirmwareCompatibility;
+global using FirmwareDetectionStatus = GWGUI.Emulation.Enums.EmulationFirmwareDetectionStatus;

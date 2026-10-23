@@ -13,5 +13,3 @@ public sealed record FirmwareDefinition(
 }
 
 public sealed record FirmwareFingerprint(FirmwareHashAlgorithm Algorithm, string Value, StRegion? Region = null);
-
-public sealed record ScannedFirmware(string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection, FirmwareDefinition? Definition, FirmwareCompatibility Compatibility, bool IsDuplicate, string? ReadError);

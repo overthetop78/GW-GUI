@@ -21,7 +21,7 @@ internal static class FirmwareScanFunctions
     /// <returns>Candidat complété par l’adaptateur lorsqu’il est reconnu, sinon observations conservées sans identité ajoutée.</returns>
     /// <remarks>Une identité n’est pas déduite du nom de fichier. Le flux possédé est libéré dans le finally
     /// de await using ; l’annulation est propagée, les erreurs d’accès deviennent un résultat Unreadable.</remarks>
-    internal static async Task<ScannedFirmware> ScanFileAsync(IReadOnlyList<IEmulatorFirmwareInspection> inspections, string path, MachineModel model, HardwareRegion? region, CancellationToken cancellationToken)
+    internal static async Task<ScannedFirmware> ScanFileAsync(IReadOnlyList<IEmulatorFirmwareAdapter> inspections, string path, MachineModel model, HardwareRegion? region, CancellationToken cancellationToken)
     {
         try
         {

@@ -1,4 +1,4 @@
-# Uniformisation des modules et exemple commenté
+﻿# Uniformisation des modules et exemple commenté
 
 Le résultat attendu est un GWGUI.Emulation.Example complet, autonome et commenté dans ses fichiers C#, utilisant la même structure et les mêmes raccordements au SDK que les 23 modules existants. Toute fonctionnalité utilisée dans une famille doit être intégrée au socle et raccordée dans les autres modules ; le mock ne doit pas être le seul à la montrer. Seules les implémentations sans usage réel dans tout le projet peuvent disparaître. Les comportements et configurations existants doivent être conservés. Sur demande explicite, les anciens formats de sauvegardes d’état sont abandonnés au profit du seul format commun ; aucun lecteur de compatibilité ne doit être réintroduit.
 
@@ -10813,3 +10813,79 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter RequiresExternalFirmware aux opérations Common attendues.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : vérifier les exigences globales avec la configuration complète.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/PocketStationTests.cs : vérifier le firmware obligatoire par le contrat commun.
+
+## Identification des firmwares avec les observations partagées du SDK
+
+- [x] Raccorder les inspecteurs au même contrat sans perdre les données observées ni les définitions de catalogue.
+  - [x] Partager les observations et raccorder les opérations Common.
+    - [x] Créer src/GWGUI.Emulation/Contracts/EmulationFirmwareObservation.cs : réunir les champs observés et reconnus existants, avec une définition de catalogue typée et une documentation C# complète.
+    - [x] Créer src/GWGUI.Emulation/Enums/EmulationFirmwareDetectionStatus.cs : reprendre les états Known, Unknown et Unreadable avec leurs valeurs et leur documentation.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IdentifyFirmware sur les observations partagées en conservant le type de définition du catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : conserver le résultat inconnu quand le backend ne fournit aucune règle de reconnaissance.
+    - [x] Modifier src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs : nommer les observations partagées avec la définition de catalogue déjà utilisée par le module.
+    - [x] Modifier src/GWGUI.Emulation.Example/EmulationGlobalUsings.cs : nommer les observations partagées avec la définition de catalogue déjà utilisée par le module.
+    - [x] Modifier src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs : nommer les observations partagées avec la définition de catalogue déjà utilisée par le module.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer le résultat observationnel remplacé par le contrat partagé en conservant les autres données de catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/FirmwareEnums.cs : reprendre les états de détection et compatibilité partagés sans changer leurs usages.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer le résultat observationnel remplacé par le contrat partagé en conservant les autres données de catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Enums/FirmwareEnums.cs : reprendre les états de détection et compatibilité partagés sans changer leurs usages.
+    - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer le fichier dont le seul résultat est remplacé par les observations partagées.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : retirer la conversion de compatibilité devenue identique à son entrée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/FirmwareFunctions.Scan.cs : transmettre les observations aux inspecteurs obligatoires et documenter la conservation des données de catalogue.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : reprendre le défaut Common sans inspecteur local vide et conserver la version reconnue.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs : conserver les observations, les identités et leurs métadonnées dans le résultat partagé puis appeler le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs : exposer son identification par le contrat Common avec le contenu de catalogue conservé.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Functions/GeargrafxFirmwareFunctions.cs : garder la reconnaissance des trois noms et les mêmes données natives dans une copie des observations.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareInspection.cs : retirer le contrat remplacé par le contrat obligatoire.
+    - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareInspection.cs : retirer le contrat remplacé par le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/FirmwareScanner.cs : consulter les inspecteurs obligatoires du catalogue au lieu du contrat facultatif supprimé.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/FirmwareFunctions.cs : conserver le SHA-256 comme identité du candidat et traiter explicitement son absence dans le contrat partagé.
+  - [x] Valider les données conservées et les appels.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, les appels compilés et la conservation des observations, définitions et reconnaissances natives ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter IdentifyFirmware aux opérations communes attendues.

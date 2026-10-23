@@ -11,27 +11,7 @@ public enum FirmwareCategory
     StorageController,
 }
 
-/// <summary>Résultat de la comparaison du candidat au profil attendu.</summary>
-public enum FirmwareCompatibility
-{
-    /// <summary>Le candidat satisfait les contraintes annoncées.</summary>
-    Compatible,
-    /// <summary>Le candidat ne couvre qu’une partie des modèles ou régions.</summary>
-    PartiallyCompatible,
-    /// <summary>Le candidat ne satisfait pas les contraintes.</summary>
-    Incompatible,
-}
 
-/// <summary>Résultat de lecture et de reconnaissance d’un candidat.</summary>
-public enum FirmwareDetectionStatus
-{
-    /// <summary>Le candidat correspond à une définition connue.</summary>
-    Known,
-    /// <summary>Le candidat est lisible mais son identité n’est pas connue.</summary>
-    Unknown,
-    /// <summary>Le candidat n’a pas pu être lu.</summary>
-    Unreadable,
-}
 
 /// <summary>Origine et possibilité de fournir un firmware avec le module.</summary>
 public enum FirmwareDistribution
