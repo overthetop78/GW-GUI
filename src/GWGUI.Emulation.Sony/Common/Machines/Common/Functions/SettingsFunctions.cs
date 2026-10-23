@@ -87,7 +87,7 @@ internal static partial class SettingsDescriptionFunctions
             }
             if (model.Id == ModelConstants.PlayStation)
             {
-                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => settingsAdapter?.IsCpuClock(field.Id) == true);
+                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => adapter.IsCpuClock(field.Id));
                 if (clock is not null && clock.AutomaticValue is null)
                 {
                     var index = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Acceleration);

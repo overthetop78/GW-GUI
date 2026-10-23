@@ -9,8 +9,8 @@ internal static class CoreOptionValidationFunctions
     internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.GetSettingsOptions(configuration) : [];
     internal static void Validate(MachineConfiguration configuration)
     {
-        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;
-        var catalog = adapter?.GetSettingsOptions(configuration) ?? [];
+        var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core);
+        var catalog = (adapter as IEmulatorSettingsAdapter)?.GetSettingsOptions(configuration) ?? [];
         foreach (var option in configuration.Options)
         {
             var valid = option.Key switch

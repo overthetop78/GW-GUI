@@ -9795,3 +9795,68 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier le choix et les déclarations des 24 familles.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats, les recommandations natives, le raccordement de CreateConfiguration et la sélection par une recommandation simulée en mémoire, sans fichiers externes ; exécuter les régressions et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter IsDefaultFor aux opérations Common attendues.
+
+## Règles communes des options et des horloges
+- [x] Exposer la validation différée et la reconnaissance des champs CPU par le contrat de réglages des 24 familles.
+  - [x] Raccorder les règles existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorSettings.cs : ajouter IsDeferredOption et IsCpuClock avec leurs signatures existantes et documenter la validation après chargement du contenu.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : fournir les deux comportements Common désactivés par défaut, en conservant les implémentations natives prioritaires.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer les déclarations des règles désormais héritées de IEmulatorSettings et conserver les autres réglages.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer les déclarations des règles désormais héritées de IEmulatorSettings et conserver les autres réglages.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer les déclarations des règles désormais héritées de IEmulatorSettings et conserver les autres réglages.
+  - [x] Raccorder les consommateurs et retirer le relais incorrect de la simulation.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs : consulter la règle différée sur son adaptateur obligatoire et garder le catalogue complémentaire facultatif.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : consulter directement la règle de validation différée de son adaptateur Common.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs : consulter la reconnaissance CPU sur le contrat obligatoire de son adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : retirer IsDeferredOption qui assimilait une demande de redémarrage à une validation différée et ne possédait aucun consommateur de production ; garder le comportement Common pour son catalogue déjà connu.
+  - [x] Illustrer la recommandation avec les mêmes contrats que les modules.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Internal/Factories/InternalMachineFactory.cs : déclarer IEmulatorMachineDefaults et recommander les deux profils déjà pris en charge, avec documentation complète de la déclaration et de son appel par Common.
+  - [x] Vérifier les règles et les liaisons.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les trois opérations du contrat IEmulatorSettings dans les 24 familles, les règles natives et les consommateurs, puis la recommandation explicite du cœur interne Example ; exécuter les régressions et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure les deux règles dans les opérations attendues.

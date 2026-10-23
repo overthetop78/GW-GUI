@@ -167,8 +167,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => SettingsDescriptionFunctions.Create(configuration, GetSettingsOptions(configuration, context));
     /// <inheritdoc/>
-    public bool IsDeferredOption(MachineConfiguration configuration, string key) => RequiresOptionRestart(configuration, key);
-    /// <inheritdoc/>
     public int GetMemoryKib(MachineConfiguration configuration) => checked((int)(HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes / 1024));
     /// <inheritdoc/>
     public IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConstants.LatencyChoicesMilliseconds;

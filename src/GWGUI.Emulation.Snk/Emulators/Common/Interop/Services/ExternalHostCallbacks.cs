@@ -169,8 +169,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
     internal void ValidateDeferredOptions(MachineConfiguration configuration)
     {
-        if (CoreCatalog.CreateAdapter(configuration.Core)is not IEmulatorSettingsAdapter adapter)
-            return;
+        var adapter = CoreCatalog.CreateAdapter(configuration.Core);
         foreach (var pair in configuration.Options)
         {
             if (!adapter.IsDeferredOption(configuration, pair.Key))

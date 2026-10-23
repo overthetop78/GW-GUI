@@ -1808,6 +1808,97 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public async Task EveryCommonExposesNativeSettingsRulesThroughTheSettingsContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var deferredRules = 0;
+        var clockRules = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            var deferred = contract.GetMethod("IsDeferredOption")!;
+            var clock = contract.GetMethod("IsCpuClock")!;
+            Assert.Equal(new[] { configurationType, typeof(string) }, deferred.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(typeof(string), Assert.Single(clock.GetParameters()).ParameterType);
+            Assert.Equal(typeof(bool), deferred.ReturnType);
+            Assert.Equal(typeof(bool), clock.ReturnType);
+            Assert.True(deferred.IsAbstract && clock.IsAbstract);
+            var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+            if (extension is not null) Assert.DoesNotContain(extension.GetMethods(), method => method.Name is "IsDeferredOption" or "IsCpuClock");
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var byId = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)byId.GetType().GetProperty("Values")!.GetValue(byId)!).Cast<object>().ToArray();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                foreach (var operation in new[] { deferred, clock })
+                {
+                    var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                    var concrete = adapter.GetType().GetMethod(operation.Name);
+                    Assert.Equal(concrete ?? adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith("." + operation.Name, StringComparison.Ordinal)), target);
+                }
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                var machine = machines.FirstOrDefault(item => item.Id == "NeoGeoMvs" && definition.MachineIds.Contains(item.Id)) ?? machines.First(item => definition.MachineIds.Contains(item.Id));
+                var original = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [original, definition.Id, CancellationToken.None])!;
+                Assert.False((bool)deferred.Invoke(adapter, [configuration, "unknown-setting"])!);
+                Assert.False((bool)clock.Invoke(adapter, ["unknown-setting"])!);
+                if (root == "GWGUI.Emulation.Example")
+                {
+                    Assert.Null(adapter.GetType().GetMethod(deferred.Name));
+                    var field = assembly.GetType(root + ".Common.Machines.Common.Constants.SettingsConstants", throwOnError: true)!.GetField("CpuFrequency", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)!.GetRawConstantValue();
+                    Assert.True((bool)clock.Invoke(adapter, [field])!);
+                    clockRules++;
+                }
+                if (root == "GWGUI.Emulation.Sony")
+                {
+                    var field = assembly.GetType(root + ".Emulators.BeetlePsx.Constants.OptionConstants", throwOnError: true)!.GetField("CpuFreqScaleKey", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)!.GetRawConstantValue();
+                    var expected = (bool)adapter.GetType().GetMethod(clock.Name)!.Invoke(adapter, [field])!;
+                    Assert.Equal(expected, (bool)clock.Invoke(adapter, [field])!);
+                    if (expected) clockRules++;
+                }
+                if (root == "GWGUI.Emulation.Snk" && adapter.GetType().GetMethod(deferred.Name)!.DeclaringType == adapter.GetType())
+                {
+                    var prefixType = assembly.GetType(adapter.GetType().Namespace![..adapter.GetType().Namespace!.LastIndexOf(".Factories", StringComparison.Ordinal)] + ".Constants.RuntimeOptionConstants", throwOnError: true)!;
+                    var prefix = (string)prefixType.GetField("DipSwitchPrefix", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+                    var prepared = typeof(object).GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(configuration, null)!;
+                    configurationType.GetProperty("InitialContent")!.SetValue(prepared, "probe.zip");
+                    Assert.Contains(new[] { "-", "_" }, separator => (bool)deferred.Invoke(adapter, [prepared, prefix + "probe" + separator + "switch"])!);
+                    deferredRules++;
+                }
+            }
+            if (root == "GWGUI.Emulation.Snk")
+            {
+                foreach (var (name, method) in new[] { (root + ".Common.Machines.Common.Functions.CoreOptionValidationFunctions", "Validate"), (root + ".Emulators.Common.Interop.Services.ExternalHostCallbacks", "ValidateDeferredOptions") })
+                {
+                    var owner = assembly.GetType(name, throwOnError: true)!;
+                    var entry = owner.GetMethod(method, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)!;
+                    Assert.Contains(GetCompiledCalls(entry), call => call.Method.DeclaringType == contract && call.Method.Name == deferred.Name);
+                }
+            }
+            if (root == "GWGUI.Emulation.Sony")
+            {
+                var owner = assembly.GetType(root + ".Common.Machines.Common.Functions.SettingsDescriptionFunctions", throwOnError: true)!;
+                var methods = assembly.GetTypes().Where(type => type == owner || type.FullName!.StartsWith(owner.FullName + "+", StringComparison.Ordinal))
+                    .SelectMany(type => type.GetMethods(BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)).Where(method => method.GetMethodBody() is not null);
+                Assert.Contains(methods.SelectMany(GetCompiledCalls), call => call.Method.DeclaringType == contract && call.Method.Name == clock.Name);
+            }
+        }
+        Assert.Equal(4, deferredRules);
+        Assert.True(clockRules >= 4);
+    }
+
+    [Fact]
     public void EveryCommonUsesTheSameDefaultRecommendationContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -1846,6 +1937,13 @@ public sealed class ArchitectureValidationTests
                 var concrete = entry.Adapter.GetType().GetMethod(recommend.Name);
                 Assert.Equal(concrete ?? adapterContract.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(method => method.Name.EndsWith(".IsDefaultFor", StringComparison.Ordinal)), target);
                 if (concrete is null) Assert.False((bool)recommend.Invoke(entry.Adapter, ["unknown-machine"])!);
+                if (root == "GWGUI.Emulation.Example")
+                {
+                    var exampleDefinition = (EmulationEmulatorDefinition)definitionProperty.GetValue(entry.Adapter)!;
+                    foreach (var machineId in exampleDefinition.MachineIds)
+                        Assert.Equal(entry.Adapter.GetType().Name == "InternalMachineFactory", (bool)recommend.Invoke(entry.Adapter, [machineId])!);
+                    if (entry.Adapter.GetType().Name == "InternalMachineFactory") Assert.NotNull(concrete);
+                }
             }
             var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
             var configurations = machines.Select(machine => (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!).ToArray();
@@ -2137,7 +2235,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorPointerCapabilities" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 3 : contractName == "IEmulatorPointerCapabilities" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -2204,7 +2302,8 @@ public sealed class ArchitectureValidationTests
                 {
                     Assert.Null(implementation.GetMethod("GetSettingsBlocks"));
                     Assert.True(implementation.GetMethods(BindingFlags.Public | BindingFlags.Instance).Count(candidate => candidate.Name == "DescribeSettings") <= 1, implementation.FullName);
-                    var description = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                    var settingsMap = implementation.GetInterfaceMap(contract);
+                    var description = settingsMap.TargetMethods[Array.FindIndex(settingsMap.InterfaceMethods, candidate => candidate.Name == methodName)];
                     Assert.Equal(parameters.Select(value => value.ParameterType), description.GetParameters().Select(value => value.ParameterType));
                 }
             }

@@ -8,6 +8,12 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve la validation habituelle lorsque le cœur ne déclare aucune option différée.</summary>
+    bool IEmulatorSettings.IsDeferredOption(MachineConfiguration configuration, string key) => false;
+
+    /// <summary>Conserve la description du champ lorsque le cœur ne fournit aucune reconnaissance particulière de son horloge CPU.</summary>
+    bool IEmulatorSettings.IsCpuClock(string fieldId) => false;
+
     /// <summary>Conserve le choix initial du module tant que le cœur ne déclare aucune recommandation.</summary>
     bool IEmulatorMachineDefaults.IsDefaultFor(string machineId) => false;
 

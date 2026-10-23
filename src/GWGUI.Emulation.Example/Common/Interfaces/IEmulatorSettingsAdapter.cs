@@ -12,12 +12,6 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// <returns>Descriptions d’options, choix disponibles et métadonnées de présentation.</returns>
     IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
 
-    /// <summary>Indique si une option est conservée pour une application différée.</summary>
-    /// <param name="configuration">Configuration dont les autres choix peuvent conditionner cette option.</param>
-    /// <param name="key">Clé native de l’option.</param>
-    /// <returns>True lorsque l’option doit être appliquée à une étape ultérieure de préparation.</returns>
-    bool IsDeferredOption(MachineConfiguration configuration, string key);
-
     /// <summary>Résout la quantité de RAM correspondant au modèle et à ses options.</summary>
     /// <param name="configuration">Configuration empruntée à décrire.</param>
     /// <returns>Capacité de mémoire principale en KiB.</returns>
@@ -38,9 +32,4 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// <param name="graphicsApi">API graphique sélectionnée par l’hôte.</param>
     /// <returns>Configuration résultante après adaptation des valeurs natives du moteur.</returns>
     MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi);
-
-    /// <summary>Identifie un champ qui représente un réglage d’horloge processeur.</summary>
-    /// <param name="fieldId">Identifiant technique du champ présenté.</param>
-    /// <returns>True pour les réglages de cadence du processeur, false pour les autres champs.</returns>
-    bool IsCpuClock(string fieldId);
 }
