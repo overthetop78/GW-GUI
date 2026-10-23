@@ -98,7 +98,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public void SetInput(EmulationInputSnapshot snapshot) => _cassetteInput.SetPhysicalInput(MapInput(snapshot));
 
-    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None).AsTask().GetAwaiter().GetResult();
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() =>
+    {
+        _core.SetControllerPortDevice(port, peripheral);
+        var previous = _inputConfiguration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port);
+        var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };
+        _inputConfiguration = _inputConfiguration with { Input = _inputConfiguration.Input with { Controllers = (_inputConfiguration.Input.Controllers ?? []).Where(item => item.Port != port).Append(binding).ToArray() } };
+    }, CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => ValueTask.FromResult(false);
 

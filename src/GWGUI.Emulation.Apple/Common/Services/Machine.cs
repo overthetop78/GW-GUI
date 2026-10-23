@@ -12,7 +12,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
 {
     /// <summary>Entrées actuelles de session, empruntées au propriétaire de la configuration.</summary>
-    private InputConfiguration? CurrentInputConfiguration => Configuration.Input;
+    private InputConfiguration? CurrentInputConfiguration => _inputConfiguration.Input;
     /// <summary>Autorise les retours uniquement pendant une exécution active, avant destruction et hors suspension média.</summary>
     private bool CanPublishControllerOutputs => !_disposed && State == EmulationMachineState.Running;
 
@@ -31,6 +31,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly IEmulationInputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
     private Thread? _thread;
     private readonly List<MediaConfiguration> _mountedMedia;
+    /// <summary>Configuration des entrées de session actualisée après acceptation des changements par le cœur.</summary>
+    private MachineConfiguration _inputConfiguration;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -43,6 +45,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         Id = id;
         Configuration = configuration;
+        _inputConfiguration = configuration;
         _runtimePolicy = runtimePolicy ?? new Engine().Adapter(configuration);
         _requiresMediaRestart = requiresMediaRestart;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
@@ -59,7 +62,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
-    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, Configuration) ?? InputSnapshotFunctions.Apply(snapshot, Configuration.Input, Configuration.Model);
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, _inputConfiguration) ?? InputSnapshotFunctions.Apply(snapshot, _inputConfiguration.Input, Configuration.Model);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }

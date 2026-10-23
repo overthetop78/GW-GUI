@@ -18,12 +18,83 @@ public sealed class ArchitectureValidationTests
     {
         public IReadOnlyList<ControllerFeedbackState> States { get; set; } = [];
         public int Reads { get; private set; }
+        public Exception? ControllerChangeError { get; set; }
+        public object? MappedConfiguration { get; private set; }
         protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
         {
             if (targetMethod!.Name == "get_ControllerFeedback") { Reads++; return States; }
+            if (targetMethod.Name == "SetControllerPortDevice") { if (ControllerChangeError is { } error) throw error; return null; }
+            if (targetMethod.Name == "MapInput") { MappedConfiguration = args![1]; return args[0]; }
             if (targetMethod.Name == "Dispose") return null;
             throw new InvalidOperationException(targetMethod.Name);
         }
+    }
+
+    [Theory]
+    [InlineData("Acorn")]
+    [InlineData("Apple")]
+    [InlineData("Atari")]
+    public void PeripheralChangesUpdateSessionInputOnlyAfterCoreAcceptance(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var engineType = assembly.GetType(root + ".Common.Services.Engine")!;
+        var engine = Activator.CreateInstance(engineType)!;
+        var models = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+        var configuration = models.Select(model => engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [model.Id])!)
+            .First(value => ((EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [value])!).ControllerPorts.Count > 0);
+        var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
+        var first = settings.ControllerPorts[0] with
+        {
+            PhysicalDeviceId = "physical-device", DeadZonePercent = 17,
+            OutputBindings = new Dictionary<string, EmulationControllerOutputBinding> { [EmulationControllerFeedbackCommands.Strong] = new("motor-device", EmulationControllerMotor.LowFrequency) }
+        };
+        var ports = settings.ControllerPorts.Select(port => port.Number == first.Number ? first : port).ToArray();
+        var applied = engineType.GetMethod("ApplyInputSettings")!.Invoke(engine, [configuration, settings with { ControllerPorts = ports }])!;
+        var machineType = assembly.GetType(root + ".Common.Services.Machine")!;
+        var coreType = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore")!;
+        var core = DispatchProxy.Create(coreType, typeof(FeedbackCoreProxy));
+        try
+        {
+            const BindingFlags fields = BindingFlags.Instance | BindingFlags.NonPublic;
+            var owner = RuntimeHelpers.GetUninitializedObject(machineType);
+            machineType.GetField("<Configuration>k__BackingField", fields)!.SetValue(owner, applied);
+            var sessionField = machineType.GetField("_inputConfiguration", fields)!;
+            sessionField.SetValue(owner, applied);
+            machineType.GetField("_core", fields)!.SetValue(owner, core);
+            var media = machineType.GetField("_mountedMedia", fields)!;
+            media.SetValue(owner, Activator.CreateInstance(media.FieldType));
+            var setter = machineType.GetMethod("SetControllerPortDevice")!;
+            var callback = Assert.Single(GetCompiledCalls(setter), call => call.Method.Name.Contains("<SetControllerPortDevice>", StringComparison.Ordinal)).Method as MethodInfo;
+            var closure = RuntimeHelpers.GetUninitializedObject(callback!.DeclaringType!);
+            callback.DeclaringType!.GetField("<>4__this")!.SetValue(closure, owner);
+            callback.DeclaringType.GetField("port")!.SetValue(closure, first.Number - 1);
+            var category = callback.DeclaringType.GetField("peripheral")!;
+            category.SetValue(closure, Enum.Parse(category.FieldType, "None"));
+            // Exécute le corps réel de la commande sans créer de thread ni de cœur natif.
+            callback.Invoke(closure, []);
+            var session = sessionField.GetValue(owner)!;
+            Assert.NotSame(applied, session);
+            var updated = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [session])!;
+            var changed = Assert.Single(updated.ControllerPorts, port => port.Number == first.Number);
+            Assert.Equal("None", changed.SelectedControllerId);
+            Assert.Equal(first.PhysicalDeviceId, changed.PhysicalDeviceId);
+            Assert.Equal(first.DeadZonePercent, changed.DeadZonePercent);
+            Assert.Equal(first.Bindings.Values, changed.Bindings.Values);
+            Assert.Equal(first.OutputBindings, changed.OutputBindings);
+            var current = machineType.GetMethod("CurrentConfiguration", fields)!.Invoke(owner, [])!;
+            Assert.Same(session.GetType().GetProperty("Input")!.GetValue(session), current.GetType().GetProperty("Input")!.GetValue(current));
+            var mapper = DispatchProxy.Create(assembly.GetType(root + ".Common.Interfaces.IEmulatorInputMapper")!, typeof(FeedbackCoreProxy));
+            machineType.GetField("_inputMapper", fields)!.SetValue(owner, mapper);
+            machineType.GetMethod("MapInput", fields)!.Invoke(owner, [EmulationInputSnapshot.Empty]);
+            Assert.Same(session, ((FeedbackCoreProxy)mapper).MappedConfiguration);
+            var refused = new InvalidOperationException("refused");
+            ((FeedbackCoreProxy)core).ControllerChangeError = refused;
+            Assert.Same(refused, Assert.Throws<TargetInvocationException>(() => callback.Invoke(closure, [])).InnerException);
+            Assert.Same(session, sessionField.GetValue(owner));
+            Assert.NotEqual("None", ((EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [applied])!).ControllerPorts[0].SelectedControllerId);
+        }
+        finally { ((IDisposable)core).Dispose(); }
     }
 
     [Fact]
