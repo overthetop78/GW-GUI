@@ -9,12 +9,12 @@ using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
 
-internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry)
+internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
 
-    internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
+    public abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);
     internal virtual bool SupportsMediaExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => false;
     internal virtual void CompleteMediaLoad(MachineConfiguration configuration, string sessionDirectory, ExternalHostCallbacks callbacks) { }

@@ -346,7 +346,7 @@ public sealed class ArchitectureValidationTests
                 OperandType.InlineNone => 0,
                 OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar => 1,
                 OperandType.InlineVar => 2,
-                OperandType.InlineBrTarget or OperandType.InlineField or OperandType.InlineI or OperandType.InlineMethod or OperandType.InlineSig or OperandType.InlineString or OperandType.InlineType or OperandType.ShortInlineR => 4,
+                OperandType.InlineBrTarget or OperandType.InlineField or OperandType.InlineI or OperandType.InlineMethod or OperandType.InlineSig or OperandType.InlineString or OperandType.InlineTok or OperandType.InlineType or OperandType.ShortInlineR => 4,
                 OperandType.InlineI8 or OperandType.InlineR => 8,
                 OperandType.InlineSwitch => 4 + 4 * BitConverter.ToInt32(code, offset),
                 _ => throw new InvalidOperationException(opcode.Name)
@@ -1418,9 +1418,10 @@ public sealed class ArchitectureValidationTests
     public void FirmwareSettingsUseTheSameOperationsAsExample(string family, string operation)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorFirmwareSettings", throwOnError: true)!;
+        var contractName = operation == "PrepareFirmware" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
+        var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{contractName}", throwOnError: true)!;
         var exampleAssembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
-        var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorFirmwareSettings", throwOnError: true)!;
+        var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces." + contractName, throwOnError: true)!;
         var exampleAdapter = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
         Assert.Contains(example, exampleAdapter.GetInterfaces());
         var method = contract.GetMethod(operation)!;
@@ -2546,7 +2547,8 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            var scan = Assert.Single(contract.GetMethods());
+            Assert.Equal(2, contract.GetMethods().Length);
+            var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
             Assert.Equal(typeof(ValueTask<IReadOnlyList<EmulationFirmwareCandidate>>), scan.ReturnType);
@@ -2555,18 +2557,43 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration"), parameters[0].ParameterType);
             Assert.Equal(typeof(string), parameters[1].ParameterType);
             Assert.Equal(typeof(CancellationToken), parameters[2].ParameterType);
+            // Vérifie la préparation sans l'exécuter : les dossiers de session appartiennent aux hôtes.
+            var prepare = contract.GetMethod("PrepareFirmware")!;
+            Assert.NotNull(prepare);
+            Assert.True(prepare.IsAbstract);
+            Assert.Equal(typeof(void), prepare.ReturnType);
+            Assert.Equal(new[] { parameters[0].ParameterType, typeof(string) }, prepare.GetParameters().Select(parameter => parameter.ParameterType));
             var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.Contains(contract, adapter.GetInterfaces());
             var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
             foreach (var implementation in implementations)
             {
-                var target = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                var map = implementation.GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.FindIndex(map.InterfaceMethods, method => method.Name == "ScanFirmwareFileAsync")];
                 Assert.False(target.IsAbstract);
                 Assert.True(target.IsPublic);
                 Assert.False(target.DeclaringType!.IsInterface);
                 Assert.Null(implementation.GetMethod("InspectFirmwareAsync"));
                 Assert.Null(implementation.GetMethod("ScanFirmwareAsync"));
             }
+            foreach (var implementation in implementations)
+            {
+                var map = implementation.GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.FindIndex(map.InterfaceMethods, method => method.Name == prepare.Name)];
+                Assert.False(target.IsAbstract);
+                var native = implementation.GetMethod(prepare.Name, prepare.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
+                if (native is not null)
+                    Assert.Equal(native, target); // Un défaut Common ne doit pas masquer la préparation native.
+                else
+                {
+                    Assert.Equal(adapter, target.DeclaringType);
+                    Assert.Contains(GetCompiledCalls(target), call => call.Method.DeclaringType == typeof(Directory) && call.Method.Name == nameof(Directory.CreateDirectory));
+                }
+            }
+            var preparationCallers = assembly.GetTypes().SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null && GetCompiledCalls(method).Any(call => call.Method.DeclaringType == contract && call.Method.Name == prepare.Name)).ToArray();
+            if (root.Split('.').Last() is "Apple" or "Atari" or "Coleco" or "Commodore" or "Epoch" or "Example" or "Fairchild" or "Mattel" or "Nec" or "Nintendo" or "Panasonic" or "Philips" or "Sega" or "Sharp" or "Sinclair" or "Snk" or "Wenquxing")
+                Assert.NotEmpty(preparationCallers);
             if (root != "GWGUI.Emulation.Microsoft")
                 Assert.NotEmpty(implementations);
 

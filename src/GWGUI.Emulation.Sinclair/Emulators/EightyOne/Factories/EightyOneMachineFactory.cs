@@ -16,7 +16,7 @@ internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(Emulato
 
     public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => NativeMedia.Prepare(configuration, sessionDirectory, supportedExtensions);
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) { }
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) { }
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, MediaRuntimeConstants.TapeExtensions, RequiresMachineRecreation: true)];
 }

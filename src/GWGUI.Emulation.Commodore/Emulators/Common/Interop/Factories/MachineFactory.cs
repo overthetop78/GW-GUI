@@ -7,7 +7,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
 
-internal abstract class MachineFactory : IEmulatorAdapter
+internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
@@ -35,7 +35,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     internal virtual MachineConfiguration PrepareConfiguration(MachineConfiguration configuration) => configuration;
     internal abstract IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media);
     internal virtual string? FirmwareOverrideOption => null;
-    internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
+    public abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media);
     internal virtual string ConvertMediaPath(string path, string conversionDirectory) => path;
     internal virtual int ControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;

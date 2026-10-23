@@ -90,7 +90,7 @@ internal sealed class ExternalCore : IEmulatorCore
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         _saveDirectory = saveDirectory;
         Directory.CreateDirectory(systemDirectory);
-        FirmwareFunctions.Prepare(configuration, systemDirectory);
+        new GWGUI.Emulation.Nec.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, systemDirectory);
         if (configuration.EmulatorId != GeargrafxConstants.Id
             && !string.IsNullOrWhiteSpace(configuration.FirmwarePath))
             File.Copy(configuration.FirmwarePath, Path.Combine(systemDirectory, definition.FirmwareFileName ?? FirmwareCatalogConstants.PcEngineSystemCardFileName), true);

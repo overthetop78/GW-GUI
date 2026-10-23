@@ -14,6 +14,10 @@ namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
 internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities
 {
     /// <inheritdoc/>
+    public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
+
+
+    /// <inheritdoc/>
     public bool SupportsNoContent => true;
 
     /// <inheritdoc/>

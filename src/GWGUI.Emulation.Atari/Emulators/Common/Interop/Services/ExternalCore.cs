@@ -82,7 +82,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, CoreDirectoryConstants.SystemDirectoryName);
             var media = _mediaAdapter.SelectPrimaryMedia(configuration);
-            _mediaAdapter.PrepareSystemDirectory(configuration, systemDirectory);
+            _adapter.PrepareFirmware(configuration, systemDirectory);
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var configuredOptions = _mediaAdapter.PrepareOptions(_mediaAdapter.GetConfiguredOptions(configuration));

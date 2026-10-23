@@ -1,3 +1,4 @@
+using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <summary>Contrat Common d’un backend : gestion de son installation, projection des médias et création de machines.</summary>
@@ -8,6 +9,9 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Prépare le dossier système quand aucun traitement natif de firmware ne le complète.</summary>
+    void IEmulatorFirmwareAdapter.PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => Directory.CreateDirectory(systemDirectory);
+
     /// <summary>Conserve la validation habituelle lorsque le cœur ne déclare aucune option différée.</summary>
     bool IEmulatorSettings.IsDeferredOption(MachineConfiguration configuration, string key) => false;
 

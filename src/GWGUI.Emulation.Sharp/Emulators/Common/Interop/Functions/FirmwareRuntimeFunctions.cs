@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 
 internal static class FirmwareRuntimeFunctions
 {
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => ((LibretroMachineFactory)CoreCatalog.CreateAdapter(configuration.Core)).PrepareFirmware(configuration, systemDirectory);
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => CoreCatalog.CreateAdapter(configuration.Core).PrepareFirmware(configuration, systemDirectory);
 
     internal static void CopyVerified(MachineConfiguration configuration, FirmwareCategory role, string target)
     {

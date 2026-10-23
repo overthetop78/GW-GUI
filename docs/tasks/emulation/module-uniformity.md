@@ -9860,3 +9860,121 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les règles et les liaisons.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les trois opérations du contrat IEmulatorSettings dans les 24 familles, les règles natives et les consommateurs, puis la recommandation explicite du cœur interne Example ; exécuter les régressions et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure les deux règles dans les opérations attendues.
+
+## Préparation des firmwares par le contrat Common
+- [x] Utiliser la même opération de préparation du dossier système dans les 24 familles en conservant les traitements natifs.
+  - [x] Déclarer la préparation dans le contrat de firmware obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : ajouter PrepareFirmware avec la configuration et le dossier système empruntés, en documentant les sources et la propriété des fichiers de session.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : préparer le dossier système par défaut sans déplacer de fichier source et importer explicitement System.IO.
+  - [x] Retirer les déclarations devenues redondantes.
+    - [x] Supprimer src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat qui ne contenait que la préparation désormais héritée.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Factories/MiniVmacMachineFactory.cs : retirer le contrat supprimé et conserver le contrat de firmware déjà déclaré.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/FirmwareFunctions.cs : préparer via le contrat obligatoire en conservant le repli de création du dossier dans Common.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer PrepareFirmware repris par le contrat obligatoire et conserver les autres opérations.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : utiliser le contrat Common pendant la création de sa session, en gardant la préparation réelle existante.
+  - [x] Raccorder les préparations natives existantes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Frodo/Factories/MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/VICE/Common/Factories/ViceMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Px68k/Factories/Px68kMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/X1/Factories/X1MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Factories/EightyOneMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Fuse/Factories/FuseMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Factories/FbAlphaMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012/Factories/FbAlpha2012MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012NeoGeo/Factories/FbAlpha2012NeoGeoMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/FbNeo/Factories/FbNeoMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Geolith/Factories/GeolithMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/HbMame/Factories/HbMameMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame/Factories/MameMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2000/Factories/Mame2000MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2003/Factories/Mame2003MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2003Plus/Factories/Mame2003PlusMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2010/Factories/Mame2010MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2015/Factories/Mame2015MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Mame2016/Factories/Mame2016MachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/NeoCd/Factories/NeoCdMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs : exposer PrepareFirmware pour implémenter le contrat Common, en conservant le corps et les redéfinitions natives.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : relayer PrepareFirmware vers le traitement natif existant par le contrat de firmware.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : passer par la sélection Common pour préparer les firmwares avant le chargement natif.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs : retirer le cast LibretroMachineFactory et appeler PrepareFirmware sur le contrat sélectionné.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs : retirer le cast LibretroMachineFactory et appeler PrepareFirmware sur le contrat sélectionné.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs : retirer le cast LibretroMachineFactory et appeler PrepareFirmware sur le contrat sélectionné.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : nommer PrepareFirmware la préparation déjà présente et conserver ses paramètres et ses contrôles.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Handy/Factories/HandyMachineFactory.cs : conserver la redéfinition et ses règles existantes sous le nom PrepareFirmware.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Holani/Factories/HolaniMachineFactory.cs : conserver la redéfinition et ses règles existantes sous le nom PrepareFirmware.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/HatariB/Factories/HatariBMachineFactory.cs : conserver la redéfinition et ses règles existantes sous le nom PrepareFirmware.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs : appeler la préparation par son adaptateur Common.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : appeler la préparation via IEmulatorFirmwareAdapter en conservant la fabrique utilisée.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : relayer la préparation au traitement natif déjà utilisé au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : appeler cette préparation par la sélection Common avec les mêmes arguments.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : relayer la préparation au traitement natif déjà utilisé au démarrage.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : appeler cette préparation par la sélection Common avec les mêmes arguments.
+  - [x] Vérifier les préparations et les consommateurs.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les deux opérations de firmware dans les 24 familles, les implémentations natives et les appels réels des hôtes sans créer de fichiers ; exécuter les tests et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure PrepareFirmware dans les opérations Common attendues.

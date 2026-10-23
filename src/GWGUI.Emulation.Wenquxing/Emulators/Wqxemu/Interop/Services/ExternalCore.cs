@@ -84,7 +84,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         var completed = false;
         try
         {
-            NativeFirmware.Prepare(configuration, Path.Combine(sessionDirectory, "System"));
+            new GWGUI.Emulation.Wenquxing.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, Path.Combine(sessionDirectory, "System"));
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_path);
             _exports = CoreFunctions.ResolveExports(_library);
             _video = CommonCoreHostFunctions.NativeResources.CreateVideoCallbackHost();

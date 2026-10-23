@@ -44,7 +44,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
         return options;
     }
 
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
         foreach (var rom in RomDefinitions(configuration))
         {

@@ -10,12 +10,12 @@ using System.IO;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorControllerAdapter
+    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorControllerAdapter, IEmulatorFirmwareAdapter
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => ControllerCatalog.Peripherals(configuration.Model);
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
 
-    internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
+    public abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

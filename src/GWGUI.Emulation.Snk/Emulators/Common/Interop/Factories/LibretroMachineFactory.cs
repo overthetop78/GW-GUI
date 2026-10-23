@@ -10,7 +10,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 
-internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
+internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper, IEmulatorFirmwareAdapter
 {
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration, GetControllerPortCount(configuration));
 
@@ -42,7 +42,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     };
     internal virtual ulong InputCapabilities(MachineConfiguration configuration) => (1UL << checked((int)InputConstants.JoypadDevice)) | (1UL << checked((int)InputConstants.AnalogDevice));
     internal virtual uint ControllerDeviceId(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral == PeripheralCategory.None ? InputConstants.NoDevice : InputConstants.JoypadDevice;
-    internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
+    public abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);
     internal virtual bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content) => exports.LoadGame(content?.GameInfo ?? nint.Zero);
     internal virtual bool SupportsMediaExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => false;

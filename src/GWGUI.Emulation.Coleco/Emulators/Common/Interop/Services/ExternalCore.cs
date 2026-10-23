@@ -82,7 +82,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
-            FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
+            new GWGUI.Emulation.Coleco.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, systemDirectory);
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);

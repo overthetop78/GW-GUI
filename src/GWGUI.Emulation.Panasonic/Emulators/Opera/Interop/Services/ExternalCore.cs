@@ -85,7 +85,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEm
         try
         {
             var system = Path.Combine(sessionDirectory, "System");
-            NativeFirmware.Prepare(configuration, system);
+            new GWGUI.Emulation.Panasonic.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, system);
             _configuration = configuration;
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_path);
             _exports = CoreFunctions.ResolveExports(_library);

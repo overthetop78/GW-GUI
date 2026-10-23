@@ -23,12 +23,6 @@ internal interface IEmulatorFirmwareSettings
     /// <returns>Candidats avec leurs identités et informations de compatibilité.</returns>
     IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken);
 
-    /// <summary>Prépare les fichiers de firmware dans le dossier système fourni au cœur.</summary>
-    /// <param name="configuration">Configuration empruntée contenant les firmwares sélectionnés.</param>
-    /// <param name="systemDirectory">Dossier de préparation dont Common possède le cycle de vie.</param>
-    /// <remarks>Les fichiers sources de l’utilisateur restent empruntés et ne sont pas supprimés par cette opération.</remarks>
-    void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
-
     /// <summary>Décrit les rôles de firmware proposés pour un modèle.</summary>
     /// <param name="model">Modèle matériel dont les catégories doivent être présentées.</param>
     /// <returns>Rôles pris en charge, dans leur ordre de présentation par le catalogue du backend.</returns>

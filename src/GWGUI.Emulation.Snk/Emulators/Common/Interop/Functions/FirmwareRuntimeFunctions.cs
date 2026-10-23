@@ -73,7 +73,7 @@ internal static class FirmwareRuntimeFunctions
         return select(archive) ?? throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => ((LibretroMachineFactory)CoreCatalog.CreateAdapter(configuration.Core)).PrepareFirmware(configuration, systemDirectory);
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => CoreCatalog.CreateAdapter(configuration.Core).PrepareFirmware(configuration, systemDirectory);
     internal static void CopyVerified(MachineConfiguration configuration, FirmwareCategory role, string target)
     {
         var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == role);

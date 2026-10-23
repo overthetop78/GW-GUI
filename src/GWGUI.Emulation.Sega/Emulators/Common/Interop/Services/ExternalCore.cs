@@ -73,7 +73,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
-        Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
+        new GWGUI.Emulation.Sega.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);

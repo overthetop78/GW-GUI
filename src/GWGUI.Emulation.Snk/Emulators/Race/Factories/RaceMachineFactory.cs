@@ -16,7 +16,7 @@ internal sealed class RaceMachineFactory() : LibretroMachineFactory(EmulatorCons
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
     public override async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (NativeFirmware.Inspect(path, cancellationToken)).ConfigureAwait(false)];
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
     }
 

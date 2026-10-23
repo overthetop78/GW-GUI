@@ -15,7 +15,7 @@ internal sealed class MachineFactory : GWGUI.Emulation.Commodore.Emulators.Commo
         new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, EmulatorConstants.DiskExtensions, RequiresMachineRecreation: true),
         new(new(EmulationMediaCategory.CassetteDrive, EmulatorConstants.PrimaryMediaIndex), EmulationMediaType.Cassette, EmulatorConstants.CassetteExtensions, RequiresMachineRecreation: true)
     ];
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
         var session = Directory.GetParent(systemDirectory)!.FullName;
         foreach (var rom in EmulatorConstants.Roms)

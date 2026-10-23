@@ -16,6 +16,10 @@ namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Factories;
 internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities
 {
     /// <inheritdoc/>
+    public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
+
+
+    /// <inheritdoc/>
     public bool SupportsNoContent => true;
 
     /// <inheritdoc/>

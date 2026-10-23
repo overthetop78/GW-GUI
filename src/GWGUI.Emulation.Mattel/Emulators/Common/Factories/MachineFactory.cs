@@ -10,6 +10,10 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
+
+
+    /// <inheritdoc/>
     public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
 
     /// <inheritdoc/>

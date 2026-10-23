@@ -13,4 +13,13 @@ internal interface IEmulatorFirmwareAdapter
     /// <returns>Candidats dans leur ordre de reconnaissance, avec leur identité, compatibilité et destination. Une liste vide signifie que le fichier ne fournit aucun candidat ; plusieurs résultats conservent les rôles et variantes possibles sans en choisir un arbitrairement.</returns>
     /// <remarks>Les flux ouverts pour l’analyse sont libérés avant le retour ; le fichier n’est ni installé ni modifié.</remarks>
     ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
+
+    /// <summary>Prépare les fichiers de firmware nécessaires au dossier système de la session.</summary>
+    /// <param name="configuration">Configuration empruntée contenant les firmwares choisis et les options du cœur.</param>
+    /// <param name="systemDirectory">Dossier système fourni par le propriétaire de la session.</param>
+    /// <remarks>Les adaptations conservent leurs vérifications et leurs noms de destination. Les fichiers
+    /// sources restent empruntés ; le propriétaire de la session conserve le nettoyage des copies préparées.
+    /// Le comportement Common crée le dossier lorsque le cœur ne possède aucun traitement spécifique.
+    /// La synchronisation des fichiers persistants conserve son propre cycle de vie et son propriétaire.</remarks>
+    void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
 }

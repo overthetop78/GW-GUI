@@ -16,6 +16,10 @@ namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
+
+
+    /// <inheritdoc/>
     public abstract IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral);
 
     /// <inheritdoc/>

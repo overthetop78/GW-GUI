@@ -13,6 +13,10 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
+
+
+    /// <inheritdoc/>
     public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, cancellationToken);
 
     /// <inheritdoc/>

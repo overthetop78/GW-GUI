@@ -1,8 +1,12 @@
+using System.IO;
 using CommonControllerFunctions = GWGUI.Emulation.Sharp.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Sharp.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 , IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Prépare le dossier système quand aucun traitement natif de firmware ne le complète.</summary>
+    void IEmulatorFirmwareAdapter.PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => Directory.CreateDirectory(systemDirectory);
+
     /// <summary>Conserve la validation habituelle lorsque le cœur ne déclare aucune option différée.</summary>
     bool IEmulatorSettings.IsDeferredOption(MachineConfiguration configuration, string key) => false;
 

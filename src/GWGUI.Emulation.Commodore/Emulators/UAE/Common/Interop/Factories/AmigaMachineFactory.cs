@@ -87,7 +87,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
     ];
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
     internal override int ControllerPortCount(MachineConfiguration configuration) => configuration.Input?.ParallelJoystickAdapterEnabled == true ? ControllerPortConstants.FourControllerPorts : base.ControllerPortCount(configuration);
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
         var kickstart = configuration.FirmwarePath(SettingsConstants.KickstartPath);
         File.Copy(kickstart, Path.Combine(systemDirectory, ResolveKickstartFileName(configuration.Model, kickstart)), true);

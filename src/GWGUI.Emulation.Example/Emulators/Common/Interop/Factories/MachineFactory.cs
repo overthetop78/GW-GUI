@@ -110,7 +110,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         try
         {
             Directory.CreateDirectory(sessionDirectory);
-            PrepareFirmware(configuration, Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName));
+            ((IEmulatorFirmwareAdapter)this).PrepareFirmware(configuration, Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName));
             var saves = context.SaveDirectoryResolver?.Invoke(configuration);
             if (saves is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saves);
             core = CreateCore();

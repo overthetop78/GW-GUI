@@ -9,7 +9,7 @@ internal sealed class HatariBMachineFactory() : MachineFactory(EmulatorConstants
 
     public override IReadOnlyDictionary<string, string> PrepareOptions(IReadOnlyDictionary<string, string> options) => OptionFunctions.ToNative(options);
 
-    public override void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory) => FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory, validateRequired: configuration.Firmwares.Any(item => item.Category == FirmwareCategory.Tos));
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory, validateRequired: configuration.Firmwares.Any(item => item.Category == FirmwareCategory.Tos));
 
     public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration, MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {

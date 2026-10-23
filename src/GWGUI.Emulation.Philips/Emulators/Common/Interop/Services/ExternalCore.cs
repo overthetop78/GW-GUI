@@ -78,7 +78,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves ?? throw new ArgumentException(nameof(saveDirectory)));
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
-            FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
+            new GWGUI.Emulation.Philips.Common.Services.Engine().SelectedAdapter(configuration)!.PrepareFirmware(configuration, systemDirectory);
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = NativeRuntimeOptionFunctions.Prepare(configuration);
