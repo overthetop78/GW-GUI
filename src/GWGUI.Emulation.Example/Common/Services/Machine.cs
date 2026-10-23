@@ -103,6 +103,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <param name="resolvedMedia">Montages déjà préparés pour la session, ou null pour ceux de la configuration.</param>
     /// <param name="deleteSession">Nettoyage facultatif du dossier possédé après destruction effective du cœur.</param>
     /// <param name="startErrorTranslator">Traduction facultative d’une erreur de démarrage.</param>
+    /// <param name="runtimePolicy">Politique empruntée à la fabrique ; sans politique fournie, celle de l’adaptateur sélectionné est utilisée.</param>
     /// <remarks>Les montages insérés et éjectés sont conservés dans la même liste : un média éjecté peut être
     /// réinséré sans perdre son chemin ou ses paramètres. Le volume en pourcentage est converti en gain.
     /// Les services et callbacks reçus restent empruntés ; le cœur et le contrôleur audio deviennent possédés
@@ -110,12 +111,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
         Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, Func<EmulationMediaSlot, string?, bool>? requiresMediaRestart = null,
         bool requiresResetRestart = false, bool supportsNoContent = false, bool supportsPointerCapture = false, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null,
-        CassetteInputController? cassetteInput = null, IReadOnlyList<MediaConfiguration>? resolvedMedia = null, Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
+        CassetteInputController? cassetteInput = null, IReadOnlyList<MediaConfiguration>? resolvedMedia = null, Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
         _configuration = configuration;
         var adapter = new Engine().SelectedAdapter(configuration);
-        _runtimePolicy = adapter;
+        _runtimePolicy = runtimePolicy ?? adapter;
         _requiresMediaRestart = requiresMediaRestart ?? (_runtimePolicy is null ? static (_, _) => false : (slot, path) => _runtimePolicy.RequiresMediaRestart(configuration, slot, path));
         _coreFactory = coreFactory;
         _requiresResetRestart = requiresResetRestart;

@@ -885,6 +885,20 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(new[] { configuration, typeof(string) }, option.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.Equal(new[] { "configuration", "key" }, option.GetParameters().Select(parameter => parameter.Name));
             Assert.All(methods, method => { Assert.True(method.IsAbstract); Assert.Equal(typeof(bool), method.ReturnType); });
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var constructor = Assert.Single(machine.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic));
+            var policyParameter = Assert.Single(constructor.GetParameters(), parameter => parameter.Name == "runtimePolicy");
+            Assert.Equal(contract, policyParameter.ParameterType);
+            Assert.True(policyParameter.HasDefaultValue);
+            Assert.Null(policyParameter.DefaultValue);
+            var policyField = machine.GetField("_runtimePolicy", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            Assert.Equal(contract, policyField.FieldType);
+            Assert.True(policyField.IsInitOnly);
+            var owners = new[] { machine }.Concat(machine.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
+            var projections = owners.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Where(method => method.Name.Contains("AvailableOptions", StringComparison.Ordinal))
+                .Select(method => method.GetMethodBody()?.GetILAsByteArray()).Where(body => body is not null).Cast<byte[]>().ToArray();
+            Assert.Contains(projections, body => new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(option.MetadataToken)).ToArray()) >= 0));
             var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.Contains(contract, adapter.GetInterfaces());
             var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic);

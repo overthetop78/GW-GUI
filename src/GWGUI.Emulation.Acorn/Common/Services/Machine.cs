@@ -10,6 +10,8 @@ namespace GWGUI.Emulation.Acorn.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly object _gate = new();
     private readonly IEmulatorCore _core;
     /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
@@ -27,9 +29,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private bool _pauseRequested;
     private bool _disposed;
 
-    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null, IEmulatorInputMapper? inputMapper = null)
+    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
+        _runtimePolicy = runtimePolicy;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
@@ -104,7 +107,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.ResourceKey ?? value.InvariantDisplayValue ?? value.Label)).ToArray(),
             option.IsVisible,
-            RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
+            RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key) || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

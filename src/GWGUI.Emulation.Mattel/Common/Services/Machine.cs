@@ -11,6 +11,8 @@ namespace GWGUI.Emulation.Mattel.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
@@ -36,9 +38,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, Func<EmulationMediaSlot, string?, bool> requiresMediaRestart,
         IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
+        _runtimePolicy = runtimePolicy;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _inputConfiguration = configuration;
@@ -113,7 +116,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
             option.IsVisible,
-            option.RequiresRuntimeReload))
+            option.RequiresRuntimeReload || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

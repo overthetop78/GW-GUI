@@ -80,7 +80,7 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
-                supportsNoContent: true, inputMapper: this);
+                supportsNoContent: true, inputMapper: this, runtimePolicy: this);
             completed = true;
             return machine;
         }

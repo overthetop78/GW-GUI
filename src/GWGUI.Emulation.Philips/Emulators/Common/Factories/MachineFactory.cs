@@ -48,7 +48,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), (slot, path) => RequiresMediaRestart(configuration, slot, path),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
-                coreFactory: () => CreateCore(configuration, context), inputMapper: this);
+                coreFactory: () => CreateCore(configuration, context), inputMapper: this, runtimePolicy: this);
             completed = true;
             return machine;
         }

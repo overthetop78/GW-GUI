@@ -133,7 +133,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
         {
             core = new ProcessCore(context.HostExecutablePath, context.CorePath);
             var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, null, context.SaveDirectoryResolver?.Invoke(configuration),
-                supportsSavedStates: CoreDefinition.SupportsSavedStates, inputMapper: this, audioOutputFactory: context.AudioOutputFactory);
+                supportsSavedStates: CoreDefinition.SupportsSavedStates, inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
             ownershipTransferred = true;
             return machine;
         }

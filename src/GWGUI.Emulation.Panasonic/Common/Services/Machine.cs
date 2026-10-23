@@ -9,6 +9,8 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Panasonic.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly object _gate = new();
     private IEmulatorCore _core;
     /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
@@ -44,9 +46,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Func<IAudioOutput?>? audioOutputFactory = null,
         Func<IEmulatorCore>? coreFactory = null,
         bool requiresResetRestart = false,
-        bool supportsNoContent = false, IEmulatorInputMapper? inputMapper = null)
+        bool supportsNoContent = false, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
+        _runtimePolicy = runtimePolicy;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _inputConfiguration = configuration;
@@ -136,7 +139,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
             option.IsVisible,
-            option.RequiresRestart
+            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true
         )).ToArray();
 
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;

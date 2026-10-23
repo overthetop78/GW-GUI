@@ -8,6 +8,8 @@ namespace GWGUI.Emulation.Sony.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
 {
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly object _gate = new();
     private MachineConfiguration _configuration;
     private readonly IEmulatorCore _core;
@@ -36,9 +38,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null, Func<IAudioOutput?>? audioOutputFactory = null)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true, IEmulatorInputMapper? inputMapper = null, Func<IAudioOutput?>? audioOutputFactory = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
+        _runtimePolicy = runtimePolicy;
         _configuration = configuration;
         _core = core;
         _inputMapper = inputMapper;
@@ -138,7 +141,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             _currentOptions.GetValueOrDefault(option.Key, option.DefaultValue),
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
             option.IsVisible,
-            option.RequiresRestart))
+            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

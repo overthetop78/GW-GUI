@@ -32,11 +32,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
         Configuration = configuration;
-        _runtimePolicy = new Engine().Adapter(configuration);
+        _runtimePolicy = runtimePolicy ?? new Engine().Adapter(configuration);
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _inputMapper = inputMapper;

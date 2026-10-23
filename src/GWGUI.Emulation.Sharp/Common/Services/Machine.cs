@@ -9,6 +9,8 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sharp.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
@@ -46,10 +48,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         bool supportsPointerCapture = false,
         bool requiresResetRestart = false,
         bool supportsNoContent = false,
-        IEmulatorInputMapper? inputMapper = null
+        IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null
     )
     {
         Id = id;
+        _runtimePolicy = runtimePolicy;
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _inputConfiguration = configuration;
@@ -137,7 +140,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
             option.IsVisible,
-            option.RequiresRestart
+            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true
         )).ToArray();
 
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
