@@ -13,13 +13,13 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Factories;
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
     : GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorControllerAdapter
 {
-    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model)
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model)
     {
         _ = ConfigurationFunctions.Family(model);
         return [PeripheralCategory.Intellivision];
     }
 
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

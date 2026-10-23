@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);
-    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => Enum.IsDefined(configuration.Model) && port >= ControllerConstants.FirstPort && port < ControllerConstants.PortCount && Enum.IsDefined(peripheral);
+    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => Enum.IsDefined(configuration.Model) && port >= ControllerConstants.FirstPort && port < CommonControllerFunctions.PortCount(configuration) && Enum.IsDefined(peripheral);
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [
         new(InputMappingConstants.MouseLeft, SettingsConstants.ResourceLightPenContact, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft)
     ];
@@ -25,7 +25,7 @@ internal static class InputSettingsFunctions
                 VisualCommandIds: ControllerCatalog.VisualCommands
             ) { Category = EmulationControllerCategory.Joystick }
         };
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Joystick;
@@ -52,7 +52,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
+        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, CommonControllerFunctions.PortCount(configuration)))
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
             settings,

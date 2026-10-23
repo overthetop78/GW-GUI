@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Mattel.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 
@@ -10,7 +11,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         EmulationInputBindingSet? keyboard = null;
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model))
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration))
             .Select(port =>
             {
                 var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
@@ -31,7 +32,7 @@ internal static class InputSettingsFunctions
     }
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
+        var count = CommonControllerFunctions.PortCount(configuration);
         if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count)
             || settings.Mouse is not null || settings.Keyboard?.Values.Count > 0)
             throw new ArgumentException(nameof(settings));

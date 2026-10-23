@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Enums;
@@ -17,7 +18,7 @@ internal static partial class InputSettingsFunctions
         var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse) ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.Controllers ?? [];
-        var ports = Enumerable.Range(0, compatibility.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var number = index + 1;
             var current = configured.FirstOrDefault(item => item.Port == index);

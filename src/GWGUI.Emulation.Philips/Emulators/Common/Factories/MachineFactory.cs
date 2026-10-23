@@ -1,4 +1,4 @@
-﻿using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
+using CommonCoreHostFunctions = GWGUI.Emulation.Philips.Common.Functions.CoreHostFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Philips.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
 using GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;
@@ -8,6 +8,12 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+
+    /// <inheritdoc/>
+    public abstract IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
+
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {

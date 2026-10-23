@@ -59,7 +59,7 @@ internal static class InputSettingsFunctions
             ?? input.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(), sources);
         var mouse = new EmulationInputBindingSet(ControllerDefinitions(PeripheralCategory.Mouse), input.MouseMappings ?? new Dictionary<string, string>(), sources, true);
         var choices = Enum.GetValues<PeripheralCategory>().Where(item => item != PeripheralCategory.Automatic).Select(Choice).ToArray();
-        var ports = Enumerable.Range(0, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
+        var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.RetroPad;

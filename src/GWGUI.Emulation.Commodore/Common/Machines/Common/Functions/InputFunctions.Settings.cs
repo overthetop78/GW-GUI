@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 
@@ -15,7 +16,7 @@ internal static partial class InputSettingsFunctions
             EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
         var configured = input.ControllerBindings ?? [];
-        var portCount = EmulatorCatalog.CreateAdapter(configuration.Core).GetControllerPortCount(configuration);
+        var portCount = CommonControllerFunctions.PortCount(configuration);
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, portCount).Select(index =>
         {
             var number = index + ControllerPortConstants.OneControllerPort;

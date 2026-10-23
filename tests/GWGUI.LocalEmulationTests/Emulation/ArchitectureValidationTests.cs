@@ -14,6 +14,63 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public async Task EveryCommonUsesItsControllerContractForPortCounts()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var checkedConfigurations = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.True(controllerContract.IsAssignableFrom(adapterContract), root);
+            var countMethod = controllerContract.GetMethod("GetControllerPortCount")!;
+            Assert.Equal(typeof(int), countMethod.ReturnType);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(Assert.Single(countMethod.GetParameters()).ParameterType));
+            var functions = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
+            var count = functions.GetMethod("PortCount", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var modelCount = functions.GetMethod("ModelPortCount", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Contains(GetCompiledCalls(count), call => call.Method.DeclaringType == controllerContract && call.Method.Name == countMethod.Name);
+            var settingsFunctions = assembly.GetType(root + ".Common.Machines.Common.Functions.InputSettingsFunctions", throwOnError: true)!;
+            Assert.Contains(settingsFunctions.GetMethods(BindingFlags.Static | BindingFlags.NonPublic).SelectMany(GetCompiledCalls), call => call.Method.DeclaringType == functions && call.Method.Name == count.Name);
+            var adaptersById = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)adaptersById.GetType().GetProperty("Values")!.GetValue(adaptersById)!).Cast<object>().ToArray();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var machine in machines)
+            {
+                var original = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                var candidates = adapters.Select(adapter => (Adapter: adapter, Definition: (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces()
+                    .SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!))
+                    .Where(item => item.Definition.MachineIds.Contains(machine.Id)).ToArray();
+                if (candidates.Length == 0)
+                {
+                    Assert.Equal(modelCount.Invoke(null, [original]), count.Invoke(null, [original]));
+                    checkedConfigurations++;
+                }
+                foreach (var candidate in candidates)
+                {
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [original, candidate.Definition.Id, CancellationToken.None])!;
+                    var expected = (int)countMethod.Invoke(candidate.Adapter, [configuration])!;
+                    Assert.InRange(expected, 0, EmulationHostProtocolConstants.MaximumInputControllerCount);
+                    Assert.Equal(expected, count.Invoke(null, [configuration]));
+                    var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
+                    // Les deux ports USB existants de PS2 sont décrits en plus du bus de manettes.
+                    var extraUsbPorts = root.EndsWith(".Sony", StringComparison.Ordinal) && machine.Id == "PlayStation2" && candidate.Definition.Id != "pcee2" ? 2 : 0;
+                    Assert.True(settings.ControllerPorts.Count == expected + extraUsbPorts, $"{root}/{machine.Id}/{candidate.Definition.Id}: {settings.ControllerPorts.Count} ports décrits, {expected} annoncés, {extraUsbPorts} USB supplémentaires");
+                    checkedConfigurations++;
+                }
+            }
+        }
+        Assert.True(checkedConfigurations > 24);
+    }
     public class FeedbackCoreProxy : DispatchProxy
     {
         public IReadOnlyList<ControllerFeedbackState> States { get; set; } = [];
@@ -1225,7 +1282,7 @@ public sealed class ArchitectureValidationTests
         {
             Assert.Null(assembly.GetType(root + "IEmulatorInputSettings"));
             var controllers = assembly.GetType(root + "IEmulatorControllerAdapter", throwOnError: true)!;
-            var method = Assert.Single(controllers.GetMethods());
+            var method = Assert.Single(controllers.GetMethods(), candidate => candidate.Name == "GetPeripherals");
             Assert.Equal("GetPeripherals", method.Name);
             var model = Assert.Single(method.GetParameters()).ParameterType;
             Assert.True(model.IsEnum);

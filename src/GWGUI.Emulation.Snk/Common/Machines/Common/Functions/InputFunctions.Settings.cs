@@ -26,10 +26,10 @@ internal static class InputSettingsFunctions
         MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs or MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [PeripheralCategory.NeoGeoArcadeStick, PeripheralCategory.NeoGeoCdPad],
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
-    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration) && Choices(configuration.Model).Contains(peripheral);
+    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < CommonControllerFunctions.PortCount(configuration) && Choices(configuration.Model).Contains(peripheral);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration)).Select(port =>
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
@@ -70,7 +70,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var count = ConfigurationFunctions.ControllerPortCount(configuration);
+        var count = CommonControllerFunctions.PortCount(configuration);
         if (settings.Keyboard is not null || settings.Mouse is not null || EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count))
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(

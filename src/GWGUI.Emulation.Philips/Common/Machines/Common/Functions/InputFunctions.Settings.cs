@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Philips.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Philips.Common.Machines.P2000.Dictionaries;
 
@@ -24,7 +25,7 @@ internal static class InputSettingsFunctions
     {
         var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.Keyboard ?? new Dictionary<string, string>(),
             EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model))
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration))
             .Select(port =>
             {
                 var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
@@ -55,7 +56,7 @@ internal static class InputSettingsFunctions
     }
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
+        var count = CommonControllerFunctions.PortCount(configuration);
         if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count)
             || settings.Mouse is not null || (configuration.Family != MachineFamily.P2000 && settings.Keyboard?.Values.Count > 0))
             throw new ArgumentException(nameof(settings));

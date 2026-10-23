@@ -1,7 +1,12 @@
 using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorFirmwareSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorFirmwareSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorControllerAdapter
 {
+    /// <summary>Expose les ports matériels lorsque le cœur ne fournit aucune extension propre.</summary>
+    /// <param name="configuration">Configuration complète, conservée immuable pendant la consultation.</param>
+    /// <returns>Nombre de ports de base ; les adaptateurs concrets conservent leurs calculs de ports supplémentaires.</returns>
+    int IEmulatorControllerAdapter.GetControllerPortCount(MachineConfiguration configuration) => CommonControllerFunctions.ModelPortCount(configuration);
+
     /// <summary>Décrit les deux moteurs standard pour les catégories valides autres que None et Keyboard.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>
@@ -84,7 +89,6 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
     IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
     EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
     IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
-    int GetControllerPortCount(MachineConfiguration configuration);
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
     IReadOnlySet<EmulationKey> SoftResetKeys { get; }
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>

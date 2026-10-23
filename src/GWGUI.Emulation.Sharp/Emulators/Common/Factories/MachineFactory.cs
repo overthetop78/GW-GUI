@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorCapabilities
 {
     /// <inheritdoc/>
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+
+    /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {
         var core = configuration.Core;

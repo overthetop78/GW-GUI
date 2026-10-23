@@ -5,7 +5,7 @@ internal static class InputSettingsFunctions
 {
     private static IReadOnlyList<string> Visuals(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad ? [EmulationControllerVisualIds.PanasonicFzJp1] : [];
     internal static bool SupportsPointerCapture(InputConfiguration input) => input.Controllers?.Any(binding => binding.Peripheral is PeripheralCategory.Mouse or PeripheralCategory.Lightgun or PeripheralCategory.ArcadeLightgun or PeripheralCategory.OrbatakTrackball) == true;
-    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => Enum.IsDefined(configuration.Model) && port >= ControllerConstants.FirstPort && port < ControllerConstants.PortCount && Enum.IsDefined(peripheral);
+    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => Enum.IsDefined(configuration.Model) && port >= ControllerConstants.FirstPort && port < CommonControllerFunctions.PortCount(configuration) && Enum.IsDefined(peripheral);
     internal static PeripheralCategory Peripheral(InputConfiguration input, int port) => input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? (port == ControllerConstants.FirstPort ? PeripheralCategory.ThreeDOPad : PeripheralCategory.None);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
@@ -28,7 +28,7 @@ internal static class InputSettingsFunctions
                     _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
                 }
             }).ToArray();
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = Peripheral(configuration.Input, port);
@@ -48,12 +48,12 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != ControllerConstants.PortCount)
+        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != CommonControllerFunctions.PortCount(configuration))
             throw new ArgumentException(nameof(settings));
         var controllers = new List<ControllerBinding>();
         foreach (var port in settings.ControllerPorts)
         {
-            if (port.Number < 1 || port.Number > ControllerConstants.PortCount || !Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Enum.IsDefined(peripheral))
+            if (port.Number < 1 || port.Number > CommonControllerFunctions.PortCount(configuration) || !Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Enum.IsDefined(peripheral))
                 throw new ArgumentException(nameof(settings));
             controllers.Add(new(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         }

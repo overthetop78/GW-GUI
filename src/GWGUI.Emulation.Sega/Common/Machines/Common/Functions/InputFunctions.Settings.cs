@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Functions;
 
@@ -10,7 +11,7 @@ internal static partial class InputSettingsFunctions
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = ControllerCatalog.Normalize(model, current?.Type ?? PeripheralCategory.Automatic);

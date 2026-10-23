@@ -8,6 +8,11 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
+    /// <summary>Expose les ports matériels lorsque le cœur ne fournit aucune extension propre.</summary>
+    /// <param name="configuration">Configuration complète, conservée immuable pendant la consultation.</param>
+    /// <returns>Nombre de ports de base ; les adaptateurs concrets conservent leurs calculs de ports supplémentaires.</returns>
+    int IEmulatorControllerAdapter.GetControllerPortCount(MachineConfiguration configuration) => CommonControllerFunctions.ModelPortCount(configuration);
+
     /// <summary>Décrit les deux moteurs standard pour les catégories valides autres que None et Keyboard.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>

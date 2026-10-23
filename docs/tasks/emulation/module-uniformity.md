@@ -9163,3 +9163,148 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : inclure les entrées de session actuelles dans CurrentConfiguration sans changer la collecte des médias.
   - [x] Vérifier les changements de catégorie et la conservation des associations.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le raccordement des trois machines et la conservation des réglages après changement de périphérique, avec des données en mémoire ; exécuter les régressions locales et le build complet.
+
+## Nombre de ports transmis par le contrat Common dans les 24 familles
+- [x] Uniformiser GetControllerPortCount et sa consommation en conservant les limites matérielles et les extensions des cœurs.
+  - [x] Raccorder Acorn au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Amstrad au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Apple au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Atari au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Bandai au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Coleco au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Commodore au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Epoch au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Example au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Fairchild au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Mattel au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Microsoft au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Nec au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Nintendo au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Panasonic au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Philips au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Sega au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Sharp au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Sinclair au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Snk au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Sony au même contrat de nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Thomson au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Watara au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Raccorder Wenquxing au même contrat de nombre de ports.
+    - [x] Créer src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorControllerAdapter.cs : déclarer GetControllerPortCount avec la configuration complète et conserver les autres opérations existantes.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/ControllerFunctions.cs : centraliser le nombre matériel dans ModelPortCount et résoudre PortCount par l’adaptateur sélectionné, avec repli matériel sans adaptateur.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat de contrôleurs et fournir le nombre matériel par défaut, sans masquer les implémentations des cœurs.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/InputFunctions.Settings.cs : utiliser PortCount dans la description ou les contrôles des ports, en préservant les choix, associations et visuels existants.
+  - [x] Déclarer les opérations existantes dans les fabriques abstraites désormais reliées au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer abstraites les opérations de contrôleurs déjà fournies par les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/BlueMSX/Factories/BlueMSXMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Factories/GearColecoMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/JollyCV/Factories/JollyCVMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/EmuSCV/Factories/EmuSCVMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/FreeChaF/Factories/FreeChaFMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : marquer override les implémentations existantes sans changer leurs traitements.
+  - [x] Retirer la résolution concurrente du nombre de ports.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ConfigurationFunctions.cs : supprimer la surcharge prenant la configuration et utiliser ControllerFunctions.PortCount dans la validation, en conservant le calcul matériel par modèle.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : utiliser ControllerFunctions.PortCount pour la visibilité des contrôleurs après suppression de la surcharge de configuration.
+  - [x] Vérifier les 24 contrats et leurs nombres de ports réels.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, la consommation Common et la concordance des ports pour chaque modèle et adaptateur, avec des configurations en mémoire ; exécuter les régressions locales et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure GetControllerPortCount dans les opérations communes attendues après son raccordement aux 24 familles.

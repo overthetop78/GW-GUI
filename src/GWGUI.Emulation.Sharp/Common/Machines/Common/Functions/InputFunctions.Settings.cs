@@ -27,12 +27,12 @@ internal static class InputSettingsFunctions
         return choices.ToArray();
     }
 
-    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration.Model) && Choices(configuration, port).Contains(peripheral);
+    internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < CommonControllerFunctions.PortCount(configuration) && Choices(configuration, port).Contains(peripheral);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
@@ -74,7 +74,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
+        var count = CommonControllerFunctions.PortCount(configuration);
         if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, count) || !SupportsMouse(configuration) && settings.Mouse is not null)
             throw new ArgumentException(nameof(settings));
         var controllers = EmulationSdk.InputProcessing.CreateControllerBindings<PeripheralCategory, ControllerBinding>(

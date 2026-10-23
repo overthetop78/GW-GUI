@@ -15,6 +15,12 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+
+    /// <inheritdoc/>
+    public abstract IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
+
+    /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {
         var core = configuration.Core;

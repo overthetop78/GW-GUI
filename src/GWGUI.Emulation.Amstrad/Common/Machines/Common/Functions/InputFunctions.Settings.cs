@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
@@ -11,7 +12,7 @@ internal static partial class InputSettingsFunctions
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(), KeyboardBindingFunctions.Normalize(input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > BufferConstants.EmptyCollectionCount ? new EmulationInputBindingSet(MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(BufferConstants.FirstCollectionIndex, model.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(BufferConstants.FirstCollectionIndex, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = current?.Type ?? ControllerCatalog.Default(model);

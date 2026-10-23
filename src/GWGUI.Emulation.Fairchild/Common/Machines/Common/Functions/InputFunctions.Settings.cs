@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Fairchild.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
@@ -13,7 +14,7 @@ internal static class InputSettingsFunctions
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
+        var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var definitions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, port).Select(action => action.Definition).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
@@ -41,7 +42,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, ControllerConstants.PortCount))
+        if (EmulationSdk.InputProcessing.HasInvalidControllerPortNumbers(settings, CommonControllerFunctions.PortCount(configuration)))
             throw new ArgumentException(nameof(settings));
         var controllers = settings.ControllerPorts.Select(port =>
         {

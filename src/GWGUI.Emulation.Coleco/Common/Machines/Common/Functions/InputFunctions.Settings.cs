@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Coleco.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
@@ -132,7 +133,7 @@ internal static class InputSettingsFunctions
             KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
             configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mapper = new Engine().Adapter(configuration.Core) as IEmulatorControllerAdapter;
-        var ports = Enumerable.Range(0, ControllerConstants.PortCount).Select(index =>
+        var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var choices = (mapper?.GetPeripherals(configuration.Model) ?? []).Select(category =>
             {

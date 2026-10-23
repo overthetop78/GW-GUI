@@ -1,7 +1,12 @@
 using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Amstrad.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter
 {
+    /// <summary>Expose les ports matériels lorsque le cœur ne fournit aucune extension propre.</summary>
+    /// <param name="configuration">Configuration complète, conservée immuable pendant la consultation.</param>
+    /// <returns>Nombre de ports de base ; les adaptateurs concrets conservent leurs calculs de ports supplémentaires.</returns>
+    int IEmulatorControllerAdapter.GetControllerPortCount(MachineConfiguration configuration) => CommonControllerFunctions.ModelPortCount(configuration);
+
     /// <summary>Décrit les deux moteurs standard pour les catégories valides autres que None et Keyboard.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>

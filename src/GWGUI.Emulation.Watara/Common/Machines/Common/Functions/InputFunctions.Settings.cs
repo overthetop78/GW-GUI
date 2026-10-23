@@ -33,7 +33,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != ControllerConstants.PortCount)
+        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != CommonControllerFunctions.PortCount(configuration))
             throw new ArgumentException(nameof(settings));
         var port = settings.ControllerPorts[ControllerConstants.FirstPort];
         if (port.Number != 1 || port.SelectedControllerId != PeripheralCategory.Supervision.ToString() || port.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))

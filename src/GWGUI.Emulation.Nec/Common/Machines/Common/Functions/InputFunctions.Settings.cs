@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
 
@@ -18,7 +19,7 @@ internal static partial class InputSettingsFunctions
             CompatibleVisualIds(mouseType), DefaultVisualId(mouseType),
             VisualCommandIds(mouseType)) : null;
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, model.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = ControllerCatalog.Normalize(model, current?.Type ?? (index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : PeripheralCategory.None));

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 internal static partial class ConfigurationFunctions
 {
@@ -17,7 +18,6 @@ internal static partial class ConfigurationFunctions
     };
     internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || EmulatorCatalog.Get(core).MachineIds.Select(Enum.Parse<MachineModel>).Contains(model));
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.NeoGeoPocket ? ControllerConstants.PocketPortCount : ControllerConstants.NeoGeoPortCount;
-    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ControllerPortCount(configuration.Model);
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) switch
     {
         MachineFamily.NeoGeoCartridge => [EmulationMediaSlot.Cartridge0, EmulationMediaSlot.MemoryCard0],
@@ -59,7 +59,7 @@ internal static partial class ConfigurationFunctions
                 throw new ArgumentException(nameof(configuration.Firmwares));
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])
-            if (controller.Port < ControllerConstants.FirstPort || controller.Port >= ControllerPortCount(configuration) || !ports.Add(controller.Port) || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent)
+            if (controller.Port < ControllerConstants.FirstPort || controller.Port >= CommonControllerFunctions.PortCount(configuration) || !ports.Add(controller.Port) || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentException(nameof(configuration.Input));
     }
 }

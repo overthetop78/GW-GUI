@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Bandai.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
@@ -28,7 +29,7 @@ internal static class InputSettingsFunctions
             choices, peripheral.ToString(), current?.DeviceId,
             new EmulationInputBindingSet(definitions, current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
             current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, visualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
-        return new(null, null, [port]);
+        return new(null, null, Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(index => port with { Number = index + BufferConstants.IndexIncrement }).ToArray());
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)

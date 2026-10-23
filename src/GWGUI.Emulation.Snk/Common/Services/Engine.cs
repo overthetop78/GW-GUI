@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 using GWGUI.Emulation.Interfaces;
@@ -91,7 +92,7 @@ internal sealed class Engine
             EmulationMachineTab.Rom => FirmwareFunctions.Roles(current.Model, current.Core).Count > 0,
             EmulationMachineTab.Cpu => true,
             EmulationMachineTab.Ram => HardwareModelCatalog.Get(current.Model).MainMemoryBytes is not null,
-            EmulationMachineTab.Controllers => ConfigurationFunctions.ControllerPortCount(current) > BufferConstants.EmptyCollectionCount,
+            EmulationMachineTab.Controllers => CommonControllerFunctions.PortCount(current) > BufferConstants.EmptyCollectionCount,
             EmulationMachineTab.Storage => true,
             _ => item.Value
         }

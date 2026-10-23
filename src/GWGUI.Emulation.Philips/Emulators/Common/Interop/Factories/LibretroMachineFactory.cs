@@ -15,7 +15,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
 {
     public override async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (FirmwareIdentificationFunctions.ScanFileAsync(path, configuration.Model, Emulator, cancellationToken)).ConfigureAwait(false)];
 
-    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ConfigurationFunctions.Family(model) switch
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ConfigurationFunctions.Family(model) switch
     {
         MachineFamily.P2000 => [],
         MachineFamily.Videopac => [PeripheralCategory.Joystick, PeripheralCategory.None],
@@ -23,7 +23,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

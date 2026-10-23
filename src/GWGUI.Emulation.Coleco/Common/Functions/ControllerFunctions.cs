@@ -7,6 +7,17 @@ namespace GWGUI.Emulation.Coleco.Common.Functions;
 
 internal static class ControllerFunctions
 {
+    /// <summary>Lit le nombre de ports matériels avant les extensions propres au cœur sélectionné.</summary>
+    /// <param name="configuration">Configuration empruntée dont le modèle détermine les ports de base.</param>
+    /// <returns>Nombre matériel utilisé sans adaptateur ou comme comportement par défaut de son contrat.</returns>
+    internal static int ModelPortCount(MachineConfiguration configuration) => ControllerConstants.PortCount;
+
+    /// <summary>Résout les ports de session par le contrat Common du cœur sélectionné.</summary>
+    /// <param name="configuration">Configuration empruntée, y compris les options de multitap ou d’extension.</param>
+    /// <returns>Nombre annoncé par l’adaptateur ; nombre matériel lorsque la machine ne sélectionne aucun cœur.</returns>
+    /// <remarks>Le contrat reçoit la configuration entière. Cette consultation ne crée ni cœur ni ressource native.</remarks>
+    internal static int PortCount(MachineConfiguration configuration) => new Engine().SelectedAdapter(configuration)?.GetControllerPortCount(configuration) ?? ModelPortCount(configuration);
+
     /// <summary>Service public de description, validation et projection des retours, emprunté au SDK sans ressource physique possédée.</summary>
     internal static IEmulationControllerFeedbackProcessing Feedback => EmulationSdk.ControllerFeedback;
 
