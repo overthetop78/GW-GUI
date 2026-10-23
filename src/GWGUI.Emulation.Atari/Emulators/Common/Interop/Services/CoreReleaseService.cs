@@ -6,7 +6,7 @@ using GWGUI.Emulation;
 using System.IO;
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
-public sealed class CoreReleaseService : ICoreReleaseService
+internal sealed class CoreReleaseService : ICoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _installationRoot;

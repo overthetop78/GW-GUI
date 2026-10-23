@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
-public sealed class ExternalCoreInstaller
+internal sealed class ExternalCoreInstaller
 {
     private readonly CoreDefinition _definition;
     private string CoreRevision => _definition.RequiredRelease?.Id ?? CoreReleaseConstants.Latest;

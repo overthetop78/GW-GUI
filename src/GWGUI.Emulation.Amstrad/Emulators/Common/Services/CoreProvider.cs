@@ -3,7 +3,7 @@ using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
-public sealed class CoreProvider
+internal sealed class CoreProvider
 {
     private readonly HttpClient _client;
     private readonly string _installationDirectory;

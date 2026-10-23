@@ -13,7 +13,7 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 
 
-public sealed class CoreReleaseService
+internal sealed class CoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _directory;

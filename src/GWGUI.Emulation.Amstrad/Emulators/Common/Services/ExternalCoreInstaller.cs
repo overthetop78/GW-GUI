@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
-public sealed class ExternalCoreInstaller
+internal sealed class ExternalCoreInstaller
 {
     private readonly HttpClient _httpClient;
     private readonly string _directory;

@@ -1,7 +1,7 @@
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
-public sealed class CoreProvider
+internal sealed class CoreProvider
 {
     private readonly CoreDefinition _definition;
     private readonly HttpClient _client;

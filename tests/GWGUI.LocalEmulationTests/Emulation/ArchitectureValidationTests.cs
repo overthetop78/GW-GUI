@@ -452,7 +452,7 @@ public sealed class ArchitectureValidationTests
             var constructionEngine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
             Assert.False(constructionEngine.IsVisible);
             Assert.True(factory.IsVisible);
-            var commonServices = assembly.GetTypes().Where(type => type.IsClass && type.Namespace == root + ".Common.Services").ToArray();
+            var commonServices = assembly.GetTypes().Where(type => type.IsClass && (type.Namespace == root + ".Common.Services" || type.Namespace?.StartsWith(root + ".Emulators.", StringComparison.Ordinal) == true && type.Namespace.EndsWith(".Services", StringComparison.Ordinal))).ToArray();
             Assert.NotEmpty(commonServices);
             Assert.All(commonServices, service => Assert.False(service.IsVisible, service.FullName));
             var construct = constructionEngine.GetMethod("Create", BindingFlags.Public | BindingFlags.Static, [typeof(EmulationModuleContext)])!;

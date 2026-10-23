@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 
-public sealed class CoreReleaseService
+internal sealed class CoreReleaseService
 {
     private readonly CoreDefinition _definition;
     public Uri? LatestOfficialUri => _definition.DownloadUrl is { } url ? new(url) : null;

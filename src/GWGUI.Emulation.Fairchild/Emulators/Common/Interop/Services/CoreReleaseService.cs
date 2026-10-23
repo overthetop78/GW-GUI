@@ -12,7 +12,7 @@ using System.Net.Http;
 using System.IO;
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;
 
-public sealed class CoreReleaseService : ICoreReleaseService
+internal sealed class CoreReleaseService : ICoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _installationRoot;

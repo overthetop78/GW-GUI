@@ -1,7 +1,7 @@
 
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
-public sealed class CoreProvider
+internal sealed class CoreProvider
 {
     private readonly HttpClient _client;
     private readonly string _installationDirectory;

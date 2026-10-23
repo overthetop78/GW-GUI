@@ -2,7 +2,7 @@ using System.Net.Http;
 
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;
 
-public sealed class CoreProvider
+internal sealed class CoreProvider
 {
     private readonly HttpClient _client;
     private readonly string _installationDirectory;

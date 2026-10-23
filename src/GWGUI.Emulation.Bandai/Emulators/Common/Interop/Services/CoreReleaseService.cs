@@ -11,7 +11,7 @@ using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 using System.IO;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
-public sealed class CoreReleaseService : ICoreReleaseService
+internal sealed class CoreReleaseService : ICoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _installationRoot;

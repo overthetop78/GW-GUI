@@ -15,7 +15,7 @@ using GWGUI.Emulation.Sony.Emulators.Common.Interop.Dictionaries;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
-public static class CoreHost
+internal static class CoreHost
                 {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
