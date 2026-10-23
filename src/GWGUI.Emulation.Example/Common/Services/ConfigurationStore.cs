@@ -11,7 +11,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// <remarks>Chaque machine possède un sous-dossier identifié par son GUID. Les chemins des contenus sont enregistrés
     /// relativement au répertoire de référence lorsque cela est possible ; l’écriture atomique est assurée par
     /// l’interface commune. Les médias restent empruntés et ne sont ni déplacés ni copiés par le magasin.</remarks>
-public sealed class ConfigurationStore
+internal sealed class ConfigurationStore
 {
     /// <summary>Répertoire absolu contenant les sous-dossiers des machines.</summary>
     private readonly string _directory;

@@ -6,7 +6,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Sony.Common.Services;
 
-public sealed class ConfigurationStore
+internal sealed class ConfigurationStore
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {

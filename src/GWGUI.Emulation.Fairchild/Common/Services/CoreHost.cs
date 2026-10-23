@@ -9,7 +9,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Fairchild.Common.Services;
 
-public static class CoreHost
+internal static class CoreHost
                 {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)

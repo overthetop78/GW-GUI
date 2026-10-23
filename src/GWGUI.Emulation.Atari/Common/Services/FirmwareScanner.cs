@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari.Common.Services;
 
-public sealed class FirmwareScanner(string firmwareRoot)
+internal sealed class FirmwareScanner(string firmwareRoot)
 {
     private readonly string _firmwareRoot = Path.GetFullPath(firmwareRoot);
 

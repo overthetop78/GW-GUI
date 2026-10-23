@@ -4,7 +4,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Snk.Common.Services;
 
-public sealed class ConfigurationStore
+internal sealed class ConfigurationStore
 {
     private readonly string _directory;
     private readonly string _pathBase;

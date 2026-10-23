@@ -19,7 +19,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// <summary>Exécute le côté serveur du protocole de cœur dans le processus hôte.</summary>
 /// <remarks>Le client ProcessCore envoie les commandes sur un tube nommé. Cet hôte possède le cœur créé par la fabrique
 /// et le rédacteur vidéo partagé ; leurs ressources sont libérées à la fin de la session, même après une erreur.</remarks>
-public static class CoreHost
+internal static class CoreHost
 {
     /// <summary>Connecte la session puis traite les commandes jusqu’à sa fermeture.</summary>
     /// <param name="pipeName">Nom du tube nommé créé par le processus appelant.</param>

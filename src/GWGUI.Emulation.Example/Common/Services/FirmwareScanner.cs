@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// <param name="firmwareRoot">Dossier de recherche emprunté ; les fichiers restent la propriété de l’utilisateur.</param>
 /// <remarks>Les règles d’identification sont déléguées aux fonctions de scan. Le signalement des doublons
 /// porte sur une empreinte commune, indépendamment du nom ou de l’emplacement du fichier.</remarks>
-public sealed class FirmwareScanner(string firmwareRoot)
+internal sealed class FirmwareScanner(string firmwareRoot)
 {
     // Un chemin absolu stabilise la recherche même si le répertoire courant du processus change.
     private readonly string _firmwareRoot = Path.GetFullPath(firmwareRoot);

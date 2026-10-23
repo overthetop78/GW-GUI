@@ -7201,3 +7201,77 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier le changement de profil et la description de stockage par les interfaces publiques, en conservant les assertions et sans créer de fichiers.
   - [x] Vérifier les constructions et leurs raccordements.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 méthodes Common de construction et les appels compilés depuis les fabriques ; comparer les traitements transférés aux versions précédentes, exécuter les contrôles locaux puis construire et vérifier le Debug avec les 23 modules.
+
+
+## Implémentations des services Common derrière les interfaces publiques
+
+- [x] Garder les services de configuration, de protocole et de firmware internes aux modules.
+  - [x] Raccorder la visibilité des services Acorn.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Amstrad.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Apple.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Atari.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/FirmwareScanner.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Bandai.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Coleco.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Commodore.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Example.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/FirmwareScanner.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Microsoft.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Nec.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Nintendo.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Panasonic.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Sega.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Sharp.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Sinclair.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Snk.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Sony.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Thomson.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Watara.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Raccorder la visibilité des services Wenquxing.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : rendre la classe de service interne, en conservant les membres, traitements, synchronisation et règles de libération des ressources.
+  - [x] Vérifier les accès par les interfaces et le fonctionnement existant.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que les classes des services Common ne sont pas exportées dans les 24 familles et que les fabriques publiques restent accessibles ; comparer les corps de code avant et après, exécuter les contrôles locaux puis construire et vérifier le Debug avec tous les modules.
