@@ -84,8 +84,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
-    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory type) =>
-        CoreDefinition.FeedbackControllerTypes?.Contains(type) == true ? InputSettingsFunctions.RumbleOutputs : [];
+    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) =>
+        CoreDefinition.FeedbackControllerTypes?.Contains(peripheral) == true ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public virtual bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
     public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;

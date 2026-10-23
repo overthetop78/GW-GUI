@@ -15,6 +15,74 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonDescribesControllerOutputsThroughTheSameContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerFeedbackAdapter", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var operation = Assert.Single(contract.GetMethods());
+            Assert.Equal("GetControllerOutputs", operation.Name);
+            Assert.True(operation.IsAbstract);
+            Assert.Equal(typeof(IReadOnlyList<EmulationControllerOutputDefinition>), operation.ReturnType);
+            var parameters = operation.GetParameters();
+            Assert.Equal(new[] { "configuration", "peripheral" }, parameters.Select(parameter => parameter.Name));
+            Assert.Equal(root + ".Common.Machines.Common.Contracts.MachineConfiguration", parameters[0].ParameterType.FullName);
+            Assert.Equal(root == "GWGUI.Emulation.Wenquxing" ? typeof(EmulationPeripheralCategory).FullName : root + ".Common.Machines.Common.Enums.PeripheralCategory", parameters[1].ParameterType.FullName);
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)))
+            {
+                var target = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                Assert.False(target.IsAbstract);
+                var concrete = implementation.GetMethod(operation.Name, BindingFlags.Public | BindingFlags.Instance, parameters.Select(parameter => parameter.ParameterType).ToArray());
+                if (concrete is not null)
+                {
+                    Assert.Equal(concrete, target);
+                    if (root == "GWGUI.Emulation.Example")
+                    {
+                        var configuration = RuntimeHelpers.GetUninitializedObject(parameters[0].ParameterType);
+                        var backend = RuntimeHelpers.GetUninitializedObject(implementation);
+                        foreach (var peripheral in Enum.GetValues(parameters[1].ParameterType))
+                        {
+                            var outputs = Assert.IsAssignableFrom<IReadOnlyList<EmulationControllerOutputDefinition>>(operation.Invoke(backend, [configuration, peripheral]));
+                            if (peripheral.ToString() is "None" or "Keyboard") Assert.Empty(outputs);
+                            else Assert.Equal(new[] { EmulationControllerFeedbackCommands.Strong, EmulationControllerFeedbackCommands.Weak }, outputs.Select(output => output.Id));
+                        }
+                    }
+                }
+                else
+                {
+                    Assert.Equal(adapter, target.DeclaringType);
+                    var configuration = RuntimeHelpers.GetUninitializedObject(parameters[0].ParameterType);
+                    var backend = RuntimeHelpers.GetUninitializedObject(implementation);
+                    foreach (var peripheral in Enum.GetValues(parameters[1].ParameterType))
+                        Assert.Empty(Assert.IsAssignableFrom<IReadOnlyList<EmulationControllerOutputDefinition>>(operation.Invoke(backend, [configuration, peripheral])));
+                }
+            }
+            MethodInfo? consumer = root switch
+            {
+                "GWGUI.Emulation.Example" => assembly.GetType(root + ".Common.Services.Machine")!.GetProperty("ControllerOutputs")!.GetMethod,
+                "GWGUI.Emulation.Sony" => assembly.GetType(root + ".Common.Machines.Common.Functions.InputSettingsFunctions")!.GetMethod("VisualOutputs", BindingFlags.Static | BindingFlags.NonPublic),
+                _ => null
+            };
+            if (consumer is not null)
+            {
+                var code = consumer.GetMethodBody()!.GetILAsByteArray()!;
+                Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => code.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(operation.MetadataToken)).ToArray()) >= 0), root);
+            }
+        }
+    }
+
+    [Fact]
     public void EveryCommonUsesTheSameVideoAndNoContentCapabilities()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

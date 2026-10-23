@@ -8793,3 +8793,63 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les capacités et leurs consommateurs.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure les deux capacités désormais communes dans la surface des adaptateurs.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats et leur dispatch, la lecture de la capacité vidéo dans les descriptions et la transmission des huit politiques de recréation sans média ; exécuter les tests locaux et construire tous les modules.
+
+## Description des sorties de contrôleur par le contrat Common
+- [x] Exposer le même contrat de sorties dans les 24 familles sans modifier les effets déclarés par les backends.
+  - [x] Définir le même contrat dans tous les Common.
+    - [x] Créer src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+    - [x] Créer src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs : reprendre le contrat documenté de Example et les paramètres configuration et peripheral.
+  - [x] Rendre la description obligatoire et fournir un défaut sans sortie.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorControllerFeedbackAdapter et retourner une liste vide par défaut, en laissant les implémentations concrètes décrire leurs sorties.
+  - [x] Raccorder les consommateurs existants au contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : utiliser le nom peripheral du contrat pour le paramètre de GetControllerOutputs sans changer les catégories ni les effets retournés.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Feedback.cs : appeler la description des sorties du contrat obligatoire sans test de type facultatif et conserver les filtres des associations existantes.
+  - [x] Vérifier le dispatch et les descriptions des sorties.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure GetControllerOutputs dans la surface commune des adaptateurs.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorControllerFeedbackAdapter.cs et IEmulatorAdapter.cs : employer la catégorie publique de périphérique déjà utilisée par le module via un alias de type, sans créer une seconde énumération.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, les cibles concrètes, le défaut vide sans ressource et les appels des consommateurs existants ; exécuter les tests locaux et le build complet avec vérification des sorties.

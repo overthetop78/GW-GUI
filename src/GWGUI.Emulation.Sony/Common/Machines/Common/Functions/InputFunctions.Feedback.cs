@@ -10,7 +10,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputs(MachineConfiguration configuration, PeripheralCategory type, Model model)
     {
-        if (new Engine().Adapter(configuration) is not IEmulatorControllerFeedbackAdapter adapter) return null;
+        var adapter = new Engine().Adapter(configuration);
         var outputs = adapter.GetControllerOutputs(configuration, type);
         var visuals = CompatibleVisualIds(type, model);
         return outputs.Count == 0 || visuals is null ? null : visuals.ToDictionary(id => id, _ => outputs, StringComparer.Ordinal);

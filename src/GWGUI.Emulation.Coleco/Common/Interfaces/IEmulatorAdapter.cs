@@ -1,6 +1,13 @@
 namespace GWGUI.Emulation.Coleco.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
+internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
+    /// <summary>Ne déclare aucune sortie de contrôleur lorsque le backend ne décrit pas de retour physique.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>
+    /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>
+    /// <returns>Liste vide ; les implémentations concrètes fournissent les commandes et libellés de leurs effets.</returns>
+    /// <remarks>Cette description ne démarre aucun effet et ne possède aucun périphérique physique.</remarks>
+    IReadOnlyList<EmulationControllerOutputDefinition> IEmulatorControllerFeedbackAdapter.GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) => [];
+
     /// <summary>Conserve les réglages de présentation vidéo communs tant que le backend ne déclare aucune restriction.</summary>
     bool IEmulatorCapabilities.SupportsVideoSettings => true;
 
