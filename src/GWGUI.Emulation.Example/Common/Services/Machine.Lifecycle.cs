@@ -352,7 +352,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         ConfigurationFunctions.Validate(updated);
         if (!_mediaSuspended)
         {
-            if (_runtimePolicy?.RequiresOptionRestart(key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, key)) RestartCore(updated);
+            if (_runtimePolicy?.RequiresOptionRestart(Configuration, key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, key)) RestartCore(updated);
             else _core.SetOption(key, value);
         }
         Configuration = updated;

@@ -14,7 +14,7 @@ internal sealed class SameCdiMachineFactory() : LibretroMachineFactory(EmulatorC
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.SameCdi.Functions.StorageDescriptionFunctions.Describe(configuration);
 
-    protected override bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => path is not null && string.Equals(Path.GetExtension(path), MediaRuntimeConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase);
+    public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => path is not null && string.Equals(Path.GetExtension(path), MediaRuntimeConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase);
 
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.SameCdi.Functions.SameCdiRuntimeFunctions.Options(configuration);
 }

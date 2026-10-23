@@ -36,7 +36,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         Id = id;
         Configuration = configuration;
-        _runtimePolicy = new Engine().Adapter(configuration) as IEmulatorRuntimePolicy;
+        _runtimePolicy = new Engine().Adapter(configuration);
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _inputMapper = inputMapper;
@@ -111,7 +111,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
             option.IsVisible,
-            _runtimePolicy?.RequiresOptionRestart(option.Key) == true))
+            _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

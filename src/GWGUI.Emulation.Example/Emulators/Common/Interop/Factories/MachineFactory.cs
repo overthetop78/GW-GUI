@@ -116,7 +116,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
             if (saves is not null) EnsurePersistentStorage(configuration, saves);
             core = CreateCore();
             var machine = new Machine(sessionId, configuration, core, sessionDirectory, saveDirectory: saves,
-                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore, requiresMediaRestart: RequiresMediaRestart,
+                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore, requiresMediaRestart: (slot, path) => RequiresMediaRestart(configuration, slot, path),
                 supportsNoContent: SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
                 cassetteInput: configuration.Model == MachineModel.ExampleMachineA ? new CassetteInputController(configuration) : null);
             transferred = true;
@@ -182,7 +182,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(HardwareModelDefinition model, MachineConfiguration configuration) => SettingsDescriptionFunctions.Create(model, configuration, GetSettingsOptions(configuration));
     /// <inheritdoc/>
-    public bool IsDeferredOption(MachineConfiguration configuration, string key) => RequiresOptionRestart(key);
+    public bool IsDeferredOption(MachineConfiguration configuration, string key) => RequiresOptionRestart(configuration, key);
     /// <inheritdoc/>
     public int GetMemoryKib(MachineConfiguration configuration) => checked((int)(HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes / 1024));
     /// <inheritdoc/>
@@ -239,9 +239,9 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public void EnsurePersistentStorage(MachineConfiguration configuration, string directory) => Directory.CreateDirectory(directory);
     /// <inheritdoc/>
-    public bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => false;
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => false;
     /// <inheritdoc/>
-    public bool RequiresOptionRestart(string key) => OptionCatalog.All.Any(option => option.Key == key && option.RequiresRestart);
+    public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => OptionCatalog.All.Any(option => option.Key == key && option.RequiresRestart);
     /// <inheritdoc/>
     public IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => DescribeMediaDevices(configuration).ToDictionary(device => device.Slot, device => ledStates.GetValueOrDefault(device.Slot.ProtocolValue));
     /// <inheritdoc/>

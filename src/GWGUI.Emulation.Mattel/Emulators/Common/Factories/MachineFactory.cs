@@ -28,7 +28,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
 
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
-    protected abstract bool RequiresMediaRestart(EmulationMediaSlot slot, string? path);
+    public abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
 
@@ -45,7 +45,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         try
         {
             var machine = new Machine(id, configuration, core,
-                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), RequiresMediaRestart,
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), (slot, path) => RequiresMediaRestart(configuration, slot, path),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: () => CreateCore(configuration, context), inputMapper: this);

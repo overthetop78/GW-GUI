@@ -7,6 +7,14 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
+    /// <summary>Ne demande par défaut aucun redémarrage supplémentaire pour un changement de média.</summary>
+    /// <remarks>Les règles générales de Common et la politique concrète du backend restent responsables des décisions effectives.</remarks>
+    bool IEmulatorRuntimePolicy.RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => false;
+
+    /// <summary>Ne demande par défaut aucun redémarrage supplémentaire pour une option.</summary>
+    /// <remarks>Les métadonnées des options et les contraintes concrètes du backend restent appliquées par leur propriétaire.</remarks>
+    bool IEmulatorRuntimePolicy.RequiresOptionRestart(MachineConfiguration configuration, string key) => false;
+
     /// <summary>Ne fournit par défaut aucun lecteur supplémentaire propre au backend.</summary>
     /// <param name="configuration">Configuration empruntée dont les descriptions concrètes peuvent dépendre.</param>
     /// <returns>Liste vide lorsque le backend ne complète pas les lecteurs généraux du modèle.</returns>

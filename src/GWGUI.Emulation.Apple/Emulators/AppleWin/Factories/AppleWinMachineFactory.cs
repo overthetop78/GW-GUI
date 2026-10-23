@@ -11,6 +11,6 @@ internal sealed class AppleWinMachineFactory() : MachineFactory(EmulatorConstant
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.SettingsDescriptionFunctions.Create(configuration);
     public void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ConfigurationFunctions.InitializeOptions(configuration, options);
     public override void ValidateConfiguration(MachineConfiguration configuration) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ConfigurationFunctions.ValidateConfiguration(configuration);
-    public bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresMediaRestart(slot, path);
-    public bool RequiresOptionRestart(string key) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresOptionRestart(key);
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresMediaRestart(slot, path);
+    public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresOptionRestart(key);
 }

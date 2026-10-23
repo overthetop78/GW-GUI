@@ -25,7 +25,7 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => NativeMedia.Prepare(configuration, sessionDirectory, supportedExtensions);
     internal override object? PreparePersistentMedia(MachineConfiguration configuration, string saveDirectory) => NativeMedia.PrepareMemoryCard(configuration, saveDirectory);
     internal override void CompletePersistentMedia(object? state) => NativeMedia.CompleteMemoryCard(state as NativeMedia.PreparedMemoryCard);
-    protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
+    public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);

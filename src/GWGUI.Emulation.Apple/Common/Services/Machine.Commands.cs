@@ -133,7 +133,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _core.HardReset();
     }
 
-    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => _runtimePolicy?.RequiresMediaRestart(slot, path) == true;
+    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => _runtimePolicy?.RequiresMediaRestart(Configuration, slot, path) == true;
 
     private void RestartCore(MachineConfiguration configuration)
     {

@@ -115,8 +115,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Id = id;
         _configuration = configuration;
         var adapter = new Engine().SelectedAdapter(configuration);
-        _runtimePolicy = adapter as IEmulatorRuntimePolicy;
-        _requiresMediaRestart = requiresMediaRestart ?? (_runtimePolicy is null ? static (_, _) => false : _runtimePolicy.RequiresMediaRestart);
+        _runtimePolicy = adapter;
+        _requiresMediaRestart = requiresMediaRestart ?? (_runtimePolicy is null ? static (_, _) => false : (slot, path) => _runtimePolicy.RequiresMediaRestart(configuration, slot, path));
         _coreFactory = coreFactory;
         _requiresResetRestart = requiresResetRestart;
         _supportsNoContent = supportsNoContent;
@@ -260,7 +260,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
             option.IsVisible,
-            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(option.Key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
+            option.RequiresRestart || _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true || RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
         .ToArray();
     /// <summary>Dernière image exposée par la facette vidéo, avec la durée de validité des buffers du producteur.</summary>
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;

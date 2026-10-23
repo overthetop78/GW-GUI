@@ -860,6 +860,54 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void EveryCommonUsesTheSameRuntimePolicyContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly)
+            .Distinct().OrderBy(assembly => assembly.GetName().Name, StringComparer.Ordinal).ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimePolicy", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var methods = contract.GetMethods();
+            Assert.Equal(2, methods.Length);
+            var media = Assert.Single(methods, method => method.Name == "RequiresMediaRestart");
+            var option = Assert.Single(methods, method => method.Name == "RequiresOptionRestart");
+            var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Equal(new[] { configuration, typeof(EmulationMediaSlot), typeof(string) }, media.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { "configuration", "slot", "path" }, media.GetParameters().Select(parameter => parameter.Name));
+            Assert.Equal(new[] { configuration, typeof(string) }, option.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { "configuration", "key" }, option.GetParameters().Select(parameter => parameter.Name));
+            Assert.All(methods, method => { Assert.True(method.IsAbstract); Assert.Equal(typeof(bool), method.ReturnType); });
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic);
+            foreach (var method in methods)
+                Assert.False(Assert.Single(defaults, candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal)).IsAbstract);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var mapping = implementation.GetInterfaceMap(contract);
+                for (var index = 0; index < mapping.InterfaceMethods.Length; index++)
+                {
+                    var method = mapping.InterfaceMethods[index];
+                    var concrete = implementation.GetMethod(method.Name, BindingFlags.Public | BindingFlags.Instance);
+                    var fallback = Assert.Single(defaults, candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal));
+                    Assert.Equal(concrete ?? fallback, mapping.TargetMethods[index]);
+                }
+            }
+        }
+    }
+
+    [Fact]
     public void EveryCommonUsesTheSameAudioBufferFeedbackContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
