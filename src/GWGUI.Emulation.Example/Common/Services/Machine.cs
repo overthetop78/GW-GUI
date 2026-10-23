@@ -21,6 +21,11 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// attendu pour fermer la machine. Les parties Commands et Lifecycle portent les opérations exécutées par cette façade.</remarks>
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationCassetteTransport, IEmulationControllerFeedbackSource
 {
+    /// <summary>Entrées actuelles de session, empruntées au propriétaire de la configuration.</summary>
+    private InputConfiguration? CurrentInputConfiguration => _inputConfiguration;
+    /// <summary>Autorise les retours uniquement pendant une exécution active, avant destruction et hors suspension média.</summary>
+    private bool CanPublishControllerOutputs => !_disposed && State == EmulationMachineState.Running && !_mediaSuspended;
+
     /// <summary>Verrou des transitions d’état et de la file de commandes.</summary>
     private readonly object _gate = new();
     /// <summary>Cœur confié à cette machine, arrêté et libéré par son cycle de vie.</summary>

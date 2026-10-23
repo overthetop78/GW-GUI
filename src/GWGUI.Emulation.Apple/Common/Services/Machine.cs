@@ -9,8 +9,13 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Apple.Common.Services;
 
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
-    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
 {
+    /// <summary>Entrées actuelles de session, empruntées au propriétaire de la configuration.</summary>
+    private InputConfiguration? CurrentInputConfiguration => Configuration.Input;
+    /// <summary>Autorise les retours uniquement pendant une exécution active, avant destruction et hors suspension média.</summary>
+    private bool CanPublishControllerOutputs => !_disposed && State == EmulationMachineState.Running;
+
     private readonly object _gate = new();
     private IEmulatorCore _core;
     /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>

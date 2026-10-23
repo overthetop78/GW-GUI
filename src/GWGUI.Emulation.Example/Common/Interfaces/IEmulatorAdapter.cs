@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// <summary>Contrat Common d’un backend : gestion de son installation, projection des médias et création de machines.</summary>
 /// <remarks>Le contrat SDK hérité fournit les identifiants, la description, les commandes d’hôte et les opérations
@@ -7,12 +8,12 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
-    /// <summary>Ne déclare aucune sortie de contrôleur lorsque le backend ne décrit pas de retour physique.</summary>
+    /// <summary>Décrit les deux moteurs standard pour les catégories valides autres que None et Keyboard.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>
-    /// <returns>Liste vide ; les implémentations concrètes fournissent les commandes et libellés de leurs effets.</returns>
+    /// <returns>Définitions communes ; les implémentations concrètes peuvent préciser les capacités de leur backend.</returns>
     /// <remarks>Cette description ne démarre aucun effet et ne possède aucun périphérique physique.</remarks>
-    IReadOnlyList<EmulationControllerOutputDefinition> IEmulatorControllerFeedbackAdapter.GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) => [];
+    IReadOnlyList<EmulationControllerOutputDefinition> IEmulatorControllerFeedbackAdapter.GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) => CommonControllerFunctions.Feedback.DescribeOutputs(peripheral);
 
     /// <summary>Conserve les réglages de présentation vidéo communs tant que le backend ne déclare aucune restriction.</summary>
     bool IEmulatorCapabilities.SupportsVideoSettings => true;

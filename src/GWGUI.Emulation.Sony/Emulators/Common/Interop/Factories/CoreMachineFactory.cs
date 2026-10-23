@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using CommonFirmwareInspection = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.FirmwareConfigurationFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreReleaseFunctions;
@@ -85,7 +86,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
     public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) =>
-        CoreDefinition.FeedbackControllerTypes?.Contains(peripheral) == true ? InputSettingsFunctions.RumbleOutputs : [];
+        CoreDefinition.FeedbackControllerTypes?.Contains(peripheral) == true ? CommonControllerFunctions.Feedback.DescribeOutputs(peripheral) : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public virtual bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
     public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;

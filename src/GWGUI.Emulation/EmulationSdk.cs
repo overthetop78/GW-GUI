@@ -5,6 +5,9 @@ namespace GWGUI.Emulation;
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
 public static class EmulationSdk
 {
+    /// <summary>Descriptions et projection des retours des cœurs vers les associations de sortie, sans périphérique possédé.</summary>
+    public static IEmulationControllerFeedbackProcessing ControllerFeedback { get; } = new EmulationControllerFeedbackService();
+
     /// <summary>Règles et documents de montages par contrat public, sans accès aux implémentations internes.</summary>
     public static IEmulationMediaRules MediaRules { get; } = new EmulationMediaRules();
 

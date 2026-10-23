@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Acorn.Common.Functions;
 
 internal static class ControllerFunctions
 {
+    /// <summary>Service public de description, validation et projection des retours, emprunté au SDK sans ressource physique possédée.</summary>
+    internal static IEmulationControllerFeedbackProcessing Feedback => EmulationSdk.ControllerFeedback;
+
     /// <summary>Valide la syntaxe commune des associations clavier, souris et contrôleur.</summary>
     /// <param name="binding">Association empruntée ; une valeur nulle, vide ou blanche est acceptée.</param>
     /// <returns>True si chaque composante respecte la syntaxe commune, sans modifier les libellés ni les correspondances du module.</returns>

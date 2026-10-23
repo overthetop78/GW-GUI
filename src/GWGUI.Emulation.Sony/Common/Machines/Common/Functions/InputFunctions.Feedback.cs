@@ -2,11 +2,6 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    internal static IReadOnlyList<EmulationControllerOutputDefinition> RumbleOutputs { get; } =
-    [
-        new(EmulationControllerFeedbackCommands.Strong, EmulationControllerFeedbackCommands.StrongResourceKey),
-        new(EmulationControllerFeedbackCommands.Weak, EmulationControllerFeedbackCommands.WeakResourceKey)
-    ];
 
     private static IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputs(MachineConfiguration configuration, PeripheralCategory type, Model model)
     {

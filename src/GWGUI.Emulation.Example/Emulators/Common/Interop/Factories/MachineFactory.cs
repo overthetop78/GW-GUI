@@ -212,9 +212,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
     /// <inheritdoc/>
-    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, PeripheralCategory peripheral) => peripheral is PeripheralCategory.None or PeripheralCategory.Keyboard ? []
-        : [new(EmulationControllerFeedbackCommands.Strong, EmulationControllerFeedbackCommands.StrongResourceKey), new(EmulationControllerFeedbackCommands.Weak, EmulationControllerFeedbackCommands.WeakResourceKey)];
-    /// <inheritdoc/>
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeDevices(configuration.Model);
     /// <inheritdoc/>
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => StorageSettingsFunctions.Describe(configuration);

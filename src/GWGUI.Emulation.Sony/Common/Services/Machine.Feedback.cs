@@ -1,42 +1,46 @@
 using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
+
 namespace GWGUI.Emulation.Sony.Common.Services;
 
+/// <summary>Projection des effets du cœur vers les moteurs physiques associés, par le même service Common que les autres machines.</summary>
 internal sealed partial class Machine
 {
+    /// <summary>Identité de configuration utilisée lors du dernier calcul des associations.</summary>
     private MachineConfiguration? _feedbackConfiguration;
-    private IReadOnlyDictionary<(int Port, string CommandId), EmulationControllerOutputBinding> _feedbackBindings =
-        new Dictionary<(int, string), EmulationControllerOutputBinding>();
+    /// <summary>Entrées de session utilisées pour ce calcul, suivies indépendamment des options de la machine.</summary>
+    private InputConfiguration? _feedbackInput;
+    /// <summary>Associations validées par le service commun, indexées par port technique et commande.</summary>
+    private IReadOnlyDictionary<(int Port, string CommandId), EmulationControllerOutputBinding> _feedbackBindings = new Dictionary<(int, string), EmulationControllerOutputBinding>();
 
+    /// <summary>Instantané des sorties physiques correspondant aux effets autorisés du cœur.</summary>
+    /// <remarks>La pause, la suspension et la destruction produisent une liste vide pour arrêter les sorties.
+    /// Les associations sont recalculées lorsque la configuration ou les entrées de session changent.
+    /// Les périphériques physiques restent possédés par leur hôte ; ce getter ne les ouvre ni ne les ferme.
+    /// La seconde vérification de cycle de vie empêche de publier après un arrêt survenu pendant la projection.</remarks>
     public IReadOnlyList<EmulationControllerOutputState> ControllerOutputs
     {
         get
         {
-            if (_disposed || State != EmulationMachineState.Running) return [];
-            var configuration = Configuration;
+            if (!CanPublishControllerOutputs) return [];
             IReadOnlyDictionary<(int Port, string CommandId), EmulationControllerOutputBinding> bindings;
             lock (_gate)
             {
-                if (!ReferenceEquals(configuration, _feedbackConfiguration))
+                var configurationIdentity = Configuration;
+                var input = CurrentInputConfiguration;
+                if (!ReferenceEquals(configurationIdentity, _feedbackConfiguration) || !ReferenceEquals(input, _feedbackInput))
                 {
-                    var selected = new Dictionary<(int, string), EmulationControllerOutputBinding>();
-                    foreach (var port in configuration.Input?.ControllerBindings ?? [])
-                    {
-                        if (port.Port < 0 || port.Port >= CommonControllerFunctions.PortCount(configuration)) continue;
-                        var type = CommonControllerFunctions.Resolve(configuration, port.Port);
-                        foreach (var binding in InputSettingsFunctions.ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings))
-                            selected[(port.Port, binding.Key)] = binding.Value;
-                    }
-                    _feedbackBindings = selected;
-                    _feedbackConfiguration = configuration;
+                    var configuration = CurrentConfiguration();
+                    var adapter = new Engine().SelectedAdapter(configuration);
+                    _feedbackBindings = CommonControllerFunctions.Feedback.CreateBindings(InputSettingsFunctions.Describe(configuration).ControllerPorts,
+                        port => adapter is not null && Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) ? adapter.GetControllerOutputs(configuration, peripheral) : []);
+                    _feedbackConfiguration = configurationIdentity;
+                    _feedbackInput = input;
                 }
                 bindings = _feedbackBindings;
             }
             if (bindings.Count == 0) return [];
-            var result = new List<EmulationControllerOutputState>();
-            foreach (var effect in _core.ControllerFeedback)
-                if (float.IsFinite(effect.Strength) && effect.Strength is >= 0 and <= 1 && bindings.TryGetValue((effect.Port, effect.CommandId), out var target))
-                    result.Add(new(target.DeviceId, target.Motor, effect.Strength));
-            return State == EmulationMachineState.Running && !_disposed ? result : [];
+            var result = CommonControllerFunctions.Feedback.ResolveStates(_core.ControllerFeedback, bindings);
+            return CanPublishControllerOutputs ? result : [];
         }
     }
 }

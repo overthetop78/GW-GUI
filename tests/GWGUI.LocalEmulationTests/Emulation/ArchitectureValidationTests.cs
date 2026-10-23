@@ -14,6 +14,115 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    public class FeedbackCoreProxy : DispatchProxy
+    {
+        public IReadOnlyList<ControllerFeedbackState> States { get; set; } = [];
+        public int Reads { get; private set; }
+        protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
+        {
+            if (targetMethod!.Name == "get_ControllerFeedback") { Reads++; return States; }
+            if (targetMethod.Name == "Dispose") return null;
+            throw new InvalidOperationException(targetMethod.Name);
+        }
+    }
+
+    [Fact]
+    public async Task CommonMachinesProjectConfiguredEffectsFromTheirCoreInMemory()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        var activeFamilies = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var engineType = assembly.GetType(root + ".Common.Services.Engine")!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var descriptions = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            var outputContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerFeedbackAdapter")!;
+            var outputMethod = outputContract.GetMethod("GetControllerOutputs")!;
+            var peripheralType = outputMethod.GetParameters()[1].ParameterType;
+            var exercised = false;
+            foreach (var description in descriptions)
+            {
+                var configuration = engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [description.Id])!;
+                var adapter = engineType.GetMethod("SelectedAdapter", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!.Invoke(engine, [configuration]);
+                if (adapter is null)
+                {
+                    var adapters = engineType.GetMethod("Adapters", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    var catalog = assembly.GetType(root + ".Common.Dictionaries.EmulatorCatalog")!;
+                    var values = adapters?.Invoke(engine, [description.Id]) ?? catalog.GetMethod("CreateAdapters", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)?.Invoke(null, []);
+                    var available = (values as System.Collections.IEnumerable)?.Cast<object>().FirstOrDefault();
+                    if (available is null) continue;
+                    var id = (string)available.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "EmulatorId").GetValue(available)!;
+                    configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [configuration, id, CancellationToken.None])!;
+                    adapter = engineType.GetMethod("SelectedAdapter", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!.Invoke(engine, [configuration]);
+                }
+                if (adapter is null) continue;
+                var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
+                foreach (var port in settings.ControllerPorts)
+                {
+                    var choice = port.ControllerChoices.FirstOrDefault(item => Enum.TryParse(peripheralType, item.Id, true, out var category)
+                        && ((IReadOnlyList<EmulationControllerOutputDefinition>)outputMethod.Invoke(adapter, [configuration, category])!).Count != 0);
+                    if (choice is null) continue;
+                    var outputs = new Dictionary<string, EmulationControllerOutputBinding>
+                    {
+                        [EmulationControllerFeedbackCommands.Strong] = new("strong-device", EmulationControllerMotor.LowFrequency),
+                        [EmulationControllerFeedbackCommands.Weak] = new("weak-device", EmulationControllerMotor.HighFrequency)
+                    };
+                    var ports = settings.ControllerPorts.Select(item => item.Number == port.Number ? item with { SelectedControllerId = choice.Id, VisualId = choice.DefaultVisualId ?? item.VisualId, OutputBindings = outputs } : item).ToArray();
+                    var applied = engineType.GetMethod("ApplyInputSettings")!.Invoke(engine, [configuration, settings with { ControllerPorts = ports }])!;
+                    var machineType = assembly.GetType(root + ".Common.Services.Machine")!;
+                    var coreType = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore")!;
+                    var core = DispatchProxy.Create(coreType, typeof(FeedbackCoreProxy));
+                    try
+                    {
+                        var proxy = (FeedbackCoreProxy)core;
+                        proxy.States = [new(port.Number - 1, EmulationControllerFeedbackCommands.Strong, .25f), new(port.Number - 1, EmulationControllerFeedbackCommands.Weak, 1f)];
+                        // Seules les données du getter sont fournies : aucun constructeur de runtime, fichier ou thread n’est utilisé.
+                        var owner = RuntimeHelpers.GetUninitializedObject(machineType);
+                        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+                        (machineType.GetField("_configuration", flags) ?? machineType.GetField("<Configuration>k__BackingField", flags))!.SetValue(owner, applied);
+                        machineType.GetField("_gate", flags)!.SetValue(owner, new object());
+                        machineType.GetField("_core", flags)!.SetValue(owner, core);
+                        var input = applied.GetType().GetProperty("Input")!.GetValue(applied);
+                        var inputField = machineType.GetField("_inputConfiguration", flags);
+                        inputField?.SetValue(owner, inputField.FieldType.IsInstanceOfType(applied) ? applied : input);
+                        var media = machineType.GetField("_mountedMedia", flags);
+                        if (media is not null) media.SetValue(owner, Activator.CreateInstance(media.FieldType));
+                        machineType.GetProperty("State")!.SetValue(owner, EmulationMachineState.Running);
+                        Assert.Equal(new[] { new EmulationControllerOutputState("strong-device", EmulationControllerMotor.LowFrequency, .25f), new EmulationControllerOutputState("weak-device", EmulationControllerMotor.HighFrequency, 1f) }, ((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+                        Assert.Equal(1, proxy.Reads);
+                        machineType.GetProperty("State")!.SetValue(owner, EmulationMachineState.Paused);
+                        Assert.Empty(((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+                        Assert.Equal(1, proxy.Reads);
+                        machineType.GetProperty("State")!.SetValue(owner, EmulationMachineState.Running);
+                        Assert.Equal(2, ((IEmulationControllerFeedbackSource)owner).ControllerOutputs.Count);
+                        Assert.Equal(2, proxy.Reads);
+                        var currentSettings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [applied])!;
+                        var clearedPorts = currentSettings.ControllerPorts.Select(item => item with { OutputBindings = new Dictionary<string, EmulationControllerOutputBinding>() }).ToArray();
+                        var cleared = engineType.GetMethod("ApplyInputSettings")!.Invoke(engine, [applied, currentSettings with { ControllerPorts = clearedPorts }])!;
+                        if (inputField is not null)
+                            inputField.SetValue(owner, inputField.FieldType.IsInstanceOfType(cleared) ? cleared : cleared.GetType().GetProperty("Input")!.GetValue(cleared));
+                        else
+                            (machineType.GetField("_configuration", flags) ?? machineType.GetField("<Configuration>k__BackingField", flags))!.SetValue(owner, cleared);
+                        Assert.Empty(((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+                        Assert.Equal(2, proxy.Reads);
+                    }
+                    finally { ((IDisposable)core).Dispose(); }
+                    exercised = true;
+                    break;
+                }
+                if (exercised) break;
+            }
+            if (exercised) activeFamilies++;
+            else Assert.Contains(assembly.GetName().Name, new[] { "gwgui.emulation.microsoft", "gwgui.emulation.wenquxing" });
+        }
+        Assert.Equal(22, activeFamilies);
+    }
+
     private static List<(int Offset, MethodBase Method)> GetCompiledCalls(MethodInfo source)
     {
         var opcodes = typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.FieldType == typeof(OpCode))
@@ -40,6 +149,49 @@ public sealed class ArchitectureValidationTests
             };
         }
         return result;
+    }
+
+    [Fact]
+    public void EveryCommonPublishesFeedbackThroughTheSameServiceAndStopsInactiveOutputs()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var gateway = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!.GetProperty("Feedback", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Equal(typeof(IEmulationControllerFeedbackProcessing), gateway.PropertyType);
+            Assert.Same(EmulationSdk.ControllerFeedback, gateway.GetValue(null));
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            Assert.Contains(typeof(IEmulationControllerFeedbackSource), machine.GetInterfaces());
+            var output = machine.GetProperty("ControllerOutputs")!.GetMethod!;
+            var calls = GetCompiledCalls(output);
+            Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationControllerFeedbackProcessing) && call.Method.Name == nameof(IEmulationControllerFeedbackProcessing.CreateBindings));
+            Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationControllerFeedbackProcessing) && call.Method.Name == nameof(IEmulationControllerFeedbackProcessing.ResolveStates));
+            var state = machine.GetProperty("State")!;
+            var disposed = machine.GetField("_disposed", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            // Les objets non initialisés servent seulement aux gardes : aucun cœur, thread, flux ou périphérique n’est créé.
+            var owner = RuntimeHelpers.GetUninitializedObject(machine);
+            foreach (var inactive in Enum.GetValues<EmulationMachineState>().Where(value => value != EmulationMachineState.Running))
+            {
+                state.SetValue(owner, inactive);
+                Assert.Empty(((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+            }
+            state.SetValue(owner, EmulationMachineState.Running);
+            disposed.SetValue(owner, true);
+            Assert.Empty(((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+            var suspended = machine.GetField("_mediaSuspended", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (suspended is not null)
+            {
+                disposed.SetValue(owner, false);
+                suspended.SetValue(owner, true);
+                Assert.Empty(((IEmulationControllerFeedbackSource)owner).ControllerOutputs);
+            }
+        }
     }
 
     [Fact]
@@ -304,7 +456,11 @@ public sealed class ArchitectureValidationTests
                     var configuration = RuntimeHelpers.GetUninitializedObject(parameters[0].ParameterType);
                     var backend = RuntimeHelpers.GetUninitializedObject(implementation);
                     foreach (var peripheral in Enum.GetValues(parameters[1].ParameterType))
-                        Assert.Empty(Assert.IsAssignableFrom<IReadOnlyList<EmulationControllerOutputDefinition>>(operation.Invoke(backend, [configuration, peripheral])));
+                    {
+                        var outputs = Assert.IsAssignableFrom<IReadOnlyList<EmulationControllerOutputDefinition>>(operation.Invoke(backend, [configuration, peripheral]));
+                        if (peripheral.ToString() is "None" or "Keyboard") Assert.Empty(outputs);
+                        else Assert.Equal(new[] { EmulationControllerFeedbackCommands.Strong, EmulationControllerFeedbackCommands.Weak }, outputs.Select(output => output.Id));
+                    }
                 }
             }
             MethodInfo? consumer = root switch
@@ -315,8 +471,10 @@ public sealed class ArchitectureValidationTests
             };
             if (consumer is not null)
             {
-                var code = consumer.GetMethodBody()!.GetILAsByteArray()!;
-                Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => code.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(operation.MetadataToken)).ToArray()) >= 0), root);
+                var owner = consumer.DeclaringType!;
+                var methods = assembly.GetTypes().Where(type => type == owner || type.FullName!.StartsWith(owner.FullName + "+", StringComparison.Ordinal))
+                    .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly)).Where(method => method.GetMethodBody() is not null);
+                Assert.Contains(methods.SelectMany(GetCompiledCalls), call => call.Method.DeclaringType == contract && call.Method.Name == operation.Name);
             }
         }
     }
