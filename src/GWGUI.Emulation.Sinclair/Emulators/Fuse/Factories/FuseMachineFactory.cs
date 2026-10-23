@@ -16,7 +16,7 @@ internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorCons
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => NativeSettings.GetOptions(configuration);
 
-    protected override bool SupportsNoContent => true;
+    public override bool SupportsNoContent => true;
     public override bool SupportsPointer(MachineConfiguration configuration) => true;
     public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => !NativeMedia.CanExchange(configuration, slot);
     internal override bool SupportsMediaExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => NativeMedia.CanExchange(configuration, slot);

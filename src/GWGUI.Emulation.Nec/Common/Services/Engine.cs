@@ -86,7 +86,14 @@ internal sealed class Engine
                 || model.MaximumFloppyDriveCount > 0,
             _ => item.Value
         });
-        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
+        EmulationMachineSettings result = new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
+        if (SelectedAdapter(current)?.SupportsVideoSettings == false && !result.Blocks.Any(block => block.Tab == EmulationMachineTab.Video))
+        {
+            var adjustedTabs = result.Visibility.Tabs.ToDictionary(pair => pair.Key, pair => pair.Value);
+            adjustedTabs[EmulationMachineTab.Video] = false;
+            result = result with { Visibility = new EmulationSettingsVisibility(adjustedTabs) };
+        }
+        return result;
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)

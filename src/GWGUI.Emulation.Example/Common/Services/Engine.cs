@@ -76,7 +76,14 @@ internal sealed class Engine
     {
         var current = configuration is null ? new MachineConfiguration(ModelCatalog.Parse(machineId)) : Require(configuration);
         if (current.MachineId != machineId) throw new ArgumentException(nameof(machineId));
-        return new(machineId, DefaultVisibility, SelectedAdapter(current)?.DescribeSettings(current, Management) ?? SettingsDescriptionFunctions.Create(current, []));
+        EmulationMachineSettings result = new(machineId, DefaultVisibility, SelectedAdapter(current)?.DescribeSettings(current, Management) ?? SettingsDescriptionFunctions.Create(current, []));
+        if (SelectedAdapter(current)?.SupportsVideoSettings == false && !result.Blocks.Any(block => block.Tab == EmulationMachineTab.Video))
+        {
+            var adjustedTabs = result.Visibility.Tabs.ToDictionary(pair => pair.Key, pair => pair.Value);
+            adjustedTabs[EmulationMachineTab.Video] = false;
+            result = result with { Visibility = new EmulationSettingsVisibility(adjustedTabs) };
+        }
+        return result;
     }
     /// <summary>Crée une configuration neuve sans fichier ni ressource d’exécution.</summary>
     public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));

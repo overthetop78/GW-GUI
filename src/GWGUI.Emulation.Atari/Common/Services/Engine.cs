@@ -97,7 +97,14 @@ internal sealed class Engine
             _ => item.Value
         });
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), this.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current), SettingsRules(model));
+        EmulationMachineSettings result = new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), this.SelectedAdapter(current)?.DescribeSettings(current) ?? SettingsDescriptionFunctions.Create(current), SettingsRules(model));
+        if (SelectedAdapter(current)?.SupportsVideoSettings == false && !result.Blocks.Any(block => block.Tab == EmulationMachineTab.Video))
+        {
+            var adjustedTabs = result.Visibility.Tabs.ToDictionary(pair => pair.Key, pair => pair.Value);
+            adjustedTabs[EmulationMachineTab.Video] = false;
+            result = result with { Visibility = new EmulationSettingsVisibility(adjustedTabs) };
+        }
+        return result;
     }
 
     private static IReadOnlyList<EmulationSettingsRule> SettingsRules(MachineModel model)

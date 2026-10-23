@@ -54,7 +54,6 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
-    bool IEmulatorCapabilities.SupportsNoContent => SupportsNoContent;
     bool IEmulatorInitialContentSettings.SupportsInitialContent => SupportsInitialContent;
     protected virtual bool SupportsInitialContent => false;
     public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
@@ -62,7 +61,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
     public virtual bool SupportsPointer(MachineConfiguration configuration) => false;
     protected virtual bool RequiresResetRestart => false;
-    protected virtual bool SupportsNoContent => false;
+    public virtual bool SupportsNoContent => false;
 
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
     public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[]
@@ -96,7 +95,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
-                supportsNoContent: SupportsNoContent,
+                supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent,
                 inputMapper: this, runtimePolicy: this
             );
             completed = true;

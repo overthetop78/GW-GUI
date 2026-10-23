@@ -80,17 +80,23 @@ internal sealed class Engine
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
         var blocks = SettingsDescriptionFunctions.Create(current, EmulatorManagement(this.Adapter(current)));
-        var capabilities = this.Adapter(current) as IEmulatorCapabilities;
+        var capabilities = this.Adapter(current);
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
-            EmulationMachineTab.Video => capabilities?.SupportsVideoSettings != false || blocks.Any(block => block.Tab == EmulationMachineTab.Video),
             EmulationMachineTab.Keyboard => model.HasKeyboard,
-            EmulationMachineTab.Mouse => capabilities?.SupportsPointer(current) != false && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
+            EmulationMachineTab.Mouse => capabilities.SupportsPointer(current) && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > BufferConstants.EmptyCollectionCount
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
             _ => item.Value
         });
-        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), blocks);
+        EmulationMachineSettings result = new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), blocks);
+        if (SelectedAdapter(current)?.SupportsVideoSettings == false && !result.Blocks.Any(block => block.Tab == EmulationMachineTab.Video))
+        {
+            var adjustedTabs = result.Visibility.Tabs.ToDictionary(pair => pair.Key, pair => pair.Value);
+            adjustedTabs[EmulationMachineTab.Video] = false;
+            result = result with { Visibility = new EmulationSettingsVisibility(adjustedTabs) };
+        }
+        return result;
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)

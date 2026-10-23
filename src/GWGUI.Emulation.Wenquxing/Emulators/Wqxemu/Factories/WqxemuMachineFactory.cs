@@ -14,6 +14,9 @@ namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
 internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities
 {
     /// <inheritdoc/>
+    public bool SupportsNoContent => true;
+
+    /// <inheritdoc/>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => CommonFirmwareInspection.ScanFileAsync(configuration, path, cancellationToken);
 
     /// <inheritdoc/>
@@ -93,7 +96,7 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: saveDirectory,
                 coreFactory: CreateCore,
-                supportsNoContent: true, inputMapper: this, runtimePolicy: this);
+                supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent, inputMapper: this, runtimePolicy: this);
             completed = true;
             return machine;
         }

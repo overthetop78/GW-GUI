@@ -13,6 +13,9 @@ namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
 internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
     /// <inheritdoc/>
+    public bool SupportsNoContent => true;
+
+    /// <inheritdoc/>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -100,7 +103,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 saveDirectory: saveDirectory,
                 coreFactory: CreateCore,
                 supportsPointerCapture: SupportsPointer(configuration),
-                supportsNoContent: true, inputMapper: this, runtimePolicy: this);
+                supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent, inputMapper: this, runtimePolicy: this);
             completed = true;
             return machine;
         }

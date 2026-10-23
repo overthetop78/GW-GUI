@@ -15,6 +15,73 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonUsesTheSameVideoAndNoContentCapabilities()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var noContentFactories = new HashSet<MethodInfo>();
+        static bool Calls(MethodInfo caller, MethodInfo target)
+        {
+            var code = caller.GetMethodBody()!.GetILAsByteArray()!;
+            return new byte[] { 0x28, 0x6f }.Any(opcode => code.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(target.MetadataToken)).ToArray()) >= 0);
+        }
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCapabilities", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            Assert.Equal(new[] { "SupportsNoContent", "SupportsVideoSettings" }, contract.GetProperties().Select(property => property.Name).Order(StringComparer.Ordinal));
+            Assert.Contains(assembly.GetType(root + ".Common.Interfaces.IEmulatorPointerCapabilities"), contract.GetInterfaces());
+            foreach (var property in contract.GetProperties())
+            {
+                Assert.Equal(typeof(bool), property.PropertyType);
+                Assert.True(property.GetMethod!.IsAbstract);
+                Assert.Empty(property.GetMethod.GetParameters());
+                Assert.Null(property.SetMethod);
+            }
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var map = implementation.GetInterfaceMap(contract);
+                foreach (var (operation, target) in map.InterfaceMethods.Zip(map.TargetMethods))
+                {
+                    var concrete = implementation.GetMethod(operation.Name, BindingFlags.Public | BindingFlags.Instance);
+                    if (concrete is not null) Assert.Equal(concrete, target);
+                    else Assert.Equal(adapter, target.DeclaringType);
+                    Assert.False(target.IsAbstract);
+                }
+                var backend = RuntimeHelpers.GetUninitializedObject(implementation);
+                var video = Assert.IsType<bool>(contract.GetProperty("SupportsVideoSettings")!.GetValue(backend));
+                Assert.Equal(implementation.Name != "CrocoDSMachineFactory", video);
+                var noContent = Assert.IsType<bool>(contract.GetProperty("SupportsNoContent")!.GetValue(backend));
+                var expected = root == "GWGUI.Emulation.Example" || implementation.Name is "OperaMachineFactory" or "TheodoreMachineFactory" or "WqxemuMachineFactory" or "Px68kMachineFactory" or "FuseMachineFactory";
+                Assert.Equal(expected, noContent);
+                var create = implementation.GetMethod("Create", BindingFlags.Public | BindingFlags.Instance)!;
+                var hasPolicy = create.ReturnType.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                    .Any(constructor => constructor.GetParameters().Any(parameter => parameter.Name == "supportsNoContent"));
+                if (hasPolicy)
+                {
+                    create = create.DeclaringType!.GetMethod(create.Name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly, create.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
+                    Assert.True(Calls(create, contract.GetProperty("SupportsNoContent")!.GetMethod!), root);
+                    noContentFactories.Add(create);
+                }
+            }
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            Assert.True(Calls(engine.GetMethod("Describe")!, contract.GetProperty("SupportsVideoSettings")!.GetMethod!), root);
+        }
+        Assert.Equal(8, noContentFactories.Count);
+    }
+
+    [Fact]
     public void EveryCommonResolvesNativeContentFormatsThroughTheSameContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

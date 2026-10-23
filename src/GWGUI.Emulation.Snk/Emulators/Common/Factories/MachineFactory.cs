@@ -64,7 +64,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     public virtual bool SupportsPointer(MachineConfiguration configuration) => false;
     protected virtual bool RequiresResetRestart => false;
-    protected virtual bool SupportsNoContent => false;
+    public virtual bool SupportsNoContent => false;
 
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
     public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[]
@@ -98,7 +98,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
-                supportsNoContent: SupportsNoContent,
+                supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent,
                 inputMapper: this, runtimePolicy: this
             );
             completed = true;

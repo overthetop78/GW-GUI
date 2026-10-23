@@ -57,11 +57,10 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
-    bool IEmulatorCapabilities.SupportsNoContent => SupportsNoContent;
 
     public virtual bool SupportsPointer(MachineConfiguration configuration) => false;
     protected virtual bool RequiresResetRestart => false;
-    protected virtual bool SupportsNoContent => false;
+    public virtual bool SupportsNoContent => false;
 
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
     public abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
@@ -89,7 +88,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
-                supportsNoContent: SupportsNoContent,
+                supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent,
                 inputMapper: this, runtimePolicy: this
             );
             completed = true;

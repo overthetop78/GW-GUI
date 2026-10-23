@@ -14,7 +14,7 @@ internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorCon
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions(configuration);
 
     public override bool SupportsPointer(MachineConfiguration configuration) => true;
-    protected override bool SupportsNoContent => true;
+    public override bool SupportsNoContent => true;
 
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.MediaRuntimeFunctions.Prepare(configuration, sessionDirectory);
     public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;

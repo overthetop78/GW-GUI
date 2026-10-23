@@ -31,8 +31,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <summary>Aucune bibliothèque native séparée : les exports simulés appartiennent à l’assembly du module.</summary>
     public string LibraryName => string.Empty;
     /// <inheritdoc/>
-    public bool SupportsVideoSettings => true;
-    /// <inheritdoc/>
     public bool SupportsNoContent => true;
     /// <inheritdoc/>
     public bool SupportsInitialContent => true;
@@ -117,7 +115,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
             if (saves is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saves);
             core = CreateCore();
             var machine = new Machine(sessionId, configuration, core, sessionDirectory, saveDirectory: saves,
-                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore,                 supportsNoContent: SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
+                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore,                 supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
                 cassetteInput: configuration.Model == MachineModel.ExampleMachineA ? new CassetteInputController(configuration) : null, runtimePolicy: this);
             transferred = true;
             return machine;

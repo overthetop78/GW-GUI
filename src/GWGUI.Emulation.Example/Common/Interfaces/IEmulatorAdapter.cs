@@ -7,6 +7,13 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
+    /// <summary>Conserve les réglages de présentation vidéo communs tant que le backend ne déclare aucune restriction.</summary>
+    bool IEmulatorCapabilities.SupportsVideoSettings => true;
+
+    /// <summary>Ne demande aucune recréation sans média tant que le backend ne fournit pas cette garantie.</summary>
+    /// <remarks>Cette déclaration reste distincte de la capacité annoncée par les callbacks natifs après initialisation.</remarks>
+    bool IEmulatorCapabilities.SupportsNoContent => false;
+
     /// <summary>Laisse le cœur annoncer ses extensions lorsque le catalogue ne fournit aucune liste statique.</summary>
     /// <remarks>Une liste vide ne refuse aucun format : la déclaration native reste disponible au runtime.</remarks>
     IReadOnlyList<string> IEmulatorContentFormats.SupportedContentExtensions => [];
