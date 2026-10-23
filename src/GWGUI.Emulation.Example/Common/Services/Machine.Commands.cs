@@ -87,9 +87,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                             input = _cassetteInput.NextFrame();
                         }
                         _core.SetInput(input);
-                        _core.SetAudioBufferStatus(_audio.BufferStatus);
+                        if (_core is IEmulatorAudioBufferFeedback feedback)
+                            feedback.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
-                        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
+                        if (_core is IEmulatorAudioBufferFeedback latency)
+                            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
                         PublishOutputs(ref videoSequence);
                         if (_core.ShutdownRequested) _stopSource?.Cancel();
                     },

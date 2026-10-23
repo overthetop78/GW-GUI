@@ -51,7 +51,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
                 CommonCoreHostFunctions.MachineExecution.RunLoop(_gate, _commands, () => _pauseRequested,
                     () => {
+                        if (_core is IEmulatorAudioBufferFeedback feedback)
+                            feedback.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
+                        if (_core is IEmulatorAudioBufferFeedback latency)
+                            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
                         CommonCoreHostFunctions.MachineExecution.PublishOutputs(this, ref videoSequence,
                             static machine => machine._core.LatestVideoFrame,
                             static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,

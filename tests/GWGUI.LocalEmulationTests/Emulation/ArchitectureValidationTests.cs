@@ -861,6 +861,16 @@ public sealed class ArchitectureValidationTests
             Assert.True(publish.IsAbstract);
             Assert.Equal(typeof(void), publish.ReturnType);
             Assert.Equal(typeof(AudioOutputBufferStatus?), Assert.Single(publish.GetParameters()).ParameterType);
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var owners = new[] { machine }.Concat(machine.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
+            var bodies = owners.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))
+                .Select(method => method.GetMethodBody()?.GetILAsByteArray()).Where(body => body is not null).Cast<byte[]>().ToArray();
+            bool Calls(int token) => bodies.Any(body => new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(token)).ToArray()) >= 0));
+            Assert.True(Calls(publish.MetadataToken), root + ".SetAudioBufferStatus");
+            Assert.True(Calls(latency.GetMethod.MetadataToken), root + ".MinimumAudioLatencyMilliseconds");
+            var controller = assembly.GetType(root + ".Common.Services.AudioOutputController", throwOnError: true)!;
+            var applyLatency = controller.GetMethod("TrySetMinimumLatency", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.True(Calls(applyLatency.MetadataToken), root + ".TrySetMinimumLatency");
             var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
             foreach (var implementation in implementations)
             {
