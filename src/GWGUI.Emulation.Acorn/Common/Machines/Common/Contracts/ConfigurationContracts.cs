@@ -22,22 +22,23 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         FolderConfiguration? folders = null, Emulator? core = null)
     {
         Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
-        if (Enum.IsDefined(Core) && Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions modelOptions)
-            model = modelOptions.ResolveModel(model, options ?? new Dictionary<string, string>());
         Model = model;
-        if (Enum.IsDefined(Core) && Core != Emulator.None && !EmulatorCatalog.Get(Core).MachineIds.Contains(model.ToString()))
-            Core = ConfigurationFunctions.DefaultEmulator(model);
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
         var selectedOptions = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
-        if (Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions defaults)
-            foreach (var option in defaults.GetDefaultOptions(model)) selectedOptions.TryAdd(option.Key, option.Value);
         Options = selectedOptions;
         Input = input ?? new InputConfiguration();
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
         Folders = folders ?? new FolderConfiguration();
+        // La variante est résolue avant de choisir ses valeurs initiales ; le contrat reçoit toutes les données disponibles.
+        if (Enum.IsDefined(Core) && Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions modelOptions)
+            Model = modelOptions.ResolveModel(this);
+        if (Enum.IsDefined(Core) && Core != Emulator.None && !EmulatorCatalog.Get(Core).MachineIds.Contains(Model.ToString()))
+            Core = ConfigurationFunctions.DefaultEmulator(Model);
+        if (Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions defaults)
+            foreach (var option in defaults.GetDefaultOptions(this)) selectedOptions.TryAdd(option.Key, option.Value);
         ConfigurationFunctions.Validate(this);
     }
 

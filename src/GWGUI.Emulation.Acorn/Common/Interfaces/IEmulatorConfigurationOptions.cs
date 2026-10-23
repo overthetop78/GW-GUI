@@ -1,9 +1,14 @@
 namespace GWGUI.Emulation.Acorn.Common.Interfaces;
 
+/// <summary>Préparation des options et variantes à partir de la configuration complète.</summary>
 internal interface IEmulatorConfigurationOptions
 {
-    IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model);
+    /// <summary>Décrit les valeurs initiales du cœur pour la configuration empruntée.</summary>
+    IReadOnlyDictionary<string, string> GetDefaultOptions(MachineConfiguration configuration);
+    /// <summary>Contrôle les valeurs natives sans modifier les données reçues.</summary>
     void ValidateOptions(MachineConfiguration configuration);
-    MachineModel ResolveModel(MachineModel model, IReadOnlyDictionary<string, string> options) => model;
-    IReadOnlyDictionary<string, string> NormalizeOptions(MachineModel model, IReadOnlyDictionary<string, string> options) => options;
+    /// <summary>Résout la variante matérielle depuis le modèle et les options reçus.</summary>
+    MachineModel ResolveModel(MachineConfiguration configuration) => configuration.Model;
+    /// <summary>Retourne les options normalisées ; le repli conserve la même collection empruntée.</summary>
+    IReadOnlyDictionary<string, string> NormalizeOptions(MachineConfiguration configuration) => configuration.Options;
 }

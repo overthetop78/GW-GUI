@@ -6,9 +6,9 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 internal interface IEmulatorConfigurationOptions
 {
     /// <summary>Décrit les options initiales du backend pour le modèle demandé.</summary>
-    /// <param name="model">Modèle avant application des éventuelles options de variante matérielle.</param>
+    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
     /// <returns>Dictionnaire de clés et valeurs techniques utilisé pour préparer une nouvelle configuration.</returns>
-    IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model);
+    IReadOnlyDictionary<string, string> GetDefaultOptions(MachineConfiguration configuration);
     /// <summary>Complète les options préparées avec les valeurs dépendant de la configuration complète.</summary>
     /// <param name="configuration">Configuration empruntée, incluant médias et firmwares.</param>
     /// <param name="options">Dictionnaire de préparation modifiable appartenant à l’appelant.</param>
@@ -19,13 +19,11 @@ internal interface IEmulatorConfigurationOptions
     /// <remarks>L’implémentation signale les options refusées par les diagnostics du module.</remarks>
     void ValidateOptions(MachineConfiguration configuration);
     /// <summary>Résout le modèle matériel effectivement sélectionné par les options.</summary>
-    /// <param name="model">Modèle de départ de la configuration.</param>
-    /// <param name="options">Options empruntées, stables pendant l’appel.</param>
+    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
     /// <returns>Modèle effectif ; l’implémentation par défaut retourne le modèle reçu.</returns>
-    MachineModel ResolveModel(MachineModel model, IReadOnlyDictionary<string, string> options) => model;
+    MachineModel ResolveModel(MachineConfiguration configuration) => configuration.Model;
     /// <summary>Normalise les options selon les conventions du backend pour le modèle.</summary>
-    /// <param name="model">Modèle auquel les options s’appliquent.</param>
-    /// <param name="options">Dictionnaire emprunté ; aucune modification ne doit être supposée par l’appelant.</param>
+    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
     /// <returns>Options normalisées ; la méthode par défaut retourne la même instance sans copie.</returns>
-    IReadOnlyDictionary<string, string> NormalizeOptions(MachineModel model, IReadOnlyDictionary<string, string> options) => options;
+    IReadOnlyDictionary<string, string> NormalizeOptions(MachineConfiguration configuration) => configuration.Options;
 }

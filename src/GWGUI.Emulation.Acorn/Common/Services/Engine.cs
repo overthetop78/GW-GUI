@@ -124,7 +124,7 @@ internal sealed class Engine
         var result = current with
         {
             Options = current.Core != Emulator.None && this.Adapter(current) is IEmulatorConfigurationOptions adapter
-                ? adapter.NormalizeOptions(current.Model, options) : options,
+                ? adapter.NormalizeOptions(current with { Options = options }) : options,
             Folders = folders,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };

@@ -1791,6 +1791,29 @@ public sealed class ArchitectureValidationTests
         Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
     }
 
+    [Theory]
+    [InlineData("Acorn")]
+    [InlineData("Example")]
+    public void ConfigurationOptionOperationsReceiveTheCompleteConfiguration(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions", throwOnError: true)!;
+        var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+        foreach (var name in new[] { "GetDefaultOptions", "ResolveModel", "NormalizeOptions", "ValidateOptions" })
+        {
+            var operation = Assert.Single(contract.GetMethods(), candidate => candidate.Name == name);
+            Assert.Equal(configuration, Assert.Single(operation.GetParameters()).ParameterType);
+            foreach (var backend in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
+            {
+                var map = backend.GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                Assert.False(target.IsAbstract);
+                Assert.Equal(configuration, Assert.Single(target.GetParameters()).ParameterType);
+            }
+        }
+    }
+
     [Fact]
     public void ExampleBackendsDescribeConfiguredHardwareAndNativeOptions()
     {

@@ -146,11 +146,11 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
     /// <inheritdoc/>
-    public IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model) => OptionCatalog.All.ToDictionary(option => option.Key, option => option.DefaultValue, StringComparer.Ordinal);
+    public IReadOnlyDictionary<string, string> GetDefaultOptions(MachineConfiguration configuration) => OptionCatalog.All.ToDictionary(option => option.Key, option => option.DefaultValue, StringComparer.Ordinal);
     /// <inheritdoc/>
     public void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options)
     {
-        foreach (var option in GetDefaultOptions(configuration.Model)) options.TryAdd(option.Key, option.Value);
+        foreach (var option in GetDefaultOptions(configuration)) options.TryAdd(option.Key, option.Value);
     }
     /// <summary>Contrôle les choix natifs connus et les unités des deux réglages audio communs.</summary>
     /// <inheritdoc/>

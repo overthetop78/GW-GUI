@@ -9543,3 +9543,15 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 - [x] Inclure la correction des fins de ligne dans le prochain commit de code.
   - [x] Normaliser le fichier existant.
     - [x] Modifier .github/workflows/release.yml : convertir les fins de ligne en LF selon .gitattributes, conserver exactement le contenu YAML et inclure le fichier au commit des réglages.
+
+## Configuration complète pour les options existantes
+- [x] Transmettre toutes les données de configuration aux opérations existantes de préparation des options.
+  - [x] Raccorder les signatures et leurs consommateurs actuels.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorConfigurationOptions.cs : recevoir MachineConfiguration dans GetDefaultOptions, ResolveModel et NormalizeOptions, avec documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/ConfigurationContracts.cs : initialiser les données avant leur lecture par le contrat, puis conserver la résolution du modèle, le choix du cœur et les valeurs par défaut dans leur ordre actuel.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/B2/Factories/B2MachineFactory.cs : adapter les signatures sans changer les règles natives de modèle et de normalisation.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs : fournir la configuration contenant les options éditées à NormalizeOptions.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorConfigurationOptions.cs : utiliser la configuration complète dans les mêmes opérations et documenter les paramètres.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : recevoir la configuration complète pour les valeurs initiales et conserver le catalogue existant.
+  - [x] Vérifier les variantes et les contrats existants.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les signatures des deux contrats complets et leurs cœurs concrets, sans fichiers externes ; exécuter les régressions et le build des modules.
