@@ -86,7 +86,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public int BufferedAudioFrames { get; private set; }
     public long AudioOverrunCount { get; private set; }
     public long AudioUnderrunCount { get; private set; }
-    public HostProcessState HostProcessState => RuntimeFunctions.ProcessState(_process, _connectionFailed, _disposed);
+    public HostProcessState HostProcessState => CommonCoreHostFunctions.Protocol.GetProcessState(_process, _hostProcessFaulted || _connectionFailed, _disposed, _hostProcessId);
     public int? HostProcessId => _hostProcessId;
     internal string? PipeName => _pipeName;
     internal string? VideoMapName => _activeVideoMapName ?? _videoMapName;
@@ -109,13 +109,14 @@ internal sealed partial class ProcessCore : IEmulatorCore
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             _process = StartHostProcess(pipeName, videoMapName);
             _hostProcessId = _process.Id;
+            _hostProcessFaulted = false;
             CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
             Request(HostCommand.Initialize, writer => CommonCoreHostFunctions.Protocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
                 sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
             _initialized = true;
         }
-        finally { if (!_initialized) Dispose(); }
+        finally { if (!_initialized) { _hostProcessFaulted = true; Dispose(); } }
     }
 
     public void RunFrame() => Request(HostCommand.RunFrame, writer =>
@@ -160,4 +161,6 @@ internal sealed partial class ProcessCore : IEmulatorCore
         writer.Write(key);
         writer.Write(value);
     });
+    /// <summary>Échec du démarrage conservé après la fermeture des ressources du transport.</summary>
+    private bool _hostProcessFaulted;
 }

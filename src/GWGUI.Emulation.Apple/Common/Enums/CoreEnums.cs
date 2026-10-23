@@ -22,8 +22,6 @@ internal enum HostCommand : byte
     SoftReset = CoreHostConstants.SoftResetCommand
 }
 
-public enum HostProcessState { InProcess, NotStarted, Running, Exited, Faulted }
-
 internal enum HostResponseStatus : byte
 {
     Success = CoreHostConstants.SuccessResponse,

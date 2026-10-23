@@ -289,4 +289,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <inheritdoc/>
     /// <remarks>Convertit le périphérique public vers sa catégorie interne puis transmet la commande au thread du cœur.</remarks>
     void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, CurrentConfiguration(), port));
+    /// <inheritdoc/>
+    public HostProcessState HostProcessState => _core.HostProcessState;
+    /// <inheritdoc/>
+    public int? HostProcessId => _core.HostProcessId;
 }

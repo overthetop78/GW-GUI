@@ -83,8 +83,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     public EmulationVideoStandard? ReadRegion(int value, bool allowAllDefinedStandards) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards);
 
     /// <inheritdoc/>
-    public TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed, TState faulted, TState notStarted, TState exited, TState running) where TState : struct, Enum
-        => EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed, faulted, notStarted, exited, running);
+    public HostProcessState GetProcessState(Process? process, bool connectionFailed, bool disposed, int? hostProcessId = null)
+        => EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed, hostProcessId);
 
     /// <inheritdoc/>
     public Process StartHostProcess(ProcessStartInfo startInfo, Func<Exception> startFailed) => EmulationChildProcessLifetime.Start(startInfo, startFailed);

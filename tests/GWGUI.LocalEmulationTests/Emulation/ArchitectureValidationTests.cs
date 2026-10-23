@@ -4324,7 +4324,15 @@ public sealed class ArchitectureValidationTests
         var status = typeof(IEmulationCoreRuntimeStatus);
         Assert.Contains(status, typeof(IEmulationRuntime).GetInterfaces());
         var members = status.GetProperties();
-        Assert.Equal(5, members.Length);
+        Assert.Equal(7, members.Length);
+        Assert.True(typeof(HostProcessState).IsPublic);
+        Assert.Equal(new[] { 0, 1, 2, 3, 4 }, Enum.GetValues<HostProcessState>().Select(value => (int)value));
+        Assert.Equal(HostProcessState.NotStarted, EmulationSdk.HostProtocol.GetProcessState(null, false, false));
+        Assert.Equal(HostProcessState.NotStarted, EmulationSdk.HostProtocol.GetProcessState(null, false, true));
+        Assert.Equal(HostProcessState.Exited, EmulationSdk.HostProtocol.GetProcessState(null, false, true, 42));
+        Assert.Equal(HostProcessState.Exited, EmulationSdk.HostProtocol.GetProcessState(null, false, false, 42));
+        Assert.Equal(HostProcessState.Faulted, EmulationSdk.HostProtocol.GetProcessState(null, true, true, 42));
+        Assert.False(typeof(IEmulationHostProtocol).GetMethod("GetProcessState")!.IsGenericMethod);
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
             .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
@@ -4333,6 +4341,7 @@ public sealed class ArchitectureValidationTests
         var cachedNativeCapabilities = 0;
         foreach (var assembly in modules)
         {
+            Assert.DoesNotContain(assembly.GetTypes(), type => type.IsEnum && type.Name == "HostProcessState");
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var coreContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
@@ -4368,6 +4377,12 @@ public sealed class ArchitectureValidationTests
             }
             if (root == "GWGUI.Emulation.Microsoft") continue;
             var process = Assert.Single(assembly.GetTypes(), type => type.Name == "ProcessCore" && coreContract.IsAssignableFrom(type));
+            Assert.Contains(GetCompiledCalls(process.GetProperty("HostProcessState")!.GetMethod!),
+                call => call.Method.Name == "GetProcessState" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
+            Assert.Contains(GetCompiledCalls(process.GetMethod("Initialize")!),
+                call => call.Method.Name == "get_Id" && call.Method.DeclaringType == typeof(System.Diagnostics.Process));
+            Assert.Equal(typeof(int?), process.GetField("_hostProcessId", BindingFlags.Instance | BindingFlags.NonPublic)!.FieldType);
+            Assert.Equal(typeof(bool), process.GetField("_hostProcessFaulted", BindingFlags.Instance | BindingFlags.NonPublic)!.FieldType);
             var processCalls = process.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)
                 .Concat(process.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public).SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();

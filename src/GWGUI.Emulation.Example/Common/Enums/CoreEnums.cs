@@ -39,23 +39,6 @@ internal enum HostCommand : byte
     SoftReset = CoreHostConstants.SoftResetCommand
 }
 
-/// <summary>État d’hébergement du cœur, distinct du cycle de vie de la machine émulée.</summary>
-/// <remarks>Un processus peut rester Running lorsque la machine est en pause.
-/// InProcess signifie que le cœur utilise le processus appelant et ne possède pas de processus enfant.</remarks>
-public enum HostProcessState
-{
-    /// <summary>Le cœur s’exécute dans le processus courant.</summary>
-    InProcess,
-    /// <summary>Le processus séparé n’a pas encore démarré.</summary>
-    NotStarted,
-    /// <summary>Le processus d’hôte est actif.</summary>
-    Running,
-    /// <summary>La fin du processus d’hôte a été observée.</summary>
-    Exited,
-    /// <summary>Le démarrage, l’exécution ou la communication de l’hôte a échoué.</summary>
-    Faulted
-}
-
 /// <summary>Statut précédant les données d’une réponse du protocole d’hôte.</summary>
 internal enum HostResponseStatus : byte
 {

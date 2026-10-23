@@ -10,14 +10,7 @@ internal static class RuntimeFunctions
     /// <returns>Standard reconnu, ou null pour une valeur non définie.</returns>
     internal static EmulationVideoStandard? ReadRegion(int value) => EmulationSdk.HostProtocol.ReadRegion(value, allowAllDefinedStandards: true);
 
-    /// <summary>Consulte le processus emprunté sans en modifier la durée de vie.</summary>
-    /// <param name="process">Processus possédé par le cœur déporté, ou null avant son lancement.</param>
-    /// <param name="connectionFailed">Indique une rupture du transport.</param>
-    /// <param name="disposed">Indique la libération de la session.</param>
-    /// <returns>Statut déterminé par les règles communes du SDK.</returns>
-    internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed) => EmulationSdk.HostProtocol.GetProcessState(process, connectionFailed, disposed, HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
-
-    /// <summary>Construit l’instantané des sorties et activités actuellement annoncées par le cœur.</summary>
+/// <summary>Construit l’instantané des sorties et activités actuellement annoncées par le cœur.</summary>
     /// <param name="configuration">Configuration portant le modèle et les lecteurs à décrire.</param>
     /// <param name="core">Cœur emprunté sur son thread propriétaire ou après publication de ses données.</param>
     /// <returns>Mesures et copies des dictionnaires de statut ; aucune ressource native n’est transférée.</returns>

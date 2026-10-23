@@ -11936,6 +11936,161 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/EnvironmentCallbackCommandTests.cs : vérifier la négociation et la notification audio communes sans bibliothèque ni fichier externe.
     - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Constants/EnvironmentConstants.cs : supprimer les cinq constantes audio locales remplacées par le traitement partagé.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : Vérifier les contrats et raccordements compilés des 24 familles ; exécuter les vérifications et le build complet.
+  - [x] Uniformiser le statut du processus des cœurs et du runtime public.
+    - [x] Créer src/GWGUI.Emulation/Enums/HostProcessState.cs : la définition publique unique des cinq états de processus déjà utilisés.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreRuntimeStatus.cs : Exposer le même état de processus et son identifiant par le contrat de runtime.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : Déclarer la consultation typée du processus avec son identifiant conservé après fermeture.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : Utiliser les états partagés et conserver Exited après libération du processus déjà démarré.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : Raccorder la consultation du processus au contrat public unique.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Supprimer src/GWGUI.Emulation.Bandai/Common/Enums/RuntimeEnums.cs : le fichier réduit à la copie de enum désormais fournie par le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Supprimer src/GWGUI.Emulation.Coleco/Common/Enums/RuntimeEnums.cs : le fichier réduit à la copie de enum désormais fournie par le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Supprimer src/GWGUI.Emulation.Epoch/Common/Enums/RuntimeEnums.cs : le fichier réduit à la copie de enum désormais fournie par le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Supprimer src/GWGUI.Emulation.Fairchild/Common/Enums/RuntimeEnums.cs : le fichier réduit à la copie de enum désormais fournie par le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer le fonctionnement dans le processus courant sans identifiant de processus enfant.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Enums/CoreEnums.cs : Retirer la copie de enum du processus et reprendre le type public unique du SDK.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorCore.cs : Conserver les propriétés de processus dans le contrat SDK hérité plutôt que dans une déclaration locale répétée.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.cs : Transmettre directement au runtime public les deux propriétés de processus du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/RuntimeFunctions.cs : Retirer le relais de consultation du processus maintenant assuré par la même interface SDK pour tous les hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : Utiliser la consultation SDK unique et conserver identifiant et échec de démarrage après fermeture de ses ressources.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/MultichannelAudioTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostResponseTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/LegacyHostFrameResponseTests.cs : Décrire le fonctionnement local des cœurs synthétiques avec le même contrat de processus.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : appliquer la même mémorisation des échecs et remettre le statut de démarrage à jour après obtention du nouvel identifiant.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/CoreEnums.cs : retirer la ligne vide finale laissée par le retrait de la copie de enum.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Enums/CoreEnums.cs : retirer la ligne vide finale laissée par le retrait de la copie de enum.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : Vérifier le type public unique, les 24 projections et les 23 hôtes réels ; vérifier la fermeture avec identifiant conservé, puis la suite et le build complet.
+  - [ ] Compléter les descriptions de montage encore absentes de Common dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Enums/MediaEnums.cs : réunir les catégories complémentaires, la région et les variantes de format de cartouche déjà décrites par les autres Common, avec des identifiants de profils fictifs et une documentation complète.
+    - [ ] Créer src/GWGUI.Emulation.Example/Common/Machines/Common/Enums/StorageEnums.cs : reprendre StorageBus Acsi, Ide et Gemdos depuis les définitions existantes et documenter ces interfaces de stockage.
+    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/MediaContracts.cs : réunir bus, point et ordre de montage, format et code de cartouche, région et démarrage cassette ; conserver Slot comme identité du lecteur et les données distinctes dans une seule description de média, puis reprendre les règles de compatibilité existantes sans copie sous un autre nom.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

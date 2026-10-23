@@ -5,12 +5,7 @@ namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class RuntimeFunctions
 {
     internal static EmulationVideoStandard? ReadRegion(int value) => CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: true);
-    internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
-        =>
-            CommonCoreHostFunctions.Protocol.GetProcessState(process, connectionFailed, disposed,
-                HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
-
-    internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
+internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);

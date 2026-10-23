@@ -14,6 +14,4 @@ internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation
     bool ShutdownRequested { get; }
 
     Emulator Emulator { get; }
-    HostProcessState HostProcessState { get; }
-    int? HostProcessId { get; }
 }

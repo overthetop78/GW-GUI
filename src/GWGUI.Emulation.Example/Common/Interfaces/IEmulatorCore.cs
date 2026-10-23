@@ -15,10 +15,6 @@ internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation
     /// <remarks>La boucle du propriétaire doit examiner ce signal et effectuer son arrêt et sa destruction habituels.</remarks>
     bool ShutdownRequested { get; }
     // La valeur vient du backend ; la boucle Common conserve la responsabilité de son arrêt.
-    /// <summary>État du processus d’hébergement, distinct de l’état actif ou en pause de la machine.</summary>
-    HostProcessState HostProcessState { get; }
-    /// <summary>Identifiant du processus d’hôte lorsqu’il existe ; null en l’absence d’un processus à exposer.</summary>
-    int? HostProcessId { get; }
     /// <summary>Demande l’enregistrement explicite des changements du média monté dans un lecteur.</summary>
     /// <param name="slot">Lecteur logique dont le backend doit enregistrer les changements pris en charge.</param>
     /// <remarks>Common appelle cette opération dans le même ordre sérialisé que les autres commandes du cœur.</remarks>

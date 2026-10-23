@@ -152,9 +152,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Compteur de manques de données audio annoncé par le cœur.</summary>
     public long AudioUnderrunCount { get; private set; }
     /// <summary>État du processus calculé à partir du handle, de la connexion et de la destruction.</summary>
-    public HostProcessState HostProcessState => _disposed && _hostProcessId.HasValue
-        ? _connectionFailed ? HostProcessState.Faulted : HostProcessState.Exited
-        : RuntimeFunctions.ProcessState(_process, _connectionFailed, _disposed);
+    public HostProcessState HostProcessState => CommonCoreHostFunctions.Protocol.GetProcessState(_process, _hostProcessFaulted || _connectionFailed, _disposed, _hostProcessId);
     /// <summary>Identifiant du processus hôte mémorisé, ou null avant lancement.</summary>
     public int? HostProcessId => _hostProcessId;
     /// <summary>Nom du tube créé, disponible pour le diagnostic de session.</summary>
@@ -196,6 +194,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
                 CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             _process = StartHostProcess(pipeName, videoMapName);
             _hostProcessId = _process.Id;
+            _hostProcessFaulted = false;
             EmulationSdk.HostProtocol.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
             Request(HostCommand.Initialize, writer => EmulationSdk.HostProtocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
@@ -204,7 +203,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
         finally
         {
-            if (!_initialized) Dispose();
+            if (!_initialized) { _hostProcessFaulted = true; Dispose(); }
         }
     }
 
@@ -296,4 +295,6 @@ internal sealed partial class ProcessCore : IEmulatorCore
         writer.Write(key);
         writer.Write(value);
     });
+    /// <summary>Échec du démarrage conservé après la fermeture des ressources du transport.</summary>
+    private bool _hostProcessFaulted;
 }

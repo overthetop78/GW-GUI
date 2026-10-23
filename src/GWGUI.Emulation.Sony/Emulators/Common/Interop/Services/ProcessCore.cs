@@ -111,6 +111,8 @@ internal sealed class ProcessCore : IEmulatorCore
             var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetDirectoryName(_hostExecutablePath)!, ProcessCoreConstants.CoreHost, pipeName, videoMapName);
             _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(Error(CoreExceptionsResourceConstants.ProcessStartFailed)));
+            _hostProcessId = _process.Id;
+            _hostProcessFaulted = false;
             CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
@@ -142,7 +144,7 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         finally
         {
-            if (!_initialized) ReleaseHost();
+            if (!_initialized) { _hostProcessFaulted = true; ReleaseHost(); }
         }
     }
 
@@ -320,6 +322,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var timedOut = error is OperationCanceledException;
             var exit = _process is { HasExited: true } ? $" It exited with code {_process.ExitCode}." : string.Empty;
             _connectionFailed = true;
+            _hostProcessFaulted = true;
             TerminateProcess();
             throw new InvalidOperationException(timedOut ? Error(CoreExceptionsResourceConstants.ProcessTimeout) : Error(CoreExceptionsResourceConstants.ProcessCommunicationFailed, exit), error);
         }
@@ -353,4 +356,12 @@ internal sealed class ProcessCore : IEmulatorCore
     private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
     /// <inheritdoc/>
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
+    /// <summary>Identifiant géré conservé après fermeture, sans garder de handle du processus.</summary>
+    private int? _hostProcessId;
+    /// <summary>Échec mémorisé même si le nettoyage remet le transport à son état initial.</summary>
+    private bool _hostProcessFaulted;
+    /// <inheritdoc/>
+    public HostProcessState HostProcessState => CommonCoreHostFunctions.Protocol.GetProcessState(_process, _hostProcessFaulted || _connectionFailed, _disposed, _hostProcessId);
+    /// <inheritdoc/>
+    public int? HostProcessId => _hostProcessId;
 }

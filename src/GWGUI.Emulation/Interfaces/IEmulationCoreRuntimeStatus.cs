@@ -13,4 +13,9 @@ public interface IEmulationCoreRuntimeStatus
     long AudioOverrunCount { get; }
     /// <summary>Nombre de manques de données dans le tampon audio.</summary>
     long AudioUnderrunCount { get; }
+    /// <summary>État du processus qui héberge le cœur, distinct de la pause ou de l’arrêt de la machine.</summary>
+    HostProcessState HostProcessState { get; }
+    /// <summary>Identifiant de l’hôte démarré, conservé après sa fermeture ; null sans processus enfant.</summary>
+    /// <remarks>Cette valeur ne possède aucun processus ni handle. Le propriétaire ferme son hôte dans finally.</remarks>
+    int? HostProcessId { get; }
 }

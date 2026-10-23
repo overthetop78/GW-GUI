@@ -871,6 +871,8 @@ public sealed class SegaMachineLifecycleTests
     {
         public int MinimumAudioLatencyMilliseconds => 0;
         public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
         public bool SupportsSaveStates => true;
         public EmulationVideoStandard? Region => null;
         public int BufferedAudioFrames => 0;

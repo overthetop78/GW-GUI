@@ -130,4 +130,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
     void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral));
+    /// <inheritdoc/>
+    public HostProcessState HostProcessState => _core.HostProcessState;
+    /// <inheritdoc/>
+    public int? HostProcessId => _core.HostProcessId;
 }

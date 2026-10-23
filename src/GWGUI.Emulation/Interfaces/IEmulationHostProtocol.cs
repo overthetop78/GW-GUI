@@ -145,17 +145,13 @@ public interface IEmulationHostProtocol
     /// <returns>Standard correspondant, ou null lorsque la valeur n’est pas admise.</returns>
     EmulationVideoStandard? ReadRegion(int value, bool allowAllDefinedStandards);
 
-    /// <summary>Projette l’état du processus emprunté vers l’énumération de statut du module.</summary>
-    /// <typeparam name="TState">Énumération de statut définie par le module.</typeparam>
+    /// <summary>Consulte l’état du processus emprunté avec le même type de statut pour tous les modules.</summary>
     /// <param name="process">Processus de session, ou null avant son lancement.</param>
     /// <param name="connectionFailed">Indique une rupture de transport prioritaire sur les autres états.</param>
     /// <param name="disposed">Indique que le propriétaire a déjà libéré la session.</param>
-    /// <param name="faulted">Valeur à retourner après une rupture de transport.</param>
-    /// <param name="notStarted">Valeur à retourner en l’absence de processus.</param>
-    /// <param name="exited">Valeur à retourner lorsque la sortie du processus est observée.</param>
-    /// <param name="running">Valeur à retourner lorsque le processus est actif.</param>
+    /// <param name="hostProcessId">Identifiant conservé après libération ; null avant tout démarrage.</param>
     /// <returns>État calculé selon la politique commune existante ; le processus reste emprunté.</returns>
-    TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed, TState faulted, TState notStarted, TState exited, TState running) where TState : struct, Enum;
+    HostProcessState GetProcessState(Process? process, bool connectionFailed, bool disposed, int? hostProcessId = null);
 
     /// <summary>Démarre le processus d’hôte et le rattache à la durée de vie de l’application.</summary>
     /// <param name="startInfo">Paramètres de lancement préparés par le module, empruntés pendant l’appel.</param>

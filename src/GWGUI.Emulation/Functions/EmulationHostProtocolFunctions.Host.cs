@@ -407,17 +407,14 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Lit l’état du processus emprunté sans le détruire ni changer son propriétaire.</summary>
-    internal static TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed,
-        TState faulted, TState notStarted, TState exited, TState running)
-        where TState : struct, Enum
+    internal static HostProcessState GetProcessState(Process? process, bool connectionFailed, bool disposed, int? hostProcessId = null)
     {
-        if (connectionFailed) return faulted;
-        if (process is null) return notStarted;
-        if (disposed) return exited;
-        try { return process.HasExited ? exited : running; }
-        catch (InvalidOperationException) { return exited; }
+        if (connectionFailed) return HostProcessState.Faulted;
+        if (process is null) return hostProcessId.HasValue ? HostProcessState.Exited : HostProcessState.NotStarted;
+        if (disposed) return HostProcessState.Exited;
+        try { return process.HasExited ? HostProcessState.Exited : HostProcessState.Running; }
+        catch (InvalidOperationException) { return HostProcessState.Exited; }
     }
-
     /// <summary>Convertit la région native en standard vidéo connu ou null.</summary>
     internal static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
     {

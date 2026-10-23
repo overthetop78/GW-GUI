@@ -256,6 +256,8 @@ public sealed class CoreHostResponseTests
         public IReadOnlyList<Option> Options => Read("options", new[] { new Option(7, "module-specific") });
         public IReadOnlyList<string> Diagnostics => Read("diagnostics", ++_diagnosticReads == 1 ? new[] { "first" } : new[] { "first", "second" });
         public IReadOnlyDictionary<int, bool> LedStates => Read<IReadOnlyDictionary<int, bool>>("led", new Dictionary<int, bool>());
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
         public bool SupportsSaveStates => Read("support", true);
         public EmulationVideoStandard? Region => Read<EmulationVideoStandard?>("region", _drained ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc);
         public int BufferedAudioFrames => Read("buffered", _drained ? 99 : 9);

@@ -197,6 +197,8 @@ public sealed class LegacyHostFrameResponseTests
         public string CoreVersion => "test";
         public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string>();
         public string CoreSha256 => "test";
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
         public bool SupportsSaveStates => true;
         public EmulationVideoStandard? Region => EmulationVideoStandard.Pal;
         public int BufferedAudioFrames => Audio.Count;

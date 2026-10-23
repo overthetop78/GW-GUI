@@ -322,4 +322,8 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_host is { } callbacks) callbacks.OutputAudioStatus = status;
     }
+    /// <inheritdoc/>
+    public HostProcessState HostProcessState => HostProcessState.InProcess;
+    /// <inheritdoc/>
+    public int? HostProcessId => null;
 }
