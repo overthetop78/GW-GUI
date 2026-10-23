@@ -150,6 +150,16 @@ internal sealed class Engine
         return CreateConfiguration(machineId);
     }
 
+    /// <summary>Transmet le choix graphique au contrat vidéo de l'adaptateur sélectionné.</summary>
+    /// <param name="configuration">Configuration empruntée appartenant à cette famille.</param>
+    /// <param name="graphicsApi">Choix graphique fourni par le présentateur de l'hôte.</param>
+    /// <returns>Configuration adaptée par le cœur, ou inchangée lorsque ce choix ne modifie aucune option native.</returns>
+    public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.ApplyVideoSettings(current, graphicsApi) ?? current;
+    }
+
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);

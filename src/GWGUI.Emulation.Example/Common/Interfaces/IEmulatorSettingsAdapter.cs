@@ -26,10 +26,4 @@ internal interface IEmulatorSettingsAdapter : IEmulatorSettings
     /// <param name="configuration">Configuration empruntée contenant les valeurs enregistrées.</param>
     /// <returns>Réglages audio utilisables par le contrôleur de sortie Common.</returns>
     AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration);
-
-    /// <summary>Applique le choix du moteur graphique aux options propres au backend.</summary>
-    /// <param name="configuration">Configuration de départ, conservée immuable.</param>
-    /// <param name="graphicsApi">API graphique sélectionnée par l’hôte.</param>
-    /// <returns>Configuration résultante après adaptation des valeurs natives du moteur.</returns>
-    MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi);
 }

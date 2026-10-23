@@ -253,7 +253,11 @@ internal sealed class Engine
         return result;
     }
     /// <summary>Transmet le choix de présentation au contrat vidéo de l’adaptateur.</summary>
-    public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi) => Adapter(Require(configuration)).ApplyVideoSettings(Require(configuration), graphicsApi);
+    public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
+    {
+        var current = Require(configuration);
+        return Adapter(current).ApplyVideoSettings(current, graphicsApi);
+    }
 
     /// <summary>Construit les adaptateurs du catalogue et vérifie implicitement l’unicité de leurs identifiants.</summary>
     /// <exception cref="ArgumentException">Plusieurs adaptateurs portent le même identifiant.</exception>

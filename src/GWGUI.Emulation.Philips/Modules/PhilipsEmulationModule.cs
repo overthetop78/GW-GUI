@@ -11,7 +11,7 @@ namespace GWGUI.Emulation.Philips.Modules;
 
 public sealed class PhilipsEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
-    IEmulationFirmwareManager
+    IEmulationFirmwareManager, IEmulationVideoSettingsManager
 {
     private readonly Engine _engine;
 
@@ -39,6 +39,12 @@ public sealed class PhilipsEmulationModule : IEmulationModule, IEmulationEmulato
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId) => _engine.ChangeMachine(configuration, machineId);
 
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values) => _engine.ApplySettings(configuration, values);
+
+    /// <summary>Transmet le choix graphique à Common par le contrat public du SDK.</summary>
+    /// <param name="configuration">Configuration opaque de cette famille, conservée sous la responsabilité de son appelant.</param>
+    /// <param name="graphicsApi">API choisie par l'hôte pour la présentation ou le rendu matériel.</param>
+    /// <returns>Configuration adaptée par Common et par le cœur, sans créer de session ni de surface graphique.</returns>
+    public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi) => _engine.ApplyVideoSettings(configuration, graphicsApi);
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => _engine.RuntimeOptions(configuration);
 

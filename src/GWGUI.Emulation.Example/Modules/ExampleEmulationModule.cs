@@ -78,6 +78,10 @@ public sealed class ExampleEmulationModule : IEmulationModule, IEmulationEmulato
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.ScanFirmwareAsync(machineId, configuration, cancellationToken);
     /// <summary>Transmet le choix de firmware et sa validation au Common.</summary>
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware) => _engine.UseFirmware(configuration, firmware);
-    /// <summary>Transmet le choix du présentateur graphique au Common.</summary>
+
+    /// <summary>Transmet le choix graphique à Common par le contrat public du SDK.</summary>
+    /// <param name="configuration">Configuration opaque de cette famille, conservée sous la responsabilité de son appelant.</param>
+    /// <param name="graphicsApi">API choisie par l'hôte pour la présentation ou le rendu matériel.</param>
+    /// <returns>Configuration adaptée par Common et par le cœur, sans créer de session ni de surface graphique.</returns>
     public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi) => _engine.ApplyVideoSettings(configuration, graphicsApi);
 }

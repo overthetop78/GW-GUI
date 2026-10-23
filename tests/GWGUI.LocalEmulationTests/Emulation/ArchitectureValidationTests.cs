@@ -2236,7 +2236,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 3 : contractName == "IEmulatorPointerCapabilities" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 3 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -2267,7 +2267,8 @@ public sealed class ArchitectureValidationTests
                 foreach (var implementation in adapters)
                 {
                     Assert.True(contract.IsAssignableFrom(implementation), implementation.FullName);
-                    var selected = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                    var map = implementation.GetInterfaceMap(contract);
+                    var selected = map.TargetMethods[Array.FindIndex(map.InterfaceMethods, candidate => candidate.Name == methodName)];
                     var concrete = implementation.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
                     Assert.Equal(concrete ?? defaultImplementation, selected);
                     if (contractName == "IEmulatorVideoSettings" && concrete is null)
@@ -2531,6 +2532,94 @@ public sealed class ArchitectureValidationTests
         }
     }
 
+    [Fact]
+    public async Task EveryCommonRoutesGraphicsSettingsThroughItsVideoContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeConversions = 0;
+        var unchangedConfigurations = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorVideoSettings", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var operation = contract.GetMethod("ApplyVideoSettings")!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.NotNull(operation);
+            Assert.True(operation.IsAbstract);
+            Assert.Equal(configurationType, operation.ReturnType);
+            Assert.Equal(new[] { configurationType, typeof(EmulationGraphicsApi) }, operation.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            var defaults = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".ApplyVideoSettings", StringComparison.Ordinal));
+            Assert.Empty(GetCompiledCalls(defaults)); // Le défaut ne lance aucune API graphique et ne possède aucune ressource.
+            var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
+            if (settings is not null) Assert.Null(settings.GetMethod(operation.Name));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engineOperation = engineType.GetMethod(operation.Name)!;
+            Assert.NotNull(engineOperation);
+            Assert.Contains(GetCompiledCalls(engineOperation), call => call.Method == operation);
+            var facadeType = Assert.Single(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && typeof(IEmulationModule).IsAssignableFrom(type));
+            Assert.True(typeof(IEmulationVideoSettingsManager).IsAssignableFrom(facadeType));
+            var facadeOperation = Assert.Single(facadeType.GetInterfaceMap(typeof(IEmulationVideoSettingsManager)).TargetMethods);
+            Assert.Contains(GetCompiledCalls(facadeOperation), call => call.Method == engineOperation);
+            var engine = Activator.CreateInstance(engineType)!;
+            var facade = RuntimeHelpers.GetUninitializedObject(facadeType);
+            facadeType.GetField("_engine", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(facade, engine);
+            var manager = (IEmulationVideoSettingsManager)facade;
+            Assert.Throws<ArgumentException>(() => manager.ApplyVideoSettings(null!, EmulationGraphicsApi.OpenGL));
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>().ToArray();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
+                Assert.Equal(adapter.GetType().GetMethod(operation.Name) ?? defaults, target);
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configurationType);
+                    foreach (var api in Enum.GetValues<EmulationGraphicsApi>())
+                    {
+                        var expected = (IEmulationConfiguration)operation.Invoke(adapter, [configuration, api])!;
+                        var actual = manager.ApplyVideoSettings(configuration, api);
+                        Assert.Equal(configuration.Id, actual.Id);
+                        Assert.Equal(configuration.MachineId, actual.MachineId);
+                        Assert.Equal(System.Text.Json.JsonSerializer.Serialize(expected, configurationType), System.Text.Json.JsonSerializer.Serialize(actual, configurationType));
+                        Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configurationType));
+                        if (target == defaults)
+                        {
+                            Assert.Same(configuration, actual);
+                            unchangedConfigurations++;
+                        }
+                        else
+                        {
+                            Assert.Equal("GWGUI.Emulation.Sony", root);
+                            Assert.Equal(api, configurationType.GetProperty("GraphicsApi")!.GetValue(actual));
+                            nativeConversions++;
+                        }
+                    }
+                }
+            }
+            if (adapters.Length == 0)
+            {
+                Assert.Equal("GWGUI.Emulation.Microsoft", root);
+                foreach (var machine in machines)
+                {
+                    var configuration = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    Assert.Same(configuration, manager.ApplyVideoSettings(configuration, EmulationGraphicsApi.Vulkan));
+                }
+            }
+        }
+        Assert.True(nativeConversions > 0);
+        Assert.True(unchangedConfigurations > 0);
+    }
     [Fact]
     public async Task EveryCommonProvidesTheSameFirmwareSlotCatalogue()
     {

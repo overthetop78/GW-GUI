@@ -4,6 +4,10 @@ namespace GWGUI.Emulation.Epoch.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 , IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve les options lorsque le cœur ne possède aucune conversion du choix graphique de l'hôte.</summary>
+    /// <remarks>La présentation des images reste sous la responsabilité de l'hôte ; cette opération ne démarre aucun cœur et ne possède aucune surface graphique.</remarks>
+    MachineConfiguration IEmulatorVideoSettings.ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) => configuration;
+
     /// <summary>Reprend les champs de fichiers de firmware déjà décrits lorsque le backend ne fournit pas de catalogue explicite.</summary>
     /// <remarks>Le nom de destination et l'obligation ne sont pas déduits du libellé. Les champs d'information,
     /// les sélecteurs de modèles et les dossiers ne sont pas des emplacements de fichiers de firmware.</remarks>

@@ -189,13 +189,13 @@ internal sealed class Engine
         };
         if (adapter is not IEmulatorSettingsAdapter settingsAdapter) return updated;
         updated = updated with { Audio = settingsAdapter.GetAudioConfiguration(updated) };
-        return updated.GraphicsApi is { } api ? settingsAdapter.ApplyVideoSettings(updated, api) : updated;
+        return updated.GraphicsApi is { } api ? adapter.ApplyVideoSettings(updated, api) : updated;
     }
 
     public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
     {
         var sony = RequireConfiguration(configuration);
-        var adapter = SelectedAdapter(sony) as IEmulatorSettingsAdapter;
+        var adapter = SelectedAdapter(sony);
         return adapter?.ApplyVideoSettings(sony, graphicsApi) ?? sony with { GraphicsApi = graphicsApi };
     }
 

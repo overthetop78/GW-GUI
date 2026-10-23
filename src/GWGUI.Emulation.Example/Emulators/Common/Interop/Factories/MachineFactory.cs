@@ -177,9 +177,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         var latency = configuration.Options.GetValueOrDefault(SettingsConstants.AudioLatency, AudioConstants.DefaultLatencyMilliseconds.ToString(CultureInfo.InvariantCulture));
         return new(output == SettingsConstants.DefaultOutput ? null : output, int.Parse(latency, CultureInfo.InvariantCulture));
     }
-    /// <summary>Les images CPU sont indépendantes du présentateur graphique choisi dans l’application.</summary>
-    /// <inheritdoc/>
-    public MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) => configuration;
     /// <inheritdoc/>
     public bool IsCpuClock(string fieldId) => fieldId == SettingsConstants.CpuFrequency;
     /// <inheritdoc/>

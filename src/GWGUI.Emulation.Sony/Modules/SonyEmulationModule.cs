@@ -34,6 +34,10 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
 
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values) => _engine.ApplySettings(configuration, values);
 
+    /// <summary>Transmet le choix graphique à Common par le contrat public du SDK.</summary>
+    /// <param name="configuration">Configuration opaque de cette famille, conservée sous la responsabilité de son appelant.</param>
+    /// <param name="graphicsApi">API choisie par l'hôte pour la présentation ou le rendu matériel.</param>
+    /// <returns>Configuration adaptée par Common et par le cœur, sans créer de session ni de surface graphique.</returns>
     public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi) => _engine.ApplyVideoSettings(configuration, graphicsApi);
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => _engine.RuntimeOptions(configuration);
