@@ -215,7 +215,7 @@ public sealed class AmstradEmulatorAdapterTests
     {
         var config = new MachineConfiguration("cpc-6128", "crocods", new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
         var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto", [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
-        var settings = SettingsDescriptionFunctions.Create(config, [option]);
+        var settings = GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(config, [option]);
         var field = Assert.Single(settings.SelectMany(block => block.Fields), field => field.Id == "crocods_resize");
         Assert.Equal("Overscan", field.Value);
         Assert.Equal(["Auto", "320x200", "Overscan"], field.Choices!.Select(choice => choice.Id));

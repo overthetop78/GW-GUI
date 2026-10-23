@@ -10,19 +10,8 @@ internal static class SettingsDescriptionFunctions
     /// <param name="coreOptions">Options fournies par le cœur ou son catalogue, ou null sans options natives.</param>
     /// <returns>Blocs de données descriptives ; leur création ne charge ni cœur ni sortie audio.</returns>
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
-        => Create(HardwareModelCatalog.Get(configuration.Model), configuration, coreOptions);
-
-    /// <summary>Construit les mêmes blocs en conservant la description matérielle explicitement fournie.</summary>
-    /// <param name="model">Matériel à présenter ; sa résolution appartient à l’appelant.</param>
-    /// <param name="configuration">Valeurs enregistrées pour les options et l’audio, conservées immuables.</param>
-    /// <param name="coreOptions">Options déjà disponibles, ou null pour omettre les blocs natifs.</param>
-    /// <returns>Blocs matériels, audio et natifs produits par une projection unique.</returns>
-    /// <remarks>Les deux entrées rejoignent ce traitement. Le matériel décrit peut différer du modèle
-    /// enregistré sans changer les valeurs courantes ni relire les options auprès du cœur. La taille de sortie
-    /// configurée est demandée au contrat vidéo de l’adaptateur ; elle décrit des pixels et ne crée aucune surface.</remarks>
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(HardwareModelDefinition model, MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
     {
-        var hardware = model;
+        var hardware = HardwareModelCatalog.Get(configuration.Model);
         var blocks = new List<EmulationSettingsBlock>
         {
             new("hardware", EmulationMachineTab.General, "Emulation.Tab.General",

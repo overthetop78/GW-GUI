@@ -73,7 +73,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
     public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
     public virtual Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
-    public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(Model model, MachineConfiguration configuration) => SettingsDescriptionFunctions.CreateBasic(model, configuration);
+    public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => SettingsDescriptionFunctions.CreateBasic(ModelCatalog.Get(configuration.Model), configuration);
     public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeBasic(configuration);
     public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.ApplyBasic(configuration, settings);
     public virtual MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => configuration;

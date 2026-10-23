@@ -9519,3 +9519,27 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : exiger les huit opérations dans les 24 familles, vérifier les comportements par défaut contre les descriptions réelles et adapter les vérifications des contrats enrichis ; exécuter les régressions et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure les opérations communes de contrôleurs dans les membres attendus.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/InputBindingConversionTests.cs : vérifier en mémoire les bus séparés, les indices, les catégories reconnues et la conservation des définitions de commandes par le service SDK.
+
+## Entrée unique de description des réglages
+- [x] Utiliser la même entrée configuration et contexte dans toutes les fabriques, en conservant les projections natives existantes.
+  - [x] Raccorder les fabriques et retirer les relais et surcharges redondants.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorSettingsAdapter.cs : conserver GetSettingsOptions et hériter uniquement de la description canonique de IEmulatorSettings.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs : garder une seule entrée configuration et contexte facultatif ; retirer le relais aux options préchargées sans appelant de production.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : implémenter DescribeSettings avec configuration et contexte, puis appeler la projection native existante avec ses options.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : implémenter la même entrée et conserver la lecture des options uniquement lorsque le contexte est fourni.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter directement de IEmulatorSettings à la place du relais de modèle.
+    - [x] Supprimer src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer le relais de description qui ne portait aucune autre opération.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/SettingsFunctions.cs : transmettre la configuration à DescribeSettings sans modèle supplémentaire, en conservant les compléments de firmware et de stockage.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : résoudre le modèle depuis la configuration dans la description canonique avec contexte facultatif.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : conserver les réglages Amiga et le filtre ROM via la même entrée canonique.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettingsAdapter.cs : retirer les deux surcharges supplémentaires de DescribeSettings sans consommateur de production propre.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/SettingsFunctions.cs : réunir la projection dans Create avec configuration et options, en résolvant le matériel depuis la configuration et en conservant les champs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : appeler directement la projection canonique avec les options obtenues et retirer les deux surcharges supplémentaires.
+  - [x] Vérifier les données décrites et les appels des 24 familles.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier une seule signature de description par fabrique, vérifier les trois cœurs Example via le contrat canonique et conserver les blocs et options attendus ; exécuter les régressions et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : vérifier les options préchargées directement sur la projection native qui les reçoit, en conservant les contrôles des choix et valeurs persistées.
+
+## Normalisation demandée du workflow de publication
+- [x] Inclure la correction des fins de ligne dans le prochain commit de code.
+  - [x] Normaliser le fichier existant.
+    - [x] Modifier .github/workflows/release.yml : convertir les fins de ligne en LF selon .gitattributes, conserver exactement le contenu YAML et inclure le fichier au commit des réglages.

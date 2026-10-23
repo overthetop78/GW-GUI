@@ -1792,30 +1792,29 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void ExampleBackendsPreservePreloadedOptionsAndExplicitHardware()
+    public void ExampleBackendsDescribeConfiguredHardwareAndNativeOptions()
     {
         var assembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
         var models = GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All;
-        var configuration = new GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MachineConfiguration(models[0].Model);
-        var explicitModel = models[1] with { MainMemoryBytes = 123456789 };
-        var options = Array.Empty<GWGUI.Emulation.Example.Common.Contracts.CoreOption>();
-        var contract = assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorSettingsAdapter", throwOnError: true)!;
-        var preloaded = contract.GetMethod("DescribeSettings", [configuration.GetType(), typeof(IReadOnlyList<GWGUI.Emulation.Example.Common.Contracts.CoreOption>)])!;
-        var explicitHardware = contract.GetMethod("DescribeSettings", [explicitModel.GetType(), configuration.GetType()])!;
+        var contract = assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorSettings", throwOnError: true)!;
+        var describe = contract.GetMethod("DescribeSettings")!;
         var backends = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
         Assert.Equal(3, backends.Length);
         foreach (var backend in backends)
         {
             var adapter = Activator.CreateInstance(backend, nonPublic: true)!;
-            var blocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(preloaded.Invoke(adapter, [configuration, options]));
-            Assert.DoesNotContain(blocks, block => block.Id.StartsWith("core-", StringComparison.Ordinal));
-            var hardwareBlocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(explicitHardware.Invoke(adapter, [explicitModel, configuration]));
-            var memory = Assert.Single(hardwareBlocks.SelectMany(block => block.Fields), field => field.Id == "example_main_memory");
-            Assert.Equal("123456789 B", memory.Value);
-            Assert.Equal(models[0].Model, configuration.Model);
+            foreach (var model in models)
+            {
+                var configuration = new GWGUI.Emulation.Example.Common.Machines.Common.Contracts.MachineConfiguration(model.Model);
+                var blocks = Assert.IsAssignableFrom<IReadOnlyList<EmulationSettingsBlock>>(describe.Invoke(adapter, [configuration, null]));
+                var memory = Assert.Single(blocks.SelectMany(block => block.Fields), field => field.Id == "example_main_memory");
+                Assert.Equal(model.MainMemoryBytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + " B", memory.Value);
+                var options = Assert.IsAssignableFrom<IReadOnlyList<GWGUI.Emulation.Example.Common.Contracts.CoreOption>>(backend.GetMethod("GetSettingsOptions")!.Invoke(adapter, [configuration, null]));
+                foreach (var option in options.Where(option => option.IsVisible))
+                    Assert.Contains(blocks.SelectMany(block => block.Fields), field => field.Id == option.Key && field.Value == configuration.Options.GetValueOrDefault(option.Key, option.CurrentValue));
+            }
         }
     }
-
     [Theory]
     [InlineData("IEmulatorConfigurationValidation", "ValidateConfiguration", typeof(void))]
     [InlineData("IEmulatorSettings", "DescribeSettings", typeof(IReadOnlyList<EmulationSettingsBlock>))]
@@ -1902,7 +1901,12 @@ public sealed class ArchitectureValidationTests
                     Assert.Null(implementation.GetProperty("SupportsPointerSettings", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
                 }
                 if (contractName == "IEmulatorSettings")
+                {
                     Assert.Null(implementation.GetMethod("GetSettingsBlocks"));
+                    Assert.True(implementation.GetMethods(BindingFlags.Public | BindingFlags.Instance).Count(candidate => candidate.Name == "DescribeSettings") <= 1, implementation.FullName);
+                    var description = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                    Assert.Equal(parameters.Select(value => value.ParameterType), description.GetParameters().Select(value => value.ParameterType));
+                }
             }
             if (contractName == "IEmulatorSettings")
             {

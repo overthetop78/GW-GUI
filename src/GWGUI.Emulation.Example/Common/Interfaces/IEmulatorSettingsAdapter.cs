@@ -5,22 +5,6 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// de configuration et de cœur. Les clés de ressources permettent à l’hôte de présenter ces données dans sa langue.</remarks>
 internal interface IEmulatorSettingsAdapter : IEmulatorSettings
 {
-    /// <summary>Décrit les réglages avec des options déjà obtenues par l’appelant.</summary>
-    /// <param name="configuration">Configuration dont les valeurs courantes sont présentées.</param>
-    /// <param name="coreOptions">Descriptions natives empruntées ; une liste vide demande uniquement les réglages matériels et audio.</param>
-    /// <returns>Blocs construits sans relire les options du cœur.</returns>
-    /// <remarks>Cette entrée sert lorsque la préparation a déjà interrogé le cœur. Elle conserve les valeurs,
-    /// la visibilité et les plages des options fournies, sans charger une seconde fois leurs métadonnées.</remarks>
-    IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions);
-
-    /// <summary>Décrit les réglages avec une description matérielle explicitement choisie par l’appelant.</summary>
-    /// <param name="model">Description matérielle à présenter, même si la configuration contient un autre modèle.</param>
-    /// <param name="configuration">Valeurs courantes et options à présenter sans modifier la configuration.</param>
-    /// <returns>Blocs utilisant le matériel demandé et les options du backend.</returns>
-    /// <remarks>Le modèle explicite reste distinct des valeurs enregistrées. La projection commune conserve
-    /// cette distinction pour les écrans qui préparent un changement de matériel avant son enregistrement.</remarks>
-    IReadOnlyList<EmulationSettingsBlock> DescribeSettings(HardwareModelDefinition model, MachineConfiguration configuration);
-
     /// <summary>Décrit les options natives utilisables pour construire les réglages du backend.</summary>
     /// <param name="configuration">Configuration facultative pour résoudre les options qui dépendent du modèle ou des valeurs choisies.</param>
     /// <param name="context">Contexte facultatif de gestion lorsque la lecture des options requiert l’installation du cœur et ses services.
