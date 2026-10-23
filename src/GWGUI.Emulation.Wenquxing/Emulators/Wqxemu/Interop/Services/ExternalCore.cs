@@ -14,6 +14,9 @@ namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
     /// <inheritdoc/>
+    public bool ShutdownRequested => _environment?.ShutdownRequested ?? false;
+
+    /// <inheritdoc/>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _environment?.ControllerFeedback ?? [];
 
     ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;

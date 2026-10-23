@@ -26,16 +26,17 @@ internal sealed class EmulationFrameTimer : IEmulationFrameTimer
     public static void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands,
         Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond,
         Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil,
-        CancellationToken cancellationToken, int pauseWaitMilliseconds)
+        CancellationToken cancellationToken, int pauseWaitMilliseconds, Func<bool>? keepRunning = null)
     {
         RunFrames(gate, commands, isPaused, () =>
         {
             runFrame();
+            if (keepRunning?.Invoke() == false) return false;
             nextFrame = nextFrameTimestamp(nextFrame, framesPerSecond());
             waitUntil(nextFrame, cancellationToken);
             if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
             return true;
-        }, () => !cancellationToken.IsCancellationRequested,
+        }, () => !cancellationToken.IsCancellationRequested && keepRunning?.Invoke() != false,
             static command => command.Execute(rethrow: true), cancellationToken, pauseWaitMilliseconds);
     }
 

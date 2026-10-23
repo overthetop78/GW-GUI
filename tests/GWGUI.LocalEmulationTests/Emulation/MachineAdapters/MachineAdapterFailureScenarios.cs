@@ -90,6 +90,7 @@ internal static class MachineAdapterFailureScenarios
     }
     private sealed class Core : IEmulatorCore
     {
+        public bool ShutdownRequested => false;
         public Exception? InitializeError, FrameError, MediaError;
         public string ExpectedMediaPath = "virtual.adf";
         public bool BlockFrame;

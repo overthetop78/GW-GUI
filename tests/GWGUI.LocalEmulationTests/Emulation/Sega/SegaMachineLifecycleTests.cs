@@ -869,6 +869,7 @@ public sealed class SegaMachineLifecycleTests
 
     private sealed class Core : IEmulatorCore
     {
+        public bool ShutdownRequested => false;
         public readonly ManualResetEventSlim FrameEntered = new();
         public readonly ManualResetEventSlim FrameRelease = new();
         public readonly TaskCompletionSource Exited = new(TaskCreationOptions.RunContinuationsAsynchronously);

@@ -12,6 +12,9 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
+
+    /// <inheritdoc/>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
 
     private readonly string _corePath;

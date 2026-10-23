@@ -9,6 +9,9 @@ namespace GWGUI.Emulation.Interfaces;
 /// les appels du cœur avant Dispose dans son finally. Les délégués natifs fournis par le cœur restent empruntés.</remarks>
 public interface IEmulationEnvironmentCallbackHost : IDisposable
 {
+    /// <summary>Demande de fermeture émise par le cœur ; le propriétaire de session effectue l'arrêt et la destruction.</summary>
+    bool ShutdownRequested { get; }
+
     /// <summary>Callback négociant les commandes réellement prises en charge ; false pour une commande non gérée.</summary>
     ExternalCoreApi.EnvironmentCallback Callback { get; }
     /// <summary>Callback clavier annoncé par le cœur, ou null ; son code doit rester chargé pendant les notifications.</summary>

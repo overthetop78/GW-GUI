@@ -93,7 +93,8 @@ public interface IEmulationMachineExecution
     /// <param name="waitUntil">Attente de l’échéance par le timer possédé de la session.</param>
     /// <param name="cancellationToken">Signal d’annulation de l’opération ou de la session.</param>
     /// <param name="pauseWaitMilliseconds">Intervalle de vérification des commandes pendant une pause, en millisecondes.</param>
-    void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds);
+    /// <param name="keepRunning">Condition de poursuite empruntée ; false termine normalement avant la prochaine frame ou attente. Null conserve la condition d'annulation seule.</param>
+    void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds, Func<bool>? keepRunning = null);
 
     /// <summary>Exécute la boucle avec les conditions de poursuite et la cadence fournies par la machine.</summary>
     /// <param name="gate">Verrou emprunté protégeant la pause et les commandes.</param>

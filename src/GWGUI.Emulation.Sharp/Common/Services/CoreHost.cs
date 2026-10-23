@@ -76,6 +76,7 @@ internal static class CoreHost
                 statusWriter.Write(currentCore.SupportsSaveStates);
                 CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
             }, CoreHostFunctions.WriteLedStates);
+        writer.Write(EnsureCore(core).ShutdownRequested);
         CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, EnsureCore(core).ControllerFeedback);
     }
 
@@ -89,6 +90,7 @@ internal static class CoreHost
             CoreHostFunctions.WriteLedStates, static () => CoreHostFunctions.JsonOptions,
             ref lastVideoSequence, ref lastDiagnosticCount,
             writeStateSupport: static (statusWriter, currentCore) => statusWriter.Write(currentCore.SupportsSaveStates));
+        writer.Write(core.ShutdownRequested);
         CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
     }
 

@@ -11,8 +11,13 @@ namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands
 {
+    /// <summary>Demande native de fermeture mémorisée pour la session, sans destruction depuis le callback.</summary>
+    internal bool ShutdownRequested { get; private set; }
+
+
     private bool OnEnvironment(uint command, nint data)
     {
+        if (command == ExternalCoreApiConstants.Shutdown) { ShutdownRequested = true; return true; }
         _environmentCommands.Add(command);
         if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleStatelessCommand(command, data,
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,

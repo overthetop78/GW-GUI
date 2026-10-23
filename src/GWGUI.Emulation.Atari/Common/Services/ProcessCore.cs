@@ -19,6 +19,9 @@ namespace GWGUI.Emulation.Atari.Common.Services;
 [SupportedOSPlatform(ProcessCoreConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public bool ShutdownRequested { get; private set; }
+
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
 

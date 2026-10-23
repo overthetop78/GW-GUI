@@ -14,6 +14,9 @@ namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public bool ShutdownRequested => _callbacks?.ShutdownRequested ?? false;
+
+    /// <inheritdoc/>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
 
     private readonly string _corePath;

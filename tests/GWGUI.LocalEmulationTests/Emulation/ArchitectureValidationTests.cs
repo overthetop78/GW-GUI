@@ -3977,4 +3977,125 @@ public sealed class ArchitectureValidationTests
             Assert.Null(typeof(EmulationOption).Assembly.GetType("GWGUI.Emulation.Contracts." + name));
         Assert.Equal(new[] { "OneOfTwo", "TwoOfThree", "ThreeOfFour", "FourOfFive", "FiveOfSix" }, Enum.GetNames<EmulationFrameSkipRatio>());
     }
+    [Fact]
+    public void EveryCorePropagatesNativeShutdownThroughCommon()
+    {
+        // Les objets non initialisés ne possèdent aucune DLL, session, allocation native ou processus.
+        // Seuls les champs de signal et les méthodes de callback qui les renseignent sont sollicités.
+        var sharedHostType = typeof(EmulationOption).Assembly.GetType("GWGUI.Emulation.Services.ExternalCoreEnvironmentCallbackHost", throwOnError: true)!;
+        var sharedHost = RuntimeHelpers.GetUninitializedObject(sharedHostType);
+        var directories = sharedHostType.GetField("_directories", BindingFlags.Instance | BindingFlags.NonPublic)!;
+        directories.SetValue(sharedHost, Activator.CreateInstance(directories.FieldType));
+        var sharedCallback = sharedHostType.GetMethod("OnEnvironment", BindingFlags.Instance | BindingFlags.NonPublic)!;
+        Assert.False(((IEmulationEnvironmentCallbackHost)sharedHost).ShutdownRequested);
+        Assert.Equal(true, sharedCallback.Invoke(sharedHost, [ExternalCoreApiConstants.Shutdown, nint.Zero]));
+        Assert.True(((IEmulationEnvironmentCallbackHost)sharedHost).ShutdownRequested);
+
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var callbacks = 0;
+        var linkedCores = 0;
+        var processes = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            var signal = contract.GetProperty("ShutdownRequested")!;
+            Assert.NotNull(signal);
+            Assert.Equal(typeof(bool), signal.PropertyType);
+            Assert.True(signal.GetMethod!.IsAbstract);
+
+            object? nativeCallbacks = null;
+            var callbacksType = assembly.GetTypes().SingleOrDefault(type => type.Name == "ExternalHostCallbacks");
+            if (callbacksType is not null)
+            {
+                nativeCallbacks = RuntimeHelpers.GetUninitializedObject(callbacksType);
+                var callback = callbacksType.GetMethod("OnEnvironment", BindingFlags.Instance | BindingFlags.NonPublic)
+                    ?? callbacksType.GetMethod("HandleEnvironment", BindingFlags.Instance | BindingFlags.NonPublic)!;
+                var callbackSignal = callbacksType.GetProperty("ShutdownRequested", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)!;
+                Assert.False((bool)callbackSignal.GetValue(nativeCallbacks)!);
+                Assert.Equal(true, callback.Invoke(nativeCallbacks, [ExternalCoreApiConstants.Shutdown, nint.Zero]));
+                Assert.True((bool)callbackSignal.GetValue(nativeCallbacks)!);
+                callbacks++;
+            }
+
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") { Assert.Empty(implementations); continue; }
+            Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var core = RuntimeHelpers.GetUninitializedObject(implementation);
+                var map = implementation.GetInterfaceMap(contract);
+                var getter = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, signal.GetMethod!)];
+                Assert.Equal(implementation.GetProperty(signal.Name)!.GetMethod, getter);
+                Assert.False((bool)signal.GetValue(core)!);
+                if (implementation.Name == "ExternalCore")
+                {
+                    var callbackField = implementation.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                        .SingleOrDefault(field => field.FieldType == callbacksType || field.FieldType == typeof(IEmulationEnvironmentCallbackHost));
+                    if (callbackField is not null)
+                    {
+                        callbackField.SetValue(core, callbackField.FieldType == typeof(IEmulationEnvironmentCallbackHost) ? sharedHost : nativeCallbacks);
+                        Assert.True((bool)signal.GetValue(core)!);
+                        linkedCores++;
+                    }
+                }
+                if (implementation.Name == "ProcessCore")
+                {
+                    processes++;
+                    var readers = implementation.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                        .Concat(implementation.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public).SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)))
+                        .Where(method => method.GetMethodBody() is not null).Select(GetCompiledCalls)
+                        .Where(calls => calls.Any(call => call.Method.Name == "ReadControllerFeedback")).ToArray();
+                    Assert.NotEmpty(readers);
+                    foreach (var calls in readers)
+                    {
+                        var feedback = calls.First(call => call.Method.Name == "ReadControllerFeedback").Offset;
+                        Assert.Contains(calls, call => call.Offset < feedback && call.Method.Name == "set_ShutdownRequested");
+                        Assert.Contains(calls, call => call.Offset < feedback && call.Method.DeclaringType == typeof(BinaryReader) && call.Method.Name == nameof(BinaryReader.ReadBoolean));
+                    }
+                }
+            }
+            var writers = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.CoreHost" || type.FullName!.Contains(".CoreHost", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).Select(GetCompiledCalls)
+                .Where(calls => calls.Any(call => call.Method.Name == "WriteControllerFeedback")).ToArray();
+            Assert.NotEmpty(writers);
+            foreach (var calls in writers)
+            {
+                var feedback = calls.First(call => call.Method.Name == "WriteControllerFeedback").Offset;
+                Assert.Contains(calls, call => call.Offset < feedback && call.Method.Name == "get_ShutdownRequested");
+                Assert.Contains(calls, call => call.Offset < feedback && call.Method.DeclaringType == typeof(BinaryWriter) && call.Method.Name == nameof(BinaryWriter.Write)
+                    && call.Method.GetParameters() is [{ ParameterType: var valueType }] && valueType == typeof(bool));
+            }
+            var loop = assembly.GetTypes().Where(type => type.FullName == root + ".Common.Services.Machine" || type.FullName!.StartsWith(root + ".Common.Services.Machine+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(loop, call => call.Method == signal.GetMethod);
+        }
+        Assert.True(callbacks >= 18);
+        Assert.Equal(23, processes);
+        Assert.Equal(22, linkedCores); // Example possède son propre signal simulé, sans hôte de callbacks natifs.
+    }
+    [Fact]
+    public void CadencedLoopStopsBeforeWaitingWhenTheCoreRequestsShutdown()
+    {
+        var frames = 0;
+        var waits = 0;
+        var running = true;
+        var commands = new System.Collections.Concurrent.ConcurrentQueue<EmulationMachineCommand>();
+        GWGUI.Emulation.EmulationSdk.MachineExecution.RunLoop(0, new object(), commands, () => false,
+            () => { frames++; running = false; }, () => 60, (timestamp, frequency) => timestamp + 1,
+            (timestamp, token) => waits++, CancellationToken.None, 1, () => running);
+        Assert.Equal(1, frames);
+        Assert.Equal(0, waits);
+        GWGUI.Emulation.EmulationSdk.MachineExecution.RunLoop(0, new object(), commands, () => false,
+            () => frames++, () => 60, (timestamp, frequency) => timestamp + 1,
+            (timestamp, token) => waits++, CancellationToken.None, 1, () => running);
+        Assert.Equal(1, frames);
+        Assert.Equal(0, waits);
+    }
 }

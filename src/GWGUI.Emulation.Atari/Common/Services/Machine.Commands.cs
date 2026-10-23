@@ -41,12 +41,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                         if (_core is IEmulatorAudioBufferFeedback feedback)
                             feedback.SetAudioBufferStatus(_audio.BufferStatus);
                         _core.RunFrame();
+                        if (_core.ShutdownRequested) return;
                         if (_core is IEmulatorAudioBufferFeedback latency)
                             _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
                         PublishOutputs(ref videoSequence);
                     },
                     () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
-                    cancellationToken, MachineConstants.PauseWaitMilliseconds);
+                    cancellationToken, MachineConstants.PauseWaitMilliseconds, () => !_core.ShutdownRequested);
             },
             error => () =>
             {

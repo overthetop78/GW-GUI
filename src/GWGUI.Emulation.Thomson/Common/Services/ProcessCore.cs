@@ -19,6 +19,9 @@ namespace GWGUI.Emulation.Thomson.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
 {
+    /// <inheritdoc/>
+    public bool ShutdownRequested { get; private set; }
+
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
 

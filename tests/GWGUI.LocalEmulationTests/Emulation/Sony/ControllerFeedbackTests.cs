@@ -165,6 +165,7 @@ public sealed class ControllerFeedbackTests
 
     private sealed class FeedbackCore : IEmulatorCore
     {
+        public bool ShutdownRequested => false;
         internal int FeedbackReads;
         internal bool Disposed;
         public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get { FeedbackReads++; return [new(0, EmulationControllerFeedbackCommands.Strong, .5f), new(0, EmulationControllerFeedbackCommands.Weak, 1f)]; } }

@@ -59,6 +59,8 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _feedback.Snapshot();
     public void ResetControllerFeedback(int port) => _feedback.ResetPort(port);
     public void SetOption(string key, string value) => _options.SetValue(key, value);
+    /// <inheritdoc/>
+    public bool ShutdownRequested { get; private set; }
     public int MinimumAudioLatencyMilliseconds { get; private set; }
 
     public void SetInput(EmulationInputSnapshot snapshot)
@@ -98,6 +100,9 @@ internal sealed class ExternalCoreEnvironmentCallbackHost : IEmulationEnvironmen
             if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
             switch (command)
             {
+                case ExternalCoreApiConstants.Shutdown:
+                    ShutdownRequested = true;
+                    return true;
                 case ExternalCoreApiConstants.GetRumbleInterface: return ExternalCoreEnvironmentFunctions.SetRumbleInterface(data, _setRumbleState);
                 case ExternalCoreApiConstants.SetAudioBufferStatusCallback:
                     var audioCallback = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);

@@ -50,6 +50,7 @@ internal static class CoreHost
                                     writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator);
                                 CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
+                                writer.Write(core.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
                                 break;
                             case HostCommand.RunFrame:
@@ -59,6 +60,7 @@ internal static class CoreHost
                                     (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
                                     CommonCoreHostFunctions.Protocol.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
+                                writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
                                 break;
                             case HostCommand.SoftReset:

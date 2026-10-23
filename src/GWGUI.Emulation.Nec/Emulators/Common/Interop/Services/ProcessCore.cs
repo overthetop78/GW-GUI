@@ -22,6 +22,9 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 internal sealed class ProcessCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public bool ShutdownRequested { get; private set; }
+
     /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
 
@@ -119,6 +122,7 @@ internal sealed class ProcessCore : IEmulatorCore
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CommonCoreHostFunctions.Protocol.ReadLedStates(Response, _displayName);
+            ShutdownRequested = Response.ReadBoolean();
             ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
             _initialized = true;
         }
@@ -147,6 +151,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CommonCoreHostFunctions.Protocol.ReadLedStates(Response, _displayName);
+        ShutdownRequested = Response.ReadBoolean();
         ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
     }
 

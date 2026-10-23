@@ -46,8 +46,8 @@ internal sealed class EmulationMachineExecutionService : IEmulationMachineExecut
         => ExternalCoreLifecycleFunctions.TryDisposeCore(core, reportFailure);
 
     /// <inheritdoc/>
-    public void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds)
-        => EmulationFrameTimer.RunLoop(nextFrame, gate, commands, isPaused, runFrame, framesPerSecond, nextFrameTimestamp, waitUntil, cancellationToken, pauseWaitMilliseconds);
+    public void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond, Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil, CancellationToken cancellationToken, int pauseWaitMilliseconds, Func<bool>? keepRunning = null)
+        => EmulationFrameTimer.RunLoop(nextFrame, gate, commands, isPaused, runFrame, framesPerSecond, nextFrameTimestamp, waitUntil, cancellationToken, pauseWaitMilliseconds, keepRunning);
 
     /// <inheritdoc/>
     public void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands, Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning, CancellationToken cancellationToken, int pauseWaitMilliseconds)

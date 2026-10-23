@@ -579,6 +579,7 @@ public sealed class AmstradEmulatorAdapterTests
 
     private sealed class RecordingCore : IEmulatorCore
     {
+        public bool ShutdownRequested => false;
         public VideoFrame? LatestVideoFrame => null;
         public AudioChunk? LatestAudioChunk => null;
         public IReadOnlyList<CoreOption> Options => [];

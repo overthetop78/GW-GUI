@@ -11127,6 +11127,182 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
 
 ## Opérations de cœur uniformes dans Common
 - [ ] Réunir les opérations existantes des cœurs sous les mêmes contrats Common.
+  - [x] Transmettre les demandes de fermeture des cœurs jusqu'à la boucle Common.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationEnvironmentCallbackHost.cs : exposer ShutdownRequested dans le contrat existant de callbacks.
+    - [x] Modifier src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs : mémoriser la demande native Shutdown et la publier sans libérer les ressources empruntées au callback.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorCore.cs : déclarer ShutdownRequested comme propriété obligatoire, avec sa documentation et sans valeur fictive par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : reconnaître Shutdown avant les autres callbacks et mémoriser ShutdownRequested pour la session courante.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : publier la demande réelle du callback natif ou celle reçue du processus hôte dans ShutdownRequested.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : écrire ShutdownRequested avant les retours de contrôleurs à l'initialisation et après chaque frame.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Host.cs : lire ShutdownRequested au même emplacement que l'hôte pour conserver l'alignement du protocole.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : arrêter la boucle lorsque le cœur demande sa fermeture, puis réutiliser le nettoyage existant dans finally.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMachineExecution.cs : ajouter une condition de poursuite facultative à la boucle cadencée existante pour terminer normalement après une demande du cœur, sans modifier les autres appels.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationMachineExecutionService.cs : ajouter une condition de poursuite facultative à la boucle cadencée existante pour terminer normalement après une demande du cœur, sans modifier les autres appels.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationFrameTimer.cs : ajouter une condition de poursuite facultative à la boucle cadencée existante pour terminer normalement après une demande du cœur, sans modifier les autres appels.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : transmettre la demande du cœur à la condition de poursuite de la boucle cadencée et conserver le retour void de son action de frame.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : déclarer explicitement l'absence de demande de fermeture dans le cœur synthétique existant.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : déclarer explicitement l'absence de demande de fermeture dans le cœur synthétique existant.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : déclarer explicitement l'absence de demande de fermeture dans le cœur synthétique existant.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : déclarer explicitement l'absence de demande de fermeture dans le cœur synthétique existant.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationFrameTimer.cs : conserver le nombre et l'ordre des consultations de garde dans RunFrames, en limitant la nouvelle condition à la surcharge cadencée.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les propriétés obligatoires des 24 familles, les demandes natives et la transmission hôte/client sans fichiers ni processus externes ; exécuter les vérifications et le build complet.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

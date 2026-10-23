@@ -96,7 +96,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                         if (_core.ShutdownRequested) _stopSource?.Cancel();
                     },
                     () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
-                    cancellationToken, MachineConstants.PauseWaitMilliseconds);
+                    cancellationToken, MachineConstants.PauseWaitMilliseconds, () => !_core.ShutdownRequested);
             },
             error => () =>
             {

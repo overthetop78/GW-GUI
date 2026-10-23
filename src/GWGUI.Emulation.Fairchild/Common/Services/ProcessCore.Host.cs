@@ -37,6 +37,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         CoreVersion = reader.ReadString();
         SupportedContentExtensions = reader.ReadString().Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
         LedStates = CoreHostFunctions.ReadLedStates(reader);
+        ShutdownRequested = reader.ReadBoolean();
         ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
@@ -54,6 +55,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (reader.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
+        ShutdownRequested = reader.ReadBoolean();
         ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(reader);
     }
 
