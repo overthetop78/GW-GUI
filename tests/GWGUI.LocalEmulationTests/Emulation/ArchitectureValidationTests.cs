@@ -71,6 +71,40 @@ public sealed class ArchitectureValidationTests
         }
         Assert.True(checkedConfigurations > 24);
     }
+    public sealed class ControllerDescriptionProbe
+    {
+        public List<IEmulationConfiguration> Configurations { get; } = [];
+
+        public IReadOnlyList<InputActionDefinition> Describe<TConfiguration, TPeripheral>(TConfiguration configuration, int port, TPeripheral peripheral) where TConfiguration : IEmulationConfiguration
+        {
+            Configurations.Add(configuration);
+            return [];
+        }
+    }
+
+    [Fact]
+    public void NativeControllerMappingPassesTheOriginalSessionToItsDescriptionCallback()
+    {
+        var assembly = Assembly.Load("gwgui.emulation.coleco");
+        const string root = "GWGUI.Emulation.Coleco";
+        var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+        var engine = Activator.CreateInstance(engineType)!;
+        var machine = ((IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!).First();
+        var configuration = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+        var functions = assembly.GetType(root + ".Emulators.Common.Interop.Functions.NativeInputSnapshotFunctions", throwOnError: true)!;
+        var apply = functions.GetMethod("Apply", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var callbackType = apply.GetParameters()[3].ParameterType;
+        var callbackArguments = callbackType.GetGenericArguments();
+        var probe = new ControllerDescriptionProbe();
+        var callbackMethod = typeof(ControllerDescriptionProbe).GetMethod(nameof(ControllerDescriptionProbe.Describe))!
+            .MakeGenericMethod(callbackArguments[0], callbackArguments[2]);
+        var callback = callbackMethod.CreateDelegate(callbackType, probe);
+        var core = configuration.GetType().GetProperty("Core")!.GetValue(configuration);
+        var snapshot = Assert.IsType<EmulationInputSnapshot>(apply.Invoke(null, [EmulationInputSnapshot.Empty, configuration, core, callback]));
+        Assert.NotEmpty(probe.Configurations);
+        Assert.All(probe.Configurations, captured => Assert.Same(configuration, captured));
+        Assert.Equal(probe.Configurations.Count, snapshot.Controllers.Count);
+    }
     public class FeedbackCoreProxy : DispatchProxy
     {
         public IReadOnlyList<ControllerFeedbackState> States { get; set; } = [];
@@ -1284,16 +1318,19 @@ public sealed class ArchitectureValidationTests
             var controllers = assembly.GetType(root + "IEmulatorControllerAdapter", throwOnError: true)!;
             var method = Assert.Single(controllers.GetMethods(), candidate => candidate.Name == "GetPeripherals");
             Assert.Equal("GetPeripherals", method.Name);
-            var model = Assert.Single(method.GetParameters()).ParameterType;
-            Assert.True(model.IsEnum);
+            var configurationType = Assert.Single(method.GetParameters()).ParameterType;
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(configurationType));
+            var engineType = assembly.GetType($"GWGUI.Emulation.{family}.Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var machineDefinitions = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
             foreach (var implementation in implementations)
             {
                 Assert.True(controllers.IsAssignableFrom(implementation));
                 var adapter = Activator.CreateInstance(implementation, nonPublic: true)!;
                 var peripheral = method.ReturnType.GetGenericArguments().Single();
                 var choices = implementation.Name == "FuseMachineFactory" ? Enum.GetNames(peripheral) : new[] { "None", "CursorJoystick" };
-                foreach (var value in Enum.GetValues(model))
-                    Assert.Equal(choices, ((System.Collections.IEnumerable)method.Invoke(adapter, [value])!).Cast<object>().Select(item => item.ToString()));
+                foreach (var machine in machineDefinitions)
+                    Assert.Equal(choices, ((System.Collections.IEnumerable)method.Invoke(adapter, [engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])])!).Cast<object>().Select(item => item.ToString()));
             }
         }
     }
@@ -1485,6 +1522,13 @@ public sealed class ArchitectureValidationTests
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+            foreach (var peripheralMethod in controllerContract.GetMethods().Where(method => method.Name is "GetPeripherals" or "DescribeInput"))
+            {
+                var first = peripheralMethod.GetParameters()[0];
+                Assert.Equal("configuration", first.Name);
+                Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(first.ParameterType));
+            }
             Assert.Null(assembly.GetType(root + ".Common.Contracts.InputActionDefinition"));
             Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.ControllerType"));
             var constructionEngine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
@@ -1638,9 +1682,9 @@ public sealed class ArchitectureValidationTests
             {
                 var describe = Assert.Single(controllers.GetMethods(), method => method.Name == "DescribeInput");
                 var descriptionParameters = describe.GetParameters();
-                Assert.Equal(new[] { "model", "port", "peripheral" }, descriptionParameters.Select(parameter => parameter.Name));
-                Assert.Equal("MachineModel", descriptionParameters[0].ParameterType.Name);
-                Assert.True(descriptionParameters[0].ParameterType.IsEnum);
+                Assert.Equal(new[] { "configuration", "port", "peripheral" }, descriptionParameters.Select(parameter => parameter.Name));
+                Assert.Equal("MachineConfiguration", descriptionParameters[0].ParameterType.Name);
+                Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(descriptionParameters[0].ParameterType));
                 Assert.Equal(typeof(int), descriptionParameters[1].ParameterType);
                 Assert.Equal("PeripheralCategory", descriptionParameters[2].ParameterType.Name);
                 Assert.True(descriptionParameters[2].ParameterType.IsEnum);
@@ -1651,7 +1695,7 @@ public sealed class ArchitectureValidationTests
                 foreach (var implementation in implementations)
                     Assert.All(implementation.GetInterfaceMap(controllers).TargetMethods, method => Assert.False(method.IsAbstract));
                 if (family == "Coleco")
-                    Assert.Single(controllers.GetMethods(), method => method.Name == "GetPeripherals" && method.GetParameters() is [{ Name: "model" }]);
+                    Assert.Single(controllers.GetMethods(), method => method.Name == "GetPeripherals" && method.GetParameters() is [{ Name: "configuration" }]);
             }
         }
         if (family is "Sharp" or "Sinclair" or "Snk")
@@ -1667,6 +1711,21 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(action, Assert.Single(actions.ReturnType.GetGenericArguments()));
             Assert.Null(assembly.GetType($"GWGUI.Emulation.{family}.Common.Contracts.InputActionDefinition"));
             if (family == "Sharp") Assert.Equal(typeof(bool), action.GetProperty("Analog")!.PropertyType);
+        }
+        if (family is "Coleco" or "Mattel" or "Philips" or "Sharp" or "Sinclair")
+        {
+            var settings = assembly.GetType($"GWGUI.Emulation.{family}.Common.Machines.Common.Functions.InputSettingsFunctions", throwOnError: true)!;
+            var peripherals = settings.GetMethod("Peripherals", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(Assert.Single(peripherals.GetParameters()).ParameterType));
+            Assert.Contains(GetCompiledCalls(peripherals), call => call.Method.Name == "GetPeripherals" && typeof(IEmulationConfiguration).IsAssignableFrom(call.Method.GetParameters()[0].ParameterType));
+        }
+        if (family is "Epoch" or "Fairchild" or "Mattel" or "Philips")
+        {
+            var snapshots = assembly.GetType($"GWGUI.Emulation.{family}.Common.Machines.Common.Dictionaries.InputSnapshotDictionary", throwOnError: true)!;
+            var actions = snapshots.GetMethod("Actions", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(actions.GetParameters()[0].ParameterType));
+            Assert.Contains(GetCompiledCalls(actions), call => call.Method.Name == "DescribeInput" && typeof(IEmulationConfiguration).IsAssignableFrom(call.Method.GetParameters()[0].ParameterType));
+            Assert.DoesNotContain(GetCompiledCalls(actions), call => call.Method is ConstructorInfo constructor && typeof(IEmulationConfiguration).IsAssignableFrom(constructor.DeclaringType));
         }
         foreach (var implementation in implementations)
         {

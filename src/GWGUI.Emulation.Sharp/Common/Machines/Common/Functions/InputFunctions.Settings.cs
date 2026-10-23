@@ -3,7 +3,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? ControllerCatalog.Peripherals(model) : new Engine().Adapter(core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals(model) : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineConfiguration configuration) => configuration.Core == Emulator.None ? ControllerCatalog.Peripherals(configuration.Model) : new Engine().Adapter(configuration.Core) is IEmulatorControllerAdapter mapper ? mapper.GetPeripherals(configuration) : [];
     internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     private static string ControllerResource(PeripheralCategory peripheral) => peripheral switch
     {
@@ -21,7 +21,7 @@ internal static class InputSettingsFunctions
     private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), input.Mouse);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
-        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));
+        var choices = Peripherals(configuration).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));
         if (port != ControllerConstants.FirstPort)
             choices = choices.Where(category => category is not PeripheralCategory.CyberstickAnalog and not PeripheralCategory.CyberstickDigital);
         return choices.ToArray();

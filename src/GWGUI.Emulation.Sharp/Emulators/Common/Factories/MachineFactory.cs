@@ -9,14 +9,14 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorCapabilities
 {
     /// <inheritdoc/>
-    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
 
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {
         var core = configuration.Core;
         var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
-        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(configuration.Model) }).ToArray();
+        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(configuration.Model) }).ToArray();
         var result = configuration with
         {
             Core = core,

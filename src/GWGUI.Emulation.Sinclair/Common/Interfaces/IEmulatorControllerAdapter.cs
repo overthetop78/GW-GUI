@@ -11,7 +11,7 @@ internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
     int GetControllerPortCount(MachineConfiguration configuration);
 
     /// <summary>Décrit les catégories de périphériques autorisées par cet adaptateur pour le modèle.</summary>
-    /// <param name="model">Modèle matériel dont les contrôleurs sont consultés.</param>
+    /// <param name="configuration">Modèle matériel dont les contrôleurs sont consultés.</param>
     /// <returns>Catégories existantes du backend, dans leur ordre de présentation.</returns>
-    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
 }

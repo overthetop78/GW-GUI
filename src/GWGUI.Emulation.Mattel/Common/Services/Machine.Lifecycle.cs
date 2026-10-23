@@ -100,7 +100,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
         QueueCommand(() =>
         {
-            if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration.Model, Configuration.Core).Contains(peripheral))
+            if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration).Contains(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
             var previous = _inputConfiguration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port);
             var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };

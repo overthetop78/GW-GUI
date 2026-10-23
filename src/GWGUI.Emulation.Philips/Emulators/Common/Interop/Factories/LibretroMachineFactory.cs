@@ -15,15 +15,15 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
 {
     public override async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (FirmwareIdentificationFunctions.ScanFileAsync(path, configuration.Model, Emulator, cancellationToken)).ConfigureAwait(false)];
 
-    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ConfigurationFunctions.Family(model) switch
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => ConfigurationFunctions.Family(configuration.Model) switch
     {
         MachineFamily.P2000 => [],
         MachineFamily.Videopac => [PeripheralCategory.Joystick, PeripheralCategory.None],
         MachineFamily.Cdi => [PeripheralCategory.CdiGamepad, PeripheralCategory.Mouse, PeripheralCategory.LightGun, PeripheralCategory.None],
-        _ => throw new ArgumentOutOfRangeException(nameof(model))
+        _ => throw new ArgumentOutOfRangeException(nameof(configuration))
     };
 
-    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

@@ -9,17 +9,17 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
-    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
 
     /// <inheritdoc/>
-    public abstract IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
+    public abstract IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral);
 
     /// <inheritdoc/>
     public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
     {
         var core = configuration.Core;
         var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
-        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration.Model, core).Contains(binding.Peripheral)
+        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration).Contains(binding.Peripheral)
             ? binding
             : binding with { Peripheral = configuration.Family == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick }).ToArray();
         var result = configuration with { Core = core, Options = options, Input = configuration.Input with { Controllers = controllers } };

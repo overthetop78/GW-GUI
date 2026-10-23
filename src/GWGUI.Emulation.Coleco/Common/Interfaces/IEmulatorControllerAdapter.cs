@@ -10,13 +10,13 @@ internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
     int GetControllerPortCount(MachineConfiguration configuration);
 
     /// <summary>Décrit les catégories de périphériques autorisées par cet adaptateur.</summary>
-    /// <param name="model">Modèle matériel dont les périphériques sont consultés.</param>
+    /// <param name="configuration">Modèle matériel dont les périphériques sont consultés.</param>
     /// <returns>Choix existants du backend dans leur ordre de présentation.</returns>
-    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
     /// <summary>Décrit les commandes et associations proposées pour le périphérique émulé.</summary>
-    /// <param name="model">Modèle matériel dont les commandes sont décrites.</param>
+    /// <param name="configuration">Modèle matériel dont les commandes sont décrites.</param>
     /// <param name="peripheral">Catégorie du périphérique émulé à décrire.</param>
     /// <param name="port">Indice du port émulé, commençant à zéro.</param>
     /// <returns>Descriptions existantes du backend, conservées dans leur ordre de présentation.</returns>
-    IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral);
+    IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral);
 }

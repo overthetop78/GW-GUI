@@ -73,7 +73,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationRuntime Runtime => this;
     bool IEmulationInput.SupportsPointerCapture => Configuration.Core == Emulator.PD777;
     bool IEmulationInput.CapturePointerOnClick => false;
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration.Input, Configuration.Model);
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration);
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
     bool IEmulationInput.ControllerPointerMode => false;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;

@@ -13,7 +13,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     {
         var core = configuration.Core;
         var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
-        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(configuration.Model) }).ToArray();
+        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(configuration.Model) }).ToArray();
         var result = configuration with
         {
             Core = core,
@@ -56,7 +56,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     bool IEmulatorInitialContentSettings.SupportsInitialContent => SupportsInitialContent;
     protected virtual bool SupportsInitialContent => false;
-    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
     /// <summary>Projette les sources physiques vers les entrées du cœur par le même contrat que la description des contrôleurs.</summary>
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
     public virtual bool SupportsPointer(MachineConfiguration configuration) => false;

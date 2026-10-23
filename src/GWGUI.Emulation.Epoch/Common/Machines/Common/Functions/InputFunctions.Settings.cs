@@ -10,12 +10,12 @@ internal static class InputSettingsFunctions
         return [PeripheralCategory.Standard];
     }
 
-    internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model)
+    internal static IReadOnlyDictionary<string, string> KeyboardBindings(MachineConfiguration configuration)
     {
         var result = new Dictionary<string, string>(StringComparer.Ordinal);
-        var core = ConfigurationFunctions.DefaultEmulator(model);
+        var input = configuration.Input;
         var controller = input.Controllers?.FirstOrDefault(item => item.Port == ControllerConstants.FirstPort);
-        foreach (var action in InputSnapshotDictionary.Actions(model, core, ControllerConstants.FirstPort))
+        foreach (var action in InputSnapshotDictionary.Actions(configuration, ControllerConstants.FirstPort))
         {
             if (action.Key is not (EmulationKey.EpochPower or EmulationKey.EpochReset)) continue;
             var mapping = controller?.Mappings?.GetValueOrDefault(action.Id, action.DefaultBinding) ?? action.DefaultBinding;
@@ -31,7 +31,7 @@ internal static class InputSettingsFunctions
     {
         var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
-            var definitions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, port).Select(action => action.Definition).ToArray();
+            var definitions = InputSnapshotDictionary.Actions(configuration, port).Select(action => action.Definition).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var choice = new EmulationControllerChoice(PeripheralCategory.Standard.ToString(),
                 "Emulation.Epoch.Controller." + configuration.Model, BindingDefinitions: definitions,
@@ -121,13 +121,13 @@ internal static class InputSettingsFunctions
     {
         if (configuration.Input.Keyboard is not null)
         {
-            var allowed = KeyboardBindings(new InputConfiguration(), configuration.Model).Keys.ToHashSet(StringComparer.Ordinal);
+            var allowed = KeyboardBindings(configuration with { Input = new InputConfiguration() }).Keys.ToHashSet(StringComparer.Ordinal);
             if (configuration.Input.Keyboard.Any(pair => !allowed.Contains(pair.Key)))
                 throw new ArgumentException(nameof(configuration.Input));
         }
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
-            var actions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            var actions = InputSnapshotDictionary.Actions(configuration, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (EmulationSdk.InputProcessing.HasInvalidBindings(controller.Mappings, actions, EmulationSdk.InputProcessing.IsValidSourcePrefix))
                 throw new ArgumentException(nameof(configuration.Input));
         }

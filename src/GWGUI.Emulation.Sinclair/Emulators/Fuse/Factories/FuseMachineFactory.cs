@@ -10,7 +10,7 @@ namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories;
 
 internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
 {
-    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => Enum.GetValues<PeripheralCategory>();
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => Enum.GetValues<PeripheralCategory>();
     protected override bool SupportsInitialContent => true;
 
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);

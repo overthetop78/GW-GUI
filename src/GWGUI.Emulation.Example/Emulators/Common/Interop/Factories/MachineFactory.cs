@@ -200,11 +200,11 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public bool SupportsPointer(MachineConfiguration configuration) => InputSettingsFunctions.SupportsMouse(configuration);
     /// <inheritdoc/>
-    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => Enum.GetValues<PeripheralCategory>();
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => Enum.GetValues<PeripheralCategory>();
     /// <inheritdoc/>
     public int GetControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration.Model);
     /// <inheritdoc/>
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral) => InputSettingsFunctions.ControllerDefinitions(peripheral).Select(definition => new InputActionDefinition(definition)).ToArray();
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => InputSettingsFunctions.ControllerDefinitions(peripheral).Select(definition => new InputActionDefinition(definition)).ToArray();
     /// <inheritdoc/>
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => InputSnapshotFunctions.Apply(snapshot, configuration.Input);
     /// <inheritdoc/>

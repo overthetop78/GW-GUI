@@ -8,9 +8,9 @@ namespace GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
 
 internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaCapabilities
 {
-    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port, PeripheralCategory peripheral)
+    public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
-        var actions = ControllerProtocolDictionary.Actions(model, Emulator.PD777, port);
+        var actions = ControllerProtocolDictionary.Actions(configuration.Model, Emulator.PD777, port);
         return actions.Select(action => new InputActionDefinition(action.Definition with
         {
             OppositeDirectionId = action.Axis >= 0 ? actions.Single(other => other.Axis == action.Axis && other.Direction == -action.Direction).Id : action.Definition.OppositeDirectionId

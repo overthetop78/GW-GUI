@@ -3,7 +3,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? [PeripheralCategory.None] : new Engine().Adapter(core) is IEmulatorControllerAdapter input ? input.GetPeripherals(model) : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [PeripheralCategory.None] : new Engine().Adapter(configuration.Core) is IEmulatorControllerAdapter input ? input.GetPeripherals(configuration) : [];
     internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None
         && new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     internal static bool SupportsInitialContent(MachineConfiguration configuration) => configuration.Core != Emulator.None
@@ -23,7 +23,7 @@ internal static class InputSettingsFunctions
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;
-        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);
+        var choices = Peripherals(configuration).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);
         return choices.ToArray();
     }
 
