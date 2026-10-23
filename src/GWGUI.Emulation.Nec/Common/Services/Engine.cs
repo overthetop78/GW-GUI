@@ -187,8 +187,7 @@ internal sealed class Engine
     private async Task SaveMachineAsync(MachineConfiguration machine, CancellationToken cancellationToken)
     {
         await _store.SaveAsync(machine, cancellationToken).ConfigureAwait(false);
-        if (this.Adapter(machine) is IEmulatorPersistentStorage persistentStorage)
-            persistentStorage.EnsurePersistentStorage(machine, _store.MemoryDirectory(machine.Id));
+        this.Adapter(machine).EnsurePersistentStorage(machine, _store.MemoryDirectory(machine.Id));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)

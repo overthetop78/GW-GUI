@@ -144,10 +144,22 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         if (configuration.Core != Emulator)
             throw new ArgumentException(nameof(configuration));
         var machineId = Guid.NewGuid();
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         var core = new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator, hostCommand: CoreHostConstants.CommandLineArgument);
-        return new Machine(machineId, configuration, core,
-            Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
-            saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this, runtimePolicy: this);
+        var completed = false;
+        try
+        {
+            var machine = new Machine(machineId, configuration, core,
+                Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
+                saveDirectory: saveDirectory, inputMapper: this, runtimePolicy: this);
+            completed = true;
+            return machine;
+        }
+        finally
+        {
+            if (!completed) core.Dispose();
+        }
     }
 }

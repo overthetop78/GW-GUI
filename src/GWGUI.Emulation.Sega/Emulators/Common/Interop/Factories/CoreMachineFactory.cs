@@ -90,12 +90,14 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         var machineId = Guid.NewGuid();
         var native = Configure(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         ProcessCore? core = null;
         var ownershipTransferred = false;
         try
         {
             core = new ProcessCore(context.HostExecutablePath, context.CorePath);
-            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, null, context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, null, saveDirectory, inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
             ownershipTransferred = true;
             return machine;
         }

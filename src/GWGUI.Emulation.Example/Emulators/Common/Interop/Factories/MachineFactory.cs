@@ -114,7 +114,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
             Directory.CreateDirectory(sessionDirectory);
             PrepareFirmware(configuration, Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName));
             var saves = context.SaveDirectoryResolver?.Invoke(configuration);
-            if (saves is not null) EnsurePersistentStorage(configuration, saves);
+            if (saves is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saves);
             core = CreateCore();
             var machine = new Machine(sessionId, configuration, core, sessionDirectory, saveDirectory: saves,
                 audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore,                 supportsNoContent: SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,

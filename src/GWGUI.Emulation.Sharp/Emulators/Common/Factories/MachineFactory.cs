@@ -73,6 +73,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model))
             throw new ArgumentException(nameof(configuration));
         var id = Guid.NewGuid();
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         var core = CreateCore(configuration, context);
         var completed = false;
         try
@@ -83,7 +85,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
-                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                saveDirectory: saveDirectory,
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,

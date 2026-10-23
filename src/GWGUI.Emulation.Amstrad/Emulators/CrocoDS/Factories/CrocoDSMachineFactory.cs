@@ -126,9 +126,22 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
             Options = (configuration.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
                 .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
         };
-        return new Machine(id, native, new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: SupportsPointer(configuration)),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            null,
-            context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
+        var core = new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: SupportsPointer(configuration));
+        var completed = false;
+        try
+        {
+            var machine = new Machine(id, native, core,
+                native.Media ?? [], Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                null,
+                saveDirectory, inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+            completed = true;
+            return machine;
+        }
+        finally
+        {
+            if (!completed) core.Dispose();
+        }
     }
 }

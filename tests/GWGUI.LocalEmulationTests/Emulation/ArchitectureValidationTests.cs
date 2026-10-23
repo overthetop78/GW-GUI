@@ -2,6 +2,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using GWGUI.Emulation.Constants;
@@ -13,6 +14,94 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void EveryCommonPreparesPersistentStorageBeforeCreatingOwnedCores()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var opcodes = typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.FieldType == typeof(OpCode))
+            .Select(field => (OpCode)field.GetValue(null)!).GroupBy(opcode => unchecked((ushort)opcode.Value)).ToDictionary(group => group.Key, group => group.First());
+        List<(int Offset, MethodBase Method)> Calls(MethodInfo source)
+        {
+            var code = source.GetMethodBody()!.GetILAsByteArray()!;
+            var result = new List<(int, MethodBase)>();
+            for (var offset = 0; offset < code.Length;)
+            {
+                var start = offset;
+                ushort value = code[offset++];
+                if (value == 0xfe) value = (ushort)(0xfe00 | code[offset++]);
+                var opcode = opcodes[value];
+                if (opcode.OperandType == OperandType.InlineMethod)
+                    result.Add((start, source.Module.ResolveMethod(BitConverter.ToInt32(code, offset), source.DeclaringType?.GetGenericArguments(), source.GetGenericArguments())!));
+                offset += opcode.OperandType switch
+                {
+                    OperandType.InlineNone => 0,
+                    OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar => 1,
+                    OperandType.InlineVar => 2,
+                    OperandType.InlineBrTarget or OperandType.InlineField or OperandType.InlineI or OperandType.InlineMethod or OperandType.InlineSig or OperandType.InlineString or OperandType.InlineTok or OperandType.InlineType or OperandType.ShortInlineR => 4,
+                    OperandType.InlineI8 or OperandType.InlineR => 8,
+                    OperandType.InlineSwitch => 4 + 4 * BitConverter.ToInt32(code, offset),
+                    _ => throw new InvalidOperationException(opcode.Name)
+                };
+            }
+            return result;
+        }
+        var creationMethods = new HashSet<MethodInfo>();
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorPersistentStorage", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            var prepare = Assert.Single(contract.GetMethods());
+            Assert.Equal("EnsurePersistentStorage", prepare.Name);
+            Assert.Equal(typeof(void), prepare.ReturnType);
+            Assert.True(prepare.IsAbstract);
+            var parameters = prepare.GetParameters();
+            Assert.Equal(new[] { "configuration", "directory" }, parameters.Select(parameter => parameter.Name));
+            var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration")!;
+            Assert.Equal(new[] { configuration, typeof(string) }, parameters.Select(parameter => parameter.ParameterType));
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var target = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+                var concrete = implementation.GetMethod(prepare.Name, BindingFlags.Public | BindingFlags.Instance, [configuration, typeof(string)]);
+                if (concrete is not null) Assert.Equal(concrete, target);
+                else
+                {
+                    Assert.Equal(adapter, target.DeclaringType);
+                    Assert.Empty(Calls(target)); // Vérification préalable : ce défaut n'appelle aucune API de fichiers.
+                    Assert.Null(prepare.Invoke(RuntimeHelpers.GetUninitializedObject(implementation), [RuntimeHelpers.GetUninitializedObject(configuration), "unused"]));
+                }
+                var create = implementation.GetMethod("Create", BindingFlags.Public | BindingFlags.Instance)!;
+                // Une même méthode héritée peut avoir plusieurs ReflectedType : contrôler sa déclaration une seule fois.
+                create = create.DeclaringType!.GetMethod(create.Name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly,
+                    create.GetParameters().Select(parameter => parameter.ParameterType).ToArray())!;
+                if (!creationMethods.Add(create)) continue;
+                var calls = Calls(create);
+                var preparation = Assert.Single(calls, call => call.Method == prepare);
+                var resolver = Assert.Single(calls, call => call.Method.Name == "Invoke" && call.Method.GetParameters().Select(parameter => parameter.ParameterType).SequenceEqual([configuration]) && call.Method is MethodInfo { ReturnType: var result } && result == typeof(string));
+                Assert.True(resolver.Offset < preparation.Offset, create.DeclaringType!.FullName);
+                var core = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore")!;
+                var allocation = calls.First(call => call.Method is ConstructorInfo constructor && core.IsAssignableFrom(constructor.DeclaringType)
+                    || call.Method is MethodInfo method && core.IsAssignableFrom(method.ReturnType));
+                Assert.True(preparation.Offset < allocation.Offset, create.DeclaringType!.FullName);
+                var machine = Assert.Single(calls, call => call.Method is ConstructorInfo constructor && constructor.DeclaringType == create.ReturnType);
+                var cleanup = Assert.Single(create.GetMethodBody()!.ExceptionHandlingClauses, clause => clause.Flags == ExceptionHandlingClauseOptions.Finally && clause.TryOffset <= machine.Offset && machine.Offset < clause.TryOffset + clause.TryLength);
+                Assert.Contains(calls, call => call.Method.Name == "Dispose" && cleanup.HandlerOffset <= call.Offset && call.Offset < cleanup.HandlerOffset + cleanup.HandlerLength);
+            }
+        }
+        Assert.Equal(24, creationMethods.Count);
+    }
+
     [Fact]
     public void EveryCommonSelectsConfigurationThroughTheSameAdapterContract()
     {

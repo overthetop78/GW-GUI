@@ -79,6 +79,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         var native = Configure(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         PrepareSession(configuration, context, sessionDirectory);
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         ProcessCore? core = null;
         var ownershipTransferred = false;
         try
@@ -87,7 +89,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
             core = new ProcessCore(context.HostExecutablePath, context.CorePath,
                 displayName: definition.TransportDisplayName, errorPrefix: definition.ErrorResourcePrefix);
             var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, null,
-                context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+                saveDirectory, inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
             ownershipTransferred = true;
             return machine;
         }

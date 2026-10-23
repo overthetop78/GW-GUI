@@ -45,7 +45,7 @@ public sealed class EmulationArchitectureTests
         Assert.All(MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
         Assert.Equal(new[]
         {
-            "ApplyDeviceSettings", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "Create", "Definition", "DescribeDeviceSettings", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
+            "ApplyDeviceSettings", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "Create", "Definition", "DescribeDeviceSettings", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "EnsurePersistentStorage", "FindInstalledCorePathAsync",
             "FindReleasesAsync", "GetInstallationAsync", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetOutputResolution", "HasFixedMemoryCardDirectories", "InstallAsync", "MapInput", "MemoryCardInsertedOptionKey", "RequiresMediaRestart", "RequiresOptionRestart",
             "ResolveConfiguredMedia", "ScanFirmwareFileAsync", "SelectConfiguration", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey"

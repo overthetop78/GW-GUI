@@ -85,6 +85,8 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
             throw new PlatformNotSupportedException();
         IEmulatorCore CreateCore() => OperatingSystem.IsWindows() ? new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator.Theodore) : throw new PlatformNotSupportedException();
         var id = Guid.NewGuid();
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         var core = CreateCore();
         var completed = false;
         try
@@ -95,7 +97,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
-                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                saveDirectory: saveDirectory,
                 coreFactory: CreateCore,
                 supportsPointerCapture: SupportsPointer(configuration),
                 supportsNoContent: true, inputMapper: this, runtimePolicy: this);

@@ -99,6 +99,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
             throw new ArgumentException(nameof(configuration));
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
         var id = Guid.NewGuid();
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
         var core = new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator);
         var completed = false;
         try
@@ -106,7 +108,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
             var machine = new Machine(id, configuration, core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
-                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                saveDirectory: saveDirectory,
                 coreFactory: () => new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator), inputMapper: this, runtimePolicy: this);
             completed = true;
             return machine;

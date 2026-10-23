@@ -87,10 +87,23 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapab
     {
         var machineId = Guid.NewGuid();
         var native = Caprice32OptionFunctions.ToNative(configuration.EnsureId());
-        return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            null,
-            context.SaveDirectoryResolver?.Invoke(configuration), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configuration);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configuration, saveDirectory);
+        var core = new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath);
+        var completed = false;
+        try
+        {
+            var machine = new Machine(machineId, native,
+                core,
+                native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                null,
+                saveDirectory, inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+            completed = true;
+            return machine;
+        }
+        finally
+        {
+            if (!completed) core.Dispose();
+        }
     }
 }

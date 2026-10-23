@@ -1,6 +1,12 @@
 namespace GWGUI.Emulation.Acorn.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
+internal interface IEmulatorAdapter : IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
+    /// <summary>Conserve les fichiers persistants existants si le backend ne demande aucune préparation supplémentaire.</summary>
+    /// <param name="configuration">Configuration empruntée décrivant les supports de la machine.</param>
+    /// <param name="directory">Dossier persistant fourni par Common, distinct du dossier temporaire de session.</param>
+    /// <remarks>Ce comportement ne crée ni dossier ni fichier. Une implémentation concrète prépare uniquement les données requises par son cœur.</remarks>
+    void IEmulatorPersistentStorage.EnsurePersistentStorage(MachineConfiguration configuration, string directory) { }
+
     /// <summary>Conserve la configuration préparée par Common si le backend ne demande aucune adaptation lors de sa sélection.</summary>
     /// <param name="configuration">Configuration empruntée portant le cœur choisi et les données existantes.</param>
     /// <returns>La même instance ; une implémentation concrète conserve les données qui ne concernent pas ses contraintes.</returns>

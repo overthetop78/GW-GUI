@@ -131,6 +131,8 @@ internal abstract class MachineFactory : IEmulatorAdapter
     {
         var machineId = Guid.NewGuid();
         var configured = PrepareConfiguration(configuration.EnsureId());
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configured);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configured, saveDirectory);
         var core = new ProcessCore(context.HostExecutablePath, context.CorePath);
         var ownershipTransferred = false;
         try
@@ -138,7 +140,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
             var machine = new Machine(machineId, configured, core,
                 ExternalCore.ResolveConfiguredMedia(configured),
                 Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                null, context.SaveDirectoryResolver?.Invoke(configured),
+                null, saveDirectory,
                 startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
             ownershipTransferred = true;
             return machine;
