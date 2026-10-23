@@ -76,7 +76,6 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
                 configuration,
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                (_, _) => false,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
@@ -90,4 +89,7 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
                 core.Dispose();
         }
     }
+
+    /// <inheritdoc/>
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => false;
 }

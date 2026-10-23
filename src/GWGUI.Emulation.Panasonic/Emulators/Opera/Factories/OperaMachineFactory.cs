@@ -81,7 +81,6 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
                 configuration,
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                (slot, _) => slot == EmulationMediaSlot.Cd0,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
@@ -95,4 +94,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
                 core.Dispose();
         }
     }
+
+    /// <inheritdoc/>
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => slot == EmulationMediaSlot.Cd0;
 }

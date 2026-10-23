@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Contracts;
+
 namespace GWGUI.Emulation.Example.Common.Constants;
 
 
@@ -53,5 +55,9 @@ public static class MediaConstants
     internal static IReadOnlyList<string> HardDiskExtensions { get; } = Array.AsReadOnly<string>([".img", ".ima", ".hdf", ".vhd", ".vhdx"]);
     /// <summary>Images de carte mémoire utilisées par la simulation, sans écriture dans le contenu utilisateur.</summary>
     internal static IReadOnlyList<string> MemoryCardExtensions { get; } = Array.AsReadOnly<string>([".sav", ".mcd", ".mem", ".bin"]);
+
+    /// <summary>Emplacements qui imposent une recréation dans la politique de base du module.</summary>
+    /// <remarks>Cette liste appartient au module et reste protégée contre les modifications. Une liste vide autorise les échanges à chaud de base.</remarks>
+    internal static IReadOnlyList<EmulationMediaSlot> RestartSlots { get; } = Array.AsReadOnly<EmulationMediaSlot>([]);
 }
 

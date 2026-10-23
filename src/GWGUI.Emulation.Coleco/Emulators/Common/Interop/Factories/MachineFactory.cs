@@ -1,3 +1,4 @@
+using CommonMediaRuntimeFunctions = GWGUI.Emulation.Coleco.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
@@ -11,6 +12,9 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => CommonMediaRuntimeFunctions.RequiresMediaRestart(slot);
+
     /// <inheritdoc/>
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
 

@@ -899,6 +899,24 @@ public sealed class ArchitectureValidationTests
                 .Where(method => method.Name.Contains("AvailableOptions", StringComparison.Ordinal))
                 .Select(method => method.GetMethodBody()?.GetILAsByteArray()).Where(body => body is not null).Cast<byte[]>().ToArray();
             Assert.Contains(projections, body => new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(option.MetadataToken)).ToArray()) >= 0));
+            if (root is "GWGUI.Emulation.Apple" or "GWGUI.Emulation.Bandai" or "GWGUI.Emulation.Coleco" or "GWGUI.Emulation.Epoch" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Fairchild" or "GWGUI.Emulation.Mattel" or "GWGUI.Emulation.Panasonic" or "GWGUI.Emulation.Philips" or "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair" or "GWGUI.Emulation.Snk" or "GWGUI.Emulation.Thomson" or "GWGUI.Emulation.Watara" or "GWGUI.Emulation.Wenquxing")
+            {
+                var decision = machine.GetMethod("NeedsMediaRestart", BindingFlags.Instance | BindingFlags.NonPublic)!;
+                var body = decision.GetMethodBody()!.GetILAsByteArray()!;
+                Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(media.MetadataToken)).ToArray()) >= 0), root);
+            }
+            if (root is "GWGUI.Emulation.Bandai" or "GWGUI.Emulation.Coleco" or "GWGUI.Emulation.Epoch" or "GWGUI.Emulation.Example" or "GWGUI.Emulation.Fairchild")
+            {
+                var rules = assembly.GetType(root + ".Common.Machines.Common.Functions.MediaRuntimeFunctions", throwOnError: true)!;
+                var decision = rules.GetMethod("RequiresMediaRestart", BindingFlags.Static | BindingFlags.NonPublic)!;
+                foreach (var category in Enum.GetValues<EmulationMediaCategory>())
+                    foreach (var index in new[] { -1, 0, 1, 4, 128 })
+                    {
+                        var slot = new EmulationMediaSlot(category, index);
+                        var expected = root != "GWGUI.Emulation.Example" && (slot == EmulationMediaSlot.Cartridge0 || root == "GWGUI.Emulation.Bandai" && slot == EmulationMediaSlot.Cd0);
+                        Assert.Equal(expected, decision.Invoke(null, [slot]));
+                    }
+            }
             var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.Contains(contract, adapter.GetInterfaces());
             var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic);

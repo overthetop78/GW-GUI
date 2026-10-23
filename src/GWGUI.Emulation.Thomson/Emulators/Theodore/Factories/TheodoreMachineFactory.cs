@@ -79,7 +79,6 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 configuration,
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                (_, _) => true,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore,
@@ -94,4 +93,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
                 core.Dispose();
         }
     }
+
+    /// <inheritdoc/>
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
 }

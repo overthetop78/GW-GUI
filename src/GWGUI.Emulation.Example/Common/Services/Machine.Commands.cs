@@ -231,11 +231,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         else _core.SoftReset();
     }
 
-    /// <summary>Consulte la règle du backend pour le remplacement d’un média.</summary>
+    /// <summary>Consulte le callback explicite puis la politique du backend pour le remplacement d’un média.</summary>
     /// <param name="slot">Lecteur logique visé.</param>
     /// <param name="path">Chemin du prochain média, ou null pour une éjection.</param>
     /// <returns>True lorsque cette modification exige un nouveau cœur.</returns>
-    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => _requiresMediaRestart(slot, path);
+    /// <remarks>Un callback fourni conserve sa priorité. En son absence, la politique reçoit la configuration ; sans décision disponible, la méthode retourne false.</remarks>
+    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>
+        _requiresMediaRestart?.Invoke(slot, path) ?? _runtimePolicy?.RequiresMediaRestart(Configuration, slot, path) ?? false;
 
     /// <summary>Arrête et libère le cœur en attendant un média nécessaire à sa recréation.</summary>
     /// <remarks>L’état de pause antérieur est mémorisé. La sortie audio est arrêtée, le cœur est détruit dans

@@ -79,7 +79,6 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
                 configuration,
                 core,
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-                (_, _) => true,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: CreateCore, inputMapper: this, runtimePolicy: this);
@@ -92,4 +91,7 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
                 core.Dispose();
         }
     }
+
+    /// <inheritdoc/>
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
 }

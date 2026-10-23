@@ -12,6 +12,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
     private readonly IEmulatorRuntimePolicy? _runtimePolicy;
+    /// <summary>Callback média explicite emprunté ; il prime sur la politique du backend.</summary>
+    private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly IEmulatorInputMapper? _inputMapper;
@@ -35,10 +37,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, Func<EmulationMediaSlot, string?, bool>? requiresMediaRestart = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
         _runtimePolicy = runtimePolicy;
+        _requiresMediaRestart = requiresMediaRestart ?? (runtimePolicy is null ? (slot, _) => MediaRuntimeFunctions.RequiresMediaRestart(slot) : null);
         Configuration = configuration;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _inputConfiguration = configuration;

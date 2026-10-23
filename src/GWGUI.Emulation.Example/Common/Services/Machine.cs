@@ -27,9 +27,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IEmulatorCore _core;
     /// <summary>Fabrique empruntée permettant de créer un cœur de remplacement après libération du précédent.</summary>
     private readonly Func<IEmulatorCore>? _coreFactory;
-    /// <summary>Règle du backend déterminant les modifications de média qui imposent une recréation.</summary>
-    private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
-    /// <summary>Règles complémentaires du backend pour le redémarrage des options.</summary>
+    /// <summary>Callback média explicite emprunté, prioritaire lorsqu’il est fourni.</summary>
+    private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
+    /// <summary>Politique empruntée du backend pour les changements de médias et d’options.</summary>
     private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     /// <summary>Indique que la réinitialisation du backend exige une recréation de son cœur.</summary>
     private readonly bool _requiresResetRestart;
@@ -93,7 +93,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <param name="saveDirectory">Dossier facultatif des données persistantes du cœur.</param>
     /// <param name="audioOutputFactory">Fabrique facultative de sorties possédées par le contrôleur.</param>
     /// <param name="coreFactory">Fabrique du même backend pour recréer le cœur après arrêt et destruction.</param>
-    /// <param name="requiresMediaRestart">Règle facultative de recréation ; la politique du backend est utilisée si elle existe.</param>
+    /// <param name="requiresMediaRestart">Callback média emprunté et prioritaire ; sans callback, la politique du backend est consultée.</param>
     /// <param name="requiresResetRestart">Demande de recréation du cœur pour une réinitialisation.</param>
     /// <param name="supportsNoContent">Capacité de poursuivre la session sans média.</param>
     /// <param name="supportsPointerCapture">Capacité supplémentaire de capture du pointeur, combinée aux périphériques déclarés.</param>
@@ -117,7 +117,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _configuration = configuration;
         var adapter = new Engine().SelectedAdapter(configuration);
         _runtimePolicy = runtimePolicy ?? adapter;
-        _requiresMediaRestart = requiresMediaRestart ?? (_runtimePolicy is null ? static (_, _) => false : (slot, path) => _runtimePolicy.RequiresMediaRestart(configuration, slot, path));
+        _requiresMediaRestart = requiresMediaRestart;
         _coreFactory = coreFactory;
         _requiresResetRestart = requiresResetRestart;
         _supportsNoContent = supportsNoContent;

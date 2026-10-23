@@ -134,7 +134,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _core.HardReset();
     }
 
-    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => slot == EmulationMediaSlot.Cartridge0;
+    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>
+        _requiresMediaRestart?.Invoke(slot, path) ?? _runtimePolicy?.RequiresMediaRestart(Configuration, slot, path) ?? false;
 
     private void SuspendForMedia()
     {

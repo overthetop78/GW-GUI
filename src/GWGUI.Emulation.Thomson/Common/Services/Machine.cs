@@ -16,7 +16,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
     private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
-    private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
+    private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -41,7 +41,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         MachineConfiguration configuration,
         IEmulatorCore core,
         string sessionDirectory,
-        Func<EmulationMediaSlot, string?, bool> requiresMediaRestart,
+        Func<EmulationMediaSlot, string?, bool>? requiresMediaRestart = null,
         IAudioOutput? audioOutput = null,
         string? saveDirectory = null,
         Func<IAudioOutput?>? audioOutputFactory = null,
@@ -58,7 +58,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _core = core;
         _inputMapper = inputMapper;
         _coreFactory = coreFactory;
-        _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
+        _requiresMediaRestart = requiresMediaRestart;
+        if (_requiresMediaRestart is null && _runtimePolicy is null) throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);

@@ -1,3 +1,4 @@
+using CommonMediaRuntimeFunctions = GWGUI.Emulation.Example.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using System.Globalization;
 using System.IO;
 using GWGUI.Emulation.Constants;
@@ -116,8 +117,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
             if (saves is not null) EnsurePersistentStorage(configuration, saves);
             core = CreateCore();
             var machine = new Machine(sessionId, configuration, core, sessionDirectory, saveDirectory: saves,
-                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore, requiresMediaRestart: (slot, path) => RequiresMediaRestart(configuration, slot, path),
-                supportsNoContent: SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
+                audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore,                 supportsNoContent: SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
                 cassetteInput: configuration.Model == MachineModel.ExampleMachineA ? new CassetteInputController(configuration) : null, runtimePolicy: this);
             transferred = true;
             return machine;
@@ -239,7 +239,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public void EnsurePersistentStorage(MachineConfiguration configuration, string directory) => Directory.CreateDirectory(directory);
     /// <inheritdoc/>
-    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => false;
+    public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => CommonMediaRuntimeFunctions.RequiresMediaRestart(slot);
     /// <inheritdoc/>
     public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => OptionCatalog.All.Any(option => option.Key == key && option.RequiresRestart);
     /// <inheritdoc/>

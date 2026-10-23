@@ -1,3 +1,4 @@
+using CommonMediaConstants = GWGUI.Emulation.Example.Common.Constants.MediaConstants;
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
 /// <summary>Tenue des montages pendant les commandes sérialisées de la machine.</summary>
@@ -21,4 +22,9 @@ internal static class MediaRuntimeFunctions
         var index = mountedMedia.FindIndex(item => item.Slot == slot);
         if (index >= 0) mountedMedia[index] = mountedMedia[index] with { IsInserted = false };
     }
+
+    /// <summary>Consulte les emplacements imposant une recréation dans les règles de base.</summary>
+    /// <param name="slot">Emplacement logique à comparer aux données immuables du module.</param>
+    /// <returns>True si cet emplacement figure dans RestartSlots ; false pour les autres emplacements.</returns>
+    internal static bool RequiresMediaRestart(EmulationMediaSlot slot) => CommonMediaConstants.RestartSlots.Contains(slot);
 }

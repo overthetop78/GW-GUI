@@ -17,7 +17,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly IEmulatorInputMapper? _inputMapper;
-    private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
+    private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -36,7 +36,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private bool _disposed;
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
-        string sessionDirectory, Func<EmulationMediaSlot, string?, bool> requiresMediaRestart,
+        string sessionDirectory, Func<EmulationMediaSlot, string?, bool>? requiresMediaRestart = null,
         IAudioOutput? audioOutput = null, string? saveDirectory = null,
         Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
@@ -48,7 +48,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _core = core;
         _coreFactory = coreFactory;
         _inputMapper = inputMapper;
-        _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
+        _requiresMediaRestart = requiresMediaRestart;
+        if (_requiresMediaRestart is null && _runtimePolicy is null) throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);

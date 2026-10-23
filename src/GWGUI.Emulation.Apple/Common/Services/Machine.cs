@@ -17,6 +17,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly IEmulatorRuntimePolicy? _runtimePolicy;
+    /// <summary>Callback média explicite emprunté ; il prime sur la politique du backend.</summary>
+    private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -32,11 +34,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, IEmulatorRuntimePolicy? runtimePolicy = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null, Func<EmulationMediaSlot, string?, bool>? requiresMediaRestart = null, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
         Id = id;
         Configuration = configuration;
         _runtimePolicy = runtimePolicy ?? new Engine().Adapter(configuration);
+        _requiresMediaRestart = requiresMediaRestart;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _inputMapper = inputMapper;
