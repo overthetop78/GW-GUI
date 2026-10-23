@@ -179,7 +179,7 @@ internal sealed class Engine
         var adapter = this.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
-        return ValueTask.FromResult<IEmulationConfiguration>(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
+        return ValueTask.FromResult<IEmulationConfiguration>(adapter.SelectConfiguration(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) }));
     }
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => PreferredAdapter(machineId).FindReleasesAsync(_managementContext, cancellationToken);
     public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => PreferredAdapter(machineId).InstallAsync(_managementContext, release, progress, cancellationToken);

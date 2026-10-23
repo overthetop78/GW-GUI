@@ -148,8 +148,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
     /// <inheritdoc/>
-    public MachineConfiguration SelectConfiguration(MachineConfiguration configuration) => configuration with { Core = Emulator };
-    /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model) => OptionCatalog.All.ToDictionary(option => option.Key, option => option.DefaultValue, StringComparer.Ordinal);
     /// <inheritdoc/>
     public void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options)

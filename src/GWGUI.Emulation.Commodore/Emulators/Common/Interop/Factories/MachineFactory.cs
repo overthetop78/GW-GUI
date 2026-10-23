@@ -10,6 +10,17 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
+    {
+        var selected = configuration with { Options = null };
+        var slots = GetFirmwareSlots(selected).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        return selected with
+        {
+            FirmwarePaths = configuration.FirmwarePaths?.Where(pair => slots.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
+        };
+    }
+
+    /// <inheritdoc/>
     public virtual bool SupportsPointer(MachineConfiguration configuration) => true;
     /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);

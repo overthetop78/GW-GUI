@@ -168,10 +168,7 @@ internal sealed class Engine
         var adapter = this.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
-        var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
-        var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), current.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
-        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = PeripheralCategory.Standard }).ToArray();
-        var result = current with { Core = core, Options = options, Input = current.Input with { Controllers = controllers } };
+        var result = adapter.SelectConfiguration(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }

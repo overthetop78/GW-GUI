@@ -218,7 +218,7 @@ internal sealed class Engine
         if (!EmulatorCatalog.GetAll(amstrad.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
         var selected = amstrad with { EmulatorId = emulatorId };
-        if (this.Adapter(selected) is IEmulatorConfigurationSelection selection) selected = selection.SelectConfiguration(selected);
+        selected = this.Adapter(selected).SelectConfiguration(selected);
         return ValueTask.FromResult<IEmulationConfiguration>(selected);
     }
 

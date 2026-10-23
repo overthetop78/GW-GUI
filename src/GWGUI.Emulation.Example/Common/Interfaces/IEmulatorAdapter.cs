@@ -7,6 +7,11 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities
 {
+    /// <summary>Conserve la configuration préparée par Common si le backend ne demande aucune adaptation lors de sa sélection.</summary>
+    /// <param name="configuration">Configuration empruntée portant le cœur choisi et les données existantes.</param>
+    /// <returns>La même instance ; une implémentation concrète conserve les données qui ne concernent pas ses contraintes.</returns>
+    MachineConfiguration IEmulatorConfigurationSelection.SelectConfiguration(MachineConfiguration configuration) => configuration;
+
     /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>
     /// <param name="values">Champs proposés, disponibles pour les adaptations concrètes.</param>

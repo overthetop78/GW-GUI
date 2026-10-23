@@ -207,7 +207,7 @@ internal sealed class Engine
         var sega = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(sega.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(sega with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(this.Adapter(emulatorId).SelectConfiguration(sega with { EmulatorId = emulatorId }));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)

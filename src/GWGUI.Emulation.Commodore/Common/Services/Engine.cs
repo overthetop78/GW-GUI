@@ -241,12 +241,7 @@ internal sealed class Engine
         var adapter = this.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.Model))
             throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
-        var selected = current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey), Options = null };
-        var slots = adapter.GetFirmwareSlots(selected).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
-        return ValueTask.FromResult<IEmulationConfiguration>(selected with
-        {
-            FirmwarePaths = current.FirmwarePaths?.Where(pair => slots.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
-        });
+        return ValueTask.FromResult<IEmulationConfiguration>(adapter.SelectConfiguration(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) }));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)

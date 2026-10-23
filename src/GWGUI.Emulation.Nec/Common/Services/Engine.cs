@@ -268,7 +268,7 @@ internal sealed class Engine
         var necConfiguration = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(necConfiguration.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(necConfiguration with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(this.Adapter(emulatorId).SelectConfiguration(necConfiguration with { EmulatorId = emulatorId }));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)

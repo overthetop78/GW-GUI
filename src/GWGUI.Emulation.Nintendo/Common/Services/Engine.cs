@@ -213,7 +213,7 @@ internal sealed class Engine
         var nintendo = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(nintendo.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(nintendo with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(this.Adapter(emulatorId).SelectConfiguration(nintendo with { EmulatorId = emulatorId }));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)

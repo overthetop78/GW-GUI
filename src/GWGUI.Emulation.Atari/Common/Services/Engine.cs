@@ -227,7 +227,7 @@ internal sealed class Engine
         var adapter = this.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(atari.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
-        return ValueTask.FromResult<IEmulationConfiguration>(atari with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
+        return ValueTask.FromResult<IEmulationConfiguration>(adapter.SelectConfiguration(atari with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) }));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => this.Adapter(ConfigurationFunctions.GetCore(ModelCatalog.Parse(machineId))).FindReleasesAsync(ManagementContext, cancellationToken);

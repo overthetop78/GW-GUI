@@ -1,6 +1,11 @@
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
-internal interface IEmulatorAdapter : IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorFirmwareSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings
+internal interface IEmulatorAdapter : IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorFirmwareSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings
 {
+    /// <summary>Conserve la configuration préparée par Common si le backend ne demande aucune adaptation lors de sa sélection.</summary>
+    /// <param name="configuration">Configuration empruntée portant le cœur choisi et les données existantes.</param>
+    /// <returns>La même instance ; une implémentation concrète conserve les données qui ne concernent pas ses contraintes.</returns>
+    MachineConfiguration IEmulatorConfigurationSelection.SelectConfiguration(MachineConfiguration configuration) => configuration;
+
     /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>
     /// <param name="values">Champs proposés, disponibles pour les adaptations concrètes.</param>

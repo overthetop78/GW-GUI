@@ -14,6 +14,54 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonSelectsConfigurationThroughTheSameAdapterContract()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationSelection", throwOnError: true)!;
+            var operation = Assert.Single(contract.GetMethods());
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            Assert.Equal("SelectConfiguration", operation.Name);
+            Assert.True(operation.IsAbstract);
+            var parameter = Assert.Single(operation.GetParameters());
+            Assert.Equal("configuration", parameter.Name);
+            Assert.Equal(assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration"), parameter.ParameterType);
+            Assert.Equal(parameter.ParameterType, operation.ReturnType);
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var identity = Assert.Single(adapter.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance), method => method.Name.EndsWith("IEmulatorConfigurationSelection.SelectConfiguration", StringComparison.Ordinal));
+            Assert.False(identity.IsAbstract);
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var concrete = implementation.GetMethod("SelectConfiguration", BindingFlags.Public | BindingFlags.Instance, [parameter.ParameterType]);
+                Assert.Equal(concrete ?? identity, Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
+                if (concrete is null)
+                {
+                    // Le comportement par défaut doit conserver exactement l'objet reçu et ses données opaques.
+                    var configuration = RuntimeHelpers.GetUninitializedObject(parameter.ParameterType);
+                    var backend = RuntimeHelpers.GetUninitializedObject(implementation);
+                    Assert.Same(configuration, operation.Invoke(backend, [configuration]));
+                }
+            }
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var selection = engine.GetMethod("UseEmulatorAsync")!;
+            var code = selection.GetMethodBody()!.GetILAsByteArray()!;
+            Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => code.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(operation.MetadataToken)).ToArray()) >= 0), root);
+        }
+    }
+
+    [Fact]
     public void FirmwareSelectionKeepsEveryRoleAndRequiresAnUnambiguousChoice()
     {
         var first = new EmulationFirmwareCandidate("digest:system", "firmware.bin", "system", null, EmulationFirmwareCompatibility.Compatible, "system");

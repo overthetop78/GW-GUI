@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Sinclair.Common.Functions.CoreHostFunctions;
 using CommonFirmwareInspection = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.FirmwareFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
@@ -7,6 +8,24 @@ using System.IO;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorInitialContentSettings, IEmulatorCapabilities, IEmulatorControllerAdapter
 {
+    /// <inheritdoc/>
+    public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
+    {
+        var core = configuration.Core;
+        var options = CommonCoreHostFunctions.OptionProcessing.FilterForEmulator(CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key), configuration.Options, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency, VideoAudioSettingsConstants.AudioVolumeOption);
+        var controllers = configuration.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(configuration.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(configuration.Model) }).ToArray();
+        var result = configuration with
+        {
+            Core = core,
+            Options = options,
+            Input = configuration.Input with
+            {
+                Controllers = controllers
+            }
+        };
+        return result;
+    }
+
     /// <inheritdoc/>
     public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await CommonFirmwareInspection.ScanFileAsync(path, configuration.Model, configuration.Core, cancellationToken).ConfigureAwait(false)];
 

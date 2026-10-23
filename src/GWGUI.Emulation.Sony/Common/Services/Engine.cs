@@ -231,7 +231,7 @@ internal sealed class Engine
         var sony = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(sony.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(sony with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(this.Adapter(emulatorId).SelectConfiguration(sony with { EmulatorId = emulatorId }));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)

@@ -188,7 +188,9 @@ internal sealed class Engine
     public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        if (_adapters.TryGetValue(emulatorId, out var adapter) && adapter.Definition.MachineIds.Contains(current.Model))
+            return ValueTask.FromResult<IEmulationConfiguration>(adapter.SelectConfiguration(current with { EmulatorId = emulatorId }));
         return ValueTask.FromException<IEmulationConfiguration>(new NotSupportedException("No Microsoft emulator adapter is installed."));
     }
 

@@ -164,7 +164,7 @@ internal sealed class Engine
         var current = Require(configuration);
         var adapter = Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.MachineId)) throw new ArgumentException(nameof(emulatorId));
-        var result = current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) };
+        var result = adapter.SelectConfiguration(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }

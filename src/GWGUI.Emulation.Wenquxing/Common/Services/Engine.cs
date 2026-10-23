@@ -141,10 +141,10 @@ internal sealed class Engine
         var adapter = this.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
-        var result = current with
+        var result = adapter.SelectConfiguration(current with
         {
             Core = Enum.Parse<Emulator>(adapter.EmulatorKey)
-        };
+        });
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }
