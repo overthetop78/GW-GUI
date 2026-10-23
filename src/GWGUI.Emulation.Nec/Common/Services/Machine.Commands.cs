@@ -34,7 +34,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             () => _core.Initialize(Configuration, _sessionDirectory, _saveDirectory),
             () =>
             {
-                _audio.Start(_core.SampleRate);
+                StartAudio();
                 lock (_gate)
                 {
                     State = EmulationMachineState.Running;
@@ -129,5 +129,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         if (_deleteSession is not null) { _deleteSession(_sessionDirectory); return; }
         EmulationSdk.SessionDirectories.DeleteSessionDirectory(_sessionDirectory);
+    }
+
+    private void StartAudio()
+    {
+        if (_core is IEmulatorAudioBufferFeedback latency)
+            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
+        _audio.Start(_core.SampleRate);
     }
 }

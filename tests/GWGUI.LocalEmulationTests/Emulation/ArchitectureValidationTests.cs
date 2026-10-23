@@ -871,6 +871,18 @@ public sealed class ArchitectureValidationTests
             var controller = assembly.GetType(root + ".Common.Services.AudioOutputController", throwOnError: true)!;
             var applyLatency = controller.GetMethod("TrySetMinimumLatency", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)!;
             Assert.True(Calls(applyLatency.MetadataToken), root + ".TrySetMinimumLatency");
+            var startAudio = machine.GetMethod("StartAudio", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.NotNull(startAudio);
+            var startup = startAudio.GetMethodBody()!.GetILAsByteArray()!;
+            int StartupCall(int token) => new byte[] { 0x28, 0x6f }
+                .Select(opcode => startup.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(token)).ToArray()))
+                .Where(index => index >= 0).DefaultIfEmpty(-1).Min();
+            var readMinimum = StartupCall(latency.GetMethod.MetadataToken);
+            var applyMinimum = StartupCall(applyLatency.MetadataToken);
+            var startOutput = StartupCall(controller.GetMethod("Start", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, [typeof(int)])!.MetadataToken);
+            Assert.True(readMinimum >= 0, root + ".StartAudio.MinimumAudioLatencyMilliseconds");
+            Assert.True(applyMinimum > readMinimum, root + ".StartAudio.TrySetMinimumLatency");
+            Assert.True(startOutput > applyMinimum, root + ".StartAudio.Start");
             var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
             foreach (var implementation in implementations)
             {

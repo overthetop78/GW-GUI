@@ -185,7 +185,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// interprétée par le même contrôleur commun pour les sorties multicanales.</remarks>
     private void StartAudio()
     {
-        _audio.TrySetMinimumLatency(_core.MinimumAudioLatencyMilliseconds);
+        if (_core is IEmulatorAudioBufferFeedback latency)
+            _audio.TrySetMinimumLatency(latency.MinimumAudioLatencyMilliseconds);
         _audio.Start(_core.SampleRate);
     }
 
