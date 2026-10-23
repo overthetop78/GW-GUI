@@ -44,11 +44,3 @@ public sealed record FirmwareDefinition(string Id, FirmwareCategory? Category, s
 /// <param name="IsDuplicate">Indique si un autre candidat possède la même empreinte.</param>
 /// <param name="ReadError">Diagnostic de lecture, ou null lorsque la lecture a réussi.</param>
 public sealed record ScannedFirmware(string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection, FirmwareDefinition? Definition, FirmwareCompatibility Compatibility, bool IsDuplicate, string? ReadError);
-
-/// <summary>Exigence d’un rôle de firmware décrite par un adaptateur.</summary>
-/// <param name="Role">Rôle du firmware attendu.</param>
-/// <param name="FieldId">Identifiant de son champ de sélection.</param>
-/// <param name="DisplayResourceKey">Clé du libellé de présentation.</param>
-/// <param name="FileNames">Noms de fichiers candidats annoncés par le backend.</param>
-/// <param name="IsRequired">Indique si l’absence du rôle empêche le démarrage.</param>
-public sealed record FirmwareRequirement(FirmwareCategory Role, string FieldId, string DisplayResourceKey, IReadOnlyList<string> FileNames, bool IsRequired);

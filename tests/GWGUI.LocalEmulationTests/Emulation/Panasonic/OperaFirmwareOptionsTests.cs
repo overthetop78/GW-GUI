@@ -49,8 +49,8 @@ public sealed class OperaFirmwareOptionsTests
 
         Assert.Equal(2, requirements.Count);
         Assert.All(requirements, requirement => Assert.False(requirement.IsRequired));
-        Assert.Contains(requirements, requirement => requirement.Role == FirmwareCategory.SystemRom);
-        Assert.Contains(requirements, requirement => requirement.Role == FirmwareCategory.FontRom);
+        Assert.Contains(requirements, requirement => requirement.FieldId == FirmwareFunctions.Field(FirmwareCategory.SystemRom));
+        Assert.Contains(requirements, requirement => requirement.FieldId == FirmwareFunctions.Field(FirmwareCategory.FontRom));
         Assert.All(requirements, requirement => Assert.Contains(fields, field => field.Id == requirement.FieldId && field.Editor == EmulationSettingsEditor.Path));
     }
 }

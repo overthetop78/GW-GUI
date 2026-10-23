@@ -4,6 +4,15 @@ using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.Con
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettings, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Réutilise l'inspection native pour le champ demandé sans déduire de rôle depuis le nom de fichier.</summary>
+    bool IEmulatorFirmwareAdapter.IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
+    {
+        var firmware = (IEmulatorFirmwareAdapter)this;
+        return firmware.GetFirmwareSlots(configuration).Any(slot => slot.FieldId == fieldId)
+            && firmware.ScanFirmwareFileAsync(configuration, path, CancellationToken.None).GetAwaiter().GetResult()
+                .Any(candidate => candidate.DestinationFieldId == fieldId && candidate.Compatibility != EmulationFirmwareCompatibility.Incompatible);
+    }
+
     /// <summary>Réutilise le parcours plat du service Common et l'inspecteur natif sans modifier ses résultats.</summary>
     async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> IEmulatorFirmwareAdapter.ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {

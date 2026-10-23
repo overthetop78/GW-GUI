@@ -10655,3 +10655,75 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider les recherches et leur raccordement.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler le contrat, les implémentations et les appels des 24 familles ; vérifier la compilation et la suite existante.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter ScanFirmwareAsync aux opérations communes attendues.
+
+## Description et compatibilité des firmwares par les emplacements Common
+
+- [x] Réunir les descriptions et contrôles existants dans le contrat de firmware des 24 familles.
+  - [x] Raccorder les emplacements et les contrôles natifs.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer IsFirmwareCompatible avec la configuration, le champ de destination et le fichier candidat.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : réutiliser le résultat de reconnaissance natif pour contrôler la destination demandée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : reprendre GetFirmwareSlots comme description unique et conserver le contrôle natif sous le contrat commun.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : reprendre GetFirmwareSlots comme description unique et conserver le contrôle natif sous le contrat commun.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : reprendre GetFirmwareSlots comme description unique et conserver le contrôle natif sous le contrat commun.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/FirmwareCatalog.cs : décrire les mêmes champs, libellés, noms candidats et obligations avec FirmwareSlot.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/FirmwareCatalog.cs : décrire les mêmes champs, libellés, noms candidats et obligations avec FirmwareSlot.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer FirmwareRequirement remplacé par la description unique des emplacements.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareCapabilities.cs : retirer les deux déclarations remplacées par le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer FirmwareRequirement remplacé par la description unique des emplacements.
+    - [x] Supprimer src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareCapabilities.cs : retirer les deux déclarations remplacées par le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer FirmwareRequirement remplacé par la description unique des emplacements.
+    - [x] Supprimer src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareCapabilities.cs : retirer les deux déclarations remplacées par le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/FirmwareFunctions.cs : conserver les rôles enregistrés, les champs et les identités des candidats en consultant les emplacements et le contrôle commun.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/FirmwareFunctions.cs : conserver les rôles enregistrés, les champs et les identités des candidats en consultant les emplacements et le contrôle commun.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : vérifier le candidat par son identifiant de destination sans changer le rôle enregistré.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/FirmwareRuntimeFunctions.cs : conserver les contrôles, noms de destination et copies en lisant les emplacements du catalogue.
+  - [x] Valider les descriptions et les raccordements.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les contrats des 24 familles, les implémentations natives et les métadonnées conservées ; exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter IsFirmwareCompatible aux opérations Common attendues.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Panasonic/OperaFirmwareOptionsTests.cs : vérifier les deux champs de firmware par leurs identifiants stables en conservant les assertions sur leur caractère facultatif.

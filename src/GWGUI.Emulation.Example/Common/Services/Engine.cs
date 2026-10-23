@@ -247,7 +247,7 @@ internal sealed class Engine
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
-        if (!Enum.TryParse<FirmwareCategory>(firmware.DestinationFieldId, out var category) || !Adapter(current).IsFirmwareCompatible(current, category, firmware.Path)) throw new ArgumentException(nameof(firmware));
+        if (!Enum.TryParse<FirmwareCategory>(firmware.DestinationFieldId, out var category) || !Adapter(current).IsFirmwareCompatible(current, category.ToString(), firmware.Path)) throw new ArgumentException(nameof(firmware));
         var result = current with { Firmwares = current.Firmwares.Where(item => item.Category != category).Append(new FirmwareConfiguration(category, firmware.Path, false)).ToArray() };
         ConfigurationFunctions.Validate(result);
         return result;

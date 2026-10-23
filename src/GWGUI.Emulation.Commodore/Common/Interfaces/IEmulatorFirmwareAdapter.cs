@@ -6,6 +6,17 @@ namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 /// L’adaptateur réutilise son identification existante et laisse le fichier d’origine sous la responsabilité de son appelant.</remarks>
 internal interface IEmulatorFirmwareAdapter
 {
+    /// <summary>Contrôle un fichier pour un emplacement de firmware précis de la configuration.</summary>
+    /// <param name="configuration">Configuration empruntée déterminant les règles du cœur et du modèle.</param>
+    /// <param name="fieldId">Identifiant stable du champ retourné par GetFirmwareSlots.</param>
+    /// <param name="path">Fichier candidat emprunté, qui reste sous la responsabilité de l'appelant.</param>
+    /// <returns>True lorsque le contrôle natif accepte ce fichier pour le champ demandé.</returns>
+    /// <remarks>Un champ inconnu est refusé. Le comportement commun reprend l'inspection par fichier et
+    /// accepte un résultat destiné à ce champ lorsque le cœur ne l'a pas déclaré incompatible.
+    /// Un backend peut conserver son contrôle direct de rôle, de taille ou de contenu.
+    /// Cette vérification ne sélectionne aucun autre rôle et ne copie aucun fichier.</remarks>
+    bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path);
+
     /// <summary>Recherche les candidats dans le dossier de firmware de la configuration.</summary>
     /// <param name="configuration">Configuration empruntée déterminant les rôles et compatibilités attendus.</param>
     /// <param name="directory">Dossier de recherche fourni par Common ; les fichiers sources restent empruntés.</param>

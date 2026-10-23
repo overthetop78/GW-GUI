@@ -8,7 +8,7 @@ internal static class FirmwareRuntimeFunctions
 {
     internal static bool IsCompatible(MachineConfiguration configuration, FirmwareCategory role, string path)
     {
-        if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.Role == role))
+        if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.FieldId == FirmwareFunctions.Field(role)))
             return false;
         try
         {
@@ -52,13 +52,13 @@ internal static class FirmwareRuntimeFunctions
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var requirements = FirmwareCatalog.Requirements(configuration.Model);
-        if (configuration.Firmware.Images.Keys.Any(role => !requirements.Any(requirement => requirement.Role == role)))
+        if (configuration.Firmware.Images.Keys.Any(role => !requirements.Any(requirement => requirement.FieldId == FirmwareFunctions.Field(role))))
             throw Invalid(EmulationMessageCode.FirmwareIncompatible);
         var directory = Path.Combine(Path.GetFullPath(systemDirectory), NativeFirmwareConstants.SystemSubdirectory, ModelDictionary.NativeValues[configuration.Model]);
         Directory.CreateDirectory(directory);
         foreach (var requirement in requirements)
         {
-            if (!configuration.Firmware.Images.TryGetValue(requirement.Role, out var source))
+            if (!configuration.Firmware.Images.TryGetValue(FirmwareFunctions.Role(requirement.FieldId), out var source))
             {
                 if (requirement.IsRequired)
                     throw Invalid(EmulationMessageCode.FirmwareMissing);
@@ -67,7 +67,7 @@ internal static class FirmwareRuntimeFunctions
 
             if (!File.Exists(source))
                 throw Invalid(EmulationMessageCode.FirmwareMissing);
-            var destination = Path.Combine(directory, requirement.FileNames[0]);
+            var destination = Path.Combine(directory, requirement.FileName);
             File.Copy(source, destination, overwrite: true);
             File.SetAttributes(destination, File.GetAttributes(destination) & ~FileAttributes.ReadOnly);
         }

@@ -2943,7 +2943,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(4, contract.GetMethods().Length);
+            Assert.Equal(5, contract.GetMethods().Length);
             var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
@@ -3022,42 +3022,93 @@ public sealed class ArchitectureValidationTests
         }
     }
 
-    [Theory]
-    [InlineData("Example")]
-    [InlineData("Panasonic")]
-    [InlineData("Wenquxing")]
-    public void FirmwareCapabilitiesUseTheSameDescriptionAndCompatibilityContract(string family)
+    [Fact]
+    public async Task EveryCommonDescribesAndChecksFirmwareThroughItsSingleContract()
     {
-        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var root = "GWGUI.Emulation." + family;
-        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareCapabilities", throwOnError: true)!;
-        var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
-        var category = assembly.GetType(root + ".Common.Machines.Common.Enums.FirmwareCategory", throwOnError: true)!;
-        var requirement = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareRequirement", throwOnError: true)!;
-        Assert.True(contract.IsInterface);
-        Assert.False(contract.IsVisible);
-        Assert.Equal(2, contract.GetMethods().Length);
-        var describe = contract.GetMethod("DescribeFirmware")!;
-        Assert.True(describe.IsAbstract);
-        Assert.Equal(typeof(IReadOnlyList<>).MakeGenericType(requirement), describe.ReturnType);
-        Assert.Equal(configuration, Assert.Single(describe.GetParameters()).ParameterType);
-        var compatible = contract.GetMethod("IsFirmwareCompatible")!;
-        Assert.True(compatible.IsAbstract);
-        Assert.Equal(typeof(bool), compatible.ReturnType);
-        Assert.Equal(new[] { configuration, category, typeof(string) }, compatible.GetParameters().Select(parameter => parameter.ParameterType));
-        Assert.Equal(category, requirement.GetProperty("Role")!.PropertyType);
-        Assert.Equal(typeof(string), requirement.GetProperty("FieldId")!.PropertyType);
-        Assert.Equal(typeof(string), requirement.GetProperty("DisplayResourceKey")!.PropertyType);
-        Assert.Equal(typeof(IReadOnlyList<string>), requirement.GetProperty("FileNames")!.PropertyType);
-        Assert.Equal(typeof(bool), requirement.GetProperty("IsRequired")!.PropertyType);
-        var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
-        Assert.NotEmpty(implementations);
-        foreach (var implementation in implementations)
-            Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
-        if (family == "Example")
-            Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeProfiles = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            var slotType = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareSlot", throwOnError: true)!;
+            Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareCapabilities"));
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareRequirement"));
+            var compatible = contract.GetMethod("IsFirmwareCompatible")!;
+            var describe = contract.GetMethod("GetFirmwareSlots")!;
+            Assert.True(compatible.IsAbstract);
+            Assert.Equal(typeof(bool), compatible.ReturnType);
+            Assert.Equal(new[] { configurationType, typeof(string), typeof(string) }, compatible.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { "configuration", "fieldId", "path" }, compatible.GetParameters().Select(parameter => parameter.Name));
+            Assert.Equal(typeof(IReadOnlyList<>).MakeGenericType(slotType), describe.ReturnType);
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            var fallback = adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Single(method => method.Name.EndsWith(".IsFirmwareCompatible", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(fallback), call => call.Method == describe);
+            Assert.Contains(GetCompiledCalls(fallback), call => call.Method == contract.GetMethod("ScanFirmwareFileAsync"));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType, nonPublic: true)!;
+            var adapters = (System.Collections.IEnumerable)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var machines = Assert.IsAssignableFrom<IReadOnlyList<EmulationMachineDefinition>>(engineType.GetProperty("Machines")!.GetValue(engine));
+            foreach (var entry in adapters)
+            {
+                var adapter = entry.GetType().GetProperty("Value")!.GetValue(entry)!;
+                Assert.Null(adapter.GetType().GetMethod("DescribeFirmware"));
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                Assert.Equal(adapter.GetType().GetMethod("IsFirmwareCompatible") ?? fallback, map.TargetMethods[Array.IndexOf(map.InterfaceMethods, compatible)]);
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var before = System.Text.Json.JsonSerializer.Serialize(configuration, configurationType);
+                    // Un champ inconnu doit être refusé avant toute tentative d'accès au chemin, volontairement invalide.
+                    Assert.False((bool)compatible.Invoke(adapter, [configuration, "unknown-firmware-field", "\0"])!);
+                    if (root is "GWGUI.Emulation.Panasonic" or "GWGUI.Emulation.Wenquxing")
+                    {
+                        var slots = ((System.Collections.IEnumerable)describe.Invoke(adapter, [configuration])!).Cast<object>().ToArray();
+                        Assert.NotEmpty(slots);
+                        var functions = assembly.GetType(root + ".Common.Machines.Common.Functions.FirmwareFunctions", throwOnError: true)!;
+                        var role = functions.GetMethod("Role", BindingFlags.Static | BindingFlags.NonPublic)!;
+                        var field = functions.GetMethod("Field", BindingFlags.Static | BindingFlags.NonPublic)!;
+                        foreach (var slot in slots)
+                        {
+                            var id = (string)slotType.GetProperty("FieldId")!.GetValue(slot)!;
+                            Assert.Equal(id, field.Invoke(null, [role.Invoke(null, [id])]));
+                            var names = Assert.IsAssignableFrom<IReadOnlyList<string>>(slotType.GetProperty("CandidateFileNames")!.GetValue(slot));
+                            Assert.NotEmpty(names);
+                            Assert.Equal(names[0], slotType.GetProperty("FileName")!.GetValue(slot));
+                            if (root == "GWGUI.Emulation.Panasonic") Assert.False((bool)slotType.GetProperty("IsRequired")!.GetValue(slot)!);
+                        }
+                        if (root == "GWGUI.Emulation.Panasonic") Assert.Equal(2, slots.Length);
+                        else
+                        {
+                            var model = configurationType.GetProperty("Model")!.GetValue(configuration)!.ToString()!;
+                            var expected = model switch
+                            {
+                                "NC1020" => new[] { "obj_lu.bin", "nc1020.fls" },
+                                "PC1000" => new[] { "pc1000.rom", "pc1000.fls" },
+                                "CC800" => new[] { "obj.bin", "cc800.fls" },
+                                "NC2000" => new[] { "nc2000.nor", "nc2000.nand", "nc2000.nand0" },
+                                "NC3000" => new[] { "nc3000.nor", "nc3000.nand", "nc3000.nand0" },
+                                _ => throw new InvalidOperationException(model)
+                            };
+                            Assert.Equal(expected, slots.Select(slot => (string)slotType.GetProperty("FileName")!.GetValue(slot)!));
+                            Assert.Equal(model == "NC3000" ? new[] { true, true, false } : Enumerable.Repeat(true, expected.Length), slots.Select(slot => (bool)slotType.GetProperty("IsRequired")!.GetValue(slot)!));
+                        }
+                        nativeProfiles++;
+                    }
+                    Assert.Equal(before, System.Text.Json.JsonSerializer.Serialize(configuration, configurationType));
+                }
+            }
+        }
+        Assert.Equal(6, nativeProfiles);
     }
-
     [Theory]
     [InlineData("Panasonic", new[] { "SystemRom", "FontRom" })]
     [InlineData("Wenquxing", new[] { "SystemRom", "NorFlash", "NandFlash", "NandFirstPlane" })]

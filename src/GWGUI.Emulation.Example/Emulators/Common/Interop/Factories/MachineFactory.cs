@@ -230,16 +230,14 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// facultatifs pour illustrer leur sélection et leur préparation sans imposer un fichier externe au démarrage.</remarks>
     /// <inheritdoc/>
     public bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
-    /// <inheritdoc/>
-    public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => GetFirmwareSlots(configuration).Select(slot => new FirmwareRequirement(Enum.Parse<FirmwareCategory>(slot.FieldId), slot.FieldId, slot.LabelResourceKey, [slot.FileName], slot.IsRequired)).ToArray();
     /// <summary>Le catalogue de simulation ne prétend pas identifier une ROM réelle inconnue.</summary>
     /// <inheritdoc/>
     public ScannedFirmware? IdentifyFirmware(ScannedFirmware firmware) => null;
     /// <inheritdoc/>
-    public bool IsFirmwareCompatible(MachineConfiguration configuration, FirmwareCategory role, string path)
+    public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        if (!hardware.Firmware.Contains(role) || !File.Exists(path)) return false;
+        if (!Enum.TryParse<FirmwareCategory>(fieldId, out var role) || !hardware.Firmware.Contains(role) || !File.Exists(path)) return false;
         var length = new FileInfo(path).Length;
         return length > 0 && length <= hardware.MainMemoryBytes;
     }
@@ -255,7 +253,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     {
         var scanned = await FirmwareScanFunctions.ScanFileAsync([this], path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
         return [new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Definition?.Version,
-            scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem, path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
+            scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem.ToString(), path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
             FirmwareCategory.OperatingSystem.ToString())];
     }
     /// <summary>Copie les firmwares empruntés dans le seul dossier système de la session.</summary>
@@ -265,7 +263,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         Directory.CreateDirectory(systemDirectory);
         foreach (var firmware in configuration.Firmwares)
         {
-            if (!IsFirmwareCompatible(configuration, firmware.Category, firmware.Path)) throw new ArgumentException(nameof(configuration));
+            if (!IsFirmwareCompatible(configuration, firmware.Category.ToString(), firmware.Path)) throw new ArgumentException(nameof(configuration));
             var destination = Path.Combine(systemDirectory, firmware.Category + ".rom");
             if (!string.Equals(Path.GetFullPath(firmware.Path), Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)) File.Copy(firmware.Path, destination, overwrite: true);
         }

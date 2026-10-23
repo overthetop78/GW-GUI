@@ -8,9 +8,18 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// de recherche et d’installation. Create reçoit les services empruntés et retourne une machine Common possédant
 /// son cœur. La fabrique libère le cœur dans finally si sa construction échoue avant ce transfert de propriété.</remarks>
 internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation,
-    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareCapabilities, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
+    IEmulatorControllerAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorFirmwareInspection, IEmulatorConfigurationOptions, IEmulatorContentFormats, IEmulatorControllerFeedbackAdapter,
     IEmulatorInitialContentSettings, IEmulatorPersistentStorage, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorVideoSettings, IEmulatorPointerCapabilities, IEmulatorMachineDefaults
 {
+    /// <summary>Réutilise l'inspection native pour le champ demandé sans déduire de rôle depuis le nom de fichier.</summary>
+    bool IEmulatorFirmwareAdapter.IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
+    {
+        var firmware = (IEmulatorFirmwareAdapter)this;
+        return firmware.GetFirmwareSlots(configuration).Any(slot => slot.FieldId == fieldId)
+            && firmware.ScanFirmwareFileAsync(configuration, path, CancellationToken.None).GetAwaiter().GetResult()
+                .Any(candidate => candidate.DestinationFieldId == fieldId && candidate.Compatibility != EmulationFirmwareCompatibility.Incompatible);
+    }
+
     /// <summary>Réutilise le parcours plat du service Common et l'inspecteur natif sans modifier ses résultats.</summary>
     async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> IEmulatorFirmwareAdapter.ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {

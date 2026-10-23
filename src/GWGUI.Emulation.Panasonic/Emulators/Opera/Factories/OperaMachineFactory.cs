@@ -14,7 +14,7 @@ using NativeMedia = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.MediaRun
 using NativeSettings = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.SettingsDescriptionFunctions;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Factories;
-internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorSettings, IEmulatorMediaCapabilities, IEmulatorFirmwareAdapter
+internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorSettings, IEmulatorMediaCapabilities, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
@@ -89,8 +89,8 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices;
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
-    public bool IsFirmwareCompatible(MachineConfiguration configuration, FirmwareCategory role, string path) => NativeFirmware.IsCompatible(configuration, role, path);
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
+    public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path) => Enum.GetValues<FirmwareCategory>().Any(role => CommonFirmwareInspection.Field(role) == fieldId && NativeFirmware.IsCompatible(configuration, role, path));
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {

@@ -3,13 +3,13 @@ using NativeFirmwareConstants = GWGUI.Emulation.Panasonic.Emulators.Opera.Consta
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
 internal static class FirmwareCatalog
 {
-    internal static IReadOnlyList<FirmwareRequirement> Requirements(MachineModel model)
+    internal static IReadOnlyList<FirmwareSlot> Requirements(MachineModel model)
     {
         if (model != MachineModel.ThreeDO)
             throw new ArgumentOutOfRangeException(nameof(model));
         return[
-            new(FirmwareCategory.SystemRom, FirmwareFunctions.Field(FirmwareCategory.SystemRom), "Emulation.Firmware.Rom.System", NativeFirmwareConstants.SystemFiles, false),
-            new(FirmwareCategory.FontRom, FirmwareFunctions.Field(FirmwareCategory.FontRom), "Emulation.Panasonic.Firmware.Font", NativeFirmwareConstants.FontFiles, false)
+            new(FirmwareFunctions.Field(FirmwareCategory.SystemRom), NativeFirmwareConstants.SystemFiles[0], "Emulation.Firmware.Rom.System", false, CandidateFileNames: NativeFirmwareConstants.SystemFiles),
+            new(FirmwareFunctions.Field(FirmwareCategory.FontRom), NativeFirmwareConstants.FontFiles[0], "Emulation.Panasonic.Firmware.Font", false, CandidateFileNames: NativeFirmwareConstants.FontFiles)
         ];
     }
 }

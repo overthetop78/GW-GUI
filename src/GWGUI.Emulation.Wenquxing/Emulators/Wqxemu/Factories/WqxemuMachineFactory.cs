@@ -12,7 +12,7 @@ using NativeFirmware = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.Firm
 using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Factories;
-internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareCapabilities, IEmulatorFirmwareAdapter
+internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
@@ -85,8 +85,8 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => [];
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
-    public bool IsFirmwareCompatible(MachineConfiguration configuration, FirmwareCategory role, string path) => NativeFirmware.IsCompatible(configuration, role, path);
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
+    public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path) => Enum.GetValues<FirmwareCategory>().Any(role => CommonFirmwareInspection.Field(role) == fieldId && NativeFirmware.IsCompatible(configuration, role, path));
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
