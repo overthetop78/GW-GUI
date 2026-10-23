@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettingsAdapter)?.GetSettingsOptions() ?? [];
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => new Engine().Adapter(core).GetSettingsOptions();
 
     internal static void Validate(MachineConfiguration configuration)
     {

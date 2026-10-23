@@ -5,7 +5,7 @@ using GWGUI.Emulation.Philips.Emulators.O2em.Constants;
 
 namespace GWGUI.Emulation.Philips.Emulators.O2em.Factories;
 
-internal sealed class O2emMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorMediaCapabilities, IEmulatorVideoSettings
+internal sealed class O2emMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorMediaCapabilities, IEmulatorVideoSettings
 {
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();

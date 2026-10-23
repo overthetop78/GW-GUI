@@ -1495,14 +1495,17 @@ public sealed class ArchitectureValidationTests
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
             .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
         Assert.Equal(24, modules.Length);
-        var providers = 0;
+        var nativeProviders = 0;
+        var catalogues = 0;
         foreach (var module in modules)
         {
-            var contract = module.GetTypes().SingleOrDefault(type => type.IsInterface && type.Name == "IEmulatorSettingsAdapter");
-            if (contract?.GetMethod("GetSettingsOptions") is not { } readOptions) continue;
-            providers++;
+            Assert.DoesNotContain(module.GetTypes(), type => type.Name == "IEmulatorSettingsAdapter");
+            var contract = Assert.Single(module.GetTypes(), type => type.IsInterface && type.Name == "IEmulatorSettings");
+            var readOptions = contract.GetMethod("GetSettingsOptions")!;
+            Assert.NotNull(readOptions);
+            Assert.True(readOptions.IsAbstract);
+            Assert.Equal(typeof(IReadOnlyList<EmulationOption>), readOptions.ReturnType);
             Assert.DoesNotContain(contract.GetMethods(), method => method.Name == "DescribeOptions");
-            Assert.Single(contract.GetMethods(), method => method.Name == "GetSettingsOptions");
             var parameters = readOptions.GetParameters();
             Assert.Equal(2, parameters.Length);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[0].ParameterType));
@@ -1510,17 +1513,63 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(typeof(EmulatorManagementContext), parameters[1].ParameterType);
             Assert.Equal("context", parameters[1].Name);
             Assert.All(parameters, parameter => { Assert.True(parameter.IsOptional); Assert.Null(parameter.DefaultValue); });
-            var implementations = module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
-            Assert.NotEmpty(implementations);
-            foreach (var implementation in implementations)
+            var root = contract.Namespace![..contract.Namespace!.LastIndexOf(".Common.Interfaces", StringComparison.Ordinal)];
+            var adapterContract = module.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            var fallback = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".GetSettingsOptions", StringComparison.Ordinal));
+            Assert.All(GetCompiledCalls(fallback), call => { Assert.Equal(typeof(Array), call.Method.DeclaringType); Assert.Equal(nameof(Array.Empty), call.Method.Name); }); // Seul le tableau vide est obtenu, sans cœur ni lecteur de DLL.
+            var engineType = module.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>().ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+            else Assert.NotEmpty(adapters);
+            foreach (var adapter in adapters)
             {
-                Assert.DoesNotContain(implementation.GetMethods(), method => method.Name == "DescribeOptions");
-                Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
-                var adapter = Activator.CreateInstance(implementation, nonPublic: true)!;
-                Assert.IsAssignableFrom<System.Collections.IEnumerable>(readOptions.Invoke(adapter, [null, null]));
+                var type = adapter.GetType();
+                var map = type.GetInterfaceMap(contract);
+                Assert.All(map.TargetMethods, method => Assert.False(method.IsAbstract));
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, readOptions)];
+                var declared = type.GetMethod("GetSettingsOptions", BindingFlags.Public | BindingFlags.Instance);
+                if (declared is not null)
+                {
+                    nativeProviders++;
+                    Assert.Equal(declared, target); // Le défaut Common ne doit pas masquer une méthode native.
+                }
+                else Assert.Equal(fallback, target);
+                var options = Assert.IsAssignableFrom<IReadOnlyList<EmulationOption>>(readOptions.Invoke(adapter, [null, null]));
+                Assert.All(options, option => { Assert.False(string.IsNullOrWhiteSpace(option.Key)); Assert.NotNull(option.Values); });
+                if (options.Count != 0) catalogues++;
+                var definition = type.GetProperty("CoreDefinition", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(adapter);
+                if (definition?.GetType().GetProperty("Options")?.GetValue(definition) is IReadOnlyList<EmulationOption> declaredOptions)
+                    Assert.Same(declaredOptions, options);
+                var appleCatalogue = type.Name switch
+                {
+                    "AppleWinMachineFactory" => "GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries.AppleWinOptionCatalog",
+                    "MiniVmacMachineFactory" => "GWGUI.Emulation.Apple.Emulators.MiniVmac.Dictionaries.MiniVmacOptionCatalog",
+                    _ => null
+                };
+                if (appleCatalogue is not null)
+                    Assert.Same(module.GetType(appleCatalogue, throwOnError: true)!.GetProperty("All", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null), options);
+                if (root == "GWGUI.Emulation.Nec")
+                {
+                    var definitions = module.GetType(root + ".Emulators.Common.Interop.Functions.CoreSettingsFunctions", throwOnError: true)!
+                        .GetMethod("Definitions", BindingFlags.Static | BindingFlags.NonPublic)!;
+                    var id = (string)type.GetProperty("EmulatorId")!.GetValue(adapter)!;
+                    var expected = ((System.Collections.IEnumerable)definitions.Invoke(null, [id])!).Cast<object>().ToArray();
+                    Assert.Equal(expected.Length, options.Count);
+                    for (var index = 0; index < expected.Length; index++)
+                    {
+                        var source = expected[index];
+                        Assert.Equal(source.GetType().GetProperty("Key")!.GetValue(source), options[index].Key);
+                        Assert.Equal(source.GetType().GetProperty("DefaultValue")!.GetValue(source), options[index].DefaultValue);
+                        Assert.Same(source.GetType().GetProperty("MachineIds")!.GetValue(source), options[index].MachineIds);
+                    }
+                }
             }
         }
-        Assert.Equal(12, providers);
+        Assert.True(nativeProviders > 30);
+        Assert.True(catalogues > 30);
     }
 
     [Theory]
@@ -2236,7 +2285,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 7 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 8 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);

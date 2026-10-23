@@ -5,6 +5,9 @@ using CommonControllerFunctions = GWGUI.Emulation.Bandai.Common.Functions.Contro
 namespace GWGUI.Emulation.Bandai.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Conserve les annonces du runtime lorsqu'aucun catalogue préalable n'est déclaré par le backend.</summary>
+    IReadOnlyList<CoreOption> IEmulatorSettings.GetSettingsOptions(MachineConfiguration? configuration, EmulatorManagementContext? context) => [];
+
     /// <summary>Conserve les observations initiales lorsque le backend ne fournit aucune règle de reconnaissance.</summary>
     EmulationFirmwareObservation<TDefinition>? IEmulatorFirmwareAdapter.IdentifyFirmware<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) => null;
 

@@ -4,7 +4,7 @@ using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettings, IEmulatorFirmwareAdapter, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
 {
     /// <summary>Expose les rôles natifs et leurs obligations dans la description de firmware commune.</summary>
     public virtual IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRoles(configuration.Model)

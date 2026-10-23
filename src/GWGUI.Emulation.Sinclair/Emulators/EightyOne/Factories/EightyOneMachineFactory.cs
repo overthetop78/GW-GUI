@@ -7,7 +7,7 @@ using NativeOptions = GWGUI.Emulation.Sinclair.Emulators.EightyOne.Functions.Run
 
 namespace GWGUI.Emulation.Sinclair.Emulators.EightyOne.Factories;
 
-internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
+internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => [PeripheralCategory.None, PeripheralCategory.CursorJoystick];
 

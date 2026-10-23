@@ -5,7 +5,7 @@ using Settings = GWGUI.Emulation.Coleco.Emulators.JollyCV.Functions.SettingsDesc
 
 namespace GWGUI.Emulation.Coleco.Emulators.JollyCV.Factories;
 
-internal sealed class JollyCVMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorControllerAdapter, IEmulatorSettingsAdapter
+internal sealed class JollyCVMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorControllerAdapter, IEmulatorSettings
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => [PeripheralCategory.None, PeripheralCategory.Standard, PeripheralCategory.SuperAction, PeripheralCategory.Paddle];
     public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => InputSettingsFunctions.Definitions(peripheral).Select(action => new InputActionDefinition(action)).ToArray();

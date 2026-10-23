@@ -3,7 +3,7 @@ using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories;
 
-internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorContentFormats
+internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorContentFormats
 {
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
         GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.PaletteFunctions.RuntimeOptions(configuration);

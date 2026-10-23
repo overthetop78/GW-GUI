@@ -9,7 +9,7 @@ using RuntimeOptions = GWGUI.Emulation.Sharp.Emulators.X1.Functions.RuntimeOptio
 
 namespace GWGUI.Emulation.Sharp.Emulators.X1.Factories;
 
-internal sealed class X1MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter
+internal sealed class X1MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
 {
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions(configuration);

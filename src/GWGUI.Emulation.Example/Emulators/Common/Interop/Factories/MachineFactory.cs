@@ -15,7 +15,7 @@ namespace GWGUI.Emulation.Example.Emulators.Common.Interop.Factories;
 /// <remarks>Les classes Libretro, External et Internal fournissent uniquement ces métadonnées.
 /// Cette fabrique réutilise les règles du Common pour les deux profils. Les fichiers utilisateur sont empruntés.
 /// Une machine créée possède son cœur et sa session ; en cas d’échec de création, le finally reprend leur nettoyage.</remarks>
-internal abstract class MachineFactory(Emulator emulator, string id, string name, string descriptionResourceKey) : IEmulatorAdapter, IEmulatorFirmwareAdapter
+internal abstract class MachineFactory(Emulator emulator, string id, string name, string descriptionResourceKey) : IEmulatorAdapter, IEmulatorSettings, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => InputSettingsFunctions.SupportsPointerCapture(configuration.Input);

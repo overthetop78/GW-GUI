@@ -5,8 +5,8 @@ using System.Globalization;
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core) is IEmulatorSettingsAdapter settings ? settings.GetSettingsOptions() : [];
-    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration) is IEmulatorSettingsAdapter settings ? settings.GetSettingsOptions(configuration) : [];
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core == Emulator.None ? [] : new Engine().Adapter(core).GetSettingsOptions();
+    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core == Emulator.None ? [] : new Engine().Adapter(configuration).GetSettingsOptions(configuration);
 
     internal static void Validate(MachineConfiguration configuration)
     {

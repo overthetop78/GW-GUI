@@ -5,6 +5,9 @@ namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Factories;
 
 internal sealed class AppleWinMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorPointerCapabilities, IEmulatorConfigurationOptions, IEmulatorRuntimePolicy
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries.AppleWinOptionCatalog.All;
+
     public bool SupportsPointer(MachineConfiguration configuration) => configuration.Options.GetValueOrDefault(OptionConstants.Slot4) == ExpansionConstants.Mouse;
     public MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ExpansionFunctions.ApplySettings(configuration, values);
     public MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ExpansionFunctions.ApplyStorage(configuration, slots);

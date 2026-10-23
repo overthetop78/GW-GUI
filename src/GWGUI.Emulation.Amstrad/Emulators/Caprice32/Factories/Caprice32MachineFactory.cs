@@ -9,7 +9,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 
-internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
+internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorSettings, IEmulatorCapabilities
 {
     /// <inheritdoc/>
     /// <remarks>Le firmware de ce backend est intégré ; les adaptations à firmware sélectionnable redéfinissent cette inspection.</remarks>

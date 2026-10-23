@@ -6,7 +6,7 @@ using Settings = GWGUI.Emulation.Epoch.Emulators.EmuSCV.Functions.SettingsDescri
 
 namespace GWGUI.Emulation.Epoch.Emulators.EmuSCV.Factories;
 
-internal sealed class EmuSCVMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation
+internal sealed class EmuSCVMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorControllerAdapter, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation
 {
     public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(configuration.Model, Emulator.EmuSCV, port).Select(action => new InputActionDefinition(action.Definition, action.Key)).ToArray();
     public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.EmuSCV);

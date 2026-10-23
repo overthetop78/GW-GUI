@@ -16,6 +16,9 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats, IEmulatorFirmwareAdapter
 {
     /// <inheritdoc/>
+    public virtual IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => CoreDefinition.Options;
+
+    /// <inheritdoc/>
     public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {
         if (!Directory.Exists(directory)) return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);

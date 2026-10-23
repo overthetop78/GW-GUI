@@ -8,6 +8,20 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 
 internal static class CoreSettingsFunctions
 {
+    /// <summary>Expose les définitions natives existantes dans le catalogue d'options commun.</summary>
+    /// <param name="emulatorId">Identifiant du backend dont les définitions sont déjà déclarées.</param>
+    /// <param name="configuration">Configuration empruntée fournissant les valeurs courantes et le modèle, ou null pour les valeurs déclarées.</param>
+    /// <returns>Descriptions natives avec leurs choix, traductions, onglets et restrictions de modèle.</returns>
+    /// <remarks>La projection conserve les valeurs invariantes et la règle BASIC du modèle.
+    /// Elle réutilise les définitions utilisées par les éditeurs et ne crée aucun cœur.</remarks>
+    internal static IReadOnlyList<CoreOption> Options(string emulatorId, MachineConfiguration? configuration) => Definitions(emulatorId).Select(option =>
+    {
+        var fallback = configuration is null ? option.DefaultValue : Default(configuration, option);
+        return new CoreOption(option.Key, option.LabelResourceKey, null, null, fallback, configuration?.Options?.GetValueOrDefault(option.Key) ?? fallback,
+            option.Choices.Select(choice => new CoreOptionValue(choice.Value, choice.Label, ResourceKey: choice.IsInvariant ? null : choice.Label, InvariantDisplayValue: choice.IsInvariant ? choice.Label : null)).ToArray(),
+            ResourceKey: option.LabelResourceKey, Tab: option.Tab, MachineIds: option.MachineIds);
+    }).ToArray();
+
     internal static IReadOnlyList<CoreOptionDefinition> Definitions(string emulatorId) => emulatorId switch
     {
         Pce.CoreConstants.Id => Pce.OptionConstants.All,

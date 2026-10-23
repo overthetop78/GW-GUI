@@ -10,8 +10,11 @@ using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public virtual IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => CoreDefinition.Options;
+
     /// <inheritdoc/>
     public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {

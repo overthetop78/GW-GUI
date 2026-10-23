@@ -5,6 +5,16 @@ namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 /// de présentation et ne possède aucune session, sortie audio ou surface vidéo.</remarks>
 internal interface IEmulatorSettings
 {
+    /// <summary>Décrit les options natives disponibles avant le démarrage du cœur.</summary>
+    /// <param name="configuration">Configuration empruntée permettant de résoudre les variantes de modèle ; null conserve le catalogue général.</param>
+    /// <param name="context">Services de gestion empruntés pour les lecteurs de métadonnées dépendant d'un cœur installé ; null lorsque ces services sont inutiles.</param>
+    /// <returns>Options déclarées avec leurs valeurs, catégories et règles natives, dans leur ordre existant.</returns>
+    /// <remarks>Un catalogue vide signifie qu'aucune description préalable n'est fournie dans ce contexte.
+    /// Le cœur peut annoncer ses options pendant son initialisation : ces annonces restent traitées par le runtime.
+    /// Les lecteurs existants dépendant du contexte conservent leurs conditions d'accès ; cette consultation
+    /// ne démarre pas une session et ne transfère pas la propriété des services ou de la configuration.</remarks>
+    IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null);
+
     /// <summary>Décrit les blocs à présenter parmi les réglages de la machine.</summary>
     /// <param name="configuration">Configuration empruntée dont les valeurs sont présentées.</param>
     /// <param name="context">Contexte de gestion transmis à la description native, ou null si inutile.</param>

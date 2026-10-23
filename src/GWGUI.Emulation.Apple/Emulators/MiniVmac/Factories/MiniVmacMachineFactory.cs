@@ -5,6 +5,9 @@ namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Factories;
 
 internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorConfigurationOptions, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Dictionaries.MiniVmacOptionCatalog.All;
+
     public bool SupportsPointer(MachineConfiguration configuration) => true;
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.SettingsDescriptionFunctions.Create(configuration);
     public override void ValidateConfiguration(MachineConfiguration configuration) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.ConfigurationFunctions.ValidateConfiguration(configuration);

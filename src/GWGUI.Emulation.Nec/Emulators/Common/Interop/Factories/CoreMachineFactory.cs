@@ -10,8 +10,11 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public virtual IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => CoreSettingsFunctions.Options(EmulatorId, configuration);
+
     /// <inheritdoc/>
     public virtual async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {

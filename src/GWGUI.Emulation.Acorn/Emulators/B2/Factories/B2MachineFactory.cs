@@ -4,7 +4,7 @@ using GWGUI.Emulation.Acorn.Emulators.B2.Constants;
 
 namespace GWGUI.Emulation.Acorn.Emulators.B2.Factories;
 
-internal sealed class B2MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorConfigurationOptions, IEmulatorSettingsAdapter, IEmulatorStorageSettings
+internal sealed class B2MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorConfigurationOptions, IEmulatorSettings, IEmulatorStorageSettings
 {
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => MediaDeviceFunctions.Describe(configuration);
     public IReadOnlyList<EmulationStorageDeviceSettings> DescribeDeviceSettings(MachineConfiguration configuration) => MediaDeviceFunctions.Settings(configuration);
