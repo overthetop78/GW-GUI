@@ -30,7 +30,7 @@ internal static class StorageSettingsFunctions
     }
 
     private static IReadOnlyList<EmulationSettingsField> CartridgeFields(MachineConfiguration configuration) =>
-        new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
+        new Engine().Adapter(configuration) is { } settings ? settings.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {

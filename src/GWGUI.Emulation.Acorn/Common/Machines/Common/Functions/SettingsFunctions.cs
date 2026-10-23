@@ -22,7 +22,7 @@ internal static class SettingsDescriptionFunctions
                 Information(SettingsConstants.Video + "_teletext", EmulationMachineTab.Video, SettingsConstants.ResourceTeletext, "Mullard SAA5050")),
             Audio(configuration)
         };
-        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } settings)
             blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.DescribeSettings(configuration));
         return blocks;
     }

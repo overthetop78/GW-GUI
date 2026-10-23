@@ -11,7 +11,7 @@ internal static class SettingsDescriptionFunctions
         {
             FirmwareFunctions.Describe(configuration)
         };
-        var nativeBlocks = configuration.Core != Emulator.None && new Engine().Adapter(configuration)is IEmulatorSettings settings ? settings.DescribeSettings(configuration) : [];
+        var nativeBlocks = configuration.Core != Emulator.None && new Engine().Adapter(configuration)is { } settings ? settings.DescribeSettings(configuration) : [];
         blocks.Add(new(
                 SettingsConstants.ResourceCpuProcessor,
                 EmulationMachineTab.Cpu,

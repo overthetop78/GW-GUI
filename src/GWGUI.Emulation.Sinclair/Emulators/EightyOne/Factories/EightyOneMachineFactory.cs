@@ -11,7 +11,7 @@ internal sealed class EightyOneMachineFactory() : LibretroMachineFactory(Emulato
 {
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => [PeripheralCategory.None, PeripheralCategory.CursorJoystick];
 
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => NativeSettings.GetOptions(configuration);
 
     protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;

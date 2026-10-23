@@ -14,6 +14,9 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 
+    /// <inheritdoc/>
+    public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;

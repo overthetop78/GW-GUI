@@ -69,7 +69,7 @@ internal static class SettingsDescriptionFunctions
                         ).Select(step => step * InputMappingConstants.MouseSpeedStepPercent).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {SettingsConstants.PercentUnit}")).ToArray()
                     )
                 ));
-        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } settings)
             blocks.AddRange(settings.DescribeSettings(configuration));
 
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(

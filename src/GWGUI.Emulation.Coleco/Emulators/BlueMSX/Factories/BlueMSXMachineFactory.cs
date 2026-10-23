@@ -19,7 +19,7 @@ internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants
         extensions.Add(EmulatorConstants.RawCartridgeExtension);
         return extensions;
     }
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => Settings.GetOptions();
     public void ValidateConfiguration(MachineConfiguration configuration) => Settings.Validate(configuration);
 }

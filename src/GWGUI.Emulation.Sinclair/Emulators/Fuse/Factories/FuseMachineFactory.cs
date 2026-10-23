@@ -13,7 +13,7 @@ internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorCons
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => Enum.GetValues<PeripheralCategory>();
     protected override bool SupportsInitialContent => true;
 
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => NativeSettings.GetOptions(configuration);
 
     protected override bool SupportsNoContent => true;

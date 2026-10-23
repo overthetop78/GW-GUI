@@ -6,6 +6,9 @@ namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorInitialContentSettings, IEmulatorCapabilities, IEmulatorControllerAdapter
 {
     /// <inheritdoc/>
+    public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
+
+    /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => configuration.Core != Emulator.None && this is IEmulatorCapabilities { SupportsNoContent: true };
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;

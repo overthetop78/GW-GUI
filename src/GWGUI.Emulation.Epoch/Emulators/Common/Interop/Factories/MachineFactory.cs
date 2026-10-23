@@ -12,6 +12,9 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
+
+    /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

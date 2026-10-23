@@ -8,7 +8,7 @@ internal static class SettingsDescriptionFunctions
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         var blocks = new List<EmulationSettingsBlock>();
-        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration)is IEmulatorSettings settings)
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration)is { } settings)
             blocks.AddRange(settings.DescribeSettings(configuration));
         blocks.Add(new(
                 SettingsConstants.ResourceCpuProcessor,

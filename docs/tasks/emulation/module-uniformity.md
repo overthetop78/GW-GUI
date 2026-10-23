@@ -7556,3 +7556,69 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs : utiliser StartAudio pour appliquer TrySetMinimumLatency lorsque le cœur expose IEmulatorAudioBufferFeedback, puis démarrer la sortie avec la fréquence existante ; conserver les conditions d’activation, l’ordre de la boucle et les règles de libération.
   - [x] Vérifier le démarrage et le parcours audio existant.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les appels compilés et leur ordre dans les 24 méthodes StartAudio ; comparer les autres traitements, exécuter les tests locaux et vérifier le Debug avec tous les modules.
+## Description des réglages obligatoire pour chaque adaptateur
+
+- [x] Raccorder tous les adaptateurs au contrat Common de description des réglages.
+  - [x] Compléter les héritages manquants et les déclarations des fabriques existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : hériter du contrat IEmulatorSettings existant pour imposer DescribeSettings à chaque backend.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite pour conserver les descriptions fournies par les fabriques concrètes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite pour conserver les descriptions fournies par les fabriques concrètes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/B2/Factories/B2MachineFactory.cs : marquer la description existante override, sans changer son traitement.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/AppleWin/Factories/AppleWinMachineFactory.cs : marquer la description existante override, sans changer son traitement.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Factories/MiniVmacMachineFactory.cs : marquer la description existante override, sans changer son traitement.
+  - [x] Appeler le contrat obligatoire depuis les fonctions Common existantes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs : appeler DescribeSettings sur le contrat de l’adaptateur sans test de capacité optionnelle ; conserver les contrôles de présence du backend, les filtres et les blocs existants.
+  - [x] Compléter les fabriques abstraites signalées par la compilation et leurs implémentations.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : déclarer DescribeSettings abstraite, conformément au contrat de réglages désormais obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Factories/BeetleWonderSwanMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/PlaydiaEmu/Factories/PlaydiaEmuMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/TamaLibretro/Factories/TamaLibretroMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/BlueMSX/Factories/BlueMSXMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Factories/GearColecoMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/JollyCV/Factories/JollyCVMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/EmuSCV/Factories/EmuSCVMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/FreeChaF/Factories/FreeChaFMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/FreeIntv/Factories/FreeIntvMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/M2000/Factories/M2000MachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/O2em/Factories/O2emMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/SameCdi/Factories/SameCdiMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Px68k/Factories/Px68kMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/X1/Factories/X1MachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Factories/EightyOneMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Fuse/Factories/FuseMachineFactory.cs : déclarer override la description existante sans changer son contenu.
+  - [x] Vérifier les contrats et les descriptions conservées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : imposer le contrat de réglages à IEmulatorAdapter et à toutes ses implémentations dans les 24 familles ; vérifier les descriptions conservées, exécuter les tests locaux et construire le Debug avec tous les modules.

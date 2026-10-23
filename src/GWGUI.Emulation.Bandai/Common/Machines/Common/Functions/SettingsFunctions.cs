@@ -11,7 +11,7 @@ internal static class SettingsDescriptionFunctions
             Audio(configuration)
         };
         AddHardware(blocks, configuration);
-        if (new Engine().Adapter(configuration)is IEmulatorSettings settings)
+        if (new Engine().Adapter(configuration)is { } settings)
             blocks.AddRange(settings.DescribeSettings(configuration));
         return blocks;
     }

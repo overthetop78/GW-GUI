@@ -7,6 +7,9 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
+
+    /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;

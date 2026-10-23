@@ -20,7 +20,7 @@ internal sealed class B2MachineFactory() : MachineFactory(EmulatorConstants.Entr
             OptionConstants.ModelBPlus128 => MachineModel.BbcMicroModelBPlus128,
             _ => model
         } : model;
-    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => EmulatorSettingsFunctions.Describe(configuration);
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => EmulatorSettingsFunctions.Describe(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => EmulatorSettingsFunctions.Options(configuration);
 
 }

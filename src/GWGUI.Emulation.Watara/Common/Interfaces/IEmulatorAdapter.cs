@@ -3,7 +3,7 @@ using GWGUI.Emulation.Watara.Common.Contracts;
 using GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Watara.Common.Services;
 namespace GWGUI.Emulation.Watara.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorInputMapper, IEmulatorPointerCapabilities
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities
 {
     /// <summary>Annonce par défaut l’absence d’entrées de pointage ; le backend déclare sa prise en charge effective.</summary>
     bool IEmulatorPointerCapabilities.SupportsPointer(MachineConfiguration configuration) => false;
