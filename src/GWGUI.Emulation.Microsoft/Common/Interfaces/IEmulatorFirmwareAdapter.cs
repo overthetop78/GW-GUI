@@ -10,7 +10,7 @@ internal interface IEmulatorFirmwareAdapter
     /// <param name="configuration">Configuration empruntée de la machine qui utilisera le firmware.</param>
     /// <param name="path">Chemin du fichier candidat à lire.</param>
     /// <param name="cancellationToken">Annulation des lectures et calculs d’empreintes.</param>
-    /// <returns>Identité observée, compatibilité et champ de destination déterminés par les règles de l’adaptateur.</returns>
+    /// <returns>Candidats dans leur ordre de reconnaissance, avec leur identité, compatibilité et destination. Une liste vide signifie que le fichier ne fournit aucun candidat ; plusieurs résultats conservent les rôles et variantes possibles sans en choisir un arbitrairement.</returns>
     /// <remarks>Les flux ouverts pour l’analyse sont libérés avant le retour ; le fichier n’est ni installé ni modifié.</remarks>
-    ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
+    ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
 }

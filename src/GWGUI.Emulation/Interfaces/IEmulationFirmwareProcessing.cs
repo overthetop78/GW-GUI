@@ -4,6 +4,16 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>Le module conserve l’identification, la compatibilité et la destination des fichiers. Le service emprunte les inspecteurs pendant le parcours ; il ne conserve aucun candidat ni handle après son retour.</remarks>
 public interface IEmulationFirmwareProcessing
 {
+    /// <summary>Retrouve un candidat unique sans relire son fichier ni modifier les résultats de reconnaissance.</summary>
+    /// <param name="candidates">Résultats empruntés d’une même inspection, conservés dans leur ordre.</param>
+    /// <param name="candidateId">Identité sélectionnée, ou null si seul le rôle est connu.</param>
+    /// <param name="destinationFieldId">Rôle demandé, ou null si aucune destination n’est précisée.</param>
+    /// <returns>Le candidat de même identité et destination, puis de même rôle ; à défaut, le seul candidat de la liste.</returns>
+    /// <exception cref="InvalidOperationException">Aucun résultat ou plusieurs résultats ne permettent une sélection unique.</exception>
+    /// <remarks>La sélection par rôle conserve les alternatives d’un même fichier. Une inspection à un seul résultat
+    /// conserve son résultat, y compris son diagnostic d’incompatibilité, pour que Common applique ses contrôles habituels.</remarks>
+    EmulationFirmwareCandidate SelectCandidate(IReadOnlyList<EmulationFirmwareCandidate> candidates, string? candidateId, string? destinationFieldId);
+
     /// <summary>Crée le dossier si nécessaire et inspecte séquentiellement ses fichiers par chemin ordinal insensible à la casse.</summary>
     /// <param name="directory">Racine du parcours plat, sans recherche dans les sous-dossiers.</param>
     /// <param name="inspect">Inspecteur du module ; son résultat est ajouté sans modifier son identité ni masquer ses erreurs.</param>

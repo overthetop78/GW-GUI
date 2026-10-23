@@ -242,14 +242,15 @@ internal sealed class Engine
         if (current.Model != ModelCatalog.Parse(machineId))
             throw new ArgumentException(nameof(machineId));
         var directory = GetFirmwareDirectory(machineId);
-        return await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
+        var candidates = await CommonCoreHostFunctions.FirmwareProcessing.ScanDirectoryAsync(directory,
             (path, token) => FirmwareFunctions.ScanFileAsync(current, path, token), cancellationToken).ConfigureAwait(false);
+        return candidates.SelectMany(candidateSet => candidateSet).ToArray();
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
-        var scanned = FirmwareFunctions.ScanFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
+        var scanned = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(FirmwareFunctions.ScanFileAsync(current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult(), firmware.Id, firmware.DestinationFieldId);
         var selected = FirmwareFunctions.Select(scanned, current.Model, current.Core);
         var result = current with
         {

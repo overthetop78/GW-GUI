@@ -6,6 +6,23 @@ namespace GWGUI.Emulation.Functions;
 /// <remarks>Les opérations viennent des parcours Apple et Wenquxing existants. L’identification, la compatibilité et la destination de chaque firmware restent définies par l’adaptateur.</remarks>
 internal sealed class EmulationFirmwareFunctions : IEmulationFirmwareProcessing
 {
+    /// <inheritdoc/>
+    public EmulationFirmwareCandidate SelectCandidate(IReadOnlyList<EmulationFirmwareCandidate> candidates, string? candidateId, string? destinationFieldId)
+    {
+        ArgumentNullException.ThrowIfNull(candidates);
+        if (candidateId is not null)
+        {
+            var matching = candidates.Where(candidate => candidate.Id == candidateId && (destinationFieldId is null || candidate.DestinationFieldId == destinationFieldId)).ToArray();
+            if (matching.Length > 0) return matching.Single();
+        }
+        if (destinationFieldId is not null)
+        {
+            var matching = candidates.Where(candidate => candidate.DestinationFieldId == destinationFieldId).ToArray();
+            if (matching.Length > 0) return matching.Single();
+        }
+        return candidates.Single();
+    }
+
     /// <summary>Crée le dossier si nécessaire puis inspecte ses fichiers dans l’ordre ordinal insensible à la casse.</summary>
     /// <remarks>Le parcours est plat et séquentiel. L’inspecteur reçoit le jeton d’annulation ; ses erreurs sont propagées sans transformer un firmware illisible en candidat compatible.</remarks>
     public async ValueTask<IReadOnlyList<TCandidate>> ScanDirectoryAsync<TCandidate>(string directory,

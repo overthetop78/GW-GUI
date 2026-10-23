@@ -14,6 +14,25 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void FirmwareSelectionKeepsEveryRoleAndRequiresAnUnambiguousChoice()
+    {
+        var first = new EmulationFirmwareCandidate("digest:system", "firmware.bin", "system", null, EmulationFirmwareCompatibility.Compatible, "system");
+        var second = first with { Id = "digest:drive", DestinationFieldId = "drive" };
+        var alternate = second with { Id = "alternate:drive" };
+        IReadOnlyList<EmulationFirmwareCandidate> candidates = [first, second, alternate];
+        var processing = EmulationSdk.FirmwareProcessing;
+        Assert.Same(first, processing.SelectCandidate(candidates, first.Id, first.DestinationFieldId));
+        Assert.Same(alternate, processing.SelectCandidate(candidates, alternate.Id, alternate.DestinationFieldId));
+        Assert.Same(first, processing.SelectCandidate(candidates, null, "system"));
+        Assert.Throws<InvalidOperationException>(() => processing.SelectCandidate(candidates, null, "drive"));
+        Assert.Throws<InvalidOperationException>(() => processing.SelectCandidate(candidates, null, null));
+        Assert.Throws<InvalidOperationException>(() => processing.SelectCandidate([], null, null));
+        var incompatible = first with { Compatibility = EmulationFirmwareCompatibility.Incompatible, DestinationFieldId = null };
+        Assert.Same(incompatible, processing.SelectCandidate([incompatible], "unrecognized", "system"));
+        Assert.Equal(new[] { first, second, alternate }, candidates);
+    }
+
+    [Fact]
     public void EveryCommonUsesTheCompleteStorageContractAndItsActualBackendImplementations()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -1160,7 +1179,7 @@ public sealed class ArchitectureValidationTests
             var scan = Assert.Single(contract.GetMethods());
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);
-            Assert.Equal(typeof(ValueTask<EmulationFirmwareCandidate>), scan.ReturnType);
+            Assert.Equal(typeof(ValueTask<IReadOnlyList<EmulationFirmwareCandidate>>), scan.ReturnType);
             var parameters = scan.GetParameters();
             Assert.Equal(3, parameters.Length);
             Assert.Equal(assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration"), parameters[0].ParameterType);

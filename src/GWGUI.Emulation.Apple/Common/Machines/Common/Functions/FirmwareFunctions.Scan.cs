@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 
 internal static partial class FirmwareFunctions
 {
-    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(IEmulatorFirmwareAdapter adapter, MachineConfiguration configuration, string path, CancellationToken cancellationToken) => adapter.ScanFirmwareFileAsync(configuration, path, cancellationToken);
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(IEmulatorFirmwareAdapter adapter, MachineConfiguration configuration, string path, CancellationToken cancellationToken) => adapter.ScanFirmwareFileAsync(configuration, path, cancellationToken);
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate)
     {

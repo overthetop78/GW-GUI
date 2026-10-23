@@ -274,14 +274,14 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         return length > 0 && length <= hardware.MainMemoryBytes;
     }
     /// <inheritdoc/>
-    public IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) => FirmwareScanFunctions.EnumerateCandidates(directory).Select(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray();
+    public IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) => FirmwareScanFunctions.EnumerateCandidates(directory).SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray();
     /// <inheritdoc/>
-    public async ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
         var scanned = await FirmwareScanFunctions.ScanFileAsync([this], path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
-        return new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Definition?.Version,
+        return [new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Definition?.Version,
             scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem, path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
-            FirmwareCategory.OperatingSystem.ToString());
+            FirmwareCategory.OperatingSystem.ToString())];
     }
     /// <summary>Copie les firmwares empruntés dans le seul dossier système de la session.</summary>
     /// <inheritdoc/>

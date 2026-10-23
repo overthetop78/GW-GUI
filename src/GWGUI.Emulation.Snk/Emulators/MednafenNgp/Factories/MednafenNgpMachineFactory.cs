@@ -15,7 +15,7 @@ internal sealed class MednafenNgpMachineFactory() : LibretroMachineFactory(Emula
     public override IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => configuration is null ? CoreOptions : NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
-    public override ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => NativeFirmware.Inspect(path, cancellationToken);
+    public override async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (NativeFirmware.Inspect(path, cancellationToken)).ConfigureAwait(false)];
     internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
     }

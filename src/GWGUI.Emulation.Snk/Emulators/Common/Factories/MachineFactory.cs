@@ -25,7 +25,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public virtual bool IsDeferredOption(MachineConfiguration configuration, string key) => false;
     public abstract IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model);
     public abstract bool IsFirmwareRequired(MachineModel model, FirmwareCategory category);
-    public abstract ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
+    public abstract ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken);
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;
     public string EmulatorId => CatalogEntry.Id;

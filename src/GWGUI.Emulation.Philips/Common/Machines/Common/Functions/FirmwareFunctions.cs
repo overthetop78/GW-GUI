@@ -26,10 +26,10 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) =>
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) =>
         new Engine().Adapter(configuration.Core) is IEmulatorFirmwareAdapter firmware
             ? firmware.ScanFirmwareFileAsync(configuration, path, cancellationToken)
-            : ValueTask.FromResult(new EmulationFirmwareCandidate(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Incompatible, null));
+            : ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new EmulationFirmwareCandidate(path, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.Incompatible, null)]);
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate)
     {

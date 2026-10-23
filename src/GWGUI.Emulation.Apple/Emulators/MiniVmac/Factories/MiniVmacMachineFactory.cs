@@ -12,5 +12,5 @@ internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstant
     public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.RuntimeFunctions.RequiresMediaRestart(slot, path);
     public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.RuntimeFunctions.RequiresOptionRestart(key);
     public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
-    public ValueTask<EmulationFirmwareCandidate> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.FirmwareFunctions.ScanFileAsync(path, cancellationToken);
+    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.FirmwareFunctions.ScanFileAsync(path, cancellationToken)).ConfigureAwait(false)];
 }

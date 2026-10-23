@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
 using System.IO;
@@ -85,7 +86,7 @@ internal static class FirmwareRuntimeFunctions
 
         if (!File.Exists(firmware.Path))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.FirmwareFileMissing);
-        var candidate = FirmwareFunctions.ScanFileAsync(configuration, firmware.Path, CancellationToken.None).AsTask().GetAwaiter().GetResult();
+        var candidate = CommonCoreHostFunctions.FirmwareProcessing.SelectCandidate(FirmwareFunctions.ScanFileAsync(configuration, firmware.Path, CancellationToken.None).AsTask().GetAwaiter().GetResult(), null, FirmwareFunctions.Field(role));
         if (candidate.Compatibility is not (EmulationFirmwareCompatibility.Official or EmulationFirmwareCompatibility.Compatible or EmulationFirmwareCompatibility.PartiallyCompatible) || candidate.DestinationFieldId != FirmwareFunctions.Field(role))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
         var source = Path.GetFullPath(firmware.Path);

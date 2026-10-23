@@ -22,7 +22,7 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
     {
         var model = configuration.Model;
         var core = configuration.Core;
@@ -32,7 +32,7 @@ internal static class FirmwareFunctions
         var absolute = Path.GetFullPath(path);
         return core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareAdapter adapter 
             ? adapter.ScanFirmwareFileAsync(configuration, absolute, cancellationToken)
-            : ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown));
+            : ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown)]);
     }
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineModel model, Emulator core)
