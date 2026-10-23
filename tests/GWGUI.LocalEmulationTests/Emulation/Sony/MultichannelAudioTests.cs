@@ -178,6 +178,12 @@ public sealed class MultichannelAudioTests
 
     private sealed class AudioCore(IEnumerable<AudioChunk> chunks) : IEmulatorCore
     {
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+
         public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         private readonly Queue<AudioChunk> _chunks = new(chunks);
         private int _frames;

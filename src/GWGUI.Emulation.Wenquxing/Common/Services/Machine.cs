@@ -9,6 +9,15 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Wenquxing.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
 {
+    /// <summary>Standard vidéo annoncé par le cœur courant, ou null si inconnu.</summary>
+    public EmulationVideoStandard? Region => _core.Region;
+    /// <summary>Trames audio en attente selon le dernier statut du cœur.</summary>
+    public int BufferedAudioFrames => _core.BufferedAudioFrames;
+    /// <summary>Dépassements du tampon audio signalés par le cœur.</summary>
+    public long AudioOverrunCount => _core.AudioOverrunCount;
+    /// <summary>Manques de données audio réellement comptés par le cœur.</summary>
+    public long AudioUnderrunCount => _core.AudioUnderrunCount;
+
     /// <summary>Entrées actuelles de session, empruntées au propriétaire de la configuration.</summary>
     private InputConfiguration? CurrentInputConfiguration => _inputConfiguration.Input;
     /// <summary>Autorise les retours uniquement pendant une exécution active, avant destruction et hors suspension média.</summary>

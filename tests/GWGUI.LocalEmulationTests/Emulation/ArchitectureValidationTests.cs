@@ -4310,4 +4310,65 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(23, processes);
         Assert.Equal(23, nativeCores);
     }
+    [Fact]
+    public void EveryCommonPublishesItsCoreCapabilitiesAndAudioCounters()
+    {
+        var status = typeof(IEmulationCoreRuntimeStatus);
+        Assert.Contains(status, typeof(IEmulationRuntime).GetInterfaces());
+        var members = status.GetProperties();
+        Assert.Equal(5, members.Length);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var cores = 0;
+        var cachedNativeCapabilities = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var coreContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            Assert.Contains(status, coreContract.GetInterfaces());
+            foreach (var core in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && coreContract.IsAssignableFrom(type)))
+            {
+                cores++;
+                var map = core.GetInterfaceMap(status);
+                foreach (var member in members)
+                {
+                    var getter = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, member.GetMethod!)];
+                    Assert.False(getter.IsAbstract);
+                    Assert.Equal(member.PropertyType, getter.ReturnType);
+                }
+                if (core.Name == "ExternalCore" && core.GetField("_getSerializedSize", BindingFlags.Instance | BindingFlags.NonPublic) is not null)
+                {
+                    cachedNativeCapabilities++;
+                    var initialization = core.GetMethod("Initialize")!;
+                    var calls = GetCompiledCalls(initialization);
+                    Assert.Contains(calls, call => call.Method.Name == "IsSupportedStateSize" && call.Method.DeclaringType == typeof(IEmulationMachineExecution));
+                    Assert.Contains(calls, call => call.Method.Name == "ReadRegion" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
+                    foreach (var name in new[] { "SupportsSaveStates", "Region" })
+                        Assert.DoesNotContain(GetCompiledCalls(core.GetProperty(name)!.GetMethod!), call => call.Method.Name == "Invoke");
+                }
+            }
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            Assert.True(typeof(IEmulationRuntime).IsAssignableFrom(machine));
+            var runtimeMap = machine.GetInterfaceMap(status);
+            foreach (var member in members)
+            {
+                var getter = runtimeMap.TargetMethods[Array.IndexOf(runtimeMap.InterfaceMethods, member.GetMethod!)];
+                Assert.Contains(GetCompiledCalls(getter), call => call.Method == member.GetMethod);
+            }
+            if (root == "GWGUI.Emulation.Microsoft") continue;
+            var process = Assert.Single(assembly.GetTypes(), type => type.Name == "ProcessCore" && coreContract.IsAssignableFrom(type));
+            var processCalls = process.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                .Concat(process.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public).SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly)))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(processCalls, call => call.Method.Name == "ReadRuntimeStatus" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
+        }
+        Assert.Equal(46, cores);
+        Assert.Equal(6, cachedNativeCapabilities);
+        var helper = typeof(DiskStatus).Assembly.GetType("GWGUI.Emulation.Functions.EmulationHostProtocolFunctions", throwOnError: true)!;
+        var frame = helper.GetMethod("RunCoreFrame", BindingFlags.Static | BindingFlags.NonPublic)!;
+        Assert.Contains(GetCompiledCalls(frame), call => call.Method.Name == "WriteNativeCoreFrameResponse");
+    }
 }

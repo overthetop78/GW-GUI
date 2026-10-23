@@ -34,7 +34,12 @@ internal static class CoreHost
                                 core.Initialize(configuration, session, saves);
                                 writer.Write(true);
                                 CommonCoreHostFunctions.Protocol.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
-                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator);
+                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator,
+                                    static (statusWriter, currentCore) =>
+                                    {
+                                        statusWriter.Write(currentCore.SupportsSaveStates);
+                                        CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
+                                    });
                                 CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                                 writer.Write(core.ShutdownRequested);

@@ -101,7 +101,7 @@ public interface IEmulationHostProtocol
     void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>;
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus;
 
     /// <summary>Écrit le disque sélectionné et le nombre de disques selon le protocole des médias par chemin.</summary>
     /// <param name="writer">Rédacteur binaire emprunté.</param>
@@ -317,7 +317,8 @@ public interface IEmulationHostProtocol
     /// <param name="lastDiagnosticCount">Nombre de diagnostics déjà transmis, actualisé après écriture.</param>
     /// <param name="writeStateSupport">Écriture facultative des capacités de sauvegarde d’état.</param>
     /// <param name="writeAudioStatus">Écriture facultative des compteurs et capacités audio.</param>
-    void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeAudioStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus;
+    /// <param name="writeMediaStatus">Codec emprunté des champs de médias ajoutés après le statut partagé, ou null lorsque ces champs sont absents.</param>
+    void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeAudioStatus = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus;
 
     /// <summary>Écrit le standard vidéo et les compteurs du tampon audio.</summary>
     /// <param name="writer">Rédacteur binaire emprunté, positionné au début des données à écrire.</param>

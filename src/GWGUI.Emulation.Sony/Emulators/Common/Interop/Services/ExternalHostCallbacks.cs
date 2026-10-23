@@ -19,6 +19,9 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
+    /// <summary>Nombre réel de consommations audio vides comptées par le tampon partagé.</summary>
+    internal long AudioUnderrunCount => _audioBuffer.UnderrunCount;
+
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     internal HardwareRenderSession HardwareRender { get; } = new();
     internal CoreDiagnosticMonitor DiagnosticMonitor { get; }

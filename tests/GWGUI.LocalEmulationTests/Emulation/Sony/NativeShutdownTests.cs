@@ -115,6 +115,12 @@ public sealed class NativeShutdownTests
 
     private sealed class ShutdownCore(bool duringInitialize) : IEmulatorCore
     {
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+
         public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested { get; private set; }
         public int Frames { get; private set; }

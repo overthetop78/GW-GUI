@@ -71,6 +71,10 @@ public sealed class LegacyHostFrameResponseTests
         Assert.Equal(3, audio.Sequence);
         Assert.Equal(50d, response.ReadDouble());
         Assert.Equal(44100, response.ReadInt32());
+        Assert.Equal(1, response.ReadInt32());
+        Assert.Equal(1, response.ReadInt32());
+        Assert.Equal(11, response.ReadInt64());
+        Assert.Equal(12, response.ReadInt64());
         Assert.Equal(2, response.ReadInt32());
         Assert.Equal(1, response.ReadInt32());
         Assert.True(response.ReadBoolean());
@@ -155,7 +159,7 @@ public sealed class LegacyHostFrameResponseTests
     private static VideoFrame Frame(long sequence)
         => new(ReadOnlyMemory<byte>.Empty, 0, 0, 0, EmulationPixelFormat.Xrgb8888, 1, sequence, TimeSpan.Zero);
 
-    private sealed class Core : IEmulationCoreRuntime<object, string>
+    private sealed class Core : IEmulationCoreRuntime<object, string>, IEmulationCoreRuntimeStatus
     {
         public VideoFrame? Frame = LegacyHostFrameResponseTests.Frame(7);
         public readonly Queue<AudioChunk?> Audio = new(
@@ -174,6 +178,11 @@ public sealed class LegacyHostFrameResponseTests
         public string CoreVersion => "test";
         public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string>();
         public string CoreSha256 => "test";
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => EmulationVideoStandard.Pal;
+        public int BufferedAudioFrames => Audio.Count;
+        public long AudioOverrunCount => 11;
+        public long AudioUnderrunCount => 12;
         public double FramesPerSecond => 50;
         public int SampleRate => 44100;
         public void Initialize(object configuration, string sessionDirectory, string? saveDirectory = null) { }

@@ -24,6 +24,22 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public bool SupportsSaveStates { get; private set; }
+    /// <inheritdoc/>
+    public EmulationVideoStandard? Region { get; private set; }
+    /// <inheritdoc/>
+    public int BufferedAudioFrames { get; private set; }
+    /// <inheritdoc/>
+    public long AudioOverrunCount { get; private set; }
+    /// <inheritdoc/>
+    public long AudioUnderrunCount { get; private set; }
+
+    /// <summary>Lit le statut courant avec le même codec que le propriétaire du cœur.</summary>
+    private void ReadRuntimeStatus(BinaryReader reader) => CommonCoreHostFunctions.Protocol.ReadRuntimeStatus(reader,
+        value => Region = CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: false),
+        value => BufferedAudioFrames = value, value => AudioOverrunCount = value, value => AudioUnderrunCount = value);
+
+    /// <inheritdoc/>
     public DiskStatus GetDiskStatus()
     {
         Begin(HostCommand.GetDiskStatus);
@@ -107,6 +123,8 @@ internal sealed class ProcessCore : IEmulatorCore
             CoreSha256 = Response.ReadString();
             FramesPerSecond = Response.ReadDouble();
             SampleRate = Response.ReadInt32();
+            SupportsSaveStates = Response.ReadBoolean();
+            ReadRuntimeStatus(Response);
             Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             var definition = CoreCatalog.Get(configuration.EmulatorId);
             Options = CoreOptionMetadataFunctions.Merge(Options, definition.ResolveOptions?.Invoke(configuration) ?? definition.Options, configuration.GraphicsApi);
@@ -140,6 +158,7 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         FramesPerSecond = Response.ReadDouble();
         SampleRate = Response.ReadInt32();
+        ReadRuntimeStatus(Response);
         DiskCount = Response.ReadInt32();
         CurrentDiskIndex = Response.ReadInt32();
         if (Response.ReadBoolean())

@@ -147,11 +147,11 @@ public sealed class CoreHostResponseTests
     }
 
     [Theory]
-    [InlineData(false, false, false)]
-    [InlineData(true, false, true)]
-    [InlineData(false, true, true)]
-    [InlineData(true, true, false)]
-    public void NativeFramePreservesWirePositionsAndPreDrainCounters(bool support, bool latency, bool changed)
+    [InlineData(false, false, false, false)]
+    [InlineData(true, false, true, true)]
+    [InlineData(false, true, true, false)]
+    [InlineData(true, true, false, true)]
+    public void NativeFramePreservesWirePositionsAndPreDrainCounters(bool support, bool latency, bool changed, bool media)
     {
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
@@ -175,19 +175,21 @@ public sealed class CoreHostResponseTests
                 return new JsonSerializerOptions(JsonSerializerDefaults.Web);
             }, ref sequence, ref count,
             support ? static (output, source) => output.Write(source.SupportsSaveStates) : null,
-            latency ? (output, _) => { core.Trace.Add("latency"); output.Write(33); } : null);
+            latency ? (output, _) => { core.Trace.Add("latency"); output.Write(33); } : null,
+            media ? (output, _) => { core.Trace.Add("media"); output.Write(55); } : null);
         writer.Flush();
 
         var trace = new List<string> { "video", "frame", "buffered", "overrun", "underrun", "dequeue", "fps", "rate" };
         if (latency) trace.Add("latency");
         trace.Add("region");
         if (support) trace.Add("support");
+        if (media) trace.Add("media");
         trace.Add("diagnostics");
-        if (changed) trace.AddRange(new[] { "diagnostics", "json", "diagnostics" });
+        if (changed) trace.Add("json");
         trace.AddRange(new[] { "led", "led-write" });
         Assert.Equal(trace, core.Trace);
         Assert.Equal(17, sequence);
-        Assert.Equal(changed ? 2 : 1, count);
+        Assert.Equal(1, count);
         Assert.False(core.Disposed);
 
         stream.Position = 0;
@@ -202,11 +204,12 @@ public sealed class CoreHostResponseTests
         Assert.Equal(10, reader.ReadInt64());
         Assert.Equal(11, reader.ReadInt64());
         if (support) Assert.True(reader.ReadBoolean());
+        if (media) Assert.Equal(55, reader.ReadInt32());
         Assert.Equal(changed, reader.ReadBoolean());
         if (changed)
         {
             using var diagnostics = JsonDocument.Parse(reader.ReadString());
-            Assert.Equal(new[] { "first", "second" }, diagnostics.RootElement.EnumerateArray().Select(item => item.GetString()));
+            Assert.Equal(new[] { "first" }, diagnostics.RootElement.EnumerateArray().Select(item => item.GetString()));
         }
         Assert.Equal(44, reader.ReadInt32());
         Assert.Equal(stream.Length, stream.Position);

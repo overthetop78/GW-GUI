@@ -579,6 +579,12 @@ public sealed class AmstradEmulatorAdapterTests
 
     private sealed class RecordingCore : IEmulatorCore
     {
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+
         public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested => false;
         public VideoFrame? LatestVideoFrame => null;

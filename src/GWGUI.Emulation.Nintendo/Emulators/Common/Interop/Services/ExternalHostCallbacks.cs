@@ -18,6 +18,9 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
+    /// <summary>Nombre réel de consommations audio vides comptées par le tampon partagé.</summary>
+    internal long AudioUnderrunCount => _audioBuffer.UnderrunCount;
+
     /// <summary>Effets natifs conservés par le stockage partagé via Common.</summary>
     internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
     private readonly ExternalCoreApi.SetRumbleState _setRumbleState;

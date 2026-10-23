@@ -19,6 +19,19 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <summary>Capacité native constatée après le chargement, bornée par les limites du format existant.</summary>
+    private bool _supportsSaveStates;
+    /// <inheritdoc/>
+    public bool SupportsSaveStates => _gameLoaded && _supportsSaveStates;
+    /// <inheritdoc/>
+    public EmulationVideoStandard? Region { get; private set; }
+    /// <inheritdoc/>
+    public int BufferedAudioFrames => _host?.BufferedAudioFrames ?? 0;
+    /// <inheritdoc/>
+    public long AudioOverrunCount => _host?.AudioOverrunCount ?? 0;
+    /// <inheritdoc/>
+    public long AudioUnderrunCount => _host?.AudioUnderrunCount ?? 0;
+
     /// <inheritdoc/>
     public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.GetStatus();
 
@@ -168,6 +181,8 @@ internal sealed class ExternalCore : IEmulatorCore
             _saveRamReady = true;
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
+            Region = CommonCoreHostFunctions.Protocol.ReadRegion(unchecked((int)Export<ExternalCoreApi.GetRegion>(ExternalCoreConstants.RetroGetRegion)()), allowAllDefinedStandards: false);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(_getSerializedSize!(), (nuint)SavedStateConstants.MaximumStateSize);
         }
         catch
         {

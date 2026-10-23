@@ -11,6 +11,19 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <summary>Capacité native constatée après le chargement, bornée par les limites du format existant.</summary>
+    private bool _supportsSaveStates;
+    /// <inheritdoc/>
+    public bool SupportsSaveStates => _gameLoaded && _supportsSaveStates;
+    /// <inheritdoc/>
+    public EmulationVideoStandard? Region { get; private set; }
+    /// <inheritdoc/>
+    public int BufferedAudioFrames => _host?.BufferedAudioFrames ?? 0;
+    /// <inheritdoc/>
+    public long AudioOverrunCount => _host?.AudioOverrunCount ?? 0;
+    /// <inheritdoc/>
+    public long AudioUnderrunCount => _host?.AudioUnderrunCount ?? 0;
+
     /// <inheritdoc/>
     public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.GetStatus();
 
@@ -140,6 +153,8 @@ internal sealed class ExternalCore : IEmulatorCore
             for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
                 setController((uint)port, ResolveControllerDevice(_host.ControllerPorts.ElementAtOrDefault(port) ?? [], configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model))));
             _host.ValidateConfiguredOptions();
+            Region = CommonCoreHostFunctions.Protocol.ReadRegion(unchecked((int)Export<ExternalCoreApi.GetRegion>(ExternalCoreConstants.RetroGetRegion)()), allowAllDefinedStandards: false);
+            _supportsSaveStates = CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(_getSerializedSize!(), (nuint)SavedStateConstants.MaximumStateSize);
             initializationCompleted = true;
         }
         finally

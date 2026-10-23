@@ -214,18 +214,13 @@ internal static partial class EmulationHostProtocolFunctions
         Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount)
-        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
     {
         core.SetInput(readInput(reader));
         core.RunFrame();
         writer.Write(true);
-        WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
-        WriteCoreAudio(writer, core);
-        writeMediaStatus(writer, core);
-        var diagnostics = core.Diagnostics;
-        WriteChangedDiagnostics(writer, () => diagnostics.Count,
-            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(diagnostics, jsonOptions())), ref lastDiagnosticCount);
-        writeLedStates(writer, core.LedStates);
+        WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions,
+            ref lastVideoSequence, ref lastDiagnosticCount, writeMediaStatus: writeMediaStatus);
     }
 
     /// <summary>Écrit la réponse native de frame avec compteurs audio et callbacks de statut facultatifs.</summary>
@@ -234,7 +229,7 @@ internal static partial class EmulationHostProtocolFunctions
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount,
         Action<BinaryWriter, TCore>? writeStateSupport = null,
-        Action<BinaryWriter, TCore>? writeAudioStatus = null)
+        Action<BinaryWriter, TCore>? writeAudioStatus = null, Action<BinaryWriter, TCore>? writeMediaStatus = null)
         where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus
     {
         WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
@@ -245,8 +240,10 @@ internal static partial class EmulationHostProtocolFunctions
         writeAudioStatus?.Invoke(writer, core);
         WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         writeStateSupport?.Invoke(writer, core);
-        WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
-            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, jsonOptions())), ref lastDiagnosticCount);
+        writeMediaStatus?.Invoke(writer, core);
+        var diagnostics = core.Diagnostics;
+        WriteChangedDiagnostics(writer, () => diagnostics.Count,
+            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(diagnostics, jsonOptions())), ref lastDiagnosticCount);
         writeLedStates(writer, core.LedStates);
     }
 

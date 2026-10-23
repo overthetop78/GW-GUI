@@ -14,6 +14,19 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <summary>Capacité native constatée après le chargement, bornée par les limites du format existant.</summary>
+    private bool _supportsSaveStates;
+    /// <inheritdoc/>
+    public bool SupportsSaveStates => _gameLoaded && _supportsSaveStates;
+    /// <inheritdoc/>
+    public EmulationVideoStandard? Region { get; private set; }
+    /// <inheritdoc/>
+    public int BufferedAudioFrames => _host?.BufferedAudioFrames ?? 0;
+    /// <inheritdoc/>
+    public long AudioOverrunCount => _host?.AudioOverrunCount ?? 0;
+    /// <inheritdoc/>
+    public long AudioUnderrunCount => _host?.AudioUnderrunCount ?? 0;
+
     /// <inheritdoc/>
     public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.GetStatus();
 
@@ -174,6 +187,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _host.ApplyInitialAvInfo(av);
             _host.HardwareRender.Reset();
             _host.DiagnosticMonitor.ThrowIfFailed();
+            Region = CommonCoreHostFunctions.Protocol.ReadRegion(unchecked((int)Export<ExternalCoreApi.GetRegion>(ExternalCoreConstants.RetroGetRegion)()), allowAllDefinedStandards: false);
+            _supportsSaveStates = _definition.SupportsSavedStates && CommonCoreHostFunctions.MachineExecution.IsSupportedStateSize(_getSerializedSize!(), (nuint)SavedStateConstants.MaximumStateSize);
         }
         catch (Exception error)
         {
