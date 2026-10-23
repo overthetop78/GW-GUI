@@ -2,7 +2,6 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
-using SharpOptions = GWGUI.Emulation.Sharp.Common.Contracts;
 using SharpModel = GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.MachineModel;
 using SharpConfiguration = GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts.MachineConfiguration;
 using SharpSettings = GWGUI.Emulation.Sharp.Common.Machines.Common.Functions.SettingsDescriptionFunctions;

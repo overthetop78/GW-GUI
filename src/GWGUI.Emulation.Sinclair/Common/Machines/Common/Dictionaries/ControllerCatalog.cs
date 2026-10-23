@@ -2,9 +2,9 @@ namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries;
 
 internal static class ControllerCatalog
 {
-    private static readonly IReadOnlyList<InputActionDefinition> JoystickActions = Array.AsReadOnly(Enum.GetValues<ControllerCommand>().Select(command => new InputActionDefinition(command)).ToArray());
+    private static readonly IReadOnlyList<ControllerActionDefinition> JoystickActions = Array.AsReadOnly(Enum.GetValues<ControllerCommand>().Select(command => new ControllerActionDefinition(command)).ToArray());
 
-    internal static IReadOnlyList<InputActionDefinition> Actions(MachineModel model, PeripheralCategory peripheral)
+    internal static IReadOnlyList<ControllerActionDefinition> Actions(MachineModel model, PeripheralCategory peripheral)
     {
         if (!Enum.IsDefined(model) || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(peripheral));
         if (peripheral == PeripheralCategory.None) return [];

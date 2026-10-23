@@ -9308,3 +9308,35 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les 24 contrats et leurs nombres de ports réels.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les 24 contrats, la consommation Common et la concordance des ports pour chaque modèle et adaptateur, avec des configurations en mémoire ; exécuter les régressions locales et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure GetControllerPortCount dans les opérations communes attendues après son raccordement aux 24 familles.
+
+## Description commune des actions et conservation des commandes natives
+- [x] Utiliser une seule description neutre des actions, en conservant les métadonnées natives distinctes.
+  - [x] Réunir les descriptions identiques dans le contrat SDK.
+    - [x] Créer src/GWGUI.Emulation/Contracts/InputActionDefinition.cs : reprendre le record documenté d’Example, avec Definition, Key, Id et DefaultBinding publics et les mêmes données.
+    - [x] Supprimer src/GWGUI.Emulation.Coleco/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+    - [x] Supprimer src/GWGUI.Emulation.Epoch/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+    - [x] Supprimer src/GWGUI.Emulation.Fairchild/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+    - [x] Supprimer src/GWGUI.Emulation.Mattel/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+    - [x] Supprimer src/GWGUI.Emulation.Philips/Common/Contracts/InputContracts.cs : utiliser la description SDK identique déjà importée au lieu de sa copie locale.
+  - [x] Conserver les commandes natives dans les contrats matériels déjà présents.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ControllerContracts.cs : déplacer le record natif sous le nom ControllerActionDefinition, documenter ses données et conserver ses calculs de définition.
+    - [x] Supprimer src/GWGUI.Emulation.Sharp/Common/Contracts/InputContracts.cs : retirer le fichier devenu vide après le déplacement du contrat natif.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ControllerCatalog.cs : utiliser ControllerActionDefinition pour conserver les commandes natives typées et leurs règles existantes.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ControllerContracts.cs : déplacer le record natif sous le nom ControllerActionDefinition, documenter ses données et conserver ses calculs de définition.
+    - [x] Supprimer src/GWGUI.Emulation.Sinclair/Common/Contracts/InputContracts.cs : retirer le fichier devenu vide après le déplacement du contrat natif.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Dictionaries/ControllerCatalog.cs : utiliser ControllerActionDefinition pour conserver les commandes natives typées et leurs règles existantes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ControllerContracts.cs : déplacer le record natif sous le nom ControllerActionDefinition, documenter ses données et conserver ses calculs de définition.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Contracts/InputContracts.cs : retirer le fichier devenu vide après le déplacement du contrat natif.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Dictionaries/ControllerCatalog.cs : utiliser ControllerActionDefinition pour conserver les commandes natives typées et leurs règles existantes.
+  - [x] Retirer les imports des espaces de noms devenus vides.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs : retirer uniquement l’import de Common.Contracts devenu vide.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Functions/NumericOptionValueFunctions.cs : retirer l’import de Common.Contracts devenu vide.
+  - [x] Vérifier les actions neutres et les commandes natives après raccordement.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que les descriptions des six familles retournent le même contrat SDK, que les 24 familles ne déclarent plus de copie locale et que les trois catalogues natifs gardent leurs commandes typées ; exécuter les régressions et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/NativeOptionFieldTests.cs : retirer l’alias SharpOptions inutilisé vers l’espace de noms devenu vide.

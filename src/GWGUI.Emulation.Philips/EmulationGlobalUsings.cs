@@ -18,7 +18,6 @@ global using GWGUI.Emulation.Philips.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Philips.Common.Contracts;
 global using GWGUI.Emulation.Philips.Common.Dictionaries;
 global using GWGUI.Emulation.Philips.Common.Interfaces;
 global using GWGUI.Emulation.Philips.Common.Services;

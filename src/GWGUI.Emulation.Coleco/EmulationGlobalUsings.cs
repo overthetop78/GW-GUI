@@ -17,7 +17,6 @@ global using GWGUI.Emulation.Coleco.Common.Constants;
 global using GWGUI.Emulation.Coleco.Common.Dictionaries;
 global using GWGUI.Emulation.Coleco.Common.Interfaces;
 global using GWGUI.Emulation.Coleco.Common.Services;
-global using GWGUI.Emulation.Coleco.Common.Contracts;
 global using GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Coleco.Common.Machines.Common.Constants;
 global using GWGUI.Emulation.Coleco.Common.Machines.Common.Enums;

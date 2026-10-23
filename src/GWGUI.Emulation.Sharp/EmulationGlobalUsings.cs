@@ -18,7 +18,6 @@ global using GWGUI.Emulation.Sharp.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Sharp.Common.Contracts;
 global using GWGUI.Emulation.Sharp.Common.Dictionaries;
 global using GWGUI.Emulation.Sharp.Common.Interfaces;
 global using GWGUI.Emulation.Sharp.Common.Services;

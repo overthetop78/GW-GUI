@@ -19,7 +19,6 @@ global using GWGUI.Emulation.Epoch.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Epoch.Common.Machines.Common.Constants;
 global using GWGUI.Emulation.Epoch.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Epoch.Common.Contracts;
 global using GWGUI.Emulation.Epoch.Common.Dictionaries;
 global using GWGUI.Emulation.Epoch.Common.Interfaces;
 global using GWGUI.Emulation.Epoch.Common.Services;

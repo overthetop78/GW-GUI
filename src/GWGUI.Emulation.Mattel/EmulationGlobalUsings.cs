@@ -18,7 +18,6 @@ global using GWGUI.Emulation.Mattel.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Mattel.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Mattel.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Mattel.Common.Contracts;
 global using GWGUI.Emulation.Mattel.Common.Dictionaries;
 global using GWGUI.Emulation.Mattel.Common.Interfaces;
 global using GWGUI.Emulation.Mattel.Common.Services;

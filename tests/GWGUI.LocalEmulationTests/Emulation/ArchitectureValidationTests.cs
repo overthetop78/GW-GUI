@@ -1485,6 +1485,7 @@ public sealed class ArchitectureValidationTests
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            Assert.Null(assembly.GetType(root + ".Common.Contracts.InputActionDefinition"));
             Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Enums.ControllerType"));
             var constructionEngine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
             Assert.False(constructionEngine.IsVisible);
@@ -1644,7 +1645,7 @@ public sealed class ArchitectureValidationTests
                 Assert.Equal("PeripheralCategory", descriptionParameters[2].ParameterType.Name);
                 Assert.True(descriptionParameters[2].ParameterType.IsEnum);
                 var action = Assert.Single(describe.ReturnType.GetGenericArguments());
-                Assert.Equal("InputActionDefinition", action.Name);
+                Assert.Equal(typeof(InputActionDefinition), action);
                 Assert.Equal(typeof(InputBindingDefinition), action.GetProperty("Definition")!.PropertyType);
                 Assert.Equal(typeof(EmulationKey?), action.GetProperty("Key")!.PropertyType);
                 foreach (var implementation in implementations)
@@ -1652,6 +1653,20 @@ public sealed class ArchitectureValidationTests
                 if (family == "Coleco")
                     Assert.Single(controllers.GetMethods(), method => method.Name == "GetPeripherals" && method.GetParameters() is [{ Name: "model" }]);
             }
+        }
+        if (family is "Sharp" or "Sinclair" or "Snk")
+        {
+            var hardwareRoot = $"GWGUI.Emulation.{family}.Common.Machines.Common";
+            var action = assembly.GetType(hardwareRoot + ".Contracts.ControllerActionDefinition", throwOnError: true)!;
+            var command = action.GetProperty("Command")!.PropertyType;
+            Assert.True(command.IsEnum);
+            Assert.Equal(hardwareRoot + ".Enums.ControllerCommand", command.FullName);
+            Assert.Equal(typeof(InputBindingDefinition), action.GetProperty("Definition", BindingFlags.Instance | BindingFlags.NonPublic)!.PropertyType);
+            var catalog = assembly.GetType(hardwareRoot + ".Dictionaries.ControllerCatalog", throwOnError: true)!;
+            var actions = catalog.GetMethod("Actions", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Equal(action, Assert.Single(actions.ReturnType.GetGenericArguments()));
+            Assert.Null(assembly.GetType($"GWGUI.Emulation.{family}.Common.Contracts.InputActionDefinition"));
+            if (family == "Sharp") Assert.Equal(typeof(bool), action.GetProperty("Analog")!.PropertyType);
         }
         foreach (var implementation in implementations)
         {

@@ -19,7 +19,6 @@ global using GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Fairchild.Common.Machines.Common.Constants;
 global using GWGUI.Emulation.Fairchild.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
-global using GWGUI.Emulation.Fairchild.Common.Contracts;
 global using GWGUI.Emulation.Fairchild.Common.Dictionaries;
 global using GWGUI.Emulation.Fairchild.Common.Interfaces;
 global using GWGUI.Emulation.Fairchild.Common.Services;
