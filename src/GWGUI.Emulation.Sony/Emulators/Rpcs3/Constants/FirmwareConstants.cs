@@ -6,7 +6,7 @@ internal static class FirmwareConstants
     internal const string SystemFile = "rpcs3/PS3UPDAT.PUP";
     internal const string SystemLabelResource = "Emulation.Sony.Firmware.Rpcs3.System";
     internal static IReadOnlyList<FirmwareSlot> All { get; } =
-    [new(SystemField, SystemFile, SystemLabelResource, true, SystemFile)];
+    [new(SystemField, SystemFile, SystemLabelResource, true, null, SystemFile)];
     internal const string BinExtension = ".bin";
     internal const string SelfExtension = ".self";
     internal const string ElfExtension = ".elf";

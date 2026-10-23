@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Nintendo.Common.Services;
-using GWGUI.Emulation.Nintendo.Common.Contracts;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Nintendo.Common.Dictionaries;

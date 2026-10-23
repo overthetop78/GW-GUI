@@ -9,7 +9,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Nintendo.Common.Contracts;
 global using GWGUI.Emulation.Nintendo.Common.Constants;
 global using GWGUI.Emulation.Nintendo.Common.Dictionaries;
 global using GWGUI.Emulation.Nintendo.Common.Interfaces;

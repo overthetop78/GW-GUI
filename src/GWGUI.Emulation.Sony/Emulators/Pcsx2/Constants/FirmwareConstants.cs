@@ -24,15 +24,11 @@ internal static class FirmwareConstants
         [new(NvramField, NvramFile, NvramSize), new(MechanicsField, MechanicsFile, MechanicsSize)]);
     internal static IReadOnlyList<FirmwareSlot> All { get; } =
     [
-        new(SystemField, SystemFile, SystemLabelResource, true, SystemFile),
-        new(Rom1Field, Rom1File, FirmwareCatalogConstants.ResourceRom1, false, Rom1File,
-            FirmwareCatalogConstants.ResourceRom1Help, FirmwareCatalogConstants.ResourceRom1Details, [Rom1DumpName]),
-        new(Rom2Field, Rom2File, FirmwareCatalogConstants.ResourceRom2, false, Rom2File,
-            FirmwareCatalogConstants.ResourceRom2Help, FirmwareCatalogConstants.ResourceRom2Details, [Rom2DumpName]),
-        new(MechanicsField, MechanicsFile, FirmwareCatalogConstants.ResourceMechanics, false, MechanicsFile,
-            FirmwareCatalogConstants.ResourceMechanicsHelp, FirmwareCatalogConstants.ResourceMechanicsDetails),
-        new(NvramField, NvramFile, FirmwareCatalogConstants.ResourceNvram, false, NvramFile,
-            FirmwareCatalogConstants.ResourceNvramHelp, FirmwareCatalogConstants.ResourceNvramDetails),
+        new(SystemField, SystemFile, SystemLabelResource, true, null, SystemFile),
+        new(Rom1Field, Rom1File, FirmwareCatalogConstants.ResourceRom1, false, null, Rom1File, FirmwareCatalogConstants.ResourceRom1Help, FirmwareCatalogConstants.ResourceRom1Details, [Rom1DumpName]),
+        new(Rom2Field, Rom2File, FirmwareCatalogConstants.ResourceRom2, false, null, Rom2File, FirmwareCatalogConstants.ResourceRom2Help, FirmwareCatalogConstants.ResourceRom2Details, [Rom2DumpName]),
+        new(MechanicsField, MechanicsFile, FirmwareCatalogConstants.ResourceMechanics, false, null, MechanicsFile, FirmwareCatalogConstants.ResourceMechanicsHelp, FirmwareCatalogConstants.ResourceMechanicsDetails),
+        new(NvramField, NvramFile, FirmwareCatalogConstants.ResourceNvram, false, null, NvramFile, FirmwareCatalogConstants.ResourceNvramHelp, FirmwareCatalogConstants.ResourceNvramDetails),
     ];
     internal const string ElfExtension = ".elf";
     internal const string IsoExtension = ".iso";

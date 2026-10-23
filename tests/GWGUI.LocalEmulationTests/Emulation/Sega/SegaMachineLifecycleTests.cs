@@ -2,7 +2,6 @@ using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
-using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Interfaces;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;

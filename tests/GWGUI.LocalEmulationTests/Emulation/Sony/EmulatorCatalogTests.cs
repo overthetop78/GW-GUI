@@ -146,12 +146,12 @@ public sealed class EmulatorCatalogTests
         Assert.Equal(model, Assert.Single(adapter.Definition.MachineIds));
         Assert.Equal(required, firmware.RequiresExternalFirmware);
         var configuration = new MachineConfiguration(model, EmulatorId: id);
-        Assert.Equal(required, firmware.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
+        Assert.Equal(required, adapter.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
         Assert.Contains(EmulatorCatalog.GetAll(model), item => item.Id == id);
         Assert.NotEmpty(formats.SupportedContentExtensions);
         if (id == PlayCore.Id)
         {
-            Assert.Empty(firmware.GetFirmwareSlots(configuration));
+            Assert.Empty(adapter.GetFirmwareSlots(configuration));
         }
         Assert.NotEmpty(settings.DescribeSettings(configuration));
     }

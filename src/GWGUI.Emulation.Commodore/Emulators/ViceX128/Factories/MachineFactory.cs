@@ -15,11 +15,11 @@ internal sealed class MachineFactory : ViceMachineFactory
     internal override IReadOnlyList<string> CartridgeExtensions => [];
     internal override IReadOnlyList<(FirmwareSlot Slot, string Resource)> RomDefinitions(MachineConfiguration configuration) =>
     [
-        (new(ContentConstants.KernalInternationalField, ContentConstants.KernalInternationalResourceKey), ContentConstants.KernalInternationalNativeResource),
-        (new(ContentConstants.BasicLowField, ContentConstants.BasicLowResourceKey), ContentConstants.BasicLowNativeResource),
-        (new(ContentConstants.BasicHighField, ContentConstants.BasicHighResourceKey), ContentConstants.BasicHighNativeResource),
-        (new(ContentConstants.CharactersInternationalField, ContentConstants.CharactersInternationalResourceKey), ContentConstants.CharactersInternationalNativeResource),
-        (new(ContentConstants.C64KernalField, ContentConstants.C64KernalResourceKey), ContentConstants.C64KernalNativeResource),
-        (new(ContentConstants.C64BasicField, ContentConstants.C64BasicResourceKey), ContentConstants.C64BasicNativeResource)
+        (new(ContentConstants.KernalInternationalField, string.Empty, ContentConstants.KernalInternationalResourceKey), ContentConstants.KernalInternationalNativeResource),
+        (new(ContentConstants.BasicLowField, string.Empty, ContentConstants.BasicLowResourceKey), ContentConstants.BasicLowNativeResource),
+        (new(ContentConstants.BasicHighField, string.Empty, ContentConstants.BasicHighResourceKey), ContentConstants.BasicHighNativeResource),
+        (new(ContentConstants.CharactersInternationalField, string.Empty, ContentConstants.CharactersInternationalResourceKey), ContentConstants.CharactersInternationalNativeResource),
+        (new(ContentConstants.C64KernalField, string.Empty, ContentConstants.C64KernalResourceKey), ContentConstants.C64KernalNativeResource),
+        (new(ContentConstants.C64BasicField, string.Empty, ContentConstants.C64BasicResourceKey), ContentConstants.C64BasicNativeResource)
     ];
 }

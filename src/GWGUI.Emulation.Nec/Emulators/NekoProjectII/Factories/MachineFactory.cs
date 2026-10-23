@@ -4,12 +4,12 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Emulation.Nec.Emulators.NekoProjectII.Factories;
 
-internal sealed class MachineFactory : CoreMachineFactory, IEmulatorFirmwareSettings, IEmulatorMachineDefaults
+internal sealed class MachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
     /// <inheritdoc/>
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.NekoProjectII.Constants.FirmwareConstants.Slots;
+    public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.NekoProjectII.Constants.FirmwareConstants.Slots;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;
     public override EmulationEmulatorDefinition Definition { get; } = new(

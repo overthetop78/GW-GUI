@@ -1418,7 +1418,7 @@ public sealed class ArchitectureValidationTests
     public void FirmwareSettingsUseTheSameOperationsAsExample(string family, string operation)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var contractName = operation == "PrepareFirmware" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
+        var contractName = operation is "PrepareFirmware" or "GetFirmwareSlots" ? "IEmulatorFirmwareAdapter" : "IEmulatorFirmwareSettings";
         var contract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.{contractName}", throwOnError: true)!;
         var exampleAssembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
         var example = exampleAssembly.GetType("GWGUI.Emulation.Example.Common.Interfaces." + contractName, throwOnError: true)!;
@@ -2532,6 +2532,91 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public async Task EveryCommonProvidesTheSameFirmwareSlotCatalogue()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var nativeCatalogues = 0;
+        var projectedCatalogues = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var slot = assembly.GetType(root + ".Common.Machines.Common.Contracts.FirmwareSlot", throwOnError: true)!;
+            var fields = new[] { "FieldId", "FileName", "LabelResourceKey", "IsRequired", "MachineIds", "DisplayName", "ExplanationResourceKey", "DetailedExplanationResourceKey", "CandidateFileNames", "SystemSubdirectory", "KnownMd5" };
+            Assert.Equal(fields.Order(StringComparer.Ordinal), slot.GetProperties().Select(property => property.Name).Order(StringComparer.Ordinal));
+            Assert.Null(assembly.GetType(root + ".Common.Contracts.FirmwareSlot"));
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var catalogue = contract.GetMethod("GetFirmwareSlots")!;
+            Assert.NotNull(catalogue);
+            Assert.True(catalogue.IsAbstract);
+            Assert.Equal(typeof(IReadOnlyList<>).MakeGenericType(slot), catalogue.ReturnType);
+            var defaultCatalogue = Assert.Single(adapterContract.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic), method => method.Name.EndsWith(".GetFirmwareSlots", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(defaultCatalogue), call => call.Method.Name == "DescribeSettings");
+            var settings = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettings", throwOnError: true)!.GetMethod("DescribeSettings")!;
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var map = adapter.GetType().GetInterfaceMap(contract);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, catalogue)];
+                Assert.Equal(adapter.GetType().GetMethod(catalogue.Name) ?? defaultCatalogue, target);
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                foreach (var machine in machines.Where(machine => definition.MachineIds.Contains(machine.Id)))
+                {
+                    var initial = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [initial, definition.Id, CancellationToken.None])!;
+                    var entries = ((System.Collections.IEnumerable)catalogue.Invoke(adapter, [configuration])!).Cast<object>().ToArray();
+                    object? Value(object entry, string property) => slot.GetProperty(property)!.GetValue(entry);
+                    Assert.Equal(entries.Length, entries.Select(entry => Value(entry, "FieldId")).Distinct().Count());
+                    foreach (var entry in entries)
+                    {
+                        Assert.False(string.IsNullOrWhiteSpace((string?)Value(entry, "FieldId")));
+                        Assert.False(string.IsNullOrWhiteSpace((string?)Value(entry, "LabelResourceKey")));
+                    }
+                    if (target == defaultCatalogue)
+                    {
+                        var blocks = (IReadOnlyList<EmulationSettingsBlock>)settings.Invoke(adapter, [configuration, null])!;
+                        var expected = blocks.SelectMany(block => block.Fields).Where(field => field.Editor == EmulationSettingsEditor.Path && (field.Tab == EmulationMachineTab.Rom || field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware))
+                            .GroupBy(field => field.Id, StringComparer.Ordinal).Select(group => group.First()).ToArray();
+                        Assert.Equal(expected.Select(field => field.Id), entries.Select(entry => (string)Value(entry, "FieldId")!));
+                        for (var index = 0; index < entries.Length; index++)
+                        {
+                            Assert.Equal(expected[index].LabelResourceKey, Value(entries[index], "LabelResourceKey"));
+                            Assert.Equal(expected[index].ExplanationResourceKey, Value(entries[index], "ExplanationResourceKey"));
+                            Assert.Equal(expected[index].DetailedExplanationResourceKey, Value(entries[index], "DetailedExplanationResourceKey"));
+                            Assert.Equal(string.Empty, Value(entries[index], "FileName"));
+                        }
+                        projectedCatalogues++;
+                    }
+                    else nativeCatalogues++;
+                    if (root == "GWGUI.Emulation.Nec" && definition.Id == "np2kai")
+                    {
+                        Assert.NotEmpty(entries);
+                        Assert.All(entries, entry => Assert.Equal("np2kai", Value(entry, "SystemSubdirectory")));
+                        var bios = Assert.Single(entries, entry => (string)Value(entry, "FileName")! == "bios.rom");
+                        Assert.Contains("bios.rom", (IReadOnlyList<string>)Value(bios, "CandidateFileNames")!);
+                    }
+                    if (root == "GWGUI.Emulation.Sony" && definition.Id is "pcsx2" or "pcee2")
+                    {
+                        var rom1 = Assert.Single(entries, entry => (string)Value(entry, "FileName")! == "pcsx2/bios/scph.rom1");
+                        Assert.Equal("pcsx2/bios/scph.rom1", Value(rom1, "DisplayName"));
+                        Assert.NotNull(Value(rom1, "ExplanationResourceKey"));
+                        Assert.NotNull(Value(rom1, "CandidateFileNames"));
+                    }
+                }
+            }
+        }
+        Assert.True(nativeCatalogues > 0);
+        Assert.True(projectedCatalogues > 0);
+    }
+    [Fact]
     public void EveryCommonUsesTheSameFirmwareFileInspectionContract()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -2547,7 +2632,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorFirmwareAdapter", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(2, contract.GetMethods().Length);
+            Assert.Equal(3, contract.GetMethods().Length);
             var scan = Assert.Single(contract.GetMethods(), method => method.Name == "ScanFirmwareFileAsync");
             Assert.Equal("ScanFirmwareFileAsync", scan.Name);
             Assert.True(scan.IsAbstract);

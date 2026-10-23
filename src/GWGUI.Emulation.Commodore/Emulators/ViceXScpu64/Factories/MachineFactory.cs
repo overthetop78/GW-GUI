@@ -15,7 +15,7 @@ internal sealed class MachineFactory : ViceMachineFactory
     internal override IReadOnlyList<string> CartridgeExtensions => ContentConstants.CartridgeExtensions;
     internal override IReadOnlyList<(FirmwareSlot Slot, string Resource)> RomDefinitions(MachineConfiguration configuration) =>
     [
-        (new(ContentConstants.SuperCpuField, ContentConstants.SuperCpuResourceKey), ContentConstants.SuperCpuNativeResource),
-        (new(ContentConstants.CharactersField, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource)
+        (new(ContentConstants.SuperCpuField, string.Empty, ContentConstants.SuperCpuResourceKey), ContentConstants.SuperCpuNativeResource),
+        (new(ContentConstants.CharactersField, string.Empty, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource)
     ];
 }

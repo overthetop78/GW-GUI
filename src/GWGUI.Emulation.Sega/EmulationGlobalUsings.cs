@@ -9,7 +9,6 @@ global using GWGUI.Emulation.Functions;
 global using GWGUI.Emulation.Interfaces;
 global using GWGUI.Emulation.Interop;
 global using GWGUI.Emulation.Services;
-global using GWGUI.Emulation.Sega.Common.Contracts;
 global using GWGUI.Emulation.Sega.Common.Constants;
 global using GWGUI.Emulation.Sega.Common.Dictionaries;
 global using GWGUI.Emulation.Sega.Common.Interfaces;

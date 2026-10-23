@@ -32,11 +32,11 @@ internal static class FirmwareConstants
         };
     internal static IReadOnlyList<FirmwareSlot> All { get; } =
     [
-        new(JapanField, JapanFile, JapanLabelResource, false, JapanFile),
-        new(NorthAmericaField, NorthAmericaFile, NorthAmericaLabelResource, false, NorthAmericaFile),
-        new(EuropeField, EuropeFile, EuropeLabelResource, false, EuropeFile),
-        new(PspField, PspFile, PspLabelResource, false, PspFile),
-        new(Ps3Field, Ps3File, Ps3LabelResource, false, Ps3File),
+        new(JapanField, JapanFile, JapanLabelResource, false, DisplayName: JapanFile),
+        new(NorthAmericaField, NorthAmericaFile, NorthAmericaLabelResource, false, DisplayName: NorthAmericaFile),
+        new(EuropeField, EuropeFile, EuropeLabelResource, false, DisplayName: EuropeFile),
+        new(PspField, PspFile, PspLabelResource, false, DisplayName: PspFile),
+        new(Ps3Field, Ps3File, Ps3LabelResource, false, DisplayName: Ps3File),
     ];
     internal const string ExeExtension = ".exe";
     internal const string PsexeExtension = ".psexe";

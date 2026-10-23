@@ -5,10 +5,6 @@ namespace GWGUI.Emulation.Example.Common.Interfaces;
 /// sources restent empruntés ; les dossiers préparés appartiennent au propriétaire de la session.</remarks>
 internal interface IEmulatorFirmwareSettings
 {
-    /// <summary>Décrit les emplacements de firmware proposés par cet adaptateur.</summary>
-    /// <param name="configuration">Configuration du modèle pour lequel les emplacements sont demandés.</param>
-    /// <returns>Descriptions des champs de sélection, fichiers attendus et contraintes associées.</returns>
-    IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
 
     /// <summary>Indique si le cœur exige au moins un fichier de firmware externe avant l’enregistrement de sa configuration.</summary>
     /// <remarks>Cette obligation peut être satisfaite par plusieurs alternatives facultatives prises séparément.

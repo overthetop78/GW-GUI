@@ -17,21 +17,21 @@ internal sealed class MachineFactory : ViceMachineFactory
     internal override IReadOnlyList<(FirmwareSlot Slot, string Resource)> RomDefinitions(MachineConfiguration configuration) =>
         configuration.Model == PetModels.SuperPet
             ? [
-        (new(ContentConstants.KernalField, ContentConstants.KernalResourceKey), ContentConstants.KernalNativeResource),
-        (new(ContentConstants.BasicField, ContentConstants.BasicResourceKey), ContentConstants.BasicNativeResource),
-        (new(ContentConstants.EditorField, ContentConstants.EditorResourceKey), ContentConstants.EditorNativeResource),
-        (new(ContentConstants.CharactersField, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource),
-        (new(ContentConstants.SuperPetAField, ContentConstants.SuperPetAResourceKey), ContentConstants.SuperPetANativeResource),
-        (new(ContentConstants.SuperPetBField, ContentConstants.SuperPetBResourceKey), ContentConstants.SuperPetBNativeResource),
-        (new(ContentConstants.SuperPetCField, ContentConstants.SuperPetCResourceKey), ContentConstants.SuperPetCNativeResource),
-        (new(ContentConstants.SuperPetDField, ContentConstants.SuperPetDResourceKey), ContentConstants.SuperPetDNativeResource),
-        (new(ContentConstants.SuperPetEField, ContentConstants.SuperPetEResourceKey), ContentConstants.SuperPetENativeResource),
-        (new(ContentConstants.SuperPetFField, ContentConstants.SuperPetFResourceKey), ContentConstants.SuperPetFNativeResource)
+        (new(ContentConstants.KernalField, string.Empty, ContentConstants.KernalResourceKey), ContentConstants.KernalNativeResource),
+        (new(ContentConstants.BasicField, string.Empty, ContentConstants.BasicResourceKey), ContentConstants.BasicNativeResource),
+        (new(ContentConstants.EditorField, string.Empty, ContentConstants.EditorResourceKey), ContentConstants.EditorNativeResource),
+        (new(ContentConstants.CharactersField, string.Empty, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource),
+        (new(ContentConstants.SuperPetAField, string.Empty, ContentConstants.SuperPetAResourceKey), ContentConstants.SuperPetANativeResource),
+        (new(ContentConstants.SuperPetBField, string.Empty, ContentConstants.SuperPetBResourceKey), ContentConstants.SuperPetBNativeResource),
+        (new(ContentConstants.SuperPetCField, string.Empty, ContentConstants.SuperPetCResourceKey), ContentConstants.SuperPetCNativeResource),
+        (new(ContentConstants.SuperPetDField, string.Empty, ContentConstants.SuperPetDResourceKey), ContentConstants.SuperPetDNativeResource),
+        (new(ContentConstants.SuperPetEField, string.Empty, ContentConstants.SuperPetEResourceKey), ContentConstants.SuperPetENativeResource),
+        (new(ContentConstants.SuperPetFField, string.Empty, ContentConstants.SuperPetFResourceKey), ContentConstants.SuperPetFNativeResource)
               ]
             : [
-        (new(ContentConstants.KernalField, ContentConstants.KernalResourceKey), ContentConstants.KernalNativeResource),
-        (new(ContentConstants.BasicField, ContentConstants.BasicResourceKey), ContentConstants.BasicNativeResource),
-        (new(ContentConstants.EditorField, ContentConstants.EditorResourceKey), ContentConstants.EditorNativeResource),
-        (new(ContentConstants.CharactersField, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource)
+        (new(ContentConstants.KernalField, string.Empty, ContentConstants.KernalResourceKey), ContentConstants.KernalNativeResource),
+        (new(ContentConstants.BasicField, string.Empty, ContentConstants.BasicResourceKey), ContentConstants.BasicNativeResource),
+        (new(ContentConstants.EditorField, string.Empty, ContentConstants.EditorResourceKey), ContentConstants.EditorNativeResource),
+        (new(ContentConstants.CharactersField, string.Empty, ContentConstants.CharactersResourceKey), ContentConstants.CharactersNativeResource)
               ];
 }

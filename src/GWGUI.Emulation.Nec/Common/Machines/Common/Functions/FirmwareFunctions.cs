@@ -4,11 +4,11 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static class FirmwareFunctions
 {
-    /// <summary>Consulte le catalogue du backend par le contrat de réglages firmware commun.</summary>
+    /// <summary>Consulte les emplacements de fichiers nommés du backend par le contrat de firmware.</summary>
     /// <param name="configuration">Configuration du modèle et du cœur sélectionnés.</param>
-    /// <returns>Emplacements du backend, ou liste vide s’il ne fournit pas ce catalogue.</returns>
+    /// <returns>Emplacements avec une destination nommée ; les champs de ROM unique conservent leur parcours de catalogue.</returns>
     internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) =>
-        new Engine().SelectedAdapter(configuration) is IEmulatorFirmwareSettings settings ? settings.GetFirmwareSlots(configuration) : [];
+        new Engine().SelectedAdapter(configuration)?.GetFirmwareSlots(configuration).Where(slot => !string.IsNullOrEmpty(slot.FileName)).ToArray() ?? [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
@@ -48,7 +48,7 @@ internal static class FirmwareFunctions
         cancellationToken.ThrowIfCancellationRequested();
         var inspected = FirmwareCatalog.Inspect(path);
         var name = Path.GetFileName(path);
-        var recognized = slots.Where(slot => slot.Aliases.Contains(name, StringComparer.OrdinalIgnoreCase) || slot.KnownMd5?.Equals(inspected.Md5, StringComparison.OrdinalIgnoreCase) == true).ToArray();
+        var recognized = slots.Where(slot => slot.CandidateFileNames?.Contains(name, StringComparer.OrdinalIgnoreCase) == true || slot.KnownMd5?.Equals(inspected.Md5, StringComparison.OrdinalIgnoreCase) == true).ToArray();
         var targets = recognized.Length != 0 ? recognized : slots.Where(slot => Path.GetExtension(slot.FileName).Equals(Path.GetExtension(path), StringComparison.OrdinalIgnoreCase));
         return targets.Select(slot => new EmulationFirmwareCandidate(
             inspected.Sha256 + slot.FieldId, inspected.Path,

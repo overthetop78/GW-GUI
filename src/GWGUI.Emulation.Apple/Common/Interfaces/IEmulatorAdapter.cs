@@ -3,6 +3,14 @@ using CommonControllerFunctions = GWGUI.Emulation.Apple.Common.Functions.Control
 namespace GWGUI.Emulation.Apple.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorControllerAdapter, IEmulatorConfigurationOptions, IEmulatorInitialContentSettings, IEmulatorMachineDefaults
 {
+    /// <summary>Reprend les champs de fichiers de firmware déjà décrits lorsque le backend ne fournit pas de catalogue explicite.</summary>
+    /// <remarks>Le nom de destination et l'obligation ne sont pas déduits du libellé. Les champs d'information,
+    /// les sélecteurs de modèles et les dossiers ne sont pas des emplacements de fichiers de firmware.</remarks>
+    IReadOnlyList<FirmwareSlot> IEmulatorFirmwareAdapter.GetFirmwareSlots(MachineConfiguration configuration) => ((IEmulatorSettings)this).DescribeSettings(configuration)
+        .SelectMany(block => block.Fields).Where(field => field.Editor == EmulationSettingsEditor.Path && (field.Tab == EmulationMachineTab.Rom || field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware))
+        .GroupBy(field => field.Id, StringComparer.Ordinal).Select(group => group.First())
+        .Select(field => new FirmwareSlot(field.Id, string.Empty, field.LabelResourceKey, ExplanationResourceKey: field.ExplanationResourceKey, DetailedExplanationResourceKey: field.DetailedExplanationResourceKey)).ToArray();
+
     /// <summary>Prépare le dossier système quand aucun traitement natif de firmware ne le complète.</summary>
     void IEmulatorFirmwareAdapter.PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => Directory.CreateDirectory(systemDirectory);
 

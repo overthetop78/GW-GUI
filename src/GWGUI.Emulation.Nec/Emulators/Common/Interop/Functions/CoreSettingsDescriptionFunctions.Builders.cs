@@ -19,7 +19,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         IEnumerable<EmulationSettingsChoice> choices,
         bool isEnabled = true) => CommonCoreHostFunctions.HardwareSettings.Select(id, tab, block, label, value, choices.ToArray(), ShortHelp(id), DetailedHelp(id), isEnabled: isEnabled);
 
-    private static EmulationSettingsField FirmwarePath(string? value) => new(
+    internal static EmulationSettingsField FirmwarePath(string? value) => new(
         SettingsConstants.FirmwarePath, EmulationMachineTab.Rom,
         SettingsDescriptionFunctionsConstants.Firmware,
         SettingsDescriptionFunctionsConstants.ResourceFirmwareSystemRom,

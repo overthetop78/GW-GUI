@@ -38,7 +38,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
 
     protected abstract CoreDefinition CoreDefinition { get; }
     protected CoreReleaseSettings ReleaseSettings => CoreDefinition.ReleaseSettings;
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => CoreDefinition.Firmware.Where(slot => slot.MachineIds.Contains(configuration.Model)).ToArray();
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => CoreDefinition.Firmware.Where(slot => slot.MachineIds is null || slot.MachineIds.Contains(configuration.Model)).ToArray();
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => CoreSettingsFunctions.Blocks(configuration);
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public string EmulatorId => CoreDefinition.Id;

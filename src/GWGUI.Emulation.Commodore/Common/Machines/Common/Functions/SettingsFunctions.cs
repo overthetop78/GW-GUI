@@ -15,7 +15,7 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(new EmulationSettingsBlock(SettingsBlocks.Firmware, EmulationMachineTab.Rom,
                 SettingsResourceKeys.FirmwareRomSystem, firmware.Select(slot =>
                     new EmulationSettingsField(slot.FieldId, EmulationMachineTab.Rom, SettingsBlocks.Firmware,
-                        slot.ResourceKey, EmulationSettingsEditor.Path, configuration.FirmwarePath(slot.FieldId),
+                        slot.LabelResourceKey, EmulationSettingsEditor.Path, configuration.FirmwarePath(slot.FieldId),
                         DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware,
                         ExplanationResourceKey: slot.ExplanationResourceKey,
                         DetailedExplanationResourceKey: slot.DetailedExplanationResourceKey)).ToArray(),

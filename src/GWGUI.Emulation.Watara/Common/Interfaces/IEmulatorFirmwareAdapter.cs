@@ -6,6 +6,14 @@ namespace GWGUI.Emulation.Watara.Common.Interfaces;
 /// L’adaptateur réutilise son identification existante et laisse le fichier d’origine sous la responsabilité de son appelant.</remarks>
 internal interface IEmulatorFirmwareAdapter
 {
+    /// <summary>Décrit les emplacements de firmware de la configuration complète.</summary>
+    /// <param name="configuration">Modèle, cœur et options déterminant les champs et leurs contraintes.</param>
+    /// <returns>Emplacements dans l'ordre du catalogue natif, avec leurs métadonnées disponibles.</returns>
+    /// <remarks>Les descriptions sont empruntées. Sans catalogue propre au backend, Common reprend les champs
+    /// de fichiers de firmware déjà décrits dans ses réglages, avec les mêmes identifiants et clés d'aide.
+    /// Les noms de destination et obligations non déclarés restent absents ; les contrôles natifs restent applicables.</remarks>
+    IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
+
     /// <summary>Analyse un fichier suivant le modèle, le cœur et les options de la configuration.</summary>
     /// <param name="configuration">Configuration empruntée de la machine qui utilisera le firmware.</param>
     /// <param name="path">Chemin du fichier candidat à lire.</param>

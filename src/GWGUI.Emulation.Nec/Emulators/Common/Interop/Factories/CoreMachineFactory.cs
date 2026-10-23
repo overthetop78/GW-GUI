@@ -12,6 +12,17 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <summary>Décrit le champ de ROM unique déjà présenté par les modèles CD.</summary>
+    /// <remarks>Les adaptations possédant un catalogue de fichiers nommés redéfinissent cette méthode.
+    /// Le constructeur de champ reste la source de ses identifiants et aides ; aucun appel à DescribeSettings
+    /// ne crée de boucle avec la construction des réglages qui consulte également les emplacements.</remarks>
+    public virtual IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration)
+    {
+        if (!ModelCatalog.Get(configuration.Model).SupportsCdDrive) return [];
+        var field = CoreSettingsDescriptionFunctions.FirmwarePath(configuration.FirmwarePath);
+        return [new FirmwareSlot(field.Id, string.Empty, field.LabelResourceKey, ExplanationResourceKey: field.ExplanationResourceKey, DetailedExplanationResourceKey: field.DetailedExplanationResourceKey)];
+    }
+
     /// <inheritdoc/>
     public virtual void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
 

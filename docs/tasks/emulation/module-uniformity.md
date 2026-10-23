@@ -9978,3 +9978,135 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les préparations et les consommateurs.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les deux opérations de firmware dans les 24 familles, les implémentations natives et les appels réels des hôtes sans créer de fichiers ; exécuter les tests et le build complet.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure PrepareFirmware dans les opérations Common attendues.
+
+
+## Emplacements de firmware par le contrat Common
+- [x] Unifier les descriptions des emplacements et leurs consommateurs dans les 24 familles.
+  - [x] Réunir les données existantes dans FirmwareSlot.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Créer ou modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/FirmwareSlot.cs : réunir les champs, noms, modèles, aides, noms candidats, sous-dossier système et empreinte MD5 dans le même record documenté.
+    - [x] Supprimer src/GWGUI.Emulation.Example/Common/Contracts/FirmwareSlot.cs : déplacer sa définition dans le contrat de machine commun.
+    - [x] Supprimer src/GWGUI.Emulation.Nintendo/Common/Contracts/FirmwareSlot.cs : déplacer sa définition dans le contrat de machine commun.
+    - [x] Supprimer src/GWGUI.Emulation.Sega/Common/Contracts/FirmwareSlot.cs : déplacer sa définition dans le contrat de machine commun.
+    - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Contracts/FirmwareSlot.cs : déplacer sa définition dans le contrat de machine commun.
+    - [x] Supprimer src/GWGUI.Emulation.Commodore/Common/Machines/Common/Contracts/FirmwareContracts.cs : retirer la définition remplacée par FirmwareSlot.cs.
+  - [x] Exposer les emplacements dans le contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorFirmwareAdapter.cs : déclarer GetFirmwareSlots avec la configuration complète et documenter les métadonnées empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : reprendre par défaut les champs de firmware existants des réglages quand le backend ne possède pas de catalogue explicite.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer GetFirmwareSlots désormais hérité du contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer GetFirmwareSlots désormais hérité du contrat obligatoire.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer GetFirmwareSlots désormais hérité du contrat obligatoire.
+    - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat devenu vide.
+    - [x] Supprimer src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat devenu vide.
+    - [x] Supprimer src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorFirmwareSettings.cs : retirer le contrat devenu vide.
+  - [x] Adapter les catalogues et leurs usages en conservant leurs données.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/SettingsFunctions.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Frodo/Constants/EmulatorConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceX128/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceX64/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceX64Dtv/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceX64Sc/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXCbm2/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXCbm5x0/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXPet/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXPlus4/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXScpu64/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/ViceXVic/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/FirmwareFunctions.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NekoProjectII/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NP2Kai/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Quasi88/Factories/MachineFactory.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NekoProjectII/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/NP2Kai/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Quasi88/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/FirmwareConfigurationFunctions.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/PlayStation/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Pcee2/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Rpcs3/Constants/FirmwareConstants.cs : adapter les noms et arguments du contrat unique, conserver les règles et valeurs natives, appeler directement le contrat Common pour les emplacements.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs : rendre le constructeur de champ FirmwarePath réutilisable dans son adaptation native pour conserver exactement ses métadonnées.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer le champ de ROM déjà décrit pour les machines CD et permettre les catalogues spécialisés sans rappeler la description des réglages.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs : retirer le namespace vidé par le déplacement de FirmwareSlot.
+    - [x] Modifier src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs : retirer le namespace vidé par le déplacement de FirmwareSlot.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/SwanStation/Constants/FirmwareConstants.cs : conserver les noms affichés dans les arguments nommés du contrat unique.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver les filtres natifs de modèles et accepter la portée générale indiquée par MachineIds absent.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Functions/FirmwareFunctions.cs : conserver les filtres natifs de modèles et accepter la portée générale indiquée par MachineIds absent.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : conserver les filtres natifs de modèles et accepter la portée générale indiquée par MachineIds absent.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Functions/FirmwareFunctions.cs : conserver les filtres natifs de modèles et accepter la portée générale indiquée par MachineIds absent.
+  - [x] Valider les métadonnées et les liaisons.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier GetFirmwareSlots et le record unique dans les 24 familles, comparer les catalogues natifs et les champs existants sans fichier temporaire, puis exécuter la suite et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure GetFirmwareSlots dans les opérations obligatoires.
+
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/ConsoleFamilyModuleTests.cs : utiliser le namespace uniforme du contrat FirmwareSlot.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs : utiliser le namespace uniforme du contrat FirmwareSlot.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : utiliser le namespace uniforme du contrat FirmwareSlot.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/EmulatorCatalogTests.cs : vérifier les emplacements via le contrat de firmware obligatoire tout en conservant le contrôle du besoin global.

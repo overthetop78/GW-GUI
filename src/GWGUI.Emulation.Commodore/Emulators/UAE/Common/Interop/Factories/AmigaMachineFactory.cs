@@ -63,27 +63,9 @@ internal abstract class AmigaMachineFactory : MachineFactory
     };
 
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [
-        new(
-            SettingsConstants.KickstartPath,
-            SettingsResourceKeys.FirmwareRomKickstart,
-            true,
-            SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.DetailedHelpSuffix
-        ),
-        new(
-            SettingsConstants.ExtendedRomPath,
-            SettingsResourceKeys.FirmwareRomExtended,
-            false,
-            SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.DetailedHelpSuffix
-        ),
-        new(
-            SettingsConstants.RomKeyPath,
-            SettingsResourceKeys.FirmwareRomKey,
-            false,
-            SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.DetailedHelpSuffix
-        )
+        new(SettingsConstants.KickstartPath, string.Empty, SettingsResourceKeys.FirmwareRomKickstart, IsRequired: true, ExplanationResourceKey: SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.ShortHelpSuffix, DetailedExplanationResourceKey: SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.DetailedHelpSuffix),
+        new(SettingsConstants.ExtendedRomPath, string.Empty, SettingsResourceKeys.FirmwareRomExtended, IsRequired: false, ExplanationResourceKey: SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.ShortHelpSuffix, DetailedExplanationResourceKey: SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.DetailedHelpSuffix),
+        new(SettingsConstants.RomKeyPath, string.Empty, SettingsResourceKeys.FirmwareRomKey, IsRequired: false, ExplanationResourceKey: SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.ShortHelpSuffix, DetailedExplanationResourceKey: SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.DetailedHelpSuffix)
     ];
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
     internal override int ControllerPortCount(MachineConfiguration configuration) => configuration.Input?.ParallelJoystickAdapterEnabled == true ? ControllerPortConstants.FourControllerPorts : base.ControllerPortCount(configuration);

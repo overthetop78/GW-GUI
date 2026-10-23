@@ -17,10 +17,10 @@ internal static class EmulatorConstants
     internal const string DriveResourceKey = "Emulation.Commodore.Rom.Drive1541";
     internal static IReadOnlyList<(FirmwareSlot Slot, string FileName)> Roms { get; } =
     [
-        (new(BasicField, BasicResourceKey), "Basic ROM"),
-        (new(KernalField, KernalResourceKey), "Kernal ROM"),
-        (new(CharactersField, CharactersResourceKey), "Char ROM"),
-        (new(DriveField, DriveResourceKey), "1541 ROM")
+        (new(BasicField, string.Empty, BasicResourceKey), "Basic ROM"),
+        (new(KernalField, string.Empty, KernalResourceKey), "Kernal ROM"),
+        (new(CharactersField, string.Empty, CharactersResourceKey), "Char ROM"),
+        (new(DriveField, string.Empty, DriveResourceKey), "1541 ROM")
     ];
     internal const string OptionPrefix = "frodo_";
     internal const int MaximumMountedMedia = 1;

@@ -18,7 +18,6 @@ using NintendoModelConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.C
 using NintendoModelCatalog = GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries.ModelCatalog;
 using NintendoSettingsConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants.SettingsConstants;
 using GWGUI.Emulation.Sega.Modules;
-using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
