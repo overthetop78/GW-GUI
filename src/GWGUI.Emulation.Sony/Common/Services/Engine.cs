@@ -106,14 +106,33 @@ internal sealed class Engine
         return result;
     }
 
+    /// <summary>Prépare les valeurs initiales du cœur sélectionné par le contrat Common.</summary>
+    /// <param name="configuration">Nouvelle configuration, entièrement construite et conservée immuable.</param>
+    /// <returns>La même instance si les options restent identiques ; sinon une copie contenant les valeurs préparées.</returns>
+    /// <remarks>Le dictionnaire transmis au cœur appartient à cette préparation. Les valeurs existantes,
+    /// les données de la configuration et la distinction entre une collection absente et vide sont conservées
+    /// lorsqu’aucun changement n’est apporté. Sans adaptateur sélectionné, la configuration reste inchangée.</remarks>
+    private MachineConfiguration InitializeOptions(MachineConfiguration configuration)
+    {
+        var adapter = SelectedAdapter(configuration);
+        if (adapter is null) return configuration;
+        var original = configuration.Options;
+        var options = original is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(original, StringComparer.Ordinal);
+        adapter.InitializeOptions(configuration, options);
+        if (original is null ? options.Count == 0 : options.Count == original.Count && options.All(item => original.TryGetValue(item.Key, out var value) && string.Equals(value, item.Value, StringComparison.Ordinal)))
+            return configuration;
+        return configuration with { Options = options };
+    }
+
+
     public IEmulationConfiguration CreateConfiguration(string machineId)
     {
         var model = ModelCatalog.Get(machineId);
-        return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
+        return InitializeOptions(new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: model.Id == ModelConstants.Psp ? new Dictionary<string, string>(StringComparer.Ordinal)
             { [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = _memoryStickDirectory }
                 : new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Input: new InputConfiguration(), Media: []);
+            Input: new InputConfiguration(), Media: []));
     }
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)

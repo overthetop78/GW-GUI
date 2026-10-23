@@ -1,8 +1,27 @@
 using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
 namespace GWGUI.Emulation.Snk.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettingsAdapter, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
-, IEmulatorControllerAdapter
+, IEmulatorControllerAdapter, IEmulatorConfigurationOptions
 {
+    /// <summary>Conserve l’absence de valeurs initiales propres au cœur ; les catalogues natifs peuvent fournir leur implémentation.</summary>
+    IReadOnlyDictionary<string, string> IEmulatorConfigurationOptions.GetDefaultOptions(MachineConfiguration configuration) => new Dictionary<string, string>(StringComparer.Ordinal);
+
+    /// <summary>Complète les valeurs manquantes sans écraser celles préparées par l’appelant.</summary>
+    void IEmulatorConfigurationOptions.InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options)
+    {
+        foreach (var option in ((IEmulatorConfigurationOptions)this).GetDefaultOptions(configuration))
+            options.TryAdd(option.Key, option.Value);
+    }
+
+    /// <summary>Réutilise le contrôle de configuration du cœur lorsque celui-ci ne sépare pas la validation des options.</summary>
+    void IEmulatorConfigurationOptions.ValidateOptions(MachineConfiguration configuration) => ((IEmulatorConfigurationValidation)this).ValidateConfiguration(configuration);
+
+    /// <summary>Conserve l’identité du modèle en l’absence de résolution d’une variante native.</summary>
+    MachineModel IEmulatorConfigurationOptions.ResolveModel(MachineConfiguration configuration) => configuration.Model;
+
+    /// <summary>Conserve les options empruntées lorsqu’aucune normalisation native n’est nécessaire.</summary>
+    IReadOnlyDictionary<string, string> IEmulatorConfigurationOptions.NormalizeOptions(MachineConfiguration configuration) => configuration.Options;
+
     /// <summary>Réutilise les commandes décrites dans Common ; les cœurs émulant des touches conservent leur adaptation.</summary>
     IReadOnlyList<InputActionDefinition> IEmulatorControllerAdapter.DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => CommonControllerFunctions.InputProcessing.DescribeInput(InputSettingsFunctions.Describe(configuration), port, peripheral.ToString());
 

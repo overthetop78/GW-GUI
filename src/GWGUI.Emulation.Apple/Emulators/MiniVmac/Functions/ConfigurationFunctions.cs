@@ -4,7 +4,6 @@ namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions;
 
 internal static class ConfigurationFunctions
 {
-    internal static void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options) { }
 
     internal static void ValidateConfiguration(MachineConfiguration configuration)
     {

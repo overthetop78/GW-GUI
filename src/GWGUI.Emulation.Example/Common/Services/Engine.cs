@@ -85,8 +85,27 @@ internal sealed class Engine
         }
         return result;
     }
+
+    /// <summary>Prépare les valeurs initiales du cœur sélectionné par le contrat Common.</summary>
+    /// <param name="configuration">Nouvelle configuration, entièrement construite et conservée immuable.</param>
+    /// <returns>La même instance si les options restent identiques ; sinon une copie contenant les valeurs préparées.</returns>
+    /// <remarks>Le dictionnaire transmis au cœur appartient à cette préparation. Les valeurs existantes,
+    /// les données de la configuration et la distinction entre une collection absente et vide sont conservées
+    /// lorsqu’aucun changement n’est apporté. Sans adaptateur sélectionné, la configuration reste inchangée.</remarks>
+    private MachineConfiguration InitializeOptions(MachineConfiguration configuration)
+    {
+        var adapter = SelectedAdapter(configuration);
+        if (adapter is null) return configuration;
+        var original = configuration.Options;
+        var options = original is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(original, StringComparer.Ordinal);
+        adapter.InitializeOptions(configuration, options);
+        if (original is null ? options.Count == 0 : options.Count == original.Count && options.All(item => original.TryGetValue(item.Key, out var value) && string.Equals(value, item.Value, StringComparison.Ordinal)))
+            return configuration;
+        return configuration with { Options = options };
+    }
+
     /// <summary>Crée une configuration neuve sans fichier ni ressource d’exécution.</summary>
-    public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));
+    public IEmulationConfiguration CreateConfiguration(string machineId) => InitializeOptions(new MachineConfiguration(ModelCatalog.Parse(machineId)));
     /// <summary>Change le profil en conservant l’identité et les données compatibles avec ses lecteurs.</summary>
     /// <remarks>Un nouveau profil active ses lecteurs initiaux. Reprendre le même profil conserve la sélection
     /// explicite de ses lecteurs, y compris lorsqu’elle est vide.</remarks>

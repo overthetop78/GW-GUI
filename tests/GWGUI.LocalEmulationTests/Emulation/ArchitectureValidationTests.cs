@@ -1791,27 +1791,102 @@ public sealed class ArchitectureValidationTests
         Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
     }
 
-    [Theory]
-    [InlineData("Acorn")]
-    [InlineData("Example")]
-    public void ConfigurationOptionOperationsReceiveTheCompleteConfiguration(string family)
+    [Fact]
+    public async Task EveryCommonProvidesTheCompleteConfigurationOptionContract()
     {
-        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-        var root = "GWGUI.Emulation." + family;
-        var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions", throwOnError: true)!;
-        var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
-        foreach (var name in new[] { "GetDefaultOptions", "ResolveModel", "NormalizeOptions", "ValidateOptions" })
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var initializedAdapters = 0;
+        foreach (var assembly in modules)
         {
-            var operation = Assert.Single(contract.GetMethods(), candidate => candidate.Name == name);
-            Assert.Equal(configuration, Assert.Single(operation.GetParameters()).ParameterType);
-            foreach (var backend in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationOptions", throwOnError: true)!;
+            var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            var configurationType = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
+            Assert.Contains(contract, adapterContract.GetInterfaces());
+            Assert.Equal(new[] { "GetDefaultOptions", "InitializeOptions", "NormalizeOptions", "ResolveModel", "ValidateOptions" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            foreach (var operation in contract.GetMethods())
             {
-                var map = backend.GetInterfaceMap(contract);
-                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, operation)];
-                Assert.False(target.IsAbstract);
-                Assert.Equal(configuration, Assert.Single(target.GetParameters()).ParameterType);
+                Assert.True(operation.IsAbstract);
+                var parameters = operation.GetParameters();
+                Assert.Equal(configurationType, parameters[0].ParameterType);
+                Assert.Equal(operation.Name == "InitializeOptions" ? 2 : 1, parameters.Length);
+                if (operation.Name == "InitializeOptions") Assert.Equal(typeof(IDictionary<string, string>), parameters[1].ParameterType);
+                var expectedReturn = operation.Name switch
+                {
+                    "InitializeOptions" or "ValidateOptions" => typeof(void),
+                    "ResolveModel" => configurationType.GetProperty("Model")!.PropertyType,
+                    _ => typeof(IReadOnlyDictionary<string, string>)
+                };
+                Assert.Equal(expectedReturn, operation.ReturnType);
             }
+            var validate = Assert.Single(adapterContract.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance), method => method.Name.EndsWith(".ValidateOptions", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(validate), call => call.Method.Name == "ValidateConfiguration" && call.Method.DeclaringType!.Name == "IEmulatorConfigurationValidation");
+            var initialize = Assert.Single(adapterContract.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance), method => method.Name.EndsWith(".InitializeOptions", StringComparison.Ordinal));
+            Assert.Contains(GetCompiledCalls(initialize), call => call.Method.Name == "GetDefaultOptions" && call.Method.DeclaringType == contract);
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engine = Activator.CreateInstance(engineType)!;
+            var prepare = engineType.GetMethod("InitializeOptions", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.Contains(GetCompiledCalls(engineType.GetMethod("CreateConfiguration")!), call => call.Method == prepare);
+            Assert.Contains(GetCompiledCalls(prepare), call => call.Method.DeclaringType == contract && call.Method.Name == "InitializeOptions");
+            var byId = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
+            var adapters = ((System.Collections.IEnumerable)byId.GetType().GetProperty("Values")!.GetValue(byId)!).Cast<object>().ToArray();
+            var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            foreach (var adapter in adapters)
+            {
+                var mapping = adapter.GetType().GetInterfaceMap(contract);
+                var preparation = mapping.TargetMethods[Array.FindIndex(mapping.InterfaceMethods, method => method.Name == "InitializeOptions")];
+                if (root == "GWGUI.Emulation.Example" || adapter.GetType().Name == "MiniVmacMachineFactory")
+                {
+                    Assert.Null(adapter.GetType().GetMethod("InitializeOptions", BindingFlags.Public | BindingFlags.Instance));
+                    Assert.Equal(adapterContract, preparation.DeclaringType);
+                }
+                if (adapter.GetType().Name == "AppleWinMachineFactory") Assert.Equal(adapter.GetType(), preparation.DeclaringType);
+                foreach (var operation in contract.GetMethods())
+                {
+                    var target = mapping.TargetMethods[Array.IndexOf(mapping.InterfaceMethods, operation)];
+                    Assert.False(target.IsAbstract);
+                    Assert.Equal(adapter.GetType().GetMethod(operation.Name) ?? adapterContract.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(method => method.Name.EndsWith("." + operation.Name, StringComparison.Ordinal)), target);
+                }
+                var definition = (EmulationEmulatorDefinition)adapter.GetType().GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(adapter)!;
+                var machine = machines.First(item => definition.MachineIds.Contains(item.Id));
+                var original = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
+                var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [original, definition.Id, CancellationToken.None])!;
+                var source = (IReadOnlyDictionary<string, string>?)configurationType.GetProperty("Options")!.GetValue(configuration);
+                var snapshot = source?.ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
+                var defaults = Assert.IsAssignableFrom<IReadOnlyDictionary<string, string>>(contract.GetMethod("GetDefaultOptions")!.Invoke(adapter, [configuration]));
+                var options = source is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(source, StringComparer.Ordinal);
+                const string marker = "configuration-contract-probe";
+                options[marker] = "preserved";
+                var before = new Dictionary<string, string>(options, StringComparer.Ordinal);
+                contract.GetMethod("InitializeOptions")!.Invoke(adapter, [configuration, options]);
+                Assert.Equal("preserved", options[marker]);
+                foreach (var item in defaults) Assert.Equal(before.GetValueOrDefault(item.Key, item.Value), options[item.Key]);
+                Assert.Equal(configurationType.GetProperty("Model")!.GetValue(configuration), contract.GetMethod("ResolveModel")!.Invoke(adapter, [configuration]));
+                var normalized = Assert.IsAssignableFrom<IReadOnlyDictionary<string, string>>(contract.GetMethod("NormalizeOptions")!.Invoke(adapter, [configuration]));
+                var normalizer = mapping.TargetMethods[Array.FindIndex(mapping.InterfaceMethods, method => method.Name == "NormalizeOptions")];
+                if (normalizer.DeclaringType == adapterContract)
+                {
+                    if (source is null) Assert.Empty(normalized);
+                    else Assert.Same(source, normalized);
+                }
+                if (snapshot is null) Assert.Null(configurationType.GetProperty("Options")!.GetValue(configuration));
+                else Assert.Equal(snapshot.OrderBy(item => item.Key, StringComparer.Ordinal), source!.OrderBy(item => item.Key, StringComparer.Ordinal));
+                options.Remove(marker);
+                var prepared = prepare.Invoke(engine, [configuration])!;
+                var preparedOptions = (IReadOnlyDictionary<string, string>?)configurationType.GetProperty("Options")!.GetValue(prepared);
+                Assert.Equal(options.OrderBy(item => item.Key, StringComparer.Ordinal), (preparedOptions ?? new Dictionary<string, string>()).OrderBy(item => item.Key, StringComparer.Ordinal));
+                if (source is null ? options.Count == 0 : source.Count == options.Count && source.All(item => options.TryGetValue(item.Key, out var value) && value == item.Value))
+                    Assert.Same(configuration, prepared);
+                initializedAdapters++;
+            }
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(adapters);
+            else Assert.NotEmpty(adapters);
         }
+        Assert.True(initializedAdapters >= 24);
     }
 
     [Fact]

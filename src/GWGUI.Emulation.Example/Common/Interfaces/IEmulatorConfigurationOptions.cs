@@ -1,29 +1,38 @@
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 
-/// <summary>Adaptation des options propres à un backend lors de la préparation d’une configuration.</summary>
-/// <remarks>Le module utilise ce contrat pour obtenir les valeurs initiales, contrôler les options et résoudre
-/// un modèle dépendant de ces options. Les méthodes par défaut conservent les valeurs et références reçues.</remarks>
+/// <summary>Préparation des options propres au cœur à partir de la configuration complète.</summary>
+/// <remarks>Common appelle ces opérations sans ouvrir de cœur. La configuration et les services qu’elle
+/// décrit restent sous la responsabilité de leur propriétaire. L’initialisation complète le dictionnaire
+/// de préparation de l’appelant ; elle reste distincte de la validation et de l’application des réglages.</remarks>
 internal interface IEmulatorConfigurationOptions
 {
-    /// <summary>Décrit les options initiales du backend pour le modèle demandé.</summary>
-    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
-    /// <returns>Dictionnaire de clés et valeurs techniques utilisé pour préparer une nouvelle configuration.</returns>
+    /// <summary>Décrit les valeurs initiales propres au cœur pour cette configuration.</summary>
+    /// <param name="configuration">Données empruntées du modèle, du cœur, des contenus et des options courantes.</param>
+    /// <returns>Valeurs initiales à ajouter aux options manquantes ; Common utilise une collection vide lorsque le cœur n’en déclare aucune.</returns>
     IReadOnlyDictionary<string, string> GetDefaultOptions(MachineConfiguration configuration);
-    /// <summary>Complète les options préparées avec les valeurs dépendant de la configuration complète.</summary>
-    /// <param name="configuration">Configuration empruntée, incluant médias et firmwares.</param>
-    /// <param name="options">Dictionnaire de préparation modifiable appartenant à l’appelant.</param>
-    /// <remarks>Cette étape complète les valeurs par modèle ; elle ne remplace ni la validation ni l’application des réglages utilisateur.</remarks>
+
+    /// <summary>Complète les options de préparation selon les données de configuration.</summary>
+    /// <param name="configuration">Configuration empruntée, disponible avant validation et démarrage du cœur.</param>
+    /// <param name="options">Dictionnaire modifiable appartenant à l’appelant.</param>
+    /// <remarks>Le comportement Common ajoute les valeurs initiales sans remplacer les choix existants.
+    /// Un cœur peut conserver ici ses règles de préparation dépendant des firmwares et des médias.</remarks>
     void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options);
-    /// <summary>Vérifie les valeurs et combinaisons d’options d’une configuration.</summary>
-    /// <param name="configuration">Configuration empruntée ; la validation ne la remplace pas.</param>
-    /// <remarks>L’implémentation signale les options refusées par les diagnostics du module.</remarks>
+
+    /// <summary>Contrôle les valeurs et combinaisons d’options natives.</summary>
+    /// <param name="configuration">Configuration empruntée à vérifier, conservée immuable.</param>
+    /// <remarks>Common réutilise le contrat de validation existant ; les cœurs disposant d’un contrôle
+    /// spécifique des options l’implémentent directement. Les erreurs suivent les diagnostics habituels.</remarks>
     void ValidateOptions(MachineConfiguration configuration);
-    /// <summary>Résout le modèle matériel effectivement sélectionné par les options.</summary>
-    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
-    /// <returns>Modèle effectif ; l’implémentation par défaut retourne le modèle reçu.</returns>
-    MachineModel ResolveModel(MachineConfiguration configuration) => configuration.Model;
-    /// <summary>Normalise les options selon les conventions du backend pour le modèle.</summary>
-    /// <param name="configuration">Configuration empruntée contenant le modèle, le cœur et les options courantes.</param>
-    /// <returns>Options normalisées ; la méthode par défaut retourne la même instance sans copie.</returns>
-    IReadOnlyDictionary<string, string> NormalizeOptions(MachineConfiguration configuration) => configuration.Options;
+
+    /// <summary>Résout la variante matérielle déterminée par le modèle et ses options.</summary>
+    /// <param name="configuration">Configuration empruntée contenant le modèle de départ et les valeurs proposées.</param>
+    /// <returns>Modèle effectif ; Common conserve le modèle reçu lorsqu’aucune adaptation native n’est définie.</returns>
+    MachineModel ResolveModel(MachineConfiguration configuration);
+
+    /// <summary>Normalise les valeurs techniques selon les conventions du cœur.</summary>
+    /// <param name="configuration">Configuration empruntée contenant les options à préparer.</param>
+    /// <returns>Options normalisées ; Common conserve la collection reçue, ou retourne une collection vide si elle est absente.</returns>
+    /// <remarks>Le retour ne transfère aucune propriété de la configuration. Une normalisation qui change
+    /// les valeurs construit son propre dictionnaire et laisse intactes les données de l’appelant.</remarks>
+    IReadOnlyDictionary<string, string> NormalizeOptions(MachineConfiguration configuration);
 }
