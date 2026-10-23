@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 using System.IO;
@@ -5,6 +6,13 @@ using System.IO;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorInitialContentSettings, IEmulatorCapabilities, IEmulatorControllerAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
 

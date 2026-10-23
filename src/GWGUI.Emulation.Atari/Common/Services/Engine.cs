@@ -171,9 +171,17 @@ internal sealed class Engine
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default) => configuration is MachineConfiguration atari ? new ValueTask(_store.SaveAsync(atari, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+    }
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+    }
 
     private static IReadOnlyList<FirmwareConfiguration> ApplyFirmware(MachineConfiguration configuration, IReadOnlyList<FirmwareConfiguration> firmwares, string fieldId, string? path)
     {

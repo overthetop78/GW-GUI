@@ -109,9 +109,17 @@ internal sealed class Engine
     /// <summary>Produit le résumé de la configuration par le catalogue matériel Common.</summary>
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
     /// <summary>Décrit les lecteurs du profil et les montages actuellement enregistrés.</summary>
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(Require(configuration));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
+    {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+    }
     /// <summary>Applique les montages sans ouvrir ni déplacer les fichiers de contenu.</summary>
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(Require(configuration), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
+    {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+    }
     /// <summary>Décrit les catégories génériques d’entrées et leurs associations.</summary>
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(Require(configuration));
     /// <summary>Valide et applique les associations par leur contrat Common.</summary>

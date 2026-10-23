@@ -149,10 +149,14 @@ internal sealed class Engine
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = RequireConfiguration(configuration);
-        return StorageSettingsFunctions.Describe(current, this.Adapter(current));
+        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current, this.Adapter(current));
     }
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+    }
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 

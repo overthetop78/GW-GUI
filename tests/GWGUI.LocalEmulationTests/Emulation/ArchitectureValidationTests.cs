@@ -14,6 +14,71 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonUsesTheCompleteStorageContractAndItsActualBackendImplementations()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var reference = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
+        static string TypeName(Type type) => typeof(IEmulationConfiguration).IsAssignableFrom(type) ? "configuration" : type.FullName!;
+        static string Signature(MethodInfo method) => method.Name + ":" + TypeName(method.ReturnType) + "(" + string.Join(",", method.GetParameters().Select(parameter => TypeName(parameter.ParameterType) + " " + parameter.Name)) + "):" + method.IsAbstract;
+        var expected = reference.GetMethods().Select(Signature).Order(StringComparer.Ordinal).ToArray();
+        Assert.Equal(11, expected.Length);
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
+            Assert.True(contract.IsInterface);
+            Assert.False(contract.IsVisible);
+            Assert.Equal(expected, contract.GetMethods().Select(Signature).Order(StringComparer.Ordinal));
+            Assert.Contains(assembly.GetType(root + ".Common.Interfaces.IEmulatorMediaCapabilities"), contract.GetInterfaces());
+            var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(contract, adapter.GetInterfaces());
+            var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+            if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
+            else Assert.NotEmpty(implementations);
+            foreach (var implementation in implementations)
+            {
+                var mapping = implementation.GetInterfaceMap(contract);
+                for (var index = 0; index < mapping.InterfaceMethods.Length; index++)
+                {
+                    var method = mapping.InterfaceMethods[index];
+                    var concrete = implementation.GetMethod(method.Name, BindingFlags.Instance | BindingFlags.Public, method.GetParameters().Select(parameter => parameter.ParameterType).ToArray());
+                    Assert.Equal(concrete ?? method, mapping.TargetMethods[index]);
+                    Assert.False(mapping.TargetMethods[index].IsAbstract);
+                }
+            }
+            var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            foreach (var (operation, target) in new[] { ("DescribeStorageSettings", "DescribeStorage"), ("ApplyStorageSettings", "ApplyStorage") })
+            {
+                var body = engine.GetMethod(operation)!.GetMethodBody()!.GetILAsByteArray()!;
+                var token = contract.GetMethod(target)!.MetadataToken;
+                Assert.True(new byte[] { 0x28, 0x6f }.Any(opcode => body.AsSpan().IndexOf(new[] { opcode }.Concat(BitConverter.GetBytes(token)).ToArray()) >= 0), root + "." + operation);
+            }
+            var module = Assert.Single(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && typeof(IEmulationModule).IsAssignableFrom(type));
+            Assert.True(typeof(IEmulationStorageSettingsManager).IsAssignableFrom(module), root);
+            if (root == "GWGUI.Emulation.Wenquxing")
+            {
+                var configuration = RuntimeHelpers.GetUninitializedObject(contract.GetMethod("DescribeStorage")!.GetParameters()[0].ParameterType);
+                var backend = Activator.CreateInstance(Assert.Single(implementations), nonPublic: true)!;
+                var storage = Assert.IsType<EmulationStorageSettings>(contract.GetMethod("DescribeStorage")!.Invoke(backend, [configuration]));
+                Assert.Empty(storage.AvailableDevices);
+                Assert.Empty(storage.ConfiguredSlots);
+                Assert.Empty(storage.MountedMedia);
+                Assert.Same(configuration, contract.GetMethod("ApplyStorage")!.Invoke(backend, [configuration, storage]));
+                Assert.Equal(0, contract.GetMethod("GetMemoryCardCount")!.Invoke(backend, [configuration]));
+                Assert.Empty(Assert.IsAssignableFrom<IEnumerable<int>>(contract.GetMethod("GetMemoryCardIndexes")!.Invoke(backend, [configuration])));
+                var invalid = storage with { ConfiguredSlots = [EmulationMediaSlot.Cartridge0] };
+                Assert.IsType<ArgumentException>(Assert.Throws<TargetInvocationException>(() => contract.GetMethod("ApplyStorage")!.Invoke(backend, [configuration, invalid])).InnerException);
+                var visibility = Assert.IsType<EmulationSettingsVisibility>(engine.GetProperty("DefaultVisibility")!.GetValue(Activator.CreateInstance(engine, nonPublic: true)));
+                Assert.False(visibility.Tabs[EmulationMachineTab.Storage]);
+            }
+        }
+    }
+
+    [Fact]
     public void EveryCommonSelectsTheSameCatalogInstanceAndAllowsAnIncompleteSelection()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -926,41 +991,6 @@ public sealed class ArchitectureValidationTests
             }
             if (root == "GWGUI.Emulation.Example")
                 Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter")!.GetInterfaces());
-            if (contractName == "IEmulatorMediaCapabilities")
-            {
-                if (root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Epoch" or "GWGUI.Emulation.Fairchild" or "GWGUI.Emulation.Mattel" or "GWGUI.Emulation.Nec" or "GWGUI.Emulation.Philips")
-                {
-                    var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
-                    var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
-                    Assert.NotEmpty(implementations);
-                    foreach (var implementation in implementations)
-                    {
-                        Assert.True(contract.IsAssignableFrom(implementation));
-                        Assert.Equal(implementation.GetMethod("DescribeMediaDevices"), Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods));
-                        Assert.Null(implementation.GetMethod("GetMediaDevices"));
-                    }
-                    if (root is "GWGUI.Emulation.Commodore" or "GWGUI.Emulation.Nec")
-                    {
-                        var storage = assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
-                        Assert.Contains(contract, storage.GetInterfaces());
-                        Assert.Contains(storage, adapter.GetInterfaces());
-                        Assert.Equal(typeof(EmulationStorageSettings), storage.GetMethod("DescribeStorage")!.ReturnType);
-                        foreach (var implementation in implementations)
-                            Assert.All(implementation.GetInterfaceMap(storage).TargetMethods, target => Assert.False(target.IsAbstract));
-                    }
-                    else
-                    {
-                        Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings"));
-                        Assert.All(implementations, implementation => Assert.Null(implementation.GetMethod("DescribeStorage")));
-                    }
-                }
-                if (root is "GWGUI.Emulation.Acorn" or "GWGUI.Emulation.Example")
-                    Assert.Contains(contract, assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings")!.GetInterfaces());
-                if (root == "GWGUI.Emulation.Snk")
-                    Assert.Contains(contract, assembly.GetType(root + ".Emulators.Common.Factories.MachineFactory")!.GetInterfaces());
-                if (root is "GWGUI.Emulation.Sharp" or "GWGUI.Emulation.Sinclair")
-                    Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorStorageSettings"));
-            }
         }
     }
 

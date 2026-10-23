@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -12,6 +13,13 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigurationValidation, IEmulatorFirmwareSettings, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorStorageSettings, IEmulatorContentFormats
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public virtual bool SupportsPointer(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).MouseButtonCount > 0;
     /// <inheritdoc/>

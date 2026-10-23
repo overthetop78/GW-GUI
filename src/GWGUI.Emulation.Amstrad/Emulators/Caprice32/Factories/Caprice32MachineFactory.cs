@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
@@ -10,6 +11,13 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 
 internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
 {
+    /// <inheritdoc/>
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.DescribeBasic(configuration);
+
+    /// <inheritdoc/>
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.ApplyBasic(configuration, settings);
+
+
     /// <inheritdoc/>
     public bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration) && ModelCatalog.Get(configuration.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount;
 

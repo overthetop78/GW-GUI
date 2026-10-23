@@ -13,6 +13,31 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ExampleStorageSettingsTests
 {
+    [Fact]
+    public void PublicStorageApiKeepsEmptyAndPartialSelectionsForBothProfilesAndAllThreeBackends()
+    {
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
+        var manager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
+        foreach (var profile in HardwareModelCatalog.All)
+        foreach (var core in Enum.GetValues<Emulator>().Where(core => core != Emulator.None))
+        {
+            var original = new MachineConfiguration(profile.Model, core: core);
+            var initial = manager.DescribeStorageSettings(original);
+            foreach (var selected in new[] { initial.ConfiguredSlots.Take(1).ToArray(), Array.Empty<EmulationMediaSlot>() })
+            {
+                var requested = initial with { ConfiguredSlots = selected, MountedMedia = [], DeviceSettings = [] };
+                var updated = Assert.IsType<MachineConfiguration>(manager.ApplyStorageSettings(original, requested));
+                Assert.Equal(selected, updated.ConfiguredSlots);
+                Assert.Equal(selected, manager.DescribeStorageSettings(updated).ConfiguredSlots);
+                Assert.Equal(original.Id, updated.Id);
+                Assert.Equal(original.Core, updated.Core);
+                Assert.Equal(initial.ConfiguredSlots, original.ConfiguredSlots);
+                Assert.Empty(updated.Media);
+            }
+        }
+    }
+
     private static readonly Assembly Module = typeof(ExampleModuleFactory).Assembly;
     private static readonly Type Storage = Module.GetType("GWGUI.Emulation.Example.Common.Interfaces.IEmulatorStorageSettings", throwOnError: true)!;
 

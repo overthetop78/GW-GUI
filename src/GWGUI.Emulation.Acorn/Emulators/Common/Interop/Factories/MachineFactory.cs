@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Acorn.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
@@ -11,6 +12,13 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 

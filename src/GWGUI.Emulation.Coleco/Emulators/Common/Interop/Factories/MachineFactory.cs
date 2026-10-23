@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Coleco.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CommonMediaRuntimeFunctions = GWGUI.Emulation.Coleco.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
@@ -12,6 +13,13 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public virtual bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => CommonMediaRuntimeFunctions.RequiresMediaRestart(slot);
 

@@ -143,9 +143,17 @@ internal sealed class Engine
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+    }
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+    }
 
     public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default) =>
         ValueTask.FromException<EmulationMachineRuntime>(new NotSupportedException("The Microsoft machine adapter has not been added yet."));

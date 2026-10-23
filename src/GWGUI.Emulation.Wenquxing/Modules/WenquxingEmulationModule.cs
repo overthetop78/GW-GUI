@@ -8,7 +8,7 @@ using System.IO;
 using System.Net.Http;
 
 namespace GWGUI.Emulation.Wenquxing.Modules;
-public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
+public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmulatorManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
 {
     private readonly Engine _engine;
 
@@ -43,6 +43,12 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => _engine.DescribeInputSettings(configuration);
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => _engine.ApplyInputSettings(configuration, settings);
+
+    /// <inheritdoc/>
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => _engine.DescribeStorageSettings(configuration);
+
+    /// <inheritdoc/>
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => _engine.ApplyStorageSettings(configuration, settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.SaveInputSettingsAsync(configuration, cancellationToken);
 

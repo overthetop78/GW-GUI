@@ -1,9 +1,17 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Snk.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
 

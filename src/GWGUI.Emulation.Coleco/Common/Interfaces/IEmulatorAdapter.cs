@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Coleco.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
     /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>

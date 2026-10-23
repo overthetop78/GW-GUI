@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Thomson.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
@@ -11,6 +12,13 @@ using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.Runti
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Factories;
 internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings, IEmulatorPointerCapabilities
 {
+    /// <inheritdoc/>
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public bool SupportsPointerCapture(MachineConfiguration configuration) => true;
 

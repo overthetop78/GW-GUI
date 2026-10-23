@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
@@ -27,6 +28,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabil
 
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
+        configuration = CommonStorageSettingsFunctions.ApplyBasic(configuration, settings);
         if (settings.ConfiguredSlots.Any(slot => slot != EmulationMediaSlot.Floppy0)) throw new ArgumentOutOfRangeException(nameof(settings));
         Validate(configuration);
         return configuration;

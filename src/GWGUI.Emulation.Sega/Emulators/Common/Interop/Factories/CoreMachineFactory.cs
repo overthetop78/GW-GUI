@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
@@ -10,6 +11,13 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public virtual bool SupportsPointer(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).MouseButtonCount > 0;
     /// <inheritdoc/>

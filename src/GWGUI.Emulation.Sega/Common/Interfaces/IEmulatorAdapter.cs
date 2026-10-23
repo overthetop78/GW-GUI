@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorInputMapper, IEmulatorFirmwareSettings, IEmulatorContentFormats, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorSettingsApplication, IEmulatorStorageSettings
 {
     /// <summary>Conserve les réglages préparés par Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
     /// <param name="configuration">Configuration empruntée après les traitements généraux du module.</param>

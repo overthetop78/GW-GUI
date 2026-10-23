@@ -20,10 +20,10 @@ internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
     /// <summary>Adapte la configuration à la sélection de lecteurs, indépendamment de leurs médias.</summary>
     /// <param name="configuration">Configuration de départ, conservée immuable.</param>
     /// <param name="slots">Emplacements choisis par l’appelant, dont la liste doit être copiée avant conservation.</param>
-    /// <returns>Configuration adaptée à cette sélection suivant les règles du backend.</returns>
+    /// <returns>Configuration adaptée aux contraintes du backend ; la même instance est rendue sans adaptation supplémentaire.</returns>
     /// <remarks>Common conserve les contrôles de médias et de paramètres du stockage complet. Ce point
     /// d’adaptation permet au backend d’appliquer ses contraintes matérielles avant la validation finale.</remarks>
-    MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots);
+    MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots) => configuration;
     /// <summary>Décrit les paramètres supplémentaires des périphériques de stockage.</summary>
     /// <param name="configuration">Configuration dont les réglages courants doivent être présentés.</param>
     /// <returns>Liste vide par défaut ; l’adaptateur fournit les paramètres lorsqu’il en prend en charge.</returns>
@@ -37,26 +37,27 @@ internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
     /// <summary>Décrit le nombre de cartes mémoire disponibles pour les options courantes.</summary>
     /// <param name="configuration">Configuration empruntée dont les emplacements sont résolus.</param>
     /// <returns>Nombre d’emplacements utilisables ; zéro lorsqu’aucune carte mémoire n’est prise en charge.</returns>
-    int GetMemoryCardCount(MachineConfiguration configuration);
+    /// <remarks>Le calcul de base consulte les lecteurs décrits. Si la construction de cette description dépend elle-même du nombre de cartes, le backend fournit ce nombre directement depuis ses métadonnées pour éviter toute récursion.</remarks>
+    int GetMemoryCardCount(MachineConfiguration configuration) => DescribeStorage(configuration).AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.MemoryCard);
 
     /// <summary>Énumère les indices des cartes mémoire disponibles.</summary>
     /// <param name="configuration">Configuration dont le nombre et l’organisation des emplacements sont consultés.</param>
-    /// <returns>Indices à partir de zéro ; un adaptateur peut fournir une organisation discontinue.</returns>
-    IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => Enumerable.Range(0, GetMemoryCardCount(configuration));
+    /// <returns>Indices réels de la description, y compris les organisations discontinues ; un adaptateur peut préciser une sélection dépendant de ses options.</returns>
+    IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => DescribeStorage(configuration).AvailableDevices.Where(device => device.Slot.Category == EmulationMediaCategory.MemoryCard).Select(device => device.Slot.Index);
 
     /// <summary>Décrit le libellé technique particulier d’un emplacement de carte mémoire.</summary>
     /// <param name="index">Indice technique de l’emplacement.</param>
     /// <returns>Libellé particulier, ou null pour employer la présentation commune des emplacements.</returns>
-    string? GetMemoryCardDisplayLabel(int index);
+    string? GetMemoryCardDisplayLabel(int index) => null;
 
     /// <summary>Clé native indiquant l’insertion d’une carte mémoire, ou null lorsque le cœur gère autrement son insertion.</summary>
-    string? MemoryCardInsertedOptionKey { get; }
+    string? MemoryCardInsertedOptionKey => null;
 
     /// <summary>Indique si le protocole impose des noms de dossiers fixes pour ses cartes mémoire.</summary>
-    bool HasFixedMemoryCardDirectories { get; }
+    bool HasFixedMemoryCardDirectories => false;
 
     /// <summary>Résout le dossier imposé pour un emplacement de carte mémoire.</summary>
     /// <param name="index">Indice technique de l’emplacement.</param>
     /// <returns>Nom de dossier imposé par le cœur, ou null si aucun dossier particulier n’est requis.</returns>
-    string? GetMemoryCardDirectory(int index);
+    string? GetMemoryCardDirectory(int index) => null;
 }

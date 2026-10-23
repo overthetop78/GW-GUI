@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreReleaseFunctions;
 using System.IO;
 using GWGUI.Emulation;
@@ -6,6 +7,13 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public virtual bool SupportsPointer(MachineConfiguration configuration) => CompatibilityCatalog.Get(configuration.Model).VisibleTabs.Contains(SettingsTab.Mouse);
     /// <inheritdoc/>

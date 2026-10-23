@@ -1,4 +1,5 @@
-﻿using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+﻿using CommonStorageSettingsFunctions = GWGUI.Emulation.Philips.Common.Machines.Common.Functions.StorageSettingsFunctions;
+using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
 using GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;
 using System.IO;
 
@@ -6,6 +7,13 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
+    /// <inheritdoc/>
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
 

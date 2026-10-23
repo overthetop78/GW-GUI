@@ -198,4 +198,17 @@ internal sealed class Engine
     private IEmulatorAdapter PreferredAdapter(string machineId) => this.Adapters(ModelCatalog.Parse(machineId).ToString()).FirstOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));
     private IEmulatorAdapter SelectedOrDefault(MachineConfiguration configuration) => configuration.Core == Emulator.None ? PreferredAdapter(configuration.MachineId) : this.Adapter(configuration);
     private static MachineConfiguration Require(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    /// <summary>Décrit les capacités de stockage réelles par le même contrat Common que les autres modules.</summary>
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
+    {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+    }
+
+    /// <summary>Applique le contrat de stockage sans ajouter de lecteur à la machine.</summary>
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
+    {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+    }
 }

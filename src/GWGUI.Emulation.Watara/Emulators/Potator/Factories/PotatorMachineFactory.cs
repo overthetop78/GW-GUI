@@ -1,3 +1,4 @@
+using CommonStorageSettingsFunctions = GWGUI.Emulation.Watara.Common.Machines.Common.Functions.StorageSettingsFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using System.IO;
@@ -10,6 +11,13 @@ using NativeMedia = GWGUI.Emulation.Watara.Emulators.Potator.Functions.MediaRunt
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Factories;
 internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCapabilities, IEmulatorSettings
 {
+    /// <inheritdoc/>
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => CommonStorageSettingsFunctions.Describe(configuration);
+
+    /// <inheritdoc/>
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => CommonStorageSettingsFunctions.Apply(configuration, settings);
+
+
     /// <inheritdoc/>
     public bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 

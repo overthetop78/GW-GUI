@@ -2,9 +2,10 @@ namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
 {
-    internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
+    internal static EmulationStorageSettings Describe(MachineConfiguration configuration) => new Engine().Adapter(configuration).DescribeStorage(configuration);
+
+    internal static EmulationStorageSettings DescribeBasic(MachineConfiguration configuration)
     {
-        if (new Engine().Adapter(configuration) is IEmulatorStorageSettings storage) return storage.DescribeStorage(configuration);
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
@@ -38,7 +39,9 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings) => new Engine().Adapter(configuration).ApplyStorage(configuration, settings);
+
+    internal static MachineConfiguration ApplyBasic(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
@@ -60,7 +63,6 @@ internal static class StorageSettingsFunctions
             [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cartridge0).ToString()
         };
         var result = configuration with { Media = media, Options = options };
-        if (new Engine().Adapter(configuration) is IEmulatorStorageSettings storage) return storage.ApplyStorage(result, settings);
         return result;
     }
 
