@@ -46,7 +46,7 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(new[]
         {
             "Create", "Definition", "DescribeMediaDevices", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
-            "FindReleasesAsync", "GetInstallationAsync", "InstallAsync", "MapInput", "RequiresMediaRestart", "RequiresOptionRestart",
+            "FindReleasesAsync", "GetInstallationAsync", "GetOutputResolution", "InstallAsync", "MapInput", "RequiresMediaRestart", "RequiresOptionRestart",
             "ResolveConfiguredMedia", "SupportsPointer", "SupportsPointerCapture", "TryHandleHostCommand", "ValidateConfiguration", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey"
         }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));

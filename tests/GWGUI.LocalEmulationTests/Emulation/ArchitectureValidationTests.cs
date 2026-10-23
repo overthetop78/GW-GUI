@@ -665,6 +665,7 @@ public sealed class ArchitectureValidationTests
     [InlineData("IEmulatorSettings", "DescribeSettings", typeof(IReadOnlyList<EmulationSettingsBlock>))]
     [InlineData("IEmulatorPointerCapabilities", "SupportsPointer", typeof(bool))]
     [InlineData("IEmulatorMediaCapabilities", "DescribeMediaDevices", typeof(IReadOnlyList<GWGUI.Emulation.Contracts.EmulationMediaDevice>))]
+    [InlineData("IEmulatorVideoSettings", "GetOutputResolution", typeof(ValueTuple<int, int>?))]
     public void EveryCommonUsesTheSameCapabilityContractsIncludingExample(string contractName, string methodName, Type returnType)
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -698,7 +699,7 @@ public sealed class ArchitectureValidationTests
             }
             Assert.Equal("configuration", parameter.Name);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameter.ParameterType));
-            if (contractName is "IEmulatorConfigurationValidation" or "IEmulatorMediaCapabilities")
+            if (contractName is "IEmulatorConfigurationValidation" or "IEmulatorMediaCapabilities" or "IEmulatorVideoSettings")
             {
                 if (contractName == "IEmulatorConfigurationValidation")
                     Assert.Null(assembly.GetType(root + ".Common.Interfaces.IEmulatorConfigurationValidator"));
@@ -715,6 +716,8 @@ public sealed class ArchitectureValidationTests
                     var selected = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
                     var concrete = implementation.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
                     Assert.Equal(concrete ?? defaultImplementation, selected);
+                    if (contractName == "IEmulatorVideoSettings" && concrete is null)
+                        Assert.Null(method.Invoke(RuntimeHelpers.GetUninitializedObject(implementation), [null]));
                 }
             }
             if (contractName == "IEmulatorSettings")

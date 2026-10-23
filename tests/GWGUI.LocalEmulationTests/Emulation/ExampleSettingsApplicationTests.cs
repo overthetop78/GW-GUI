@@ -1,5 +1,6 @@
 using System.Net.Http;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
@@ -9,6 +10,34 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ExampleSettingsApplicationTests
 {
+    [Fact]
+    public void EveryProfileAndCoreDescribesItsConfiguredOutputResolutionThroughCommon()
+    {
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
+        foreach (var profile in HardwareModelCatalog.All)
+        foreach (var core in Enum.GetValues<Emulator>().Where(core => core != Emulator.None))
+        {
+            var initial = new MachineConfiguration(profile.Model, core: core);
+            var choice = Assert.Single(module.Describe(initial.MachineId, initial).Blocks.SelectMany(block => block.Fields), field => field.LabelResourceKey == "Emulation.Video.Settings.Display" && field.Editor == EmulationSettingsEditor.Selection);
+            foreach (var (value, expected) in new[] { ("320x200", "320 × 200"), ("640x400", "640 × 400") })
+            {
+                Assert.Contains(choice.Choices!, item => item.Id == value);
+                var configuration = initial with { Options = new Dictionary<string, string>(StringComparer.Ordinal) { [choice.Id] = value } };
+                var settings = module.Describe(configuration.MachineId, configuration);
+                var resolution = Assert.Single(settings.Blocks.SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.Video && field.Editor == EmulationSettingsEditor.Information);
+                Assert.Equal(expected, resolution.Value);
+                Assert.Equal(value, configuration.Options[choice.Id]);
+                Assert.Empty(initial.Options);
+            }
+        }
+        foreach (var profile in HardwareModelCatalog.All)
+        {
+            var configuration = new MachineConfiguration(profile.Model, core: Emulator.None);
+            Assert.DoesNotContain(module.Describe(configuration.MachineId, configuration).Blocks.SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.Video && field.Editor == EmulationSettingsEditor.Information);
+        }
+    }
+
     [Fact]
     public void ModuleAppliesEditorValuesForEveryProfileAndCoreWithoutChangingTheInput()
     {

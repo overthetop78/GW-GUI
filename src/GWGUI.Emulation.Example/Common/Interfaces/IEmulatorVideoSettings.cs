@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 
 /// <summary>Résolution matérielle de sortie décrite par l’adaptateur.</summary>
-/// <remarks>La résolution configurée est distincte des dimensions de la dernière frame calculée.</remarks>
+/// <remarks>La résolution configurée est distincte des dimensions de la dernière frame calculée. Une réponse null laisse Common utiliser sa description matérielle sans inventer de dimensions pour le backend.</remarks>
 internal interface IEmulatorVideoSettings
 {
     /// <summary>Résout la largeur et la hauteur de sortie pour les options courantes.</summary>

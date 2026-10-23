@@ -32,7 +32,7 @@ internal static class SettingsDescriptionFunctions
             {
                 if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height)
                 {
-                    if (new Engine().Adapter(configuration) is IEmulatorVideoSettings video && video.GetOutputResolution(configuration) is { } resolution)
+                    if (new Engine().Adapter(configuration)?.GetOutputResolution(configuration) is { } resolution)
                     {
                         width = resolution.Width;
                         height = resolution.Height;

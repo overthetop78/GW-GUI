@@ -18,7 +18,8 @@ internal static class SettingsDescriptionFunctions
     /// <param name="coreOptions">Options déjà disponibles, ou null pour omettre les blocs natifs.</param>
     /// <returns>Blocs matériels, audio et natifs produits par une projection unique.</returns>
     /// <remarks>Les deux entrées rejoignent ce traitement. Le matériel décrit peut différer du modèle
-    /// enregistré sans changer les valeurs courantes ni relire les options auprès du cœur.</remarks>
+    /// enregistré sans changer les valeurs courantes ni relire les options auprès du cœur. La taille de sortie
+    /// configurée est demandée au contrat vidéo de l’adaptateur ; elle décrit des pixels et ne crée aucune surface.</remarks>
     internal static IReadOnlyList<EmulationSettingsBlock> Create(HardwareModelDefinition model, MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
     {
         var hardware = model;
@@ -38,6 +39,9 @@ internal static class SettingsDescriptionFunctions
                 new(VideoAudioSettingsConstants.AudioVolumeOption, EmulationMachineTab.Audio, "audio", "Explorer.Volume", EmulationSettingsEditor.Percentage, configuration.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioVolumeOption, AudioConstants.DefaultVolumePercent.ToString(CultureInfo.InvariantCulture)))
             ])
         };
+        if (new Engine().SelectedAdapter(configuration)?.GetOutputResolution(configuration) is { } resolution)
+            blocks.Add(new(SettingsConstants.Video, EmulationMachineTab.Video, "Emulation.Tab.Video",
+                [new(SettingsConstants.Video, EmulationMachineTab.Video, SettingsConstants.Video, "Emulation.Video.Settings.Display", EmulationSettingsEditor.Information, $"{resolution.Width} × {resolution.Height}")]));
         foreach (var group in (coreOptions ?? []).Where(option => option.IsVisible).GroupBy(option => option.Tab))
         {
             var blockId = "core-" + group.Key;
