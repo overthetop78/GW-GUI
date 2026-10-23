@@ -1,5 +1,5 @@
 namespace GWGUI.Emulation.Sharp.Common.Interfaces;
-internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities
+internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorInputMapper, IEmulatorMediaCapabilities, IEmulatorConfigurationValidation, IEmulatorSettings, IEmulatorPointerCapabilities
 {
     /// <summary>Ne fournit par défaut aucun lecteur supplémentaire propre au backend.</summary>
     /// <param name="configuration">Configuration empruntée dont les descriptions concrètes peuvent dépendre.</param>

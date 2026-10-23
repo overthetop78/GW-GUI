@@ -12,6 +12,9 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     /// <inheritdoc/>
+    public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
+
+    /// <inheritdoc/>
     public abstract IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null);
 
     /// <inheritdoc/>
@@ -93,7 +96,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: () => new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator),
-                inputMapper: this as IEmulatorInputMapper);
+                inputMapper: this);
             completed = true;
             return machine;
         }

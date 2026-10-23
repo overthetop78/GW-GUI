@@ -5,6 +5,9 @@ namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorSettingsAdapter, IEmulatorFirmwareAdapter, IEmulatorFirmwareSettings, IEmulatorInitialContentSettings, IEmulatorMediaCapabilities, IEmulatorControllerAdapter, IEmulatorPointerCapabilities
 {
     /// <inheritdoc/>
+    public abstract EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration);
+
+    /// <inheritdoc/>
     public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => false;
 
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration.Model);
@@ -63,7 +66,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
                 supportsNoContent: SupportsNoContent,
-                inputMapper: this as IEmulatorInputMapper
+                inputMapper: this
             );
             completed = true;
             return machine;

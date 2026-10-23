@@ -65,7 +65,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 supportsPointerCapture: SupportsPointer(configuration),
                 requiresResetRestart: RequiresResetRestart,
                 supportsNoContent: SupportsNoContent,
-                inputMapper: this as IEmulatorInputMapper
+                inputMapper: this
             );
             completed = true;
             return machine;

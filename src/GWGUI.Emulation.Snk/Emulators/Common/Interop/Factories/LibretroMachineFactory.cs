@@ -12,7 +12,7 @@ namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
 {
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration, GetControllerPortCount(configuration));
+    public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration, GetControllerPortCount(configuration));
 
     internal virtual int DirectoryStringBufferCapacity => 0;
     internal virtual string ExpectedNativeLibraryName => CatalogEntry.LibraryName;

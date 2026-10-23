@@ -13,7 +13,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorControllerAdapter
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ControllerCatalog.Peripherals(model);
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
+    public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator);
 
     internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);

@@ -4,7 +4,7 @@ internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper = null)
     {
-        mapper ??= new Engine().Adapter(configuration.Core) as IEmulatorInputMapper;
+        mapper ??= new Engine().Adapter(configuration.Core);
         return mapper?.MapInput(snapshot, configuration) ?? EmulationInputSnapshot.Empty;
     }
 }

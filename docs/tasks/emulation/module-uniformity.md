@@ -7714,3 +7714,39 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les descriptions natives et le stockage conservés.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure DescribeMediaDevices parmi les opérations communes attendues des adaptateurs.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat de lecteurs sur les 24 familles et la résolution des descriptions concrètes ; comparer les descriptions conservées, exécuter les tests locaux et construire le Debug avec tous les modules.
+
+## Projection des entrées imposée par le contrat principal
+
+- [x] Raccorder chaque adaptateur à la projection Common des entrées.
+  - [x] Compléter les huit héritages manquants.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : hériter de IEmulatorInputMapper pour imposer la projection de l’instantané avec la configuration complète.
+  - [x] Raccorder les fabriques et leurs projections existantes.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Factories/MachineFactory.cs : déclarer MapInput abstraite lorsqu’elle manque et transmettre this à la machine sans conversion optionnelle ; conserver la création et la libération des ressources.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/BlueMSX/Factories/BlueMSXMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Factories/GearColecoMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/JollyCV/Factories/JollyCVMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/EmuSCV/Factories/EmuSCVMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/FreeChaF/Factories/FreeChaFMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs : déclarer override la projection MapInput existante sans changer ses associations, ses paramètres ni ses règles de périphériques.
+  - [x] Utiliser le contrat obligatoire dans la sélection Common.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs : récupérer directement le mapper de l’adaptateur lorsque le mapper emprunté manque, en conservant le repli existant si aucun adaptateur n’est présent.
+  - [x] Vérifier les projections conservées et leurs raccordements.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat principal de mapping dans les 24 familles et la résolution des projections concrètes ; comparer les traitements conservés, exécuter les tests locaux et construire le Debug avec tous les modules.

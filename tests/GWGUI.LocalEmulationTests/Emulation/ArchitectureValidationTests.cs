@@ -574,6 +574,19 @@ public sealed class ArchitectureValidationTests
         Assert.Equal("snapshot", parameters[0].Name);
         Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[1].ParameterType));
         Assert.Equal("configuration", parameters[1].Name);
+        var adapter = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+        Assert.Contains(contract, adapter.GetInterfaces());
+        var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
+        if (family == "Microsoft") Assert.Empty(adapters);
+        else Assert.NotEmpty(adapters);
+        foreach (var implementation in adapters)
+        {
+            Assert.True(contract.IsAssignableFrom(implementation), implementation.FullName);
+            var selected = Assert.Single(implementation.GetInterfaceMap(contract).TargetMethods);
+            var concrete = implementation.GetMethod("MapInput", BindingFlags.Instance | BindingFlags.Public);
+            if (concrete is not null) Assert.Equal(concrete, selected);
+            else Assert.Contains(selected, adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic));
+        }
         var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)).ToArray();
         // Le catalogue Microsoft existant ne déclare encore aucune fabrique concrète.
         if (family != "Microsoft") Assert.NotEmpty(implementations);

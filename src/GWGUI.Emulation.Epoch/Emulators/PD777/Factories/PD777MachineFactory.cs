@@ -16,7 +16,7 @@ internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.E
             OppositeDirectionId = action.Axis >= 0 ? actions.Single(other => other.Axis == action.Axis && other.Direction == -action.Direction).Id : action.Definition.OppositeDirectionId
         }, action.Key)).ToArray();
     }
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.PD777);
+    public override EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, Emulator.PD777);
 
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => Settings.Storage(configuration);
     public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => Settings.Create(configuration);
