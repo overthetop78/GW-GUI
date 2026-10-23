@@ -7,6 +7,50 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class InputBindingConversionTests
 {
+    private enum MetadataPeripheral { Gamepad, Joystick, Keyboard }
+
+    [Fact]
+    public void ControllerMetadataKeepsBusesPortsAndSupportedCategoriesSeparate()
+    {
+        EmulationControllerPort Port(int number, bool usb, params EmulationControllerChoice[] choices) => new(number, choices, choices[0].Id, null, new([], new Dictionary<string, string>(), EmulationInputSource.Controller)) { IsUsb = usb };
+        var settings = new EmulationInputSettings(null, null,
+        [
+            Port(1, false, new("Gamepad", "pad"), new("unknown", "unknown"), new("Keyboard", "keyboard") { IsSupportedByEmulator = false }),
+            Port(2, false, new("Joystick", "stick"), new("Gamepad", "pad")),
+            Port(10, true, new EmulationControllerChoice("Keyboard", "keyboard")),
+            Port(9, true, new EmulationControllerChoice("Gamepad", "pad"))
+        ]);
+        var service = EmulationSdk.InputProcessing;
+        Assert.Equal(new[] { MetadataPeripheral.Gamepad, MetadataPeripheral.Joystick }, service.GetPeripherals<MetadataPeripheral>(settings));
+        Assert.Equal(new[] { MetadataPeripheral.Joystick, MetadataPeripheral.Gamepad }, service.GetPeripherals<MetadataPeripheral>(settings, 1));
+        Assert.Equal(new[] { MetadataPeripheral.Gamepad }, service.GetPeripherals<MetadataPeripheral>(settings, 0, usb: true));
+        Assert.Equal(new[] { MetadataPeripheral.Keyboard }, service.GetPeripherals<MetadataPeripheral>(settings, 1, usb: true));
+        Assert.Empty(service.GetPeripherals<MetadataPeripheral>(settings, -1));
+        Assert.Empty(service.GetPeripherals<MetadataPeripheral>(settings, 2, usb: true));
+        Assert.Empty(service.GetPeripherals<MetadataPeripheral>(settings, int.MaxValue));
+        Assert.Null(service.GetControllerPort(settings, -1));
+        Assert.Null(service.GetControllerPort(settings, int.MaxValue));
+        Assert.Same(settings.ControllerPorts[3], service.GetControllerPort(settings, 8));
+    }
+
+    [Fact]
+    public void ControllerMetadataPreservesBindingDefinitionsAndUsesOnlyTheSelectedFallback()
+    {
+        var definition = new InputBindingDefinition("Left", "left", "Key:A", "L") { OppositeDirectionId = "Right" };
+        var definitions = new[] { definition };
+        var settings = new EmulationInputSettings(null, null,
+        [new(1, [new("Gamepad", "pad", BindingDefinitions: definitions), new("Joystick", "stick")], "Joystick", null, new(definitions, new Dictionary<string, string>(), EmulationInputSource.Controller))]);
+        var service = EmulationSdk.InputProcessing;
+        Assert.Same(definitions, service.GetControllerBindingDefinitions(settings, "Gamepad", 0));
+        Assert.Same(definitions, service.GetControllerBindingDefinitions(settings, "Joystick", 0));
+        Assert.Null(service.GetControllerBindingDefinitions(settings, "gamepad", 0));
+        Assert.Null(service.GetControllerBindingDefinitions(settings, "missing", 0));
+        Assert.Null(service.GetControllerBindingDefinitions(settings, "Gamepad", 1));
+        var action = Assert.Single(service.DescribeInput(settings, 0, "Gamepad"));
+        Assert.Same(definition, action.Definition);
+        Assert.Null(action.Key);
+        Assert.Empty(service.DescribeInput(settings, 1, "Gamepad"));
+    }
     private enum MouseAction : short { Left = 1, Right = 2, None = 17 }
     private enum OtherMouseAction : byte { None, Left }
 

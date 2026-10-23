@@ -9413,3 +9413,109 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Snapshot.cs : transmettre la configuration empruntée au callback de description et conserver le protocole de chaque cœur sans reconstruire la configuration.
   - [x] Vérifier ensemble les choix de périphériques et les descriptions des actions.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : exiger MachineConfiguration dans DescribeInput, vérifier les interfaces et les appels Common compilés et conserver les régressions des commandes ; exécuter la suite locale et le build Debug avec tous les modules.
+
+## Contrat complet de contrôleurs dans les 24 Common
+- [x] Exposer les mêmes huit opérations de contrôleurs dans chaque Common avec leurs données réelles et leurs adaptations existantes.
+  - [x] Réutiliser les descriptions des entrées par le service public existant du SDK.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationInputProcessing.cs : déclarer GetControllerPort, GetPeripherals, GetControllerBindingDefinitions et DescribeInput sur les descriptions existantes, sans possession de ressources.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationInputProcessingService.cs : implémenter la consultation des ports normaux et USB, des catégories typées et des commandes en conservant les définitions et leur identité.
+  - [x] Raccorder Acorn au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Amstrad au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Apple au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Atari au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Bandai au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Coleco au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Commodore au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Epoch au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Example au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Fairchild au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Mattel au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Microsoft au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Nec au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Nintendo au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Panasonic au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Philips au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Sega au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Sharp au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Sinclair au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Snk au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Sony au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Thomson au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Watara au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Raccorder Wenquxing au contrat complet.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorControllerAdapter.cs : reprendre les huit opérations documentées avec la configuration complète, les mêmes paramètres et le contrat de mappage commun.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/ControllerFunctions.cs : exposer InputProcessing par son interface SDK existante pour consulter les descriptions Common.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorAdapter.cs : reprendre les huit comportements communs depuis les descriptions existantes et le nombre matériel, en conservant les implémentations concrètes des cœurs.
+  - [x] Vérifier le contrat, les données décrites et les adaptations natives.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : exiger les huit opérations dans les 24 familles, vérifier les comportements par défaut contre les descriptions réelles et adapter les vérifications des contrats enrichis ; exécuter les régressions et le build complet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure les opérations communes de contrôleurs dans les membres attendus.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/InputBindingConversionTests.cs : vérifier en mémoire les bus séparés, les indices, les catégories reconnues et la conservation des définitions de commandes par le service SDK.

@@ -9,6 +9,10 @@ namespace GWGUI.Emulation.Nintendo.Common.Functions;
 /// <remarks>Les adaptations de cœur passent par ce propriétaire Common ; les algorithmes restent dans le SDK.</remarks>
 internal static class ControllerFunctions
 {
+    /// <summary>Service public de consultation des descriptions et de traitement des entrées, emprunté au SDK.</summary>
+    /// <remarks>Le service ne possède aucune machine ni aucun périphérique et ne conserve pas les descriptions reçues.</remarks>
+    internal static IEmulationInputProcessing InputProcessing => EmulationSdk.InputProcessing;
+
     /// <summary>Lit le nombre de ports matériels avant les extensions propres au cœur sélectionné.</summary>
     /// <param name="configuration">Configuration empruntée dont le modèle détermine les ports de base.</param>
     /// <returns>Nombre matériel utilisé sans adaptateur ou comme comportement par défaut de son contrat.</returns>

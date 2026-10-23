@@ -2,10 +2,30 @@ using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.Con
 namespace GWGUI.Emulation.Commodore.Common.Interfaces;
 internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmulatorCapabilities, IEmulatorContentFormats, IEmulatorPersistentStorage, IEmulatorConfigurationSelection, IEmulatorFirmwareAdapter, GWGUI.Emulation.Interfaces.IEmulationEmulatorAdapter<MachineConfiguration, Machine>, IEmulatorRuntimePolicy, IEmulatorSettingsAdapter, IEmulatorInputMapper, IEmulatorConfigurationValidation, IEmulatorSettingsApplication, IEmulatorStorageSettings, IEmulatorFirmwareSettings, IEmulatorPointerCapabilities, IEmulatorVideoSettings, IEmulatorControllerAdapter
 {
+    /// <summary>Réutilise les commandes décrites dans Common ; les cœurs émulant des touches conservent leur adaptation.</summary>
+    IReadOnlyList<InputActionDefinition> IEmulatorControllerAdapter.DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => CommonControllerFunctions.InputProcessing.DescribeInput(InputSettingsFunctions.Describe(configuration), port, peripheral.ToString());
+
+    /// <summary>Réutilise les définitions du choix existant sans recréer les libellés ni les directions opposées.</summary>
+    IReadOnlyList<InputBindingDefinition>? IEmulatorControllerAdapter.GetControllerBindingDefinitions(MachineConfiguration configuration, PeripheralCategory peripheral, int port) => CommonControllerFunctions.InputProcessing.GetControllerBindingDefinitions(InputSettingsFunctions.Describe(configuration), peripheral.ToString(), port);
+
     /// <summary>Expose les ports matériels lorsque le cœur ne fournit aucune extension propre.</summary>
-    /// <param name="configuration">Configuration complète, conservée immuable pendant la consultation.</param>
-    /// <returns>Nombre de ports de base ; les adaptateurs concrets conservent leurs calculs de ports supplémentaires.</returns>
     int IEmulatorControllerAdapter.GetControllerPortCount(MachineConfiguration configuration) => CommonControllerFunctions.ModelPortCount(configuration);
+
+    /// <summary>Conserve le nom déjà décrit pour le port ; un cœur peut fournir son organisation particulière.</summary>
+    string? IEmulatorControllerAdapter.GetControllerPortDisplayName(MachineConfiguration configuration, int port) => CommonControllerFunctions.InputProcessing.GetControllerPort(InputSettingsFunctions.Describe(configuration), port)?.DisplayName;
+
+    /// <summary>Conserve le numéro de présentation déjà décrit pour le port.</summary>
+    int? IEmulatorControllerAdapter.GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => CommonControllerFunctions.InputProcessing.GetControllerPort(InputSettingsFunctions.Describe(configuration), port)?.DisplayNumber;
+
+    /// <summary>Consulte les choix matériels existants lorsque le cœur ne fournit aucune liste propre.</summary>
+    IReadOnlyList<PeripheralCategory> IEmulatorControllerAdapter.GetPeripherals(MachineConfiguration configuration) => CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration));
+
+    /// <summary>Consulte les choix existants du port demandé sans les mélanger avec ceux des autres ports.</summary>
+    IReadOnlyList<PeripheralCategory> IEmulatorControllerAdapter.GetPeripherals(MachineConfiguration configuration, int port) => CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), port);
+
+    /// <summary>Consulte les ports USB déjà décrits ; ne crée aucun bus ou périphérique absent du modèle.</summary>
+    IReadOnlyList<PeripheralCategory> IEmulatorControllerAdapter.GetUsbPeripherals(MachineConfiguration configuration, int port) => CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), port, usb: true);
+
 
     /// <summary>Décrit les deux moteurs standard pour les catégories valides autres que None et Keyboard.</summary>
     /// <param name="configuration">Configuration empruntée du modèle et des ports.</param>

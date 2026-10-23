@@ -5,6 +5,32 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationInputProcessingService : IEmulationInputProcessing
 {
     /// <inheritdoc/>
+    public EmulationControllerPort? GetControllerPort(EmulationInputSettings settings, int port) => port < 0 ? null : settings.ControllerPorts.FirstOrDefault(item => (long)item.Number == (long)port + 1);
+
+    /// <inheritdoc/>
+    public IReadOnlyList<TPeripheral> GetPeripherals<TPeripheral>(EmulationInputSettings settings, int? port = null, bool usb = false) where TPeripheral : struct, Enum
+    {
+        if (port < 0) return [];
+        IEnumerable<EmulationControllerPort> ports = settings.ControllerPorts.Where(item => item.IsUsb == usb);
+        if (port is int index) ports = usb ? ports.OrderBy(item => item.Number).Skip(index).Take(1) : ports.Where(item => (long)item.Number == (long)index + 1);
+        var result = new List<TPeripheral>();
+        foreach (var choice in ports.SelectMany(item => item.ControllerChoices))
+            if (choice.IsSupportedByEmulator && Enum.TryParse<TPeripheral>(choice.Id, true, out var peripheral) && Enum.IsDefined(peripheral) && !result.Contains(peripheral)) result.Add(peripheral);
+        return result.ToArray();
+    }
+
+    /// <inheritdoc/>
+    public IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(EmulationInputSettings settings, string peripheral, int port)
+    {
+        var selectedPort = GetControllerPort(settings, port);
+        var choice = selectedPort?.ControllerChoices.FirstOrDefault(item => string.Equals(item.Id, peripheral, StringComparison.Ordinal));
+        return choice?.BindingDefinitions ?? (string.Equals(selectedPort?.SelectedControllerId, peripheral, StringComparison.Ordinal) ? selectedPort!.Bindings.Definitions : null);
+    }
+
+    /// <inheritdoc/>
+    public IReadOnlyList<InputActionDefinition> DescribeInput(EmulationInputSettings settings, int port, string peripheral) => (GetControllerBindingDefinitions(settings, peripheral, port) ?? []).Select(definition => new InputActionDefinition(definition)).ToArray();
+
+    /// <inheritdoc/>
     public IEmulationInputAccumulator CreateInputAccumulator() => new EmulationInputAccumulator();
 
     /// <inheritdoc/>

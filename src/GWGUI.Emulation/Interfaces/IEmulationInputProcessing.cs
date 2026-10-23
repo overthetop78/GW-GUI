@@ -7,6 +7,34 @@ namespace GWGUI.Emulation.Interfaces;
 /// Les accumulateurs créés possèdent leur état indépendant ; IEmulationInputFrames permet également de copier les collections reçues.</remarks>
 public interface IEmulationInputProcessing
 {
+    /// <summary>Consulte un port par son indice technique sans modifier sa description empruntée.</summary>
+    /// <param name="settings">Description stable des entrées, dont les numéros publics commencent à un.</param>
+    /// <param name="port">Indice technique commençant à zéro, y compris les indices synthétiques des ports USB.</param>
+    /// <returns>Instance existante du port, ou null si cet indice ne figure pas dans la description.</returns>
+    EmulationControllerPort? GetControllerPort(EmulationInputSettings settings, int port);
+
+    /// <summary>Lit les catégories prises en charge dans les choix existants des ports.</summary>
+    /// <typeparam name="TPeripheral">Énumération de catégories appartenant au module appelant.</typeparam>
+    /// <param name="settings">Description empruntée ; aucun profil de périphérique supplémentaire n’est créé.</param>
+    /// <param name="port">Indice d’un port, ou null pour réunir les choix du bus demandé.</param>
+    /// <param name="usb">Sélectionne le bus USB ; ses indices sont relatifs à ses seuls ports, ordonnés par numéro.</param>
+    /// <returns>Catégories reconnues et prises en charge, distinctes dans leur ordre de description ; liste vide sans port compatible.</returns>
+    IReadOnlyList<TPeripheral> GetPeripherals<TPeripheral>(EmulationInputSettings settings, int? port = null, bool usb = false) where TPeripheral : struct, Enum;
+
+    /// <summary>Consulte les commandes d’un choix de périphérique sans reconstruire leurs libellés ni leurs directions opposées.</summary>
+    /// <param name="settings">Description empruntée des ports et de leurs choix.</param>
+    /// <param name="peripheral">Identifiant du choix, comparé sans modifier sa casse ni son contenu.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <returns>Définitions du choix ; celles des associations si ce choix est sélectionné ; null sans description correspondante.</returns>
+    IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(EmulationInputSettings settings, string peripheral, int port);
+
+    /// <summary>Projette les commandes décrites en actions neutres sans ajouter de touche émulée.</summary>
+    /// <param name="settings">Description empruntée conservant les métadonnées matérielles du module.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <param name="peripheral">Identifiant du choix de périphérique à consulter.</param>
+    /// <returns>Actions utilisant les mêmes définitions ; les adaptateurs qui émulent des touches conservent leur description spécialisée.</returns>
+    IReadOnlyList<InputActionDefinition> DescribeInput(EmulationInputSettings settings, int port, string peripheral);
+
     /// <summary>Crée un accumulateur indépendant qui emprunte les collections et conserve les mouvements relatifs jusqu’à leur consommation.</summary>
     /// <returns>Contrat appartenant à l’appelant ; le service ne conserve pas l’instance créée.</returns>
     IEmulationInputAccumulator CreateInputAccumulator();

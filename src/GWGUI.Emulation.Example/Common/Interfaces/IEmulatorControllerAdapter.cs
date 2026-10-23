@@ -1,60 +1,56 @@
-using GWGUI.Emulation.Contracts;
-using GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
-using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
-
 namespace GWGUI.Emulation.Example.Common.Interfaces;
 
-/// <summary>Choix et description des contrôleurs suivant le modèle, les options et le port du cœur.</summary>
-/// <remarks>Les opérations de choix et de nombre de ports prennent en compte les contraintes de configuration
-/// et de port à la description par modèle ; elles conservent les mêmes catégories de périphériques.</remarks>
+/// <summary>Contrat Common unique de description des contrôleurs et de projection des entrées vers un cœur.</summary>
+/// <remarks>Chaque opération reçoit la configuration complète de session. Les descriptions conservent les
+/// contraintes du modèle, les options du cœur, les ports supplémentaires et les commandes réellement disponibles.
+/// Le contrat ne possède aucun périphérique physique, cœur, processus ou ressource graphique.</remarks>
 internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
 {
-
-    /// <summary>Décrit les commandes configurables d’un périphérique raccordé à un port.</summary>
-    /// <param name="configuration">Modèle matériel concerné par la description.</param>
-    /// <param name="port">Indice du port émulé, commençant à zéro ; les limites sont celles du modèle.</param>
-    /// <param name="peripheral">Catégorie de périphérique sélectionnée pour ce port.</param>
-    /// <returns>Actions accompagnées des libellés, associations initiales et touches émulées éventuelles.</returns>
+    /// <summary>Décrit les actions d’un périphérique sur un port, avec leurs touches émulées éventuelles.</summary>
+    /// <param name="configuration">Configuration complète empruntée : modèle, cœur choisi, options et associations.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <param name="peripheral">Catégorie de périphérique dont les commandes sont consultées.</param>
+    /// <returns>Actions existantes ; les adaptations natives conservent les touches et directions opposées nécessaires.</returns>
     IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral);
 
-    /// <summary>Décrit les périphériques possibles pour les options courantes de la machine.</summary>
-    /// <param name="configuration">Configuration empruntée fournissant modèle et options.</param>
-    /// <returns>Choix du modèle par défaut ; un backend peut les restreindre ou les compléter selon ses options.</returns>
-    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
+    /// <summary>Consulte les commandes particulières d’un périphérique et d’un port.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le modèle et les options du cœur.</param>
+    /// <param name="peripheral">Catégorie de périphérique choisie.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <returns>Définitions particulières, ou null pour laisser la description matérielle ordinaire.</returns>
+    IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, PeripheralCategory peripheral, int port);
 
-    /// <summary>Décrit les choix autorisés sur un port particulier.</summary>
-    /// <param name="configuration">Configuration de machine dont les choix sont demandés.</param>
-    /// <param name="port">Indice du port émulé, commençant à zéro.</param>
-    /// <returns>Choix de la configuration par défaut, ou liste spécifique fournie par l’adaptateur.</returns>
-    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
-
-    /// <summary>Décrit les périphériques raccordables à un port USB émulé.</summary>
-    /// <param name="configuration">Configuration du modèle et de son bus USB.</param>
-    /// <param name="port">Indice propre au bus USB, distinct des indices de ports de manettes.</param>
-    /// <returns>Choix désactivé par défaut ; les adaptateurs disposant de ce bus fournissent leurs autres choix.</returns>
-    IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port) => [PeripheralCategory.None];
-
-    /// <summary>Calcule les ports disponibles après application des options et extensions de contrôleurs.</summary>
-    /// <param name="configuration">Configuration pouvant notamment activer un multitap.</param>
-    /// <returns>Quantité de ports, distincte du dernier indice et de la capacité maximale du transport.</returns>
+    /// <summary>Calcule les ports disponibles avec les options et extensions de la machine.</summary>
+    /// <param name="configuration">Configuration empruntée pouvant activer un multitap ou une extension.</param>
+    /// <returns>Nombre de ports, distinct de leur dernier indice ; zéro pour une machine sans port de contrôleur.</returns>
     int GetControllerPortCount(MachineConfiguration configuration);
 
-    /// <summary>Fournit un nom de port propre au matériel lorsque la présentation générique ne suffit pas.</summary>
-    /// <param name="configuration">Configuration déterminant l’organisation des ports.</param>
-    /// <param name="port">Indice technique du port.</param>
-    /// <returns>Nom explicite, ou null pour laisser la présentation commune.</returns>
-    string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
+    /// <summary>Fournit un nom explicite de port lorsque la présentation ordinaire ne suffit pas.</summary>
+    /// <param name="configuration">Configuration empruntée déterminant l’organisation des ports.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <returns>Nom du port, ou null pour laisser la présentation commune.</returns>
+    string? GetControllerPortDisplayName(MachineConfiguration configuration, int port);
 
-    /// <summary>Fournit le numéro de présentation lorsque celui-ci diffère de l’ordre technique.</summary>
-    /// <param name="configuration">Configuration déterminant l’organisation des ports.</param>
-    /// <param name="port">Indice technique du port.</param>
-    /// <returns>Numéro à présenter, ou null pour employer la numérotation commune.</returns>
-    int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
+    /// <summary>Fournit le numéro présenté lorsque celui-ci diffère du numéro technique du port.</summary>
+    /// <param name="configuration">Configuration empruntée déterminant l’organisation des ports.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <returns>Numéro explicite, ou null pour employer la numérotation commune.</returns>
+    int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port);
 
-    /// <summary>Fournit des commandes particulières pour un périphérique et un port.</summary>
-    /// <param name="configuration">Configuration dont le modèle et les options sont pris en compte.</param>
-    /// <param name="peripheral">Périphérique émulé choisi.</param>
-    /// <param name="port">Indice technique du port.</param>
-    /// <returns>Définitions spécifiques, ou null pour utiliser les descriptions ordinaires des actions.</returns>
-    IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, PeripheralCategory peripheral, int port) => null;
+    /// <summary>Décrit les catégories de périphériques disponibles pour la configuration.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le modèle, le cœur et ses options.</param>
+    /// <returns>Catégories prises en charge dans leur ordre de description.</returns>
+    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration);
+
+    /// <summary>Décrit les choix autorisés sur un port de contrôleur particulier.</summary>
+    /// <param name="configuration">Configuration complète empruntée.</param>
+    /// <param name="port">Indice technique du port, commençant à zéro.</param>
+    /// <returns>Catégories disponibles sur ce port, ou liste vide sans port correspondant.</returns>
+    IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port);
+
+    /// <summary>Décrit les périphériques raccordables à un port du bus USB émulé.</summary>
+    /// <param name="configuration">Configuration complète du modèle et de son bus USB.</param>
+    /// <param name="port">Indice relatif au bus USB, commençant à zéro.</param>
+    /// <returns>Choix du port USB, ou liste vide lorsque ce bus ne fournit aucun port correspondant.</returns>
+    IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port);
 }

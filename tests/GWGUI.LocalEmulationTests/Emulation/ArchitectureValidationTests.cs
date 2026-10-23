@@ -22,6 +22,7 @@ public sealed class ArchitectureValidationTests
             .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
         Assert.Equal(24, modules.Length);
         var checkedConfigurations = 0;
+        var describedAdapters = new HashSet<string>(StringComparer.Ordinal);
         foreach (var assembly in modules)
         {
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
@@ -32,6 +33,9 @@ public sealed class ArchitectureValidationTests
             var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
             var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.True(controllerContract.IsAssignableFrom(adapterContract), root);
+            Assert.Equal(new[] { "DescribeInput", "GetControllerBindingDefinitions", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetPeripherals", "GetPeripherals", "GetUsbPeripherals" }, controllerContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            Assert.Contains(controllerContract.GetInterfaces(), type => type.Name == "IEmulatorInputMapper");
+            Assert.All(controllerContract.GetMethods(), method => Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.GetParameters()[0].ParameterType)));
             var countMethod = controllerContract.GetMethod("GetControllerPortCount")!;
             Assert.Equal(typeof(int), countMethod.ReturnType);
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(Assert.Single(countMethod.GetParameters()).ParameterType));
@@ -64,6 +68,44 @@ public sealed class ArchitectureValidationTests
                     var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
                     // Les deux ports USB existants de PS2 sont décrits en plus du bus de manettes.
                     var extraUsbPorts = root.EndsWith(".Sony", StringComparison.Ordinal) && machine.Id == "PlayStation2" && candidate.Definition.Id != "pcee2" ? 2 : 0;
+                    if (describedAdapters.Add(root + "/" + candidate.Definition.Id))
+                    {
+                        var map = candidate.Adapter.GetType().GetInterfaceMap(controllerContract);
+                        var categoryType = controllerContract.GetMethod("DescribeInput")!.GetParameters()[2].ParameterType;
+                        foreach (var method in controllerContract.GetMethods())
+                        {
+                            var parameters = method.GetParameters();
+                            if (settings.ControllerPorts.Count == 0 && method.Name is not ("GetControllerPortCount" or "GetUsbPeripherals") && !(method.Name == "GetPeripherals" && parameters.Length == 1)) continue;
+                            var firstPort = settings.ControllerPorts.FirstOrDefault(port => !port.IsUsb) ?? settings.ControllerPorts.FirstOrDefault();
+                            var firstCategory = firstPort is not null && Enum.TryParse(categoryType, firstPort.SelectedControllerId, true, out var parsedCategory) ? parsedCategory : Enum.GetValues(categoryType).GetValue(0);
+                            object?[] arguments = parameters.Select((parameter, index) => index == 0 ? configuration : parameter.ParameterType == typeof(int) ? method.Name == "GetUsbPeripherals" ? (object)0 : firstPort?.Number - 1 ?? 0 : firstCategory).ToArray();
+                            var result = method.Invoke(candidate.Adapter, arguments);
+                            Assert.False(map.TargetMethods[Array.IndexOf(map.InterfaceMethods, method)].IsAbstract);
+                            if (method.Name is "GetPeripherals" or "GetUsbPeripherals")
+                                Assert.All(((System.Collections.IEnumerable)result!).Cast<object>(), category => Assert.True(Enum.IsDefined(categoryType, category)));
+                        }
+                        foreach (var port in settings.ControllerPorts)
+                        {
+                            if (!Enum.TryParse(categoryType, port.SelectedControllerId, true, out var peripheral)) continue;
+                            var index = port.Number - 1;
+                            foreach (var method in controllerContract.GetMethods().Where(method => method.Name is "DescribeInput" or "GetControllerBindingDefinitions" or "GetControllerPortDisplayName" or "GetControllerPortDisplayNumber"))
+                            {
+                                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, method)];
+                                var arguments = method.Name switch
+                                {
+                                    "DescribeInput" => new[] { configuration, (object)index, peripheral },
+                                    "GetControllerBindingDefinitions" => new[] { configuration, peripheral, (object)index },
+                                    _ => new[] { configuration, (object)index }
+                                };
+                                var result = method.Invoke(candidate.Adapter, arguments);
+                                if (target.DeclaringType != adapterContract) continue;
+                                if (method.Name == "DescribeInput") Assert.Equal(EmulationSdk.InputProcessing.DescribeInput(settings, index, port.SelectedControllerId), Assert.IsAssignableFrom<IReadOnlyList<InputActionDefinition>>(result));
+                                else if (method.Name == "GetControllerBindingDefinitions") Assert.Equal(EmulationSdk.InputProcessing.GetControllerBindingDefinitions(settings, port.SelectedControllerId, index), result as IReadOnlyList<InputBindingDefinition>);
+                                else if (method.Name == "GetControllerPortDisplayName") Assert.Equal(port.DisplayName, result);
+                                else Assert.Equal(port.DisplayNumber, result);
+                            }
+                        }
+                    }
                     Assert.True(settings.ControllerPorts.Count == expected + extraUsbPorts, $"{root}/{machine.Id}/{candidate.Definition.Id}: {settings.ControllerPorts.Count} ports décrits, {expected} annoncés, {extraUsbPorts} USB supplémentaires");
                     checkedConfigurations++;
                 }
@@ -1316,7 +1358,7 @@ public sealed class ArchitectureValidationTests
         {
             Assert.Null(assembly.GetType(root + "IEmulatorInputSettings"));
             var controllers = assembly.GetType(root + "IEmulatorControllerAdapter", throwOnError: true)!;
-            var method = Assert.Single(controllers.GetMethods(), candidate => candidate.Name == "GetPeripherals");
+            var method = Assert.Single(controllers.GetMethods(), candidate => candidate.Name == "GetPeripherals" && candidate.GetParameters().Length == 1);
             Assert.Equal("GetPeripherals", method.Name);
             var configurationType = Assert.Single(method.GetParameters()).ParameterType;
             Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(configurationType));
