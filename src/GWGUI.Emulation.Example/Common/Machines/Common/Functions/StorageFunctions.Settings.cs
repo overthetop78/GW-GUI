@@ -60,7 +60,7 @@ internal static class StorageSettingsFunctions
             || deviceSettings.Any(item => !result.ConfiguredSlots.Contains(item.Slot)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         result = adapter?.ApplyDeviceSettings(result, deviceSettings) ?? result;
-        result = result with { Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray() };
+        result = result with { Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, result.Media)).ToArray() };
         ConfigurationFunctions.Validate(result);
         return result;
     }

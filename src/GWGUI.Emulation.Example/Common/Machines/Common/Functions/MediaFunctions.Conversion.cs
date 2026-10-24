@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Conversion des cinq types de contenus entre le contrat public et les descriptions du module.</summary>
+/// <summary>Conversion des catégories de contenus entre le contrat public et les descriptions du module.</summary>
 /// <remarks>Seules les descriptions sont converties. Les images et fichiers ne sont ni écrits ni déplacés.</remarks>
 internal static class EmulationMediaConversionFunctions
 {
@@ -9,15 +9,18 @@ internal static class EmulationMediaConversionFunctions
     /// <returns>Description publique conservant le montage et son état d’insertion.</returns>
     internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
-    /// <summary>Applique une description publique en conservant le libellé du montage existant.</summary>
+    /// <summary>Applique une description publique en conservant les métadonnées du montage existant.</summary>
     /// <param name="media">Contenu fourni par l’hôte, dont le fichier reste emprunté.</param>
     /// <param name="mountedMedia">Montages courants dans lesquels rechercher le lecteur.</param>
     /// <returns>Description interne du contenu à monter dans le lecteur.</returns>
+    /// <remarks>Le libellé, le bus, le point et l’ordre de montage ainsi que les paramètres de cartouche
+    /// et de cassette restent portés par la copie with. Une catégorie interne plus précise est conservée
+    /// lorsque sa projection correspond encore au même type public.</remarks>
     internal static MediaConfiguration ToModule(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null ? new(media.Path, ToCategory(media.Type), media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
-            : existing with { Path = media.Path, Category = ToCategory(media.Type), IsReadOnly = media.IsReadOnly, IsInserted = media.IsInserted };
+            : existing with { Path = media.Path, Category = ToType(existing.Category) == media.Type ? existing.Category : ToCategory(media.Type), IsReadOnly = media.IsReadOnly, IsInserted = media.IsInserted };
     }
 
     /// <summary>Convertit le type interne sans dépendre des valeurs numériques des deux énumérations.</summary>
@@ -25,11 +28,12 @@ internal static class EmulationMediaConversionFunctions
     /// <returns>Type public correspondant.</returns>
     internal static EmulationMediaType ToType(MediaCategory category) => category switch
     {
-        MediaCategory.Floppy => EmulationMediaType.Floppy,
+        MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,
         MediaCategory.Cassette => EmulationMediaType.Cassette,
-        MediaCategory.HardDisk => EmulationMediaType.HardDisk,
+        MediaCategory.HardDisk or MediaCategory.Directory => EmulationMediaType.HardDisk,
         MediaCategory.Cartridge => EmulationMediaType.Cartridge,
         MediaCategory.MemoryCard => EmulationMediaType.MemoryCard,
+        MediaCategory.CompactDisc => EmulationMediaType.CompactDisc,
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
     };
 
@@ -43,6 +47,7 @@ internal static class EmulationMediaConversionFunctions
         EmulationMediaType.HardDisk => MediaCategory.HardDisk,
         EmulationMediaType.Cartridge => MediaCategory.Cartridge,
         EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
+        EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 }

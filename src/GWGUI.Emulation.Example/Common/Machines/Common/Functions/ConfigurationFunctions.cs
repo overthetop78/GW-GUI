@@ -39,7 +39,8 @@ internal static class ConfigurationFunctions
             || !Enum.IsDefined(configuration.Model) || !Enum.IsDefined(configuration.Core))
             throw new ArgumentException(nameof(configuration));
         var model = HardwareModelCatalog.Get(configuration.Model);
-        if (configuration.Firmwares.Any(firmware => !model.Firmware.Contains(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))) throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
+        var compatibility = ModelCatalog.GetCompatibility(configuration);
+        if (configuration.Firmwares.Any(firmware => !compatibility.Firmware.Contains(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))) throw new ArgumentException(ErrorMessages.IncompatibleFirmware, nameof(configuration));
         if (configuration.Core != Emulator.None && !EmulatorCatalog.Get(configuration.Core).MachineIds.Contains(model.StableModelId))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         var devices = StorageSettingsFunctions.DescribeDevices(configuration.Model);
@@ -49,14 +50,18 @@ internal static class ConfigurationFunctions
         var slots = new HashSet<EmulationMediaSlot>();
         foreach (var media in configuration.Media)
         {
-            if (string.IsNullOrWhiteSpace(media.Path) || !model.Media.Contains(media.Category) || !slots.Add(media.Slot) || !configuration.ConfiguredSlots.Contains(media.Slot)
-                || !devices.Any(device => device.Slot == media.Slot && device.MediaType == EmulationMediaConversionFunctions.ToType(media.Category)))
+            if (string.IsNullOrWhiteSpace(media.Path) || !compatibility.Media.Any(rule => rule.Category == media.Category && rule.Availability == MediaAvailability.Available && rule.Slots.Contains(media.Slot)) || !slots.Add(media.Slot) || !configuration.ConfiguredSlots.Contains(media.Slot))
+                throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
+            // Les valeurs automatiques restent null. Les identifiants de format sont des données du backend.
+            if (media.StorageBus is { } bus && !Enum.IsDefined(bus)
+                || media.CartridgePlatform is { } platform && !Enum.IsDefined(platform)
+                || media.CartridgeRegion is { } region && !Enum.IsDefined(region))
                 throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         }
         var ports = new HashSet<int>();
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
-            if (binding.Port < 0 || binding.Port >= ControllerPortCount(configuration.Model) || !ports.Add(binding.Port)
+            if (binding.Port < 0 || binding.Port >= compatibility.ControllerPortCount || !ports.Add(binding.Port)
                 || !Enum.IsDefined(binding.Peripheral) || binding.DeadZonePercent is < 0 or > 100)
                 throw new ArgumentException(ErrorMessages.InvalidControllerPort, nameof(configuration));
             foreach (var output in binding.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>())

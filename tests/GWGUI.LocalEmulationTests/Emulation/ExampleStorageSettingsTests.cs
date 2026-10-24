@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Http;
 using GWGUI.Emulation.Interfaces;
 using System.Reflection;
@@ -157,6 +158,58 @@ public sealed class ExampleStorageSettingsTests
         Assert.IsType<ArgumentException>(error.InnerException);
     }
 
+    [Fact]
+    public void MountMetadataSurvivesStorageApplicationAndDocumentRoundTripForEveryBackend()
+    {
+        foreach (var adapter in Adapters())
+        foreach (var model in HardwareModelCatalog.All)
+        {
+            var core = (Emulator)adapter.GetType().GetProperty("Emulator")!.GetValue(adapter)!;
+            var media = model.Model == MachineModel.ExampleMachineA
+                ? new[]
+                {
+                    new MediaConfiguration(Path.Combine(AppContext.BaseDirectory, "disk.img"), MediaCategory.HardDisk, EmulationMediaSlot.HardDisk0,
+                        Label: "Volume", StorageBus: StorageBus.Ide, MountPoint: "C", MountOrder: 2),
+                    new MediaConfiguration(Path.Combine(AppContext.BaseDirectory, "tape.cas"), MediaCategory.Cassette, EmulationMediaSlot.Cassette0,
+                        CassetteAutoBoot: true, MountOrder: 1)
+                }
+                : new[]
+                {
+                    new MediaConfiguration(Path.Combine(AppContext.BaseDirectory, "cartridge.rom"), MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0,
+                        Label: "Cartouche", CartridgePlatform: CartridgePlatform.Alternate, CartridgeType: 57, CartridgeRegion: EmulationVideoStandard.Secam)
+                };
+            var original = new MachineConfiguration(model.Model, core: core) with { Media = media };
+            var compatibility = (CompatibilityDefinition)typeof(ModelCatalog).GetMethod("GetCompatibility", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [original])!;
+            Assert.Equal(model.Model, compatibility.Model);
+            Assert.Equal(core, compatibility.Core);
+            Assert.All(media, item => Assert.Contains(compatibility.Media, rule => rule.Category == item.Category && rule.Slots.Contains(item.Slot)));
+            var initial = Describe(adapter, original);
+            var requested = initial with
+            {
+                MountedMedia = initial.MountedMedia.Select(item => item with { Path = Path.Combine(AppContext.BaseDirectory, "changed-" + Path.GetFileName(item.Path)) }).ToArray()
+            };
+            var updated = Apply(adapter, original, requested);
+            Assert.Equal(media.Select(item => item with { Path = Path.Combine(AppContext.BaseDirectory, "changed-" + Path.GetFileName(item.Path)) }), updated.Media);
+            Assert.Equal(media, original.Media);
+            var document = InvokeStatic("ConfigurationStoreFunctions", "ToDocument", updated, AppContext.BaseDirectory)!;
+            var json = JsonSerializer.SerializeToElement(document, document.GetType(), new JsonSerializerOptions(JsonSerializerDefaults.Web));
+            var parsed = InvokeStatic("ConfigurationStoreFunctions", "Deserialize", json)!;
+            var restored = (MachineConfiguration)InvokeStatic("ConfigurationStoreFunctions", "FromDocument", parsed, AppContext.BaseDirectory)!;
+            Assert.Equal(updated.Media, restored.Media);
+            Assert.Equal(updated.ConfiguredSlots, restored.ConfiguredSlots);
+            Assert.Equal(updated.Id, restored.Id);
+            Assert.Equal(updated.Core, restored.Core);
+        }
+
+        foreach (var category in new[] { MediaCategory.Directory, MediaCategory.Snapshot, MediaCategory.CompactDisc })
+        {
+            var slot = category == MediaCategory.Directory ? EmulationMediaSlot.HardDisk0 : category == MediaCategory.Snapshot ? EmulationMediaSlot.Floppy0 : EmulationMediaSlot.Cd0;
+            var original = new MediaConfiguration("content", category, slot, StorageBus: category == MediaCategory.Directory ? StorageBus.Gemdos : null, MountOrder: 3);
+            var common = (EmulationMedia)InvokeStatic("EmulationMediaConversionFunctions", "ToCommon", original)!;
+            var updated = (MediaConfiguration)InvokeStatic("EmulationMediaConversionFunctions", "ToModule", common with { Path = "changed" }, new[] { original })!;
+            Assert.Equal(original with { Path = "changed" }, updated);
+        }
+    }
     private static object[] Adapters() => Module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && Storage.IsAssignableFrom(type)).Select(type => Activator.CreateInstance(type, nonPublic: true)!).ToArray();
     private static EmulationStorageSettings Describe(object adapter, MachineConfiguration configuration) => (EmulationStorageSettings)Storage.GetMethod("DescribeStorage")!.Invoke(adapter, [configuration])!;
     private static MachineConfiguration Apply(object adapter, MachineConfiguration configuration, EmulationStorageSettings settings) => (MachineConfiguration)Storage.GetMethod("ApplyStorage")!.Invoke(adapter, [configuration, settings])!;
