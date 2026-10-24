@@ -9,7 +9,7 @@ public static class ControllerCatalog
                 PeripheralCategory.DrivingController, PeripheralCategory.BoosterGrip,
                 PeripheralCategory.GenesisController, PeripheralCategory.Joy2BPlus,
                 PeripheralCategory.None];
-        if (CompatibilityCatalog.Get(model).Core == Emulator.Hatari)
+        if (ConfigurationFunctions.GetFamily(model) == MachineFamily.St)
             return [PeripheralCategory.Joystick, PeripheralCategory.None];
         return HardwareModelCatalog.Get(model).Ports.Where(port => port.Capability != HardwarePortCapability.Keyboard)
             .Select(port => port.Capability switch

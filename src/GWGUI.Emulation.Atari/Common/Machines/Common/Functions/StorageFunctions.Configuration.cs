@@ -4,22 +4,6 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 public static class StorageConfigurationFunctions
 {
-    public static MachineFamily Family(MachineModel model) => model switch
-    {
-        MachineModel.St or MachineModel.Stf or MachineModel.Stfm or MachineModel.MegaSt
-            or MachineModel.Ste or MachineModel.MegaSte or MachineModel.Tt
-            or MachineModel.Falcon => MachineFamily.St,
-        MachineModel.Atari400 or MachineModel.Atari800 or MachineModel.Atari800Xl
-            or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe
-            => MachineFamily.EightBit,
-        MachineModel.Atari5200 => MachineFamily.Atari5200,
-        MachineModel.Atari2600 => MachineFamily.Atari2600,
-        MachineModel.Atari7800 => MachineFamily.Atari7800,
-        MachineModel.Lynx => MachineFamily.Lynx,
-        MachineModel.Jaguar or MachineModel.JaguarCd => MachineFamily.Jaguar,
-        _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
-    };
-
     public static (MediaCategory Category, EmulationMediaSlot Slot)? PrimaryDevice(MachineModel model) =>
         model switch
         {

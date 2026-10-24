@@ -15645,3 +15645,13 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que le getter de capture Epoch appelle le contrat de l'adaptateur.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Coleco/ColecoModuleTests.cs : vérifier les mélanges autorisés ou rejetés de contrôleurs rotatifs et de protections des médias insérés, sans fichiers externes.
     - [x] Modifier les sources concernées uniquement si les contrôles révèlent une régression ; exécuter les contrôles Epoch, Coleco et d'architecture, puis le build Debug avec tous les modules et vérifier les 24 sorties. Résultat : 481 contrôles ciblés puis 3 801 tests complets réussis ; build terminé avec le code 0 et 24 modules vérifiés.
+- [x] Utiliser le classement matériel Common unique pour les modèles Atari.
+  - [x] Raccorder les réglages et périphériques au classement existant.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ControllerCatalog.cs : reconnaître la famille ST par ConfigurationFunctions.GetFamily plutôt que par son cœur par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs : sélectionner les actions des modèles ST par cette même famille.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.cs : sélectionner les blocs matériels ST par la famille de la configuration.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : résoudre le dossier de firmware depuis ConfigurationFunctions.GetFamily.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs : résoudre les modèles de lecteurs, extensions et interfaces par ConfigurationFunctions.GetFamily.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Configuration.cs : supprimer seulement la copie Family, devenue sans appel ; conserver PrimaryDevice et les autres opérations de stockage.
+  - [x] Vérifier les modèles et livrer le raccordement.
+    - [x] Modifier les sources concernées seulement si les contrôles Atari, catalogues de familles, réglages ou stockage révèlent une régression ; exécuter leurs contrôles existants puis le build Debug avec tous les modules et vérifier les 24 sorties. Résultat : 572 contrôles ciblés et 3 801 tests complets réussis ; classement ST identique pour les 20 modèles ; build terminé avec le code 0, 24 modules et empreintes vérifiés.

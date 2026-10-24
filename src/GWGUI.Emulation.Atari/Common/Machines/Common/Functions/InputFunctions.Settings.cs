@@ -109,7 +109,7 @@ internal static partial class InputSettingsFunctions
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.LynxActions);
         if (model is MachineModel.Atari5200 or MachineModel.Atari7800)
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.DualFireActions);
-        if (CompatibilityCatalog.Get(model).Core == Emulator.Hatari)
+        if (ConfigurationFunctions.GetFamily(model) == MachineFamily.St)
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.HatariFireActions);
         return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.SingleFireActions);
     }

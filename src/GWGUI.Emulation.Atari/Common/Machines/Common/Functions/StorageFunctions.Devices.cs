@@ -32,12 +32,12 @@ internal static partial class StorageSettingsFunctions
 
     private static FloppyDriveDialogOptions FloppyOptions(MachineModel model, string? imageDirectory)
     {
-        var models = StorageConfigurationFunctions.Family(model) == MachineFamily.St ? StFloppyModels(model) : EightBitFloppyModels();
+        var models = ConfigurationFunctions.GetFamily(model) == MachineFamily.St ? StFloppyModels(model) : EightBitFloppyModels();
         return new FloppyDriveDialogOptions(
             models,
             imageDirectory ?? string.Empty,
             string.Join(';', Extensions(MediaCategory.Floppy).Select(extension => $"*{extension}")),
-            StorageConfigurationFunctions.Family(model) == MachineFamily.St ? StorageSettingsFunctionsConstants.St : StorageSettingsFunctionsConstants.Atr
+            ConfigurationFunctions.GetFamily(model) == MachineFamily.St ? StorageSettingsFunctionsConstants.St : StorageSettingsFunctionsConstants.Atr
         );
     }
 
@@ -59,7 +59,7 @@ internal static partial class StorageSettingsFunctions
     ];
     private static IReadOnlyList<EmulationSettingsChoice> Interfaces(MachineModel model, MediaCategory category)
     {
-        if (category != MediaCategory.HardDisk || StorageConfigurationFunctions.Family(model) != MachineFamily.St)
+        if (category != MediaCategory.HardDisk || ConfigurationFunctions.GetFamily(model) != MachineFamily.St)
             return[];
         var storage = StModelCatalog.Get(model).Storage;
         var choices = new List<EmulationSettingsChoice>();

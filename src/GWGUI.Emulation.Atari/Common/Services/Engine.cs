@@ -309,7 +309,7 @@ internal sealed class Engine
 
     public string GetFirmwareDirectory(string machineId)
     {
-        var family = StorageConfigurationFunctions.Family(ModelCatalog.Parse(machineId));
+        var family = ConfigurationFunctions.GetFamily(ModelCatalog.Parse(machineId));
         return Path.Combine(_firmwareDirectory, FirmwareScanFunctions.FamilyDirectoryName(family));
     }
 
