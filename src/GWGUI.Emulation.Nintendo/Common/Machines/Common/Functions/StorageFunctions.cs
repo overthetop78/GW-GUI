@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Constants;
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
@@ -17,7 +17,7 @@ internal static class StorageSettingsFunctions
                 IsPermanent: index < model.BuiltInFloppyDriveCount));
         if (model.SupportsCassetteDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette,
-                [DiskImageFileExtensions.Cdt, DiskImageFileExtensions.Tap, DiskImageFileExtensions.Voc],
+                [CommonCoreHostFunctions.MediaProcessing.FileExtensions["Cdt"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Tap"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Voc"]],
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CassetteDriveLabel,
                 IsPermanent: model.HasBuiltInCassetteDrive));

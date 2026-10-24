@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Constants;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 
@@ -40,9 +40,9 @@ internal static class StorageSettingsFunctionsConstants
     internal const string InvalidCardFormatResource = "Emulation.Storage.MemoryCard.InvalidFormat";
 
     internal static readonly IReadOnlyList<string> PlayStationExtensions =
-        [DiskImageFileExtensions.Cue, DiskImageFileExtensions.Bin,
-         DiskImageFileExtensions.Chd, DiskImageFileExtensions.Iso,
-         DiskImageFileExtensions.Ccd, DiskImageFileExtensions.Mds];
+        [CommonCoreHostFunctions.MediaProcessing.FileExtensions["Cue"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Bin"],
+         CommonCoreHostFunctions.MediaProcessing.FileExtensions["Chd"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Iso"],
+         CommonCoreHostFunctions.MediaProcessing.FileExtensions["Ccd"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Mds"]];
 
-    internal static readonly IReadOnlyList<string> PspExtensions = [DiskImageFileExtensions.Iso, DiskImageFileExtensions.Chd];
+    internal static readonly IReadOnlyList<string> PspExtensions = [CommonCoreHostFunctions.MediaProcessing.FileExtensions["Iso"], CommonCoreHostFunctions.MediaProcessing.FileExtensions["Chd"]];
 }

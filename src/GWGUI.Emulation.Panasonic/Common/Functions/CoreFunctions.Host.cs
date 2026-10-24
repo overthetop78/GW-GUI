@@ -12,6 +12,13 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Panasonic.Common.Functions;
 internal static class CoreHostFunctions
 {
+
+    /// <summary>Fournit les préparations et données de formats par le contrat public du SDK, qui relaie vers MediaEngine.</summary>
+    /// <remarks>Le service est emprunté. Common conserve les chemins de session, les choix du cœur et ses diagnostics.
+    /// Les formats et tailles de secteurs viennent du catalogue partagé ; les documents CUE restent opaques au module.
+    /// Les flux fournis par l'appelant restent ouverts ; les flux créés pour les préparations sont fermés dans finally.</remarks>
+    internal static IEmulationMediaProcessing MediaProcessing => EmulationSdk.MediaProcessing;
+
     /// <summary>Fournit les opérations de configuration et de fichiers par leur interface publique commune.</summary>
     /// <remarks>Le module conserve ses chemins, verrous, projections et annulation ; le service possède les flux qu’il ouvre.</remarks>
     internal static IEmulationConfigurationFiles ConfigurationFiles => EmulationSdk.ConfigurationFiles;

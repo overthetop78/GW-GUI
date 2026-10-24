@@ -23,6 +23,12 @@ public sealed class MediaEngineComposition
     /// <remarks>Le traitement est sans état et reste emprunté ; les octets et leur durée de vie appartiennent à l'appelant.</remarks>
     public static IMediaDataIntegrity DataIntegrity { get; } = new MediaDataIntegrityService();
 
+    /// <summary>Fournit les préparations CUE et SCP sous leur contrat, avec création différée des convertisseurs.</summary>
+    public static IMediaRuntimePreparation RuntimePreparation { get; } = new MediaRuntimePreparationService();
+
+    /// <summary>Fournit les opérations de systèmes de fichiers sans exposer leur bibliothèque aux consommateurs.</summary>
+    public static IMediaFileSystemProcessing FileSystems { get; } = new MediaFileSystemProcessingService();
+
     private MediaEngineComposition(MediaRecognitionComposition recognition, MediaExplorer explorer, MediaConversionComposition conversion, MediaWritingComposition writing, MediaVisualizationComposition visualization)
     {
         Recognition = recognition;

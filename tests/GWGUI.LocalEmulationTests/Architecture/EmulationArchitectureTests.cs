@@ -11,10 +11,10 @@ namespace GWGUI.Tests.Architecture;
 public sealed class EmulationArchitectureTests
 {
     [Fact]
-    public void ModuleMediaDependenciesStayWithinTheSharedLibraries()
+    public void ModuleMediaDependenciesStayWithinTheSdk()
     {
-        foreach (var assembly in new[] { typeof(CommodoreEmulationModule).Assembly, typeof(AtariEmulationModule).Assembly })
-            Assert.Equal(new[] { "gwgui.emulation", "gwgui.mediaengine" }, References(assembly).Where(name => name.StartsWith("gwgui.", StringComparison.Ordinal)).Order(StringComparer.Ordinal));
+        foreach (var assembly in FamilyModules().Select(row => Assembly.Load("gwgui.emulation." + ((string)row[0]).ToLowerInvariant())))
+            Assert.Equal(new[] { "gwgui.emulation" }, References(assembly).Where(name => name.StartsWith("gwgui.", StringComparison.Ordinal)).Order(StringComparer.Ordinal));
     }
 
     [Fact]

@@ -12,7 +12,6 @@
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
-    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\*.png" LogicalName="GWGUI.Emulation.Philips.Assets.%(Filename)%(Extension)" />

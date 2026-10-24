@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.MediaEngine.Constants;
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions;
@@ -7,7 +7,7 @@ internal static class CcdRuntimeFunctions
 {
     internal static void ValidateSubchannels(Stream subchannel)
     {
-        Span<byte> sector = stackalloc byte[OpticalSectorConstants.SubchannelSize];
+        Span<byte> sector = stackalloc byte[CommonCoreHostFunctions.MediaProcessing.OpticalSubchannelSize];
         while (subchannel.Position < subchannel.Length)
         {
             subchannel.ReadExactly(sector);
@@ -17,7 +17,7 @@ internal static class CcdRuntimeFunctions
 
     internal static void ValidateSubchannelRecord(ReadOnlySpan<byte> sector)
     {
-        if (sector.Length != OpticalSectorConstants.SubchannelSize)
+        if (sector.Length != CommonCoreHostFunctions.MediaProcessing.OpticalSubchannelSize)
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
         if (sector[RuntimeOptionConstants.SubchannelIndexOffset] == 0 || (sector[RuntimeOptionConstants.SubchannelQOffset] & RuntimeOptionConstants.SubchannelAddressMask) == 0)
             return;
@@ -29,7 +29,7 @@ internal static class CcdRuntimeFunctions
 
     internal static void ValidateSizes(long imageBytes, long subchannelBytes)
     {
-        if (imageBytes <= 0 || imageBytes % OpticalSectorConstants.RawSectorSize != 0 || subchannelBytes <= 0 || subchannelBytes % OpticalSectorConstants.SubchannelSize != 0 || subchannelBytes > int.MaxValue - (OpticalSectorConstants.SubchannelSize - 1))
+        if (imageBytes <= 0 || imageBytes % CommonCoreHostFunctions.MediaProcessing.RawOpticalSectorSize != 0 || subchannelBytes <= 0 || subchannelBytes % CommonCoreHostFunctions.MediaProcessing.OpticalSubchannelSize != 0 || subchannelBytes > int.MaxValue - (CommonCoreHostFunctions.MediaProcessing.OpticalSubchannelSize - 1))
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
     }
 }

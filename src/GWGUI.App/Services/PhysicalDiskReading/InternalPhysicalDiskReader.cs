@@ -1,4 +1,4 @@
-using GWGUI.MediaFileSystems.Functions;
+using GWGUI.MediaEngine;
 using System.Globalization;
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
@@ -56,8 +56,8 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
 
     private static void ReportProgress(MediaAcquisitionProgress value, IReadOnlyList<PhysicalDiskTrackAddress> tracks, FloppyFluxAcquisitionService fluxService, IProgress<PhysicalDiskReadOperationProgress>? progress)
     {
-        var cylinder = MediaMetadataFunctions.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Cylinder);
-        var head = MediaMetadataFunctions.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Head);
+        var cylinder = MediaEngineComposition.FileSystems.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Cylinder);
+        var head = MediaEngineComposition.FileSystems.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Head);
         IPiste? acquiredTrack = null;
         if (value.AcquiredUnit is not null)
         {

@@ -1,10 +1,9 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.IO;
-using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions;
@@ -33,7 +32,7 @@ internal static class MediaRuntimeFunctions
         {
             source
         };
-        CueSheetDocument? cueSheet = null;
+        IEmulationCueSheet? cueSheet = null;
         foreach (var archive in Directory.EnumerateFiles(sourceDirectory, SessionContentConstants.AllFilesPattern))
         {
             if (!RuntimeOptionConstants.CartridgeExtensions.Contains(Path.GetExtension(archive), StringComparer.OrdinalIgnoreCase))
@@ -46,15 +45,15 @@ internal static class MediaRuntimeFunctions
 
         if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
         {
-            var sheet = new CueSheetReader().Parse(File.ReadLines(source));
+            var sheet = CommonCoreHostFunctions.MediaProcessing.ReadCueSheet(File.ReadLines(source));
             CueRuntimeFunctions.Validate(sheet);
             cueSheet = sheet;
-            var binary = Path.GetFullPath(sheet.Files[0].DeclaredPath, sourceDirectory);
+            var binary = Path.GetFullPath(sheet.DeclaredFiles[0], sourceDirectory);
             var length = new FileInfo(binary).Length;
-            if (length == 0 || length % OpticalSectorConstants.RawSectorSize != 0)
+            if (length == 0 || length % CommonCoreHostFunctions.MediaProcessing.RawOpticalSectorSize != 0)
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
-            foreach (var file in sheet.Files)
-                dependencies.Add(Path.GetFullPath(file.DeclaredPath, sourceDirectory));
+            foreach (var file in sheet.DeclaredFiles)
+                dependencies.Add(Path.GetFullPath(file, sourceDirectory));
         }
         else if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CcdExtension, StringComparison.OrdinalIgnoreCase))
         {
@@ -79,10 +78,10 @@ internal static class MediaRuntimeFunctions
                 directory.AddFile(dependency);
             if (cueSheet is not null)
             {
-                var stagedBinary = directory.AddFile(Path.GetFullPath(cueSheet.Files[0].DeclaredPath, sourceDirectory));
+                var stagedBinary = directory.AddFile(Path.GetFullPath(cueSheet.DeclaredFiles[0], sourceDirectory));
                 var prepared = CueRuntimeFunctions.Prepare(cueSheet, stagedBinary, stagedPath);
                 using var cue = new FileStream(stagedPath, FileMode.Create, FileAccess.Write, FileShare.None);
-                new CueSheetWriter().WriteAsync(prepared, cue).GetAwaiter().GetResult();
+                CommonCoreHostFunctions.MediaProcessing.WriteCueSheetAsync(prepared, cue).GetAwaiter().GetResult();
             }
 
             content = ContentFunctions.Create(stagedPath, RuntimeOptionConstants.NeedsFullPath, extensions);

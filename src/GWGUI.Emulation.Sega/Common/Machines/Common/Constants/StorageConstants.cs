@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Constants;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 
@@ -11,18 +11,18 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Voc = ".voc";
     internal const string Sms = ".sms";
     internal const string Sg = ".sg";
-    internal const string Md = DiskImageFileExtensions.Md;
-    internal const string Mdx = DiskImageFileExtensions.Mdx;
-    internal const string Sgd = DiskImageFileExtensions.Sgd;
-    internal const string Smd = DiskImageFileExtensions.Smd;
-    internal const string Bms = DiskImageFileExtensions.Bms;
-    internal const string SixtyEightK = DiskImageFileExtensions.SixtyEightK;
-    internal const string Gen = DiskImageFileExtensions.Gen;
+    internal static readonly string Md = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Md"];
+    internal static readonly string Mdx = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Mdx"];
+    internal static readonly string Sgd = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Sgd"];
+    internal static readonly string Smd = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Smd"];
+    internal static readonly string Bms = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Bms"];
+    internal static readonly string SixtyEightK = CommonCoreHostFunctions.MediaProcessing.FileExtensions["SixtyEightK"];
+    internal static readonly string Gen = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Gen"];
     internal const string ThirtyTwoX = ".32x";
     internal const string Mv = ".mv";
     internal const string Cpr = ".cpr";
     internal const string Cue = ".cue";
-    internal const string Ccd = DiskImageFileExtensions.Ccd;
+    internal static readonly string Ccd = CommonCoreHostFunctions.MediaProcessing.FileExtensions["Ccd"];
     internal const string Chd = ".chd";
     internal const string Iso = ".iso";
     internal const string Gdi = ".gdi";

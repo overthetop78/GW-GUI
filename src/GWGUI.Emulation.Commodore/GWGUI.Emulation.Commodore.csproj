@@ -13,7 +13,6 @@
     <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
-    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\*.png" LogicalName="GWGUI.Emulation.Commodore.Assets.%(Filename)%(Extension)" />

@@ -18,6 +18,55 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public async Task ModulesReachMediaOperationsOnlyThroughTheirCommonAndSdkContracts()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, assemblies.Length);
+        foreach (var assembly in assemblies)
+        {
+            Assert.DoesNotContain(assembly.GetReferencedAssemblies(), name => name.Name!.StartsWith("gwgui.media", StringComparison.OrdinalIgnoreCase) || name.Name.Equals("gwgui.app", StringComparison.OrdinalIgnoreCase));
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var common = assembly.GetType(root + ".Common.Functions.CoreHostFunctions", true)!;
+            var property = common.GetProperty("MediaProcessing", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Equal(typeof(IEmulationMediaProcessing), property.PropertyType);
+            Assert.Same(EmulationSdk.MediaProcessing, property.GetValue(null));
+        }
+        var app = typeof(GWGUI.App.Services.PhysicalDiskReading.InternalPhysicalDiskReader).Assembly;
+        Assert.DoesNotContain(app.GetReferencedAssemblies(), name => name.Name is "gwgui.mediafilesystems" or "gwgui.mediaanalysis");
+        Assert.DoesNotContain(typeof(EmulationSdk).Assembly.GetReferencedAssemblies(), name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.OrdinalIgnoreCase) || name.Name is "gwgui.app" or "gwgui.mediafilesystems" or "gwgui.mediaanalysis");
+        Assert.False(EmulationSdk.MediaProcessing.GetType().IsPublic);
+        Assert.Contains(GetCompiledCalls(EmulationSdk.MediaProcessing.GetType().GetMethod("ReadCueSheet")!), call => call.Method.DeclaringType == typeof(GWGUI.MediaEngine.Interfaces.IMediaRuntimePreparation));
+        var processing = EmulationSdk.MediaProcessing;
+        Assert.Equal(".scp", processing.FileExtensions["Scp"]);
+        Assert.Equal(2352, processing.RawOpticalSectorSize);
+        Assert.Equal(2352, processing.AudioSectorSize);
+        Assert.Equal(96, processing.OpticalSubchannelSize);
+        var original = processing.ReadCueSheet(["CATALOG 1234567890123", "FILE \"disc.bin\" BINARY", "  TRACK 01 MODE1/2352", "    INDEX 00 00:00:00", "    INDEX 01 00:02:00", "  TRACK 02 AUDIO", "    INDEX 01 00:10:00"]);
+        Assert.True(processing.IsSingleBinaryRawAudioCue(original, 99));
+        Assert.False(processing.IsSingleBinaryRawAudioCue(original, 1));
+        var staged = processing.WithSingleCueFile(original, "runtime.bin");
+        Assert.Equal("disc.bin", Assert.Single(original.DeclaredFiles));
+        Assert.Equal("runtime.bin", Assert.Single(staged.DeclaredFiles));
+        using var destination = new MemoryStream();
+        await processing.WriteCueSheetAsync(staged, destination);
+        Assert.True(destination.CanWrite);
+        var cue = System.Text.Encoding.UTF8.GetString(destination.ToArray());
+        Assert.Contains("1234567890123", cue);
+        Assert.Contains("runtime.bin", cue);
+        Assert.Contains("INDEX 00 00:00:00", cue);
+        Assert.Contains("INDEX 01 00:02:00", cue);
+        Assert.Contains("TRACK 02 AUDIO", cue);
+        var files = GWGUI.MediaEngine.MediaEngineComposition.FileSystems;
+        Assert.Equal(-12, files.ReadIntOrDefault(new Dictionary<string, string> { ["c"] = " -12 " }, "c"));
+        Assert.Equal(0, files.ReadIntOrDefault(new Dictionary<string, string> { ["c"] = "invalid" }, "c"));
+        Assert.Equal(0, files.ReadIntOrDefault(new Dictionary<string, string>(), "c"));
+        Assert.Equal(new[] { 2, 3 }, files.EnumerateFiles(1, value => value > 1, value => value == 1 ? new[] { 2, 3 } : Array.Empty<int>()));
+    }
+
+    [Fact]
     public void InputConfigurationsUseCommonCollectionNamesAndKeepStoredValues()
     {
         var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -4958,6 +5007,7 @@ public sealed class ArchitectureValidationTests
     [InlineData(nameof(EmulationSdk.HardwareSettings), typeof(IEmulationHardwareSettings))]
     [InlineData(nameof(EmulationSdk.FirmwareProcessing), typeof(IEmulationFirmwareProcessing))]
     [InlineData(nameof(EmulationSdk.MediaRules), typeof(IEmulationMediaRules))]
+    [InlineData(nameof(EmulationSdk.MediaProcessing), typeof(IEmulationMediaProcessing))]
     [InlineData(nameof(EmulationSdk.VideoProcessing), typeof(IEmulationVideoProcessing))]
     [InlineData(nameof(EmulationSdk.MachineExecution), typeof(IEmulationMachineExecution))]
     [InlineData(nameof(EmulationSdk.Messages), typeof(IEmulationMessages))]

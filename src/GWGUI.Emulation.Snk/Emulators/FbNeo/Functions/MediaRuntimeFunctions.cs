@@ -2,7 +2,7 @@ using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.IO;
-using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Functions;
@@ -103,9 +103,9 @@ internal static class MediaRuntimeFunctions
 
         if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
         {
-            var sheet = new CueSheetReader().Parse(File.ReadLines(source));
-            foreach (var file in sheet.Files)
-                dependencies.Add(Path.GetFullPath(file.DeclaredPath, sourceDirectory));
+            var sheet = CommonCoreHostFunctions.MediaProcessing.ReadCueSheet(File.ReadLines(source));
+            foreach (var file in sheet.DeclaredFiles)
+                dependencies.Add(Path.GetFullPath(file, sourceDirectory));
         }
         else if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CcdExtension, StringComparison.OrdinalIgnoreCase))
         {

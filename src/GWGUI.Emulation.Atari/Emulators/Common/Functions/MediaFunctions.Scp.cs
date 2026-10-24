@@ -1,15 +1,14 @@
 using System.IO;
 using System.Globalization;
-using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Constants;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Atari.Emulators.Common.Functions;
 
 internal static class ScpMediaFunctions
 {
-    private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
 
-    internal static bool IsScp(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
+
+    internal static bool IsScp(string path) => Path.GetExtension(path).Equals(CommonCoreHostFunctions.MediaProcessing.FileExtensions["Scp"], StringComparison.OrdinalIgnoreCase);
 
     internal static SessionMedia Prepare(MachineConfiguration configuration, MediaConfiguration media, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
@@ -20,8 +19,8 @@ internal static class ScpMediaFunctions
 
         var extension = configuration.Family switch
         {
-            MachineFamily.EightBit => DiskImageFileExtensions.Atr,
-            MachineFamily.St => DiskImageFileExtensions.St,
+            MachineFamily.EightBit => CommonCoreHostFunctions.MediaProcessing.FileExtensions["Atr"],
+            MachineFamily.St => CommonCoreHostFunctions.MediaProcessing.FileExtensions["St"],
             _ => throw new NotSupportedException($"SCP conversion is not supported for Atari family '{configuration.Family}'.")
         };
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,
@@ -29,11 +28,7 @@ internal static class ScpMediaFunctions
         Directory.CreateDirectory(runtimeDirectory);
         var runtimeName = string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.RuntimeFileNameFormat, SessionMediaConstants.RuntimeFileNumberOffset, Path.GetFileNameWithoutExtension(media.Path) + extension);
         var runtimePath = Path.Combine(runtimeDirectory, runtimeName);
-        var converter = MediaEngine.Conversion.AtariScpRuntimeConverter;
-        if (configuration.Family == MachineFamily.St)
-            converter.ConvertToStAsync(media.Path, runtimePath).GetAwaiter().GetResult();
-        else
-            converter.ConvertToAtrAsync(media.Path, runtimePath).GetAwaiter().GetResult();
+        CommonCoreHostFunctions.MediaProcessing.ConvertScpAsync(media.Path, runtimePath, extension).GetAwaiter().GetResult();
         ContentFunctions.Validate(runtimePath, supportedExtensions);
         return new SessionMedia(media, runtimePath, [Path.GetFullPath(media.Path)], [runtimePath], false);
     }

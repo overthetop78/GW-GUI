@@ -14,7 +14,6 @@
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
-    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\*.png" LogicalName="GWGUI.Emulation.Apple.Assets.%(Filename)%(Extension)" />

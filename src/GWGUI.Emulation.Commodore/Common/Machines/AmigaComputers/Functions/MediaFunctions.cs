@@ -3,7 +3,6 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using GWGUI.Emulation.HardDisks;
-using GWGUI.MediaEngine;
 
 namespace GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Functions;
 
@@ -31,7 +30,7 @@ internal static class AmigaHardDiskFormats
 
 internal static class AmigaRuntimeMediaFunctions
 {
-    private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
+
     internal static async ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => media.Type == EmulationMediaType.Floppy ? media with { Path = await ConvertScpPathAsync(media.Path, conversionDirectory).ConfigureAwait(false) } : media;
 
     internal static async Task<MachineConfiguration> PrepareConfigurationAsync(MachineConfiguration configuration, string conversionDirectory)
@@ -51,8 +50,8 @@ internal static class AmigaRuntimeMediaFunctions
         Directory.CreateDirectory(conversionDirectory);
         var output = Path.Combine(conversionDirectory, string.Concat(Path.GetFileNameWithoutExtension(path), RuntimeMediaConstants.ConversionFileNameSeparator, hash, StorageSettingsFunctionsConstants.Adf));
         if (File.Exists(output)) return output;
-        var converter = MediaEngine.Conversion.AmigaAdfRuntimeConverter;
-        try { await converter.ConvertDetectedAsync(path, output).ConfigureAwait(false); }
+
+        try { await CommonCoreHostFunctions.MediaProcessing.ConvertScpAsync(path, output, StorageSettingsFunctionsConstants.Adf).ConfigureAwait(false); }
         catch
         {
             if (File.Exists(output)) File.Delete(output);

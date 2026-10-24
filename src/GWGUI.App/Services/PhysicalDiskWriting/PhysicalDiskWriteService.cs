@@ -1,4 +1,4 @@
-using GWGUI.MediaFileSystems.Functions;
+using GWGUI.MediaEngine;
 using System.Globalization;
 using System.IO;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
@@ -41,9 +41,9 @@ public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers
     private static void ReportProgress(MediaWritePlan plan, MediaPhysicalWriteProgress value, IProgress<PhysicalTrackWriteProgress>? progress)
     {
         var unit = plan.DataUnits.FirstOrDefault(item => item.Position == value.Position);
-        var cylinder = unit is null ? 0 : MediaMetadataFunctions.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
-        var head = unit is null ? 0 : MediaMetadataFunctions.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Head);
-        var tracks = plan.DataUnits.Select(item => new PhysicalTrackWriteAddress(MediaMetadataFunctions.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Cylinder), MediaMetadataFunctions.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Head))).Distinct()
+        var cylinder = unit is null ? 0 : MediaEngineComposition.FileSystems.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
+        var head = unit is null ? 0 : MediaEngineComposition.FileSystems.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Head);
+        var tracks = plan.DataUnits.Select(item => new PhysicalTrackWriteAddress(MediaEngineComposition.FileSystems.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Cylinder), MediaEngineComposition.FileSystems.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Head))).Distinct()
             .OrderBy(item => item.Cylinder)
             .ThenBy(item => item.Head)
             .ToArray();

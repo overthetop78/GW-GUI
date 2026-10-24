@@ -5,6 +5,9 @@ namespace GWGUI.Emulation;
 /// <summary>Accès aux services du SDK par leurs contrats publics, sans connaissance de l’identité des modules.</summary>
 public static class EmulationSdk
 {
+    /// <summary>Préparations SCP/CUE et données de formats par contrat public, avec MediaEngine comme propriétaire des traitements.</summary>
+    public static IEmulationMediaProcessing MediaProcessing { get; } = new EmulationMediaProcessingService();
+
     /// <summary>Descriptions et projection des retours des cœurs vers les associations de sortie, sans périphérique possédé.</summary>
     public static IEmulationControllerFeedbackProcessing ControllerFeedback { get; } = new EmulationControllerFeedbackService();
 
