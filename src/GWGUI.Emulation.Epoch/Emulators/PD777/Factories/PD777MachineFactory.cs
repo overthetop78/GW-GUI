@@ -8,6 +8,9 @@ namespace GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
 
 internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorControllerAdapter, IEmulatorMediaCapabilities
 {
+    /// <inheritdoc/>
+    public override bool SupportsPointerCapture(MachineConfiguration configuration) => true;
+
     public override IReadOnlyList<InputActionDefinition> DescribeInput(MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         var actions = ControllerProtocolDictionary.Actions(configuration.Model, Emulator.PD777, port);

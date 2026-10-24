@@ -16,6 +16,18 @@ namespace GWGUI.Tests.Emulation.Epoch;
 public sealed class EpochModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.CassetteVision, true)]
+    [InlineData(MachineModel.CassetteVisionJr, true)]
+    [InlineData(MachineModel.SuperCassetteVision, false)]
+    [InlineData(MachineModel.SuperCassetteVisionYeno, false)]
+    [InlineData(MachineModel.SuperCassetteVisionLady, false)]
+    public void AdapterAnnouncesTheExistingRuntimePointerCapture(MachineModel model, bool expected)
+    {
+        GWGUI.Emulation.Epoch.Common.Interfaces.IEmulatorPointerCapabilities adapter = expected ? new PD777MachineFactory() : new EmuSCVMachineFactory();
+        Assert.Equal(expected, adapter.SupportsPointerCapture(new MachineConfiguration(model)));
+    }
+
+    [Theory]
     [InlineData(MachineModel.CassetteVision)]
     [InlineData(MachineModel.CassetteVisionJr)]
     [InlineData(MachineModel.SuperCassetteVision)]

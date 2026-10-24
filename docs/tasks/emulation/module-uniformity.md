@@ -15627,3 +15627,10 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Vérifier les appels et les sorties.
     - [x] Modifier les sources concernées si les contrôles existants des copies audio, callbacks, tampons, Example ou contrats communs révèlent une régression ; exécuter ces contrôles sans ajouter de test temporaire.
     - [x] Modifier les sources concernées si le build révèle une référence oubliée ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les sorties des 24 modules.
+
+- [x] Aligner l'annonce de capture du pointeur PD777 sur le runtime existant.
+  - [x] Raccorder la capacité à l'adaptateur déjà utilisé par Common.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/PD777/Factories/PD777MachineFactory.cs : annoncer SupportsPointerCapture à true, comme la machine PD777 existante ; conserver les autres adaptateurs à false.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Epoch/EpochModuleTests.cs : vérifier par IEmulatorPointerCapabilities l'annonce des deux modèles Cassette Vision et des trois modèles Super Cassette Vision, sans charger de cœur ni créer de fichier.
+  - [x] Vérifier et livrer le raccordement.
+    - [x] Modifier les deux sources concernées seulement si les contrôles Epoch ou des contrats d'adaptateur révèlent une régression ; exécuter les contrôles existants et le build Debug avec tous les modules, puis vérifier les 24 sorties. Résultat : 252 contrôles réussis ; script terminé avec le code 0, 24 modules et empreintes vérifiés.
