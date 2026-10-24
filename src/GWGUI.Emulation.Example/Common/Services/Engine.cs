@@ -177,7 +177,10 @@ internal sealed class Engine
     /// <summary>Produit le résumé de la configuration par le catalogue matériel Common.</summary>
     /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
     /// <returns>Résumé public des données matérielles et de l&apos;adaptateur de la configuration.</returns>
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.Summarize(current) ?? ConfigurationSummaryFunctions.Create(current);
+    }
     /// <summary>Décrit les lecteurs du profil et les montages actuellement enregistrés.</summary>
     /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
     /// <returns>Description publique des lecteurs et des montages de la configuration.</returns>

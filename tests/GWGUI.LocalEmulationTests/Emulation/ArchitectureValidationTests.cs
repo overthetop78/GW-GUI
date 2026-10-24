@@ -3049,10 +3049,13 @@ public sealed class ArchitectureValidationTests
         public string MachineId { get; set; } = string.Empty;
         public bool Preferred { get; set; }
         public List<IEmulationConfiguration> Selections { get; } = [];
+        public EmulationConfigurationSummary? Summary { get; set; }
+        public object? SummarizedConfiguration { get; private set; }
 
         protected override object? Invoke(MethodInfo? method, object?[]? arguments)
         {
             ArgumentNullException.ThrowIfNull(method);
+            if (method.Name == "Summarize" && Summary is not null) { SummarizedConfiguration = arguments![0]; return Summary; }
             if (method.Name.EndsWith("IsDefaultFor", StringComparison.Ordinal)) return Preferred && arguments is [string machineId] && machineId == MachineId;
             if (method.Name.EndsWith("SelectConfiguration", StringComparison.Ordinal)) Selections.Add((IEmulationConfiguration)arguments![0]!);
             return method.Invoke(Adapter, arguments);
@@ -3085,8 +3088,16 @@ public sealed class ArchitectureValidationTests
             Assert.True(deferred.IsAbstract && clock.IsAbstract);
             var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
             if (extension is not null) Assert.DoesNotContain(extension.GetMethods(), method => method.Name is "IsDeferredOption" or "IsCpuClock");
+            var summaryOperation = contract.GetMethod("Summarize")!;
+            Assert.Equal(typeof(EmulationConfigurationSummary), summaryOperation.ReturnType);
+            Assert.Equal(configurationType, Assert.Single(summaryOperation.GetParameters()).ParameterType);
+            Assert.DoesNotContain(adapterContract.GetMethods(), method => method.Name == "Summarize");
             var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
             var engine = Activator.CreateInstance(engineType)!;
+            var summarize = engineType.GetMethod("SummarizeConfiguration")!;
+            Assert.Contains(GetCompiledCalls(summarize), call => call.Method == summaryOperation);
+            var summaryOwner = assembly.GetType(root + ".Common.Machines.Common.Functions.ConfigurationSummaryFunctions", throwOnError: true)!;
+            var fallbackSummary = summaryOwner.GetMethod("Create", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)!;
             var byId = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
             var adapters = ((System.Collections.IEnumerable)byId.GetType().GetProperty("Values")!.GetValue(byId)!).Cast<object>().ToArray();
             var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
@@ -3103,6 +3114,28 @@ public sealed class ArchitectureValidationTests
                 var machine = machines.FirstOrDefault(item => item.Id == "NeoGeoMvs" && definition.MachineIds.Contains(item.Id)) ?? machines.First(item => definition.MachineIds.Contains(item.Id));
                 var original = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [machine.Id])!;
                 var configuration = await (ValueTask<IEmulationConfiguration>)engineType.GetMethod("UseEmulatorAsync")!.Invoke(engine, [original, definition.Id, CancellationToken.None])!;
+                var expectedSummary = Assert.IsType<EmulationConfigurationSummary>(fallbackSummary.Invoke(null, [configuration]));
+                var actualSummary = Assert.IsType<EmulationConfigurationSummary>(summarize.Invoke(engine, [configuration]));
+                Assert.Equal(expectedSummary.MachineDisplayResourceKey, actualSummary.MachineDisplayResourceKey);
+                Assert.Equal<string>(expectedSummary.Details, actualSummary.Details);
+                var summaryMap = adapter.GetType().GetInterfaceMap(contract);
+                Assert.True(summaryMap.TargetMethods[Array.IndexOf(summaryMap.InterfaceMethods, summaryOperation)].DeclaringType!.IsClass);
+                var summaryProxy = DispatchProxy.Create(adapterContract, typeof(DefaultAdapterProbe));
+                var summaryProbe = (DefaultAdapterProbe)summaryProxy;
+                summaryProbe.Adapter = adapter;
+                summaryProbe.Summary = new EmulationConfigurationSummary("summary-probe", ["adapter-specific-summary"]);
+                var registrations = (System.Collections.IDictionary)byId;
+                var previousAdapter = registrations[definition.Id];
+                try
+                {
+                    registrations[definition.Id] = summaryProxy;
+                    Assert.Same(summaryProbe.Summary, summarize.Invoke(engine, [configuration]));
+                    Assert.Same(configuration, summaryProbe.SummarizedConfiguration);
+                }
+                finally
+                {
+                    registrations[definition.Id] = previousAdapter;
+                }
                 Assert.False((bool)deferred.Invoke(adapter, [configuration, "unknown-setting"])!);
                 Assert.False((bool)clock.Invoke(adapter, ["unknown-setting"])!);
                 if (root == "GWGUI.Emulation.Example")
@@ -3487,7 +3520,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 8 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" or "IEmulatorMediaCapabilities" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 9 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" or "IEmulatorMediaCapabilities" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);

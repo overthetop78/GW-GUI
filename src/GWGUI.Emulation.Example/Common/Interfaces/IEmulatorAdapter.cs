@@ -319,11 +319,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <returns>Configuration utilisable à l’exécution après les préparations propres au backend.</returns>
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
 
-    /// <summary>Produit le résumé de configuration propre au cœur sélectionné.</summary>
-    /// <param name="configuration">Configuration à présenter sans démarrer son runtime.</param>
-    /// <returns>Informations de modèle, processeur, mémoire, lecteurs et périphériques pour l’hôte.</returns>
-    EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
-
     /// <summary>Décrit les touches configurables propres au modèle et au cœur.</summary>
     /// <param name="configuration">Configuration déterminant le clavier et ses options.</param>
     /// <returns>Définitions de touches avec libellés et associations initiales.</returns>

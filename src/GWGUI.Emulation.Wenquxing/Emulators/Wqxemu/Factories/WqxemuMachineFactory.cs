@@ -132,4 +132,11 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     /// déduire un lecteur. La consultation n'ouvre aucun média et ne possède ni périphérique ni processus.
     /// La machine emprunte cette facette à son adaptateur et l'utilise pour publier le statut commun.</remarks>
     public IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => new Dictionary<EmulationMediaSlot, bool>();
+
+    /// <summary>Produit le résumé de configuration du modèle et de l'adaptateur pour la présentation commune.</summary>
+    /// <param name="configuration">Configuration complète empruntée, avec les options, les lecteurs et les associations du modèle.</param>
+    /// <returns>Résumé public contenant la clé du nom de machine et ses détails techniques, sans démarrer de cœur.</returns>
+    /// <remarks>Les informations conservent les règles du modèle et les particularités annoncées par l'adaptateur.
+    /// L'opération décrit la configuration ; elle ne crée ni machine en cours d'exécution ni ressource graphique.</remarks>
+    public EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration);
 }

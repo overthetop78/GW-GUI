@@ -196,7 +196,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Résumé public des données matérielles et du cœur sélectionné.</returns>
     /// <remarks><para>Common résout le profil matériel et l&apos;identité du backend ; la fabrique ne crée ni vue ni libellé de contrôle propre à l&apos;application.</para></remarks>
-    public EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration);
+    public virtual EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration);
     /// <summary>Consulte le catalogue d&apos;options correspondant à la configuration.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <param name="context">Contexte de gestion emprunté avec ses services et chemins ; null pour une consultation sans contexte d&apos;installation.</param>

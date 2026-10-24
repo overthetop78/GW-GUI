@@ -64,4 +64,11 @@ internal interface IEmulatorSettings
     /// <returns>True pour un champ reconnu par la règle native ; false si aucune règle ne le reconnaît.</returns>
     /// <remarks>La reconnaissance porte sur les métadonnées de réglage et ne change pas la fréquence du cœur.</remarks>
     bool IsCpuClock(string fieldId);
+
+    /// <summary>Produit le résumé de configuration du modèle et de l'adaptateur pour la présentation commune.</summary>
+    /// <param name="configuration">Configuration complète empruntée, avec les options, les lecteurs et les associations du modèle.</param>
+    /// <returns>Résumé public contenant la clé du nom de machine et ses détails techniques, sans démarrer de cœur.</returns>
+    /// <remarks>Les informations conservent les règles du modèle et les particularités annoncées par l'adaptateur.
+    /// L'opération décrit la configuration ; elle ne crée ni machine en cours d'exécution ni ressource graphique.</remarks>
+    EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
 }

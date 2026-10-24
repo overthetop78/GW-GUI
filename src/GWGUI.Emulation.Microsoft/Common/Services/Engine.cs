@@ -191,7 +191,7 @@ internal sealed class Engine
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration)
     {
         var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        return ConfigurationSummaryFunctions.Create(current);
+        return SelectedAdapter(current)?.Summarize(current) ?? ConfigurationSummaryFunctions.Create(current);
     }
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));

@@ -161,7 +161,10 @@ internal sealed class Engine
         return current.Core == Emulator.None ? current.Options : this.Adapter(current).GetRuntimeOptions(current);
     }
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) {
+        var current = Require(configuration);
+        return SelectedAdapter(current)?.Summarize(current) ?? ConfigurationSummaryFunctions.Create(current);
+    }
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = Require(configuration);

@@ -198,7 +198,10 @@ internal sealed class Engine
         return adapter?.GetRuntimeOptions(current) ?? current.Options ?? new Dictionary<string, string>();
     }
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        return SelectedAdapter(current)?.Summarize(current) ?? ConfigurationSummaryFunctions.Create(current);
+    }
 
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {

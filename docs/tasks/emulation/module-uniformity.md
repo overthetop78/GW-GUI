@@ -15014,3 +15014,105 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Contrôler le parcours de la facette et les associations de LED conservées.
       - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure MediaActivity dans la liste existante des opérations communes attendues, sans retirer les autres vérifications.
       - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : compléter le scénario existant de statut avec une sonde sans fichier ni cœur externe pour vérifier la transmission de configuration, de LED et d'activité dans les vingt-quatre modules ; exécuter la suite locale et le build Debug de tous les modules.
+
+- [x] Uniformiser le résumé de configuration par le contrat Common des réglages.
+  - [x] GWGUI.Emulation.Acorn.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Amstrad.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Apple.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Atari.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Bandai.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Coleco.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Commodore.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : hériter de Summarize par IEmulatorSettings et supprimer sa déclaration redondante.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+  - [x] GWGUI.Emulation.Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Example.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : hériter de Summarize par IEmulatorSettings et supprimer sa déclaration redondante.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Microsoft.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+  - [x] GWGUI.Emulation.Nec.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Nintendo.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Panasonic.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Sega.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Sharp.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Sinclair.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Snk.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Factories/MachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Sony.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Thomson.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Watara.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] GWGUI.Emulation.Wenquxing.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorSettings.cs : exposer Summarize dans IEmulatorSettings avec la configuration complète et la documentation des données empruntées.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Engine.cs : demander le résumé à l'adaptateur sélectionné et conserver le calcul actuel en l'absence de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : fournir le résumé par les fonctions Common existantes, conserver les adaptations du backend et permettre leur redéfinition dans les fabriques dérivées.
+  - [x] Vérifier les résumés conservés et les adaptations de backend.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : compléter les contrôles existants pour comparer les résumés au calcul Common conservé et vérifier la transmission des résumés spécifiques des adaptateurs ; exécuter la suite locale et le build Debug de tous les modules.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : compléter les contrôles existants pour comparer les résumés au calcul Common conservé et vérifier la transmission des résumés spécifiques des adaptateurs ; exécuter la suite locale et le build Debug de tous les modules.
