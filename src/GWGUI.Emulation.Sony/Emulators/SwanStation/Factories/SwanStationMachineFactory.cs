@@ -7,6 +7,8 @@ namespace GWGUI.Emulation.Sony.Emulators.SwanStation.Factories;
 
 internal sealed class SwanStationMachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.SwanStation;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) =>
         base.GetPeripherals(configuration, port).Where(type =>

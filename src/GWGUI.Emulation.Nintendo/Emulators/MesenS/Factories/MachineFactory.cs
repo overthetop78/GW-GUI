@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.MesenS.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.MesenS;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

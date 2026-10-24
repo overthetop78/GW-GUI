@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.NSide.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.NSide;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Cemu.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Cemu;
     public bool IsDefaultFor(string machineId) => machineId is ModelConstants.WiiU;
 
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;

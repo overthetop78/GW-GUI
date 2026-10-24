@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Irogb.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Irogb;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

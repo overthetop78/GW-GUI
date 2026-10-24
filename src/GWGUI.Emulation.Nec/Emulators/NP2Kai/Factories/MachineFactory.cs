@@ -7,6 +7,8 @@ namespace GWGUI.Emulation.Nec.Emulators.NP2Kai.Factories;
 internal sealed class MachineFactory : CoreMachineFactory
 {
     /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.NP2Kai;
+    /// <inheritdoc/>
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.NP2Kai.Constants.FirmwareConstants.Slots;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;

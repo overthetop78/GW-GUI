@@ -31,7 +31,7 @@ global using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;
 global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumulator;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
-global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums.Emulator>;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;

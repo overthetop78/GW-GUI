@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Factories;
 
 internal sealed class BeetleVbMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetleVb;
     public bool IsDefaultFor(string machineId) => machineId is ModelConstants.VirtualBoy;
 
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;

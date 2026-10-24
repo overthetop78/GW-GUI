@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Rustynes.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Rustynes;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

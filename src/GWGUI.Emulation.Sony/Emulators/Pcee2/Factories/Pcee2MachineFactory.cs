@@ -8,6 +8,8 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcee2.Factories;
 
 internal sealed class Pcee2MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Pcee2;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
     public override IEnumerable<int> GetMemoryCardIndexes(MachineConfiguration configuration) => MemoryCardFunctions.ActiveSlots(configuration);
     public override string? GetMemoryCardDisplayLabel(int index) => MemoryCardFunctions.DisplayLabel(index);

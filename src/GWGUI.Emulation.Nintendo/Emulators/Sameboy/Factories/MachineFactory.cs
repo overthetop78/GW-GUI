@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Sameboy.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Sameboy;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

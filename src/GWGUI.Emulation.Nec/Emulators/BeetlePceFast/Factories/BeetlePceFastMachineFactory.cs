@@ -16,6 +16,8 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories;
 
 internal sealed class BeetlePceFastMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetlePceFast;
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
     public override EmulationEmulatorDefinition Definition { get; } = new(

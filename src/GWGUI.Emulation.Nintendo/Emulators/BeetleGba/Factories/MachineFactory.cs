@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.BeetleGba.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetleGba;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

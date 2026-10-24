@@ -109,6 +109,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public virtual bool HasFixedMemoryCardDirectories => false;
     public virtual string? GetMemoryCardDirectory(int index) => null;
     public string EmulatorId => CoreDefinition.Id;
+    /// <summary>Identité de cœur fournie par le backend au contrat de publication Common.</summary>
+    public abstract Emulator Emulator { get; }
     public string EmulatorKey => EmulatorId;
     public EmulationEmulatorDefinition Definition => CoreDefinition.Emulator;
 
@@ -129,14 +131,14 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await ReleaseService(context).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName ?? item.DeclaredVersion, item.DeclaredVersion, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
         var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await ReleaseService(context).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;

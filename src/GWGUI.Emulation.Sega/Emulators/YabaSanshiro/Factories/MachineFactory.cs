@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Sega.Emulators.YabaSanshiro.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.YabaSanshiro;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

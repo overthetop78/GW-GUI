@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.BeetleSnes.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetleSnes;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

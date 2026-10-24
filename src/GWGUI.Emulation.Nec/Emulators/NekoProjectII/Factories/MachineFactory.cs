@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nec.Emulators.NekoProjectII.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.NekoProjectII;
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
     /// <inheritdoc/>

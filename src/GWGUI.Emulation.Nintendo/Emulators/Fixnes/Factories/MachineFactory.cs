@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Fixnes.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Fixnes;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

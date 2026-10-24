@@ -10,6 +10,8 @@ namespace GWGUI.Emulation.Sony.Emulators.PokketStation.Factories;
 
 internal sealed class PokketStationMachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.PokketStation;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 
     public override int GetControllerPortCount(MachineConfiguration configuration) => LinkFunctions.IsLinked(configuration) ? LinkConstants.UnitCount : 1;

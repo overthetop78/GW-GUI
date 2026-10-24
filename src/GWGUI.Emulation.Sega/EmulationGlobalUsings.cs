@@ -28,7 +28,7 @@ global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumu
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
-global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Sega.Common.Machines.Common.Enums.Emulator>;
 global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;

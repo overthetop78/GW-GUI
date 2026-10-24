@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Factories;
 
 internal sealed class PcsxRearmedMachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.PcsxRearmed;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
     public override int GetControllerPortCount(MachineConfiguration configuration) =>
         configuration.Options?.GetValueOrDefault(OptionConstants.MultitapKey) switch

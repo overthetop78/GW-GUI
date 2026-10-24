@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGXWide.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.GenesisPlusGXWide;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

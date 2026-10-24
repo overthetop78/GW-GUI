@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Bsnes2014Balanced.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Bsnes2014Balanced;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

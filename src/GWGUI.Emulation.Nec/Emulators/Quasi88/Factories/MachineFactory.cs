@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nec.Emulators.Quasi88.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Quasi88;
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
     /// <inheritdoc/>

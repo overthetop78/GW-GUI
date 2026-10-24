@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Meteor.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Meteor;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

@@ -25,13 +25,15 @@ internal sealed class CoreReleaseService : ICoreReleaseService
     /// <param name="cancellationToken">Annulation contrôlée avant toute consultation du catalogue.</param>
     /// <returns>Publication typée du SDK portant l'identité et la version du module.</returns>
     /// <remarks>DownloadUri désigne l'assembly existant par une URI de fichier ; aucune lecture ni copie n'est effectuée.
-    /// La date UnixEpoch est une donnée déterministe du mock, pas une date de publication réseau.
+    /// PublishedUtc reste null : l'intégration de cette version n'annonce aucune date de publication distante.
     /// ExpectedArchiveSize reste null puisqu'aucune archive n'est proposée.</remarks>
     public Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var definition = _getDefinition(emulator);
-        return Task.FromResult<IReadOnlyList<CoreRelease>>([new(emulator, definition.Id, Engine.CoreVersion, new Uri(Engine.CoreImplementationPath, UriKind.Absolute), DateTimeOffset.UnixEpoch, null)]);
+        // Le même contrat décrit une publication distante ou intégrée. Ce profil impose sa version,
+        // fournit son libellé et désigne l'assembly existant : aucune archive ni date distante n'est annoncée.
+        return Task.FromResult<IReadOnlyList<CoreRelease>>([new(emulator, definition.Id, Engine.CoreVersion, new Uri(Engine.CoreImplementationPath, UriKind.Absolute), null, null) { DisplayName = definition.DisplayName + " " + Engine.CoreVersion, IsRequired = true, IsZip = false }]);
     }
 
     /// <summary>Valide la version sélectionnée puis rend l'installation intégrée disponible.</summary>

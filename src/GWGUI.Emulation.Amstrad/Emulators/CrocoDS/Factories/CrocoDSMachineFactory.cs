@@ -60,7 +60,8 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
 
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, context is null ? [] : GetSettingsOptions(configuration, context));
     public string EmulatorId => EmulatorConstants.Id;
-    public string EmulatorKey => Emulator.CrocoDS.ToString();
+    public Emulator Emulator => Emulator.CrocoDS;
+    public string EmulatorKey => Emulator.ToString();
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => context is null ? [] : CoreOptionsReader.Read(Path.Combine(context.CoreDirectory, Core.LibraryFile));
     public EmulationEmulatorDefinition Definition { get; } = new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, new HashSet<string>([EmulatorConstants.MachineId], StringComparer.Ordinal));
 
@@ -84,14 +85,14 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await Releases(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await Releases(context).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName ?? item.DeclaredVersion, item.DeclaredVersion, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
         var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await Releases(context).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;

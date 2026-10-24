@@ -40,13 +40,14 @@ internal sealed class CoreReleaseService
         return CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _downloadUri, response =>
         {
             var published = response.Content.Headers.LastModified ?? response.Headers.Date;
             var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.ReleaseIdentifierDateFormat) ?? CoreReleaseConstants.Latest;
-            return[new CoreRelease($"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}", published is null ? _latestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_releaseProviderSuffix}", _downloadUri, published, true, true)];
+            var id = $"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}";
+            return[new CoreRelease(emulator, id, id, _downloadUri, published, response.Content.Headers.ContentLength) { DisplayName = published is null ? _latestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_releaseProviderSuffix}", IsRequired = true, IsZip = true }];
         }, cancellationToken).ConfigureAwait(false);
     }
 

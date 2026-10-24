@@ -9,6 +9,8 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 internal sealed class PpssppMachineFactory : CoreMachineFactory
 {
     /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Ppsspp;
+    /// <inheritdoc/>
     public override IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => configuration is null ? base.GetSettingsOptions() : PpssppOptionFunctions.Options(configuration);
 
     protected override CoreDefinition CoreDefinition => PpssppConstants.Definition;

@@ -40,7 +40,10 @@ public sealed class CoreReleaseMetadataParserTests
         try
         {
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
-            var release = EmulationSdk.CoreReleases.ReadOfficialRelease(settings, response);
+            var release = EmulationSdk.CoreReleases.ReadOfficialRelease(Emulator.First, settings, response);
+            Assert.Equal(Emulator.First, release.Emulator);
+            Assert.Equal(release.Id, release.DeclaredVersion);
+            Assert.Equal(response.Content.Headers.ContentLength, release.ExpectedArchiveSize);
             var expectedDate = dateSource switch { 1 => headerDate, 2 => contentDate, _ => (DateTimeOffset?)null };
             Assert.Equal(expectedDate, release.PublishedUtc);
             Assert.Same(settings.OfficialArchiveUri, release.DownloadUri);

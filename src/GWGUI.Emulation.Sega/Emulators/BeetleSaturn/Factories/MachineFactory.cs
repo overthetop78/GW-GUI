@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Sega.Emulators.BeetleSaturn.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetleSaturn;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

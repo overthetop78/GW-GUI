@@ -41,7 +41,7 @@ public interface IEmulationCoreReleases
         string releaseIdPrefix, string releaseVersionFormat, Func<string> missingPublishedDate);
 
     /// <summary>Lit les métadonnées officielles ; la réponse reste possédée par son appelant.</summary>
-    EmulationDownloadCoreRelease ReadOfficialRelease(EmulationCoreReleaseSettings settings,
+    EmulationCatalogCoreRelease<TEmulator> ReadOfficialRelease<TEmulator>(TEmulator emulator, EmulationCoreReleaseSettings settings,
         HttpResponseMessage response);
 
     /// <summary>Interroge les métadonnées HTTP ; le lecteur utilise la réponse avant sa libération.</summary>

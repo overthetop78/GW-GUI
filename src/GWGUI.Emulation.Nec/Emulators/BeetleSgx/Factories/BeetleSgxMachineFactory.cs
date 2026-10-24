@@ -11,6 +11,8 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories;
 
 internal sealed class BeetleSgxMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetleSgx;
     public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
 
     public override EmulationEmulatorDefinition Definition { get; } = new(BeetleSgxConstants.Id, BeetleSgxConstants.DisplayName, BeetleSgxConstants.DescriptionResourceKey, new[] { SuperGrafxMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));

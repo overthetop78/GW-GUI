@@ -35,18 +35,19 @@ internal sealed class CoreReleaseService
         return CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var releases = new List<CoreRelease>();
         if (_requiredRelease is { } required)
-            releases.Add(required);
+            releases.Add(required with { Emulator = emulator });
         if (LatestOfficialUri is not { } latestUri)
             return releases;
         return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, latestUri, response =>
         {
             var published = response.Content.Headers.LastModified ?? response.Headers.Date;
             var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-            releases.Add(new CoreRelease(string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix), published is null ? CoreReleaseConstants.LibretroLatest : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime), latestUri, published, false, true));
+            var id = string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix);
+            releases.Add(new CoreRelease(emulator, id, id, latestUri, published, response.Content.Headers.ContentLength) { DisplayName = published is null ? CoreReleaseConstants.LibretroLatest : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime), IsRequired = false, IsZip = true });
             return releases;
         }, cancellationToken).ConfigureAwait(false);
     }

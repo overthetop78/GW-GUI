@@ -226,6 +226,12 @@ public sealed class ArchitectureValidationTests
             var install = service.GetMethod("InstallAsync", BindingFlags.Public | BindingFlags.Instance)!;
             Assert.Equal(typeof(Task<EmulationCoreInstallationPaths>), install.ReturnType);
             Assert.Equal(typeof(IProgress<EmulationCoreInstallProgress>), install.GetParameters()[1].ParameterType);
+            var releaseType = install.GetParameters()[0].ParameterType;
+            Assert.Equal(typeof(EmulationCatalogCoreRelease<>), releaseType.GetGenericTypeDefinition());
+            var emulatorType = releaseType.GetGenericArguments()[0];
+            Assert.True(emulatorType.IsEnum);
+            Assert.Equal(root + ".Common.Machines.Common.Enums.Emulator", emulatorType.FullName);
+            Assert.Equal(emulatorType, service.GetMethod("GetAvailableAsync")!.GetParameters()[0].ParameterType);
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
             var resolver = service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
             var definitionResolver = service.GetField("_getDefinition", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
@@ -262,6 +268,11 @@ public sealed class ArchitectureValidationTests
             else
                 Assert.DoesNotContain(calls, call => call.Method.DeclaringType == typeof(System.Net.Http.HttpClient));
             var factoryTypes = assembly.GetTypes().Where(type => type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true && type.Name.EndsWith("MachineFactory", StringComparison.Ordinal)).ToArray();
+            if (resolver is null && definitionResolver is null)
+            {
+                var identities = factoryTypes.Where(type => !type.IsAbstract).Select(type => type.GetProperty("Emulator")!.GetValue(Activator.CreateInstance(type, nonPublic: true)!)!).ToArray();
+                Assert.Equal(Enum.GetValues(emulatorType).Cast<object>().Where(value => value.ToString() != "None").OrderBy(value => value.ToString()), identities.OrderBy(value => value.ToString()));
+            }
             var factoryCalls = factoryTypes.Concat(factoryTypes.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
                 .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
@@ -5396,6 +5407,11 @@ public sealed class ArchitectureValidationTests
             var available = (Task)contract.GetMethod("GetAvailableAsync")!.Invoke(service, [emulator, CancellationToken.None])!;
             await available;
             var typedRelease = Assert.Single(((System.Collections.IEnumerable)available.GetType().GetProperty("Result")!.GetValue(available)!).Cast<object>());
+            Assert.Equal(release.DisplayName, typedRelease.GetType().GetProperty("DisplayName")!.GetValue(typedRelease));
+            Assert.Equal(true, typedRelease.GetType().GetProperty("IsRequired")!.GetValue(typedRelease));
+            Assert.Equal(false, typedRelease.GetType().GetProperty("IsZip")!.GetValue(typedRelease));
+            Assert.Null(typedRelease.GetType().GetProperty("PublishedUtc")!.GetValue(typedRelease));
+            Assert.Null(typedRelease.GetType().GetProperty("ExpectedArchiveSize")!.GetValue(typedRelease));
             var typedInstallation = await (Task<EmulationCoreInstallationPaths>)contract.GetMethod("InstallAsync")!.Invoke(service, [typedRelease, progress, CancellationToken.None])!;
             Assert.Equal(path, typedInstallation.LibraryPath);
             Assert.Equal(Path.GetDirectoryName(path), typedInstallation.VersionDirectory);

@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetlePce;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;
     public override EmulationEmulatorDefinition Definition { get; } = new(

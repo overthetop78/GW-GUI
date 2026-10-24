@@ -7,6 +7,8 @@ namespace GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Factories;
 
 internal sealed class BeetlePsxHwMachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetlePsxHw;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
     public override int GetControllerPortCount(MachineConfiguration configuration) => base.GetControllerPortCount(configuration) + AdditionalControllers(OptionConstants.EnableMultitapPort1Key, configuration) + AdditionalControllers(OptionConstants.EnableMultitapPort2Key, configuration);
 

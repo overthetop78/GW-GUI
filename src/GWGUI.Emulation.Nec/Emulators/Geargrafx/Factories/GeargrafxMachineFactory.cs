@@ -18,6 +18,8 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Factories;
 
 internal sealed class GeargrafxMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults, IEmulatorFirmwareAdapter
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Geargrafx;
     public EmulationFirmwareObservation<TDefinition>? IdentifyFirmware<TDefinition>(EmulationFirmwareObservation<TDefinition> firmware) where TDefinition : class => GeargrafxFirmwareFunctions.Identify(firmware);
 
     public bool IsDefaultFor(string machineId) => machineId == LaserActiveMachineConstants.Id;

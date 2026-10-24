@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.VbaNext.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.VbaNext;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.DoubleCherryGB.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.DoubleCherryGB;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }

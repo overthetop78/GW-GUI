@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Factories;
 
 internal sealed class BeetlePcfxMachineFactory : CoreMachineFactory, IEmulatorPersistentStorage, IEmulatorMachineDefaults, IEmulatorConfigurationValidation
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.BeetlePcfx;
     public void ValidateConfiguration(MachineConfiguration configuration)
     {
         if (BeetlePcfxStorageFunctions.ExternalCardPath(configuration) is { } path) PcFxBackupMemoryFunctions.ValidateExternalCard(path);

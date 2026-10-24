@@ -82,16 +82,19 @@ internal sealed class EmulationCoreReleaseFunctions : IEmulationCoreReleases
     }
 
     /// <summary>Lit une release officielle avec date facultative et les règles de formatage prévues.</summary>
-    public EmulationDownloadCoreRelease ReadOfficialRelease(EmulationCoreReleaseSettings settings,
+    public EmulationCatalogCoreRelease<TEmulator> ReadOfficialRelease<TEmulator>(TEmulator emulator, EmulationCoreReleaseSettings settings,
         HttpResponseMessage response)
     {
         const string latest = "latest";
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString("yyyyMMdd-HHmm") ?? latest;
-        return new EmulationDownloadCoreRelease($"official-{suffix}",
-            published is null ? $"{settings.DisplayName} · {latest}"
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {settings.DisplayName}",
-            settings.OfficialArchiveUri, published, true, true);
+        var id = $"official-{suffix}";
+        return new EmulationCatalogCoreRelease<TEmulator>(emulator, id, id, settings.OfficialArchiveUri, published, response.Content.Headers.ContentLength)
+        {
+            DisplayName = published is null ? $"{settings.DisplayName} · {latest}" : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {settings.DisplayName}",
+            IsRequired = true,
+            IsZip = true
+        };
     }
 
     /// <summary>Interroge les métadonnées HTTP et transmet la réponse empruntée au lecteur avant sa libération.</summary>

@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Sony.Emulators.Rpcs3.Factories;
 
 internal sealed class Rpcs3MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.Rpcs3;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
     internal const string ControllerCountKey = "input.controllerCount";
     public override int GetControllerPortCount(MachineConfiguration configuration) =>

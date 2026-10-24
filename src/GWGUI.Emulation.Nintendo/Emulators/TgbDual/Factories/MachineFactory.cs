@@ -6,5 +6,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.TgbDual.Factories;
 
 internal sealed class MachineFactory : CoreMachineFactory
 {
+    /// <inheritdoc/>
+    public override Emulator Emulator => Emulator.TgbDual;
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }
