@@ -1,5 +1,6 @@
 using CoreReleaseService = GWGUI.Emulation.Example.Common.Services.CoreReleaseService;
 using CoreReleaseFunctions = GWGUI.Emulation.Example.Common.Functions.CoreReleaseFunctions;
+using CommonControllerFunctions = GWGUI.Emulation.Example.Common.Functions.ControllerFunctions;
 using CommonMediaRuntimeFunctions = GWGUI.Emulation.Example.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using System.Globalization;
 using System.IO;
@@ -240,9 +241,10 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public bool SupportsPointer(MachineConfiguration configuration) => InputSettingsFunctions.SupportsMouse(configuration);
     /// <summary>Expose les catégories de périphériques définies par le module d&apos;exemple.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
-    /// <returns>Nouveau tableau des catégories déclarées dans l&apos;énumération.</returns>
-    /// <remarks><para>Les catégories génériques regroupent les commandes disponibles sans multiplier les modèles de périphériques physiques.</para></remarks>
-    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => Enum.GetValues<PeripheralCategory>();
+    /// <returns>Catégories effectivement proposées par les ports décrits dans Common.</returns>
+    /// <remarks><para>La description des réglages reste la source unique des choix. Le joystick complet réunit
+    /// les axes et boutons ; Automatic est un mode de résolution et ne constitue pas un périphérique supplémentaire.</para></remarks>
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration));
     /// <summary>Résout le nombre de ports effectif depuis la configuration Common.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Nombre de ports utilisables dans cette configuration.</returns>

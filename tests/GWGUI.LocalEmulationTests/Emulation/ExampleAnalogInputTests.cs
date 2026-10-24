@@ -120,6 +120,25 @@ public sealed class ExampleAnalogInputTests
         foreach (var emulator in Enum.GetValues<Emulator>())
         {
             var configuration = new MachineConfiguration(model.Model, core: emulator);
+            if (emulator != Emulator.None)
+            {
+                var adapter = ExampleFirmwareSamplesTests.Adapter(emulator);
+                var advertised = (IReadOnlyList<PeripheralCategory>)adapter.GetType().GetMethod("GetPeripherals")!.Invoke(adapter, [configuration])!;
+                var settingsFunctions = typeof(ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Common.Machines.Common.Functions.InputSettingsFunctions", true)!;
+                var settings = (EmulationInputSettings)settingsFunctions.GetMethod("Describe", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [configuration])!;
+                var offered = settings.ControllerPorts.SelectMany(port => port.ControllerChoices).Select(choice => Enum.Parse<PeripheralCategory>(choice.Id)).Distinct().ToArray();
+                Assert.Equal(offered, advertised);
+                Assert.Equal(expected.Keys.Where(category => category is not (PeripheralCategory.Automatic or PeripheralCategory.Joystick)).Order(), advertised.Order());
+                Assert.DoesNotContain(PeripheralCategory.Automatic, advertised);
+                Assert.DoesNotContain(PeripheralCategory.Joystick, advertised);
+                foreach (var port in settings.ControllerPorts)
+                {
+                    var joystick = Assert.Single(port.ControllerChoices, choice => choice.Category == EmulationControllerCategory.Joystick && choice.Id != nameof(PeripheralCategory.Paddle));
+                    Assert.Equal(nameof(PeripheralCategory.AnalogJoystick), joystick.Id);
+                    var commands = typeof(EmulationControllerCommandIds).GetFields(BindingFlags.Static | BindingFlags.Public).Where(field => field.IsLiteral && field.FieldType == typeof(string)).Select(field => (string)field.GetRawConstantValue()!).Distinct().Order().ToArray();
+                    Assert.Equal(commands, joystick.BindingDefinitions!.Select(definition => definition.Id).Order());
+                }
+            }
             foreach (var category in expected.Keys)
             {
                 Assert.True(Enum.TryParse<EmulationPeripheralCategory>(category.ToString(), out var publicCategory), category.ToString());

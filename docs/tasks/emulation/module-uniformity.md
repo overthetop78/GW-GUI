@@ -2423,9 +2423,9 @@ Demande explicite : supprimer le schéma Legacy et les traitements réservés à
 
 ## Périphériques génériques d’Example après le parcours complet de Common
 
-- [ ] Réunir les possibilités dans un exemple complet par catégorie de périphérique
-  - [ ] Définir les catégories et commandes génériques
-  - [ ] Raccorder les descriptions et la projection des entrées
+- [x] Réunir les possibilités dans un exemple complet par catégorie de périphérique
+  - [x] Définir les catégories et commandes génériques
+  - [x] Raccorder les descriptions et la projection des entrées
 
 - [x] Compléter Common d’Example hors Machines selon le périmètre demandé le 21 octobre
   - [x] Supprimer le contenu ajouté dans Common/Machines d’Example
@@ -3397,7 +3397,7 @@ Build Debug --modules=A réussi ; exécutable, Example intégré et les 23 modul
 Validation : 72 accès de contrats dans les 24 Common ; 41 propriétaires existants comparés avant/après sans modification de leurs corps hors relais, imports et espaces ; aucun appel direct à EmulationSdk dans Emulators ; 3 212 tests de la suite Emulation réussis, aucun échec ni test ignoré.
 Build Debug --modules=A réussi ; exécutable, Example intégré et les 23 modules (manifestes et DLL d’entrée) vérifiés dans build/Debug/GW GUI.
 
-- [ ] Supprimer les privilèges SDK des modules de production et terminer leurs accès par les API publiques
+- [x] Supprimer les privilèges SDK des modules de production et terminer leurs accès par les API publiques
   - [x] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : retirer les 23 InternalsVisibleTo des modules de production ; compiler les modules pour identifier les membres qui nécessitent encore un raccordement public, sans ouvrir les implémentations internes.
 
   - [x] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : rétablir provisoirement les déclarations initiales pendant le raccordement des composants encore privés ; conserver leur suppression définitive comme condition de fin du groupe.
@@ -11126,7 +11126,7 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : ajouter GetSettingsOptions aux opérations communes attendues et confirmer la suite complète après mise à jour du nombre de méthodes de réglages.
 
 ## Opérations de cœur uniformes dans Common
-- [ ] Réunir les opérations existantes des cœurs sous les mêmes contrats Common.
+- [x] Réunir les opérations existantes des cœurs sous les mêmes contrats Common.
   - [x] Transmettre les demandes de fermeture des cœurs jusqu'à la boucle Common.
     - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationEnvironmentCallbackHost.cs : exposer ShutdownRequested dans le contrat existant de callbacks.
     - [x] Modifier src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs : mémoriser la demande native Shutdown et la publier sans libérer les ressources empruntées au callback.
@@ -15444,3 +15444,12 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider le bloc.
     - [x] Modifier les fichiers concernés si les contrôles existants révèlent une régression ; exécuter la suite locale d’émulation.
     - [x] Modifier les fichiers concernés si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier l’exécutable et les 24 modules.
+
+- [x] Unifier les périphériques génériques annoncés par Example.
+  - [x] Raccorder la description de l'adaptateur à celle de Common.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/InputFunctions.Settings.cs : proposer un seul joystick générique avec ses axes et boutons complets ; conserver les autres catégories génériques.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : résoudre GetPeripherals depuis les descriptions Common réellement proposées, avec les commentaires d'utilisation.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : vérifier pour les deux machines et les trois backends l'égalité des catégories annoncées et proposées, l'unique joystick complet et la conservation des commandes.
+  - [x] Valider les raccordements.
+    - [x] Modifier les sources concernées si les contrôles existants révèlent une erreur ; exécuter les contrôles Example et ceux des descriptions Common.
+    - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les sorties des 24 modules.
