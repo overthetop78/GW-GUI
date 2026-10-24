@@ -143,8 +143,6 @@ internal static class ControllerFunctions
         => EmulationSdk.InputProcessing.PublishCodeTransitions(current, ref previous, keyboardEvent, modifiers, orderReleased, orderPressed, characterFor);
 
 
-    /// <summary>Fournit la table clavier native par le contrat commun des entrées.</summary>
-    internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();
 
     /// <summary>Convertit une catégorie publique vers le type de périphérique attendu par les règles existantes du module.</summary>
     /// <param name="peripheral">Catégorie générique fournie par le contrat public des entrées.</param>

@@ -7,10 +7,10 @@ using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Emulation.Example.Common.Functions;
 
-/// <summary>Stabilisation des entrées déjà traduites vers les commandes natives.</summary>
-/// <remarks>Les zones mortes s’appliquent aux sources physiques avant leur encodage. Les appliquer
-/// à nouveau ici altérerait les boutons transportés dans des axes natifs. Cette étape copie les
-/// collections et neutralise uniquement les ports explicitement désactivés.</remarks>
+/// <summary>Adaptation des périphériques et accès aux contrats communs de traitement des entrées.</summary>
+/// <remarks>La projection des associations, les zones mortes et les ports désactivés sont traités dans
+/// InputSnapshotFunctions. Les services retournés ici sont empruntés ; les stockages créés appartiennent
+/// à leur session. Les lectures natives conservent les unités des commandes déjà projetées.</remarks>
 internal static class ControllerFunctions
 {
     /// <summary>Service public de consultation des descriptions et de traitement des entrées, emprunté au SDK.</summary>
@@ -92,22 +92,6 @@ internal static class ControllerFunctions
         return updated;
     }
 
-    /// <summary>Fige l’instantané et applique les désactivations de ports sans redimensionner les axes.</summary>
-    /// <param name="input">Entrées mappées empruntées à l’appelant.</param>
-    /// <param name="bindings">Associations des ports ; null conserve tous les contrôleurs.</param>
-    /// <returns>Instantané stable avec les ports désactivés remplacés par leur état vide.</returns>
-    internal static EmulationInputSnapshot FreezeMappedInput(EmulationInputSnapshot input, IReadOnlyList<ControllerBinding>? bindings = null)
-    {
-        var snapshot = EmulationSdk.InputProcessing.Freeze(input);
-        if (bindings is null) return snapshot;
-        var controllers = snapshot.Controllers.ToArray();
-        foreach (var binding in bindings)
-        {
-            if (binding.Port < 0 || binding.Port >= controllers.Length) continue;
-            if (binding.Peripheral == PeripheralCategory.None) controllers[binding.Port] = EmulationControllerState.Empty;
-        }
-        return snapshot with { Controllers = controllers };
-    }
     /// <summary>Lit une commande native de souris à partir du pointeur de la frame.</summary>
     /// <param name="pointer">Déplacements relatifs, molettes et boutons empruntés de la souris.</param>
     /// <param name="port">Indice natif du port, à partir de zéro.</param>
