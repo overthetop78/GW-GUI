@@ -3,7 +3,7 @@ using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostF
 using System.Globalization;
 using GWGUI.Emulation.Atari.Modules;
 
-namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Atari.Common.Exceptions;
 
 internal static class ExceptionText
 {

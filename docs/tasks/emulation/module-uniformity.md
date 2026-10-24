@@ -12533,3 +12533,107 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : compléter les membres du cœur synthétique selon le contrat uniforme, en conservant le scénario existant.
     - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : conserver le seul identifiant sélectionné pendant Initialize pour exposer l’identité sans conserver une configuration complète.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les mêmes contrats hérités et les mêmes membres disponibles dans les 24 familles, leurs 46 implémentations et la conservation du réglage de capture ; exécuter les vérifications et le build Debug complet.
+
+- [x] Réunir les messages Common équivalents sous le propriétaire ErrorMessages déjà utilisé par Example.
+  - [x] Réunir les messages dans GWGUI.Emulation.Acorn.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Acorn/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Acorn/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Apple.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Engine.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Apple/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Apple/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Atari.
+    - [x] Déplacer src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/ErrorMessages.cs vers src/GWGUI.Emulation.Atari/Common/Exceptions/ErrorMessages.cs : conserver le propriétaire existant et adapter son namespace à Common.Exceptions.
+    - [x] Déplacer src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/ExceptionText.cs vers src/GWGUI.Emulation.Atari/Common/Exceptions/ExceptionText.cs : conserver les ressources et la résolution de culture avec le même namespace Common.Exceptions.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Atari/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Atari/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Bandai.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Bandai/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Bandai/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Coleco.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Coleco/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Coleco/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Epoch.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Epoch/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Epoch/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Fairchild.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Fairchild/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Fairchild/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Mattel.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Mattel/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Mattel/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Panasonic.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Panasonic/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Philips.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Philips/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Philips/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Sharp.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Sharp/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Sharp/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Sinclair.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Sinclair/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Sinclair/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Snk.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Dictionaries/EmulatorCatalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Catalog.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+    - [x] Supprimer src/GWGUI.Emulation.Snk/Common/Exceptions/EmulatorCatalogErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Thomson.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Thomson/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Watara.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Watara/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Réunir les messages dans GWGUI.Emulation.Wenquxing.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Exceptions/ErrorMessages.cs : reprendre les messages consommés des classes CoreReleaseErrors et EmulatorCatalogErrors, sans changer leurs valeurs, leurs formats ni leur résolution de culture.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs : appeler les messages depuis ErrorMessages, sous leurs noms existants.
+    - [x] Supprimer src/GWGUI.Emulation.Wenquxing/Common/Exceptions/CoreReleaseErrors.cs : retirer la classe de messages remplacée par ErrorMessages.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/ControllerPortFunctions.cs : utiliser nameof(PeripheralCategory.Automatic) pour la chaîne déjà définie par cet enum.
+  - [x] Supprimer src/GWGUI.Emulation.Atari/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la définition textuelle redondante du nom Automatic.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le propriétaire uniforme des messages et les appels compilés ; exécuter les vérifications et le build Debug complet.

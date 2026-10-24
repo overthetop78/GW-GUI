@@ -4,6 +4,15 @@ namespace GWGUI.Emulation.Fairchild.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Fairchild.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Fairchild.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Fairchild.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Fairchild.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Fairchild.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Fairchild.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Fairchild.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Fairchild.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Fairchild.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

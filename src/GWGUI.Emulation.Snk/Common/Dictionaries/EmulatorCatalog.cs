@@ -33,7 +33,7 @@ internal static class EmulatorCatalog
         var identifiers = new HashSet<string>(StringComparer.Ordinal);
         foreach (var entry in registrations)
         {
-            if (!identifiers.Add(entry.Definition.Id)) throw new ArgumentException(EmulatorCatalogErrors.DuplicateCore);
+            if (!identifiers.Add(entry.Definition.Id)) throw new ArgumentException(ErrorMessages.DuplicateCore);
             foreach (var model in entry.Definition.MachineIds) _ = Enum.Parse<MachineModel>(model);
         }
         return registrations;

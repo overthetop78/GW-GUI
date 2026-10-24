@@ -4,6 +4,15 @@ namespace GWGUI.Emulation.Apple.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Apple.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Apple.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Apple.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Apple.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Apple.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Apple.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Apple.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Apple.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Apple.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

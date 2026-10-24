@@ -4,6 +4,15 @@ namespace GWGUI.Emulation.Epoch.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Epoch.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Epoch.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Epoch.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Epoch.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Epoch.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Epoch.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Epoch.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Epoch.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Epoch.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

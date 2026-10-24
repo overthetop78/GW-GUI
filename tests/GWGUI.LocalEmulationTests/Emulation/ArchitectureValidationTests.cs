@@ -4498,4 +4498,38 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(46, coreCount);
         Assert.Equal(23, processCount);
     }
+    [Fact]
+    public void CatalogueAndReleaseMessagesHaveOneCommonOwner()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var releaseOwners = 0;
+        var localizedServices = 0;
+        foreach (var assembly in modules)
+        {
+            Assert.DoesNotContain(assembly.GetTypes(), type => type.Name is "CoreReleaseErrors" or "EmulatorCatalogErrors");
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var owner = assembly.GetType(root + ".Common.Exceptions.ErrorMessages");
+            if (owner is null) continue;
+            var published = owner.GetProperty("MissingPublishedDate", BindingFlags.Static | BindingFlags.NonPublic);
+            var constant = owner.GetField("MissingPublishedDate", BindingFlags.Static | BindingFlags.NonPublic);
+            if (published is null && constant is null) continue;
+            releaseOwners++;
+            Assert.Null(assembly.GetType(root + ".Emulators.Common.Exceptions.ErrorMessages"));
+            Assert.NotEmpty((string)(published?.GetValue(null) ?? constant!.GetRawConstantValue())!);
+            if (published is null) continue;
+            var services = assembly.GetTypes().Where(type => type.Name == "CoreReleaseService").ToArray();
+            Assert.NotEmpty(services);
+            var calls = services.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly)
+                .Concat(type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(nested => nested.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly))))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method.DeclaringType == owner);
+            localizedServices++;
+        }
+        Assert.Equal(16, releaseOwners);
+        Assert.Equal(12, localizedServices);
+    }
 }

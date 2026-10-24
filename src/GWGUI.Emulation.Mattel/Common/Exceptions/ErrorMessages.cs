@@ -4,6 +4,13 @@ namespace GWGUI.Emulation.Mattel.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Mattel.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Mattel.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Mattel.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Mattel.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Mattel.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Mattel.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Mattel.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

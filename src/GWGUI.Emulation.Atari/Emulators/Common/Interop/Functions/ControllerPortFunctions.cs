@@ -20,7 +20,7 @@ internal static class ControllerPortFunctions
 
         var devices = port < ports.Count ? ports[port].Devices : [];
         if (core is Emulator.Stella2023 or Emulator.Stella or Emulator.Stella2014 && peripheral is not PeripheralCategory.None)
-            return devices.FirstOrDefault(device => device.Description.Contains(ControllerPortFunctionsConstants.Automatic, StringComparison.OrdinalIgnoreCase))?.Id ?? devices.FirstOrDefault()?.Id ?? CoreLifecycleConstants.DefaultJoypadDevice;
+            return devices.FirstOrDefault(device => device.Description.Contains(nameof(PeripheralCategory.Automatic), StringComparison.OrdinalIgnoreCase))?.Id ?? devices.FirstOrDefault()?.Id ?? CoreLifecycleConstants.DefaultJoypadDevice;
         var name = peripheral switch
         {
             PeripheralCategory.Automatic => CoreLifecycleConstants.JoypadDeviceName,

@@ -4,6 +4,14 @@ namespace GWGUI.Emulation.Acorn.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Acorn.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Acorn.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Acorn.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Acorn.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Acorn.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Acorn.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Acorn.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Acorn.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

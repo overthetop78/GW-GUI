@@ -4,6 +4,15 @@ namespace GWGUI.Emulation.Bandai.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Bandai.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Bandai.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Bandai.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Bandai.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Bandai.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Bandai.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Bandai.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Bandai.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Bandai.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

@@ -19,9 +19,9 @@ internal static class EmulatorCatalogFunctions
     internal static CoreInstallationPaths GetInstallationPaths(EmulatorCatalogEntry entry, string installationRoot, string version)
     {
         if (string.IsNullOrWhiteSpace(installationRoot))
-            throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
+            throw new ArgumentException(ErrorMessages.EmptyInstallationRoot, nameof(installationRoot));
         if (string.IsNullOrWhiteSpace(version))
-            throw new ArgumentException(EmulatorCatalogErrors.EmptyVersion, nameof(version));
+            throw new ArgumentException(ErrorMessages.EmptyVersion, nameof(version));
         return CoreReleaseFunctions.Releases.CreateInstallationPaths(Path.GetFullPath(installationRoot), entry.Id,
             version, entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
@@ -29,7 +29,7 @@ internal static class EmulatorCatalogFunctions
     internal static string GetActiveManifestPath(EmulatorCatalogEntry entry, string installationRoot)
     {
         if (string.IsNullOrWhiteSpace(installationRoot))
-            throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
+            throw new ArgumentException(ErrorMessages.EmptyInstallationRoot, nameof(installationRoot));
         return Path.Combine(Path.GetFullPath(installationRoot), entry.Id, EmulatorCatalogConstants.ActiveManifestFileName);
     }
 
@@ -37,7 +37,7 @@ internal static class EmulatorCatalogFunctions
     {
         if (entries.Select(entry => entry.Emulator).Distinct().Count() != entries.Count
             || entries.Select(entry => entry.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() != entries.Count)
-            throw new InvalidDataException(EmulatorCatalogErrors.DuplicateCore);
+            throw new InvalidDataException(ErrorMessages.DuplicateCore);
 
         var result = new Dictionary<MachineModel, Emulator>();
         foreach (var entry in entries)
@@ -48,7 +48,7 @@ internal static class EmulatorCatalogFunctions
             }
         }
         if (Enum.GetValues<MachineModel>().Any(model => !result.ContainsKey(model)))
-            throw new InvalidDataException(EmulatorCatalogErrors.MissingModel);
+            throw new InvalidDataException(ErrorMessages.MissingModel);
         return result;
     }
 }

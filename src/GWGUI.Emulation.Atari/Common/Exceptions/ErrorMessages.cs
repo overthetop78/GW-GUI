@@ -1,9 +1,17 @@
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
-namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Atari.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Atari.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Atari.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Atari.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Atari.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Atari.Error.CoreNotFound");
+    internal static string DuplicateCore => ExceptionText.Get("Emulation.Atari.Error.CoreRejected");
+    internal static string MissingModel => ExceptionText.Get("Emulation.Atari.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(Modules.AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

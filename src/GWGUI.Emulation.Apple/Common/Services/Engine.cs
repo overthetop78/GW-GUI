@@ -36,7 +36,7 @@ internal sealed class Engine
         ArgumentNullException.ThrowIfNull(context);
         ConfigurationFunctions.Validate(configuration);
         if (!ConfigurationFunctions.SupportsRuntime(configuration.Model))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound, EmulatorCatalogErrors.MissingModel);
+            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound, ErrorMessages.MissingModel);
         return Adapter(configuration).Create(configuration, context);
     }
 

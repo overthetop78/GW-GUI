@@ -4,6 +4,13 @@ namespace GWGUI.Emulation.Sharp.Common.Exceptions;
 
 internal static class ErrorMessages
 {
+    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Sharp.Error.CoreRejected");
+    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Sharp.Error.CoreRejected");
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Sharp.Error.CoreRejected");
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Sharp.Error.CoreRejected");
+    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Sharp.Error.CoreNotFound");
+    internal static string EmptyVersion => ExceptionText.Get("Emulation.Sharp.Error.CoreNotFound");
+
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization( typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Sharp.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();

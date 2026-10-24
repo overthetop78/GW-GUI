@@ -18,15 +18,15 @@ internal static class EmulatorCatalogFunctions
 
     internal static CoreInstallationPaths GetInstallationPaths(EmulatorCatalogEntry entry, string installationRoot, string version)
     {
-        if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
-        if (string.IsNullOrWhiteSpace(version)) throw new ArgumentException(EmulatorCatalogErrors.EmptyVersion, nameof(version));
+        if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(ErrorMessages.EmptyInstallationRoot, nameof(installationRoot));
+        if (string.IsNullOrWhiteSpace(version)) throw new ArgumentException(ErrorMessages.EmptyVersion, nameof(version));
         return CoreReleaseFunctions.Releases.CreateInstallationPaths(Path.GetFullPath(installationRoot), entry.Id,
             version, entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
 
     internal static string GetActiveManifestPath(EmulatorCatalogEntry entry, string installationRoot)
     {
-        if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
+        if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(ErrorMessages.EmptyInstallationRoot, nameof(installationRoot));
         return Path.Combine(Path.GetFullPath(installationRoot), entry.Id, EmulatorCatalogConstants.ActiveManifestFileName);
     }
 }

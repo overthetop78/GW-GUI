@@ -24,7 +24,7 @@ internal static class CoreCatalog
 
     public static EmulatorCatalogEntry Get(Emulator emulator) => ByEmulator.TryGetValue(emulator, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 
-    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, EmulatorCatalogErrors.MissingModel);
+    public static EmulatorCatalogEntry Get(MachineModel model) => ByModel.TryGetValue(model, out var emulator) ? Get(emulator) : throw new ArgumentOutOfRangeException(nameof(model), model, ErrorMessages.MissingModel);
 
     public static EmulatorCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry) ? entry : throw new ArgumentOutOfRangeException(nameof(id), id, null);
 
