@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.MediaEngine;
 
 namespace GWGUI.Emulation.Functions;
 
@@ -6,6 +7,9 @@ namespace GWGUI.Emulation.Functions;
 /// <remarks>Les opérations viennent des parcours Apple et Wenquxing existants. L’identification, la compatibilité et la destination de chaque firmware restent définies par l’adaptateur.</remarks>
 internal sealed class EmulationFirmwareFunctions : IEmulationFirmwareProcessing
 {
+    /// <inheritdoc/>
+    public uint ComputeCrc32(ReadOnlySpan<byte> data) => MediaEngineComposition.DataIntegrity.ComputeCrc32(data);
+
     /// <inheritdoc/>
     public EmulationFirmwareCandidate SelectCandidate(IReadOnlyList<EmulationFirmwareCandidate> candidates, string? candidateId, string? destinationFieldId)
     {

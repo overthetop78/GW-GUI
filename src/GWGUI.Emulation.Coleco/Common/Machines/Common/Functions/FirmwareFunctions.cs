@@ -35,7 +35,7 @@ internal static class FirmwareFunctions
                 return new(absolute, absolute, Path.GetFileName(absolute), null, compatibility, null);
             var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
             hash = CommonCoreHostFunctions.StateFiles.HashBytes(bytes);
-            var crc = Crc(bytes);
+            var crc = CommonCoreHostFunctions.FirmwareProcessing.ComputeCrc32(bytes);
             role = crc switch
             {
                 0x3AA93EF3 => FirmwareCategory.Os7,
@@ -67,14 +67,5 @@ internal static class FirmwareFunctions
         throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
     }
 
-    private static uint Crc(ReadOnlySpan<byte> bytes)
-    {
-        uint crc = uint.MaxValue;
-        foreach (var value in bytes)
-        {
-            crc ^= value;
-            for (var bit = 0; bit < 8; bit++) crc = (crc >> 1) ^ ((crc & 1) == 0 ? 0 : 0xEDB88320u);
-        }
-        return ~crc;
-    }
+
 }

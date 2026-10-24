@@ -4,6 +4,14 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>Le module conserve l’identification, la compatibilité et la destination des fichiers. Le service emprunte les inspecteurs pendant le parcours ; il ne conserve aucun candidat ni handle après son retour.</remarks>
 public interface IEmulationFirmwareProcessing
 {
+    /// <summary>Calcule le CRC32 standard utilisé pour identifier les données d'un firmware.</summary>
+    /// <param name="data">Octets empruntés, consultés sans copie, modification ni accès à un fichier.</param>
+    /// <returns>CRC32 numérique non signé ; zéro pour une étendue vide.</returns>
+    /// <remarks>Le calcul utilise le polynôme réfléchi 0xEDB88320, une valeur initiale de 0xFFFFFFFF
+    /// et un complément final. Il retourne la valeur numérique ; le module conserve son choix de formatage
+    /// et ses règles d'identification. Ce CRC ne constitue pas une empreinte cryptographique.</remarks>
+    uint ComputeCrc32(ReadOnlySpan<byte> data);
+
     /// <summary>Retrouve un candidat unique sans relire son fichier ni modifier les résultats de reconnaissance.</summary>
     /// <param name="candidates">Résultats empruntés d’une même inspection, conservés dans leur ordre.</param>
     /// <param name="candidateId">Identité sélectionnée, ou null si seul le rôle est connu.</param>

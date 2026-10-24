@@ -1535,7 +1535,6 @@ Demande explicite : supprimer le schéma Legacy et les traitements réservés à
   - [ ] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs : reprendre la politique restart issue de 4d2df31ae ; conserver visibilité, noms/labels, flags et champs non assignés exactement comme auparavant. Garder la copie typée locale et IsEnabled de Sinclair ; réutiliser le parcours SDK des valeurs sans convertir ni remplacer ce record.
   - [ ] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs : reprendre la politique reload issue de 564b298bc ; conserver visibilité, noms/labels, flags et champs non assignés exactement comme auparavant. Raccorder directement le présentateur SDK correspondant au point present du propriétaire actuel et retirer le parcours local recopié, sans laisser de façade privée devenue inutile.
   - [ ] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs : reprendre la politique reload issue de 564b298bc ; conserver visibilité, noms/labels, flags et champs non assignés exactement comme auparavant. Raccorder directement le présentateur SDK correspondant au point present du propriétaire actuel et retirer le parcours local recopié, sans laisser de façade privée devenue inutile.
-  - [ ] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : lier cette source originale avec Compile Include/Link dans Functions et ajouter seulement le symbole local GWGUI_CRC32_SDK pour sa sélection de namespace ; ne pas ajouter de référence de projet, paquet ou autre bibliothèque au SDK.
   - [ ] Modifier src/GWGUI.Emulation/HardDisks/Partitioning/GptPartitionWriter.cs : remplacer les appels du Crc privé par la source commune compilée SDK, puis retirer ce calcul local ; garder les étendues des entrées/en-têtes et leurs écritures inchangées.
   - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/FirmwareFunctions.cs : appeler le propriétaire CRC32 SDK sur les mêmes octets, retirer le calcul privé recopié et conserver les reconnaissances/destinations firmware et le résultat hexadécimal.
   - [ ] Modifier src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs : dans le finally du writer générique à huit paramètres, protéger la suppression temporaire par un finally qui libère toujours le verrou déjà acquis, sans modifier l annulation avant acquisition ni masquer l exception de suppression. Sept routes concernées, propriétaire SDK existant conservé.
@@ -15453,3 +15452,98 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider les raccordements.
     - [x] Modifier les sources concernées si les contrôles existants révèlent une erreur ; exécuter les contrôles Example et ceux des descriptions Common.
     - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les sorties des 24 modules.
+
+- [x] Réutiliser le CRC32 de MediaEngine depuis le SDK et le Common de Coleco.
+  - [x] Raccorder les consommateurs par leurs interfaces.
+    - [x] Créer src/GWGUI.MediaEngine/Interfaces/IMediaDataIntegrity.cs : exposer le calcul CRC32 existant sous un contrat public documenté.
+    - [x] Créer src/GWGUI.MediaEngine/Services/MediaDataIntegrityService.cs : réutiliser WozCrc32 avec une implémentation interne.
+    - [x] Modifier src/GWGUI.MediaEngine/MediaEngineComposition.cs : fournir DataIntegrity sous son interface, sans initialiser les lecteurs ou convertisseurs.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationFirmwareProcessing.cs : exposer le calcul numérique CRC32 pour les données de firmware empruntées.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationFirmwareFunctions.cs : déléguer le calcul au contrat MediaEngine.
+    - [x] Modifier src/GWGUI.Emulation/HardDisks/Partitioning/GptPartitionWriter.cs : utiliser le calcul MediaEngine pour les entrées et les en-têtes puis supprimer le calcul privé.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/FirmwareFunctions.cs : appeler le service Common de firmware et supprimer son calcul CRC32 privé.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : documenter le calcul disponible dans le contrat Common de firmware.
+    - [x] Modifier src/GWGUI.Emulation/GWGUI.Emulation.csproj : référencer MediaEngine et fournir dans le paquet SDK une seule API de compilation et les quatre assemblies nécessaires à l'exécution, avec leurs dépendances NuGet.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les vecteurs CRC32, le passage Coleco par le contrat et les GPT produites en mémoire.
+  - [x] Valider les calculs et la distribution.
+    - [x] Modifier les sources concernées si les contrôles révèlent une régression ; exécuter les contrôles ciblés puis la suite locale complète.
+    - [x] Créer build/.sdk-crc32-package-check/GWGUI.Emulation.SDK.1.2.0.nupkg et consumer/consumer.csproj avec Program.cs : contrôler les assets de compilation, les dépendances et l'exécution du calcul depuis le paquet SDK seul.
+    - [x] Supprimer build/.sdk-crc32-package-check et tous les fichiers temporaires de ce contrôle dans finally.
+    - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les sorties de l'application et des 24 modules.
+
+- [ ] Faire respecter les connexions App, Emulation, modules et bibliothèques médias.
+  - [ ] Fournir les préparations existantes par les interfaces de MediaEngine et du SDK.
+    - [ ] Créer src/GWGUI.MediaEngine/Interfaces/IMediaRuntimePreparation.cs : exposer les conversions SCP et les préparations CUE existantes sans identité de module ni dépendance vers Emulation.
+    - [ ] Créer src/GWGUI.MediaEngine/Services/MediaRuntimePreparationService.cs : réutiliser les convertisseurs, descriptions et lectures CUE existants, en conservant ordre, validations, annulation et libération des flux.
+    - [ ] Modifier src/GWGUI.MediaEngine/MediaEngineComposition.cs : fournir la préparation sous son interface publique sans initialiser une session physique.
+    - [ ] Créer src/GWGUI.Emulation/Interfaces/IEmulationMediaProcessing.cs : exposer les préparations et données de formats nécessaires aux modules par des contrats du SDK uniquement.
+    - [ ] Créer src/GWGUI.Emulation/Services/EmulationMediaProcessingService.cs : adapter les contrats du SDK à ceux de MediaEngine, en conservant les règles propres aux modules dans leurs appelants.
+    - [ ] Modifier src/GWGUI.Emulation/EmulationSdk.cs : fournir MediaProcessing sous son interface publique, avec son implémentation interne.
+  - [ ] Raccorder les Common uniformes et les consommateurs existants.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : fournir le traitement des médias par IEmulationMediaProcessing dans le Common, avec la documentation complète dans Example.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Functions/MediaFunctions.Scp.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/MediaFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Constants/StorageConstants.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/StorageConstants.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/StorageFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/StorageConstants.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CcdRuntimeFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/CueRuntimeFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Functions/MediaRuntimeFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Emulators/FbNeo/Functions/CueRuntimeFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/Emulators/FbNeo/Functions/MediaRuntimeFunctions.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/StorageConstants.cs : remplacer les types et accès directs aux bibliothèques médias par le contrat du SDK fourni par Common, en conservant les validations et le comportement natifs.
+  - [ ] Faire passer les usages App de MediaFileSystems par MediaEngine.
+    - [ ] Modifier src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs : résoudre les métadonnées physiques par le contrat MediaEngine en conservant les valeurs de repli.
+    - [ ] Modifier src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs : résoudre les adresses physiques par le contrat MediaEngine sans accès direct à MediaFileSystems.
+    - [ ] Modifier src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs : utiliser les contrats et opérations de parcours fournis par MediaEngine pour les fichiers reconnus.
+  - [ ] Retirer les dépendances médias directes des projets de modules.
+    - [ ] Modifier src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+    - [ ] Modifier src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj : conserver la référence à Emulation et retirer la référence directe à MediaEngine après raccordement des consommateurs.
+  - [ ] Valider les frontières et les comportements conservés.
+    - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les références compilées des 24 modules et les passages par Common, Emulation puis MediaEngine, sans ajouter de fixture externe.
+    - [ ] Modifier les sources concernées si les contrôles existants des préparations SCP/CUE ou des métadonnées échouent ; exécuter ces contrôles puis le build Debug avec tous les modules et vérifier les sorties.

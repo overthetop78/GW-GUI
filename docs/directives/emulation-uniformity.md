@@ -29,6 +29,11 @@
 - Faire passer les échanges de tous les composants par le Common de leur module, qui assure l’adaptation et le lien avec GWGUI.Emulation.
   - Définir l’API par des interfaces publiques avec des implémentations internes.
   - Rendre cette API utilisable par tout créateur de module autonome.
+- Respecter les connexions entre les composants, par leurs interfaces :
+  - App ↔ MediaEngine ; App ↔ Emulation ; Emulation ↔ MediaEngine.
+  - MediaEngine ↔ MediaFileSystems ↔ MediaAnalysis.
+  - Chaque Emulation.xxx se connecte uniquement à Emulation, depuis son Common ; Emulation reçoit cette connexion par ses interfaces.
+  - MediaFileSystems échange uniquement avec MediaEngine et MediaAnalysis ; MediaAnalysis échange uniquement avec MediaFileSystems.
 - Documenter entièrement Example en français dans les commentaires de ses sources, pour expliquer le fonctionnement et l’utilisation de chaque élément à un créateur de module.
   - Décrire le rôle, les unités et l’usage des valeurs avec des formulations génériques ; conserver les valeurs de base choisies, notamment 44 100 Hz pour la fréquence audio de repli.
 - Garder les déclarations et les appels sur une seule ligne, avec des retours seulement lorsque la ligne devient vraiment très longue ; appliquer ce style à l’ensemble des fichiers concernés.

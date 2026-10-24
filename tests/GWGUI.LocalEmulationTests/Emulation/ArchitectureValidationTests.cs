@@ -2114,6 +2114,51 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
+    public void FirmwareAndGptCrcUseMediaEngineWithoutCrossingTheModuleBoundary()
+    {
+        var processing = EmulationSdk.FirmwareProcessing;
+        Assert.Equal(0u, processing.ComputeCrc32([]));
+        var sample = "123456789"u8.ToArray();
+        Assert.Equal(0xcbf43926u, processing.ComputeCrc32(sample));
+        Assert.Equal(0xd202ef8du, processing.ComputeCrc32([0]));
+        Assert.Equal("123456789"u8.ToArray(), sample);
+        Assert.Equal(processing.ComputeCrc32(sample), GWGUI.MediaEngine.MediaEngineComposition.DataIntegrity.ComputeCrc32(sample));
+        Assert.False(GWGUI.MediaEngine.MediaEngineComposition.DataIntegrity.GetType().IsVisible);
+        var sdkOperation = processing.GetType().GetMethod(nameof(IEmulationFirmwareProcessing.ComputeCrc32))!;
+        Assert.Contains(GetCompiledCalls(sdkOperation), call => call.Method.DeclaringType == typeof(GWGUI.MediaEngine.Interfaces.IMediaDataIntegrity) && call.Method.Name == "ComputeCrc32");
+        var firmware = Assembly.Load("gwgui.emulation.coleco").GetType("GWGUI.Emulation.Coleco.Common.Machines.Common.Functions.FirmwareFunctions", true)!;
+        var scan = firmware.GetMethod("ScanFileAsync", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var body = scan.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!;
+        Assert.Contains(GetCompiledCalls(body), call => call.Method.DeclaringType == typeof(IEmulationFirmwareProcessing) && call.Method.Name == "ComputeCrc32");
+        Assert.Null(firmware.GetMethod("Crc", BindingFlags.Static | BindingFlags.NonPublic));
+        Assert.Null(typeof(GWGUI.Emulation.HardDisks.Partitioning.GptPartitionWriter).GetMethod("Crc", BindingFlags.Static | BindingFlags.NonPublic));
+        foreach (var sectorBytes in new[] { 512, 4096 })
+        {
+            using var stream = new MemoryStream(new byte[4 * 1024 * 1024]);
+            GWGUI.Emulation.HardDisks.Partitioning.GptPartitionWriter.Write(stream, [], sectorBytes);
+            var bytes = stream.ToArray();
+            var primary = bytes.AsSpan(sectorBytes, 92).ToArray();
+            var expected = System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(primary.AsSpan(16));
+            primary.AsSpan(16, 4).Clear();
+            Assert.Equal(expected, processing.ComputeCrc32(primary));
+            var backup = bytes.AsSpan(bytes.Length - sectorBytes, 92).ToArray();
+            var backupExpected = System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(backup.AsSpan(16));
+            backup.AsSpan(16, 4).Clear();
+            Assert.Equal(backupExpected, processing.ComputeCrc32(backup));
+            if (sectorBytes == 512)
+            {
+                stream.Position = 0;
+                var table = new DiscUtils.Partitions.GuidPartitionTable(stream, DiscUtils.Geometry.FromCapacity(stream.Length));
+                Assert.Empty(table.Partitions);
+            }
+            Assert.True(stream.CanWrite);
+        }
+        Assert.Contains(typeof(EmulationSdk).Assembly.GetReferencedAssemblies(), reference => reference.Name == "gwgui.mediaengine");
+        Assert.DoesNotContain(typeof(GWGUI.MediaEngine.MediaEngineComposition).Assembly.GetReferencedAssemblies(), reference => reference.Name is "gwgui.emulation" or "gwgui.app");
+        Assert.DoesNotContain(Assembly.Load("gwgui.mediafilesystems").GetReferencedAssemblies(), reference => reference.Name is "gwgui.emulation" or "gwgui.app");
+    }
+
+    [Fact]
     public void FirmwareSelectionKeepsEveryRoleAndRequiresAnUnambiguousChoice()
     {
         var first = new EmulationFirmwareCandidate("digest:system", "firmware.bin", "system", null, EmulationFirmwareCompatibility.Compatible, "system");

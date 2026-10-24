@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine;
 using System.Buffers.Binary;
 using System.Text;
 
@@ -69,7 +70,7 @@ public static class GptPartitionWriter
             Put64(entry, 48, unchecked((ulong)volume.Attributes));
             Names.GetBytes(volume.EffectivePartitionName, entry[56..]);
         }
-        var entriesCrc = Crc(entries);
+        var entriesCrc = MediaEngineComposition.DataIntegrity.ComputeCrc32(entries);
         var diskId = Guid.NewGuid();
         byte[] Header(long location, long alternate, long arrayLocation)
         {
@@ -80,7 +81,7 @@ public static class GptPartitionWriter
             Put64(header, 40, (ulong)(2 + arraySectors)); Put64(header, 48, (ulong)(sectors - arraySectors - 2));
             diskId.TryWriteBytes(header.AsSpan(56)); Put64(header, 72, (ulong)arrayLocation);
             Put32(header, 80, 128); Put32(header, 84, 128); Put32(header, 88, entriesCrc);
-            Put32(header, 16, Crc(header.AsSpan(0, 92)));
+            Put32(header, 16, MediaEngineComposition.DataIntegrity.ComputeCrc32(header.AsSpan(0, 92)));
             return header;
         }
         var mbr = new byte[sectorBytes];
@@ -95,16 +96,6 @@ public static class GptPartitionWriter
         stream.Flush();
     }
 
-    private static uint Crc(ReadOnlySpan<byte> data)
-    {
-        var crc = uint.MaxValue;
-        foreach (var value in data)
-        {
-            crc ^= value;
-            for (var bit = 0; bit < 8; bit++) crc = (crc >> 1) ^ ((crc & 1) != 0 ? 0xedb88320U : 0);
-        }
-        return ~crc;
-    }
     private static void Put32(Span<byte> bytes, int offset, uint value) => BinaryPrimitives.WriteUInt32LittleEndian(bytes[offset..], value);
     private static void Put64(Span<byte> bytes, int offset, ulong value) => BinaryPrimitives.WriteUInt64LittleEndian(bytes[offset..], value);
 }

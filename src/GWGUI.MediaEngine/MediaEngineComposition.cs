@@ -11,12 +11,18 @@ using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
+using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Services;
 
 namespace GWGUI.MediaEngine;
 
 /// <summary>Assembles the shared media engine services without implementing format algorithms.</summary>
 public sealed class MediaEngineComposition
 {
+    /// <summary>Fournit les calculs d'intégrité par leur contrat public, sans initialiser les lecteurs ou convertisseurs.</summary>
+    /// <remarks>Le traitement est sans état et reste emprunté ; les octets et leur durée de vie appartiennent à l'appelant.</remarks>
+    public static IMediaDataIntegrity DataIntegrity { get; } = new MediaDataIntegrityService();
+
     private MediaEngineComposition(MediaRecognitionComposition recognition, MediaExplorer explorer, MediaConversionComposition conversion, MediaWritingComposition writing, MediaVisualizationComposition visualization)
     {
         Recognition = recognition;

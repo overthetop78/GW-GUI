@@ -31,8 +31,10 @@ internal static class CoreHostFunctions
     /// <remarks>Les lecteurs et chemins restent décrits par Common. Ce service ne possède ni fichier ni lecteur physique et ne remplace pas les contraintes spécifiques du module.</remarks>
     internal static IEmulationMediaRules MediaRules => EmulationSdk.MediaRules;
 
-    /// <summary>Fournit les parcours de firmware par le contrat public commun.</summary>
-    /// <remarks>Le module fournit son inspecteur et conserve ses candidats ; le service conserve les parcours, tris et annulations existants.</remarks>
+    /// <summary>Fournit les parcours de firmware et le calcul CRC32 d'identification par le contrat public commun.</summary>
+    /// <remarks>Le module fournit son inspecteur et conserve ses candidats ; le service conserve les parcours, tris et annulations existants.
+    /// ComputeCrc32 reçoit les octets déjà lus et retourne leur CRC32 numérique sans les modifier. L'adaptateur
+    /// conserve son catalogue de signatures et ses règles de reconnaissance ; ce calcul ne remplace pas une empreinte cryptographique.</remarks>
     internal static IEmulationFirmwareProcessing FirmwareProcessing => EmulationSdk.FirmwareProcessing;
 
     /// <summary>Fournit la découverte des adaptateurs et la projection des catalogues par leur contrat public.</summary>
