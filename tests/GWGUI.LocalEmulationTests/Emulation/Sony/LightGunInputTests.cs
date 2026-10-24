@@ -79,7 +79,7 @@ public sealed class LightGunInputTests
     {
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(0, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string>
+            new(0, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string>
             {
                 [EmulationControllerCommandIds.B] = "Mouse:Left",
                 [EmulationControllerCommandIds.A] = "Mouse:Right",
@@ -115,8 +115,8 @@ public sealed class LightGunInputTests
     {
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new(0, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:A" }),
-            new(1, PeripheralCategory.GunCon, ButtonMappings: new Dictionary<string, string> { [command] = "Keyboard:S" })
+            new(0, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string> { [command] = "Keyboard:A" }),
+            new(1, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string> { [command] = "Keyboard:S" })
         ]);
         var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
         var mapped = InputSnapshotFunctions.Apply(physical, configuration, false, 2);

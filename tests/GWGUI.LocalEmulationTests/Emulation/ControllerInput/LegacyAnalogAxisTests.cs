@@ -42,7 +42,7 @@ public sealed class LegacyAnalogAxisTests
         var values = new Dictionary<string, string> { ["LeftStickRight"] = "Keyboard:A" };
         var changed = settings with { ControllerPorts = [port with { Bindings = port.Bindings with { Values = values } }] };
         var applied = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSettingsFunctions.Apply(configuration, changed);
-        Assert.Equal("Keyboard:A", applied.Input!.ControllerBindings![0].ButtonMappings!["LeftStickRight"]);
+        Assert.Equal("Keyboard:A", applied.Input!.ControllerBindings![0].Mappings!["LeftStickRight"]);
     }
 
     [Theory]

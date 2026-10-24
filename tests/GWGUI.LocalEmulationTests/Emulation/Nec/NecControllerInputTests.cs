@@ -23,7 +23,7 @@ public sealed class NecControllerInputTests
         var input = EmulationInputSnapshot.Empty with { Controllers = [xbox360, rematch] };
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(0, controllerType, ButtonMappings:
+            new ControllerBinding(0, controllerType, Mappings:
                 new Dictionary<string, string>
                 {
                     ["Up"] = "Controller:gameinput:rematch:DPadUp",

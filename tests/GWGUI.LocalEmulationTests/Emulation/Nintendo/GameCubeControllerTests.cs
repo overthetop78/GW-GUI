@@ -79,7 +79,7 @@ public sealed class GameCubeControllerTests
             [InputSettingsFunctionsConstants.GameCubeCLeft] = KeyboardN,
             [InputSettingsFunctionsConstants.GameCubeCDown] = KeyboardO
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, ButtonMappings: mappings)]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, Mappings: mappings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -137,7 +137,7 @@ public sealed class GameCubeControllerTests
         var configuration = new InputConfiguration(ControllerBindings:
         [
             new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string>
+                Mappings: new Dictionary<string, string>
                 {
                     [InputSettingsFunctionsConstants.GameCubeCLeft] = KeyboardA,
                     [InputSettingsFunctionsConstants.GameCubeCRight] = KeyboardB

@@ -47,7 +47,7 @@ public sealed class NesMaxControllerTests
         var configuration = new InputConfiguration(ControllerBindings:
         [
             new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string>
+                Mappings: new Dictionary<string, string>
                 {
                     [EmulationControllerCommandIds.A] = KeyboardA,
                     [EmulationControllerCommandIds.B] = KeyboardB,

@@ -50,14 +50,14 @@ internal static class InputSnapshotFunctions
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 }
-                || !binding.ButtonMappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
+            if (binding?.Mappings is not { Count: > 0 }
+                || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;
-            foreach (var mapping in binding.ButtonMappings)
+            foreach (var mapping in binding.Mappings)
             {
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
@@ -66,22 +66,22 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            var analog = binding.Type is PeripheralCategory.SegaSaturnThreeDControlPad or PeripheralCategory.SegaDreamcastController or PeripheralCategory.SegaPaddleControl
+            var analog = binding.Peripheral is PeripheralCategory.SegaSaturnThreeDControlPad or PeripheralCategory.SegaDreamcastController or PeripheralCategory.SegaPaddleControl
                 or PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaSaturnArcadeRacer or PeripheralCategory.SegaXe1Ap or PeripheralCategory.SegaSportsPad
                 or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas;
-            var vertical = analog && binding.Type is not PeripheralCategory.SegaPaddleControl and not PeripheralCategory.SegaSaturnArcadeRacer;
-            var throttle = binding.Type is PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaXe1Ap
+            var vertical = analog && binding.Peripheral is not PeripheralCategory.SegaPaddleControl and not PeripheralCategory.SegaSaturnArcadeRacer;
+            var throttle = binding.Peripheral is PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaXe1Ap
                 or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas;
             result[port] = source with
             {
                 Buttons = buttons,
-                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
-                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
-                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse) : (short)0,
-                LeftY = vertical ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse) : (short)0,
-                RightX = throttle && binding.Type != PeripheralCategory.SegaSaturnMissionStick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse) : (short)0,
-                RightY = throttle ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.RightStickDown, EmulationControllerCommandIds.RightStickUp, source, physical, keys, physicalMouse) : (short)0
+                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
+                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
+                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse) : (short)0,
+                LeftY = vertical ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse) : (short)0,
+                RightX = throttle && binding.Peripheral != PeripheralCategory.SegaSaturnMissionStick
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse) : (short)0,
+                RightY = throttle ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickDown, EmulationControllerCommandIds.RightStickUp, source, physical, keys, physicalMouse) : (short)0
             };
         }
         return result;

@@ -11,7 +11,7 @@ internal static partial class InputSettingsFunctions
 
     private static IEnumerable<PeripheralCategory> UsbTypes(MachineConfiguration configuration) =>
         configuration.Model == ModelConstants.PlayStation2
-            ? Enumerable.Range(0, 2).Select(index => UsbBinding(configuration, index).Type)
+            ? Enumerable.Range(0, 2).Select(index => UsbBinding(configuration, index).Peripheral)
                 .Where(type => ControllerCatalog.IsSupported(configuration, type, 0, true)) : [];
 
     private static ControllerBinding UsbBinding(MachineConfiguration configuration, int index)
@@ -23,17 +23,17 @@ internal static partial class InputSettingsFunctions
         if (bindings is not null) return bindings.FirstOrDefault(binding => binding.Port == index) ?? new ControllerBinding(index, PeripheralCategory.None);
         // Older LRPS2 configurations stored USB modes in controller slots.
         var legacy = configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index);
-        var combined = configuration.Input?.ControllerBindings?.Any(binding => binding.Type == PeripheralCategory.KeyboardAndMouse) == true
+        var combined = configuration.Input?.ControllerBindings?.Any(binding => binding.Peripheral == PeripheralCategory.KeyboardAndMouse) == true
             || configuration.Controllers?.Contains(PeripheralCategory.KeyboardAndMouse) == true;
         var type = combined ? index == 0 ? PeripheralCategory.Keyboard : PeripheralCategory.Mouse
-            : legacy?.Type ?? configuration.Controllers?.ElementAtOrDefault(index) ?? PeripheralCategory.None;
+            : legacy?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(index) ?? PeripheralCategory.None;
         return new ControllerBinding(index, type is PeripheralCategory.Keyboard or PeripheralCategory.Mouse ? type : PeripheralCategory.None);
     }
 
     internal static PeripheralCategory NativeUsbType(MachineConfiguration configuration, int port, PeripheralCategory controller)
     {
         if (configuration.EmulatorId != "pcsx2" || configuration.Input?.UsbBindings is null || port >= 2) return controller;
-        var usb = UsbBinding(configuration, port).Type;
+        var usb = UsbBinding(configuration, port).Peripheral;
         return usb switch
         {
             PeripheralCategory.None => controller,
@@ -48,7 +48,7 @@ internal static partial class InputSettingsFunctions
         var synthetic = usb && configuration.EmulatorId != "pcee2";
         var current = synthetic ? UsbBinding(configuration, index - 8)
             : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index);
-        var type = synthetic ? current!.Type
+        var type = synthetic ? current!.Peripheral
             : configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2
                 ? CommonControllerFunctions.Selected(configuration, index) : CommonControllerFunctions.Resolve(configuration, index);
         if (!usb && configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId == "pcsx2"
@@ -68,7 +68,7 @@ internal static partial class InputSettingsFunctions
             available.Select(choice => Choice(choice, model, configuration, index)).ToArray(),
             type.ToString(), current?.DeviceId,
             new EmulationInputBindingSet(definitions,
-                current?.ButtonMappings ?? new Dictionary<string, string>(),
+                current?.Mappings ?? new Dictionary<string, string>(),
                 EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
             VisualId: current?.VisualId)
         {
@@ -134,8 +134,8 @@ internal static partial class InputSettingsFunctions
     ];
 
     private static string UsbKeyboardVisualId(MachineConfiguration configuration) => Enumerable.Range(0, 2)
-        .Select(index => UsbBinding(configuration, index)).FirstOrDefault(binding => binding.Type is PeripheralCategory.Keyboard or PeripheralCategory.KeyboardAndMouse or PeripheralCategory.NetPlayController)
-        ?.Type == PeripheralCategory.NetPlayController ? EmulationControllerVisualIds.SonyNetPlay : EmulationControllerVisualIds.SonyUsbKeyboard;
+        .Select(index => UsbBinding(configuration, index)).FirstOrDefault(binding => binding.Peripheral is PeripheralCategory.Keyboard or PeripheralCategory.KeyboardAndMouse or PeripheralCategory.NetPlayController)
+        ?.Peripheral == PeripheralCategory.NetPlayController ? EmulationControllerVisualIds.SonyNetPlay : EmulationControllerVisualIds.SonyUsbKeyboard;
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string> UsbMouseVisualCommands() => new Dictionary<EmulationControllerVisualControl, string>
     {

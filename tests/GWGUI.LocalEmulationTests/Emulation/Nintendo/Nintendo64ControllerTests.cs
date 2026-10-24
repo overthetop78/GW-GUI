@@ -64,7 +64,7 @@ public sealed class Nintendo64ControllerTests
             [EmulationControllerCommandIds.Start] = KeyboardJ,
             [EmulationControllerCommandIds.Up] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, ButtonMappings: bindings)]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -122,7 +122,7 @@ public sealed class Nintendo64ControllerTests
         var configuration = new InputConfiguration(ControllerBindings:
         [
             new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string>
+                Mappings: new Dictionary<string, string>
                 {
                     [InputSettingsFunctionsConstants.Nintendo64StickLeft] = KeyboardA,
                     [InputSettingsFunctionsConstants.Nintendo64StickRight] = KeyboardB

@@ -174,7 +174,7 @@ public sealed class ControllerConfigurationTests
             Controllers = [EmulationControllerState.Empty with
                 { Buttons = uint.MaxValue, LeftX = short.MaxValue, RightY = short.MinValue }]
         };
-        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.None, ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.None, Mappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false, Ps3Hardware.ControllerPortCount);
         Assert.Equal(Ps3Hardware.ControllerPortCount, mapped.Controllers.Count);
         Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[FirstPort]);
@@ -207,9 +207,9 @@ public sealed class ControllerConfigurationTests
             Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Joystick, PhysicalDevice, mappings, EmulationControllerVisualIds.SonyPlayStationController)]));
         var updated = ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.DualShock);
         var binding = Assert.Single(updated.Input!.ControllerBindings!);
-        Assert.Equal(PeripheralCategory.DualShock, binding.Type);
+        Assert.Equal(PeripheralCategory.DualShock, binding.Peripheral);
         Assert.Equal(PhysicalDevice, binding.DeviceId);
-        Assert.Same(mappings, binding.ButtonMappings);
+        Assert.Same(mappings, binding.Mappings);
         Assert.Equal(EmulationControllerVisualIds.SonyPlayStationController, binding.VisualId);
         Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.Keyboard));
     }
@@ -237,7 +237,7 @@ public sealed class ControllerConfigurationTests
     public void MouseMappingsReachPerPortControls()
     {
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
-        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Mouse, ButtonMappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Mouse, Mappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
         Assert.Equal(InputSnapshotFunctionsConstants.FullPressure, mapped.Controls[nameof(MouseAction.LeftButton)]);
     }

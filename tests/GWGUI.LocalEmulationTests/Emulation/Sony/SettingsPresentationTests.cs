@@ -139,11 +139,11 @@ public sealed class SettingsPresentationTests
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3",
             Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string> { ["B"] = "Keyboard:A" })]));
+                Mappings: new Dictionary<string, string> { ["B"] = "Keyboard:A" })]));
         var one = InputSettingsFunctions.Describe(configuration);
         Assert.Single(one.ControllerPorts);
         var smaller = InputSettingsFunctions.Apply(configuration, one);
-        Assert.Equal("Keyboard:A", smaller.Input!.ControllerBindings!.Single(binding => binding.Port == 6).ButtonMappings!["B"]);
+        Assert.Equal("Keyboard:A", smaller.Input!.ControllerBindings!.Single(binding => binding.Port == 6).Mappings!["B"]);
         var expanded = smaller with { Options = new Dictionary<string, string> { ["input.controllerCount"] = "7" } };
         var seven = InputSettingsFunctions.Describe(expanded);
         Assert.Equal(7, seven.ControllerPorts.Count);

@@ -51,13 +51,13 @@ internal static class InputSnapshotFunctions
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount })
+            if (binding?.Mappings is not { Count: > BufferConstants.EmptyCollectionCount })
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = InputSnapshotFunctionsConstants.NoPressedButtons;
-            foreach (var mapping in binding.ButtonMappings)
+            foreach (var mapping in binding.Mappings)
             {
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, InputSnapshotFunctionsConstants.UnknownButtonIndex);
@@ -69,10 +69,10 @@ internal static class InputSnapshotFunctions
             result[port] = source with
             {
                 Buttons = buttons,
-                LeftX = binding.Type == PeripheralCategory.AnalogJoystick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
-                LeftY = binding.Type == PeripheralCategory.AnalogJoystick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
+                LeftX = binding.Peripheral == PeripheralCategory.AnalogJoystick
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
+                LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
             };
         }
         return result;

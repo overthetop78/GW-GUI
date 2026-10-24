@@ -50,14 +50,14 @@ internal static class InputSnapshotFunctions
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 }
-                || !binding.ButtonMappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
+            if (binding?.Mappings is not { Count: > 0 }
+                || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;
-            foreach (var mapping in binding.ButtonMappings)
+            foreach (var mapping in binding.Mappings)
             {
                 var targetInKey = InputSnapshotDictionary.Nintendo64ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget)
                     || InputSnapshotDictionary.GameCubeButtonIndexes.TryGetValue(mapping.Key, out keyTarget)
@@ -73,30 +73,30 @@ internal static class InputSnapshotFunctions
             {
                 Buttons = buttons,
                 LeftTrigger = (short)Math.Max(
-                    EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse),
-                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse) / 2f)),
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse) / 2f)),
                 RightTrigger = (short)Math.Max(
-                    EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse),
-                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse) / 2f)),
-                LeftX = MappedAxis(binding.ButtonMappings,
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse) / 2f)),
+                LeftX = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeStickRight,
                     InputSettingsFunctionsConstants.GameCubeStickLeft,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
-                LeftY = MappedAxis(binding.ButtonMappings,
+                LeftY = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeStickDown,
                     InputSettingsFunctionsConstants.GameCubeStickUp,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
-                RightX = MappedAxis(binding.ButtonMappings,
+                RightX = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeCRight,
                     InputSettingsFunctionsConstants.GameCubeCLeft,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
-                RightY = MappedAxis(binding.ButtonMappings,
+                RightY = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeCDown,
                     InputSettingsFunctionsConstants.GameCubeCUp,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse)
             };
         }

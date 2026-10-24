@@ -482,7 +482,7 @@ public sealed class AmstradEmulatorAdapterTests
         const uint buttons = (1u << 4) | (1u << 0);
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(0, controllerType, ButtonMappings:
+            new ControllerBinding(0, controllerType, Mappings:
                 new Dictionary<string, string>
                 {
                     ["Up"] = string.Empty,

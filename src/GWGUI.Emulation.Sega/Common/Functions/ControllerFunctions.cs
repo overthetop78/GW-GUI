@@ -190,11 +190,11 @@ internal static class ControllerFunctions
         var bindings = input.ControllerBindings ?? [];
         var binding = bindings.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, type);
         var controllers = configuration.Controllers is null ? null : Enumerable.Range(0, Math.Max(configuration.Controllers.Count, port + 1))
-            .Select(index => index == port ? type : index < configuration.Controllers.Count ? configuration.Controllers[index] : bindings.FirstOrDefault(item => item.Port == index)?.Type ?? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model))).ToArray();
+            .Select(index => index == port ? type : index < configuration.Controllers.Count ? configuration.Controllers[index] : bindings.FirstOrDefault(item => item.Port == index)?.Peripheral ?? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model))).ToArray();
         return configuration with
         {
             Controllers = controllers,
-            Input = input with { ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Type = type }).OrderBy(item => item.Port).ToArray() }
+            Input = input with { ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).OrderBy(item => item.Port).ToArray() }
         };
     }
 }

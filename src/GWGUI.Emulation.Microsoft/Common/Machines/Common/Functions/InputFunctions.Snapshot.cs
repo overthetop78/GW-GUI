@@ -50,14 +50,14 @@ internal static class InputSnapshotFunctions
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 }
-                || !binding.ButtonMappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
+            if (binding?.Mappings is not { Count: > 0 }
+                || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;
-            foreach (var mapping in binding.ButtonMappings)
+            foreach (var mapping in binding.Mappings)
             {
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);

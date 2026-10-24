@@ -52,20 +52,20 @@ internal static class InputSnapshotFunctions
         for (var port = ControllerPortConstants.MinimumControllerPort; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
-            if (binding?.Type == PeripheralCategory.None)
+            if (binding?.Peripheral == PeripheralCategory.None)
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 }
-                || !binding.ButtonMappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
+            if (binding?.Mappings is not { Count: > 0 }
+                || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
                 result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;
-            foreach (var mapping in binding.ButtonMappings)
+            foreach (var mapping in binding.Mappings)
             {
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
@@ -77,19 +77,19 @@ internal static class InputSnapshotFunctions
             result[port] = source with
             {
                 Buttons = buttons,
-                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
-                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
-                Controls = MapControls(binding.ButtonMappings, source, physical, keys, physicalMouse),
-                LeftX = MappedAxis(binding.ButtonMappings,
-                    binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickRight : InputSettingsFunctionsConstants.PspStickRight,
-                    binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickLeft : InputSettingsFunctionsConstants.PspStickLeft,
+                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
+                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
+                Controls = MapControls(binding.Mappings, source, physical, keys, physicalMouse),
+                LeftX = MappedAxis(binding.Mappings,
+                    binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickRight : InputSettingsFunctionsConstants.PspStickRight,
+                    binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickLeft : InputSettingsFunctionsConstants.PspStickLeft,
                     source, physical, keys, physicalMouse),
-                LeftY = MappedAxis(binding.ButtonMappings,
-                    binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickDown : InputSettingsFunctionsConstants.PspStickDown,
-                    binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickUp : InputSettingsFunctionsConstants.PspStickUp,
+                LeftY = MappedAxis(binding.Mappings,
+                    binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickDown : InputSettingsFunctionsConstants.PspStickDown,
+                    binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.Mappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickUp : InputSettingsFunctionsConstants.PspStickUp,
                     source, physical, keys, physicalMouse),
-                RightX = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickRight, InputSettingsFunctionsConstants.RightStickLeft, source, physical, keys, physicalMouse),
-                RightY = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickDown, InputSettingsFunctionsConstants.RightStickUp, source, physical, keys, physicalMouse)
+                RightX = MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.RightStickRight, InputSettingsFunctionsConstants.RightStickLeft, source, physical, keys, physicalMouse),
+                RightY = MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.RightStickDown, InputSettingsFunctionsConstants.RightStickUp, source, physical, keys, physicalMouse)
             };
         }
         return result;

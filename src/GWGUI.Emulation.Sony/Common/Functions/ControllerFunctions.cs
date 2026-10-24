@@ -52,7 +52,7 @@ internal static class ControllerFunctions
     internal static PeripheralCategory Selected(MachineConfiguration configuration, int port)
     {
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
+        var type = binding?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
         return type == PeripheralCategory.Automatic ? Supported(configuration, port).FirstOrDefault() : type;
     }
 
@@ -60,7 +60,7 @@ internal static class ControllerFunctions
     {
         ValidatePort(configuration, port);
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-        var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
+        var type = binding?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
         if (type == PeripheralCategory.Automatic || type == PeripheralCategory.None && !Supported(configuration, port).Contains(PeripheralCategory.None)) type = Supported(configuration, port).FirstOrDefault();
         Validate(configuration, port, type);
         return type;
@@ -90,7 +90,7 @@ internal static class ControllerFunctions
         {
             Input = input with
             {
-                ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Type = type }).ToArray()
+                ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).ToArray()
             }
         };
     }

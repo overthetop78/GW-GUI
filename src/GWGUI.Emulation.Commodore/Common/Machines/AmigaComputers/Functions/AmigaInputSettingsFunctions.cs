@@ -19,7 +19,7 @@ internal static class AmigaInputSettingsFunctions
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
         options[SettingsConstants.OptionTurboFire] = configuration.Input?.ControllerBindings?
-            .Any(binding => binding.ButtonMappings?.Any(item => item.Key == InputSettingsFunctionsConstants.L2 && !string.IsNullOrWhiteSpace(item.Value)) == true) == true
+            .Any(binding => binding.Mappings?.Any(item => item.Key == InputSettingsFunctionsConstants.L2 && !string.IsNullOrWhiteSpace(item.Value)) == true) == true
             ? InputSettingsFunctionsConstants.Enabled : InputSettingsFunctionsConstants.Disabled;
         options[SettingsConstants.OptionTurboFireButton] = InputSettingsFunctionsConstants.L2;
         return configuration with { Options = options };

@@ -167,7 +167,7 @@ internal sealed class ExternalCore : IEmulatorCore
             for (var port = ControllerPortConstants.MinimumControllerPort;
                  port < adapter.ControllerPortCount(configuration); port++)
             {
-                var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port] : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type ?? defaultController;
+                var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port] : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? defaultController;
                 if (controller == PeripheralCategory.Automatic) controller = defaultController;
                 setController((uint)port, adapter.ControllerDevice(_host.ControllerPorts, port, controller));
             }

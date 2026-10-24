@@ -22,12 +22,12 @@ internal static partial class InputSettingsFunctions
         var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = ControllerCatalog.Normalize(model, current?.Type ?? (index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : PeripheralCategory.None));
+            var type = ControllerCatalog.Normalize(model, current?.Peripheral ?? (index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : PeripheralCategory.None));
             return new EmulationControllerPort(index
                     + InputSettingsFunctionsConstants.FirstPortNumber,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);

@@ -43,7 +43,7 @@ public sealed class PspControllerTests
         var configuration = new InputConfiguration(ControllerBindings:
         [
             new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })
+                Mappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })
         ]);
         var controls = InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[IntegratedPortIndex].Controls;
         Assert.Single(controls);
@@ -115,7 +115,7 @@ public sealed class PspControllerTests
             [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardJ,
             [InputSettingsFunctionsConstants.PspStickUp] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick, ButtonMappings: bindings)]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -146,7 +146,7 @@ public sealed class PspControllerTests
         var configuration = new InputConfiguration(ControllerBindings:
         [
             new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
-                ButtonMappings: new Dictionary<string, string>
+                Mappings: new Dictionary<string, string>
                 {
                     [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardA,
                     [InputSettingsFunctionsConstants.PspStickRight] = KeyboardB

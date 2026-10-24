@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Contracts;
@@ -14,6 +16,60 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void ControllerBindingsUseCommonMemberNamesAndPreserveTheirConfigurationFields()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, assemblies.Length);
+        var bindingCount = 0;
+        var preservedWireNames = 0;
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        foreach (var assembly in assemblies)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var binding = assembly.GetType(root + ".Common.Machines.Common.Contracts.ControllerBinding");
+            if (binding is null) continue;
+            bindingCount++;
+            var peripheral = binding.GetProperty("Peripheral")!;
+            var mappings = binding.GetProperty("Mappings")!;
+            Assert.NotNull(peripheral);
+            Assert.NotNull(mappings);
+            Assert.True(peripheral.PropertyType.IsEnum);
+            Assert.Equal(typeof(IReadOnlyDictionary<string, string>), mappings.PropertyType);
+            Assert.Null(binding.GetProperty("Type"));
+            Assert.Null(binding.GetProperty("ButtonMappings"));
+            var peripheralName = peripheral.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name;
+            var mappingsName = mappings.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name;
+            if (peripheralName is not null || mappingsName is not null)
+            {
+                Assert.Equal("type", peripheralName);
+                Assert.Equal("buttonMappings", mappingsName);
+                preservedWireNames++;
+            }
+            peripheralName ??= "peripheral";
+            mappingsName ??= "mappings";
+            var document = JsonSerializer.Serialize(new Dictionary<string, object?>
+            {
+                ["port"] = 1, [peripheralName] = 0, ["deviceId"] = "physical-controller",
+                [mappingsName] = new Dictionary<string, string> { ["A"] = "Keyboard:A" }, ["visualId"] = "controller-visual"
+            });
+            var restored = JsonSerializer.Deserialize(document, binding, options)!;
+            Assert.NotNull(restored);
+            Assert.Equal(1, binding.GetProperty("Port")!.GetValue(restored));
+            Assert.Equal(0, Convert.ToInt32(peripheral.GetValue(restored)));
+            Assert.Equal("physical-controller", binding.GetProperty("DeviceId")!.GetValue(restored));
+            Assert.Equal("controller-visual", binding.GetProperty("VisualId")!.GetValue(restored));
+            Assert.Equal("Keyboard:A", Assert.IsAssignableFrom<IReadOnlyDictionary<string, string>>(mappings.GetValue(restored))["A"]);
+            using var serialized = JsonDocument.Parse(JsonSerializer.Serialize(restored, binding, options));
+            Assert.Equal(0, serialized.RootElement.GetProperty(peripheralName).GetInt32());
+            Assert.Equal("Keyboard:A", serialized.RootElement.GetProperty(mappingsName).GetProperty("A").GetString());
+        }
+        Assert.Equal(23, bindingCount);
+        Assert.Equal(7, preservedWireNames);
+    }
 
     [Fact]
     public void EveryHostUsesTheCommonErrorNamesAndOwner()

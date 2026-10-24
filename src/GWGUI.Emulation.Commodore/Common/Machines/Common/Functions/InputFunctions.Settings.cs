@@ -21,12 +21,12 @@ internal static partial class InputSettingsFunctions
         {
             var number = index + ControllerPortConstants.OneControllerPort;
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = current?.Type ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : PeripheralCategory.Joystick);
+            var type = current?.Peripheral ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : PeripheralCategory.Joystick);
             var choices = index < model.ControllerPortCount ? ControllerCatalog.Types(model) : ControllerCatalog.ParallelPortTypes;
             return new EmulationControllerPort(number,
                 choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
