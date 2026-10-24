@@ -5,7 +5,12 @@ namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class RuntimeFunctions
 {
     internal static EmulationVideoStandard? ReadRegion(int value) => CommonCoreHostFunctions.Protocol.ReadRegion(value, allowAllDefinedStandards: true);
-internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
+/// <summary>Publie les mesures du cœur et l'activité des lecteurs par la facette média de la session.</summary>
+    /// <param name="configuration">Configuration complète empruntée, conservée sans modification.</param>
+    /// <param name="core">Cœur emprunté dont les sorties et compteurs doivent être consultés.</param>
+    /// <param name="mediaCapabilities">Facette média empruntée de la session ; null conserve la projection de repli existante.</param>
+    /// <returns>Instantané public des mesures et des activités, sans transfert de ressource native.</returns>
+    internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core, IEmulatorMediaCapabilities? mediaCapabilities = null)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
@@ -16,7 +21,7 @@ internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulat
             core.SampleRate,
             geometry,
             core.CoreName,
-            new Dictionary<EmulationMediaSlot, bool>(),
+            mediaCapabilities?.MediaActivity(configuration, core.LedStates) ?? new Dictionary<EmulationMediaSlot, bool>(),
             new Dictionary<int, bool>(core.LedStates),
             core.BufferedAudioFrames,
             core.AudioOverrunCount,

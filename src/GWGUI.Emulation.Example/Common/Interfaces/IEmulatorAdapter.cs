@@ -319,12 +319,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <returns>Configuration utilisable à l’exécution après les préparations propres au backend.</returns>
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
 
-    /// <summary>Interprète les indicateurs du cœur pour obtenir l’activité des lecteurs configurés.</summary>
-    /// <param name="configuration">Configuration indiquant l’association entre lecteurs et médias.</param>
-    /// <param name="ledStates">États des LED du cœur, empruntés pendant la projection.</param>
-    /// <returns>Activité indexée par emplacement de média ; les LED ne correspondant pas à un lecteur ne deviennent pas de l’activité média.</returns>
-    IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
-
     /// <summary>Produit le résumé de configuration propre au cœur sélectionné.</summary>
     /// <param name="configuration">Configuration à présenter sans démarrer son runtime.</param>
     /// <returns>Informations de modèle, processeur, mémoire, lecteurs et périphériques pour l’hôte.</returns>

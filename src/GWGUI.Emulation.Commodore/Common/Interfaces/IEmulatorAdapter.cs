@@ -205,7 +205,6 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
 
     ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory);
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
-    IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates);
     EmulationConfigurationSummary Summarize(MachineConfiguration configuration);
     IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);

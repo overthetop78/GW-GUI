@@ -71,6 +71,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
     /// <summary>Projection des entrées physiques vers les commandes du cœur, empruntée au backend Common.</summary>
     private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
+    /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
+    /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
+    private readonly IEmulatorMediaCapabilities? _mediaCapabilities;
     /// <summary>Contrôleur facultatif des impulsions de cassette, sans ressource physique possédée.</summary>
     private readonly CassetteInputController? _cassetteInput;
     /// <summary>Associations courantes des entrées ; les modifications sont appliquées sur le thread du cœur.</summary>
@@ -138,6 +142,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _supportsSavedStates = supportsSavedStates;
         _supportsPointerCapture = supportsPointerCapture || InputSettingsFunctions.SupportsMouse(configuration) || InputSettingsFunctions.SupportsPointerCapture(configuration.Input);
         _inputMapper = inputMapper ?? adapter;
+        _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _cassetteInput = cassetteInput;
         _inputConfiguration = configuration.Input;
         _mountedMedia = (resolvedMedia ?? configuration.Media).ToList();
@@ -206,7 +211,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <summary>Volume courant sous forme de facteur normalisé par le contrôleur.</summary>
     public float AudioVolume => _audio.Volume;
     /// <summary>Instantané des mesures vidéo, audio et de l’état du processus hôte.</summary>
-    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(CurrentConfiguration(), _core);
+    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(CurrentConfiguration(), _core, _mediaCapabilities);
     /// <summary>Notification d’une nouvelle image depuis le thread du cœur ; les buffers restent possédés par leur producteur.</summary>
     public event EventHandler<VideoFrame>? VideoFrameReady;
     /// <summary>Notification d’un bloc audio après son envoi à la sortie, depuis le thread du cœur.</summary>

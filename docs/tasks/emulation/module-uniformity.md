@@ -14870,3 +14870,147 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.State.cs : ajouter les descriptions françaises des paramètres et résultats manquants de 5 membres, en conservant leurs explications et remarques existantes.
     - [x] Modifier src/GWGUI.Emulation.Example/Modules/ExampleEmulationModule.cs : ajouter les descriptions françaises des paramètres et résultats manquants de 29 membres, en conservant leurs explications et remarques existantes.
     - [x] Modifier src/GWGUI.Emulation.Example/Modules/ExampleModuleFactory.cs : ajouter les descriptions françaises des paramètres et résultats manquants de 1 membres, en conservant leurs explications et remarques existantes ; vérifier les commentaires XML, l'identité des jetons C# et le build Debug avec tous les modules.
+
+- [x] Uniformiser la publication de l'activité des médias par la facette Common.
+  - [x] GWGUI.Emulation.Acorn.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Amstrad.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+      - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Apple.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Atari.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Bandai.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Coleco.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Commodore.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs : reprendre MediaActivity par IEmulatorMediaCapabilities et supprimer sa déclaration redondante locale.
+      - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+  - [x] GWGUI.Emulation.Epoch.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Example.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorAdapter.cs : reprendre MediaActivity par IEmulatorMediaCapabilities et supprimer sa déclaration redondante locale.
+      - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Fairchild.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Mattel.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Mattel/Emulators/Common/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Microsoft.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+  - [x] GWGUI.Emulation.Nec.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Nintendo.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Panasonic.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Philips.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Philips/Emulators/Common/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Sega.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Sharp.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Sinclair.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Snk.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Factories/MachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Sony.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Thomson.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Watara.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] GWGUI.Emulation.Wenquxing.
+    - [x] Relier la projection des indicateurs de médias au contrat de l'adaptateur emprunté.
+      - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorMediaCapabilities.cs : déclarer MediaActivity avec la configuration complète et les états de LED, documenter les emplacements et les ressources empruntées.
+      - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/RuntimeFunctions.cs : recevoir la facette média empruntée, lui confier la projection et conserver le traitement de repli existant lorsqu'elle est absente.
+      - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.cs : conserver la facette média de l'adaptateur déjà reçu et la transmettre à la publication du statut, sans reconstruire de fabrique à chaque lecture.
+      - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs : exposer MediaActivity avec les associations de LED déjà utilisées, permettre sa redéfinition dans les fabriques dérivées et conserver les projections existantes.
+  - [x] Valider la publication de statut dans les vingt-quatre modules.
+    - [x] Contrôler le parcours de la facette et les associations de LED conservées.
+      - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : inclure MediaActivity dans la liste existante des opérations communes attendues, sans retirer les autres vérifications.
+      - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : compléter le scénario existant de statut avec une sonde sans fichier ni cœur externe pour vérifier la transmission de configuration, de LED et d'activité dans les vingt-quatre modules ; exécuter la suite locale et le build Debug de tous les modules.

@@ -1160,6 +1160,32 @@ public sealed class ArchitectureValidationTests
         Assert.All(probe.Configurations, captured => Assert.Same(configuration, captured));
         Assert.Equal(probe.Configurations.Count, snapshot.Controllers.Count);
     }
+    public class MediaActivityProbe : DispatchProxy
+    {
+        public IReadOnlyDictionary<EmulationMediaSlot, bool> Activity { get; } = new Dictionary<EmulationMediaSlot, bool> { [EmulationMediaSlot.Floppy0] = true, [EmulationMediaSlot.HardDisk0] = false };
+        public IReadOnlyDictionary<int, bool> Leds { get; } = new Dictionary<int, bool> { [7] = true, [9] = false };
+        public object? Configuration { get; private set; }
+        public object? ObservedLeds { get; private set; }
+        public int Reads { get; private set; }
+        protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
+        {
+            switch (targetMethod!.Name)
+            {
+                case "MediaActivity": Configuration = args![0]; ObservedLeds = args[1]; Reads++; return Activity;
+                case "get_LedStates": return Leds;
+                case "get_LatestVideoFrame": case "get_Region": case "get_HostProcessId": case "Dispose": return null;
+                case "get_FramesPerSecond": return 50d;
+                case "get_SampleRate": return 44100;
+                case "get_CoreName": return "media-activity-probe";
+                case "get_BufferedAudioFrames": return 1;
+                case "get_AudioOverrunCount": return 2L;
+                case "get_AudioUnderrunCount": return 3L;
+                case "get_HostProcessState": return HostProcessState.InProcess;
+                default: throw new InvalidOperationException(targetMethod.Name);
+            }
+        }
+    }
+
     public class FeedbackCoreProxy : DispatchProxy
     {
         public IReadOnlyList<ControllerFeedbackState> States { get; set; } = [];
@@ -3461,7 +3487,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 8 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 8 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" or "IEmulatorMediaCapabilities" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -5579,6 +5605,64 @@ public sealed class ArchitectureValidationTests
             {
                 var getter = runtimeMap.TargetMethods[Array.IndexOf(runtimeMap.InterfaceMethods, member.GetMethod!)];
                 Assert.Contains(GetCompiledCalls(getter), call => call.Method == member.GetMethod);
+            }
+            var mediaContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorMediaCapabilities", throwOnError: true)!;
+            var mediaOperation = mediaContract.GetMethod("MediaActivity")!;
+            Assert.Equal(typeof(IReadOnlyDictionary<EmulationMediaSlot, bool>), mediaOperation.ReturnType);
+            Assert.Equal(new[] { "configuration", "ledStates" }, mediaOperation.GetParameters().Select(parameter => parameter.Name));
+            Assert.Equal(runtimeContract.GetGenericArguments()[0], mediaOperation.GetParameters()[0].ParameterType);
+            Assert.Equal(typeof(IReadOnlyDictionary<int, bool>), mediaOperation.GetParameters()[1].ParameterType);
+            var mediaField = machine.GetField("_mediaCapabilities", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.Equal(mediaContract, mediaField.FieldType);
+            Assert.True(mediaField.IsInitOnly);
+            var mediaAdapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
+            Assert.Contains(mediaContract, mediaAdapterContract.GetInterfaces());
+            Assert.DoesNotContain(mediaAdapterContract.GetMethods(), method => method.Name == "MediaActivity");
+            foreach (var implementation in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && mediaAdapterContract.IsAssignableFrom(type)))
+            {
+                var map = implementation.GetInterfaceMap(mediaContract);
+                var target = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, mediaOperation)];
+                Assert.False(target.IsAbstract);
+                Assert.True(target.DeclaringType!.IsClass);
+            }
+            var mediaAdapter = DispatchProxy.Create(mediaContract, typeof(MediaActivityProbe));
+            var mediaProbe = (MediaActivityProbe)mediaAdapter;
+            var mediaConfiguration = RuntimeHelpers.GetUninitializedObject(runtimeContract.GetGenericArguments()[0]);
+            object? mediaCore = null;
+            try
+            {
+                mediaCore = DispatchProxy.Create(coreContract, typeof(MediaActivityProbe));
+                var coreProbe = (MediaActivityProbe)mediaCore;
+                object? projected;
+                var projector = assembly.GetType(root + ".Common.Machines.Common.Functions.RuntimeFunctions")?.GetMethod("Status", BindingFlags.Static | BindingFlags.NonPublic);
+                if (projector is not null)
+                {
+                    Assert.Equal(3, projector.GetParameters().Length);
+                    Assert.Contains(GetCompiledCalls(projector), call => call.Method == mediaOperation);
+                    var snapshot = projector.Invoke(null, [mediaConfiguration, mediaCore, mediaAdapter])!;
+                    projected = snapshot.GetType().GetProperty("MediaActivity")!.GetValue(snapshot);
+                }
+                else
+                {
+                    // Ce conteneur non initialisé sert uniquement à lire la facette ; aucun thread, processus ou handle n'est créé.
+                    var container = RuntimeHelpers.GetUninitializedObject(machine);
+                    machine.GetField("_core", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(container, mediaCore);
+                    machine.GetProperty("Configuration")!.SetValue(container, mediaConfiguration);
+                    mediaField.SetValue(container, mediaAdapter);
+                    var getter = Assert.Single(machine.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance), method => method.Name.EndsWith(".get_MediaActivity", StringComparison.Ordinal));
+                    Assert.Contains(GetCompiledCalls(getter), call => call.Method == mediaOperation);
+                    projected = getter.Invoke(container, null);
+                }
+                var publishedActivity = Assert.IsAssignableFrom<IReadOnlyDictionary<EmulationMediaSlot, bool>>(projected);
+                Assert.Equal(mediaProbe.Activity.OrderBy(pair => pair.Key.ProtocolValue), publishedActivity.OrderBy(pair => pair.Key.ProtocolValue));
+                Assert.Same(mediaConfiguration, mediaProbe.Configuration);
+                Assert.Same(coreProbe.Leds, mediaProbe.ObservedLeds);
+                Assert.Equal(1, mediaProbe.Reads);
+                Assert.Equal(2, coreProbe.Leds.Count);
+            }
+            finally
+            {
+                (mediaCore as IDisposable)?.Dispose();
             }
             if (root == "GWGUI.Emulation.Microsoft") continue;
             var process = Assert.Single(assembly.GetTypes(), type => type.Name == "ProcessCore" && coreContract.IsAssignableFrom(type));

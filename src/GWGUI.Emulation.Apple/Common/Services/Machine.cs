@@ -29,6 +29,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IEmulatorCore _core;
     /// <summary>Projecteur Common emprunté à la fabrique ; aucune ressource de cœur ne lui est transférée.</summary>
     private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
+    /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
+    /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
+    private readonly IEmulatorMediaCapabilities? _mediaCapabilities;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     /// <summary>Callback média explicite emprunté ; il prime sur la politique du backend.</summary>
@@ -60,6 +64,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _inputMapper = inputMapper;
+        _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _coreFactory = coreFactory;
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
@@ -98,7 +103,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public bool SupportsSaveStates => _core.SupportsSaveStates;
     public bool IsAudioMuted => _audio.IsMuted;
     public float AudioVolume => _audio.Volume;
-    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core);
+    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core, _mediaCapabilities);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();

@@ -31,6 +31,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private readonly IEmulatorCore _core;
     private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
+    /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
+    /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
+    private readonly IEmulatorMediaCapabilities? _mediaCapabilities;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly Action<string>? _deleteSession;
@@ -61,6 +65,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Configuration = configuration;
         _core = core;
         _inputMapper = inputMapper;
+        _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
         _deleteSession = deleteSession;
@@ -134,7 +139,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
-    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => _mediaCapabilities?.MediaActivity(Configuration, _core.LedStates) ?? EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => option with { CurrentValue = _currentOptions.GetValueOrDefault(option.Key, option.DefaultValue), Values = option.Values.ToArray(), RequiresRestart = _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true })
         .ToArray();

@@ -14,11 +14,12 @@ internal static class RuntimeFunctions
     /// <param name="configuration">Configuration portant le modèle et les lecteurs à décrire.</param>
     /// <param name="core">Cœur emprunté sur son thread propriétaire ou après publication de ses données.</param>
     /// <returns>Mesures et copies des dictionnaires de statut ; aucune ressource native n’est transférée.</returns>
-    internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
+    /// <param name="mediaCapabilities">Facette média empruntée à la session, ou null pour consulter le choix du catalogue dans un appel indépendant.</param>
+    internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core, IEmulatorMediaCapabilities? mediaCapabilities = null)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
-        var activity = new Engine().SelectedAdapter(configuration)?.MediaActivity(configuration, core.LedStates) ?? new Dictionary<EmulationMediaSlot, bool>();
+        var activity = (mediaCapabilities ?? new Engine().SelectedAdapter(configuration))?.MediaActivity(configuration, core.LedStates) ?? new Dictionary<EmulationMediaSlot, bool>();
         return new(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate, geometry, core.CoreName,
             new Dictionary<EmulationMediaSlot, bool>(activity), new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames,
             core.AudioOverrunCount, core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);

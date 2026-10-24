@@ -348,7 +348,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <param name="ledStates">Instantané emprunté des indicateurs d&apos;activité, indexés par identifiant de protocole.</param>
     /// <returns>Nouveau dictionnaire d&apos;activité, indexé par emplacement de média.</returns>
     /// <remarks><para>Chaque emplacement utilise son identifiant de protocole pour consulter les LED ; une indication absente est interprétée comme inactive.</para></remarks>
-    public IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => DescribeMediaDevices(configuration).ToDictionary(device => device.Slot, device => ledStates.GetValueOrDefault(device.Slot.ProtocolValue));
+    public virtual IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => DescribeMediaDevices(configuration).ToDictionary(device => device.Slot, device => ledStates.GetValueOrDefault(device.Slot.ProtocolValue));
     /// <summary>Expose les extensions de cartouches lorsque le profil possède ce support.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Ensemble des extensions acceptées, ou null pour un profil sans cartouche.</returns>

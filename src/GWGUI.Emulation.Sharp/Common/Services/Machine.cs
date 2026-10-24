@@ -29,6 +29,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
+    /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
+    /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
+    private readonly IEmulatorMediaCapabilities? _mediaCapabilities;
     private readonly Func<EmulationMediaSlot, string?, bool>? _requiresMediaRestart;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
@@ -73,6 +77,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _core = core;
         _coreFactory = coreFactory;
         _inputMapper = inputMapper;
+        _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _requiresMediaRestart = requiresMediaRestart;
         if (_requiresMediaRestart is null && _runtimePolicy is null) throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
@@ -116,7 +121,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public bool SupportsSaveStates => !_mediaSuspended && _core.SupportsSaveStates;
     public bool IsAudioMuted => _audio.IsMuted;
     public float AudioVolume => _audio.Volume;
-    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core);
+    public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core, _mediaCapabilities);
 
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
