@@ -177,7 +177,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
 
     protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(CoreDefinition, configuration);
 
-    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings,
+    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Emulator, ReleaseSettings,
         CoreDefinition.Id, CoreDefinition.IsInstallationComplete, CoreDefinition.PrepareInstallation);
     /// <inheritdoc/>
     public IReadOnlyList<CoreOption> NormalizeRuntimeOptions(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) => CoreOptionMetadataFunctions.Merge(options, CoreDefinition.ResolveOptions?.Invoke(configuration) ?? CoreDefinition.Options, configuration.GraphicsApi);

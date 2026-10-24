@@ -14,11 +14,15 @@ internal sealed class CoreReleaseService : ICoreReleaseService
     private readonly string? _downloadUrl;
     private readonly CoreRelease? _requiredRelease;
     private Uri? LatestOfficialUri => _downloadUrl is { } url ? new(url) : null;
+    /// <summary>Identité du profil dont ce service gère le dossier et les métadonnées.</summary>
+    private readonly Emulator _emulator;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, string libraryFile, string? downloadUrl, CoreRelease? requiredRelease)
+    internal CoreReleaseService(HttpClient httpClient, string directory, Emulator emulator, string libraryFile, string? downloadUrl, CoreRelease? requiredRelease)
     {
+        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
+        _emulator = emulator;
         _libraryFile = libraryFile;
         _downloadUrl = downloadUrl;
         _requiredRelease = requiredRelease;
@@ -26,12 +30,18 @@ internal sealed class CoreReleaseService : ICoreReleaseService
         _directory = Path.GetFullPath(directory);
     }
 
+    /// <summary>Refuse une demande destinée à un autre profil avant tout accès à son installation.</summary>
+    private void ValidateEmulator(Emulator emulator)
+    {
+        if (emulator != _emulator) throw new ArgumentOutOfRangeException(nameof(emulator));
+    }
     private string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
 
     /// <summary>Résout les chemins et la version de l'installation présente sans charger le cœur.</summary>
     public Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
+        ValidateEmulator(emulator);
         if (!File.Exists(RequiredLibraryPath)) return Task.FromResult<CoreInstallationPaths?>(null);
         var manifestPath = Path.Combine(_directory, EmulatorCatalogConstants.ManifestFileName);
         var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, EmulatorCatalogConstants.VersionPropertyName, CoreReleaseConstants.UnknownVersion);
@@ -40,6 +50,8 @@ internal sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        ValidateEmulator(emulator);
         var releases = new List<CoreRelease>();
         if (_requiredRelease is { } required)
             releases.Add(required with { Emulator = emulator });
@@ -58,7 +70,9 @@ internal sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         ArgumentNullException.ThrowIfNull(release);
+        ValidateEmulator(release.Emulator);
         Directory.CreateDirectory(_directory);
 
 

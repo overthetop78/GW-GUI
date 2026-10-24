@@ -196,7 +196,8 @@ public sealed class ArchitectureValidationTests
             Func<string, bool> complete = static _ => true;
             Func<System.Net.Http.HttpClient, string, CancellationToken, Task> prepare = static (_, _, _) => Task.CompletedTask;
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance));
-            var instance = constructor.Invoke([client, ".", settings, "custom-emulator", complete, prepare]);
+            var identity = Enum.GetValues(constructor.GetParameters()[2].ParameterType).Cast<object>().First(value => value.ToString() != "None");
+            var instance = constructor.Invoke([client, ".", identity, settings, "custom-emulator", complete, prepare]);
             Assert.Same(complete, service.GetField("_isInstallationComplete", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(instance));
             Assert.Same(prepare, service.GetField("_prepareInstallation", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(instance));
             Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == "InstallLibraryAsync" && call.Method.GetParameters().Last().Name == "prepareReplacement");
@@ -309,6 +310,105 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(6, official);
         Assert.Equal(1, preinstalled);
         Assert.Equal(23, providers);
+    }
+
+    [Fact]
+    public async Task CoreReleaseServicesCancelBeforeWorkAndRejectForeignProfiles()
+    {
+        using var handler = new CoreReleaseMetadataHandler();
+        using var client = new System.Net.Http.HttpClient(handler, disposeHandler: false);
+        var canceled = new CancellationToken(canceled: true);
+        var services = 0;
+        var boundProfiles = 0;
+        foreach (var name in typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies().Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)))
+        {
+            var assembly = Assembly.Load(name);
+            var serviceType = assembly.GetTypes().SingleOrDefault(type => type.Name == "CoreReleaseService");
+            if (serviceType is null) continue;
+            services++;
+            var releaseType = serviceType.GetMethod("InstallAsync")!.GetParameters()[0].ParameterType;
+            var emulatorType = releaseType.GetGenericArguments()[0];
+            var identities = Enum.GetValues(emulatorType).Cast<object>().Where(value => value.ToString() != "None").ToArray();
+            var identity = identities[0];
+            var constructor = Assert.Single(serviceType.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
+            var arguments = CoreReleaseGuardArguments(constructor, emulatorType, identity, client);
+            var service = constructor.Invoke(arguments);
+            object Release(object emulator) => Activator.CreateInstance(releaseType, [emulator, "publication", "1.0", new Uri("https://example.invalid/core.zip"), null, null])!;
+
+            // Les résolveurs et le client refusent toute consultation : ces demandes doivent s'arrêter avant leurs effets.
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => InvokeCoreReleaseTask(service, "GetAvailableAsync", identity, canceled));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => InvokeCoreReleaseTask(service, "GetActiveInstallationAsync", identity, canceled));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => InvokeCoreReleaseTask(service, "InstallAsync", Release(identity), null, canceled));
+            if (serviceType.GetField("_emulator", BindingFlags.NonPublic | BindingFlags.Instance) is null) continue;
+            boundProfiles++;
+            var otherIdentity = identities[1];
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => InvokeCoreReleaseTask(service, "GetAvailableAsync", otherIdentity, CancellationToken.None));
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => InvokeCoreReleaseTask(service, "GetActiveInstallationAsync", otherIdentity, CancellationToken.None));
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => InvokeCoreReleaseTask(service, "InstallAsync", Release(otherIdentity), null, CancellationToken.None));
+            var noIdentity = (object?[])arguments.Clone();
+            noIdentity[Array.FindIndex(constructor.GetParameters(), parameter => parameter.ParameterType == emulatorType)] = Enum.ToObject(emulatorType, int.MaxValue);
+            Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => constructor.Invoke(noIdentity)).InnerException);
+            handler.AllowMetadata = true;
+            try
+            {
+                var available = (Task)serviceType.GetMethod("GetAvailableAsync")!.Invoke(service, [identity, CancellationToken.None])!;
+                await available;
+                var publication = Assert.Single(((System.Collections.IEnumerable)available.GetType().GetProperty("Result")!.GetValue(available)!).Cast<object>());
+                Assert.Equal(identity, publication.GetType().GetProperty("Emulator")!.GetValue(publication));
+            }
+            finally { handler.AllowMetadata = false; }
+        }
+        Assert.Equal(23, services);
+        Assert.Equal(6, boundProfiles);
+        Assert.Equal(6, handler.Requests);
+    }
+
+    private static object?[] CoreReleaseGuardArguments(ConstructorInfo constructor, Type emulatorType, object identity, System.Net.Http.HttpClient client)
+    {
+        object? Argument(ParameterInfo parameter)
+        {
+            var type = parameter.ParameterType;
+            if (parameter.HasDefaultValue) return parameter.DefaultValue;
+            if (type == typeof(System.Net.Http.HttpClient)) return client;
+            if (type == emulatorType) return identity;
+            if (type == typeof(string)) return parameter.Name switch { "directory" or "installationRoot" => ".", "downloadUrl" => "https://example.invalid/core.zip", "libraryFile" => "guard-core.dll", "architecture" => "x64", _ => "metadata" };
+            if (type == typeof(Uri)) return new Uri("https://example.invalid/core.zip");
+            if (type == typeof(EmulationCoreReleaseSettings)) return new EmulationCoreReleaseSettings(new Uri("https://example.invalid/core.zip"), "archive.dll", "guard-core.dll", "Core");
+            if (type == typeof(Action<string>)) return null;
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EmulationCatalogCoreRelease<>)) return null;
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Func<,>) && type.GetGenericArguments()[0] == emulatorType)
+                return typeof(ArchitectureValidationTests).GetMethod(nameof(RefuseCoreReleaseCatalogue), BindingFlags.Static | BindingFlags.NonPublic)!.MakeGenericMethod(type.GetGenericArguments()).CreateDelegate(type);
+            throw new InvalidOperationException("Unexpected dependency: " + parameter.Name);
+        }
+        return constructor.GetParameters().Select(Argument).ToArray();
+    }
+
+    private static TEntry RefuseCoreReleaseCatalogue<TEmulator, TEntry>(TEmulator emulator) => throw new InvalidOperationException("Unexpected catalogue resolution.");
+
+    private static async Task InvokeCoreReleaseTask(object service, string method, params object?[] arguments)
+    {
+        Task task;
+        try { task = (Task)service.GetType().GetMethod(method)!.Invoke(service, arguments)!; }
+        catch (TargetInvocationException error) when (error.InnerException is not null)
+        {
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(error.InnerException).Throw();
+            throw;
+        }
+        await task;
+    }
+
+    private sealed class CoreReleaseMetadataHandler : System.Net.Http.HttpMessageHandler
+    {
+        internal int Requests { get; private set; }
+        internal bool AllowMetadata { get; set; }
+        protected override Task<System.Net.Http.HttpResponseMessage> SendAsync(System.Net.Http.HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            Requests++;
+            if (!AllowMetadata || request.Method != System.Net.Http.HttpMethod.Head) throw new InvalidOperationException("Unexpected HTTP request.");
+            var response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK) { Content = new System.Net.Http.ByteArrayContent([1, 2, 3]) };
+            response.Headers.Date = new DateTimeOffset(2026, 1, 2, 3, 4, 5, TimeSpan.Zero);
+            return Task.FromResult(response);
+        }
     }
 
     [Fact]

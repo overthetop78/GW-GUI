@@ -14204,3 +14204,36 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : utiliser le choix de format de version défini dans CoreReleaseConstants.
   - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Catalog.cs : utiliser le choix de manifeste défini dans EmulatorCatalogConstants.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les noms et le placement communs des conventions ainsi que les choix utilisés par Example ; exécuter les tests et le build Debug avec tous les modules.
+
+- [x] Uniformiser la portée des identités et l’annulation des services de cœur.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/ICoreReleaseService.cs : documenter la portée des identités acceptées et l’annulation avant consultation du catalogue ou du stockage.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreReleaseService.cs : lier le service à son identité de cœur, refuser les identités étrangères et respecter l’annulation avant les effets de bord.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreReleaseService.cs : respecter l’annulation avant la résolution du catalogue et les effets de bord des trois opérations.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier en mémoire l’annulation des trois opérations des vingt-trois services et le refus des identités étrangères des six profils natifs, sans disque ni réseau ; exécuter les vérifications et le build Debug complet.

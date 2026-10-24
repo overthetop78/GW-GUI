@@ -103,13 +103,13 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName ?? item.DeclaredVersion, item.DeclaredVersion, item.IsRequired)).ToArray();
     }
@@ -118,12 +118,12 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
         var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
-        await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease), CoreReleaseService.VerifyWindowsX64Library).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease), CoreReleaseService.VerifyWindowsX64Library).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(ExternalCore.ResolveConfiguredMedia(configuration));
 

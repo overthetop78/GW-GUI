@@ -75,7 +75,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
         return true;
     }
 
-    private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation);
+    private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Emulator.CrocoDS, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation);
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {

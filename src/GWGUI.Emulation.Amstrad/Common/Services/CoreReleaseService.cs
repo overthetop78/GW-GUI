@@ -10,6 +10,8 @@ namespace GWGUI.Emulation.Amstrad.Common.Services;
 
 internal sealed class CoreReleaseService : ICoreReleaseService
 {
+    /// <summary>Identité du profil dont ce service gère le dossier et les métadonnées.</summary>
+    private readonly Emulator _emulator;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
     private readonly string _libraryFile;
@@ -19,8 +21,10 @@ internal sealed class CoreReleaseService : ICoreReleaseService
     private readonly string _architecture;
     private readonly Action<string>? _verifyInstallation;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, string libraryFile, Uri downloadUri, string latestReleaseDisplayName, string releaseProviderSuffix, string architecture, Action<string>? verifyInstallation)
+    internal CoreReleaseService(HttpClient httpClient, string directory, Emulator emulator, string libraryFile, Uri downloadUri, string latestReleaseDisplayName, string releaseProviderSuffix, string architecture, Action<string>? verifyInstallation)
     {
+        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
+        _emulator = emulator;
         _libraryFile = libraryFile;
         _downloadUri = downloadUri;
         _latestReleaseDisplayName = latestReleaseDisplayName;
@@ -31,12 +35,18 @@ internal sealed class CoreReleaseService : ICoreReleaseService
         _directory = Path.GetFullPath(directory);
     }
 
+    /// <summary>Refuse une demande destinée à un autre profil avant tout accès à son installation.</summary>
+    private void ValidateEmulator(Emulator emulator)
+    {
+        if (emulator != _emulator) throw new ArgumentOutOfRangeException(nameof(emulator));
+    }
     private string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
 
     /// <summary>Résout les chemins et la version de l'installation présente sans charger le cœur.</summary>
     public Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
+        ValidateEmulator(emulator);
         if (!File.Exists(RequiredLibraryPath)) return Task.FromResult<CoreInstallationPaths?>(null);
         var manifestPath = Path.Combine(_directory, EmulatorCatalogConstants.ManifestFileName);
         var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, EmulatorCatalogConstants.VersionPropertyName, CoreReleaseConstants.UnknownVersion);
@@ -45,6 +55,8 @@ internal sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        ValidateEmulator(emulator);
         return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _downloadUri, response =>
         {
             var published = response.Content.Headers.LastModified ?? response.Headers.Date;
@@ -57,7 +69,9 @@ internal sealed class CoreReleaseService : ICoreReleaseService
 
     public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         ArgumentNullException.ThrowIfNull(release);
+        ValidateEmulator(release.Emulator);
         Directory.CreateDirectory(_directory);
         var destination = RequiredLibraryPath;
         var download = destination + CoreReleaseConstants.TemporaryDownloadExtension;
