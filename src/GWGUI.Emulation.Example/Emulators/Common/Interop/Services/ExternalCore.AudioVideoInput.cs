@@ -256,7 +256,7 @@ internal sealed partial class ExternalCore
     /// <param name="data">Adresse des échantillons PCM signés sur seize bits, entrelacés par canal et copiés pendant le callback.</param>
     /// <param name="frames">Nombre de trames audio ; chaque trame comprend les échantillons de tous ses canaux.</param>
     /// <returns>Nombre de trames audio consommées, identique à la quantité transmise au callback.</returns>
-    private nuint ReceiveAudio(nint data, nuint frames) { PublishAudio(AudioFunctions.CopyBatch(data, frames)); return frames; }
+    private nuint ReceiveAudio(nint data, nuint frames) { PublishAudio(AudioFunctions.Processing.CopyBatch(data, frames)); return frames; }
     /// <summary>Publie un lot possédé par la file audio avec les mêmes unités que le contrat SDK.</summary>
     /// <param name="samples">Échantillons PCM signés sur seize bits, entrelacés par canal ; le tableau doit rester stable pendant l&apos;utilisation du bloc publié.</param>
     private void PublishAudio(short[] samples)

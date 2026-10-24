@@ -38,7 +38,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     private void OnAudioSample(short left, short right)
     {
-        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);
+        AddAudio(AudioFunctions.Processing.SingleFrame(left, right), AudioConstants.SingleFrameCount);
     }
 
     private nuint OnAudioBatch(nint data, nuint frames)
