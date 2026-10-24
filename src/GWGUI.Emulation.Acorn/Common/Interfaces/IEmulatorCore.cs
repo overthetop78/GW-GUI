@@ -1,10 +1,9 @@
+using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Acorn.Common.Interfaces;
 
-internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>
+internal interface IEmulatorCore : IEmulationCoreRuntime<MachineConfiguration, CoreOption>, IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>, IEmulationCoreIdentity<Emulator>
 {
-
-    Emulator Emulator { get; }
 }
 

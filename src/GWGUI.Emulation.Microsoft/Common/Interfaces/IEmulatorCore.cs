@@ -1,8 +1,6 @@
+using GWGUI.Emulation.Interfaces;
 namespace GWGUI.Emulation.Microsoft.Common.Interfaces;
 
-internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>
+internal interface IEmulatorCore : IEmulationCoreRuntime<MachineConfiguration, CoreOption>, IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>, IEmulationCoreIdentity<string>
 {
-
-    int DiskCount { get; }
-    int CurrentDiskIndex { get; }
 }

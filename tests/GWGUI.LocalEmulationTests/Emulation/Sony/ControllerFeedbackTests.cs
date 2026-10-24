@@ -165,6 +165,9 @@ public sealed class ControllerFeedbackTests
 
     private sealed class FeedbackCore : IEmulatorCore
     {
+        public bool SupportsPointerCapture => true;
+        public string Emulator => "synthetic";
+
         public int MinimumAudioLatencyMilliseconds => 0;
         public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
         public HostProcessState HostProcessState => HostProcessState.InProcess;

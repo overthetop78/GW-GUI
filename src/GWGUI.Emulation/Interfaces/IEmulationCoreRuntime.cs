@@ -7,6 +7,18 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>La machine possède le cœur : elle l’initialise, l’exécute et le libère sur son thread après arrêt de la boucle. Les sorties ne doivent plus être lues après sa destruction.</remarks>
 public interface IEmulationCoreRuntime<in TConfiguration, out TOption> : IDisposable, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
 {
+    /// <summary>Nombre des images du jeu de disques courant, sans changement de sélection.</summary>
+    /// <remarks>La consultation suit les préconditions du statut de disques et le thread propriétaire du cœur.
+    /// Un cœur distant peut exposer les dernières valeurs reçues de son hôte.</remarks>
+    int DiskCount { get; }
+    /// <summary>Index sélectionné dans ce jeu d’images ; moins un lorsque le backend ne sélectionne aucune image.</summary>
+    /// <remarks>Cette valeur décrit la sélection du backend et ne remplace pas la catégorie et l’indice du lecteur logique.</remarks>
+    int CurrentDiskIndex { get; }
+    /// <summary>Autorise la capture du pointeur pour ce cœur et son mode d’hébergement.</summary>
+    /// <remarks>Common conserve aussi les restrictions de périphériques propres au modèle et à son profil.
+    /// Ce renseignement ne capture pas le pointeur et ne possède aucune fenêtre ou ressource graphique.</remarks>
+    bool SupportsPointerCapture { get; }
+
     /// <summary>Demande de fermeture émise par le cœur et conservée jusqu’à l’arrêt de sa session.</summary>
     /// <remarks>Le signal reste une donnée du runtime. La boucle Common l’examine pour terminer l’exécution ;
     /// son propriétaire assure ensuite l’arrêt, la fermeture et la libération du cœur dans finally.

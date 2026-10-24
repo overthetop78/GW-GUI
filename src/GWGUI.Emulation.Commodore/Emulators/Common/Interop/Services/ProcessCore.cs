@@ -17,6 +17,12 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+    /// <inheritdoc/>
+    private string _emulator = string.Empty;
+    public string Emulator => _emulator;
+
+    /// <inheritdoc/>
     public bool SupportsSaveStates { get; private set; }
     /// <inheritdoc/>
     public EmulationVideoStandard? Region { get; private set; }
@@ -91,6 +97,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_initialized) throw new InvalidOperationException(CoreExceptions.ProcessAlreadyInitialized());
+        _emulator = configuration.Core.ToString();
         if (!File.Exists(_hostExecutablePath))
             throw new FileNotFoundException(CoreExceptions.HostExecutableNotFound(), _hostExecutablePath);
 

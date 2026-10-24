@@ -12,6 +12,13 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 internal sealed partial class ExternalCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
+    /// <inheritdoc/>
     /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
     public void SoftReset() => HardReset();
 

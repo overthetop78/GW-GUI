@@ -20,6 +20,13 @@ namespace GWGUI.Emulation.Sinclair.Common.Services;
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
+    /// <inheritdoc/>
     public void SoftReset() => Request(HostCommand.SoftReset);
 
     /// <inheritdoc/>

@@ -32,6 +32,13 @@ namespace GWGUI.Emulation.Example.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
     /// <summary>Chemin absolu de l’exécutable lancé comme hôte du cœur.</summary>
     private readonly string _hostExecutablePath;
     /// <summary>Argument identifiant le mode hôte à activer dans l’exécutable.</summary>

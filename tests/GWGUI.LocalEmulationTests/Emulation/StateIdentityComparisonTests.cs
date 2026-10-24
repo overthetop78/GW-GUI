@@ -83,6 +83,10 @@ public sealed class StateIdentityComparisonTests
 
     private sealed class IdentityCore : IEmulationCoreRuntime<object, object>
     {
+        public int DiskCount => 0;
+        public int CurrentDiskIndex => -1;
+        public bool SupportsPointerCapture => true;
+
         public bool ShutdownRequested => false;
         public bool SupportsSaveStates => true;
         public EmulationVideoStandard? Region => null;

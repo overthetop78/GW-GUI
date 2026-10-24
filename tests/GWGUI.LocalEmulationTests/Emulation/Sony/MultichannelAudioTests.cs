@@ -178,6 +178,9 @@ public sealed class MultichannelAudioTests
 
     private sealed class AudioCore(IEnumerable<AudioChunk> chunks) : IEmulatorCore
     {
+        public bool SupportsPointerCapture => true;
+        public string Emulator => "synthetic";
+
         public int MinimumAudioLatencyMilliseconds => 0;
         public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
         public HostProcessState HostProcessState => HostProcessState.InProcess;

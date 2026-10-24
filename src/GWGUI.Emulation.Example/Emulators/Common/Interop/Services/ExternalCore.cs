@@ -14,6 +14,13 @@ namespace GWGUI.Emulation.Example.Emulators.Common.Interop.Services;
 /// La machine sérialise les commandes et appelle Dispose dans son finally après arrêt effectif de la boucle.</remarks>
 internal sealed partial class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
     /// <summary>Table d’exports gérés conservée vivante pendant toute la session simulée.</summary>
     private readonly ExternalCoreExports _exports;
     /// <summary>Contrat descriptif Common qui adapte les extensions ; cette instance ne possède aucune ressource de cœur.</summary>

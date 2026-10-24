@@ -24,6 +24,11 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+    /// <inheritdoc/>
+    public string Emulator => _configuration?.EmulatorId ?? string.Empty;
+
+    /// <inheritdoc/>
     public bool SupportsSaveStates { get; private set; }
     /// <inheritdoc/>
     public EmulationVideoStandard? Region { get; private set; }

@@ -240,6 +240,10 @@ public sealed class CoreHostResponseTests
 
     private sealed class Core : IEmulationCoreRuntime<Configuration, Option>
     {
+        public int DiskCount => 0;
+        public int CurrentDiskIndex => -1;
+        public bool SupportsPointerCapture => true;
+
         public bool ShutdownRequested => false;
 
         internal int Latency;

@@ -21,6 +21,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 internal sealed class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
+    public string Emulator => _configuration?.EmulatorId ?? string.Empty;
+
+    /// <inheritdoc/>
     public bool SupportsSaveStates { get; private set; }
     /// <inheritdoc/>
     public EmulationVideoStandard? Region { get; private set; }

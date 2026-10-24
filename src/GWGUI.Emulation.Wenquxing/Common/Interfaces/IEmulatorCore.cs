@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Wenquxing.Common.Contracts;
@@ -7,8 +8,6 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Interfaces;
 
-internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, EmulationPeripheralCategory>
+internal interface IEmulatorCore : IEmulationCoreRuntime<MachineConfiguration, CoreOption>, IEmulationCoreCommands<MediaConfiguration, EmulationPeripheralCategory>, IEmulationCoreIdentity<Emulator>
 {
-
-    Emulator Emulator { get; }
 }

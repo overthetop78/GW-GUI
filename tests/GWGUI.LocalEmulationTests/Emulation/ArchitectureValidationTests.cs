@@ -4347,9 +4347,32 @@ public sealed class ArchitectureValidationTests
             var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var coreContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
             Assert.Contains(status, coreContract.GetInterfaces());
+            Assert.Empty(coreContract.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly));
+            var genericContracts = coreContract.GetInterfaces().Where(type => type.IsGenericType).ToArray();
+            Assert.Equal(3, genericContracts.Length);
+            var runtimeContract = Assert.Single(genericContracts, type => type.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            Assert.Single(genericContracts, type => type.GetGenericTypeDefinition() == typeof(IEmulationCoreCommands<,>));
+            var identityContract = Assert.Single(genericContracts, type => type.GetGenericTypeDefinition() == typeof(IEmulationCoreIdentity<>));
+            Assert.True(identityContract.IsPublic);
+            var identityProperty = identityContract.GetProperty("Emulator")!;
+            Assert.Equal(identityContract.GetGenericArguments()[0], identityProperty.PropertyType);
+            Assert.Null(identityProperty.SetMethod);
             foreach (var core in assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && coreContract.IsAssignableFrom(type)))
             {
                 cores++;
+                var identityMap = core.GetInterfaceMap(identityContract);
+                var identityGetter = Assert.Single(identityMap.TargetMethods);
+                Assert.True(identityGetter.DeclaringType!.IsClass);
+                Assert.False(identityGetter.IsAbstract);
+                var runtimeMembers = core.GetInterfaceMap(runtimeContract);
+                foreach (var name in new[] { "DiskCount", "CurrentDiskIndex", "SupportsPointerCapture" })
+                {
+                    var member = runtimeContract.GetProperty(name)!;
+                    var target = runtimeMembers.TargetMethods[Array.IndexOf(runtimeMembers.InterfaceMethods, member.GetMethod!)];
+                    Assert.True(target.DeclaringType!.IsClass);
+                    Assert.False(target.IsAbstract);
+                    Assert.Equal(name == "SupportsPointerCapture" ? typeof(bool) : typeof(int), target.ReturnType);
+                }
                 var map = core.GetInterfaceMap(status);
                 foreach (var member in members)
                 {
@@ -4390,6 +4413,18 @@ public sealed class ArchitectureValidationTests
             Assert.Contains(processCalls, call => call.Method.Name == "ReadRuntimeStatus" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
         }
         Assert.Equal(46, cores);
+        var amstrad = Assembly.Load("gwgui.emulation.amstrad").GetType("GWGUI.Emulation.Amstrad.Emulators.Common.Services.ProcessCore", throwOnError: true)!;
+        foreach (var capture in new[] { false, true })
+        {
+            IDisposable? instance = null;
+            try
+            {
+                instance = (IDisposable)Activator.CreateInstance(amstrad, BindingFlags.NonPublic | BindingFlags.Instance, binder: null,
+                    args: ["virtual-host.exe", "example", null, capture], culture: System.Globalization.CultureInfo.InvariantCulture)!;
+                Assert.Equal(capture, amstrad.GetProperty("SupportsPointerCapture")!.GetValue(instance));
+            }
+            finally { instance?.Dispose(); }
+        }
         Assert.Equal(6, cachedNativeCapabilities);
         var helper = typeof(DiskStatus).Assembly.GetType("GWGUI.Emulation.Functions.EmulationHostProtocolFunctions", throwOnError: true)!;
         var frame = helper.GetMethod("RunCoreFrame", BindingFlags.Static | BindingFlags.NonPublic)!;

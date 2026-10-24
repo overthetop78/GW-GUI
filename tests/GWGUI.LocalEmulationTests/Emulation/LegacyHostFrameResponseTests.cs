@@ -174,6 +174,10 @@ public sealed class LegacyHostFrameResponseTests
     }
     private sealed class Core : IEmulationCoreRuntime<object, string>
     {
+        public int DiskCount => 0;
+        public int CurrentDiskIndex => -1;
+        public bool SupportsPointerCapture => true;
+
         public bool ShutdownRequested => false;
 
         public int MinimumAudioLatencyMilliseconds => 35;

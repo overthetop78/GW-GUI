@@ -11,6 +11,11 @@ namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 
 internal sealed class ExternalCore : IEmulatorCore
 {
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+    /// <inheritdoc/>
+    public string Emulator => _configuration?.EmulatorId ?? string.Empty;
+
     /// <summary>Capacité native constatée après le chargement, bornée par les limites du format existant.</summary>
     private bool _supportsSaveStates;
     /// <inheritdoc/>
