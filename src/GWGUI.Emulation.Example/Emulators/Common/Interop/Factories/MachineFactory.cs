@@ -207,6 +207,12 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <inheritdoc/>
     public MachineConfiguration ApplyStorageConfiguration(MachineConfiguration configuration, IReadOnlyList<EmulationMediaSlot> slots) => StorageSettingsFunctions.ApplyStorageConfiguration(configuration, slots);
     /// <inheritdoc/>
+    /// <remarks>Les trois simulations utilisent le même propriétaire Common des paramètres persistants de lecteurs.</remarks>
+    public IReadOnlyList<EmulationStorageDeviceSettings> DescribeDeviceSettings(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeDeviceSettings(configuration);
+    /// <inheritdoc/>
+    /// <remarks>Common valide les associations de catégories et copie les options ; aucun média n’est ouvert ici.</remarks>
+    public MachineConfiguration ApplyDeviceSettings(MachineConfiguration configuration, IReadOnlyList<EmulationStorageDeviceSettings> settings) => StorageSettingsFunctions.ApplyDeviceSettings(configuration, settings);
+    /// <inheritdoc/>
     public int GetMemoryCardCount(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.MemoryCard) ? 1 : 0;
     /// <inheritdoc/>
     public string? GetMemoryCardDisplayLabel(int index) => null;

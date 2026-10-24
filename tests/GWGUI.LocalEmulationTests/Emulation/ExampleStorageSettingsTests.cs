@@ -29,9 +29,31 @@ public sealed class ExampleStorageSettingsTests
             var initial = manager.DescribeStorageSettings(original);
             foreach (var device in initial.AvailableDevices)
             {
+                if (device.MediaType == EmulationMediaType.MemoryCard)
+                {
+                    Assert.Equal(EmulationStorageConfigurationKind.MemoryCard, device.ConfigurationKind);
+                    Assert.True(device.FixedImageSizeBytes > 0);
+                    var cardFormats = Assert.IsAssignableFrom<IReadOnlyList<HardDiskImageFormat>>(device.HardDiskFormats);
+                    Assert.Equal(device.AcceptedExtensions, cardFormats.Select(format => format.Extension));
+                    Assert.All(cardFormats, format =>
+                    {
+                        Assert.Equal((long)device.FixedImageSizeBytes!.Value, format.DefaultBytes);
+                        Assert.Equal(format.DefaultBytes, format.MinimumBytes);
+                        Assert.Equal(format.DefaultBytes, format.MaximumBytes);
+                        Assert.Equal(DiskContainerKind.Raw, format.Container);
+                    });
+                    continue;
+                }
                 if (device.MediaType != EmulationMediaType.HardDisk)
                 {
                     Assert.Null(device.HardDiskFormats);
+                    if (device.MediaType == EmulationMediaType.Floppy)
+                    {
+                        Assert.Equal(EmulationStorageConfigurationKind.FloppyDrive, device.ConfigurationKind);
+                        Assert.NotNull(device.FloppyOptions);
+                        Assert.NotEmpty(device.FloppyOptions.Models);
+                    }
+                    if (device.MediaType == EmulationMediaType.Cartridge) Assert.Equal(EmulationStorageConfigurationKind.CartridgeSlot, device.ConfigurationKind);
                     continue;
                 }
                 Assert.Equal(EmulationStorageConfigurationKind.HardDiskDrive, device.ConfigurationKind);
@@ -233,6 +255,79 @@ public sealed class ExampleStorageSettingsTests
             Assert.Equal(original with { Path = "changed" }, updated);
         }
     }
+    [Fact]
+    public void DeviceParametersSurviveApplicationAndPortableDocumentRoundTripForBothProfilesAndEveryBackend()
+    {
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
+        var manager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
+        foreach (var profile in HardwareModelCatalog.All)
+        foreach (var core in Enum.GetValues<Emulator>())
+        {
+            var original = new MachineConfiguration(profile.Model, core: core, options: new Dictionary<string, string> { ["unrelated"] = "unchanged" });
+            var initial = manager.DescribeStorageSettings(original);
+            var extra = new Dictionary<string, string> { ["mode"] = "mock" };
+            EmulationStorageDeviceSettings[] requested = profile.Model == MachineModel.ExampleMachineA
+                ? [new(EmulationMediaSlot.Floppy0, Floppy: new("Floppy", "400", true, true, extra)),
+                    new(EmulationMediaSlot.HardDisk0, InterfaceId: "IDE", Options: new Dictionary<string, string> { ["unit"] = "0" }),
+                    new(EmulationMediaSlot.Cassette0, Options: new Dictionary<string, string> { ["transport"] = "mock" })]
+                : [new(EmulationMediaSlot.Cartridge0, Cartridge: new(true, extra)),
+                    new(EmulationMediaSlot.MemoryCard0, MemoryCardPath: Path.Combine(AppContext.BaseDirectory, "cards", "card.mem"), Options: new Dictionary<string, string> { ["bank"] = "0" })];
+            var updated = Assert.IsType<MachineConfiguration>(manager.ApplyStorageSettings(original, initial with { DeviceSettings = requested }));
+            var described = manager.DescribeStorageSettings(updated);
+            foreach (var expected in requested)
+                Assert.Equal(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(Assert.Single(described.DeviceSettings!, item => item.Slot == expected.Slot)));
+            Assert.Equal("unchanged", updated.Options["unrelated"]);
+            Assert.Empty(manager.DescribeStorageSettings(original).DeviceSettings!);
+            extra["mode"] = "changed-after-application";
+            var current = Assert.Single(manager.DescribeStorageSettings(updated).DeviceSettings!, item => item.Slot == requested[0].Slot);
+            Assert.Equal("mock", (current.Floppy?.Options ?? current.Cartridge!.Options)!["mode"]);
+
+            var document = InvokeStatic("ConfigurationStoreFunctions", "ToDocument", updated, AppContext.BaseDirectory)!;
+            var json = JsonSerializer.SerializeToElement(document, document.GetType(), new JsonSerializerOptions(JsonSerializerDefaults.Web));
+            var parsed = InvokeStatic("ConfigurationStoreFunctions", "Deserialize", json)!;
+            var restored = (MachineConfiguration)InvokeStatic("ConfigurationStoreFunctions", "FromDocument", parsed, AppContext.BaseDirectory)!;
+            Assert.Equal(updated.Options.OrderBy(item => item.Key), restored.Options.OrderBy(item => item.Key));
+            Assert.Equal(JsonSerializer.Serialize(described.DeviceSettings), JsonSerializer.Serialize(manager.DescribeStorageSettings(restored).DeviceSettings));
+            if (profile.Model == MachineModel.ExampleMachineB)
+            {
+                var relocatedBase = Path.Combine(AppContext.BaseDirectory, "relocated");
+                var relocated = (MachineConfiguration)InvokeStatic("ConfigurationStoreFunctions", "FromDocument", parsed, relocatedBase)!;
+                Assert.Equal(Path.Combine(relocatedBase, "cards", "card.mem"), Assert.Single(manager.DescribeStorageSettings(relocated).DeviceSettings!, item => item.Slot == EmulationMediaSlot.MemoryCard0).MemoryCardPath);
+            }
+            var cleared = Assert.IsType<MachineConfiguration>(manager.ApplyStorageSettings(updated, described with { DeviceSettings = [] }));
+            Assert.Empty(manager.DescribeStorageSettings(cleared).DeviceSettings!);
+            Assert.Equal(original.Options, cleared.Options);
+        }
+    }
+
+    [Fact]
+    public void DeviceParametersRejectWrongReadersModelsSpeedsInterfacesAndConflictingOptions()
+    {
+        using var httpClient = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, httpClient));
+        var manager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
+        foreach (var core in Enum.GetValues<Emulator>())
+        {
+            var configuration = new MachineConfiguration(MachineModel.ExampleMachineA, core: core);
+            var original = manager.DescribeStorageSettings(configuration);
+            foreach (var invalid in new EmulationStorageDeviceSettings[]
+            {
+                new(EmulationMediaSlot.HardDisk0, Floppy: new("Floppy", "100", false, false)),
+                new(EmulationMediaSlot.Floppy0, Floppy: new("unknown", "100", false, false)),
+                new(EmulationMediaSlot.Floppy0, Floppy: new("Floppy", "invalid", false, false)),
+                new(EmulationMediaSlot.Floppy0, MemoryCardPath: "card.mem"),
+                new(EmulationMediaSlot.HardDisk0, InterfaceId: "unknown"),
+                new(EmulationMediaSlot.Floppy0, Cartridge: new(true)),
+                new(EmulationMediaSlot.Floppy0, CompactDisc: new()),
+                new(EmulationMediaSlot.Floppy0, Floppy: new("Floppy", "100", false, false, new Dictionary<string, string> { ["mode"] = "first" }), Options: new Dictionary<string, string> { ["mode"] = "second" })
+            })
+                Assert.Throws<ArgumentException>(() => manager.ApplyStorageSettings(configuration, original with { DeviceSettings = [invalid] }));
+            Assert.Empty(configuration.Options);
+            Assert.Empty(manager.DescribeStorageSettings(configuration).DeviceSettings!);
+        }
+    }
+
     private static object[] Adapters() => Module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && Storage.IsAssignableFrom(type)).Select(type => Activator.CreateInstance(type, nonPublic: true)!).ToArray();
     private static EmulationStorageSettings Describe(object adapter, MachineConfiguration configuration) => (EmulationStorageSettings)Storage.GetMethod("DescribeStorage")!.Invoke(adapter, [configuration])!;
     private static MachineConfiguration Apply(object adapter, MachineConfiguration configuration, EmulationStorageSettings settings) => (MachineConfiguration)Storage.GetMethod("ApplyStorage")!.Invoke(adapter, [configuration, settings])!;

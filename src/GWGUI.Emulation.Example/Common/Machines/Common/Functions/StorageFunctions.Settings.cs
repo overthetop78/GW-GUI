@@ -3,18 +3,26 @@ using System.IO;
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
 /// <summary>Description et validation des cinq catégories de lecteurs des profils fictifs.</summary>
-internal static class StorageSettingsFunctions
+internal static partial class StorageSettingsFunctions
 {
     /// <summary>Décrit les lecteurs du profil sans consulter une installation de cœur.</summary>
     /// <param name="model">Profil A ou B dont les lecteurs doivent être exposés.</param>
     /// <returns>Un lecteur par catégorie de média déclarée dans le profil matériel.</returns>
     internal static IReadOnlyList<EmulationMediaDevice> DescribeDevices(MachineModel model) => HardwareModelCatalog.Get(model).Media.Select(category => category switch
     {
-        MediaCategory.Floppy => new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, MediaConstants.FloppyExtensions),
+        MediaCategory.Floppy => new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, MediaConstants.FloppyExtensions,
+            FloppyOptions: new([new(StorageSettingsFunctionsConstants.FloppyModel, "Emulation.Storage.Floppy.Drive")], string.Empty,
+                string.Join(';', MediaConstants.FloppyExtensions.Select(extension => "*" + extension)), MediaConstants.FloppyExtensions[0], CanCreateBlankMedia: false),
+            ConfigurationKind: EmulationStorageConfigurationKind.FloppyDrive),
         MediaCategory.Cassette => new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, MediaConstants.CassetteExtensions),
-        MediaCategory.HardDisk => new EmulationMediaDevice(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaConstants.HardDiskExtensions, IsRemovable: false, HardDiskFormats: HardDiskFormats.For(model), ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive),
-        MediaCategory.Cartridge => new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaConstants.CartridgeExtensions),
-        MediaCategory.MemoryCard => new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, MediaConstants.MemoryCardExtensions),
+        MediaCategory.HardDisk => new EmulationMediaDevice(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaConstants.HardDiskExtensions, IsRemovable: false,
+            InterfaceChoices: [new(StorageSettingsFunctionsConstants.InterfaceName, string.Empty, StorageSettingsFunctionsConstants.InterfaceName)],
+            HardDiskFormats: HardDiskFormats.For(model), ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive),
+        MediaCategory.Cartridge => new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaConstants.CartridgeExtensions,
+            ConfigurationKind: EmulationStorageConfigurationKind.CartridgeSlot, ConfigurationOptionResourceKey: "Emulation.Value.Enabled"),
+        MediaCategory.MemoryCard => new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, MediaConstants.MemoryCardExtensions,
+            HardDiskFormats: HardDiskFormats.ForMemoryCard(model), ConfigurationKind: EmulationStorageConfigurationKind.MemoryCard,
+            FixedImageSizeBytes: StorageSettingsFunctionsConstants.MemoryCardSize),
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     }).ToArray();
 
@@ -25,7 +33,7 @@ internal static class StorageSettingsFunctions
     {
         var adapter = new Engine().SelectedAdapter(configuration);
         var devices = adapter?.DescribeMediaDevices(configuration) ?? DescribeDevices(configuration.Model);
-        return new(devices, configuration.ConfiguredSlots.ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), adapter?.DescribeDeviceSettings(configuration) ?? []);
+        return new(devices, configuration.ConfiguredSlots.ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), adapter?.DescribeDeviceSettings(configuration) ?? DescribeDeviceSettings(configuration));
     }
 
     /// <summary>Contrôle la sélection de lecteurs et la conserve dans une copie de la configuration.</summary>
@@ -59,7 +67,7 @@ internal static class StorageSettingsFunctions
         if (deviceSettings.Select(item => item.Slot).Distinct().Count() != deviceSettings.Count
             || deviceSettings.Any(item => !result.ConfiguredSlots.Contains(item.Slot)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
-        result = adapter?.ApplyDeviceSettings(result, deviceSettings) ?? result;
+        result = adapter?.ApplyDeviceSettings(result, deviceSettings) ?? ApplyDeviceSettings(result, deviceSettings);
         result = result with { Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToModule(media, result.Media)).ToArray() };
         ConfigurationFunctions.Validate(result);
         return result;

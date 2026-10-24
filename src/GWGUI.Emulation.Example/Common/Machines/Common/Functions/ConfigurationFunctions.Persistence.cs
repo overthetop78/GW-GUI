@@ -24,7 +24,7 @@ internal static class ConfigurationStoreFunctions
         configuration.SchemaVersion, configuration.Id, configuration.Model, configuration.Core,
         configuration.Firmwares.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.StorePath(item.Path, pathBase)! }).ToArray(),
         configuration.Media.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.StorePath(item.Path, pathBase)! }).ToArray(),
-        configuration.Options, configuration.Input, StoreFolders(configuration.Folders, pathBase), configuration.AudioEnabled, configuration.ConfiguredSlots);
+        ConvertDevicePaths(configuration.Options, pathBase, forStorage: true), configuration.Input, StoreFolders(configuration.Folders, pathBase), configuration.AudioEnabled, configuration.ConfiguredSlots);
 
     /// <summary>Contrôle le document avant de reconstruire sa configuration et de résoudre ses chemins.</summary>
     /// <param name="document">Document désérialisé, dont les identités n’ont pas encore été validées.</param>
@@ -38,7 +38,7 @@ internal static class ConfigurationStoreFunctions
         var result = new MachineConfiguration(document.Model,
             document.Firmwares.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.ResolvePath(item.Path, pathBase)! }).ToArray(),
             document.Media.Select(item => item with { Path = EmulationSdk.ConfigurationFiles.ResolvePath(item.Path, pathBase)! }).ToArray(),
-            document.Options, document.Input, document.Id, document.SchemaVersion, document.AudioEnabled, ResolveFolders(document.Folders, pathBase), document.Core, document.ConfiguredSlots);
+            ConvertDevicePaths(document.Options, pathBase, forStorage: false), document.Input, document.Id, document.SchemaVersion, document.AudioEnabled, ResolveFolders(document.Folders, pathBase), document.Core, document.ConfiguredSlots);
         ConfigurationFunctions.Validate(result);
         return result;
     }
@@ -49,6 +49,25 @@ internal static class ConfigurationStoreFunctions
     /// <param name="cancellationToken">Signal d’annulation de l’écriture.</param>
     /// <returns>Tâche terminée après publication atomique et nettoyage du fichier temporaire.</returns>
     internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken) => EmulationSdk.ConfigurationFiles.WriteDocumentAsync(path, document, JsonOptions, cancellationToken);
+
+    /// <summary>Convertit les chemins associés aux cartes mémoire sans transformer les autres valeurs d’options.</summary>
+    /// <param name="options">Options empruntées dont les chemins sont copiés dans un nouveau dictionnaire.</param>
+    /// <param name="pathBase">Racine du magasin utilisée par l’interface de persistance commune.</param>
+    /// <param name="forStorage">True prépare les chemins relatifs du document ; false résout les chemins chargés.</param>
+    /// <returns>Copie des options ; seuls les champs de carte mémoire portant un indice valide sont convertis.</returns>
+    /// <remarks>Cette conversion n’ouvre ni ne crée de carte. Elle suit le même traitement que les chemins
+    /// de médias et de dossiers, afin qu’un document puisse être déplacé avec sa racine de contenus.</remarks>
+    private static IReadOnlyDictionary<string, string> ConvertDevicePaths(IReadOnlyDictionary<string, string> options, string pathBase, bool forStorage)
+    {
+        var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
+        foreach (var option in options)
+        {
+            var prefix = StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix;
+            if (!option.Key.StartsWith(prefix, StringComparison.Ordinal) || !int.TryParse(option.Key.AsSpan(prefix.Length), out var index) || index < 0) continue;
+            result[option.Key] = (forStorage ? EmulationSdk.ConfigurationFiles.StorePath(option.Value, pathBase) : EmulationSdk.ConfigurationFiles.ResolvePath(option.Value, pathBase)) ?? option.Value;
+        }
+        return result;
+    }
 
     /// <summary>Convertit les dossiers personnels vers leur représentation de stockage.</summary>
     /// <param name="folders">Dossiers absolus de la configuration.</param>

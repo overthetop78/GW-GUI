@@ -14354,3 +14354,16 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
   - [x] Contrôler les quatre opérations partagées.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les signatures, les appels compilés et le résultat en mémoire de HashBytes pour les vingt-quatre Common ; exécuter les vérifications de sauvegarde et le build Debug de tous les modules.
+
+- [x] Compléter les réglages des lecteurs des deux machines d’Example.
+  - [x] Décrire, appliquer et conserver les réglages par le Common pour les trois émulateurs fictifs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Constants/StorageConstants.cs : reprendre les préfixes de stockage existants, les choix de disquette et les identités des champs de cartouche et de carte mémoire ; les documenter.
+    - [x] Créer src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Devices.cs : reprendre le stockage des réglages par emplacement dans Options, avec description, application, validation et commentaires complets, sans ouvrir les contenus.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : exposer les dialogues existants des lecteurs et appeler les réglages Common avec ou sans backend sélectionné.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : faire passer DescribeDeviceSettings et ApplyDeviceSettings par les fonctions Common pour les trois simulations.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs : enregistrer et résoudre le chemin de carte mémoire par l’interface de persistance existante tout en conservant les autres options.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Constants/StorageConstants.cs : définir la capacité et l’identité du profil de carte mémoire attendu par le dialogue existant.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/HardDiskFormats.cs : reprendre les descriptions d’images brutes de carte mémoire à capacité fixe pour les extensions du profil.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : fournir au dialogue de carte mémoire ses formats et sa taille fixe afin de respecter son contrat.
+  - [x] Vérifier les réglages sur les deux profils et les trois backends.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier en mémoire la conservation des paramètres après application et sérialisation, leur suppression et le refus des paramètres incompatibles ; exécuter les vérifications utiles et le build Debug avec tous les modules.
