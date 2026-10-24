@@ -48,6 +48,7 @@ internal sealed class Engine
     /// <summary>Construit le moteur de la façade à partir des mêmes services qu’un module indépendant.</summary>
     /// <remarks>Cette construction ne lance aucune machine et n’ouvre aucun contenu. Les autres instances
     /// sans contexte servent aux descriptions et validations pures, sans fabriquer de services de l’application.</remarks>
+    /// <param name="context">Contexte du module, avec ses dossiers et son client HTTP emprunté ; ce dernier reste possédé par l&apos;application.</param>
     public Engine(EmulationModuleContext context) : this()
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -82,6 +83,9 @@ internal sealed class Engine
         return value.Length != 0;
     }
     /// <summary>Décrit les réglages du modèle et les options de l’émulateur effectivement choisi.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <param name="configuration">Configuration empruntée à décrire, ou null pour consulter les réglages initiaux du modèle ou du catalogue.</param>
+    /// <returns>Description publique des blocs de réglages et de leur visibilité pour le modèle demandé.</returns>
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
         var current = configuration is null ? new MachineConfiguration(ModelCatalog.Parse(machineId)) : Require(configuration);
@@ -133,10 +137,15 @@ internal sealed class Engine
     }
 
     /// <summary>Crée une configuration neuve sans fichier ni ressource d’exécution.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <returns>Nouvelle configuration initialisée pour le modèle demandé, avec les choix et options de son adaptateur.</returns>
     public IEmulationConfiguration CreateConfiguration(string machineId) => InitializeOptions(SelectConfiguration(new MachineConfiguration(ModelCatalog.Parse(machineId))));
     /// <summary>Change le profil en conservant l’identité et les données compatibles avec ses lecteurs.</summary>
     /// <remarks>Un nouveau profil active ses lecteurs initiaux. Reprendre le même profil conserve la sélection
     /// explicite de ses lecteurs, y compris lorsqu’elle est vide.</remarks>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <returns>Configuration du profil demandé conservant les données compatibles et l&apos;identité de la configuration.</returns>
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
         var current = Require(configuration);
@@ -153,44 +162,74 @@ internal sealed class Engine
         return result;
     }
     /// <summary>Applique et valide les champs par leur propriétaire Common.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="values">Valeurs proposées par les éditeurs, indexées par identifiant de champ ; la collection reste empruntée.</param>
+    /// <returns>Configuration résultant des valeurs de champs proposées, sans modification des collections de la source.</returns>
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
         return SelectedAdapter(current)?.ApplySettings(current, values) ?? SettingsApplicationFunctions.Apply(current, values);
     }
     /// <summary>Demande les options de runtime à l’adaptateur choisi, sans sélectionner un autre émulateur.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <returns>Options du runtime annoncées par l&apos;adaptateur sélectionné pour la configuration.</returns>
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
     /// <summary>Produit le résumé de la configuration par le catalogue matériel Common.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <returns>Résumé public des données matérielles et de l&apos;adaptateur de la configuration.</returns>
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
     /// <summary>Décrit les lecteurs du profil et les montages actuellement enregistrés.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <returns>Description publique des lecteurs et des montages de la configuration.</returns>
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = Require(configuration);
         return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
     }
     /// <summary>Applique les montages sans ouvrir ni déplacer les fichiers de contenu.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="settings">Réglages publics proposés par l&apos;hôte et consultés sans modifier ses collections.</param>
+    /// <returns>Configuration résultant de l&apos;application des réglages de stockage par Common.</returns>
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
     {
         var current = Require(configuration);
         return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
     /// <summary>Décrit les catégories génériques d’entrées et leurs associations.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <returns>Description publique des associations d&apos;entrées actuellement configurées.</returns>
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(Require(configuration));
     /// <summary>Valide et applique les associations par leur contrat Common.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="settings">Réglages publics proposés par l&apos;hôte et consultés sans modifier ses collections.</param>
+    /// <returns>Configuration résultant des associations d&apos;entrées proposées, après les traitements Common.</returns>
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(Require(configuration), settings);
     /// <summary>Persiste les associations au sein du même document que les autres réglages.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de l&apos;enregistrement des associations d&apos;entrées de la configuration.</returns>
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
     /// <summary>Charge les documents par le magasin Common, avec propagation de l’annulation.</summary>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la liste des configurations chargées et validées par le magasin Common.</returns>
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await Store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
     /// <summary>Enregistre une configuration validée par l’écriture atomique du magasin.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de l&apos;enregistrement de la configuration par le magasin Common.</returns>
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => new(Store.SaveAsync(Require(configuration), cancellationToken));
     /// <summary>Supprime uniquement les données de la configuration possédées par le magasin.</summary>
+    /// <param name="configurationId">Identité stable de la configuration à supprimer du magasin.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la suppression de la configuration enregistrée.</returns>
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default) { cancellationToken.ThrowIfCancellationRequested(); Store.Delete(configurationId); return ValueTask.CompletedTask; }
     /// <summary>Refuse les opérations persistantes sur un moteur purement descriptif sans contexte d’hôte.</summary>
     private ConfigurationStore Store => _store ?? throw new InvalidOperationException(nameof(EmulationModuleContext));
     /// <summary>Refuse de fabriquer implicitement un client HTTP ou une racine de stockage manquante.</summary>
     private EmulatorManagementContext Management => _managementContext ?? throw new InvalidOperationException(nameof(EmulationModuleContext));
     /// <summary>Vérifie l’origine et la cohérence du document reçu par une interface publique.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <returns>Même configuration après vérification de son type concret de module.</returns>
     private static MachineConfiguration Require(IEmulationConfiguration configuration)
     {
         if (configuration is not MachineConfiguration current) throw new ArgumentException(nameof(configuration));
@@ -199,12 +238,23 @@ internal sealed class Engine
     }
 
     /// <summary>Résout l’adaptateur préféré uniquement pour les appels qui ne possèdent pas encore de configuration.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <returns>Adaptateur compatible choisi selon les recommandations Common pour le modèle demandé.</returns>
     private IEmulatorAdapter PreferredAdapter(string machineId) => Adapter(DefaultEmulator(ModelCatalog.Parse(machineId)));
     /// <summary>Décrit la version intégrée de l’adaptateur préféré du profil.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la description de l&apos;installation du cœur choisi ou recommandé pour cette demande.</returns>
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default) => PreferredAdapter(machineId).GetInstallationAsync(Management, cancellationToken);
     /// <summary>Décrit la version de l’émulateur effectivement choisi dans le document.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la description de l&apos;installation du cœur choisi ou recommandé pour cette demande.</returns>
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => Adapter(Require(configuration)).GetInstallationAsync(Management, cancellationToken);
     /// <summary>Présente les trois adaptateurs compatibles afin que l’utilisateur puisse choisir chacun d’eux.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente des descriptions d&apos;installation des adaptateurs compatibles avec la configuration.</returns>
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var results = new List<EmulationEmulatorInstallation>();
@@ -212,6 +262,10 @@ internal sealed class Engine
         return results;
     }
     /// <summary>Enregistre le choix explicite d’un adaptateur compatible, sans recréer de configuration.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="emulatorId">Identifiant stable de l&apos;adaptateur demandé, distinct de son nom affiché.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la configuration retournée après sélection et préparation de l&apos;adaptateur demandé.</returns>
     public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -223,15 +277,35 @@ internal sealed class Engine
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }
     /// <summary>Présente la version locale du cœur préféré lorsqu’aucun document n’est fourni.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la liste des versions proposées par l&apos;adaptateur retenu pour cette demande.</returns>
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => PreferredAdapter(machineId).FindReleasesAsync(Management, cancellationToken);
     /// <summary>Présente la version locale du cœur choisi dans la configuration.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la liste des versions proposées par l&apos;adaptateur retenu pour cette demande.</returns>
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => Adapter(Require(configuration)).FindReleasesAsync(Management, cancellationToken);
     /// <summary>Valide la version fournie par un adaptateur compatible avec ce profil, sans téléchargement.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <param name="release">Description de la version demandée, interprétée par le service Common de l&apos;adaptateur.</param>
+    /// <param name="progress">Rapporteur facultatif de progression de l&apos;installation, transmis au service de l&apos;adaptateur.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente du chemin de l&apos;implémentation retenue par l&apos;adaptateur après traitement de la version demandée.</returns>
     public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => PreferredAdapter(machineId).InstallAsync(Management, release, progress, cancellationToken);
     /// <summary>Transmet l’installation au cœur effectivement choisi.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="release">Description de la version demandée, interprétée par le service Common de l&apos;adaptateur.</param>
+    /// <param name="progress">Rapporteur facultatif de progression de l&apos;installation, transmis au service de l&apos;adaptateur.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente du chemin de l&apos;implémentation retenue par l&apos;adaptateur après traitement de la version demandée.</returns>
     public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => Adapter(Require(configuration)).InstallAsync(Management, release, progress, cancellationToken);
 
     /// <summary>Prépare la fabrique sérialisée du runtime, sans démarrer la boucle avant la demande de l’hôte.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="services">Services de runtime empruntés ; les ressources créées par leurs fabriques sont gérées par leurs propriétaires de session.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente du runtime préparé ; celui-ci fournit la fabrique de machines et conserve les services nécessaires à leur exécution.</returns>
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
         var current = Require(configuration);
@@ -245,8 +319,14 @@ internal sealed class Engine
         return new(current, media => CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context), storage.AvailableDevices, storage.MountedMedia, HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, adapter.SupportsPointerCapture(current), (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
     /// <summary>Résout la racine des firmwares après validation du modèle ; ne la crée pas implicitement.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <returns>Chemin du dossier de firmware géré par Common pour ce modèle.</returns>
     public string GetFirmwareDirectory(string machineId) { _ = ModelCatalog.Parse(machineId); return _firmwareDirectory ?? throw new InvalidOperationException(nameof(EmulationModuleContext)); }
     /// <summary>Recherche les fichiers compatibles suivant le contrat d’inspection du cœur choisi.</summary>
+    /// <param name="machineId">Identifiant stable du profil matériel, résolu et validé par le catalogue Common.</param>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="cancellationToken">Annulation transmise aux opérations Common ; le propriétaire conserve la responsabilité du nettoyage des ressources.</param>
+    /// <returns>Attente de la liste des fichiers candidats et de leurs destinations compatibles, sans installation dans une session.</returns>
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var current = Require(configuration);
@@ -254,6 +334,9 @@ internal sealed class Engine
         return Adapter(current).ScanFirmwareAsync(current, GetFirmwareDirectory(machineId), cancellationToken);
     }
     /// <summary>Applique le firmware facultatif uniquement après validation de son rôle et de son fichier.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="firmware">Candidat de firmware retenu, avec son chemin et son champ de destination proposés.</param>
+    /// <returns>Configuration portant le firmware retenu après contrôle de sa destination et de sa compatibilité.</returns>
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
@@ -263,6 +346,9 @@ internal sealed class Engine
         return result;
     }
     /// <summary>Transmet le choix de présentation au contrat vidéo de l’adaptateur.</summary>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="graphicsApi">API graphique choisie par l&apos;hôte ; cet argument ne transfère aucune fenêtre ni surface possédée.</param>
+    /// <returns>Configuration retournée par la politique vidéo de l&apos;adaptateur, inchangée lorsqu&apos;aucune adaptation n&apos;est nécessaire.</returns>
     public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
     {
         var current = Require(configuration);

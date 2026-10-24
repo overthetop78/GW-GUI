@@ -14,11 +14,14 @@ namespace GWGUI.Emulation.Example.Emulators.Common.Interop.Services;
 /// La machine sérialise les commandes et appelle Dispose dans son finally après arrêt effectif de la boucle.</remarks>
 internal sealed partial class ExternalCore : IEmulatorCore
 {
-    /// <inheritdoc/>
+    /// <summary>Expose le nombre d&apos;images du jeu de disques simulé.</summary>
+    /// <remarks><para>Le nombre est obtenu par le statut Common du jeu courant ; aucun second catalogue de montages n&apos;est construit.</para></remarks>
     public int DiskCount => GetDiskStatus().ImageCount;
-    /// <inheritdoc/>
+    /// <summary>Expose l&apos;index courant du jeu de disques simulé.</summary>
+    /// <remarks><para>L&apos;index conserve la convention du protocole du cœur et reste distinct d&apos;un numéro de disque affiché.</para></remarks>
     public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
-    /// <inheritdoc/>
+    /// <summary>Annonce la prise en charge des entrées de pointeur par le cœur simulé.</summary>
+    /// <remarks><para>La capture physique reste réalisée par l&apos;application ; le cœur reçoit les données projetées par Common.</para></remarks>
     public bool SupportsPointerCapture => true;
 
     /// <summary>Table d’exports gérés conservée vivante pendant toute la session simulée.</summary>
@@ -76,51 +79,73 @@ internal sealed partial class ExternalCore : IEmulatorCore
             () => (nuint)(SimulationConstants.StateHeaderLength + _memory.Length), SerializeNative, UnserializeNative);
     }
 
-    /// <inheritdoc/>
+    /// <summary>Identifie le mode de simulation choisi à la construction du cœur.</summary>
+    /// <remarks><para>La valeur distingue les adaptations interne, Libretro et externe ; elle ne change pas l&apos;identité matérielle du modèle.</para></remarks>
     public Emulator Emulator { get; }
     /// <summary>Dernier statut reçu de la sortie de la machine ; instantané conservé par le cœur fictif.</summary>
     private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
-    /// <inheritdoc/>
+    /// <summary>Reçoit la description courante du tampon de restitution audio.</summary>
+    /// <param name="status">Description courante du tampon audio, ou null lorsqu&apos;aucun état de restitution n&apos;est disponible.</param>
+    /// <remarks><para>La description est mémorisée sans posséder le périphérique de sortie. Le calcul des frames peut la consulter par le même contrat que les autres cœurs.</para></remarks>
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
-    /// <inheritdoc/>
+    /// <summary>Expose la latence minimale de base du cœur, en millisecondes.</summary>
+    /// <remarks><para>Le contrôleur audio combine cette annonce avec les réglages de l&apos;utilisateur ; cette consultation n&apos;alloue pas de tampon supplémentaire.</para></remarks>
     public int MinimumAudioLatencyMilliseconds => AudioConstants.DefaultLatencyMilliseconds;
-    /// <inheritdoc/>
+    /// <summary>Signale qu&apos;une fermeture a été demandée par le cœur.</summary>
+    /// <remarks><para>La boucle Common observe cet état pour arrêter la session ; la libération effective reste dans le finally de son propriétaire.</para></remarks>
     public bool ShutdownRequested { get; private set; }
-    /// <inheritdoc/>
+    /// <summary>Annonce que le cœur simulé s&apos;exécute dans le processus courant.</summary>
+    /// <remarks><para>Même le mode externe utilise ici des exports mockés dans cet assembly ; il ne lance pas de programme et ne charge pas de DLL extérieure.</para></remarks>
     public HostProcessState HostProcessState => HostProcessState.InProcess;
-    /// <inheritdoc/>
+    /// <summary>Annonce l&apos;absence de processus hôte distinct pour la simulation.</summary>
+    /// <remarks><para>La valeur nulle correspond au mode InProcess ; le consommateur n&apos;a aucun processus enfant à attendre ni à fermer pour ce cœur.</para></remarks>
     public int? HostProcessId => null;
-    /// <inheritdoc/>
+    /// <summary>Annonce que le cœur simulé peut sauvegarder et restaurer son état.</summary>
+    /// <remarks><para>La machine Common conserve la validation et l&apos;enveloppe du fichier ; le cœur fournit uniquement ses données d&apos;état.</para></remarks>
     public bool SupportsSaveStates => true;
-    /// <inheritdoc/>
+    /// <summary>Expose le standard vidéo PAL annoncé par la simulation.</summary>
+    /// <remarks><para>Cette métadonnée décrit le rythme vidéo du cœur ; elle ne choisit pas le périphérique de présentation graphique.</para></remarks>
     public EmulationVideoStandard? Region => EmulationVideoStandard.Pal;
-    /// <inheritdoc/>
+    /// <summary>Expose le nombre de trames audio encore présentes dans le tampon du cœur.</summary>
+    /// <remarks><para>Une trame regroupe les échantillons de ses canaux. Ce compteur est distinct d&apos;un nombre d&apos;octets ou de blocs.</para></remarks>
     public int BufferedAudioFrames => _audio.BufferedFrames;
-    /// <inheritdoc/>
+    /// <summary>Expose le compteur de dépassements du tampon audio.</summary>
+    /// <remarks><para>La valeur est fournie par le tampon Common et reste consultative ; sa lecture ne vide pas les échantillons.</para></remarks>
     public long AudioOverrunCount => _audio.OverrunCount;
-    /// <inheritdoc/>
+    /// <summary>Expose le compteur de sous-alimentations du tampon audio.</summary>
+    /// <remarks><para>La valeur est fournie par le tampon Common ; elle permet au runtime de décrire les interruptions de restitution sans les masquer.</para></remarks>
     public long AudioUnderrunCount => _audio.UnderrunCount;
-    /// <inheritdoc/>
+    /// <summary>Résout le nom technique du cœur depuis sa définition de catalogue.</summary>
+    /// <remarks><para>Le nom correspond au backend sélectionné, tandis que le modèle matériel reste porté par la configuration.</para></remarks>
     public string CoreName => EmulatorCatalog.Get(Emulator).Id;
-    /// <inheritdoc/>
+    /// <summary>Expose la version de l&apos;implémentation simulée utilisée par la session.</summary>
+    /// <remarks><para>Les trois modes proviennent du même assembly ; leur version est résolue par le service Common.</para></remarks>
     public string CoreVersion => Engine.CoreVersion;
-    /// <inheritdoc/>
+    /// <summary>Expose l&apos;empreinte SHA-256 de l&apos;implémentation du cœur.</summary>
+    /// <remarks><para>Common calcule cette identité binaire pour les diagnostics et les états sauvegardés ; cette propriété ne recalcule pas une empreinte à chaque frame.</para></remarks>
     public string CoreSha256 => Engine.CoreSha256;
-    /// <inheritdoc/>
+    /// <summary>Expose la cadence vidéo nominale de la simulation, en images par seconde.</summary>
+    /// <remarks><para>La boucle de session utilise cette information pour sa cadence ; les numéros de publication restent gérés séparément.</para></remarks>
     public double FramesPerSecond => SimulationConstants.FramesPerSecond;
-    /// <inheritdoc/>
+    /// <summary>Expose la fréquence de production audio de base, en hertz.</summary>
+    /// <remarks><para>La valeur décrit les échantillons émulés et non une fréquence imposée directement au périphérique de sortie de l&apos;utilisateur.</para></remarks>
     public int SampleRate => AudioConstants.DefaultSampleRate;
-    /// <inheritdoc/>
+    /// <summary>Expose les descriptions d&apos;options applicables à la configuration courante.</summary>
+    /// <remarks><para>Le catalogue Common conserve les clés, valeurs par défaut et contraintes de redémarrage ; le consommateur consulte ces descriptions sans les modifier.</para></remarks>
     public IReadOnlyList<CoreOption> Options => OptionCatalog.For(_configuration);
-    /// <inheritdoc/>
+    /// <summary>Publie une copie des diagnostics actuellement conservés par le cœur.</summary>
+    /// <remarks><para>Le tableau retourné appartient au consommateur et reste stable si la liste interne reçoit ensuite de nouveaux messages.</para></remarks>
     public IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
-    /// <inheritdoc/>
-    /// <remarks>Les formats du profil passent par le contrat Common, qui conserve ici les extensions déclarées et leur comparateur.</remarks>
+    /// <summary>Résout les extensions de contenus acceptées par le profil et le backend.</summary>
+    /// <remarks><para>Avant initialisation, l&apos;ensemble est vide. Après initialisation, les extensions des lecteurs passent par le contrat d&apos;adaptation des formats avec la contrainte de chemin de fichier.</para><para>Les formats du profil passent par le contrat Common, qui conserve ici les extensions déclarées et leur comparateur.</para></remarks>
     public IReadOnlySet<string> SupportedContentExtensions => _configuration is null ? new HashSet<string>() : _contentFormats.ResolveContentExtensions(StorageSettingsFunctions.DescribeDevices(_configuration.Model).SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase), requiresFilePath: true);
 
     /// <summary>Valide le profil, alloue la RAM et raccorde les callbacks avant de rendre le cœur exécutable.</summary>
     /// <remarks>Le firmware facultatif préparé par Common est lu sans écriture. En cas d’échec, finally
     /// libère aussi les allocations d’une initialisation partielle ; la machine conserve la propriété des dossiers.</remarks>
+    /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
+    /// <param name="sessionDirectory">Dossier temporaire préparé pour la session et nettoyé par son propriétaire après destruction du cœur.</param>
+    /// <param name="saveDirectory">Dossier persistant des données du cœur, ou null ; il reste distinct du dossier temporaire de session.</param>
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
@@ -167,6 +192,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     }
 
     /// <summary>Expose des métadonnées ABI dont les chaînes restent possédées par ce cœur.</summary>
+    /// <param name="info">Structure de sortie recevant l&apos;identité et les formats ABI ; les chaînes natives restent possédées par le cœur.</param>
     private void ReadSystemInfo(out ExternalCoreApi.SystemInfo info) => info = new() { LibraryName = OwnString(CoreName), LibraryVersion = OwnString(CoreVersion), ValidExtensions = OwnString(string.Join('|', SupportedContentExtensions)), NeedFullPath = true };
     /// <summary>Demande une chaîne UTF-8 au Common et en transfère la propriété à la liste du cœur.</summary>
     /// <param name="text">Métadonnée copiée, dont l’adresse est empruntée par le destinataire des exports.</param>
@@ -186,6 +212,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         finally { if (!transferred) value.Dispose(); }
     }
     /// <summary>Expose la géométrie et les unités temporelles du même calcul pour tous les adaptateurs.</summary>
+    /// <param name="info">Structure de sortie recevant les dimensions vidéo, la cadence d&apos;images et la fréquence audio du cœur.</param>
     private void ReadAvInfo(out ExternalCoreApi.SystemAvInfo info)
     {
         var (width, height) = OptionCatalog.Resolution(_configuration!);

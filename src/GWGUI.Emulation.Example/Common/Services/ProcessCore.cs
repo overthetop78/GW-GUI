@@ -52,11 +52,14 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
     }
 
-    /// <inheritdoc/>
+    /// <summary>Lit le nombre d&apos;images annoncé par le statut du jeu de disques distant.</summary>
+    /// <remarks><para>La valeur vient du même échange de statut que la sélection courante ; ce relais ne conserve pas de second compteur local.</para></remarks>
     public int DiskCount => GetDiskStatus().ImageCount;
-    /// <inheritdoc/>
+    /// <summary>Lit l&apos;index courant annoncé par le jeu de disques distant.</summary>
+    /// <remarks><para>L&apos;index est celui du protocole du cœur, sans conversion en numéro affiché à l&apos;utilisateur.</para></remarks>
     public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
-    /// <inheritdoc/>
+    /// <summary>Annonce la prise en charge du transport des entrées de pointeur.</summary>
+    /// <remarks><para>La valeur décrit la capacité de ce relais. La capture effective d&apos;un périphérique physique reste sous la responsabilité de l&apos;hôte.</para></remarks>
     public bool SupportsPointerCapture => true;
 
     /// <summary>Chemin absolu de l’exécutable lancé comme hôte du cœur.</summary>
@@ -156,7 +159,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <remarks>Ce statut ne possède aucune sortie audio ; ses nombres de frames et sa fréquence en Hz
     /// sont transmis au cœur distant avec un booléen indiquant la présence du bloc.</remarks>
     private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
-    /// <inheritdoc/>
+    /// <summary>Mémorise l&apos;état du tampon de sortie à transmettre au prochain calcul distant.</summary>
+    /// <param name="status">Description courante du tampon audio, ou null lorsqu&apos;aucun état de restitution n&apos;est disponible.</param>
+    /// <remarks><para>La valeur reçue est une description empruntée, sans périphérique audio possédé. La requête de frame suivante la sérialise dans le protocole commun.</para></remarks>
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
     /// <summary>Latence audio minimale en millisecondes reçue à l’initialisation puis après chaque frame.</summary>
     public int MinimumAudioLatencyMilliseconds { get; private set; }

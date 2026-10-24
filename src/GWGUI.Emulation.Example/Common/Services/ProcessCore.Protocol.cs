@@ -60,6 +60,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Attend synchroniquement les octets d’une réponse avec le délai et l’annulation de l’instance.</summary>
     /// <returns>Tableau de la réponse complète fourni au décodeur de protocole.</returns>
     /// <remarks>Le lecteur commun valide la longueur avant allocation et lecture du contenu.</remarks>
+    /// <param name="command">Commande du contrat reçue pour le périphérique concerné.</param>
     private byte[] ReadResponse(HostCommand command) => EmulationSdk.HostProtocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(command, _responseTimeout),
         _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
         .GetAwaiter().GetResult();

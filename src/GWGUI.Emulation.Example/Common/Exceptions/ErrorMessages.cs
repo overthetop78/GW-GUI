@@ -108,20 +108,28 @@ internal static class ErrorMessages
     internal static string MachineStopped => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
 
     /// <summary>Résout le message de catégorie indiquant l’absence d’un firmware.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string FirmwareMissing() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareMissing);
     /// <summary>Résout le message de catégorie indiquant un firmware invalide.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string FirmwareInvalid() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareInvalid);
     /// <summary>Résout le message de catégorie indiquant un contenu introuvable.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string ContentNotFound() => ExceptionText.Get(CoreErrorResourceKeys.ContentNotFound);
     /// <summary>Résout le message de catégorie indiquant un contenu non pris en charge.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string ContentUnsupported() => ExceptionText.Get(CoreErrorResourceKeys.ContentUnsupported);
     /// <summary>Résout le message de catégorie indiquant un réglage invalide.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string OptionInvalid() => ExceptionText.Get(CoreErrorResourceKeys.OptionInvalid);
     /// <summary>Résout le message de catégorie indiquant un cœur introuvable.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string CoreNotFound() => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
     /// <summary>Résout le message de catégorie indiquant un cœur refusé.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string CoreRejected() => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
     /// <summary>Résout le message de catégorie indiquant un état invalide.</summary>
+    /// <returns>Texte résolu par le service de messages pour cette catégorie d&apos;erreur et la culture courante.</returns>
     private static string StateInvalidText() => ExceptionText.Get(CoreErrorResourceKeys.StateInvalid);
 
 }

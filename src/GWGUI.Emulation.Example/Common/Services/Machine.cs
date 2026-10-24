@@ -222,14 +222,24 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands => CassetteInputController.AvailableCommands;
     /// <summary>Nouvelle liste des médias montés, convertie vers les descriptions publiques.</summary>
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
-    /// <inheritdoc/>
-    /// <remarks>Convertit le contrat public en description interne, conserve le libellé existant du slot puis passe par la file de commandes.</remarks>
+    /// <summary>Insère un média du contrat public par la commande Common de la session.</summary>
+    /// <param name="media">Description publique du média et de son emplacement ; le fichier référencé reste possédé par son appelant.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de l&apos;insertion et de la mise à jour du montage après acceptation par le cœur.</returns>
+    /// <remarks><para>Le fichier reste possédé par son appelant. La conversion conserve les données du montage avant la commande ; les erreurs d&apos;insertion restent celles de la machine.</para><para>Convertit le contrat public en description interne, conserve le libellé existant du slot puis passe par la file de commandes.</para></remarks>
     ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToModule(media, _mountedMedia), cancellationToken);
-    /// <inheritdoc/>
-    /// <remarks>La liste montée est mise à jour seulement après l’éjection par le cœur.</remarks>
+    /// <summary>Éjecte le média de l&apos;emplacement demandé par la facette publique.</summary>
+    /// <param name="slot">Emplacement de média désigné par le contrat public.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de l&apos;éjection et de la mise à jour du montage.</returns>
+    /// <remarks><para>La commande est sérialisée avec les autres accès au cœur. L&apos;éjection retire le montage sans supprimer le fichier de l&apos;utilisateur.</para><para>La liste montée est mise à jour seulement après l’éjection par le cœur.</para></remarks>
     ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) => EjectMediaAsync(slot, cancellationToken);
-    /// <inheritdoc/>
-    /// <remarks>Le cœur utilise ici une sélection globale par index ; le slot du contrat n’est pas transmis à cette opération.</remarks>
+    /// <summary>Sélectionne une image du jeu de disques courant par son index.</summary>
+    /// <param name="slot">Emplacement de média désigné par le contrat public.</param>
+    /// <param name="index">Index du disque ou de la carte dans le protocole concerné, conservé sans conversion en numéro affiché.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de l&apos;application de la sélection au cœur.</returns>
+    /// <remarks><para>Cette adaptation rejoint la sélection globale du cœur ; elle ne déplace ni ne copie le fichier contenant l&apos;image.</para><para>Le cœur utilise ici une sélection globale par index ; le slot du contrat n’est pas transmis à cette opération.</para></remarks>
     ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
     /// <summary>Bloc audio courant exposé par la facette publique.</summary>
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
@@ -245,14 +255,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         add => AudioChunkReady += value;
         remove => AudioChunkReady -= value;
     }
-    /// <inheritdoc/>
-    /// <remarks>Délègue au contrôleur de sortie ; le cœur continue de fonctionner.</remarks>
+    /// <summary>Transmet l&apos;état muet au contrôleur de sortie audio de la session.</summary>
+    /// <param name="muted">True pour demander une restitution muette ; false pour rétablir la restitution selon les réglages courants.</param>
+    /// <remarks><para>Le contrôleur conserve la politique de sortie et de tamponnage. La demande ne détruit pas le cœur et ne modifie pas les échantillons émulés.</para><para>Délègue au contrôleur de sortie ; le cœur continue de fonctionner.</para></remarks>
     void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
-    /// <inheritdoc/>
-    /// <remarks>Le contrôleur normalise le facteur de volume reçu.</remarks>
+    /// <summary>Transmet le facteur de volume au contrôleur audio Common.</summary>
+    /// <param name="volume">Facteur de volume transmis au contrôleur audio, qui applique ses règles de normalisation.</param>
+    /// <remarks><para>Le contrôleur applique sa normalisation existante. Le facteur concerne la restitution des échantillons ; il ne devient pas une option du cœur.</para><para>Le contrôleur normalise le facteur de volume reçu.</para></remarks>
     void IEmulationAudio.SetVolume(float volume) => SetAudioVolume(volume);
-    /// <inheritdoc/>
-    /// <remarks>Le contrôleur détache l’ancienne sortie suivant sa propriété et utilise la nouvelle fabrique.</remarks>
+    /// <summary>Remplace la fabrique utilisée pour créer la sortie audio de la session.</summary>
+    /// <param name="factory">Fabrique empruntée de sorties audio ; null retire la fabrique explicite. Les sorties créées appartiennent au contrôleur.</param>
+    /// <remarks><para>Le délégué est emprunté. Les sorties qu&apos;il crée appartiennent au contrôleur, qui les détache et les libère lors de leur remplacement ou de son arrêt.</para><para>Le contrôleur détache l’ancienne sortie suivant sa propriété et utilise la nouvelle fabrique.</para></remarks>
     void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => SetAudioOutputFactory(factory);
     /// <summary>Nom du cœur dans le contrat public de runtime.</summary>
     string IEmulationRuntime.EmulatorName => CoreName;
@@ -280,17 +293,27 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
     /// <summary>Capacité de sauvegarde d’état réellement annoncée par le cœur.</summary>
     bool IEmulationSavedStates.IsSupported => SupportsSaveStates;
-    /// <inheritdoc/>
-    /// <remarks>La sauvegarde est exécutée sur le thread du cœur et enveloppée dans le format d’état commun.</remarks>
+    /// <summary>Enregistre l&apos;état de la session par la facette publique de sauvegarde.</summary>
+    /// <param name="path">Chemin de destination du fichier d&apos;état, écrit par le traitement de sauvegarde Common.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de l&apos;écriture de l&apos;état au chemin demandé.</returns>
+    /// <remarks><para>Le traitement Common sérialise l&apos;accès au cœur et écrit le format d&apos;état partagé avec ses métadonnées et empreintes ; ce relais n&apos;en crée aucun autre.</para><para>La sauvegarde est exécutée sur le thread du cœur et enveloppée dans le format d’état commun.</para></remarks>
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
-    /// <inheritdoc/>
-    /// <remarks>La restauration vérifie l’identité du cœur, la configuration et les empreintes des contenus avant de charger l’état.</remarks>
+    /// <summary>Restaure un état sauvegardé par la facette publique de la session.</summary>
+    /// <param name="path">Chemin du fichier d&apos;état à lire et à valider avant restauration de la session.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de la validation et de la restauration de l&apos;état.</returns>
+    /// <remarks><para>La validation du fichier et de son identité précède la restauration par le cœur. Le fichier reste disponible pour son propriétaire après la lecture.</para><para>La restauration vérifie l’identité du cœur, la configuration et les empreintes des contenus avant de charger l’état.</para></remarks>
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    /// <inheritdoc/>
-    /// <remarks>Convertit le périphérique public vers sa catégorie interne puis transmet la commande au thread du cœur.</remarks>
+    /// <summary>Traduit la catégorie publique du périphérique avant son application au port de session.</summary>
+    /// <param name="port">Index du port d&apos;entrée à configurer, validé par les règles Common de la session.</param>
+    /// <param name="peripheral">Catégorie de périphérique à décrire ou à appliquer au port.</param>
+    /// <remarks><para>La conversion consulte la configuration complète et les capacités du port. La méthode rejoint ensuite la commande Common, qui conserve les règles d&apos;acceptation du cœur.</para><para>Convertit le périphérique public vers sa catégorie interne puis transmet la commande au thread du cœur.</para></remarks>
     void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, CurrentConfiguration(), port));
-    /// <inheritdoc/>
+    /// <summary>Expose le mode d&apos;hébergement actuellement annoncé par le cœur.</summary>
+    /// <remarks><para>Cette consultation ne lance aucun processus. Le propriétaire du cœur reste responsable de son arrêt et de sa destruction.</para></remarks>
     public HostProcessState HostProcessState => _core.HostProcessState;
-    /// <inheritdoc/>
+    /// <summary>Expose l&apos;identifiant du processus hôte lorsqu&apos;un processus distinct existe.</summary>
+    /// <remarks><para>La valeur est nulle pour un hébergement dans le processus courant. Lire cet identifiant ne transfère aucun handle ni droit de propriété.</para></remarks>
     public int? HostProcessId => _core.HostProcessId;
 }

@@ -173,10 +173,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Configuration = updated;
     }, CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
-    /// <inheritdoc/>
-    /// <remarks>Émet l’impulsion attendue par les mappers de contrôleur/pointeur. Le relâchement est garanti
-    /// dans finally, y compris lorsque l’attente est annulée. Les frames lisent cette commande avec les entrées
-    /// accumulées ; aucun déplacement relatif n’est ajouté une seconde fois pour provoquer la bascule.</remarks>
+    /// <summary>Produit l&apos;impulsion de bascule entre les modes manette et pointeur de la session.</summary>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Mode pointeur après une impulsion terminée, ou false lorsque cette capacité n&apos;est pas disponible.</returns>
+    /// <remarks><para>La capacité de capture est vérifiée avant la demande. Le drapeau d&apos;impulsion est remis à zéro dans finally, même après annulation ; le mode mémorisé change seulement si la temporisation aboutit.</para><para>Émet l’impulsion attendue par les mappers de contrôleur/pointeur. Le relâchement est garanti dans finally, y compris lorsque l’attente est annulée. Les frames lisent cette commande avec les entrées accumulées ; aucun déplacement relatif n’est ajouté une seconde fois pour provoquer la bascule.</para></remarks>
     async ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -367,14 +367,18 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }, cancellationToken, EmulationMessageCategory.Machine, EmulationMessageCode.OptionInvalid);
 
 
-    /// <inheritdoc/>
-    /// <remarks>La commande rejoint la file du cœur ; les politiques de copie, de protection et de
-    /// sauvegarde automatique restent celles du backend. Aucun autre lecteur n’est sélectionné.</remarks>
+    /// <summary>Demande au cœur d&apos;enregistrer les modifications du média désigné.</summary>
+    /// <param name="slot">Emplacement de média désigné par le contrat public.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>Attente de la commande d&apos;enregistrement du média.</returns>
+    /// <remarks><para>L&apos;accès passe par la file de commandes de la machine. Le cœur décide du contenu à enregistrer ; cette commande n&apos;écrit pas de fichier d&apos;état de session.</para><para>La commande rejoint la file du cœur ; les politiques de copie, de protection et de sauvegarde automatique restent celles du backend. Aucun autre lecteur n’est sélectionné.</para></remarks>
     public ValueTask SaveChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SaveMediaChanges(slot), cancellationToken);
 
-    /// <inheritdoc/>
-    /// <remarks>Le résultat est capturé sur le même thread que les frames et les changements de médias.
-    /// La consultation ne publie aucun fichier et ne modifie aucun montage.</remarks>
+    /// <summary>Consulte par la file de commandes si un média possède des modifications non enregistrées.</summary>
+    /// <param name="slot">Emplacement de média désigné par le contrat public.</param>
+    /// <param name="cancellationToken">Annulation transmise à l&apos;opération Common, sans transfert de propriété des ressources de session.</param>
+    /// <returns>True si le cœur annonce des modifications non enregistrées pour cet emplacement.</returns>
+    /// <remarks><para>La lecture est sérialisée avec les opérations du cœur pour obtenir son état courant ; elle ne sauvegarde ni n&apos;éjecte le média.</para><para>Le résultat est capturé sur le même thread que les frames et les changements de médias. La consultation ne publie aucun fichier et ne modifie aucun montage.</para></remarks>
     public async ValueTask<bool> HasUnsavedChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default)
     {
         var hasChanges = false;

@@ -36,18 +36,25 @@ internal sealed partial class ExternalCore
     /// <summary>Lot PCM stéréo brut du dernier calcul.</summary>
     private short[] _samples = [];
 
-    /// <inheritdoc/>
+    /// <summary>Expose la dernière image publiée par le cœur simulé.</summary>
+    /// <remarks><para>La valeur est absente avant la première publication. Le consommateur emprunte l&apos;image et respecte la durée de validité de ses données ; il ne détruit pas le cœur qui la fournit.</para></remarks>
     public VideoFrame? LatestVideoFrame { get; private set; }
-    /// <inheritdoc/>
+    /// <summary>Expose le dernier bloc audio publié par le cœur simulé.</summary>
+    /// <remarks><para>La valeur est absente tant qu&apos;aucun bloc n&apos;a été produit. Les données servent à la restitution de la session et ne possèdent pas de périphérique de sortie.</para></remarks>
     public AudioChunk? LatestAudioChunk { get; private set; }
-    /// <inheritdoc/>
-    /// <remarks>Instantané commun aux trois modes ; sa lecture n’active aucun moteur physique.</remarks>
+    /// <summary>Expose un instantané des demandes de retour vers les périphériques.</summary>
+    /// <remarks><para>Le stockage de retours appartient au cœur. Sans stockage actif, la liste est vide ; le consommateur ne pilote que les sorties autorisées par Common.</para><para>Instantané commun aux trois modes ; sa lecture n’active aucun moteur physique.</para></remarks>
     public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _feedback?.Snapshot() ?? [];
     /// <summary>Retire un lot produit ; une fin de vidage normale ne compte pas comme manque audio.</summary>
+    /// <param name="chunk">Bloc audio retiré du tampon si disponible ; null lorsqu&apos;aucun bloc n&apos;a été extrait.</param>
+    /// <returns>True si un bloc a été retiré du tampon et fourni au paramètre de sortie.</returns>
     public bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeueNative(out chunk);
     /// <summary>Remplace les entrées de la frame ; le contrat Common garantit leur instantané immuable.</summary>
+    /// <param name="snapshot">Instantané d&apos;entrées emprunté ; ses collections restent stables pendant leur consommation.</param>
     public void SetInput(EmulationInputSnapshot snapshot) { EnsureReady(); _input = snapshot; }
     /// <summary>Raccorde un périphérique au port après vérification de la capacité du profil courant.</summary>
+    /// <param name="port">Index technique du port, à partir de zéro, vérifié selon les capacités de la configuration.</param>
+    /// <param name="peripheral">Catégorie de périphérique à décrire ou à appliquer au port.</param>
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
     {
         EnsureReady();
@@ -58,6 +65,11 @@ internal sealed partial class ExternalCore
         else _exports.SetControllerPortDevice((uint)port, device);
     }
     /// <summary>Relie la lecture ABI au même interpréteur de boutons, axes, souris et clavier que Common.</summary>
+    /// <param name="port">Index du port demandé par le protocole natif du cœur.</param>
+    /// <param name="device">Identifiant du type de périphérique selon le protocole natif d&apos;entrées.</param>
+    /// <param name="index">Index de la composante du périphérique, interprété selon son type dans le protocole natif.</param>
+    /// <param name="id">Identifiant de la commande d&apos;entrée dans le protocole natif du périphérique.</param>
+    /// <returns>Valeur native signée sur seize bits pour la commande désignée ; son unité dépend du type de commande.</returns>
     private short ControllerInput(uint port, uint device, uint index, uint id) => CommonControllerFunctions.ReadNativeInput(_input, port, device, index, id);
 
     /// <summary>Exécute une frame par le chemin annoncé par l’adaptateur.</summary>
@@ -197,6 +209,9 @@ internal sealed partial class ExternalCore
     }
 
     /// <summary>Épingle les seuls tableaux empruntés pendant les callbacks et libère les deux épingles dans finally.</summary>
+    /// <param name="width">Largeur de l&apos;image, exprimée en pixels.</param>
+    /// <param name="height">Hauteur de l&apos;image, exprimée en pixels.</param>
+    /// <param name="pitch">Nombre d&apos;octets d&apos;une ligne de pixels, incluant son éventuel remplissage.</param>
     private void PublishNative(int width, int height, int pitch)
     {
         GCHandle pixels = default, samples = default;
@@ -228,14 +243,22 @@ internal sealed partial class ExternalCore
     /// <summary>Instant émulé de la frame, exprimé en secondes ; la séquence conserve l’ordre de publication.</summary>
     private TimeSpan Timestamp => TimeSpan.FromSeconds(_ticks / FramesPerSecond);
     /// <summary>Copie immédiatement les pixels natifs avant la fin de validité du pointeur emprunté.</summary>
+    /// <param name="data">Adresse des pixels natifs, copiés avant la fin de validité du pointeur emprunté.</param>
+    /// <param name="width">Largeur de l&apos;image, exprimée en pixels.</param>
+    /// <param name="height">Hauteur de l&apos;image, exprimée en pixels.</param>
+    /// <param name="pitch">Nombre d&apos;octets d&apos;une ligne de pixels, incluant son éventuel remplissage.</param>
     private void ReceiveVideo(nint data, uint width, uint height, nuint pitch)
     {
         var pixels = _video.CopyFramePixels(data, height, pitch);
         LatestVideoFrame = new(pixels.AsMemory(0, checked((int)(height * pitch))), (int)width, (int)height, (int)pitch, OptionCatalog.PixelFormat(_configuration!), (float)width / height, _sequence, Timestamp);
     }
     /// <summary>Copie un lot natif par le traitement commun et annonce le nombre de frames consommées.</summary>
+    /// <param name="data">Adresse des échantillons PCM signés sur seize bits, entrelacés par canal et copiés pendant le callback.</param>
+    /// <param name="frames">Nombre de trames audio ; chaque trame comprend les échantillons de tous ses canaux.</param>
+    /// <returns>Nombre de trames audio consommées, identique à la quantité transmise au callback.</returns>
     private nuint ReceiveAudio(nint data, nuint frames) { PublishAudio(AudioFunctions.CopyBatch(data, frames)); return frames; }
     /// <summary>Publie un lot possédé par la file audio avec les mêmes unités que le contrat SDK.</summary>
+    /// <param name="samples">Échantillons PCM signés sur seize bits, entrelacés par canal ; le tableau doit rester stable pendant l&apos;utilisation du bloc publié.</param>
     private void PublishAudio(short[] samples)
     {
         LatestAudioChunk = new(samples, SampleRate, samples.Length / AudioConstants.StereoChannelCount, _sequence, Timestamp);

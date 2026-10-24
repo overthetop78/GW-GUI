@@ -16,6 +16,7 @@ internal sealed partial class ExternalCore
     /// <summary>Produit une charge utile binaire indépendante contenant modèle, compteur logique et RAM.</summary>
     /// <remarks>La séquence de publication n’est pas sauvegardée : elle doit rester monotone après restauration.
     /// Les lecteurs et options sont contrôlés par l’enveloppe Common et la configuration de la machine.</remarks>
+    /// <returns>Nouveau tableau contenant la charge utile binaire du modèle, du compteur logique et de la RAM.</returns>
     public byte[] SaveState()
     {
         EnsureReady();
@@ -34,6 +35,7 @@ internal sealed partial class ExternalCore
     /// <summary>Valide toute la charge utile avant de modifier la RAM épinglée et le compteur.</summary>
     /// <remarks>Une version, un modèle, une taille ou un compteur invalides sont rejetés. La RAM est copiée
     /// dans le tableau existant afin que les pointeurs fournis par les exports restent valides.</remarks>
+    /// <param name="state">Charge utile binaire de l&apos;état, empruntée et validée avant restauration des données du cœur.</param>
     public void LoadState(ReadOnlySpan<byte> state)
     {
         EnsureReady();
@@ -50,6 +52,9 @@ internal sealed partial class ExternalCore
     }
 
     /// <summary>Copie l’état dans la mémoire empruntée par l’appelant ABI après vérification de sa taille.</summary>
+    /// <param name="data">Adresse du tampon natif de destination, emprunté uniquement pendant la copie de l&apos;état.</param>
+    /// <param name="size">Capacité du tampon natif, exprimée en octets et non en échantillons ou en trames.</param>
+    /// <returns>True si la charge utile a pu être copiée dans le tampon natif fourni.</returns>
     private bool SerializeNative(nint data, nuint size)
     {
         var state = SaveState();
@@ -58,6 +63,9 @@ internal sealed partial class ExternalCore
         return true;
     }
     /// <summary>Copie puis valide l’état ABI ; un document rejeté laisse la machine inchangée.</summary>
+    /// <param name="data">Adresse du tampon natif source, emprunté puis copié avant validation et restauration de l&apos;état.</param>
+    /// <param name="size">Capacité du tampon natif, exprimée en octets et non en échantillons ou en trames.</param>
+    /// <returns>True si le contenu du tampon natif a été accepté et restauré par le traitement d&apos;état.</returns>
     private bool UnserializeNative(nint data, nuint size)
     {
         if (data == 0 || size != (nuint)(SimulationConstants.StateHeaderLength + _memory.Length)) return false;
@@ -68,6 +76,8 @@ internal sealed partial class ExternalCore
     }
 
     /// <summary>Applique une option reconnue après validation ; les changements de géométrie exigent une recréation.</summary>
+    /// <param name="key">Identifiant technique de l&apos;option du cœur à consulter ou à modifier.</param>
+    /// <param name="value">Valeur textuelle proposée pour l&apos;option, validée avant application au cœur.</param>
     public void SetOption(string key, string value)
     {
         EnsureReady();
