@@ -15554,3 +15554,29 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les références compilées des 24 modules et les passages par Common, Emulation puis MediaEngine, sans ajouter de fixture externe.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Architecture/EmulationArchitectureTests.cs : remplacer l'ancienne attente de dépendance MediaEngine par la seule dépendance SDK et appliquer le contrôle aux 24 modules.
     - [x] Modifier les sources concernées si les contrôles existants des préparations SCP/CUE ou des métadonnées échouent ; exécuter ces contrôles puis le build Debug avec tous les modules et vérifier les sorties.
+
+- [x] Retirer les constantes Common devenues inutilisées après raccordement aux contrats partagés.
+  - [x] Nettoyer les quatre groupes de constantes comparés avec Example.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CartridgeConstants.cs : retirer seulement les constantes sans référence : RegionOptionKey, AutomaticRegionValue, SupportsRegionByDefault.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer seulement les constantes sans référence : Ellipsis, MaximumShortNameLength, TruncatedShortNameLength.
+    - [x] Supprimer src/GWGUI.Emulation.Commodore/Common/Constants/CartridgeConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/ExternalCoreInteropConstants.cs : retirer seulement les constantes sans référence : PixelFormatXrgb8888, PixelFormatRgb565, NativeBooleanTrue, EmptyNativeCollectionCount.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Constants/CartridgeConstants.cs : retirer seulement les constantes sans référence : RegionOptionKey, AutomaticRegionValue, SupportsRegionByDefault.
+    - [x] Supprimer src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Supprimer src/GWGUI.Emulation.Microsoft/Common/Constants/ExternalCoreInteropConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Constants/SavedStateConstants.cs : retirer seulement les constantes sans référence : MaximumStateSize.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/CartridgeConstants.cs : retirer seulement les constantes sans référence : RegionOptionKey, AutomaticRegionValue, SupportsRegionByDefault.
+    - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/ExternalCoreInteropConstants.cs : retirer seulement les constantes sans référence : PixelFormat0Rgb1555, PixelFormatXrgb8888, PixelFormatRgb565, NoInputState, NativeBooleanTrue, EmptyNativeCollectionCount, InactiveState.
+    - [x] Supprimer src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CartridgeConstants.cs : retirer seulement les constantes sans référence : RegionOptionKey, AutomaticRegionValue, SupportsRegionByDefault.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer seulement les constantes sans référence : Ellipsis, MaximumShortNameLength, TruncatedShortNameLength.
+    - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationSummaryFunctionsConstants.cs : retirer ce fichier dont toutes les constantes sont sans référence.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+    - [x] Supprimer src/GWGUI.Emulation.Microsoft/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/SavedStateConstants.cs : retirer CurrentFormatVersion sans référence ; la version utilisée provient déjà du contrat partagé.
+  - [x] Valider les modules après suppression.
+    - [x] Modifier les sources concernées si la compilation révèle une référence oubliée ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les 24 modules et les assemblies partagées uniques.
