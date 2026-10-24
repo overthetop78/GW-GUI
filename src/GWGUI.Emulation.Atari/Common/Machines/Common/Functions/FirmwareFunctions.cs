@@ -6,7 +6,6 @@ public static class FirmwareFunctions
 {
     public static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
     public static IReadOnlyDictionary<string, FirmwareDefinition> Index(IEnumerable<FirmwareDefinition> definitions) => definitions.ToDictionary(definition => definition.Id, StringComparer.Ordinal);
-    public static bool IsValidFingerprint(FirmwareFingerprint fingerprint) => fingerprint.Algorithm == FirmwareHashAlgorithm.Md5 && fingerprint.Value.Length == FirmwareConstants.Md5HexLength && fingerprint.Value.All(Uri.IsHexDigit);
     public static string TosId(string version) => FirmwareConstants.TosIdPrefix + version;
 
     public static FirmwareDefinition Tos(string version, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> regions, params FirmwareFingerprint[] fingerprints) => new(
@@ -35,13 +34,6 @@ public static class FirmwareFunctions
         id, category, version, fileName, null, provision, FirmwareDistribution.UserSuppliedCopyrighted,
         evidence, Values(model), noRegions,
         Values(new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, md5)));
-
-    public static FirmwareDefinition Embedded(string id,
-        FirmwareCategory category,
-        FirmwareProvision provision,
-        IReadOnlyList<MachineModel> models,
-        IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
 
     public static FirmwareDefinition JaguarCd(string id, string fileName, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
         id, FirmwareCategory.JaguarCdBios, null, fileName, null,

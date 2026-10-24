@@ -101,31 +101,3 @@ internal static class MessageFunctions
         _ => EmulationMessageCode.MachineStartFailed
     };
 }
-
-public static class ShortcutFunctions
-{
-    public static IReadOnlyList<ShortcutRule> Rules(MachineConfiguration configuration, bool statesAvailable, bool quickStateExists)
-    {
-        var rules = ShortcutConstants.CommonActions.Select(Available).ToList();
-        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickSave, Availability(statesAvailable)));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickLoad, Availability(statesAvailable && quickStateExists)));
-
-        var removable = CompatibilityCatalog.Get(configuration.Model).Media.Any(rule => rule.Availability == MediaAvailability.Available && IsRemovable(rule.Category));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.InsertMedia, Availability(removable)));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.EjectMedia, Availability(configuration.Media.Any(media => media.IsInserted && IsEjectable(media.Category)))));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.NextMedia, Availability(configuration.Media.Count(media => IsDiskSelectable(media.Category)) > ShortcutConstants.MinimumMediaForSelection)));
-        return rules;
-    }
-
-    public static bool IsAvailable(IReadOnlyList<ShortcutRule> rules, string action) => rules.FirstOrDefault(rule => string.Equals(rule.Action, action, StringComparison.Ordinal))?.Availability == ShortcutAvailability.Available;
-
-    private static ShortcutRule Available(string action) => new(action, ShortcutAvailability.Available);
-
-    private static ShortcutAvailability Availability(bool available) => available ? ShortcutAvailability.Available : ShortcutAvailability.Unavailable;
-
-    private static bool IsRemovable(MediaCategory category) => category is MediaCategory.Floppy or MediaCategory.Cassette or MediaCategory.Cartridge or MediaCategory.CompactDisc;
-
-    private static bool IsDiskSelectable(MediaCategory category) => category == MediaCategory.Floppy;
-
-    private static bool IsEjectable(MediaCategory category) => category is MediaCategory.Floppy or MediaCategory.Cassette;
-}

@@ -12,11 +12,6 @@ internal static class ConfigurationFunctions
     /// <returns>True si au moins une définition de cœur accepte son identifiant.</returns>
     internal static bool SupportsRuntime(MachineModel model) => EmulatorCatalog.GetAll(HardwareModelCatalog.Get(model).StableModelId).Count > 0;
 
-    /// <summary>Retourne la préférence déclarée dans le catalogue, sans modifier une configuration existante.</summary>
-    /// <param name="model">Profil dont le cœur initial est demandé.</param>
-    /// <returns>Identité du premier cœur recommandé et compatible.</returns>
-    internal static Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
-
     /// <summary>Décrit la sélection initiale de lecteurs du profil matériel.</summary>
     /// <param name="model">Profil dont les emplacements disponibles doivent être activés initialement.</param>
     /// <returns>Nouvelle liste protégée contre les modifications, dans l’ordre du catalogue matériel.</returns>
