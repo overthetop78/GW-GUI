@@ -16,6 +16,52 @@ public sealed class ArchitectureValidationTests
 {
 
     [Fact]
+    public void EveryHostUsesTheCommonErrorNamesAndOwner()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load).ToArray();
+        var example = Assembly.Load("gwgui.emulation.example").GetType("GWGUI.Emulation.Example.Common.Exceptions.CoreHostErrors", true)!;
+        var names = example.GetProperties(BindingFlags.Static | BindingFlags.NonPublic).Select(property => property.Name).ToHashSet(StringComparer.Ordinal);
+        var hosts = 0;
+        foreach (var assembly in assemblies)
+        {
+            var factory = assembly.GetTypes().Single(type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.IndexOf(".Modules", StringComparison.Ordinal)];
+            var errors = assembly.GetType(root + ".Common.Exceptions.CoreHostErrors");
+            if (errors is null) continue;
+            hosts++;
+            Assert.All(errors.GetProperties(BindingFlags.Static | BindingFlags.NonPublic), property => Assert.Contains(property.Name, names));
+            var host = assembly.GetType(root + ".Common.Services.CoreHost", true)!;
+            var calls = assembly.GetTypes().Where(type => type == host || type.FullName!.StartsWith(host.FullName + "+", StringComparison.Ordinal))
+                .SelectMany(type => type.GetMethods(BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            foreach (var name in new[] { "InvalidConfiguration", "NotInitialized", "UnknownCommandFormat" })
+            {
+                var getter = errors.GetProperty(name, BindingFlags.Static | BindingFlags.NonPublic)!.GetMethod!;
+                Assert.Contains(calls, call => call.Method == getter);
+            }
+        }
+        Assert.Equal(23, hosts);
+        foreach (var family in new[] { "Amstrad", "Commodore", "Nec", "Nintendo", "Sega", "Sony" })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = "GWGUI.Emulation." + family;
+            var resolver = assembly.GetType(root + ".Common.Exceptions.ExceptionText", true)!.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var owner = assembly.GetType(root + ".Common.Exceptions.CoreHostErrors", true)!;
+            var prefix = family switch { "Amstrad" => "Common.", "Commodore" => "PUAE.", _ => "Core." };
+            var key = "Emulation.Error." + prefix + "UnknownHostCommand";
+            var template = Assert.IsType<string>(owner.GetProperty("UnknownCommandFormat", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null));
+            Assert.Equal(resolver.Invoke(null, [key, Array.Empty<object>()]), template);
+            Assert.Equal(resolver.Invoke(null, [key, new object[] { (byte)200 }]), string.Format(System.Globalization.CultureInfo.CurrentCulture, template, (byte)200));
+            var coreMessages = assembly.GetType(root + ".Common.Exceptions.ErrorMessages", true)!;
+            Assert.DoesNotContain(coreMessages.GetMethods(BindingFlags.Static | BindingFlags.NonPublic), method => method.Name is "HostConfigurationInvalid" or "HostNotInitialized" or "UnknownHostCommand" or "ProcessCommunicationFailed");
+        }
+    }
+
+
+
+    [Fact]
     public void CommonMessagesResolveCultureAndArgumentsThroughOneOwner()
     {
         var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

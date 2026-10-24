@@ -35,7 +35,7 @@ internal static class CoreHost
                                 var (corePath, session, saves, configuration) =
                                     CommonCoreHostFunctions.Protocol.ReadInitializationRequest(reader,
                                         CommonCoreHostFunctions.ReadString,
-                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(ErrorMessages.HostConfigurationInvalid()));
+                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration));
                                 CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 core = createCore(configuration, corePath);
                                 core.Initialize(configuration, session, saves);
@@ -71,7 +71,7 @@ internal static class CoreHost
                                 if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory>((byte)command, reader, writer,
                                         () => EnsureCore(core), static requestReader => System.Text.Json.JsonSerializer.Deserialize<MediaConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(),
                                         CommonCoreHostFunctions.ReadBytes, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CommonCoreHostFunctions.JsonOptions)), static value => (PeripheralCategory)value, WriteSuccess))
-                                    throw new InvalidDataException(ErrorMessages.UnknownHostCommand((byte)command));
+                                    throw new InvalidDataException(string.Format(System.Globalization.CultureInfo.CurrentCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
                                 break;
                         }
                     }, (writer, error) =>
@@ -87,7 +87,7 @@ internal static class CoreHost
             }));
     }
 
-    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(ErrorMessages.HostNotInitialized());
+    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreHostErrors.NotInitialized);
     private static void WriteSuccess(BinaryWriter writer) => CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
 
 }

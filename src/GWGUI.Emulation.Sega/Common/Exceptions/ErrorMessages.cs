@@ -4,8 +4,6 @@ namespace GWGUI.Emulation.Sega.Common.Exceptions;
 internal static class ErrorMessages
 {
 
-    internal static string HostConfigurationInvalid() => ExceptionText.Get("Emulation.Error.Core.HostConfigurationInvalid");
-    internal static string HostNotInitialized() => ExceptionText.Get("Emulation.Error.Core.HostNotInitialized");
     internal static string CoreNotInitialized() => ExceptionText.Get("Emulation.Error.Core.CoreNotInitialized");
     internal static string MediaNotFound() => ExceptionText.Get("Emulation.Error.Core.MediaNotFound");
     internal static string StartWithoutMediaUnsupported() => ExceptionText.Get("Emulation.Error.Core.StartWithoutMediaUnsupported");
@@ -29,24 +27,13 @@ internal static class ErrorMessages
     internal static string MediaInsertFailed() => ExceptionText.Get("Emulation.Error.Core.MediaInsertFailed");
     internal static string DiskControlUnavailable() => ExceptionText.Get("Emulation.Error.Core.DiskControlUnavailable");
     internal static string DiskControlIncomplete() => ExceptionText.Get("Emulation.Error.Core.DiskControlIncomplete");
-    internal static string ProcessAlreadyInitialized() => ExceptionText.Get("Emulation.Error.Core.ProcessAlreadyInitialized");
-    internal static string HostExecutableNotFound() => ExceptionText.Get("Emulation.Error.Core.HostExecutableNotFound");
-    internal static string ProcessStartFailed() => ExceptionText.Get("Emulation.Error.Core.ProcessStartFailed");
-    internal static string VideoBufferUnavailable() => ExceptionText.Get("Emulation.Error.Core.VideoBufferUnavailable");
-    internal static string ProcessUnavailable() => ExceptionText.Get("Emulation.Error.Core.ProcessUnavailable");
-    internal static string ProcessNotInitialized() => ExceptionText.Get("Emulation.Error.Core.ProcessNotInitialized");
-    internal static string ProcessTimeout() => ExceptionText.Get("Emulation.Error.Core.ProcessTimeout");
-    internal static string ProcessCommunicationFailed(string detail) => ExceptionText.Get("Emulation.Error.Core.ProcessCommunicationFailed", detail);
-    internal static string HostResponseUnavailable() => ExceptionText.Get("Emulation.Error.Core.HostResponseUnavailable");
     internal static string UnknownCoreOption() => ExceptionText.Get("Emulation.Error.Core.UnknownCoreOption");
     internal static string UnsupportedPixelFormat(int value) => ExceptionText.Get("Emulation.Error.Core.UnsupportedPixelFormat", value);
     internal static string InvalidOptionValue(string value, string key) => ExceptionText.Get("Emulation.Error.Core.InvalidOptionValue", value, key);
-    internal static string InvalidResponseLength(int length) => ExceptionText.Get("Emulation.Error.Core.InvalidResponseLength", length);
     internal static string UnsupportedApiVersion(uint version) => ExceptionText.Get("Emulation.Error.Core.UnsupportedApiVersion", version);
     internal static string LibraryIdentityMismatch(string? name) => ExceptionText.Get("Emulation.Error.Core.LibraryIdentityMismatch", name ?? string.Empty);
     internal static string UnsupportedContentExtension(string extension) => ExceptionText.Get("Emulation.Error.Core.UnsupportedContentExtension", extension);
     internal static string InvalidStateSize(nuint size) => ExceptionText.Get("Emulation.Error.Core.InvalidStateSize", size);
-    internal static string UnknownHostCommand(byte command) => ExceptionText.Get("Emulation.Error.Core.UnknownHostCommand", command);
 
 }
 

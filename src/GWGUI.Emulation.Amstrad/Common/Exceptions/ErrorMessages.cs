@@ -4,8 +4,6 @@ namespace GWGUI.Emulation.Amstrad.Common.Exceptions;
 internal static class ErrorMessages
 {
 
-    internal static string HostConfigurationInvalid() => ExceptionText.Get(CommonExceptionsConstants.HostConfigurationInvalidResourceKey);
-    internal static string HostNotInitialized() => ExceptionText.Get(CommonExceptionsConstants.HostNotInitializedResourceKey);
     internal static string CoreNotInitialized() => ExceptionText.Get(CommonExceptionsConstants.CoreNotInitializedResourceKey);
     internal static string MediaNotFound() => ExceptionText.Get(CommonExceptionsConstants.MediaNotFoundResourceKey);
     internal static string StartWithoutMediaUnsupported() => ExceptionText.Get(CommonExceptionsConstants.StartWithoutMediaUnsupportedResourceKey);
@@ -30,23 +28,12 @@ internal static class ErrorMessages
     internal static string MediaInsertFailed() => ExceptionText.Get(CommonExceptionsConstants.MediaInsertFailedResourceKey);
     internal static string DiskControlUnavailable() => ExceptionText.Get(CommonExceptionsConstants.DiskControlUnavailableResourceKey);
     internal static string DiskControlIncomplete() => ExceptionText.Get(CommonExceptionsConstants.DiskControlIncompleteResourceKey);
-    internal static string ProcessAlreadyInitialized() => ExceptionText.Get(CommonExceptionsConstants.ProcessAlreadyInitializedResourceKey);
-    internal static string HostExecutableNotFound() => ExceptionText.Get(CommonExceptionsConstants.HostExecutableNotFoundResourceKey);
-    internal static string ProcessStartFailed() => ExceptionText.Get(CommonExceptionsConstants.ProcessStartFailedResourceKey);
-    internal static string VideoBufferUnavailable() => ExceptionText.Get(CommonExceptionsConstants.VideoBufferUnavailableResourceKey);
-    internal static string ProcessUnavailable() => ExceptionText.Get(CommonExceptionsConstants.ProcessUnavailableResourceKey);
-    internal static string ProcessNotInitialized() => ExceptionText.Get(CommonExceptionsConstants.ProcessNotInitializedResourceKey);
-    internal static string ProcessTimeout() => ExceptionText.Get(CommonExceptionsConstants.ProcessTimeoutResourceKey);
-    internal static string ProcessCommunicationFailed(string detail) => ExceptionText.Get(CommonExceptionsConstants.ProcessCommunicationFailedResourceKey, detail);
-    internal static string HostResponseUnavailable() => ExceptionText.Get(CommonExceptionsConstants.HostResponseUnavailableResourceKey);
     internal static string UnknownCoreOption() => ExceptionText.Get(CommonExceptionsConstants.UnknownCoreOptionResourceKey);
     internal static string UnsupportedPixelFormat(int value) => ExceptionText.Get(CommonExceptionsConstants.UnsupportedPixelFormatResourceKey, value);
     internal static string InvalidOptionValue(string value, string key) => ExceptionText.Get(CommonExceptionsConstants.InvalidOptionValueResourceKey, value, key);
-    internal static string InvalidResponseLength(int length) => ExceptionText.Get(CommonExceptionsConstants.InvalidResponseLengthResourceKey, length);
     internal static string UnsupportedApiVersion(uint version) => ExceptionText.Get(CommonExceptionsConstants.UnsupportedApiVersionResourceKey, version);
     internal static string LibraryIdentityMismatch(string? name, string expected) => ExceptionText.Get(CommonExceptionsConstants.LibraryIdentityMismatchResourceKey, name ?? string.Empty, expected);
     internal static string UnsupportedContentExtension(string extension) => ExceptionText.Get(CommonExceptionsConstants.UnsupportedContentExtensionResourceKey, extension);
     internal static string InvalidStateSize(nuint size) => ExceptionText.Get(CommonExceptionsConstants.InvalidStateSizeResourceKey, size);
-    internal static string UnknownHostCommand(byte command) => ExceptionText.Get(CommonExceptionsConstants.UnknownHostCommandResourceKey, command);
 
 }

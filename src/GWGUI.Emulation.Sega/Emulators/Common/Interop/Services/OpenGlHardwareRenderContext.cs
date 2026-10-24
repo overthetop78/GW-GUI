@@ -12,7 +12,7 @@ internal sealed class OpenGlHardwareRenderContext(ExternalCoreApi.HardwareRender
 {
     internal const int OpenGlContextType = ExternalCoreApiConstants.OpenGlContextType;
     internal const int OpenGlCoreContextType = ExternalCoreApiConstants.OpenGlCoreContextType;
-    private readonly IEmulationHardwareRenderContext _context = CommonCoreHostFunctions.NativeResources.CreateHardwareRenderContext(callback, ErrorMessages.HostConfigurationInvalid);
+    private readonly IEmulationHardwareRenderContext _context = CommonCoreHostFunctions.NativeResources.CreateHardwareRenderContext(callback, () => CoreHostErrors.InvalidConfiguration);
 
     internal nint CurrentFramebufferCallback => _context.CurrentFramebufferCallback;
     internal nint ProcAddressCallback => _context.ProcAddressCallback;

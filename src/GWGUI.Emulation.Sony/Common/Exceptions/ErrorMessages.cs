@@ -4,11 +4,8 @@ namespace GWGUI.Emulation.Sony.Common.Exceptions;
 internal static class ErrorMessages
 {
 
-    internal static string HostConfigurationInvalid() => ExceptionText.Get(CoreExceptionsResourceConstants.HostConfigurationInvalid);
-    internal static string HostNotInitialized() => ExceptionText.Get(CoreExceptionsResourceConstants.HostNotInitialized);
     internal static string ContentRefused() => ExceptionText.Get(CoreExceptionsResourceConstants.ContentRefused);
     internal static string InvalidStateSize(nuint size) => ExceptionText.Get(CoreExceptionsResourceConstants.InvalidStateSize, size);
-    internal static string UnknownHostCommand(byte command) => ExceptionText.Get(CoreExceptionsResourceConstants.UnknownHostCommand, command);
 
     internal static string ForEmulator(string? emulatorId, string key, params object[] arguments)
     {
