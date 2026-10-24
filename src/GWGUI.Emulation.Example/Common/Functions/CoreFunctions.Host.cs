@@ -180,7 +180,8 @@ internal static class CoreHostFunctions
     /// <summary>Sérialise le diagnostic en JSON puis l’écrit comme chaîne binaire.</summary>
     /// <param name="writer">Rédacteur emprunté, après l’en-tête de réponse en échec.</param>
     /// <param name="error">Exception dont les données seront transportées.</param>
-    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
+    /// <param name="diagnostics">Messages disponibles du cœur ; le codec les ajoute sans perdre catégorie, contexte ou localisation et sans répéter un bloc déjà présent.</param>
+    internal static void WriteError(BinaryWriter writer, Exception error, IReadOnlyList<string> diagnostics) => Protocol.WriteError(writer, CreateError(error), JsonOptions, diagnostics);
 
     /// <summary>Lit la chaîne JSON du diagnostic et reconstruit son contrat de données.</summary>
     /// <param name="reader">Lecteur emprunté, après l’en-tête de réponse en échec.</param>

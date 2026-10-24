@@ -19,7 +19,8 @@ public interface IEmulationHostProtocol
     /// <param name="writer">Rédacteur emprunté, après le statut d’échec ; reste ouvert.</param>
     /// <param name="error">Diagnostic projeté par Common, conservant contexte et localisation.</param>
     /// <param name="jsonOptions">Conventions JSON partagées par les deux extrémités.</param>
-    void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions) where TCategory : struct where TCode : struct;
+    /// <param name="diagnostics">Messages disponibles du cœur, ajoutés dans leur ordre sans remplacer les codes ni le contexte.</param>
+    void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions, IReadOnlyList<string> diagnostics) where TCategory : struct where TCode : struct;
 
     /// <summary>Lit le diagnostic complet ; la restitution d’une exception reste à la charge de Common.</summary>
     /// <typeparam name="TCategory">Type des catégories utilisées par Common.</typeparam>

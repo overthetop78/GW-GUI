@@ -66,7 +66,7 @@ internal static class CoreHost
                 }, (writer, error) =>
                 {
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
-                    CoreHostFunctions.WriteError(writer, error);
+                    CoreHostFunctions.WriteError(writer, error, core?.Diagnostics ?? []);
                 });
             }
             finally

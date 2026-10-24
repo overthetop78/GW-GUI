@@ -13213,3 +13213,65 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.Protocol.cs : réserver la restitution de CoreMediaRequiredException à son type de diagnostic pour garder le contexte des autres erreurs ContentRequired.
   - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : réserver aussi la restitution de CoreMediaRequiredException à son type de diagnostic.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat unique, les allers-retours des diagnostics et leurs appels réels dans les 23 transports, le contexte des erreurs typées et la demande de média NEC ; exécuter les vérifications et le build Debug complet.
+
+- [x] Partager la surveillance des diagnostics de démarrage et leur collecte par les hôtes Common.
+  - [x] Créer src/GWGUI.Emulation/Interfaces/IEmulationCoreDiagnosticMonitor.cs : exposer le premier échec capturé, la réception sans exception des messages et la levée au prochain contrôle géré.
+  - [x] Créer src/GWGUI.Emulation/Services/EmulationCoreDiagnosticMonitor.cs : reprendre la surveillance thread-safe existante, avec signatures et fabrique d’erreur fournies par le module.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMessages.cs : exposer la création du moniteur et l’ajout des diagnostics à une cause avant destruction du cœur.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationErrorService.cs : regrouper l’ajout ordonné des diagnostics, garder la cause et éviter d’ajouter de nouveau un bloc déjà présent.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationMessageService.cs : relayer la création et la contextualisation par leurs interfaces publiques.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : fournir explicitement les diagnostics de cœur au codec WriteError complet.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.cs : ajouter les diagnostics au message du contrat sans perdre catégorie, code, contexte ni localisation.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : relayer la collection de diagnostics au codec interne.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : transmettre les diagnostics au codec commun WriteError avec l’exception projetée.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : transmettre les diagnostics du cœur lors de l’échec d’une commande, par le même raccordement Common.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : créer et exposer le moniteur partagé sous son interface, avec les signatures et le texte d’erreur existants.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs : conserver les diagnostics avant libération par le service Common partagé.
+  - [x] Supprimer src/GWGUI.Emulation.Sony/Common/Services/CoreDiagnosticMonitor.cs : retirer l’implémentation locale après raccordement au service partagé.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : illustrer le moniteur public et publier le nom de cœur comme diagnostic dans les trois modes mockés, avec documentation complète du raccordement et de sa durée de vie.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeStartupDiagnosticsTests.cs : conserver les scénarios existants en utilisant le service public partagé et vérifier les diagnostics déjà ajoutés.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les appels des 23 transports, les métadonnées préservées, l’absence de répétition des diagnostics et la capture différée ; exécuter les vérifications et le build Debug complet.

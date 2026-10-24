@@ -29,6 +29,14 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private readonly VideoBufferSet _video = new();
     /// <summary>File audio indépendante obtenue par le relais Common, avec les compteurs du SDK.</summary>
     private readonly IEmulationAudioBuffer _audio = AudioFunctions.CreateBuffer();
+    /// <summary>Messages du cœur conservés comme métadonnées, y compris après une destruction sur échec.</summary>
+    /// <remarks>Cette liste ne possède aucune ressource native. Le destinataire reçoit toujours une copie.</remarks>
+    private readonly List<string> _diagnostics = [];
+    /// <summary>Surveillance obtenue par l’interface publique du SDK via le Common.</summary>
+    /// <remarks>Les trois modes utilisent le même parcours. Le mock ne déclare aucune signature fatale par défaut ;
+    /// un adaptateur réel transmet ici les signatures de son profil, sans modifier ni enregistrer le module dans le SDK.
+    /// Capture ne lève pas depuis un callback ; ThrowIfFailed est appelé après retour au code géré.</remarks>
+    private readonly IEmulationCoreDiagnosticMonitor _diagnosticMonitor = CoreHostFunctions.Messages.CreateCoreDiagnosticMonitor([], static diagnostic => new InvalidOperationException(diagnostic));
     /// <summary>Configuration courante, remplacée lors d’un changement d’option.</summary>
     private MachineConfiguration? _configuration;
     /// <summary>RAM de la machine ; son adresse reste stable entre initialisation et destruction.</summary>
@@ -102,7 +110,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     /// <inheritdoc/>
     public IReadOnlyList<CoreOption> Options => OptionCatalog.For(_configuration);
     /// <inheritdoc/>
-    public IReadOnlyList<string> Diagnostics => [];
+    public IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
     /// <inheritdoc/>
     /// <remarks>Les formats du profil passent par le contrat Common, qui conserve ici les extensions déclarées et leur comparateur.</remarks>
     public IReadOnlySet<string> SupportedContentExtensions => _configuration is null ? new HashSet<string>() : _contentFormats.ResolveContentExtensions(StorageSettingsFunctions.DescribeDevices(_configuration.Model).SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase), requiresFilePath: true);
@@ -119,6 +127,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             ConfigurationFunctions.Validate(configuration);
             _configuration = configuration;
+            CaptureDiagnostic(CoreName);
             _memory = new byte[checked((int)HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes)];
             var firmware = Path.Combine(sessionDirectory, "System", "OperatingSystem.rom");
             if (File.Exists(firmware))
@@ -144,6 +153,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 _exports.Initialize();
                 if (!_exports.LoadGame(0)) throw new InvalidOperationException();
             }
+            _diagnosticMonitor.ThrowIfFailed();
             completed = true;
         }
         finally
@@ -208,5 +218,15 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (!_initialized) throw new InvalidOperationException();
+    }
+    /// <summary>Reçoit un message du cœur simulé par le même point que les trois modes d’exécution.</summary>
+    /// <param name="message">Diagnostic emprunté ; ici le nom invariant du cœur illustre une métadonnée sans traduction.</param>
+    /// <remarks>Le message est conservé pour le statut et le transport Common, puis présenté au moniteur.
+    /// Une capture fatale ne lève rien ici : l’initialisation effectue le contrôle géré après ses appels d’exports.
+    /// Les textes restent disponibles si finally libère une initialisation partielle, afin que l’hôte publie sa cause.</remarks>
+    private void CaptureDiagnostic(string message)
+    {
+        _diagnostics.Add(message);
+        _diagnosticMonitor.Capture(message);
     }
 }

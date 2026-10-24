@@ -197,7 +197,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         }
         catch (Exception error)
         {
-            var startupError = CoreDiagnosticMonitor.WithNativeDiagnostics(error, _host?.Diagnostics ?? []);
+            var startupError = CommonCoreHostFunctions.Messages.WithNativeDiagnostics(error, _host?.Diagnostics ?? []);
             try { Dispose(); }
             catch (Exception cleanupError) { throw new AggregateException(startupError, cleanupError); }
             if (!ReferenceEquals(startupError, error)) throw startupError;

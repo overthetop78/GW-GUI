@@ -142,7 +142,7 @@ internal static class CoreHostFunctions
         ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.Category, structured.Code, structured.Context, structured.IsLocalized)
         : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null, new Dictionary<string, string>(), false);
 
-    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
+    internal static void WriteError(BinaryWriter writer, Exception error, IReadOnlyList<string> diagnostics) => Protocol.WriteError(writer, CreateError(error), JsonOptions, diagnostics);
 
     internal static HostError ReadError(BinaryReader reader) => Protocol.ReadError<ErrorCategory, ErrorCode>(reader, JsonOptions, static () => new InvalidDataException(CoreHostErrors.CommunicationFailed));
     internal static string? ReadString(BinaryReader reader) => CoreHostFunctions.Protocol.ReadString(reader);

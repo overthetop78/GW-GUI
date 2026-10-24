@@ -24,7 +24,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     internal HardwareRenderSession HardwareRender { get; } = new();
-    internal CoreDiagnosticMonitor DiagnosticMonitor { get; }
+    internal IEmulationCoreDiagnosticMonitor DiagnosticMonitor { get; }
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
     private readonly Dictionary<string, IEmulationNativeString> _nativeStrings = new(StringComparer.Ordinal);
@@ -64,7 +64,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _legacyCallbacks = _pspCallbacks || emulatorId == Emulators.Pcsx2.Constants.Pcsx2Constants.Id;
         DiskControl = new ExternalDiskControl(emulatorId);
         _controllerPorts = controllerPorts;
-        DiagnosticMonitor = new CoreDiagnosticMonitor(startupFailureDiagnostics);
+        DiagnosticMonitor = CommonCoreHostFunctions.Messages.CreateCoreDiagnosticMonitor(startupFailureDiagnostics, static diagnostic => new InvalidOperationException(CoreExceptions.ContentRefused(), new InvalidOperationException(diagnostic)));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);

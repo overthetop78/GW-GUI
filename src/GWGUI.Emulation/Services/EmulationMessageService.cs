@@ -6,6 +6,14 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationMessageService : IEmulationMessages
 {
     /// <inheritdoc/>
+    public IEmulationCoreDiagnosticMonitor CreateCoreDiagnosticMonitor(IReadOnlyList<string>? startupFailureDiagnostics, Func<string, Exception> createFailure)
+        => new EmulationCoreDiagnosticMonitor(startupFailureDiagnostics, createFailure);
+
+    /// <inheritdoc/>
+    public Exception WithNativeDiagnostics(Exception error, IReadOnlyList<string> diagnostics)
+        => EmulationErrorService.WithNativeDiagnostics(error, diagnostics);
+
+    /// <inheritdoc/>
     public IEmulationModuleLocalization CreateLocalization(Assembly assembly, string resourcePrefix) => new EmulationModuleLocalization(assembly, resourcePrefix);
 
     /// <inheritdoc/>

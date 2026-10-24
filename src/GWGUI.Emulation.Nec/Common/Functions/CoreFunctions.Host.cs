@@ -155,7 +155,7 @@ internal static class CoreHostFunctions
     /// <summary>Écrit le diagnostic complet après l’en-tête d’échec, via le codec public partagé.</summary>
     /// <param name="writer">Rédacteur emprunté de la réponse ; reste ouvert.</param>
     /// <param name="error">Exception dont Common conserve les détails et les codes disponibles.</param>
-    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
+    internal static void WriteError(BinaryWriter writer, Exception error, IReadOnlyList<string> diagnostics) => Protocol.WriteError(writer, CreateError(error), JsonOptions, diagnostics);
     /// <summary>Lit les six champs du diagnostic complet avec les conventions JSON du module.</summary>
     /// <param name="reader">Lecteur emprunté de la réponse ; reste ouvert.</param>
     /// <returns>Diagnostic à restituer par le client Common.</returns>

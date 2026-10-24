@@ -6,6 +6,21 @@ namespace GWGUI.Emulation.Interfaces;
 /// <remarks>Les annulations et erreurs déjà contextualisées conservent leur identité ; le service ne possède aucune session.</remarks>
 public interface IEmulationMessages
 {
+    /// <summary>Crée un moniteur indépendant qui repère les signatures d’échec annoncées par le module.</summary>
+    /// <param name="startupFailureDiagnostics">Signatures empruntées et stables ; null ou vide ne déclare aucun échec.</param>
+    /// <param name="createFailure">Fabrique appelée uniquement par ThrowIfFailed après retour au code géré.</param>
+    /// <returns>Moniteur de session exposé uniquement par son interface publique.</returns>
+    /// <remarks>Le SDK ne connaît ni l’identité du module, ni les signatures de son cœur, ni ses ressources de texte.
+    /// Le moniteur conserve le premier message correspondant, même si plusieurs callbacks publient simultanément.</remarks>
+    IEmulationCoreDiagnosticMonitor CreateCoreDiagnosticMonitor(IReadOnlyList<string>? startupFailureDiagnostics, Func<string, Exception> createFailure);
+
+    /// <summary>Conserve les diagnostics collectés avant la libération d’un cœur dont le démarrage échoue.</summary>
+    /// <param name="error">Cause initiale empruntée, conservée comme exception interne si un ajout est nécessaire.</param>
+    /// <param name="diagnostics">Messages empruntés dans leur ordre de réception.</param>
+    /// <returns>Cause initiale si aucun ajout n’est nécessaire, sinon erreur contenant le bloc et la cause.</returns>
+    /// <remarks>Un bloc déjà présent n’est pas ajouté de nouveau. Aucun flux ou cœur n’est possédé par cet appel.</remarks>
+    Exception WithNativeDiagnostics(Exception error, IReadOnlyList<string> diagnostics);
+
     /// <summary>Crée un catalogue indépendant pour les ressources embarquées du module.</summary>
     /// <param name="assembly">Assembly emprunté contenant les catalogues ; le service ne le charge ni ne le décharge.</param>
     /// <param name="resourcePrefix">Préfixe existant des ressources à rechercher dans cet assembly.</param>

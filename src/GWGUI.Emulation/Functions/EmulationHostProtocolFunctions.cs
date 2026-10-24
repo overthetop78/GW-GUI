@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Services;
 using System.Text.Json;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
@@ -12,8 +13,12 @@ namespace GWGUI.Emulation.Functions;
 internal static partial class EmulationHostProtocolFunctions
 {
     /// <summary>Écrit les mêmes six champs pour tous les diagnostics, sans posséder le flux emprunté.</summary>
-    internal static void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions) where TCategory : struct where TCode : struct
-        => writer.Write(JsonSerializer.Serialize(error, jsonOptions));
+    internal static void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions, IReadOnlyList<string> diagnostics) where TCategory : struct where TCode : struct
+    {
+        var message = EmulationErrorService.AppendNativeDiagnostics(error.Message, diagnostics);
+        if (message != error.Message) error = error with { Message = message };
+        writer.Write(JsonSerializer.Serialize(error, jsonOptions));
+    }
 
     /// <summary>Lit le contrat complet et laisse Common choisir le diagnostic d’un document nul.</summary>
     internal static HostError<TCategory, TCode> ReadError<TCategory, TCode>(BinaryReader reader, JsonSerializerOptions jsonOptions, Func<Exception> invalidError) where TCategory : struct where TCode : struct

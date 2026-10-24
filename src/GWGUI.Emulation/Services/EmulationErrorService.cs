@@ -2,6 +2,21 @@ namespace GWGUI.Emulation.Services;
 
 internal static class EmulationErrorService
 {
+    /// <summary>Ajoute une fois le bloc ordonné de messages, en conservant le texte déjà fourni.</summary>
+    internal static string AppendNativeDiagnostics(string message, IReadOnlyList<string> diagnostics)
+    {
+        if (diagnostics.Count == 0) return message;
+        var block = string.Join(Environment.NewLine, diagnostics);
+        return message.Contains(block, StringComparison.Ordinal) ? message : message + Environment.NewLine + block;
+    }
+
+    /// <summary>Conserve la cause initiale et ne crée une enveloppe que pour un bloc absent du message.</summary>
+    internal static Exception WithNativeDiagnostics(Exception error, IReadOnlyList<string> diagnostics)
+    {
+        var message = AppendNativeDiagnostics(error.Message, diagnostics);
+        return message == error.Message ? error : new InvalidOperationException(message, error);
+    }
+
     internal static EmulationMessageException EmulatorNotInstalled(string emulatorId) =>
         new(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
             EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,

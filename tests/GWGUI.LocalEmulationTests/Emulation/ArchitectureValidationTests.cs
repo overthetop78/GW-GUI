@@ -15,6 +15,62 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void DiagnosticEnrichmentKeepsTheCompleteContractAndDoesNotRepeatItsBlock()
+    {
+        var initial = new HostError<EmulationMessageCategory, EmulationMessageCode>("custom-error", "localized-failure", EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, new Dictionary<string, string> { ["slot"] = "cartridge:0" }, true);
+        string[] diagnostics = ["native-first", "native-second"];
+        HostError<EmulationMessageCategory, EmulationMessageCode> RoundTrip(HostError<EmulationMessageCategory, EmulationMessageCode> error)
+        {
+            using var stream = new MemoryStream();
+            using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+            using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+            var options = new System.Text.Json.JsonSerializerOptions(System.Text.Json.JsonSerializerDefaults.Web);
+            EmulationSdk.HostProtocol.WriteError(writer, error, options, diagnostics);
+            writer.Flush();
+            stream.Position = 0;
+            var received = EmulationSdk.HostProtocol.ReadError<EmulationMessageCategory, EmulationMessageCode>(reader, options, static () => new InvalidDataException());
+            Assert.Equal(stream.Length, stream.Position);
+            return received;
+        }
+        var first = RoundTrip(initial);
+        var second = RoundTrip(first);
+        Assert.Equal("localized-failure" + Environment.NewLine + "native-first" + Environment.NewLine + "native-second", first.Message);
+        Assert.Equal(first.Message, second.Message);
+        Assert.Equal(initial.Type, second.Type);
+        Assert.Equal(initial.Category, second.Category);
+        Assert.Equal(initial.Code, second.Code);
+        Assert.Equal("cartridge:0", second.Context["slot"]);
+        Assert.True(second.IsLocalized);
+    }
+
+    [Fact]
+    public void ExampleModesCaptureDiagnosticsThroughThePublicMonitor()
+    {
+        var assembly = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
+        var type = assembly.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Services.ExternalCore", true)!;
+        var monitor = type.GetField("_diagnosticMonitor", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        Assert.Equal(typeof(IEmulationCoreDiagnosticMonitor), monitor.FieldType);
+        var constructor = Assert.Single(type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
+        Assert.Contains(GetCompiledCalls(constructor), call => call.Method.DeclaringType == typeof(IEmulationMessages) && call.Method.Name == "CreateCoreDiagnosticMonitor");
+        var capture = type.GetMethod("CaptureDiagnostic", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        Assert.Contains(GetCompiledCalls(capture), call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnosticMonitor) && call.Method.Name == "Capture");
+        Assert.Contains(GetCompiledCalls(type.GetMethod("Initialize")!), call => call.Method == capture);
+        Assert.Contains(GetCompiledCalls(type.GetMethod("Initialize")!), call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnosticMonitor) && call.Method.Name == "ThrowIfFailed");
+        foreach (var mode in Enum.GetValues(constructor.GetParameters()[1].ParameterType).Cast<object>().Where(mode => mode.ToString() != "None"))
+        {
+            var core = (IDisposable)constructor.Invoke(["mock-core-identity", mode]);
+            try
+            {
+                capture.Invoke(core, ["mock-core-log"]);
+                Assert.Equal("mock-core-log", Assert.Single((IReadOnlyList<string>)type.GetProperty("Diagnostics")!.GetValue(core)!));
+                Assert.Null(((IEmulationCoreDiagnosticMonitor)monitor.GetValue(core)!).Failure);
+            }
+            finally { core.Dispose(); }
+        }
+        Assert.Null(Assembly.Load("gwgui.emulation.sony").GetType("GWGUI.Emulation.Sony.Common.Services.CoreDiagnosticMonitor"));
+    }
+
+    [Fact]
     public void EveryHostUsesTheCompleteDiagnosticContractAndSharedCodec()
     {
         Assert.Null(typeof(IEmulationHostProtocol).Assembly.GetType("GWGUI.Emulation.Contracts.HostError"));
@@ -57,7 +113,7 @@ public sealed class ArchitectureValidationTests
                 using var stream = new MemoryStream();
                 using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
                 using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
-                write.Invoke(null, [writer, error]);
+                write.Invoke(null, [writer, error, Array.Empty<string>()]);
                 writer.Flush();
                 stream.Position = 0;
                 var actual = read.Invoke(null, [reader])!;
@@ -103,6 +159,7 @@ public sealed class ArchitectureValidationTests
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
             Assert.Contains(calls, call => call.Method == write);
             Assert.Contains(calls, call => call.Method == read);
+            Assert.Contains(calls, call => call.Method.Name == "get_Diagnostics");
         }
         Assert.Equal(23, transports);
     }
@@ -783,7 +840,7 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(22, activeFamilies);
     }
 
-    private static List<(int Offset, MethodBase Method)> GetCompiledCalls(MethodInfo source)
+    private static List<(int Offset, MethodBase Method)> GetCompiledCalls(MethodBase source)
     {
         var opcodes = typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.FieldType == typeof(OpCode))
             .Select(field => (OpCode)field.GetValue(null)!).GroupBy(opcode => unchecked((ushort)opcode.Value)).ToDictionary(group => group.Key, group => group.First());
@@ -796,7 +853,7 @@ public sealed class ArchitectureValidationTests
             if (value == 0xfe) value = (ushort)(0xfe00 | code[offset++]);
             var opcode = opcodes[value];
             if (opcode.OperandType == OperandType.InlineMethod)
-                result.Add((start, source.Module.ResolveMethod(BitConverter.ToInt32(code, offset), source.DeclaringType?.GetGenericArguments(), source.GetGenericArguments())!));
+                result.Add((start, source.Module.ResolveMethod(BitConverter.ToInt32(code, offset), source.DeclaringType?.GetGenericArguments(), source is MethodInfo method ? method.GetGenericArguments() : Type.EmptyTypes)!));
             offset += opcode.OperandType switch
             {
                 OperandType.InlineNone => 0,
