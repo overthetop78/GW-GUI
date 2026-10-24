@@ -218,4 +218,18 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     StateStore.HashPath(media.Path))));
         return EmulationSdk.StateFiles.HashDocument(entries.ToArray());
     }
+    /// <inheritdoc/>
+    /// <remarks>La commande rejoint la file du cœur ; les politiques de copie, de protection et de
+    /// sauvegarde automatique restent celles du backend. Aucun autre lecteur n’est sélectionné.</remarks>
+    public ValueTask SaveChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SaveMediaChanges(slot), cancellationToken);
+
+    /// <inheritdoc/>
+    /// <remarks>Le résultat est capturé sur le même thread que les frames et les changements de médias.
+    /// La consultation ne publie aucun fichier et ne modifie aucun montage.</remarks>
+    public async ValueTask<bool> HasUnsavedChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default)
+    {
+        var hasChanges = false;
+        await QueueCommand(() => hasChanges = _core.HasUnsavedMediaChanges(slot), cancellationToken).ConfigureAwait(false);
+        return hasChanges;
+    }
 }

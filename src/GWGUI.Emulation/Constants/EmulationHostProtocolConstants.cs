@@ -43,4 +43,7 @@ internal static class EmulationHostProtocolConstants
     internal const string InvalidAudioChunkCountFormat = "The {0} host sent an invalid audio chunk count.";
     internal const string InvalidPcmPayloadFormat = "The {0} host sent an invalid PCM payload.";
     internal const string InvalidLedStateCountFormat = "Invalid {0} LED state count {1}.";
+    internal const byte SaveMediaChangesCommand = 12;
+    internal const byte HasUnsavedMediaChangesCommand = 14;
+    internal const string InvalidMediaSlot = "Le lecteur transmis par le processus est invalide.";
 }

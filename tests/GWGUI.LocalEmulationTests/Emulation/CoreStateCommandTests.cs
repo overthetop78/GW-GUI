@@ -16,6 +16,8 @@ public sealed class CoreStateCommandTests
     [InlineData(8, "LoadState")]
     [InlineData(9, "SetOption")]
     [InlineData(10, "SelectDisk")]
+    [InlineData(12, "SaveMediaChanges")]
+    [InlineData(14, "HasUnsavedMediaChanges")]
     public void NativeSuccessFollowsTheOperationAndPrecedesItsPayload(byte command, string operation)
     {
         using var payload = new MemoryStream();
@@ -26,6 +28,7 @@ public sealed class CoreStateCommandTests
                 case 8: encoder.Write(3); encoder.Write(new byte[] { 11, 12, 13 }); break;
                 case 9: encoder.Write("mode"); encoder.Write("accurate"); break;
                 case 10: encoder.Write(4); break;
+                case 12: case 14: EmulationHostProtocolFunctions.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1)); break;
             }
         }
         payload.Position = 0;
@@ -41,10 +44,11 @@ public sealed class CoreStateCommandTests
         writer.Flush();
         Assert.Equal(new[] { "ensure", operation, "success" }, events);
         Assert.Equal(payload.Length, payload.Position);
-        Assert.Equal(command == 7 ? new byte[] { 1, 3, 0, 0, 0, 7, 8, 9 } : new byte[] { 1 }, output.ToArray());
+        Assert.Equal(command == 7 ? new byte[] { 1, 3, 0, 0, 0, 7, 8, 9 } : command == 14 ? new byte[] { 1, 1 } : new byte[] { 1 }, output.ToArray());
         if (command == 8) Assert.Equal(new byte[] { 11, 12, 13 }, core.State);
         if (command == 9) Assert.Equal(("mode", "accurate"), core.Option);
         if (command == 10) Assert.Equal(4, core.Disk);
+        if (command is 12 or 14) Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.MediaSlot);
     }
 
     [Theory]
@@ -54,9 +58,7 @@ public sealed class CoreStateCommandTests
     [InlineData(5)]
     [InlineData(6)]
     [InlineData(11)]
-    [InlineData(12)]
     [InlineData(13)]
-    [InlineData(14)]
     [InlineData(15)]
     [InlineData(255)]
     public void OtherOperationsDoNotAcquireACoreOrWriteSuccess(byte command)
@@ -112,8 +114,34 @@ public sealed class CoreStateCommandTests
         Assert.True(output.CanWrite);
     }
 
+    [Fact]
+    public void InvalidMediaSlotsFailBeforeAcquiringCoreAndKeepBorrowedStreams()
+    {
+        foreach (var invalid in new[] { new EmulationMediaSlot((GWGUI.Emulation.Enums.EmulationMediaCategory)int.MaxValue, 0), new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, -1) })
+        {
+            using var payload = new MemoryStream();
+            using var encoder = new BinaryWriter(payload, Encoding.UTF8, leaveOpen: true);
+            Assert.Throws<InvalidDataException>(() => EmulationHostProtocolFunctions.WriteMediaSlot(encoder, invalid));
+            Assert.Equal(0, payload.Length);
+            encoder.Write((int)invalid.Category);
+            encoder.Write(invalid.Index);
+            encoder.Flush();
+            payload.Position = 0;
+            using var reader = new BinaryReader(payload, Encoding.UTF8, leaveOpen: true);
+            using var output = new MemoryStream();
+            using var writer = new BinaryWriter(output, Encoding.UTF8, leaveOpen: true);
+            Assert.Throws<InvalidDataException>(() => EmulationHostProtocolFunctions.TryExecuteCoreStateCommand(12, reader, writer,
+                () => throw new Xunit.Sdk.XunitException("Invalid slot must not acquire a core"), _ => [], response => response.Write(true)));
+            Assert.Equal(0, output.Length);
+            Assert.True(payload.CanRead);
+            Assert.True(output.CanWrite);
+        }
+    }
     private sealed class Core(List<string> events) : IEmulationCoreStateCommands
     {
+        internal EmulationMediaSlot MediaSlot { get; private set; }
+        public void SaveMediaChanges(EmulationMediaSlot slot) { Record(nameof(SaveMediaChanges)); MediaSlot = slot; }
+        public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { Record(nameof(HasUnsavedMediaChanges)); MediaSlot = slot; return true; }
         public DiskStatus GetDiskStatus() => new(0, -1, true, []);
         internal Exception? Failure { get; init; }
         internal byte[] State { get; private set; } = [];

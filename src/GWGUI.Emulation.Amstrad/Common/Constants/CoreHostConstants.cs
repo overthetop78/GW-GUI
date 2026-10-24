@@ -15,4 +15,8 @@ internal static class CoreHostConstants
     internal const string LocalPipeServerName = ".";
     internal const byte FirstHostCommandId = 1;
     internal const int PipeConnectTimeoutMilliseconds = 15000;
+    /// <summary>Publication explicite des changements d’un média par son propriétaire.</summary>
+    internal const byte SaveMediaChangesCommand = 12;
+    /// <summary>Consultation des changements possibles conservés par le backend.</summary>
+    internal const byte HasUnsavedMediaChangesCommand = 14;
 }

@@ -321,4 +321,17 @@ internal sealed class ExternalCore : IEmulatorCore
     public HostProcessState HostProcessState => HostProcessState.InProcess;
     /// <inheritdoc/>
     public int? HostProcessId => null;
+    /// <summary>Contrôle le lecteur selon les mêmes descriptions que l’éditeur de stockage.</summary>
+    private void ValidateMediaSaveSlot(EmulationMediaSlot slot)
+    {
+        var configuration = _configuration ?? throw new InvalidOperationException();
+        if (new Engine().SelectedAdapter(configuration)?.DescribeStorage(configuration).AvailableDevices.Any(device => device.Slot == slot) != true)
+            throw new ArgumentOutOfRangeException(nameof(slot));
+    }
+    /// <inheritdoc/>
+    /// <remarks>Ce backend conserve sa politique existante : contenus protégés ou écritures directes.
+    /// Il ne possède aucune copie modifiable de média nécessitant une publication supplémentaire.</remarks>
+    public void SaveMediaChanges(EmulationMediaSlot slot) => ValidateMediaSaveSlot(slot);
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { ValidateMediaSaveSlot(slot); return false; }
 }

@@ -36,12 +36,6 @@ internal static class CoreHost
                         case HostCommand.RunFrame:
                             RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount);
                             break;
-                        case HostCommand.SaveMediaChanges:
-                            EnsureCore(core).SaveMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
-                            break;
-                        case HostCommand.HasUnsavedMediaChanges:
-                            writer.Write(EnsureCore(core).HasUnsavedMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
-                            break;
                         case HostCommand.Dispose:
                             CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                             break;

@@ -13,4 +13,8 @@ internal static class CoreHostConstants
 
     internal const string Windows = "windows";
     internal const string LocalPipeServer = ".";
+    /// <summary>Publication explicite des changements d’un média par son propriétaire.</summary>
+    internal const byte SaveMediaChangesCommand = 12;
+    /// <summary>Consultation des changements possibles conservés par le backend.</summary>
+    internal const byte HasUnsavedMediaChangesCommand = 14;
 }

@@ -37,4 +37,17 @@ internal sealed partial class ExternalCore
 
     private MachineConfiguration RequireConfiguration() => _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
     private LibretroMachineFactory MediaAdapter() => (LibretroMachineFactory)CoreCatalog.CreateAdapter(Emulator);
+    /// <inheritdoc/>
+    /// <remarks>La publication reprend le traitement de carte mémoire déjà employé à la fermeture.
+    /// Les adaptations du format natif et les contrôles de protection restent dans son propriétaire.</remarks>
+    public void SaveMediaChanges(EmulationMediaSlot slot)
+    {
+        var configuration = RequireConfiguration();
+        if (!MediaAdapter().DescribeMediaDevices(configuration).Any(device => device.Slot == slot))
+            throw new ArgumentOutOfRangeException(nameof(slot));
+        if (HasUnsavedMediaChanges(slot)) _persistentMediaAdapter!.CompletePersistentMedia(_persistentMediaState);
+    }
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => slot.Category == EmulationMediaCategory.MemoryCard
+        && _persistentMediaState is not null && RequireConfiguration().Media.Any(media => media.Slot == slot && media.IsInserted && !media.IsReadOnly);
 }

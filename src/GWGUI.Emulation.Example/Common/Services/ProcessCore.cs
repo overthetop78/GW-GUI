@@ -251,7 +251,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
     /// <summary>Demande au cœur d’enregistrer les changements du média indiqué.</summary>
     /// <param name="slot">Emplacement du média dont les changements doivent être enregistrés.</param>
-    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => writer.Write(slot.ProtocolValue));
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
     /// <summary>Interroge le statut des disques du cœur distant.</summary>
     /// <returns>Statut décodé dans la réponse.</returns>
     /// <exception cref="InvalidDataException">Aucun statut n’a été reçu.</exception>
@@ -267,7 +267,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
     {
         var hasChanges = false;
-        Request(HostCommand.HasUnsavedMediaChanges, writer => writer.Write(slot.ProtocolValue), reader => hasChanges = reader.ReadBoolean());
+        Request(HostCommand.HasUnsavedMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot), reader => hasChanges = reader.ReadBoolean());
         return hasChanges;
     }
     /// <summary>Demande la sérialisation de l’état binaire du cœur distant.</summary>

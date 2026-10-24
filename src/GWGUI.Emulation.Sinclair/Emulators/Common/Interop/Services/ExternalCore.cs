@@ -150,4 +150,17 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status;
     }
+    /// <summary>Contrôle la session et la validité de l’identité de lecteur reçue.</summary>
+    private void ValidateMediaSaveSlot(EmulationMediaSlot slot)
+    {
+        if (_library is null) throw new InvalidOperationException();
+        if (!Enum.IsDefined(slot.Category) || slot.Index < 0)
+            throw new ArgumentOutOfRangeException(nameof(slot));
+    }
+    /// <inheritdoc/>
+    /// <remarks>Ce backend conserve sa politique existante : contenus protégés ou écritures directes.
+    /// Il ne possède aucune copie modifiable de média nécessitant une publication supplémentaire.</remarks>
+    public void SaveMediaChanges(EmulationMediaSlot slot) => ValidateMediaSaveSlot(slot);
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { ValidateMediaSaveSlot(slot); return false; }
 }

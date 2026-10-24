@@ -19,6 +19,8 @@ public sealed class CoreHostCommandTests
     [InlineData(8, "LoadState")]
     [InlineData(9, "SetOption")]
     [InlineData(10, "SelectDisk")]
+    [InlineData(12, "SaveMediaChanges")]
+    [InlineData(14, "HasUnsavedMediaChanges")]
     [InlineData(13, "GetDiskStatus")]
     [InlineData(15, "SetControllerPortDevice")]
     public void NativeCommandsKeepTheirPayloadAndResponse(byte command, string expectedCall)
@@ -33,6 +35,7 @@ public sealed class CoreHostCommandTests
                 case 8: encoder.Write(3); encoder.Write(new byte[] { 4, 5, 6 }); break;
                 case 9: encoder.Write("mode"); encoder.Write("accurate"); break;
                 case 10: encoder.Write(4); break;
+                case 12: case 14: EmulationSdk.HostProtocol.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1)); break;
                 case 15: encoder.Write(2); encoder.Write((int)TestPeripheral.Pointer); break;
             }
         }
@@ -55,6 +58,7 @@ public sealed class CoreHostCommandTests
             case 8: Assert.Equal(new byte[] { 4, 5, 6 }, core.State); break;
             case 9: Assert.Equal(("mode", "accurate"), core.Option); break;
             case 10: Assert.Equal(4, core.Disk); break;
+            case 12: case 14: Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.Slot); break;
             case 13:
                 response.Position = 0;
                 using (var decoder = new BinaryReader(response, Encoding.UTF8, leaveOpen: true))
@@ -62,15 +66,14 @@ public sealed class CoreHostCommandTests
                 break;
             case 15: Assert.Equal((2, TestPeripheral.Pointer), core.Controller); break;
         }
-        if (command is not (7 or 13)) Assert.Equal(0, response.Length);
+        if (command == 14) Assert.Equal(new byte[] { 1 }, response.ToArray());
+        else if (command is not (7 or 13)) Assert.Equal(0, response.Length);
     }
 
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(11)]
-    [InlineData(12)]
-    [InlineData(14)]
     [InlineData(255)]
     public void CommandsOwnedByTheHostDoNotAcquireACoreOrReadArguments(byte command)
     {
@@ -120,6 +123,8 @@ public sealed class CoreHostCommandTests
     }
 
     [Theory]
+    [InlineData(12)]
+    [InlineData(14)]
     [InlineData(5)]
     [InlineData(6)]
     public void PathMediaCommandsPreserveTheirPayloadAndSuccessAcknowledgement(byte command)
@@ -128,6 +133,7 @@ public sealed class CoreHostCommandTests
         using (var encoder = new BinaryWriter(payload, Encoding.UTF8, leaveOpen: true))
         {
             if (command == 5) encoder.Write("disk.adf");
+            if (command is 12 or 14) EmulationSdk.HostProtocol.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1));
             encoder.Write(42);
         }
         payload.Position = 0;
@@ -138,20 +144,19 @@ public sealed class CoreHostCommandTests
         var acquired = 0;
         Assert.True(HandlePathMedia(command, reader, writer, () => { acquired++; return core; }));
         Assert.Equal(1, acquired);
-        Assert.Equal(new[] { command == 5 ? "InsertMedia" : "EjectMedia" }, core.Calls);
+        Assert.Equal(new[] { command switch { 5 => "InsertMedia", 6 => "EjectMedia", 12 => "SaveMediaChanges", _ => "HasUnsavedMediaChanges" } }, core.Calls);
         if (command == 5) Assert.Equal("disk.adf", core.Media);
         Assert.Equal(42, reader.ReadInt32());
         Assert.Equal(payload.Length, payload.Position);
-        Assert.Equal(new byte[] { 1 }, response.ToArray());
+        Assert.Equal(command == 14 ? new byte[] { 1, 1 } : new byte[] { 1 }, response.ToArray());
+        if (command is 12 or 14) Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.Slot);
     }
 
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(11)]
-    [InlineData(12)]
     [InlineData(13)]
-    [InlineData(14)]
     [InlineData(15)]
     [InlineData(255)]
     public void PathMediaCommandsLeaveHostAndNativeOnlyCommandsUntouched(byte command)
@@ -302,6 +307,8 @@ public sealed class CoreHostCommandTests
         internal int Disk { get; private set; }
         internal (int, TestPeripheral) Controller { get; private set; }
         internal bool FailMedia { get; init; }
+        public void SaveMediaChanges(EmulationMediaSlot slot) { Calls.Add(nameof(SaveMediaChanges)); Slot = slot; }
+        public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { Calls.Add(nameof(HasUnsavedMediaChanges)); Slot = slot; return true; }
         public int DiskCount { get { Calls.Add(nameof(DiskCount)); return 3; } }
         public int CurrentDiskIndex { get { Calls.Add(nameof(CurrentDiskIndex)); return 2; } }
         public void EjectMedia()

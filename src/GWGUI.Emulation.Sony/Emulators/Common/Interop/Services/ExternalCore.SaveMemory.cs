@@ -99,4 +99,38 @@ internal sealed partial class ExternalCore
             if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
         }
     }
+    /// <summary>Contrôle la session et la validité de l’identité de lecteur reçue.</summary>
+    private void ValidateMediaSaveSlot(EmulationMediaSlot slot)
+    {
+        if (_library is null) throw new InvalidOperationException();
+        if (!Enum.IsDefined(slot.Category) || slot.Index < 0)
+            throw new ArgumentOutOfRangeException(nameof(slot));
+    }
+    /// <inheritdoc/>
+    /// <remarks>La carte sélectionnée est publiée par le traitement atomique existant. Les autres cartes,
+    /// la mémoire de sauvegarde du cœur et leurs règles de fermeture restent indépendantes.</remarks>
+    public void SaveMediaChanges(EmulationMediaSlot slot)
+    {
+        ValidateMediaSaveSlot(slot);
+        if (MemoryCardForSave(slot) is not { } card) return;
+        NativeMemoryCards.PersistFiles([card], _configuration!.Model == ModelConstants.PlayStation2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize);
+    }
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
+    {
+        ValidateMediaSaveSlot(slot);
+        return MemoryCardForSave(slot).HasValue;
+    }
+    /// <summary>Résout la copie de carte modifiable déjà préparée pour le lecteur demandé.</summary>
+    /// <param name="slot">Lecteur logique reçu par la file de commandes du cœur.</param>
+    /// <returns>Paire de chemins déjà possédée par la session, ou null sans carte modifiable à publier.</returns>
+    private (string Source, string Native)? MemoryCardForSave(EmulationMediaSlot slot)
+    {
+        if (!_saveMemoryReady || slot.Category != EmulationMediaCategory.MemoryCard) return null;
+        if (_configuration!.Media?.Any(media => media.Category == MediaCategory.MemoryCard && (media.SlotIndex ?? media.MountOrder) == slot.Index && media.IsReadOnly) == true) return null;
+        var source = NativeMemoryCards.SelectedPath(_configuration, slot.Index);
+        foreach (var card in _memoryCardFiles)
+            if (string.Equals(card.Source, source, StringComparison.OrdinalIgnoreCase)) return card;
+        return null;
+    }
 }

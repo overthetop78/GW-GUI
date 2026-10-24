@@ -17,4 +17,8 @@ internal static class CoreHostConstants
     internal const long InitialVideoSequence = 0;
     internal const int InitialDiagnosticCount = 0;
     internal const int SuccessfulExitCode = 0;
+    /// <summary>Publication explicite des changements d’un média par son propriétaire.</summary>
+    internal const byte SaveMediaChangesCommand = 12;
+    /// <summary>Consultation des changements possibles conservés par le backend.</summary>
+    internal const byte HasUnsavedMediaChangesCommand = 14;
 }

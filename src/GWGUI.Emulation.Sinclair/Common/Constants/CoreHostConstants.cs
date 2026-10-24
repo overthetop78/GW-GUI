@@ -41,4 +41,8 @@ public static class CoreHostConstants
     internal const byte SetControllerPortDeviceCommand = 15;
     internal const byte SuccessResponse = 1;
     internal const byte FailureResponse = 2;
+    /// <summary>Publication explicite des changements d’un média par son propriétaire.</summary>
+    internal const byte SaveMediaChangesCommand = 12;
+    /// <summary>Consultation des changements possibles conservés par le backend.</summary>
+    internal const byte HasUnsavedMediaChangesCommand = 14;
 }

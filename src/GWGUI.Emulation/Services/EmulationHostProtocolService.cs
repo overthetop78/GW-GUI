@@ -213,4 +213,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     public AudioOutputBufferStatus? ReadAudioBufferStatus(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudioBufferStatus(reader);
     /// <inheritdoc/>
     public void WriteAudioBufferStatus(BinaryWriter writer, AudioOutputBufferStatus? status) => EmulationHostProtocolFunctions.WriteAudioBufferStatus(writer, status);
+    /// <inheritdoc/>
+    public void WriteMediaSlot(BinaryWriter writer, EmulationMediaSlot slot) => EmulationHostProtocolFunctions.WriteMediaSlot(writer, slot);
+    /// <inheritdoc/>
+    public EmulationMediaSlot ReadMediaSlot(BinaryReader reader) => EmulationHostProtocolFunctions.ReadMediaSlot(reader);
 }

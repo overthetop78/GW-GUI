@@ -343,4 +343,19 @@ internal sealed class ProcessCore : IEmulatorCore
     public HostProcessState HostProcessState => CommonCoreHostFunctions.Protocol.GetProcessState(_process, _hostProcessFaulted || _connectionFailed, _disposed, _hostProcessId);
     /// <inheritdoc/>
     public int? HostProcessId => _hostProcessId;
+    /// <inheritdoc/>
+    public void SaveMediaChanges(EmulationMediaSlot slot)
+    {
+        Begin(HostCommand.SaveMediaChanges);
+        CommonCoreHostFunctions.Protocol.WriteMediaSlot(_writer!, slot);
+        CompleteRequest();
+    }
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
+    {
+        Begin(HostCommand.HasUnsavedMediaChanges);
+        CommonCoreHostFunctions.Protocol.WriteMediaSlot(_writer!, slot);
+        CompleteRequest();
+        return Response.ReadBoolean();
+    }
 }

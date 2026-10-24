@@ -139,7 +139,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
     public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
-    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => writer.Write(slot.ProtocolValue));
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
     public DiskStatus GetDiskStatus()
     {
         DiskStatus? status = null;
@@ -149,7 +149,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
     {
         var hasChanges = false;
-        Request(HostCommand.HasUnsavedMediaChanges, writer => writer.Write(slot.ProtocolValue), reader => hasChanges = reader.ReadBoolean());
+        Request(HostCommand.HasUnsavedMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot), reader => hasChanges = reader.ReadBoolean());
         return hasChanges;
     }
     public byte[] SaveState()

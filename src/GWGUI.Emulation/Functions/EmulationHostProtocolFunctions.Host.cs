@@ -295,6 +295,16 @@ internal static partial class EmulationHostProtocolFunctions
     {
         switch (command)
         {
+            case EmulationHostProtocolConstants.SaveMediaChangesCommand:
+                var saveSlot = ReadMediaSlot(reader);
+                ensureCore().SaveMediaChanges(saveSlot);
+                break;
+            case EmulationHostProtocolConstants.HasUnsavedMediaChangesCommand:
+                var querySlot = ReadMediaSlot(reader);
+                var hasChanges = ensureCore().HasUnsavedMediaChanges(querySlot);
+                writeSuccess?.Invoke(writer);
+                writer.Write(hasChanges);
+                return true;
             case EmulationHostProtocolConstants.SoftResetCommand:
                 ensureCore().SoftReset();
                 break;
@@ -472,5 +482,25 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(value.BufferedFrames);
         writer.Write(value.CapacityFrames);
         writer.Write(value.IsActive);
+    }
+    /// <summary>Écrit l’identité logique complète, sans la réduire à un identifiant natif de périphérique.</summary>
+    internal static void WriteMediaSlot(BinaryWriter writer, EmulationMediaSlot slot)
+    {
+        ValidateMediaSlot(slot);
+        writer.Write((int)slot.Category);
+        writer.Write(slot.Index);
+    }
+    /// <summary>Lit les deux composantes du lecteur et rejette les valeurs invalides avant son utilisation.</summary>
+    internal static EmulationMediaSlot ReadMediaSlot(BinaryReader reader)
+    {
+        var slot = new EmulationMediaSlot((EmulationMediaCategory)reader.ReadInt32(), reader.ReadInt32());
+        ValidateMediaSlot(slot);
+        return slot;
+    }
+    /// <summary>Contrôle uniquement le contrat de transport ; le backend conserve la validation de ses lecteurs.</summary>
+    private static void ValidateMediaSlot(EmulationMediaSlot slot)
+    {
+        if (!Enum.IsDefined(slot.Category) || slot.Index < 0)
+            throw new InvalidDataException(EmulationHostProtocolConstants.InvalidMediaSlot);
     }
 }

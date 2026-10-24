@@ -390,4 +390,13 @@ public interface IEmulationHostProtocol
     /// <param name="writer">Rédacteur emprunté ; sa durée de vie reste possédée par le transport.</param>
     /// <param name="status">Valeurs copiées du tampon de sortie ; null représente une sortie indisponible.</param>
     void WriteAudioBufferStatus(BinaryWriter writer, AudioOutputBufferStatus? status);
+    /// <summary>Écrit la catégorie et l’indice complets d’un lecteur dans une requête empruntée.</summary>
+    /// <param name="writer">Rédacteur du transport ; son appelant conserve sa propriété.</param>
+    /// <param name="slot">Identité du lecteur, y compris les cartes mémoire et lecteurs d’indice supérieur à zéro.</param>
+    /// <remarks>Le codec vérifie la catégorie et un indice positif ou nul avant toute écriture.</remarks>
+    void WriteMediaSlot(BinaryWriter writer, EmulationMediaSlot slot);
+    /// <summary>Lit puis valide la catégorie et l’indice d’un lecteur dans la requête empruntée.</summary>
+    /// <param name="reader">Lecteur positionné sur les deux entiers représentant le lecteur.</param>
+    /// <returns>Identité du lecteur sans limitation aux identifiants de périphériques natifs historiques.</returns>
+    EmulationMediaSlot ReadMediaSlot(BinaryReader reader);
 }

@@ -188,6 +188,8 @@ public sealed class MultichannelAudioTests
         public long AudioOverrunCount => 0;
         public long AudioUnderrunCount => 0;
 
+        public void SaveMediaChanges(EmulationMediaSlot slot) { }
+        public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
         public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         private readonly Queue<AudioChunk> _chunks = new(chunks);
         private int _frames;

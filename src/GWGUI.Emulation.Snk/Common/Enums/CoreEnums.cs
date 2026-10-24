@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Snk.Common.Enums;
 
 internal enum HostCommand : byte
 {
+    SaveMediaChanges = CoreHostConstants.SaveMediaChangesCommand,
+    HasUnsavedMediaChanges = CoreHostConstants.HasUnsavedMediaChangesCommand,
+
     Initialize = CoreHostConstants.InitializeCommand,
     RunFrame = CoreHostConstants.RunFrameCommand,
     HardReset = CoreHostConstants.HardResetCommand,

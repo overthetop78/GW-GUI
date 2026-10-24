@@ -12098,6 +12098,155 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : conserver aussi les paramètres de médias retournés par ApplyDeviceSettings lors de la projection du stockage.
     - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.cs : retirer le contrôle de lecteur déjà couvert par la règle de compatibilité projetée depuis les mêmes descriptions.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier les paramètres de montage dans les trois adaptateurs, leur conservation après application du stockage et le passage en document JSON en mémoire ; exécuter les vérifications et le build complet.
+  - [x] Réunir les opérations de publication des médias dans les 24 contrats Common et leur API publique.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationCoreStateCommands.cs : Réunir les opérations existantes de publication des médias et de consultation des changements dans le contrat de cœur.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationMedia.cs : Exposer les deux opérations asynchrones par le même contrat public de médias.
+    - [x] Modifier src/GWGUI.Emulation/Constants/EmulationHostProtocolConstants.cs : Déclarer les codes communs 12 et 14 et le diagnostic du lecteur sérialisé invalide.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : Déclarer le codec de lecteur par catégorie et indice afin de conserver les cartes mémoire et lecteurs supplémentaires.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : Router les deux commandes dans le répartiteur commun et utiliser un codec de lecteur conservant sa catégorie et son indice.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : Raccorder le codec de lecteur à son implémentation interne.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.Media.cs : Réutiliser le traitement existant de publication des cartes mémoire préparées, en respectant leur protection.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.SaveMemory.cs : Réutiliser la publication atomique existante de la carte mémoire sélectionnée et signaler ses changements possibles.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Enums/HostEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Interfaces/IEmulatorCore.cs : Retirer les déclarations locales de publication des médias devenues communes dans le SDK.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs : Exécuter la publication et la consultation des changements dans la file de commandes du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs : Déclarer la politique existante des contenus sans copie de média nécessitant une publication explicite ; conserver les écritures et sauvegardes propres au backend.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs : Envoyer les deux commandes de médias avec le lecteur complet et lire le résultat de consultation.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs : Retirer les cas locaux de publication déjà assurés par le répartiteur SDK.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Constants/CoreHostConstants.cs : Déclarer les mêmes identifiants de commandes de publication et de consultation des médias.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Enums/CoreEnums.cs : Nommer les deux commandes de médias avec les mêmes identifiants que les autres hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs : achever le retrait du cas local de consultation pour utiliser le codec commun de lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs : achever le retrait du cas local de consultation pour utiliser le codec commun de lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs : achever le retrait du cas local de consultation pour utiliser le codec commun de lecteur.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/MultichannelAudioTests.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : compléter les cœurs synthétiques avec les deux opérations de publication des médias.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreStateCommandTests.cs : vérifier les commandes 12 et 14, leur résultat et le lecteur complet dans le répartiteur commun.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostCommandTests.cs : vérifier les deux commandes de médias dans les répartiteurs typés et par chemin, avec les mêmes en-têtes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : Vérifier les contrats et les appels des 24 familles, les commandes des hôtes et les indices de lecteurs ; adapter les cœurs synthétiques concernés puis exécuter les vérifications et le build complet.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [ ] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

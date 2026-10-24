@@ -26,5 +26,14 @@ public interface IEmulationCoreStateCommands
     void SetOption(string key, string value);
     /// <summary>Sélectionne une image dans le jeu de disques chargé, avec un index commençant à zéro.</summary>
     void SelectDisk(int index);
+    /// <summary>Publie les changements du média suivant la politique existante du backend.</summary>
+    /// <param name="slot">Lecteur logique concerné, avec sa catégorie et son indice complets.</param>
+    /// <remarks>Les copies de session sont publiées explicitement. Les contenus en lecture seule et les écritures
+    /// déjà effectuées directement conservent leur politique ; cette commande ne réinitialise pas le cœur.</remarks>
+    void SaveMediaChanges(EmulationMediaSlot slot);
+    /// <summary>Indique si le backend conserve des changements possibles nécessitant une publication explicite.</summary>
+    /// <param name="slot">Lecteur logique dont la politique de publication doit être consultée.</param>
+    /// <returns>True pour un média modifiable dont le backend conserve une copie à publier.</returns>
+    bool HasUnsavedMediaChanges(EmulationMediaSlot slot);
 }
 

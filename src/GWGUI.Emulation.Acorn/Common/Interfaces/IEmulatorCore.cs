@@ -9,7 +9,5 @@ internal interface IEmulatorCore : IEmulatorAudioBufferFeedback, GWGUI.Emulation
     bool ShutdownRequested { get; }
 
     Emulator Emulator { get; }
-    void SaveMediaChanges(EmulationMediaSlot slot);
-    bool HasUnsavedMediaChanges(EmulationMediaSlot slot);
 }
 

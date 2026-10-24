@@ -4394,4 +4394,68 @@ public sealed class ArchitectureValidationTests
         var frame = helper.GetMethod("RunCoreFrame", BindingFlags.Static | BindingFlags.NonPublic)!;
         Assert.Contains(GetCompiledCalls(frame), call => call.Method.Name == "WriteNativeCoreFrameResponse");
     }
+    [Fact]
+    public void EveryCommonPublishesMediaChangesThroughTheSharedQueueAndSlotCodec()
+    {
+        var state = typeof(IEmulationCoreStateCommands);
+        var save = state.GetMethod("SaveMediaChanges")!;
+        var query = state.GetMethod("HasUnsavedMediaChanges")!;
+        Assert.Equal(typeof(void), save.ReturnType);
+        Assert.Equal(typeof(bool), query.ReturnType);
+        Assert.Equal(typeof(ValueTask), typeof(IEmulationMedia).GetMethod("SaveChangesAsync")!.ReturnType);
+        Assert.Equal(typeof(ValueTask<bool>), typeof(IEmulationMedia).GetMethod("HasUnsavedChangesAsync")!.ReturnType);
+        static IEnumerable<(int Offset, MethodBase Method)> Calls(Type type) => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+            .Concat(type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(nested => nested.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)))
+            .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls);
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var coreCount = 0;
+        var processCount = 0;
+        foreach (var module in modules)
+        {
+            var factory = Assert.Single(module.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var contract = module.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
+            Assert.Contains(state, contract.GetInterfaces());
+            Assert.DoesNotContain(contract.GetMethods(), method => method.Name is "SaveMediaChanges" or "HasUnsavedMediaChanges");
+            var machine = module.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var map = machine.GetInterfaceMap(typeof(IEmulationMedia));
+            foreach (var operation in new[] { "SaveChangesAsync", "HasUnsavedChangesAsync" })
+            {
+                var index = Array.FindIndex(map.InterfaceMethods, method => method.Name == operation);
+                Assert.True(index >= 0);
+                Assert.False(map.TargetMethods[index].IsAbstract);
+            }
+            var calls = Calls(machine).ToArray();
+            Assert.Contains(calls, call => call.Method == save);
+            Assert.Contains(calls, call => call.Method == query);
+            Assert.Contains(calls, call => call.Method.Name == "QueueCommand" && call.Method.DeclaringType == machine);
+            foreach (var core in module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type)))
+            {
+                coreCount++;
+                var coreMap = core.GetInterfaceMap(state);
+                foreach (var operation in new[] { save, query })
+                {
+                    var implementation = coreMap.TargetMethods[Array.IndexOf(coreMap.InterfaceMethods, operation)];
+                    Assert.False(implementation.IsAbstract);
+                    Assert.True(implementation.DeclaringType!.IsClass);
+                }
+                if (core.Name == "ProcessCore")
+                {
+                    processCount++;
+                    Assert.True(Calls(core).Count(call => call.Method.Name == "WriteMediaSlot" && call.Method.DeclaringType == typeof(IEmulationHostProtocol)) >= 2, root);
+                }
+            }
+            var host = module.GetTypes().SingleOrDefault(type => type.Name == "CoreHost");
+            if (host is null) continue;
+            Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name is "TryExecuteCoreCommand" or "TryExecutePathMediaCommand");
+            var commands = Assert.Single(module.GetTypes(), type => type.IsEnum && type.Name == "HostCommand");
+            Assert.Equal(12, Convert.ToInt32(Enum.Parse(commands, "SaveMediaChanges")));
+            Assert.Equal(14, Convert.ToInt32(Enum.Parse(commands, "HasUnsavedMediaChanges")));
+        }
+        Assert.Equal(46, coreCount);
+        Assert.Equal(23, processCount);
+    }
 }

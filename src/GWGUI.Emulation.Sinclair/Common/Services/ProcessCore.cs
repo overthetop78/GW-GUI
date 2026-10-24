@@ -168,4 +168,13 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
     /// <summary>Échec du démarrage conservé après la fermeture des ressources du transport.</summary>
     private bool _hostProcessFaulted;
+    /// <inheritdoc/>
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
+    /// <inheritdoc/>
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
+    {
+        var hasChanges = false;
+        Request(HostCommand.HasUnsavedMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot), reader => hasChanges = reader.ReadBoolean());
+        return hasChanges;
+    }
 }

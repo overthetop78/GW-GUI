@@ -879,6 +879,8 @@ public sealed class SegaMachineLifecycleTests
         public long AudioOverrunCount => 0;
         public long AudioUnderrunCount => 0;
 
+        public void SaveMediaChanges(EmulationMediaSlot slot) { }
+        public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
         public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
         public bool ShutdownRequested => false;
         public readonly ManualResetEventSlim FrameEntered = new();
