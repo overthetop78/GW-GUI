@@ -8,7 +8,7 @@ internal static class CoreTimeoutFunctions
 {
     internal static TimeSpan For(CoreDefinition? definition, HostCommand command)
     {
-        var fallback = TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds);
+        var fallback = TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds);
         return command switch
         {
             HostCommand.Initialize or HostCommand.HardReset => definition?.StartupTimeout ?? fallback,

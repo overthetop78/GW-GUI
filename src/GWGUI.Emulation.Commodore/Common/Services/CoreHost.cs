@@ -12,8 +12,8 @@ internal static class CoreHost
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName, Func<MachineConfiguration, string, IEmulatorCore> createCore)
     {
-        CommonCoreHostFunctions.Protocol.WithSharedVideoMap(videoMapName, ProcessCoreConstants.ViewStartOffset, videoMap =>
-            CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalServerName, CoreHostConstants.PipeConnectionTimeoutMilliseconds, (reader, transportWriter) =>
+        CommonCoreHostFunctions.Protocol.WithSharedVideoMap(videoMapName, CoreHostConstants.ViewStartOffset, videoMap =>
+            CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
             {
                 IEmulatorCore? core = null;
                 var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
@@ -34,7 +34,7 @@ internal static class CoreHost
                                 core.Initialize(configuration, session, saves);
                                 CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                                 CommonCoreHostFunctions.Protocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-                                    writer, core, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator,
+                                    writer, core, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, CoreHostConstants.ExtensionListSeparator,
                                     static (statusWriter, currentCore) =>
                                     {
                                         statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);

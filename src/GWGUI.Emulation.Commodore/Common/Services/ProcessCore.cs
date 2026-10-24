@@ -124,19 +124,19 @@ internal sealed class ProcessCore : IEmulatorCore
             throw new FileNotFoundException(CoreExceptions.HostExecutableNotFound(), _hostExecutablePath);
 
         Directory.CreateDirectory(sessionDirectory);
-        var pipeName = string.Concat(ProcessCoreConstants.PipeNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
-        var videoMapName = string.Concat(ProcessCoreConstants.VideoMapNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
+        var pipeName = string.Concat(CoreHostConstants.PipePrefix, Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat));
+        var videoMapName = string.Concat(CoreHostConstants.VideoMapPrefix, Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat));
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
-            _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            _videoMap = _videoMemory.CreateViewAccessor(CoreHostConstants.ViewStartOffset, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
-                Path.GetFullPath(sessionDirectory), ProcessCoreConstants.CoreHost, pipeName, videoMapName);
+                Path.GetFullPath(sessionDirectory), CoreHostConstants.CommandLineArgument, pipeName, videoMapName);
             _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
             _hostProcessId = _process.Id;
             _hostProcessFaulted = false;
-            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
             CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
@@ -155,7 +155,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();
-            SupportedContentExtensions = Response.ReadString().Split(ProcessCoreConstants.ExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            SupportedContentExtensions = Response.ReadString().Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CommonCoreHostFunctions.ReadLedStates(Response);
@@ -280,7 +280,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: true, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: true, CoreHostConstants.GracefulExitTimeoutMilliseconds);
                 }
                 finally { _process.Dispose(); }
             }
@@ -323,7 +323,7 @@ internal sealed class ProcessCore : IEmulatorCore
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {
             var timedOut = error is OperationCanceledException;
-            var exit = _process is { HasExited: true } ? string.Format(ProcessCoreConstants.ProcessExitDetailFormat, _process.ExitCode) : string.Empty;
+            var exit = _process is { HasExited: true } ? string.Format(CoreHostConstants.ProcessExitDetailFormat, _process.ExitCode) : string.Empty;
             _connectionFailed = true;
             _hostProcessFaulted = true;
             TerminateProcess();
@@ -332,7 +332,7 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private Task<byte[]> ReadResponseAsync() =>
-        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(_pendingCommand, TimeSpan.FromSeconds(ProcessCoreConstants.CommandTimeoutSeconds)),
+        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(_pendingCommand, TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds)),
             CancellationToken.None, length => CoreExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
@@ -341,7 +341,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (_process is null) return;
         try
         {
-            CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: false, ProcessCoreConstants.ProcessExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(_process, graceful: false, CoreHostConstants.GracefulExitTimeoutMilliseconds);
         }
         catch (Exception) { }
     }

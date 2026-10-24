@@ -14,7 +14,7 @@ internal static class CoreHost
     public static void Run(string pipeName, string videoMapName, Func<MachineConfiguration, string, IEmulatorCore> createCore)
     {
         CommonCoreHostFunctions.Protocol.WithSharedVideoMap(videoMapName, 0, videoMap =>
-            CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, checked((int)TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds).TotalMilliseconds), (reader, transportWriter) =>
+            CommonCoreHostFunctions.Protocol.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
             {
                 IEmulatorCore? core = null;
                 var lastVideoSequence = 0L;

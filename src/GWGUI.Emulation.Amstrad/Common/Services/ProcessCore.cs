@@ -111,7 +111,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public double FramesPerSecond { get; private set; } = VideoConstants.DefaultFramesPerSecond;
     public int SampleRate { get; private set; } = AudioConstants.DefaultSampleRate;
     public int DiskCount { get; private set; }
-    public int CurrentDiskIndex { get; private set; } = ProcessCoreConstants.NoSelectedDiskIndex;
+    public int CurrentDiskIndex { get; private set; } = MediaConstants.NoSelectedDiskIndex;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
     => _audio.TryDequeue(out chunk);
@@ -127,19 +127,19 @@ internal sealed class ProcessCore : IEmulatorCore
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
-        var pipeName = $"{ProcessCoreConstants.PipePrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
-        var videoMapName = $"{ProcessCoreConstants.VideoMapPrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
+        var pipeName = $"{CoreHostConstants.PipePrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
+        var videoMapName = $"{CoreHostConstants.VideoMapPrefix}{Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}";
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
             _videoMap = _videoMemory.CreateViewAccessor(BufferConstants.FirstBufferIndex, CommonCoreHostFunctions.Protocol.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
             _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(CommonExceptions.ProcessStartFailed()));
             _hostProcessId = _process.Id;
             _hostProcessFaulted = false;
-            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.HostConnectTimeoutSeconds));
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
             CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
@@ -300,7 +300,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: true, ProcessCoreConstants.HostExitTimeoutMilliseconds);
+                    CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: true, CoreHostConstants.GracefulExitTimeoutMilliseconds);
                 }
                 catch (Exception) { }
                 finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
@@ -312,7 +312,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = [];
             LedStates = new Dictionary<int, bool>();
             DiskCount = BufferConstants.EmptyCollectionCount;
-            CurrentDiskIndex = ProcessCoreConstants.NoSelectedDiskIndex;
+            CurrentDiskIndex = MediaConstants.NoSelectedDiskIndex;
             _input.Reset();
             _initialized = false;
             _connectionFailed = false;
@@ -354,7 +354,7 @@ internal sealed class ProcessCore : IEmulatorCore
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {
             var timedOut = error is OperationCanceledException;
-            var exit = _process is { HasExited: true } ? $"{ProcessCoreConstants.ProcessExitDiagnosticPrefix}{_process.ExitCode}{ProcessCoreConstants.ProcessExitDiagnosticSuffix}" : string.Empty;
+            var exit = _process is { HasExited: true } ? $"{CoreHostConstants.ProcessExitDiagnosticPrefix}{_process.ExitCode}{CoreHostConstants.ProcessExitDiagnosticSuffix}" : string.Empty;
             _connectionFailed = true;
             _hostProcessFaulted = true;
             TerminateProcess();
@@ -363,7 +363,7 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private Task<byte[]> ReadResponseAsync() =>
-        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(_pendingCommand, TimeSpan.FromSeconds(ProcessCoreConstants.HostResponseTimeoutSeconds)),
+        CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(_pendingCommand, TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds)),
             CancellationToken.None, length => CommonExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
@@ -375,7 +375,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (process is null) return;
         try
         {
-            CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: false, ProcessCoreConstants.HostExitTimeoutMilliseconds);
+            CommonCoreHostFunctions.Protocol.WaitForHostExit(process, graceful: false, CoreHostConstants.GracefulExitTimeoutMilliseconds);
         }
         catch (Exception) { }
         finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }

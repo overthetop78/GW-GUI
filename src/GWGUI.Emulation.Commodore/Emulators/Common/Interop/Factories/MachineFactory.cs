@@ -94,7 +94,7 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
         exitCode = CoreHostConstants.SuccessfulExitCode;
-        if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName])
+        if (arguments is not [CoreHostConstants.CommandLineArgument, var pipeName, var videoMapName])
             return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
         CoreHost.Run(pipeName, videoMapName, static (configuration, corePath) => new ExternalCore(corePath));

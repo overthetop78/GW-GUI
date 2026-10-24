@@ -74,7 +74,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public double FramesPerSecond => _host?.FramesPerSecond ?? VideoConstants.DefaultFramesPerSecond;
     public int SampleRate => _host?.SampleRate ?? AudioConstants.DefaultSampleRate;
     public int DiskCount => _host?.DiskControl.ImageCount ?? BufferConstants.EmptyCollectionCount;
-    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? ProcessCoreConstants.NoSelectedDiskIndex;
+    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? MediaConstants.NoSelectedDiskIndex;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
     {

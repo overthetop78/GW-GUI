@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Atari.Common.Constants;
 // Unique to GWGUI.Emulation.Atari.
 public static class CoreHostConstants
 {
+    /// <summary>Plateforme requise par les services de transport natif.</summary>
+    internal const string Windows = "windows";
+
     /// <summary>Commande de réinitialisation logicielle commune aux hôtes.</summary>
     internal const byte SoftResetCommand = 16;
 

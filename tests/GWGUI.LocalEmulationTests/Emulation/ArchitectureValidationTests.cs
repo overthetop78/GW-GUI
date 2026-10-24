@@ -24,6 +24,7 @@ public sealed class ArchitectureValidationTests
         var transports = 0;
         foreach (var assembly in assemblies)
         {
+            Assert.DoesNotContain(assembly.GetTypes(), type => type.Name is "ProcessCoreConstants" or "CoreHostValues" or "CoreHostFunctionsConstants");
             var owner = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Functions.CoreHostFunctions", StringComparison.Ordinal));
             if (owner.GetMethod("WriteRequestHeader", BindingFlags.Static | BindingFlags.NonPublic) is null)
             {
@@ -33,6 +34,11 @@ public sealed class ArchitectureValidationTests
             transports++;
             var constants = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Constants.CoreHostConstants", StringComparison.Ordinal));
             var version = (int)constants.GetField("ProtocolVersion", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+            var commands = owner.GetMethod("WriteRequestHeader", BindingFlags.Static | BindingFlags.NonPublic)!.GetParameters()[1].ParameterType;
+            var exampleCommands = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Common.Enums.HostCommand", true)!;
+            Assert.Equal(Enum.GetNames(exampleCommands).Order(), Enum.GetNames(commands).Order());
+            foreach (var name in Enum.GetNames(exampleCommands))
+                Assert.Equal(Convert.ToByte(Enum.Parse(exampleCommands, name)), Convert.ToByte(Enum.Parse(commands, name)));
             foreach (var pair in new[] { ("WriteRequestHeader", "ReadRequestHeader"), ("WriteResponseHeader", "ReadResponseHeader") })
             {
                 var write = owner.GetMethod(pair.Item1, BindingFlags.Static | BindingFlags.NonPublic)!;
@@ -83,6 +89,12 @@ public sealed class ArchitectureValidationTests
             var root = "GWGUI.Emulation." + family;
             var owner = assembly.GetType(root + ".Common.Functions.CoreHostFunctions", throwOnError: true)!;
             Assert.Null(assembly.GetType(root + ".Common.Functions.CoreHostProtocol"));
+            Assert.Null(assembly.GetType(root + ".Common.Constants.ProcessCoreConstants"));
+            var constants = assembly.GetType(root + ".Common.Constants.CoreHostConstants", true)!;
+            foreach (var (name, expected) in new[] { ("ConnectionTimeoutMilliseconds", 15000), ("ResponseTimeoutSeconds", 30), ("GracefulExitTimeoutMilliseconds", 5000), ("PipeBufferSize", 8 * 1024 * 1024) })
+                Assert.Equal(expected, constants.GetField(name, BindingFlags.NonPublic | BindingFlags.Static)!.GetRawConstantValue());
+            foreach (var oldName in new[] { "LocalPipeServer", "LocalServerName", "Value", "TransportName", "DisplayName", "CoreHost", "HostConnectTimeoutSeconds", "ConnectionTimeoutSeconds", "InitializationTimeoutSeconds", "PipeNamePrefix", "VideoMapNamePrefix" })
+                Assert.Null(constants.GetField(oldName, BindingFlags.NonPublic | BindingFlags.Static));
             var json = Assert.IsType<System.Text.Json.JsonSerializerOptions>(owner.GetField("JsonOptions", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null));
             Assert.True(json.PropertyNameCaseInsensitive);
             Assert.Equal("hostName", json.PropertyNamingPolicy!.ConvertName("HostName"));

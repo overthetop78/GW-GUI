@@ -16,7 +16,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Atari.Common.Services;
 
-[SupportedOSPlatform(ProcessCoreConstants.Windows)]
+[SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     /// <summary>Configuration empruntée pour résoudre les règles du transport de cette session.</summary>
