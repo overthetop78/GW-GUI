@@ -12,7 +12,7 @@ internal static partial class InputSettingsFunctions
         var input = configuration.Input ?? new InputConfiguration();
         var usbKeyboard = HasUsbKeyboard(configuration);
         var usbMouse = HasUsbMouse(configuration);
-        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions(configuration) : [], input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? UsbKeyboardDefinitions(configuration)) : [], input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
             CompatibleVisualIds: usbKeyboard ? [UsbKeyboardVisualId(configuration)] : null, DefaultVisualId: usbKeyboard ? UsbKeyboardVisualId(configuration) : null) : null;
         var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         if (usbMouse && mouse is not null) mouse = mouse with
@@ -50,7 +50,7 @@ internal static partial class InputSettingsFunctions
         if (configuration.Model == ModelConstants.PlayStation3)
             controllers = controllers.Concat((current.Controllers ?? [])
                 .Where(binding => controllers.All(selected => selected.Port != binding.Port))).ToArray();
-        return configuration with
+        var adjustedConfiguration = configuration with
         {
             Input = current with
             {
@@ -70,6 +70,7 @@ internal static partial class InputSettingsFunctions
                     }).ToArray() : current.UsbBindings
             }
         };
+        return new Engine().SelectedAdapter(adjustedConfiguration)?.ApplyInputConfiguration(adjustedConfiguration) ?? adjustedConfiguration;
     }
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
@@ -252,4 +253,9 @@ internal static partial class InputSettingsFunctions
         ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Keyboard ? [EmulationControllerVisualIds.SonyUsbKeyboard]
         : ControllerCatalog.IsUsbPort(configuration, port) && type == PeripheralCategory.Mouse ? [EmulationControllerVisualIds.SonyUsbMouse]
         : ControllerCatalog.Visuals(type, model.Id == ModelConstants.PlayStation2) ?? CompatibleVisualIds(type, model);
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return HasUsbKeyboard(configuration) ? UsbKeyboardDefinitions(configuration) : []; }
 }

@@ -52,7 +52,7 @@ internal static class InputSettingsFunctions
         }).ToArray();
         var result = configuration with { Input = new(configuration.Input.KeyboardBindings, controllers) };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     internal static void Validate(MachineConfiguration configuration)

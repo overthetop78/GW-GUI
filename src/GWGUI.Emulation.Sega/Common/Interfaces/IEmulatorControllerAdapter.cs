@@ -53,4 +53,18 @@ internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
     /// <param name="port">Indice relatif au bus USB, commençant à zéro.</param>
     /// <returns>Choix du port USB, ou liste vide lorsque ce bus ne fournit aucun port correspondant.</returns>
     IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port);
+
+    /// <summary>Décrit les commandes du clavier principal acceptées par le modèle et le backend.</summary>
+    /// <param name="configuration">Configuration complète empruntée, consultée sans la modifier.</param>
+    /// <returns>Définitions des associations de clavier ; liste vide lorsque ce clavier n'est pas pris en charge.</returns>
+    /// <remarks>Les libellés et identifiants restent ceux du protocole du modèle. Cette consultation ne
+    /// capture aucun périphérique physique et ne démarre aucun cœur.</remarks>
+    IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
+
+    /// <summary>Adapte les associations préparées par Common aux contraintes du backend.</summary>
+    /// <param name="configuration">Configuration empruntée après préparation de ses associations.</param>
+    /// <returns>Configuration adaptée ; la même instance lorsque le backend n'a aucune règle supplémentaire.</returns>
+    /// <remarks>Les adaptations conservent les autres données de la configuration et ne modifient pas
+    /// les collections de l'appelant. L'opération ne possède ni cœur, ni fichier, ni périphérique.</remarks>
+    MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
 }

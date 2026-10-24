@@ -130,7 +130,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
-            KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
+            (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration)),
             configuration.Input.KeyboardBindings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mapper = new Engine().Adapter(configuration.Core) as IEmulatorControllerAdapter;
         var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
@@ -176,6 +176,11 @@ internal static class InputSettingsFunctions
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.KeyboardBindings, controllers) };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return configuration.Model == MachineModel.Adam ? KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray() : []; }
 }

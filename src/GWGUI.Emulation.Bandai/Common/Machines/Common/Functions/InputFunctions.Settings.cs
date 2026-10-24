@@ -43,7 +43,7 @@ internal static class InputSettingsFunctions
         }).ToArray();
         var result = configuration with { Input = new InputConfiguration(controllers) };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     private static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) =>

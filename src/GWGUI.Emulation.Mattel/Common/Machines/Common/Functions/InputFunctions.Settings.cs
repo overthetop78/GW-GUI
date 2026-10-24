@@ -42,7 +42,7 @@ internal static class InputSettingsFunctions
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
     internal static void Validate(MachineConfiguration configuration)
     {

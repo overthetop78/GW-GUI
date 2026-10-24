@@ -30,7 +30,7 @@ internal static class InputSettingsFunctions
     internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < CommonControllerFunctions.PortCount(configuration) && Choices(configuration, port).Contains(peripheral);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
+        var keyboard = new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDictionary.Definitions(configuration.Model)), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration)).Select(port =>
         {
@@ -92,7 +92,7 @@ internal static class InputSettingsFunctions
             Input = input
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     internal static void Validate(MachineConfiguration configuration)
@@ -112,4 +112,9 @@ internal static class InputSettingsFunctions
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return KeyboardDictionary.Definitions(configuration.Model); }
 }

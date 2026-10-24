@@ -8,7 +8,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var input = configuration.Input;
-        var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
+        var definitions = (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration));
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = CommonControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
@@ -32,7 +32,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
+        var allowedKeys = (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration)).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
             ? configuration.Input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && CommonControllerFunctions.IsValidBinding(item.Value)).ToDictionary(item => item.Key,
@@ -55,7 +55,7 @@ internal static class InputSettingsFunctions
             }
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     private static EmulationControllerChoice Choice(PeripheralCategory category) => new(
@@ -97,4 +97,9 @@ internal static class InputSettingsFunctions
                 _ => null
             } : null
         }).ToArray();
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration); }
 }

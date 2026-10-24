@@ -11,7 +11,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var mouseType = model.Id == PcFxMachineConstants.Id ? PeripheralCategory.PcFxMouse : PeripheralCategory.PcEngineMouse;
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(model)), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
             ? new EmulationInputBindingSet(
             MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse
@@ -47,7 +47,7 @@ internal static partial class InputSettingsFunctions
             port.PhysicalDeviceId,
             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId, OutputBindings: port.OutputBindings, DeadZonePercent: port.DeadZonePercent)).ToArray();
-        return configuration with
+        var adjustedConfiguration = configuration with
         {
             Input = current with
             {
@@ -57,6 +57,7 @@ internal static partial class InputSettingsFunctions
                 Controllers = controllers
             }
         };
+        return new Engine().SelectedAdapter(adjustedConfiguration)?.ApplyInputConfiguration(adjustedConfiguration) ?? adjustedConfiguration;
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model) => [];
@@ -108,4 +109,9 @@ internal static partial class InputSettingsFunctions
             _ => EmulationControllerCategory.Gamepad
         }
     };
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { var model = ModelCatalog.Get(configuration.Model); return model.HasKeyboard ? KeyboardDefinitions(model) : []; }
 }

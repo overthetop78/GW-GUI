@@ -55,7 +55,7 @@ internal static class InputSettingsFunctions
     {
         var input = configuration.Input;
         var sources = EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller;
-        var keyboard = new EmulationInputBindingSet(KeyboardDefinitions(configuration), input.KeyboardBindings
+        var keyboard = new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration)), input.KeyboardBindings
             ?? input.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(), sources);
         var mouse = new EmulationInputBindingSet(ControllerDefinitions(PeripheralCategory.Mouse), input.MouseMappings ?? new Dictionary<string, string>(), sources, true);
         var choices = Enum.GetValues<PeripheralCategory>().Where(item => item != PeripheralCategory.Automatic).Select(Choice).ToArray();
@@ -96,7 +96,7 @@ internal static class InputSettingsFunctions
             Controllers = controllers
         } };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     /// <summary>Indique si le profil expose un port de pointeur.</summary>

@@ -127,4 +127,14 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     /// <remarks>Les informations conservent les règles du modèle et les particularités annoncées par l'adaptateur.
     /// L'opération décrit la configuration ; elle ne crée ni machine en cours d'exécution ni ressource graphique.</remarks>
     public virtual EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration);
+
+    /// <summary>Fournit les commandes du clavier principal par les définitions Common du modèle.</summary>
+    /// <param name="configuration">Configuration empruntée du profil et du backend.</param>
+    /// <returns>Définitions existantes ; liste vide sans clavier principal.</returns>
+    public virtual IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => [];
+
+    /// <summary>Conserve les associations Common lorsque le backend ne demande aucune adaptation supplémentaire.</summary>
+    /// <param name="configuration">Configuration empruntée à transmettre sans mutation.</param>
+    /// <returns>Même instance de configuration ; les fabriques dérivées peuvent adapter leurs contraintes.</returns>
+    public virtual MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
 }

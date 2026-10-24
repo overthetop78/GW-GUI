@@ -23,7 +23,7 @@ internal static class InputSettingsFunctions
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.KeyboardBindings ?? new Dictionary<string, string>(),
+        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? P2000KeyboardDictionary.Definitions), configuration.Input.KeyboardBindings ?? new Dictionary<string, string>(),
             EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration))
             .Select(port =>
@@ -66,7 +66,7 @@ internal static class InputSettingsFunctions
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -79,4 +79,9 @@ internal static class InputSettingsFunctions
             if (EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, EmulationSdk.InputProcessing.IsValidSourcePrefix)) throw new ArgumentException(nameof(configuration.Input));
         }
     }
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return configuration.Family == MachineFamily.P2000 ? P2000KeyboardDictionary.Definitions : []; }
 }

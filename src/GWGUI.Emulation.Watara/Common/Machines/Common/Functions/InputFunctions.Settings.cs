@@ -44,7 +44,7 @@ internal static class InputSettingsFunctions
             Input = new InputConfiguration([binding])
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     internal static void Validate(MachineConfiguration configuration)

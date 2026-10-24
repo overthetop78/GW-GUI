@@ -13,13 +13,13 @@ internal static class InputSettingsFunctions
         MachineModel.Macintosh128K or MachineModel.Macintosh512K or MachineModel.MacintoshPlus or MachineModel.MacintoshClassic or MachineModel.MacintoshII => MacintoshKeyboardDictionary.DefaultHostKeys,
         _ => new Dictionary<EmulationKey, EmulationKey>()
     };
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => DefaultHostKeys(configuration.Model).Select(pair => new InputBindingDefinition(pair.Key.ToString(),
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => DefaultHostKeys(configuration.Model).Select(pair => new InputBindingDefinition(pair.Key.ToString(),
         InputSettingsFunctionsConstants.ResourceKeyboardPrefix + pair.Key,
         pair.Value.ToString())).ToArray();
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var input = configuration.Input;
-        var definitions = KeyboardDefinitions(configuration);
+        var definitions = (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration));
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = configuration.Family == MachineFamily.AppleII ? CommonControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
@@ -53,7 +53,7 @@ internal static class InputSettingsFunctions
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var allowedKeys = KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
+        var allowedKeys = (new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration)).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
             ? configuration.Input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && CommonControllerFunctions.IsValidBinding(item.Value)).ToDictionary(item => item.Key,
@@ -79,7 +79,7 @@ internal static class InputSettingsFunctions
             }
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     private static EmulationControllerChoice Choice(PeripheralCategory category) => new(

@@ -266,12 +266,12 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Définitions des commandes du clavier correspondant à la configuration.</returns>
     /// <remarks><para>Les identifiants de touches servent aux associations ; la fabrique ne construit pas de clavier visuel et ne capture pas les événements de l&apos;hôte.</para></remarks>
-    public IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => InputSettingsFunctions.KeyboardDefinitions(configuration);
+    public virtual IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => InputSettingsFunctions.KeyboardDefinitions(configuration);
     /// <summary>Accepte la configuration d&apos;entrées préparée par Common.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Même instance de configuration.</returns>
     /// <remarks><para>Le backend simulé n&apos;ajoute aucune contrainte supplémentaire à cette étape ; l&apos;instance et ses collections sont conservées.</para></remarks>
-    public MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
+    public virtual MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
     /// <summary>Décrit les lecteurs et supports du profil matériel choisi.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Descriptions Common des périphériques de médias du modèle.</returns>

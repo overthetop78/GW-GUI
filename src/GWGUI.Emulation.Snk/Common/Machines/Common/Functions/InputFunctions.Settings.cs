@@ -85,7 +85,7 @@ internal static class InputSettingsFunctions
             }
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     internal static void Validate(MachineConfiguration configuration)

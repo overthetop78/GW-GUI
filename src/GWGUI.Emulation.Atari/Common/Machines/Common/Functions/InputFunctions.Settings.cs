@@ -15,7 +15,7 @@ internal static partial class InputSettingsFunctions
     {
         var compatibility = CompatibilityCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration.Model)), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse) ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.Controllers ?? [];
         var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
@@ -47,7 +47,8 @@ internal static partial class InputSettingsFunctions
             foreach (var binding in settings.Mouse.Values)
                 options[MouseSettingsConstants.MappingOptionPrefix + binding.Key] = binding.Value;
         var input = current with { KeyboardMappings = keyboard, KeyboardBindings = settings.Keyboard?.Values ?? current.KeyboardBindings, Controllers = controllers };
-        return configuration with { Options = options, Input = input };
+        var adjustedConfiguration = configuration with { Options = options, Input = input };
+        return new Engine().SelectedAdapter(adjustedConfiguration)?.ApplyInputConfiguration(adjustedConfiguration) ?? adjustedConfiguration;
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineModel model)
@@ -163,4 +164,9 @@ internal static partial class InputSettingsFunctions
             _ => EmulationControllerCategory.Joystick
         }
     };
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return CompatibilityCatalog.Get(configuration.Model).VisibleTabs.Contains(SettingsTab.Keyboard) ? KeyboardDefinitions(configuration.Model) : []; }
 }

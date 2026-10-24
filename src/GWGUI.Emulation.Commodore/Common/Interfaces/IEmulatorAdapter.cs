@@ -205,8 +205,6 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
 
     ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory);
     Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
-    IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration);
-    MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>
     /// <returns>Associations de clés et valeurs techniques ; les nombres utilisent un format indépendant de la langue.</returns>

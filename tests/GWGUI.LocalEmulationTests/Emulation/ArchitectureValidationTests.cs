@@ -1046,7 +1046,7 @@ public sealed class ArchitectureValidationTests
             var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
             var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.True(controllerContract.IsAssignableFrom(adapterContract), root);
-            Assert.Equal(new[] { "DescribeInput", "GetControllerBindingDefinitions", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetPeripherals", "GetPeripherals", "GetUsbPeripherals" }, controllerContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            Assert.Equal(new[] { "ApplyInputConfiguration", "DescribeInput", "GetControllerBindingDefinitions", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetKeyboardDefinitions", "GetPeripherals", "GetPeripherals", "GetUsbPeripherals" }, controllerContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
             Assert.Contains(controllerContract.GetInterfaces(), type => type.Name == "IEmulatorInputMapper");
             Assert.All(controllerContract.GetMethods(), method => Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.GetParameters()[0].ParameterType)));
             var countMethod = controllerContract.GetMethod("GetControllerPortCount")!;
@@ -2927,6 +2927,17 @@ public sealed class ArchitectureValidationTests
         Assert.Equal("snapshot", parameters[0].Name);
         Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(parameters[1].ParameterType));
         Assert.Equal("configuration", parameters[1].Name);
+        var inputContract = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+        var keyboardDefinitions = inputContract.GetMethod("GetKeyboardDefinitions")!;
+        var prepareInput = inputContract.GetMethod("ApplyInputConfiguration")!;
+        Assert.Equal(typeof(IReadOnlyList<InputBindingDefinition>), keyboardDefinitions.ReturnType);
+        Assert.Equal(parameters[1].ParameterType, prepareInput.ReturnType);
+        foreach (var inputOperation in new[] { keyboardDefinitions, prepareInput })
+        {
+            var parameter = Assert.Single(inputOperation.GetParameters());
+            Assert.Equal("configuration", parameter.Name);
+            Assert.Equal(parameters[1].ParameterType, parameter.ParameterType);
+        }
         var adapter = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
         Assert.Contains(contract, adapter.GetInterfaces());
         var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
@@ -3088,6 +3099,10 @@ public sealed class ArchitectureValidationTests
             Assert.True(deferred.IsAbstract && clock.IsAbstract);
             var extension = assembly.GetType(root + ".Common.Interfaces.IEmulatorSettingsAdapter");
             if (extension is not null) Assert.DoesNotContain(extension.GetMethods(), method => method.Name is "IsDeferredOption" or "IsCpuClock");
+            var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+            var inputSettingsOwner = assembly.GetType(root + ".Common.Machines.Common.Functions.InputSettingsFunctions", throwOnError: true)!;
+            var applyInputSettings = inputSettingsOwner.GetMethod("Apply", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Contains(GetCompiledCalls(applyInputSettings), call => call.Method == controllerContract.GetMethod("ApplyInputConfiguration"));
             var summaryOperation = contract.GetMethod("Summarize")!;
             Assert.Equal(typeof(EmulationConfigurationSummary), summaryOperation.ReturnType);
             Assert.Equal(configurationType, Assert.Single(summaryOperation.GetParameters()).ParameterType);
@@ -3136,6 +3151,23 @@ public sealed class ArchitectureValidationTests
                 {
                     registrations[definition.Id] = previousAdapter;
                 }
+                var inputContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
+                var keyboardOperation = inputContract.GetMethod("GetKeyboardDefinitions")!;
+                var inputOperation = inputContract.GetMethod("ApplyInputConfiguration")!;
+                var keyboardDefinitions = Assert.IsAssignableFrom<IReadOnlyList<InputBindingDefinition>>(keyboardOperation.Invoke(adapter, [configuration]));
+                var describedInput = Assert.IsType<EmulationInputSettings>(engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration]));
+                if (describedInput.Keyboard is { } keyboard)
+                    Assert.Equal(keyboard.Definitions.Select(item => item.Id), keyboardDefinitions.Select(item => item.Id));
+                else
+                    Assert.Empty(keyboardDefinitions);
+                var preparedInput = Assert.IsAssignableFrom<IEmulationConfiguration>(inputOperation.Invoke(adapter, [configuration]));
+                Assert.Equal(configuration.Id, preparedInput.Id);
+                Assert.Equal(configuration.MachineId, preparedInput.MachineId);
+                var selectedCore = configurationType.GetProperty("EmulatorId") ?? configurationType.GetProperty("Core")!;
+                Assert.Equal(selectedCore.GetValue(configuration), selectedCore.GetValue(preparedInput));
+                var inputMap = adapter.GetType().GetInterfaceMap(inputContract);
+                foreach (var operation in new[] { keyboardOperation, inputOperation })
+                    Assert.True(inputMap.TargetMethods[Array.IndexOf(inputMap.InterfaceMethods, operation)].DeclaringType!.IsClass);
                 Assert.False((bool)deferred.Invoke(adapter, [configuration, "unknown-setting"])!);
                 Assert.False((bool)clock.Invoke(adapter, ["unknown-setting"])!);
                 if (root == "GWGUI.Emulation.Example")

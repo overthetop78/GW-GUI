@@ -10,7 +10,7 @@ internal static class InputSettingsFunctions
     ];
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
+        var keyboard = new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDictionary.Definitions(configuration.Model)), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var mouseValues = EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), configuration.Input.MouseMappings);
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
@@ -69,7 +69,7 @@ internal static class InputSettingsFunctions
             Input = input
         };
         ConfigurationFunctions.Validate(result);
-        return result;
+        return new Engine().SelectedAdapter(result)?.ApplyInputConfiguration(result) ?? result;
     }
 
     internal static void Validate(MachineConfiguration configuration)
@@ -84,4 +84,9 @@ internal static class InputSettingsFunctions
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || EmulationSdk.InputProcessing.HasInvalidBindings(binding.Mappings, ids, CommonControllerFunctions.IsValidBinding))
                 throw new ArgumentException(nameof(configuration.Input));
     }
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return KeyboardDictionary.Definitions(configuration.Model); }
 }
