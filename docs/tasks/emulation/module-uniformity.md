@@ -15634,3 +15634,14 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Epoch/EpochModuleTests.cs : vérifier par IEmulatorPointerCapabilities l'annonce des deux modèles Cassette Vision et des trois modèles Super Cassette Vision, sans charger de cœur ni créer de fichier.
   - [x] Vérifier et livrer le raccordement.
     - [x] Modifier les deux sources concernées seulement si les contrôles Epoch ou des contrats d'adaptateur révèlent une régression ; exécuter les contrôles existants et le build Debug avec tous les modules, puis vérifier les 24 sorties. Résultat : 252 contrôles réussis ; script terminé avec le code 0, 24 modules et empreintes vérifiés.
+- [x] Retirer les sélections de backends des validations Common Epoch et Coleco sans perdre leurs contrôles.
+  - [x] Raccorder les traitements existants à leur propriétaire.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/ConfigurationFunctions.cs : valider les catégories de firmware par FirmwareFunctions.Roles du modèle, déjà présent, au lieu de nommer EmuSCV.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/Machine.cs : emprunter IEmulatorPointerCapabilities à l'adaptateur fourni, avec résolution par Engine seulement en son absence, et lire la capture par cette interface au lieu de nommer PD777.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/ConfigurationFunctions.cs : retirer le bloc propre à GearColeco après déplacement dans son validateur déjà appelé par Common.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Functions/SettingsFunctions.cs : reprendre dans Validate les contrôles existants des types rotatifs partagés et des médias insérés en lecture seule, avec les mêmes rejets.
+  - [x] Vérifier les règles conservées et livrer les modules.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Epoch/EpochModuleTests.cs : couvrir l'acceptation du firmware des modèles Super Cassette Vision et son rejet sur Cassette Vision, sans fichiers externes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que le getter de capture Epoch appelle le contrat de l'adaptateur.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Coleco/ColecoModuleTests.cs : vérifier les mélanges autorisés ou rejetés de contrôleurs rotatifs et de protections des médias insérés, sans fichiers externes.
+    - [x] Modifier les sources concernées uniquement si les contrôles révèlent une régression ; exécuter les contrôles Epoch, Coleco et d'architecture, puis le build Debug avec tous les modules et vérifier les 24 sorties. Résultat : 481 contrôles ciblés puis 3 801 tests complets réussis ; build terminé avec le code 0 et 24 modules vérifiés.

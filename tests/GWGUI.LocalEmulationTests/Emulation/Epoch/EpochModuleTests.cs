@@ -16,6 +16,19 @@ namespace GWGUI.Tests.Emulation.Epoch;
 public sealed class EpochModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.CassetteVision, false)]
+    [InlineData(MachineModel.CassetteVisionJr, false)]
+    [InlineData(MachineModel.SuperCassetteVision, true)]
+    [InlineData(MachineModel.SuperCassetteVisionYeno, true)]
+    [InlineData(MachineModel.SuperCassetteVisionLady, true)]
+    public void FirmwareAcceptanceFollowsTheHardwareModel(MachineModel model, bool acceptsFirmware)
+    {
+        MachineConfiguration Create() => new(model, firmwares: [new(FirmwareCategory.Console, "console.rom", true)]);
+        if (acceptsFirmware) Assert.Single(Create().Firmwares);
+        else Assert.Equal("Firmwares", Assert.Throws<ArgumentException>(Create).Message);
+    }
+
+    [Theory]
     [InlineData(MachineModel.CassetteVision, true)]
     [InlineData(MachineModel.CassetteVisionJr, true)]
     [InlineData(MachineModel.SuperCassetteVision, false)]

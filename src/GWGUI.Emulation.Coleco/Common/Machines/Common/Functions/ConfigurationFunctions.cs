@@ -61,12 +61,6 @@ internal static class ConfigurationFunctions
             && (configuration.Model != MachineModel.Adam
                 || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !CommonControllerFunctions.IsValidBinding(mapping.Value))))
             throw new ArgumentException(nameof(configuration.Input));
-        if (configuration.Core == Emulator.GearColeco)
-        {
-            var rotaryTypes = (configuration.Input.Controllers ?? []).Select(binding => binding.Peripheral).Where(peripheral => peripheral is PeripheralCategory.SuperAction or PeripheralCategory.Roller or PeripheralCategory.Driving) .Distinct().Count();
-            if (rotaryTypes > 1 || configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge).Select(media => media.IsReadOnly).Distinct().Count() > 1)
-                throw new ArgumentException(nameof(configuration));
-        }
         CoreOptionValidationFunctions.Validate(configuration);
     }
 

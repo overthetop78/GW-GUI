@@ -31,6 +31,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Capacité empruntée à l'adaptateur courant ; la machine ne possède aucun périphérique physique.</summary>
+    private readonly IEmulatorPointerCapabilities _pointerCapabilities;
     /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
     /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
     /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
@@ -65,6 +67,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _inputConfiguration = configuration;
         _core = core;
         _inputMapper = inputMapper;
+        _pointerCapabilities = inputMapper as IEmulatorPointerCapabilities ?? new Engine().Adapter(configuration);
         _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _coreFactory = coreFactory;
         _sessionDirectory = sessionDirectory;
@@ -85,7 +88,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationAudio Audio => this;
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
-    bool IEmulationInput.SupportsPointerCapture => Configuration.Core == Emulator.PD777;
+    bool IEmulationInput.SupportsPointerCapture => _pointerCapabilities.SupportsPointerCapture(Configuration);
     bool IEmulationInput.CapturePointerOnClick => false;
     IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => InputSettingsFunctions.KeyboardBindings(_inputConfiguration);
     bool IEmulationInput.SupportsControllerPointerSwitch => false;

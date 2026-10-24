@@ -28,6 +28,9 @@ internal static class SettingsDescriptionFunctions
 
     internal static void Validate(MachineConfiguration configuration)
     {
+        var rotaryTypes = (configuration.Input.Controllers ?? []).Select(binding => binding.Peripheral).Where(peripheral => peripheral is PeripheralCategory.SuperAction or PeripheralCategory.Roller or PeripheralCategory.Driving).Distinct().Count();
+        if (rotaryTypes > 1 || configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge).Select(media => media.IsReadOnly).Distinct().Count() > 1)
+            throw new ArgumentException(nameof(configuration));
         if (configuration.Options.TryGetValue(OptionConstants.OptionCartridgeHardware, out var hardware)
             && hardware != (configuration.Model == MachineModel.Adam ? CoreModelConstants.Adam : CoreModelConstants.ColecoVision))
             throw new ArgumentException(nameof(configuration.Options));

@@ -3873,6 +3873,15 @@ public sealed class ArchitectureValidationTests
                 var captureParameter = Assert.Single(capture.GetParameters());
                 Assert.Equal("configuration", captureParameter.Name);
                 Assert.Equal(parameter.ParameterType, captureParameter.ParameterType);
+                if (root == "GWGUI.Emulation.Epoch")
+                {
+                    var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+                    var input = machine.GetInterfaceMap(typeof(IEmulationInput));
+                    var getter = input.TargetMethods[Array.FindIndex(input.InterfaceMethods, method => method.Name == "get_SupportsPointerCapture")];
+                    var code = getter.GetMethodBody()!.GetILAsByteArray()!;
+                    byte[] call = [0x6f, .. BitConverter.GetBytes(capture.MetadataToken)];
+                    Assert.True(code.AsSpan().IndexOf(call) >= 0);
+                }
                 var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
                 Assert.Contains(contract, adapterContract.GetInterfaces());
                 var adapters = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapterContract.IsAssignableFrom(type)).ToArray();

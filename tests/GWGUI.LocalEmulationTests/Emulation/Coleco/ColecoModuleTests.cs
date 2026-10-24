@@ -15,6 +15,31 @@ namespace GWGUI.Tests.Emulation.Coleco;
 public sealed class ColecoModuleTests
 {
     [Theory]
+    [InlineData(PeripheralCategory.Roller, PeripheralCategory.Driving, false)]
+    [InlineData(PeripheralCategory.SuperAction, PeripheralCategory.Driving, false)]
+    [InlineData(PeripheralCategory.Roller, PeripheralCategory.Roller, true)]
+    [InlineData(PeripheralCategory.SuperAction, PeripheralCategory.Standard, true)]
+    public void GearColecoKeepsItsSharedRotaryControllerConstraint(PeripheralCategory first, PeripheralCategory second, bool accepted)
+    {
+        MachineConfiguration Create() => new(MachineModel.ColecoVision, core: Emulator.GearColeco, input: new InputConfiguration(Controllers: [new(0, first), new(1, second)]));
+        if (accepted) Assert.NotNull(Create());
+        else Assert.Equal("configuration", Assert.Throws<ArgumentException>(Create).Message);
+    }
+
+    [Theory]
+    [InlineData(true, true, true)]
+    [InlineData(false, true, true)]
+    [InlineData(true, false, false)]
+    [InlineData(false, false, true)]
+    public void GearColecoKeepsTheWriteProtectionConstraintForInsertedMedia(bool secondInserted, bool secondReadOnly, bool accepted)
+    {
+        MachineConfiguration Create() => new(MachineModel.Adam, core: Emulator.GearColeco, configuredSlots: [EmulationMediaSlot.Cartridge0, EmulationMediaSlot.Cassette0, EmulationMediaSlot.Floppy0], media:
+            [new("first.dsk", MediaCategory.Floppy, EmulationMediaSlot.Floppy0), new("second.ddp", MediaCategory.DataPack, EmulationMediaSlot.Cassette0, IsReadOnly: secondReadOnly, IsInserted: secondInserted)]);
+        if (accepted) Assert.Equal(2, Create().Media.Count);
+        else Assert.Equal("configuration", Assert.Throws<ArgumentException>(Create).Message);
+    }
+
+    [Theory]
     [InlineData("enabled")]
     [InlineData("disabled")]
     public void BlueMsxFastBootIsInGeneralAndRetainsItsNativeValue(string value)

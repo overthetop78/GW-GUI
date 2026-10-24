@@ -18,7 +18,7 @@ internal static partial class ConfigurationFunctions
             || configuration.Media.Any(media => media.Slot != EmulationMediaSlot.Cartridge0 || media.Category != MediaCategory.Cartridge || string.IsNullOrWhiteSpace(media.Path)))
             throw new ArgumentException(nameof(configuration.Media));
         if (configuration.Firmwares.Count > 1
-            || configuration.Firmwares.Any(firmware => configuration.Core != Emulator.EmuSCV || firmware.Category != FirmwareCategory.Console || string.IsNullOrWhiteSpace(firmware.Path)))
+            || configuration.Firmwares.Any(firmware => !FirmwareFunctions.Roles(configuration.Model).Contains(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path)))
             throw new ArgumentException(nameof(configuration.Firmwares));
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])
