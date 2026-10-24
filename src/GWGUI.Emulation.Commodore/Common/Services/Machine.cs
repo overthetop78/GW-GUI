@@ -74,11 +74,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     /// <summary>Projette les entrées physiques puis ajoute la bascule de session sans modifier ses sources.</summary>
-    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot)
-    {
-        var mapped = _inputMapper?.MapInput(snapshot, Configuration) ?? InputSnapshotFunctions.Apply(snapshot, Configuration.Input, false);
-        return _controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
-    }
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => InputSnapshotFunctions.Apply(snapshot, Configuration, _inputMapper, _controllerPointerSwitchPressed);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; private set; }

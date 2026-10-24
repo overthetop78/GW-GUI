@@ -86,7 +86,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     /// <summary>Projette un instantané avec le contrat de la fabrique ou le traitement Common initial.</summary>
-    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => _inputMapper?.MapInput(snapshot, _inputConfiguration) ?? InputSnapshotFunctions.Apply(snapshot, _inputConfiguration.Input, _inputConfiguration.Model, _inputConfiguration.Core);
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, _inputMapper, false);
 
     public Guid Id { get; }
     public MachineConfiguration Configuration { get; }

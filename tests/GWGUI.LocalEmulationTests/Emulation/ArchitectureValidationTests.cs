@@ -2977,6 +2977,29 @@ public sealed class ArchitectureValidationTests
             Assert.DoesNotContain(implementation.GetMethods(), method => method.Name == "MapInput" && method.GetParameters().Length != 2);
             Assert.All(implementation.GetInterfaceMap(contract).TargetMethods, method => Assert.False(method.IsAbstract));
         }
+
+        var functions = assembly.GetType($"GWGUI.Emulation.{family}.Common.Machines.Common.Functions.InputSnapshotFunctions", throwOnError: true)!;
+        var apply = Assert.Single(functions.GetMethods(BindingFlags.NonPublic | BindingFlags.Static), candidate => candidate.Name == "Apply" && candidate.GetParameters().Length == 4 && candidate.GetParameters()[1].ParameterType == parameters[1].ParameterType);
+        var projectionParameters = apply.GetParameters();
+        Assert.Equal(new[] { "snapshot", "configuration", "mapper", "controllerPointerSwitchPressed" }, projectionParameters.Select(parameter => parameter.Name));
+        Assert.Equal(contract, projectionParameters[2].ParameterType);
+        Assert.True(projectionParameters[2].HasDefaultValue);
+        Assert.Null(projectionParameters[2].DefaultValue);
+        Assert.Equal(typeof(bool), projectionParameters[3].ParameterType);
+        Assert.Equal(false, projectionParameters[3].DefaultValue);
+        var mapper = DispatchProxy.Create(contract, typeof(FeedbackCoreProxy));
+        var configuration = RuntimeHelpers.GetUninitializedObject(parameters[1].ParameterType);
+        var source = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A }, Pointer = new(3, -4, 2, true, false, false) };
+        var unchanged = Assert.IsType<EmulationInputSnapshot>(apply.Invoke(null, [source, configuration, mapper, false]));
+        Assert.Same(source, unchanged);
+        Assert.Same(configuration, ((FeedbackCoreProxy)mapper).MappedConfiguration);
+        var switched = Assert.IsType<EmulationInputSnapshot>(apply.Invoke(null, [source, configuration, mapper, true]));
+        Assert.Contains(EmulationKey.RightControl, switched.Keys);
+        Assert.Contains(EmulationKey.A, switched.Keys);
+        Assert.DoesNotContain(EmulationKey.RightControl, source.Keys);
+        Assert.NotSame(source.Keys, switched.Keys);
+        Assert.Same(source.Controllers, switched.Controllers);
+        Assert.Equal(source.Pointer, switched.Pointer);
     }
 
     [Theory]

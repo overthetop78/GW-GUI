@@ -7,13 +7,16 @@ namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 /// Les commandes étendues restent dans Controls afin de représenter les catégories sans multiplier les profils de manettes.</remarks>
 internal static class InputSnapshotFunctions
 {
-    /// <summary>Projette les associations de la configuration et transmet l’impulsion de bascule du pointeur.</summary>
-    /// <param name="snapshot">Entrées physiques stables de la frame.</param>
-    /// <param name="configuration">Configuration du modèle et du périphérique choisi sur chaque port.</param>
-    /// <param name="mapper">Adaptateur qui traduit les commandes communes vers celles de son cœur.</param>
-    /// <param name="controllerPointerSwitchPressed">Impulsion de la commande native de bascule du pointeur.</param>
-    /// <returns>Entrées du cœur ; l’impulsion utilise Contrôle droit comme les adaptations existantes.</returns>
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper, bool controllerPointerSwitchPressed)
+    /// <summary>Projette les entrées de session par le contrat Common et applique la bascule du pointeur.</summary>
+    /// <param name="snapshot">Instantané physique emprunté, dont les collections restent inchangées.</param>
+    /// <param name="configuration">Configuration complète et courante : modèle, cœur, options et associations.</param>
+    /// <param name="mapper">Adaptateur emprunté chargé de traduire les commandes ; null utilise la projection de repli du module.</param>
+    /// <param name="controllerPointerSwitchPressed">Impulsion de session ajoutant Contrôle droit aux touches projetées.</param>
+    /// <returns>Instantané adapté au cœur ; sans impulsion, le résultat du projecteur est conservé tel quel.</returns>
+    /// <remarks>La bascule est appliquée après la projection, comme pour les cœurs qui la prennent déjà en charge.
+    /// Elle copie l'ensemble des touches avant ajout, conserve les autres entrées et ne modifie ni la source
+    /// ni la configuration. Cette opération ne crée aucun cœur et ne possède aucune ressource native.</remarks>
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper = null, bool controllerPointerSwitchPressed = false)
     {
         var mapped = mapper?.MapInput(snapshot, configuration) ?? Apply(snapshot, configuration.Input);
         return controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
