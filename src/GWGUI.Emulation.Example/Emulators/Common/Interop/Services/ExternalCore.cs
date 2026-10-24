@@ -29,6 +29,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private readonly VideoBufferSet _video = new();
     /// <summary>File audio indépendante obtenue par le relais Common, avec les compteurs du SDK.</summary>
     private readonly IEmulationAudioBuffer _audio = AudioFunctions.CreateBuffer();
+    /// <summary>Stockage des effets possédé par le cœur, créé via Common et fermé après le détachement des callbacks.</summary>
+    /// <remarks>Ce service conserve seulement des intensités. Les périphériques physiques restent possédés par l’hôte.</remarks>
+    private IEmulationControllerFeedbackAccumulator? _feedback;
     /// <summary>Messages du cœur conservés comme métadonnées, y compris après une destruction sur échec.</summary>
     /// <remarks>Cette liste ne possède aucune ressource native. Le destinataire reçoit toujours une copie.</remarks>
     private readonly List<string> _diagnostics = [];
@@ -127,6 +130,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             ConfigurationFunctions.Validate(configuration);
             _configuration = configuration;
+            _feedback = CoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator(ConfigurationFunctions.ControllerPortCount(configuration.Model));
             CaptureDiagnostic(CoreName);
             _memory = new byte[checked((int)HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes)];
             var firmware = Path.Combine(sessionDirectory, "System", "OperatingSystem.rom");
@@ -209,7 +213,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 _strings.Clear();
                 _memory = []; _bootMemory = []; _mounted.Clear(); _ports.Clear(); _initialized = false;
             }
-            finally { _video.Dispose(); }
+            finally
+            {
+                try { _feedback?.Dispose(); _feedback = null; }
+                finally { _video.Dispose(); }
+            }
         }
     }
 

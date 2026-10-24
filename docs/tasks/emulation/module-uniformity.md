@@ -14367,3 +14367,11 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : fournir au dialogue de carte mémoire ses formats et sa taille fixe afin de respecter son contrat.
   - [x] Vérifier les réglages sur les deux profils et les trois backends.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier en mémoire la conservation des paramètres après application et sérialisation, leur suppression et le refus des paramètres incompatibles ; exécuter les vérifications utiles et le build Debug avec tous les modules.
+
+- [x] Rendre observables les retours de contrôleurs des trois cœurs fictifs.
+  - [x] Réutiliser le stockage de feedback commun et son cycle de vie.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Constants/CoreConstants.cs : nommer les deux effets de vibration simulés et commenter leur correspondance avec les gâchettes de contrôle.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : créer le stockage par le Common à l’initialisation et le libérer dans le finally après détachement des callbacks.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : publier les intensités simulées par le contrat existant, réinitialiser les ports et effacer les effets à l’arrêt ou au reset ; documenter les trois modes.
+  - [x] Vérifier la simulation et la libération des effets en mémoire.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : vérifier pour les deux profils et les trois modes les intensités, le relâchement, le changement de périphérique, le reset et la destruction, sans fichier ni processus externe ; exécuter les vérifications utiles et le build Debug de tous les modules.

@@ -41,7 +41,8 @@ internal sealed partial class ExternalCore
     /// <inheritdoc/>
     public AudioChunk? LatestAudioChunk { get; private set; }
     /// <inheritdoc/>
-    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => [];
+    /// <remarks>Instantané commun aux trois modes ; sa lecture n’active aucun moteur physique.</remarks>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _feedback?.Snapshot() ?? [];
     /// <summary>Retire un lot produit ; une fin de vidage normale ne compte pas comme manque audio.</summary>
     public bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeueNative(out chunk);
     /// <summary>Remplace les entrées de la frame ; le contrat Common garantit leur instantané immuable.</summary>
@@ -51,6 +52,7 @@ internal sealed partial class ExternalCore
     {
         EnsureReady();
         if (port < 0 || port >= ConfigurationFunctions.ControllerPortCount(_configuration!.Model)) throw new ArgumentOutOfRangeException(nameof(port));
+        _feedback?.ResetPort(port);
         var device = CommonControllerFunctions.ResolveControllerDevice(peripheral);
         if (Emulator == Emulator.Internal) _ports[port] = device;
         else _exports.SetControllerPortDevice((uint)port, device);
@@ -77,6 +79,7 @@ internal sealed partial class ExternalCore
     {
         _pollCallback?.Invoke();
         var inputValue = ReadFrameInput();
+        UpdateControllerFeedback();
         _ticks = checked(_ticks + 1);
         _sequence = checked(_sequence + 1);
         _memory[0] = unchecked((byte)(_ticks + inputValue));
@@ -109,6 +112,43 @@ internal sealed partial class ExternalCore
             _samples[frame * 2 + 1] = sample;
         }
         if (Emulator == Emulator.Libretro) PublishNative(width, height, width * bytesPerPixel);
+    }
+
+    /// <summary>Produit les deux effets de contrôle en utilisant le stockage de callbacks du Common.</summary>
+    /// <remarks>La gâchette gauche commande l’effet fort, la droite l’effet faible. Cette règle rend
+    /// le mock observable sans jeu réel : chaque frame remplace les deux intensités, y compris par zéro.
+    /// Les modes interne, Libretro et externe passent ici par le même calcul. Un port désactivé ou clavier
+    /// ne produit aucun effet ; les associations physiques restent appliquées par Machine.Feedback.</remarks>
+    private void UpdateControllerFeedback()
+    {
+        if (_feedback is null || _configuration is null) return;
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration.Model); port++)
+        {
+            var peripheral = _configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.RetroPad;
+            var device = _ports.GetValueOrDefault(port, CommonControllerFunctions.ResolveControllerDevice(peripheral));
+            if (device == CommonControllerFunctions.ResolveControllerDevice(PeripheralCategory.None) || device == CommonControllerFunctions.ResolveControllerDevice(PeripheralCategory.Keyboard))
+            {
+                _feedback.ResetPort(port);
+                continue;
+            }
+            var state = port < _input.Controllers.Count ? _input.Controllers[port] : EmulationControllerState.Empty;
+            _feedback.SetState((uint)port, SimulationConstants.StrongRumbleEffect, FeedbackStrength(state.LeftTrigger));
+            _feedback.SetState((uint)port, SimulationConstants.WeakRumbleEffect, FeedbackStrength(state.RightTrigger));
+        }
+    }
+
+    /// <summary>Convertit la course positive d’une gâchette vers l’amplitude non signée du callback.</summary>
+    /// <param name="trigger">Valeur signée sur seize bits ; les valeurs négatives sont ramenées à zéro.</param>
+    /// <returns>Intensité entre zéro et ushort.MaxValue, sans dépassement lors du produit calculé sur UInt32.</returns>
+    private static ushort FeedbackStrength(short trigger) => (ushort)((uint)Math.Clamp(trigger, (short)0, short.MaxValue) * ushort.MaxValue / short.MaxValue);
+
+    /// <summary>Efface les effets de tous les ports lors d’un arrêt, reset ou chargement d’état.</summary>
+    /// <remarks>ResetPort ne ferme pas le stockage : une frame ultérieure peut produire de nouveaux effets.
+    /// Dispose ferme ce stockage après le détachement des callbacks et refuse alors tout effet tardif.</remarks>
+    private void ClearControllerFeedback()
+    {
+        if (_feedback is null || _configuration is null) return;
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration.Model); port++) _feedback.ResetPort(port);
     }
 
     /// <summary>Interroge les classes natives des ports du profil et additionne leurs valeurs pour le motif de contrôle.</summary>
@@ -201,5 +241,5 @@ internal sealed partial class ExternalCore
         _audio.Enqueue(LatestAudioChunk);
     }
     /// <summary>Retire les sorties transitoires après arrêt, reset ou restauration d’état.</summary>
-    private void ClearOutputs() { LatestVideoFrame = null; LatestAudioChunk = null; _audio.ClearNative(() => { }); }
+    private void ClearOutputs() { LatestVideoFrame = null; LatestAudioChunk = null; _audio.ClearNative(() => { }); ClearControllerFeedback(); }
 }

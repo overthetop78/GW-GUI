@@ -15,4 +15,8 @@ internal static class CoreConstants
     internal const int ToneFrequency = 440;
     /// <summary>Amplitude PCM du son de contrôle, inférieure aux limites du type Int16.</summary>
     internal const int ToneAmplitude = 2000;
+    /// <summary>Effet fort du protocole commun, commandé par la gâchette gauche du contrôleur simulé.</summary>
+    internal const uint StrongRumbleEffect = 0;
+    /// <summary>Effet faible du protocole commun, commandé par la gâchette droite du contrôleur simulé.</summary>
+    internal const uint WeakRumbleEffect = 1;
 }

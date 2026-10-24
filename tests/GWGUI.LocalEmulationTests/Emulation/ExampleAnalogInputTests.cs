@@ -2,6 +2,9 @@ using System.Reflection;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Interfaces;
+using GWGUI.Emulation.Example.Common.Enums;
 using GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Example.Modules;
@@ -142,6 +145,78 @@ public sealed class ExampleAnalogInputTests
                 Assert.Equal((short)1, ReadNativeInput(result, device, 0, 2));
             var released = Assert.IsType<EmulationInputSnapshot>(map.Invoke(adapter, [EmulationInputSnapshot.Empty, configuration]));
             Assert.Equal((short)0, ReadNativeInput(released, device, category == PeripheralCategory.DrivingController ? 2u : 0u, category == PeripheralCategory.DrivingController ? 12u : 2u));
+        }
+    }
+
+    [Fact]
+    public void BothProfilesAndAllThreeMockModesPublishAndReleaseControllerFeedback()
+    {
+        var type = typeof(ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Services.ExternalCore", throwOnError: true)!;
+        foreach (var model in GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All)
+        foreach (var emulator in Enum.GetValues<Emulator>().Where(value => value != Emulator.None))
+        {
+            var configuration = new MachineConfiguration(model.Model, core: emulator);
+            var instance = type.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [typeof(string), typeof(Emulator)])!.Invoke(["mock-library-identity", emulator]);
+            IEmulationControllerFeedbackAccumulator? feedback = null;
+            var feedbackTransferred = false;
+            try
+            {
+                var core = Assert.IsAssignableFrom<IEmulationCoreRuntime<MachineConfiguration, EmulationOption>>(instance);
+                // Injecter uniquement l’état géré évite le parcours d’initialisation qui consulte les chemins de firmware.
+                // Le cœur reçoit la propriété du stockage et exécute ensuite ses vraies méthodes de frames et de commandes.
+                type.GetField("_configuration", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, configuration);
+                type.GetField("_memory", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, new byte[1]);
+                feedback = EmulationSdk.EnvironmentProcessing.CreateControllerFeedbackAccumulator(2);
+                type.GetField("_feedback", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, feedback);
+                feedbackTransferred = true;
+                type.GetField("_initialized", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, true);
+                var commands = Assert.IsAssignableFrom<IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>>(instance);
+                var input = EmulationInputSnapshot.Empty with
+                {
+                    Controllers = [EmulationControllerState.Empty with { LeftTrigger = short.MaxValue, RightTrigger = short.MaxValue / 2 },
+                        EmulationControllerState.Empty with { LeftTrigger = short.MinValue, RightTrigger = short.MaxValue }]
+                };
+                core.SetInput(input);
+                core.RunFrame();
+                var captured = core.ControllerFeedback;
+                Assert.Equal(3, captured.Count);
+                Assert.Equal(1f, Assert.Single(captured, item => item.Port == 0 && item.CommandId == EmulationControllerFeedbackCommands.Strong).Strength);
+                Assert.InRange(Assert.Single(captured, item => item.Port == 0 && item.CommandId == EmulationControllerFeedbackCommands.Weak).Strength, .4999f, .5001f);
+                Assert.Equal(1f, Assert.Single(captured, item => item.Port == 1).Strength);
+
+                commands.SetControllerPortDevice(0, PeripheralCategory.None);
+                Assert.DoesNotContain(core.ControllerFeedback, item => item.Port == 0);
+                core.RunFrame();
+                Assert.DoesNotContain(core.ControllerFeedback, item => item.Port == 0);
+                commands.SetControllerPortDevice(1, PeripheralCategory.Keyboard);
+                core.RunFrame();
+                Assert.Empty(core.ControllerFeedback);
+                commands.SetControllerPortDevice(0, PeripheralCategory.RetroPad);
+                commands.SetControllerPortDevice(1, PeripheralCategory.RetroPad);
+                core.RunFrame();
+                Assert.Equal(3, core.ControllerFeedback.Count);
+                core.SetInput(EmulationInputSnapshot.Empty);
+                core.RunFrame();
+                Assert.Empty(core.ControllerFeedback);
+                Assert.Equal(3, captured.Count);
+                core.SetInput(input);
+                core.RunFrame();
+                commands.SoftReset();
+                Assert.Empty(core.ControllerFeedback);
+                core.RunFrame();
+                Assert.Equal(3, core.ControllerFeedback.Count);
+                commands.Stop();
+                Assert.Empty(core.ControllerFeedback);
+            }
+            finally
+            {
+                // Les tableaux vidéo et le stockage de feedback appartiennent au cœur, même après un échec du test.
+                try { (instance as IDisposable)?.Dispose(); }
+                finally { if (!feedbackTransferred) feedback?.Dispose(); }
+            }
+            Assert.NotNull(feedback);
+            Assert.Empty(feedback.Snapshot());
+            Assert.False(feedback.SetState(0, 0, ushort.MaxValue));
         }
     }
 
