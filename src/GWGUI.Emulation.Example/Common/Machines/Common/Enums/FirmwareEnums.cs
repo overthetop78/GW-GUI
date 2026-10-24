@@ -9,6 +9,8 @@ public enum FirmwareCategory
     Basic,
     /// <summary>Logiciel du contrôleur de stockage.</summary>
     StorageController,
+    /// <summary>Banque facultative d’échantillons WAV préparés pour le cœur dans le dossier système de session.</summary>
+    VoiceSamples,
 }
 
 

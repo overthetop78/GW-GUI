@@ -14,6 +14,6 @@ internal static class ExampleMachineAModelCatalog
             [HardwareRegion.Pal, HardwareRegion.Ntsc], [HardwareVideoCapability.Raster], [HardwareAudioCapability.Pcm],
             [HardwareStorageCapability.Floppy, HardwareStorageCapability.Cassette, HardwareStorageCapability.HardDisk],
             [new(HardwarePortCapability.Keyboard, 1), new(HardwarePortCapability.Mouse, 1), new(HardwarePortCapability.AnalogJoystick, 2)],
-            [FirmwareCategory.OperatingSystem], [MediaCategory.Floppy, MediaCategory.Cassette, MediaCategory.HardDisk])
+            [FirmwareCategory.OperatingSystem, FirmwareCategory.VoiceSamples], [MediaCategory.Floppy, MediaCategory.Cassette, MediaCategory.HardDisk])
     ]);
 }

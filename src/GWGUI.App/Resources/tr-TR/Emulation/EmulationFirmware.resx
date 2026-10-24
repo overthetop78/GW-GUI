@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Kısmen uyumlu</value></data>
   <data name="Emulation.Firmware.Official"><value>Resmî</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Uyumsuz</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Ses örnekleri</value></data>
 </root>

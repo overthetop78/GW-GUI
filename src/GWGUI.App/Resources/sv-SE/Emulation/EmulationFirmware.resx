@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Delvis kompatibel</value></data>
   <data name="Emulation.Firmware.Official"><value>Officiell</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Inte kompatibel</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Röstprover</value></data>
 </root>

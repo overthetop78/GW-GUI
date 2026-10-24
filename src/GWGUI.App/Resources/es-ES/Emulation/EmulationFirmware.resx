@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Parcialmente compatible</value></data>
   <data name="Emulation.Firmware.Official"><value>Oficial</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Incompatible</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Muestras de voz</value></data>
 </root>

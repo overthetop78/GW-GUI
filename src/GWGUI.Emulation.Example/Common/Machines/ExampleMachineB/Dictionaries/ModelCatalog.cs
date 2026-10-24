@@ -14,6 +14,6 @@ internal static class ExampleMachineBModelCatalog
             [HardwareRegion.Pal, HardwareRegion.Ntsc], [HardwareVideoCapability.Raster], [HardwareAudioCapability.Pcm],
             [HardwareStorageCapability.Cartridge, HardwareStorageCapability.MemoryCard],
             [new(HardwarePortCapability.Keyboard, 1), new(HardwarePortCapability.Mouse, 1), new(HardwarePortCapability.AnalogJoystick, 2)],
-            [FirmwareCategory.OperatingSystem], [MediaCategory.Cartridge, MediaCategory.MemoryCard])
+            [FirmwareCategory.OperatingSystem, FirmwareCategory.VoiceSamples], [MediaCategory.Cartridge, MediaCategory.MemoryCard])
     ]);
 }

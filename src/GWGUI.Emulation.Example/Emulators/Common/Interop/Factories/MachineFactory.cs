@@ -238,15 +238,9 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <remarks>La simulation fonctionne sans fichier externe obligatoire. Un backend réel décrit ses
     /// exigences individuelles avec IsRequired et peut préciser une obligation globale entre alternatives
     /// par RequiresExternalFirmware. Les règles ne sont pas répétées dans un second catalogue de rôles.</remarks>
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Firmware.Select(role => new FirmwareSlot(role.ToString(), role + ".rom", "Emulation.Firmware.Rom.System", false)).ToArray();
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareRuntimeFunctions.GetFirmwareSlots(configuration);
     /// <inheritdoc/>
-    public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path)
-    {
-        var hardware = HardwareModelCatalog.Get(configuration.Model);
-        if (!Enum.TryParse<FirmwareCategory>(fieldId, out var role) || !hardware.Firmware.Contains(role) || !File.Exists(path)) return false;
-        var length = new FileInfo(path).Length;
-        return length > 0 && length <= hardware.MainMemoryBytes;
-    }
+    public bool IsFirmwareCompatible(MachineConfiguration configuration, string fieldId, string path) => FirmwareRuntimeFunctions.IsCompatible(configuration, fieldId, path);
     /// <inheritdoc/>
     public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
     {
@@ -255,23 +249,8 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         return candidates;
     }
     /// <inheritdoc/>
-    public async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
-    {
-        var scanned = await FirmwareScanFunctions.ScanFileAsync([this], path, configuration.Model, null, cancellationToken).ConfigureAwait(false);
-        return [new(scanned.Md5 ?? scanned.Path, scanned.Path, Path.GetFileName(scanned.Path), scanned.Version ?? scanned.Definition?.Version,
-            scanned.Detection == FirmwareDetectionStatus.Unreadable || !IsFirmwareCompatible(configuration, FirmwareCategory.OperatingSystem.ToString(), path) ? EmulationFirmwareCompatibility.Incompatible : EmulationFirmwareCompatibility.PartiallyCompatible,
-            FirmwareCategory.OperatingSystem.ToString())];
-    }
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => FirmwareRuntimeFunctions.ScanFileAsync([this], configuration, path, cancellationToken);
     /// <summary>Copie les firmwares empruntés dans le seul dossier système de la session.</summary>
     /// <inheritdoc/>
-    public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
-    {
-        Directory.CreateDirectory(systemDirectory);
-        foreach (var firmware in configuration.Firmwares)
-        {
-            if (!IsFirmwareCompatible(configuration, firmware.Category.ToString(), firmware.Path)) throw new ArgumentException(nameof(configuration));
-            var destination = Path.Combine(systemDirectory, firmware.Category + ".rom");
-            if (!string.Equals(Path.GetFullPath(firmware.Path), Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)) File.Copy(firmware.Path, destination, overwrite: true);
-        }
-    }
+    public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
 }

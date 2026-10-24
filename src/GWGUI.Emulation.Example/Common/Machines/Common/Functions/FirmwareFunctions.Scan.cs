@@ -18,7 +18,7 @@ internal static class FirmwareScanFunctions
     /// <param name="model">Profil dont les rôles de firmware sont consultés.</param>
     /// <param name="region">Région attendue, conservée pour l’identification par l’adaptateur.</param>
     /// <param name="cancellationToken">Annulation de la lecture et du calcul d’empreinte.</param>
-    /// <returns>Candidat complété par l’adaptateur lorsqu’il est reconnu, sinon observations conservées sans identité ajoutée.</returns>
+    /// <returns>Observations complétées par le rôle de banque validé puis par les adaptateurs, sans inventer de version connue.</returns>
     /// <remarks>Une identité n’est pas déduite du nom de fichier. Le flux possédé est libéré dans le finally
     /// de await using ; l’annulation est propagée, les erreurs d’accès deviennent un résultat Unreadable.</remarks>
     internal static async Task<ScannedFirmware> ScanFileAsync(IReadOnlyList<IEmulatorFirmwareAdapter> inspections, string path, MachineModel model, HardwareRegion? region, CancellationToken cancellationToken)
@@ -30,6 +30,15 @@ internal static class FirmwareScanFunctions
             var hash = await MD5.HashDataAsync(stream, cancellationToken).ConfigureAwait(false);
             var compatibility = HardwareModelCatalog.Get(model).Firmware.Count == 0 ? FirmwareCompatibility.Incompatible : FirmwareCompatibility.PartiallyCompatible;
             var scanned = new ScannedFirmware(path, length, Convert.ToHexStringLower(hash), FirmwareDetectionStatus.Unknown, null, compatibility, false, null);
+            if (HardwareModelCatalog.Get(model).Firmware.Contains(FirmwareCategory.VoiceSamples) && VoiceSampleFunctions.IsCompatible(path))
+            {
+                // La structure identifie le rôle de la banque, mais aucune empreinte de version connue
+                // n’est déclarée : Detection reste Unknown et les observations du fichier sont conservées.
+                var definition = new FirmwareDefinition(nameof(FirmwareCategory.VoiceSamples), FirmwareCategory.VoiceSamples, null, null, null,
+                    FirmwareProvision.OptionalExternal, FirmwareDistribution.UserSuppliedCopyrighted, FirmwareEvidence.ModuleDefinition, [model], [], []);
+                scanned = scanned with { Definition = definition, Compatibility = FirmwareCompatibility.Compatible };
+            }
+            cancellationToken.ThrowIfCancellationRequested();
             foreach (var inspection in inspections)
                 if (inspection.IdentifyFirmware(scanned) is { } recognized) return recognized;
             return scanned;
