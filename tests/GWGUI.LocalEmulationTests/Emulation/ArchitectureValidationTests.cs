@@ -15,6 +15,66 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryHostUsesTheCommonVersionedHeaderCodec()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, assemblies.Length);
+        var transports = 0;
+        foreach (var assembly in assemblies)
+        {
+            var owner = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Functions.CoreHostFunctions", StringComparison.Ordinal));
+            if (owner.GetMethod("WriteRequestHeader", BindingFlags.Static | BindingFlags.NonPublic) is null)
+            {
+                Assert.Equal("gwgui.emulation.microsoft", assembly.GetName().Name);
+                continue; // Ce module ne déclare aucun transport de cœur.
+            }
+            transports++;
+            var constants = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Constants.CoreHostConstants", StringComparison.Ordinal));
+            var version = (int)constants.GetField("ProtocolVersion", BindingFlags.Static | BindingFlags.NonPublic)!.GetRawConstantValue()!;
+            foreach (var pair in new[] { ("WriteRequestHeader", "ReadRequestHeader"), ("WriteResponseHeader", "ReadResponseHeader") })
+            {
+                var write = owner.GetMethod(pair.Item1, BindingFlags.Static | BindingFlags.NonPublic)!;
+                var read = owner.GetMethod(pair.Item2, BindingFlags.Static | BindingFlags.NonPublic)!;
+                Assert.Contains(GetCompiledCalls(write), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == "WriteHeader");
+                Assert.Contains(GetCompiledCalls(read), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == "ReadHeader");
+                var code = Enum.ToObject(write.GetParameters()[1].ParameterType, 1);
+                using var stream = new MemoryStream();
+                using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+                using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+                write.Invoke(null, [writer, code]);
+                writer.Write((byte)137);
+                writer.Flush();
+                Assert.Equal(6, stream.Length);
+                stream.Position = 0;
+                Assert.Equal(version, reader.ReadInt32());
+                Assert.Equal(1, reader.ReadByte());
+                stream.Position = 0;
+                Assert.Equal(code, read.Invoke(null, [reader]));
+                Assert.Equal(137, reader.ReadByte());
+                stream.Position = 0;
+                writer.Write(-1);
+                writer.Flush();
+                stream.Position = 0;
+                var error = Assert.Throws<TargetInvocationException>(() => read.Invoke(null, [reader]));
+                Assert.IsType<InvalidDataException>(error.InnerException);
+                Assert.Equal(4, stream.Position); // Une version refusée laisse le code non consommé.
+                Assert.True(stream.CanRead);
+                Assert.True(stream.CanWrite);
+            }
+            var client = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Services.ProcessCore", StringComparison.Ordinal));
+            var host = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Services.CoreHost", StringComparison.Ordinal));
+            var calls = new[] { client, host }.Concat(new[] { client, host }.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            foreach (var name in new[] { "WriteRequestHeader", "ReadRequestHeader", "ReadResponseHeader" })
+                Assert.Contains(calls, call => call.Method.DeclaringType == owner && call.Method.Name == name);
+        }
+        Assert.Equal(23, transports);
+    }
+
+    [Fact]
     public void NativeHostCodecsBelongToTheCommonHostFunctions()
     {
         foreach (var family in new[] { "Amstrad", "Commodore", "Nec", "Nintendo", "Sega", "Sony" })

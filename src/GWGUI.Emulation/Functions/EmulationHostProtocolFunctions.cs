@@ -10,6 +10,20 @@ namespace GWGUI.Emulation.Functions;
 /// <remarks>Les lectures et écritures empruntent les flux. Les opérations de destruction reçoivent uniquement les ressources dont l’appelant est propriétaire ; les sessions créées ici sont libérées dans leur portée.</remarks>
 internal static partial class EmulationHostProtocolFunctions
 {
+    /// <summary>Écrit le format commun : version Int32 suivie du code octet.</summary>
+    internal static void WriteHeader(BinaryWriter writer, int version, byte code)
+    {
+        writer.Write(version);
+        writer.Write(code);
+    }
+
+    /// <summary>Valide la version avant de consommer le code ; les flux restent empruntés.</summary>
+    internal static byte ReadHeader(BinaryReader reader, Action<int> validateVersion)
+    {
+        validateVersion(reader.ReadInt32());
+        return reader.ReadByte();
+    }
+
     /// <summary>Construit une réponse isolée, remplace un résultat partiel par une erreur si nécessaire, puis écrit son enveloppe.</summary>
     internal static void WriteResponse(BinaryWriter transportWriter, Action<BinaryWriter> execute,
         Action<BinaryWriter, Exception> writeFailure)

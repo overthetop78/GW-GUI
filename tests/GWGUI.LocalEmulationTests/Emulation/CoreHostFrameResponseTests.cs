@@ -9,7 +9,7 @@ using GWGUI.Emulation.Interfaces;
 
 namespace GWGUI.Tests.Emulation;
 
-public sealed class LegacyHostFrameResponseTests
+public sealed class CoreHostFrameResponseTests
 {
     [Fact]
     public void ResponseKeepsBinaryOrderAndUpdatesCountersAtOriginalPoints()
@@ -55,7 +55,7 @@ public sealed class LegacyHostFrameResponseTests
                 core.Events.Add("json");
                 optionsRead++;
                 return JsonOptions;
-            }, ref sequence, ref diagnosticCount);
+            }, ref sequence, ref diagnosticCount, static successWriter => EmulationSdk.HostProtocol.WriteHeader(successWriter, 5, 1));
 
         Assert.Equal(["input", "set-input", "buffer", "run", "video", "media", "json", "led"], core.Events);
         Assert.Equal(7, sequence);
@@ -65,7 +65,7 @@ public sealed class LegacyHostFrameResponseTests
         writer.Flush();
         output.Position = 0;
         using var response = new BinaryReader(output, Encoding.UTF8, leaveOpen: true);
-        Assert.True(response.ReadBoolean());
+        Assert.Equal(1, EmulationSdk.HostProtocol.ReadHeader(response, version => Assert.Equal(5, version)));
         Assert.Equal(7, response.ReadInt64());
         var audio = Assert.Single(EmulationSdk.HostProtocol.ReadAudio(response, "test"));
         Assert.Equal(3, audio.Sequence);
@@ -106,7 +106,7 @@ public sealed class LegacyHostFrameResponseTests
             (_, frame) => { Assert.Null(frame); frameWrites++; },
             static (_, _) => { }, static (_, _) => { },
             () => throw new InvalidOperationException("Unchanged diagnostics must not access JSON options."),
-            ref sequence, ref diagnosticCount);
+            ref sequence, ref diagnosticCount, static successWriter => EmulationSdk.HostProtocol.WriteHeader(successWriter, 5, 1));
         Assert.Equal(1, frameWrites);
         Assert.Equal(6, sequence);
         Assert.Equal(1, diagnosticCount);
@@ -136,7 +136,7 @@ public sealed class LegacyHostFrameResponseTests
                 (_, _) => { if (stage == "video") throw expected; },
                 staticWriter(stage, expected), ledWriter(stage, expected),
                 () => stage == "json" ? throw expected : JsonOptions,
-                ref sequence, ref diagnosticCount));
+                ref sequence, ref diagnosticCount, static successWriter => EmulationSdk.HostProtocol.WriteHeader(successWriter, 5, 1)));
         Assert.Same(expected, actual);
         Assert.Equal(stage is "run" or "video" ? 6 : 7, sequence);
         Assert.Equal(stage == "led" ? 1 : 0, diagnosticCount);
@@ -186,7 +186,7 @@ public sealed class LegacyHostFrameResponseTests
             Assert.Equal(new AudioOutputBufferStatus(44100, 8, 16, true), status);
             Events.Add("buffer");
         }
-        public VideoFrame? Frame = LegacyHostFrameResponseTests.Frame(7);
+        public VideoFrame? Frame = CoreHostFrameResponseTests.Frame(7);
         public readonly Queue<AudioChunk?> Audio = new(
             [new AudioChunk(ReadOnlyMemory<short>.Empty, 44100, 0, 3, TimeSpan.Zero)]);
         public readonly List<string> Events = new();

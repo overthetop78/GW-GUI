@@ -13,6 +13,18 @@ namespace GWGUI.Emulation.Interfaces;
 /// Le propriétaire de session ferme ses ressources dans son bloc finally après la fin effective des échanges.</remarks>
 public interface IEmulationHostProtocol
 {
+    /// <summary>Écrit la version entière du protocole puis le code de commande ou de statut sur un octet.</summary>
+    /// <param name="writer">Rédacteur emprunté, laissé ouvert.</param>
+    /// <param name="version">Version attendue également par le destinataire.</param>
+    /// <param name="code">Code interprété par le contrat Common du module.</param>
+    void WriteHeader(BinaryWriter writer, int version, byte code);
+
+    /// <summary>Lit et valide la version avant de consommer le code de commande ou de statut.</summary>
+    /// <param name="reader">Lecteur emprunté, laissé ouvert.</param>
+    /// <param name="validateVersion">Validation Common ; une exception laisse le code non consommé.</param>
+    /// <returns>Code octet reçu après validation de la version.</returns>
+    byte ReadHeader(BinaryReader reader, Action<int> validateVersion);
+
     /// <summary>Écrit un instantané de retours de contrôleur après validation complète des états.</summary>
     /// <param name="writer">Rédacteur binaire emprunté ; reste ouvert après cet appel.</param>
     /// <param name="states">Effets forts et faibles des ports, avec des intensités finies entre zéro et un.</param>
@@ -98,10 +110,11 @@ public interface IEmulationHostProtocol
     /// <param name="jsonOptions">Options JSON de sérialisation des diagnostics.</param>
     /// <param name="lastVideoSequence">Dernière séquence publiée, actualisée après écriture.</param>
     /// <param name="lastDiagnosticCount">Nombre de diagnostics déjà transmis, actualisé après écriture.</param>
+    /// <param name="writeSuccess">Publication de l’en-tête de succès après exécution, avant les données de frame.</param>
     void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>;
+        ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter> writeSuccess) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>;
 
     /// <summary>Écrit le disque sélectionné et le nombre de disques selon le protocole des médias par chemin.</summary>
     /// <param name="writer">Rédacteur binaire emprunté.</param>

@@ -253,7 +253,7 @@ internal sealed class ProcessCore : IEmulatorCore
                 try
                 {
                     _requestTimeout = RequestTimeoutFor(HostCommand.Dispose, TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds));
-                    _writer!.Write((byte)HostCommand.Dispose);
+                    CommonCoreHostFunctions.WriteRequestHeader(_writer!, HostCommand.Dispose);
                     CompleteRequest();
                 }
                 catch (Exception) { }
@@ -312,7 +312,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (command != HostCommand.Initialize && !_initialized)
             throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.ProcessNotInitialized));
         _requestTimeout = RequestTimeoutFor(command, TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds));
-        _writer!.Write((byte)command);
+        CommonCoreHostFunctions.WriteRequestHeader(_writer!, command);
     }
 
 
@@ -323,7 +323,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var response = ReadResponseAsync().GetAwaiter().GetResult();
             _responseReader?.Dispose();
             _responseReader = new BinaryReader(new MemoryStream(response, false), System.Text.Encoding.UTF8, false);
-            if (!Response.ReadBoolean()) throw new InvalidOperationException(Response.ReadString());
+            if (CommonCoreHostFunctions.ReadResponseHeader(Response) != HostResponseStatus.Success) throw new InvalidOperationException(Response.ReadString());
         }
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {

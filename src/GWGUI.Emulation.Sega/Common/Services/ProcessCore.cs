@@ -274,7 +274,7 @@ internal sealed class ProcessCore : IEmulatorCore
                 try
                 {
                     _pendingCommand = HostCommand.Dispose;
-                    _writer!.Write((byte)HostCommand.Dispose);
+                    CommonCoreHostFunctions.WriteRequestHeader(_writer!, HostCommand.Dispose);
                     CompleteRequest();
                 }
                 catch (Exception) { }
@@ -331,7 +331,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (command != HostCommand.Initialize && !_initialized)
             throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
         _pendingCommand = command;
-        _writer!.Write((byte)command);
+        CommonCoreHostFunctions.WriteRequestHeader(_writer!, command);
     }
 
     private void CompleteRequest()
@@ -341,7 +341,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var response = ReadResponseAsync().GetAwaiter().GetResult();
             _responseReader?.Dispose();
             _responseReader = new BinaryReader(new MemoryStream(response, false), System.Text.Encoding.UTF8, false);
-            if (!Response.ReadBoolean()) throw new InvalidOperationException(Response.ReadString());
+            if (CommonCoreHostFunctions.ReadResponseHeader(Response) != HostResponseStatus.Success) throw new InvalidOperationException(Response.ReadString());
         }
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {

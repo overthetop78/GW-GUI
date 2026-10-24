@@ -13,6 +13,20 @@ namespace GWGUI.Emulation.Sony.Common.Functions;
 
 internal static partial class CoreHostFunctions
 {
+    /// <summary>Écrit la version commune puis la commande ; les arguments suivent cet en-tête.</summary>
+    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)command);
+    /// <summary>Valide la version avant de consommer la commande.</summary>
+    internal static HostCommand ReadRequestHeader(BinaryReader reader) => (HostCommand)Protocol.ReadHeader(reader, ValidateProtocolVersion);
+    /// <summary>Écrit la version commune puis le statut précédant le résultat ou le diagnostic.</summary>
+    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)status);
+    /// <summary>Valide la version avant de consommer le statut de réponse.</summary>
+    internal static HostResponseStatus ReadResponseHeader(BinaryReader reader) => (HostResponseStatus)Protocol.ReadHeader(reader, ValidateProtocolVersion);
+    /// <summary>Refuse un flux incompatible avant de lire ses données ; le message standard provient de .NET.</summary>
+    internal static void ValidateProtocolVersion(int version)
+    {
+        if (version != CoreHostConstants.ProtocolVersion) throw new InvalidDataException();
+    }
+
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal static void WriteString(BinaryWriter writer, string? value) => CommonCoreHostFunctions.Protocol.WriteString(writer, value);
     internal static string? ReadString(BinaryReader reader) => CommonCoreHostFunctions.Protocol.ReadString(reader);

@@ -288,7 +288,7 @@ internal sealed class ProcessCore : IEmulatorCore
                 try
                 {
                     _pendingCommand = HostCommand.Dispose;
-                    _writer!.Write((byte)HostCommand.Dispose);
+                    CommonCoreHostFunctions.WriteRequestHeader(_writer!, HostCommand.Dispose);
                     CompleteRequest();
                 }
                 catch (Exception) { }
@@ -346,7 +346,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (command != HostCommand.Initialize && !_initialized)
             throw new InvalidOperationException(Error("ProcessNotInitialized"));
         _pendingCommand = command;
-        _writer!.Write((byte)command);
+        CommonCoreHostFunctions.WriteRequestHeader(_writer!, command);
     }
 
     private void CompleteRequest()
@@ -356,7 +356,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var response = ReadResponseAsync().GetAwaiter().GetResult();
             _responseReader?.Dispose();
             _responseReader = new BinaryReader(new MemoryStream(response, false), System.Text.Encoding.UTF8, false);
-            if (!Response.ReadBoolean())
+            if (CommonCoreHostFunctions.ReadResponseHeader(Response) != HostResponseStatus.Success)
             {
                 var kind = (GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind)Response.ReadByte();
                 var detail = Response.ReadString();

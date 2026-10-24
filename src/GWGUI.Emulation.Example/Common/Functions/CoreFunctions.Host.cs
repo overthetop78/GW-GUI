@@ -138,40 +138,24 @@ internal static class CoreHostFunctions
     /// <summary>Écrit la version de protocole sur quatre octets, puis le code de commande sur un octet.</summary>
     /// <param name="writer">Rédacteur emprunté, positionné au début de l’en-tête à produire.</param>
     /// <param name="command">Commande déterminant les arguments écrits après l’en-tête.</param>
-    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command)
-    {
-        writer.Write(CoreHostConstants.ProtocolVersion);
-        writer.Write((byte)command);
-    }
+    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)command);
 
     /// <summary>Lit et contrôle la version, puis lit le code de commande de la requête.</summary>
     /// <param name="reader">Lecteur emprunté, positionné au début de l’en-tête.</param>
     /// <returns>Code de commande ; la répartition des commandes détermine ensuite si ce code est reconnu.</returns>
     /// <exception cref="InvalidDataException">La version reçue diffère de la version attendue.</exception>
-    internal static HostCommand ReadRequestHeader(BinaryReader reader)
-    {
-        ValidateProtocolVersion(reader.ReadInt32());
-        return (HostCommand)reader.ReadByte();
-    }
+    internal static HostCommand ReadRequestHeader(BinaryReader reader) => (HostCommand)Protocol.ReadHeader(reader, ValidateProtocolVersion);
 
     /// <summary>Écrit la version de protocole sur quatre octets, puis le statut de réponse sur un octet.</summary>
     /// <param name="writer">Rédacteur emprunté de la réponse.</param>
     /// <param name="status">Statut indiquant si la suite contient un résultat ou un diagnostic d’échec.</param>
-    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status)
-    {
-        writer.Write(CoreHostConstants.ProtocolVersion);
-        writer.Write((byte)status);
-    }
+    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)status);
 
     /// <summary>Lit et contrôle la version, puis lit le statut de réponse.</summary>
     /// <param name="reader">Lecteur emprunté, positionné au début de la réponse.</param>
     /// <returns>Statut que l’appelant contrôle avant de lire un résultat ou une erreur.</returns>
     /// <exception cref="InvalidDataException">La version reçue diffère de la version attendue.</exception>
-    internal static HostResponseStatus ReadResponseHeader(BinaryReader reader)
-    {
-        ValidateProtocolVersion(reader.ReadInt32());
-        return (HostResponseStatus)reader.ReadByte();
-    }
+    internal static HostResponseStatus ReadResponseHeader(BinaryReader reader) => (HostResponseStatus)Protocol.ReadHeader(reader, ValidateProtocolVersion);
 
     /// <summary>Refuse un échange dont le format n’a pas la version attendue par cette extrémité.</summary>
     /// <param name="version">Version entière lue dans l’en-tête reçu.</param>

@@ -13018,3 +13018,59 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
   - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler le propriétaire unique des codecs et leurs appels compilés dans les six familles ; exécuter les vérifications et le build Debug complet.
+
+- [x] Unifier les en-têtes de requête et de réponse des hôtes dans Common et leur codec dans le SDK.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : déclarer la lecture et l’écriture d’un en-tête versionné et fournir explicitement le rédacteur de succès à RunCoreFrame.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.cs : implémenter un seul codec version entière puis code octet, en validant la version avant de lire le code.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : publier le succès d’une frame par le callback fourni au lieu d’un booléen imposé.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : relayer les nouveaux contrats aux implémentations internes.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreHostConstants.cs : déclarer la version 5 et les statuts succès 1 et échec 2 communs aux hôtes.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Enums/HostEnums.cs : représenter les statuts de réponse sous le nom commun HostResponseStatus.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.Protocol.cs : exposer les quatre opérations typées d’en-tête via le contrat SDK et refuser les versions incompatibles.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : lire les requêtes versionnées et écrire les statuts pour initialisation, frame, commandes, arrêt et erreur ; conserver les diagnostics et enfin la libération du cœur.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ProcessCore.cs : écrire les en-têtes de requête et lire le statut versionné avant le résultat ou le diagnostic existant.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : faire utiliser le codec SDK unique aux quatre opérations typées existantes, avec leur validation et leur format conservés.
+  - [x] Renommer tests/GWGUI.LocalEmulationTests/Emulation/LegacyHostFrameResponseTests.cs en tests/GWGUI.LocalEmulationTests/Emulation/CoreHostFrameResponseTests.cs : vérifier le callback explicite et l’en-tête commun de succès sans changer les contrôles sur les données de frame.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostFrameResponseTests.cs : remplacer aussi la référence interne au nom précédent de la classe après son renommage.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les appels compilés des en-têtes Common dans tous les transports, leur format binaire et le refus d’une version avant consommation du code ; exécuter les vérifications et le build Debug complet.

@@ -213,13 +213,13 @@ internal static partial class EmulationHostProtocolFunctions
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame,
         Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
-        Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount)
+        Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter> writeSuccess)
         where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
     {
         core.SetInput(readInput(reader));
         core.SetAudioBufferStatus(ReadAudioBufferStatus(reader));
         core.RunFrame();
-        writer.Write(true);
+        writeSuccess(writer);
         WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions,
             ref lastVideoSequence, ref lastDiagnosticCount, writeMediaStatus: writeMediaStatus);
     }

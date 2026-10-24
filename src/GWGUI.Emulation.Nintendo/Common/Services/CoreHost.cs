@@ -27,7 +27,7 @@ internal static class CoreHost
                 var lastDiagnosticCount = 0;
                 try
                 {
-                    CommonCoreHostFunctions.Protocol.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
+                    CommonCoreHostFunctions.Protocol.RunCommandLoop<HostCommand>(reader, transportWriter, CommonCoreHostFunctions.ReadRequestHeader, HostCommand.Dispose, (command, writer) =>
                     {
                         switch (command)
                         {
@@ -39,7 +39,7 @@ internal static class CoreHost
                                 CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 core = createCore(configuration, corePath);
                                 core.Initialize(configuration, session, saves);
-                                writer.Write(true);
+                                CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                                 CommonCoreHostFunctions.Protocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
                                     writer, core, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, '|',
                                     static (statusWriter, currentCore) =>
@@ -59,7 +59,7 @@ internal static class CoreHost
                                     reader, writer, activeCore, CommonCoreHostFunctions.ReadInput,
                                     (frameWriter, pendingFrame) => CommonCoreHostFunctions.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
                                     static (statusWriter, currentCore) => CommonCoreHostFunctions.Protocol.WriteDiskSelection(statusWriter, currentCore.DiskCount, currentCore.CurrentDiskIndex), CommonCoreHostFunctions.WriteLedStates, static () => CommonCoreHostFunctions.JsonOptions,
-                                    ref lastVideoSequence, ref lastDiagnosticCount);
+                                    ref lastVideoSequence, ref lastDiagnosticCount, WriteSuccess);
                                 writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
                                 break;
@@ -76,7 +76,7 @@ internal static class CoreHost
                         }
                     }, (writer, error) =>
                     {
-                        writer.Write(false);
+                        CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
                         writer.Write(error.ToString());
                     });
                 }
@@ -88,6 +88,6 @@ internal static class CoreHost
     }
 
     private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());
-    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);
+    private static void WriteSuccess(BinaryWriter writer) => CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
 
 }

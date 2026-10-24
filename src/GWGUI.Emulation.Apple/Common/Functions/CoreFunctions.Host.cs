@@ -125,29 +125,13 @@ internal static class CoreHostFunctions
     internal static string CreatePipeName() => CoreHostConstants.PipePrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
     internal static string CreateVideoMapName() => CoreHostConstants.VideoMapPrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
 
-    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command)
-    {
-        writer.Write(CoreHostConstants.ProtocolVersion);
-        writer.Write((byte)command);
-    }
+    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)command);
 
-    internal static HostCommand ReadRequestHeader(BinaryReader reader)
-    {
-        ValidateProtocolVersion(reader.ReadInt32());
-        return (HostCommand)reader.ReadByte();
-    }
+    internal static HostCommand ReadRequestHeader(BinaryReader reader) => (HostCommand)Protocol.ReadHeader(reader, ValidateProtocolVersion);
 
-    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status)
-    {
-        writer.Write(CoreHostConstants.ProtocolVersion);
-        writer.Write((byte)status);
-    }
+    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status) => Protocol.WriteHeader(writer, CoreHostConstants.ProtocolVersion, (byte)status);
 
-    internal static HostResponseStatus ReadResponseHeader(BinaryReader reader)
-    {
-        ValidateProtocolVersion(reader.ReadInt32());
-        return (HostResponseStatus)reader.ReadByte();
-    }
+    internal static HostResponseStatus ReadResponseHeader(BinaryReader reader) => (HostResponseStatus)Protocol.ReadHeader(reader, ValidateProtocolVersion);
 
     internal static void ValidateProtocolVersion(int version)
     {

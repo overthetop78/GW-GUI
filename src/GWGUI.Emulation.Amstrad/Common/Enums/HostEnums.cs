@@ -11,3 +11,12 @@ internal enum HostCommand : byte
     /// <summary>Consulte les images disponibles et leur sélection sans modifier le média.</summary>
     GetDiskStatus = CoreHostConstants.GetDiskStatusCommand
 }
+
+/// <summary>Statut précédant les données d’une réponse du protocole d’hôte.</summary>
+internal enum HostResponseStatus : byte
+{
+    /// <summary>L’opération a réussi ; la suite contient le résultat.</summary>
+    Success = CoreHostConstants.SuccessResponse,
+    /// <summary>L’opération a échoué ; la suite contient le diagnostic.</summary>
+    Failure = CoreHostConstants.FailureResponse
+}

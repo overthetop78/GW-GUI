@@ -13,6 +13,11 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
 {
     /// <inheritdoc/>
+    public void WriteHeader(BinaryWriter writer, int version, byte code) => EmulationHostProtocolFunctions.WriteHeader(writer, version, code);
+    /// <inheritdoc/>
+    public byte ReadHeader(BinaryReader reader, Action<int> validateVersion) => EmulationHostProtocolFunctions.ReadHeader(reader, validateVersion);
+
+    /// <inheritdoc/>
     public void WriteControllerFeedback(BinaryWriter writer, IReadOnlyList<ControllerFeedbackState> states) => EmulationHostProtocolFunctions.WriteControllerFeedback(writer, states);
     /// <inheritdoc/>
     public IReadOnlyList<ControllerFeedbackState> ReadControllerFeedback(BinaryReader reader) => EmulationHostProtocolFunctions.ReadControllerFeedback(reader);
@@ -54,8 +59,8 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     public void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
-        => EmulationHostProtocolFunctions.RunCoreFrame<TCore, TConfiguration, TOption>(reader, writer, core, readInput, writeFrame, writeMediaStatus, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount);
+        ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter> writeSuccess) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
+        => EmulationHostProtocolFunctions.RunCoreFrame<TCore, TConfiguration, TOption>(reader, writer, core, readInput, writeFrame, writeMediaStatus, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount, writeSuccess);
 
     /// <inheritdoc/>
     public void WriteDiskSelection(BinaryWriter writer, int diskCount, int currentDiskIndex)
