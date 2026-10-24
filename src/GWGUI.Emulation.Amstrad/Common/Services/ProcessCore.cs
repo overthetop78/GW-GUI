@@ -349,7 +349,9 @@ internal sealed class ProcessCore : IEmulatorCore
             var response = ReadResponseAsync().GetAwaiter().GetResult();
             _responseReader?.Dispose();
             _responseReader = new BinaryReader(new MemoryStream(response, false), System.Text.Encoding.UTF8, false);
-            if (CommonCoreHostFunctions.ReadResponseHeader(Response) != HostResponseStatus.Success) throw new InvalidOperationException(Response.ReadString());
+            var status = CommonCoreHostFunctions.ReadResponseHeader(Response);
+            if (status == HostResponseStatus.Failure) ThrowRemoteError(CommonCoreHostFunctions.ReadError(Response));
+            if (status != HostResponseStatus.Success) throw new InvalidDataException();
         }
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {
@@ -417,4 +419,11 @@ internal sealed class ProcessCore : IEmulatorCore
     /// <param name="fallback">Délai du transport utilisé lorsque le profil ne définit aucune adaptation.</param>
     /// <returns>Délai de cette attente ; la consultation ne lance ni ne détruit de ressource.</returns>
     private TimeSpan RequestTimeoutFor(HostCommand command, TimeSpan fallback) => _policyConfiguration is null ? fallback : RuntimePolicy?.GetHostCommandTimeout(_policyConfiguration, (byte)command, fallback) ?? fallback;
+    /// <summary>Restitue les codes publics du diagnostic reçu sans charger son type d’exception.</summary>
+    private static void ThrowRemoteError(HostError error)
+    {
+        if (error.Category is { } category && error.Code is { } code)
+            throw CommonCoreHostFunctions.Messages.CreateError(category, code, new InvalidOperationException(error.Message));
+        throw new InvalidOperationException(error.Message);
+    }
 }

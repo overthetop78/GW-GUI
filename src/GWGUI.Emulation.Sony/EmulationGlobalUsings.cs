@@ -33,3 +33,5 @@ global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHea
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>;
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
+
+global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;

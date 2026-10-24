@@ -13,6 +13,14 @@ namespace GWGUI.Emulation.Services;
 internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
 {
     /// <inheritdoc/>
+    public void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions) where TCategory : struct where TCode : struct
+        => EmulationHostProtocolFunctions.WriteError(writer, error, jsonOptions);
+
+    /// <inheritdoc/>
+    public HostError<TCategory, TCode> ReadError<TCategory, TCode>(BinaryReader reader, JsonSerializerOptions jsonOptions, Func<Exception> invalidError) where TCategory : struct where TCode : struct
+        => EmulationHostProtocolFunctions.ReadError<TCategory, TCode>(reader, jsonOptions, invalidError);
+
+    /// <inheritdoc/>
     public void WriteHeader(BinaryWriter writer, int version, byte code) => EmulationHostProtocolFunctions.WriteHeader(writer, version, code);
     /// <inheritdoc/>
     public byte ReadHeader(BinaryReader reader, Action<int> validateVersion) => EmulationHostProtocolFunctions.ReadHeader(reader, validateVersion);

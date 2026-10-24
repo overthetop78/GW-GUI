@@ -71,8 +71,7 @@ internal static class CoreHost
                     }, (writer, error) =>
                     {
                         CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
-                        writer.Write((byte)(error is GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException ? GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.MediaRequired : GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.General));
-                        writer.Write(error.ToString());
+                        CommonCoreHostFunctions.WriteError(writer, error);
                     });
                 }
                 finally

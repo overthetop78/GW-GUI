@@ -13142,3 +13142,74 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Supprimer src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreHostFunctionsConstants.cs : retirer le doublon de constante Windows remplacé dans les fonctions Common.
   - [x] Supprimer src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreHostValues.cs : retirer le doublon de constante Windows remplacé dans le service Common.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler l’absence de l’ancien propriétaire des constantes, les noms canoniques, les durées inchangées et les seize codes de commande communs ; exécuter les vérifications et le build Debug de tous les modules.
+
+- [x] Unifier les diagnostics des hôtes sur le contrat complet existant et les interfaces Common.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/HostError.cs : reprendre le contrat générique complet, documenter ses six champs et ses codes propres au module.
+  - [x] Supprimer src/GWGUI.Emulation/Contracts/HostError.Context.cs : retirer le second fichier après réunion du contrat complet dans HostError.cs.
+  - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : exposer les codecs génériques WriteError et ReadError pour le contrat complet, avec options JSON et diagnostic de réponse invalide fournis par Common.
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.cs : conserver un seul codec JSON des diagnostics complets, en empruntant les flux et en refusant un document nul.
+  - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : relayer les codecs publics vers les implémentations internes.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : publier le diagnostic complet après le statut d’échec, avec les détails natifs conservés.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ProcessCore.cs : lire le diagnostic complet et restituer l’erreur structurée ou générale ; conserver la demande de média existante.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs : utiliser le contrat HostError générique complet avec les codes publics existants.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Constants/CoreHostConstants.cs : incrémenter la version du protocole dont le format de diagnostic est modifié.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs : projeter les erreurs sans perdre leurs informations et relier WriteError et ReadError au codec SDK unique.
+  - [x] Supprimer src/GWGUI.Emulation.Nec/Common/Enums/CoreHostErrorKind.cs : retirer le code binaire remplacé par la catégorie et le code du diagnostic complet.
+  - [x] Supprimer src/GWGUI.Emulation.Example/Common/Enums/CoreHostErrorKind.cs : retirer la copie inutilisée de l’ancien code binaire.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : transporter la demande CoreMediaRequiredException comme diagnostic ContentRequired, au lieu d’une erreur générale.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.Protocol.cs : restituer ce diagnostic en CoreMediaRequiredException pour le gestionnaire de média déjà présent dans Machine.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Host.cs : compléter la documentation de CreateError pour expliquer la demande de média reconnue par son code.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.Protocol.cs : documenter la restitution de CoreMediaRequiredException et son rôle dans le choix du média.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/ProcessCore.Protocol.cs : réserver la restitution de CoreMediaRequiredException à son type de diagnostic pour garder le contexte des autres erreurs ContentRequired.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : réserver aussi la restitution de CoreMediaRequiredException à son type de diagnostic.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat unique, les allers-retours des diagnostics et leurs appels réels dans les 23 transports, le contexte des erreurs typées et la demande de média NEC ; exécuter les vérifications et le build Debug complet.

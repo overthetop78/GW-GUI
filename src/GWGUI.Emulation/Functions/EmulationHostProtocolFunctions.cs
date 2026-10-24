@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 using System.Buffers.Binary;
@@ -10,6 +11,14 @@ namespace GWGUI.Emulation.Functions;
 /// <remarks>Les lectures et écritures empruntent les flux. Les opérations de destruction reçoivent uniquement les ressources dont l’appelant est propriétaire ; les sessions créées ici sont libérées dans leur portée.</remarks>
 internal static partial class EmulationHostProtocolFunctions
 {
+    /// <summary>Écrit les mêmes six champs pour tous les diagnostics, sans posséder le flux emprunté.</summary>
+    internal static void WriteError<TCategory, TCode>(BinaryWriter writer, HostError<TCategory, TCode> error, JsonSerializerOptions jsonOptions) where TCategory : struct where TCode : struct
+        => writer.Write(JsonSerializer.Serialize(error, jsonOptions));
+
+    /// <summary>Lit le contrat complet et laisse Common choisir le diagnostic d’un document nul.</summary>
+    internal static HostError<TCategory, TCode> ReadError<TCategory, TCode>(BinaryReader reader, JsonSerializerOptions jsonOptions, Func<Exception> invalidError) where TCategory : struct where TCode : struct
+        => JsonSerializer.Deserialize<HostError<TCategory, TCode>>(reader.ReadString(), jsonOptions) ?? throw invalidError();
+
     /// <summary>Écrit le format commun : version Int32 suivie du code octet.</summary>
     internal static void WriteHeader(BinaryWriter writer, int version, byte code)
     {

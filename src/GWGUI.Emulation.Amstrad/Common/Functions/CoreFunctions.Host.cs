@@ -146,4 +146,19 @@ internal static class CoreHostFunctions
     internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => CommonCoreHostFunctions.Protocol.ReadAudio(reader, EmulationModuleConstants.ModuleId);
     internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => CommonCoreHostFunctions.Protocol.WriteLedStates(writer, states);
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => CommonCoreHostFunctions.Protocol.ReadLedStates(reader, EmulationModuleConstants.ModuleId);
+    /// <summary>Projette l’exception vers le contrat complet, en gardant ses détails natifs.</summary>
+    /// <param name="error">Erreur empruntée ; son type, son texte et sa cause restent inchangés.</param>
+    /// <returns>Catégorie et code publics lorsque l’erreur en dispose, diagnostic général sinon.</returns>
+    internal static HostError CreateError(Exception error) => error is EmulationMessageException structured
+        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.ToString(), structured.MessageData.Category, structured.MessageData.MessageCode, new Dictionary<string, string>(), false)
+        : new HostError(error.GetType().FullName ?? error.GetType().Name, error.ToString(), null, null, new Dictionary<string, string>(), false);
+
+    /// <summary>Écrit le diagnostic complet après l’en-tête d’échec, via le codec public partagé.</summary>
+    /// <param name="writer">Rédacteur emprunté de la réponse ; reste ouvert.</param>
+    /// <param name="error">Exception dont Common conserve les détails et les codes disponibles.</param>
+    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
+    /// <summary>Lit les six champs du diagnostic complet avec les conventions JSON du module.</summary>
+    /// <param name="reader">Lecteur emprunté de la réponse ; reste ouvert.</param>
+    /// <returns>Diagnostic à restituer par le client Common.</returns>
+    internal static HostError ReadError(BinaryReader reader) => Protocol.ReadError<EmulationMessageCategory, EmulationMessageCode>(reader, JsonOptions, static () => new InvalidDataException());
 }

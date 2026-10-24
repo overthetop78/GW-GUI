@@ -36,3 +36,5 @@ global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHea
 
 // Le catalogue utilise les métadonnées observées sans définition supplémentaire.
 global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<object>;
+
+global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;

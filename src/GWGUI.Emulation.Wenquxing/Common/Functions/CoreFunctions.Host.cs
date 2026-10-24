@@ -137,10 +137,10 @@ internal static class CoreHostFunctions
     }
 
     internal static HostError CreateError(Exception error) => error is EmulationMessageException structured
-        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode)
-        : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null);
-    internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
-    internal static HostError ReadError(BinaryReader reader) => JsonSerializer.Deserialize<HostError>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
+        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode, new Dictionary<string, string>(), false)
+        : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null, new Dictionary<string, string>(), false);
+    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
+    internal static HostError ReadError(BinaryReader reader) => Protocol.ReadError<EmulationMessageCategory, EmulationMessageCode>(reader, JsonOptions, static () => new InvalidDataException(CoreHostErrors.CommunicationFailed));
     internal static string? ReadString(BinaryReader reader) => CoreHostFunctions.Protocol.ReadString(reader);
     internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => CoreHostFunctions.Protocol.WriteBytes(writer, value);
     internal static byte[] ReadBytes(BinaryReader reader) => CoreHostFunctions.Protocol.ReadBytes(reader, CoreHostConstants.HostName);

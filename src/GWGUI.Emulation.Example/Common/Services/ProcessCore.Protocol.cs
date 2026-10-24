@@ -67,9 +67,13 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Reconstruit et lève une erreur reçue du processus enfant.</summary>
     /// <param name="error">Description contenant message, catégorie, code, contexte et indicateur de localisation.</param>
     /// <exception cref="EmulationException">L’erreur possède une catégorie et un code internes.</exception>
+    /// <exception cref="CoreMediaRequiredException">Le cœur attend un contenu ; Machine restitue alors les lecteurs
+    /// disponibles pour permettre à l’utilisateur de choisir son média.</exception>
     /// <exception cref="InvalidOperationException">L’erreur distante ne fournit pas cette identité structurée.</exception>
     private static void ThrowRemoteError(HostError error)
     {
+        if (error.Type == typeof(CoreMediaRequiredException).FullName && error.Category == ErrorCategory.Content && error.Code == ErrorCode.ContentRequired)
+            throw new CoreMediaRequiredException(error.Message);
         if (error.Category is { } category && error.Code is { } code)
             throw new EmulationException(category, code, error.Message, error.Context, isLocalized: error.IsLocalized);
         throw new InvalidOperationException(error.Message);

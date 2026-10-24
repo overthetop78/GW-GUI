@@ -38,7 +38,7 @@ global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstal
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel>;
-global using HostError = GWGUI.Emulation.Contracts.HostError;
+global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;
 
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.MachineModel, GWGUI.Emulation.Thomson.Common.Machines.Common.Enums.Emulator>;
 global using StateContentEntry = GWGUI.Emulation.Contracts.EmulationStateContentEntry;

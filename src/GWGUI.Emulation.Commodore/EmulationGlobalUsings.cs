@@ -48,3 +48,5 @@ global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreReleas
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
+
+global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;

@@ -39,3 +39,5 @@ global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCa
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts.MachineConfiguration>;
+
+global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;

@@ -16,7 +16,7 @@ public static class CoreHostConstants
     internal const string VideoMapPrefix = "gwgui-wenquxing-video-";
     internal const string LocalPipeServerName = ".";
     internal const string UniqueNameFormat = "N";
-    internal const int ProtocolVersion = 4;
+    internal const int ProtocolVersion = 5;
     internal const int MaximumPipeInstances = 1;
     internal const int PipeBufferSize = 8 * 1024 * 1024;
     internal const int ConnectionTimeoutMilliseconds = 15_000;

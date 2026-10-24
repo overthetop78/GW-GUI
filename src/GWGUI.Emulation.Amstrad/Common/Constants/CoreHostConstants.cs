@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Amstrad.Common.Constants;
 internal static class CoreHostConstants
 {
     /// <summary>Version du format binaire des échanges, contrôlée lors de la lecture de leur en-tête.</summary>
-    internal const int ProtocolVersion = 5;
+    internal const int ProtocolVersion = 6;
     /// <summary>Statut précédant les données d’une réponse réussie.</summary>
     internal const byte SuccessResponse = 1;
     /// <summary>Statut précédant le diagnostic d’une réponse en échec.</summary>

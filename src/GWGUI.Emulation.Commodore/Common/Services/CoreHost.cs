@@ -70,7 +70,7 @@ internal static class CoreHost
                     }, (writer, error) =>
                     {
                         CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
-                        writer.Write(error.ToString());
+                        CommonCoreHostFunctions.WriteError(writer, error);
                     });
                 }
                 finally

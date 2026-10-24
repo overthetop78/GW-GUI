@@ -15,6 +15,99 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryHostUsesTheCompleteDiagnosticContractAndSharedCodec()
+    {
+        Assert.Null(typeof(IEmulationHostProtocol).Assembly.GetType("GWGUI.Emulation.Contracts.HostError"));
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, assemblies.Length);
+        var transports = 0;
+        foreach (var assembly in assemblies)
+        {
+            var owner = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Functions.CoreHostFunctions", StringComparison.Ordinal));
+            var write = owner.GetMethod("WriteError", BindingFlags.NonPublic | BindingFlags.Static);
+            if (write is null)
+            {
+                Assert.Equal("gwgui.emulation.microsoft", assembly.GetName().Name);
+                continue;
+            }
+            transports++;
+            var read = owner.GetMethod("ReadError", BindingFlags.NonPublic | BindingFlags.Static)!;
+            var create = owner.GetMethod("CreateError", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.Equal(typeof(HostError<,>), read.ReturnType.GetGenericTypeDefinition());
+            Assert.Equal(new[] { "Category", "Code", "Context", "IsLocalized", "Message", "Type" }, read.ReturnType.GetProperties().Select(property => property.Name).Order());
+            foreach (var method in new[] { write, read })
+                Assert.Contains(GetCompiledCalls(method), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == method.Name);
+            var errors = new List<Exception> { new InvalidOperationException("host-failure") };
+            var exceptionType = assembly.GetTypes().SingleOrDefault(type => type.FullName!.EndsWith(".Common.Exceptions.EmulationException", StringComparison.Ordinal));
+            if (exceptionType is not null)
+            {
+                var constructor = Assert.Single(exceptionType.GetConstructors());
+                var parameters = constructor.GetParameters();
+                errors.Add((Exception)constructor.Invoke([Enum.Parse(parameters[0].ParameterType, "Host"), Enum.Parse(parameters[1].ParameterType, "HostProtocolFailure"), "localized-failure", new Dictionary<string, string> { ["slot"] = "cartridge:0" }, null, true]));
+                errors.Add((Exception)constructor.Invoke([Enum.Parse(parameters[0].ParameterType, "Content"), Enum.Parse(parameters[1].ParameterType, "ContentRequired"), "localized-content", new Dictionary<string, string> { ["slot"] = "disk:1" }, null, true]));
+            }
+            else errors.Add(new GWGUI.Emulation.Exceptions.EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)));
+            var mediaRequired = assembly.GetTypes().SingleOrDefault(type => type.FullName!.EndsWith(".Common.Exceptions.CoreMediaRequiredException", StringComparison.Ordinal));
+            if (mediaRequired is not null) errors.Add((Exception)Activator.CreateInstance(mediaRequired, "media-required")!);
+            foreach (var error in errors)
+            {
+                var expected = create.Invoke(null, [error])!;
+                using var stream = new MemoryStream();
+                using var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+                using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+                write.Invoke(null, [writer, error]);
+                writer.Flush();
+                stream.Position = 0;
+                var actual = read.Invoke(null, [reader])!;
+                Assert.Equal(stream.Length, stream.Position);
+                foreach (var name in new[] { "Type", "Message", "Category", "Code", "IsLocalized" })
+                    Assert.Equal(read.ReturnType.GetProperty(name)!.GetValue(expected), read.ReturnType.GetProperty(name)!.GetValue(actual));
+                var contextProperty = read.ReturnType.GetProperty("Context")!;
+                Assert.Equal(((IReadOnlyDictionary<string, string>)contextProperty.GetValue(expected)!).OrderBy(pair => pair.Key), ((IReadOnlyDictionary<string, string>)contextProperty.GetValue(actual)!).OrderBy(pair => pair.Key));
+                if (error == errors[1] && exceptionType is not null)
+                {
+                    Assert.True((bool)read.ReturnType.GetProperty("IsLocalized")!.GetValue(actual)!);
+                    Assert.Equal("cartridge:0", ((IReadOnlyDictionary<string, string>)contextProperty.GetValue(actual)!)["slot"]);
+                }
+                if (mediaRequired?.IsInstanceOfType(error) == true)
+                {
+                    var actualCode = read.ReturnType.GetProperty("Code")!.GetValue(actual)!;
+                    Assert.Equal(actualCode.GetType() == typeof(EmulationMessageCode) ? "RequiredMediaMissing" : "ContentRequired", actualCode.ToString());
+                    var client = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Services.ProcessCore", StringComparison.Ordinal));
+                    var thrown = Assert.Throws<TargetInvocationException>(() => client.GetMethod("ThrowRemoteError", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, [actual]));
+                    Assert.Equal(mediaRequired, thrown.InnerException!.GetType());
+                    Assert.Contains("media-required", thrown.InnerException.Message);
+                }
+                else if (exceptionType?.IsInstanceOfType(error) == true && error.Message == "localized-content")
+                {
+                    var client = assembly.GetTypes().Single(type => type.FullName!.EndsWith(".Common.Services.ProcessCore", StringComparison.Ordinal));
+                    var thrown = Assert.Throws<TargetInvocationException>(() => client.GetMethod("ThrowRemoteError", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, [actual]));
+                    Assert.Equal(exceptionType, thrown.InnerException!.GetType());
+                    Assert.True((bool)exceptionType.GetProperty("IsLocalized")!.GetValue(thrown.InnerException)!);
+                    Assert.Equal("disk:1", ((IReadOnlyDictionary<string, string>)exceptionType.GetProperty("Context")!.GetValue(thrown.InnerException)!)["slot"]);
+                }
+                stream.Position = 0;
+                writer.Write("null");
+                writer.Flush();
+                stream.Position = 0;
+                var invalid = Assert.Throws<TargetInvocationException>(() => read.Invoke(null, [reader]));
+                Assert.IsType<InvalidDataException>(invalid.InnerException);
+                Assert.True(stream.CanRead);
+                Assert.True(stream.CanWrite);
+            }
+            var endpoints = assembly.GetTypes().Where(type => type.FullName!.EndsWith(".Common.Services.CoreHost", StringComparison.Ordinal) || type.FullName.EndsWith(".Common.Services.ProcessCore", StringComparison.Ordinal)).ToArray();
+            var calls = endpoints.Concat(endpoints.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method == write);
+            Assert.Contains(calls, call => call.Method == read);
+        }
+        Assert.Equal(23, transports);
+    }
+
+    [Fact]
     public void EveryHostUsesTheCommonVersionedHeaderCodec()
     {
         var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

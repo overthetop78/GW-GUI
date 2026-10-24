@@ -168,22 +168,25 @@ internal static class CoreHostFunctions
 
     /// <summary>Projette une exception vers le contrat de diagnostic sérialisable du transport.</summary>
     /// <param name="error">Exception empruntée ; son type et son message sont conservés.</param>
-    /// <returns>Diagnostic avec catégorie, code, contexte et localisation pour une EmulationException ; diagnostic général sinon.</returns>
+    /// <returns>Diagnostic ContentRequired pour une demande de média ; catégorie, code, contexte et localisation
+    /// de l’EmulationException pour une erreur typée ; diagnostic général sinon.</returns>
     /// <remarks>Le nom de type est une information de diagnostic : la lecture ne reconstruit pas une exception par réflexion.</remarks>
-    internal static HostError CreateError(Exception error) => error is EmulationException structured
+    internal static HostError CreateError(Exception error) => error is CoreMediaRequiredException
+        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, ErrorCategory.Content, ErrorCode.ContentRequired, new Dictionary<string, string>(), false)
+        : error is EmulationException structured
         ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.Category, structured.Code, structured.Context, structured.IsLocalized)
         : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null, new Dictionary<string, string>(), false);
 
     /// <summary>Sérialise le diagnostic en JSON puis l’écrit comme chaîne binaire.</summary>
     /// <param name="writer">Rédacteur emprunté, après l’en-tête de réponse en échec.</param>
     /// <param name="error">Exception dont les données seront transportées.</param>
-    internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
+    internal static void WriteError(BinaryWriter writer, Exception error) => Protocol.WriteError(writer, CreateError(error), JsonOptions);
 
     /// <summary>Lit la chaîne JSON du diagnostic et reconstruit son contrat de données.</summary>
     /// <param name="reader">Lecteur emprunté, après l’en-tête de réponse en échec.</param>
     /// <returns>Données du diagnostic ; la politique de levée d’exception appartient au récepteur.</returns>
     /// <exception cref="InvalidDataException">Le JSON représente une valeur nulle au lieu d’un diagnostic.</exception>
-    internal static HostError ReadError(BinaryReader reader) => JsonSerializer.Deserialize<HostError>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
+    internal static HostError ReadError(BinaryReader reader) => Protocol.ReadError<ErrorCategory, ErrorCode>(reader, JsonOptions, static () => new InvalidDataException(CoreHostErrors.CommunicationFailed));
     /// <summary>Lit un booléen de présence, puis une chaîne uniquement lorsque ce marqueur vaut true.</summary>
     /// <param name="reader">Lecteur emprunté d’une valeur texte facultative.</param>
     /// <returns>Chaîne reçue ou null lorsque le marqueur indique une absence.</returns>
