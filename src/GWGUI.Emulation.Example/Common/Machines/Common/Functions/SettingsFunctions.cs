@@ -21,6 +21,10 @@ internal static class SettingsDescriptionFunctions
                 new(SettingsConstants.CpuFrequency, EmulationMachineTab.General, "hardware", "Emulation.Cpu.SpeedOriginal", EmulationSettingsEditor.Information, hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture) + " Hz"),
                 new(SettingsConstants.MainMemory, EmulationMachineTab.General, "hardware", "Emulation.Memory.Main", EmulationSettingsEditor.Information, memoryKib is decimal mainMemory ? checked((long)(mainMemory * 1024m)).ToString(CultureInfo.InvariantCulture) + " B" : null)
             ]),
+            new("controllers", EmulationMachineTab.Controllers, "Emulation.Tab.Controllers",
+            [
+                new(SettingsConstants.ParallelJoystickAdapter, EmulationMachineTab.Controllers, "controllers", "Emulation.Help.Controller.ParallelAdapter.Short", EmulationSettingsEditor.Toggle, configuration.Input.ParallelJoystickAdapterEnabled.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RefreshSettingsOnChange: true, RequiresRestart: true, IsGlobalControllerOption: true)
+            ]),
             new("audio", EmulationMachineTab.Audio, "Emulation.Audio",
             [
                 new(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, "audio", "Emulation.Audio.Enabled", EmulationSettingsEditor.Toggle, configuration.AudioEnabled.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString),
@@ -70,8 +74,18 @@ internal static class SettingsApplicationFunctions
     {
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
         var audioEnabled = configuration.AudioEnabled;
+        var input = configuration.Input;
         foreach (var value in values)
         {
+            // Le choix d’extension appartient aux entrées et ne devient pas une option opaque du cœur.
+            // Désactiver l’extension conserve les associations des ports masqués pour sa réactivation.
+            if (value.Key == SettingsConstants.ParallelJoystickAdapter)
+            {
+                if (!bool.TryParse(value.Value, out var enabled)) throw new ArgumentException(nameof(values));
+                input = input with { ParallelJoystickAdapterEnabled = enabled };
+                options.Remove(value.Key);
+                continue;
+            }
             if (value.Key == SettingsConstants.AudioEnabled)
             {
                 if (!bool.TryParse(value.Value, out audioEnabled)) throw new ArgumentException(nameof(values));
@@ -81,7 +95,7 @@ internal static class SettingsApplicationFunctions
             if (value.Key == SettingsConstants.Cpu || value.Key == SettingsConstants.CpuFrequency || value.Key == SettingsConstants.MainMemory) continue;
             if (value.Value is null) options.Remove(value.Key); else options[value.Key] = value.Value;
         }
-        var result = configuration with { Options = options, AudioEnabled = audioEnabled };
+        var result = configuration with { Options = options, AudioEnabled = audioEnabled, Input = input };
         ConfigurationFunctions.Validate(result);
         return result;
     }

@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Net.Http;
+using System.Text.Json;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -112,6 +114,21 @@ public sealed class ExampleAnalogInputTests
         Assert.Equal(Enum.GetValues<PeripheralCategory>().Order(), expected.Keys.Order());
         foreach (var (category, device) in expected) Assert.Equal(device, ResolveControllerDevice(category));
         Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => ResolveControllerDevice((PeripheralCategory)int.MaxValue)).InnerException);
+        var functions = typeof(ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Common.Functions.ControllerFunctions", true)!;
+        var fromCommon = functions.GetMethod("FromCommon", BindingFlags.Static | BindingFlags.NonPublic)!.CreateDelegate<Func<EmulationPeripheralCategory, MachineConfiguration, int, PeripheralCategory>>();
+        foreach (var model in GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All)
+        foreach (var emulator in Enum.GetValues<Emulator>())
+        {
+            var configuration = new MachineConfiguration(model.Model, core: emulator);
+            foreach (var category in expected.Keys)
+            {
+                Assert.True(Enum.TryParse<EmulationPeripheralCategory>(category.ToString(), out var publicCategory), category.ToString());
+                Assert.Equal(category, fromCommon(publicCategory, configuration, 0));
+            }
+            Assert.Throws<ArgumentOutOfRangeException>(() => fromCommon((EmulationPeripheralCategory)int.MaxValue, configuration, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => fromCommon(EmulationPeripheralCategory.Pointer, configuration, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => fromCommon(EmulationPeripheralCategory.DanceMat, configuration, 2));
+        }
     }
 
     [Fact]
@@ -149,13 +166,57 @@ public sealed class ExampleAnalogInputTests
     }
 
     [Fact]
+    public void ControllerExtensionKeepsItsSettingsAndHiddenBindingsForEveryProfileAndAdapter()
+    {
+        using var http = new HttpClient();
+        var module = new ExampleModuleFactory().Create(new EmulationModuleContext(AppContext.BaseDirectory, AppContext.BaseDirectory, http));
+        var inputs = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(module);
+        const string key = "configuration.parallelJoystickAdapter";
+        foreach (var model in GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All)
+        foreach (var emulator in Enum.GetValues<Emulator>())
+        {
+            var initial = new MachineConfiguration(model.Model, core: emulator);
+            var field = Assert.Single(module.Describe(initial.MachineId, initial).Blocks.SelectMany(block => block.Fields), field => field.Id == key);
+            Assert.Equal(bool.FalseString, field.Value);
+            Assert.True(field.RefreshSettingsOnChange);
+            Assert.True(field.RequiresRestart);
+            Assert.True(field.IsGlobalControllerOption);
+            Assert.Equal(2, inputs.DescribeInputSettings(initial).ControllerPorts.Count);
+            var enabled = Assert.IsType<MachineConfiguration>(module.ApplySettings(initial, new Dictionary<string, string?> { [key] = bool.TrueString }));
+            Assert.False(initial.Input.ParallelJoystickAdapterEnabled);
+            Assert.True(enabled.Input.ParallelJoystickAdapterEnabled);
+            Assert.DoesNotContain(key, enabled.Options.Keys);
+            var settings = inputs.DescribeInputSettings(enabled);
+            Assert.Equal(4, settings.ControllerPorts.Count);
+            var ports = settings.ControllerPorts.Select(port => port.Number == 4 ? port with { SelectedControllerId = "Pointer", PhysicalDeviceId = "extension-device", DeadZonePercent = 17 } : port).ToArray();
+            var configured = Assert.IsType<MachineConfiguration>(inputs.ApplyInputSettings(enabled, settings with { ControllerPorts = ports }));
+            var restored = JsonSerializer.Deserialize<InputConfiguration>(JsonSerializer.Serialize(configured.Input))!;
+            Assert.True(restored.ParallelJoystickAdapterEnabled);
+            Assert.Equal(PeripheralCategory.Pointer, Assert.Single(restored.Controllers!, binding => binding.Port == 3).Peripheral);
+            var disabled = Assert.IsType<MachineConfiguration>(module.ApplySettings(configured, new Dictionary<string, string?> { [key] = bool.FalseString }));
+            Assert.Equal(2, inputs.DescribeInputSettings(disabled).ControllerPorts.Count);
+            Assert.Equal(configured.Input.Controllers, disabled.Input.Controllers);
+            var reenabled = module.ApplySettings(disabled, new Dictionary<string, string?> { [key] = bool.TrueString });
+            var last = inputs.DescribeInputSettings(reenabled).ControllerPorts.Last();
+            Assert.Equal("Pointer", last.SelectedControllerId);
+            Assert.Equal("extension-device", last.PhysicalDeviceId);
+            Assert.Equal(17, last.DeadZonePercent);
+            Assert.Throws<ArgumentException>(() => module.ApplySettings(initial, new Dictionary<string, string?> { [key] = "invalid" }));
+            var invalid = initial with { Input = initial.Input with { Controllers = [new ControllerBinding(4, PeripheralCategory.RetroPad)] } };
+            Assert.Throws<ArgumentException>(() => module.ApplySettings(invalid, new Dictionary<string, string?>()));
+        }
+    }
+
+    [Fact]
     public void BothProfilesAndAllThreeMockModesPublishAndReleaseControllerFeedback()
     {
         var type = typeof(ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Services.ExternalCore", throwOnError: true)!;
         foreach (var model in GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries.HardwareModelCatalog.All)
         foreach (var emulator in Enum.GetValues<Emulator>().Where(value => value != Emulator.None))
+        foreach (var extension in new[] { false, true })
         {
-            var configuration = new MachineConfiguration(model.Model, core: emulator);
+            var configuration = new MachineConfiguration(model.Model, core: emulator, input: new InputConfiguration(ParallelJoystickAdapterEnabled: extension));
+            var portCount = extension ? 4 : 2;
             var instance = type.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, [typeof(string), typeof(Emulator)])!.Invoke(["mock-library-identity", emulator]);
             IEmulationControllerFeedbackAccumulator? feedback = null;
             var feedbackTransferred = false;
@@ -166,11 +227,21 @@ public sealed class ExampleAnalogInputTests
                 // Le cœur reçoit la propriété du stockage et exécute ensuite ses vraies méthodes de frames et de commandes.
                 type.GetField("_configuration", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, configuration);
                 type.GetField("_memory", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, new byte[1]);
-                feedback = EmulationSdk.EnvironmentProcessing.CreateControllerFeedbackAccumulator(2);
+                feedback = EmulationSdk.EnvironmentProcessing.CreateControllerFeedbackAccumulator(portCount);
                 type.GetField("_feedback", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, feedback);
                 feedbackTransferred = true;
                 type.GetField("_initialized", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(instance, true);
                 var commands = Assert.IsAssignableFrom<IEmulationCoreCommands<MediaConfiguration, PeripheralCategory>>(instance);
+                var lastPort = portCount - 1;
+                commands.SetControllerPortDevice(lastPort, PeripheralCategory.Pointer);
+                commands.SetControllerPortDevice(lastPort, PeripheralCategory.RetroPad);
+                Assert.Throws<ArgumentOutOfRangeException>(() => commands.SetControllerPortDevice(portCount, PeripheralCategory.RetroPad));
+                core.SetInput(EmulationInputSnapshot.Empty with { Controllers = Enumerable.Range(0, portCount).Select(port => port == lastPort ? EmulationControllerState.Empty with { LeftTrigger = short.MaxValue } : EmulationControllerState.Empty).ToArray() });
+                core.RunFrame();
+                Assert.Equal(lastPort, Assert.Single(core.ControllerFeedback).Port);
+                commands.SetControllerPortDevice(lastPort, PeripheralCategory.None);
+                Assert.Empty(core.ControllerFeedback);
+                commands.SetControllerPortDevice(lastPort, PeripheralCategory.RetroPad);
                 var input = EmulationInputSnapshot.Empty with
                 {
                     Controllers = [EmulationControllerState.Empty with { LeftTrigger = short.MaxValue, RightTrigger = short.MaxValue / 2 },

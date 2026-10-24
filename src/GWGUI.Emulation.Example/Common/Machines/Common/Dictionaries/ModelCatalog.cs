@@ -21,6 +21,6 @@ public static class ModelCatalog
         var tabs = new Engine().DefaultVisibility.Tabs.Where(item => item.Value).Select(item => item.Key).ToArray();
         var media = model.Media.Select(category => new MediaCompatibilityRule(category,
             Array.AsReadOnly(devices.Where(device => device.MediaType == EmulationMediaConversionFunctions.ToType(category)).Select(device => device.Slot).ToArray()))).ToArray();
-        return new(model.Model, configuration.Core, Array.AsReadOnly(tabs), model.Firmware, Array.AsReadOnly(media), ConfigurationFunctions.ControllerPortCount(configuration.Model));
+        return new(model.Model, configuration.Core, Array.AsReadOnly(tabs), model.Firmware, Array.AsReadOnly(media), ConfigurationFunctions.ControllerPortCount(configuration));
     }
 }

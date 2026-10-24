@@ -3,6 +3,8 @@ namespace GWGUI.Emulation.Example.Common.Machines.Common.Constants;
 /// <summary>Identifiants invariants des éditeurs propres aux profils d’exemple.</summary>
 internal static class SettingsConstants
 {
+    /// <summary>Choix persistant de l’extension de deux ports de contrôleurs, conservé dans Input plutôt que dans les options natives.</summary>
+    internal const string ParallelJoystickAdapter = "configuration.parallelJoystickAdapter";
     /// <summary>Choix explicite de l’impulsion de démarrage automatique d’une cassette insérée.</summary>
     internal const string CassetteAutoBoot = "example_cassette_auto_boot";
     /// <summary>Identité du champ de processeur fictif.</summary>

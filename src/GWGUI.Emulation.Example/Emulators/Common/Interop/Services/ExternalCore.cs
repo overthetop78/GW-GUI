@@ -130,7 +130,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             ConfigurationFunctions.Validate(configuration);
             _configuration = configuration;
-            _feedback = CoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator(ConfigurationFunctions.ControllerPortCount(configuration.Model));
+            _feedback = CoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator(ConfigurationFunctions.ControllerPortCount(configuration));
             CaptureDiagnostic(CoreName);
             _memory = new byte[checked((int)HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes)];
             var firmware = Path.Combine(sessionDirectory, "System", "OperatingSystem.rom");

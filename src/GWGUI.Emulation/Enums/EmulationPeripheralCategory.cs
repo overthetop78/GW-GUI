@@ -18,5 +18,9 @@ public enum EmulationPeripheralCategory
     EnhancedController,
     BoosterGrip,
     GenesisController,
-    Joy2BPlus
+    Joy2BPlus,
+    /// <summary>Tapis de danse dont les panneaux utilisent les commandes communes de contrôleur.</summary>
+    DanceMat,
+    /// <summary>Stylet ou tablette transmettant une position absolue et un contact.</summary>
+    Pointer
 }

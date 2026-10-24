@@ -29,6 +29,13 @@ internal static class ConfigurationFunctions
     /// <returns>Nombre de ports acceptant les contrôleurs configurables.</returns>
     internal static int ControllerPortCount(MachineModel model) => HardwareModelCatalog.Get(model).Ports.Where(item => item.Capability == HardwarePortCapability.AnalogJoystick).Sum(item => item.Count);
 
+    /// <summary>Résout les ports utilisables par la session, y compris l’extension activée dans les entrées.</summary>
+    /// <param name="configuration">Configuration empruntée, avec son modèle et son choix d’adaptateur de ports.</param>
+    /// <returns>Quatre ports avec l’extension ; les ports matériels du modèle dans le cas contraire.</returns>
+    /// <remarks>Les descriptions, les validations de commandes et les trois simulations utilisent ce même calcul.
+    /// Le catalogue matériel conserve son nombre de ports de base ; l’extension est un choix de session.</remarks>
+    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Input.ParallelJoystickAdapterEnabled ? ControllerPortConstants.FourControllerPorts : ControllerPortCount(configuration.Model);
+
     /// <summary>Contrôle les données du module sans démarrer ni installer l’émulateur sélectionné.</summary>
     /// <param name="configuration">Configuration empruntée à vérifier.</param>
     /// <exception cref="ArgumentException">Un type de contenu, un emplacement ou une association est incompatible.</exception>
@@ -61,7 +68,9 @@ internal static class ConfigurationFunctions
         var ports = new HashSet<int>();
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
-            if (binding.Port < 0 || binding.Port >= compatibility.ControllerPortCount || !ports.Add(binding.Port)
+            // Les associations de l’extension restent mémorisées lorsqu’elle est désactivée.
+            // Le nombre effectif de ports limite séparément les commandes et les lectures de session.
+            if (binding.Port < 0 || binding.Port >= Math.Max(compatibility.ControllerPortCount, ControllerPortConstants.FourControllerPorts) || !ports.Add(binding.Port)
                 || !Enum.IsDefined(binding.Peripheral) || binding.DeadZonePercent is < 0 or > 100)
                 throw new ArgumentException(ErrorMessages.InvalidControllerPort, nameof(configuration));
             foreach (var output in binding.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>())

@@ -51,7 +51,7 @@ internal sealed partial class ExternalCore
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
     {
         EnsureReady();
-        if (port < 0 || port >= ConfigurationFunctions.ControllerPortCount(_configuration!.Model)) throw new ArgumentOutOfRangeException(nameof(port));
+        if (port < 0 || port >= ConfigurationFunctions.ControllerPortCount(_configuration!)) throw new ArgumentOutOfRangeException(nameof(port));
         _feedback?.ResetPort(port);
         var device = CommonControllerFunctions.ResolveControllerDevice(peripheral);
         if (Emulator == Emulator.Internal) _ports[port] = device;
@@ -122,7 +122,7 @@ internal sealed partial class ExternalCore
     private void UpdateControllerFeedback()
     {
         if (_feedback is null || _configuration is null) return;
-        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration.Model); port++)
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration!); port++)
         {
             var peripheral = _configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.RetroPad;
             var device = _ports.GetValueOrDefault(port, CommonControllerFunctions.ResolveControllerDevice(peripheral));
@@ -148,7 +148,7 @@ internal sealed partial class ExternalCore
     private void ClearControllerFeedback()
     {
         if (_feedback is null || _configuration is null) return;
-        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration.Model); port++) _feedback.ResetPort(port);
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration!); port++) _feedback.ResetPort(port);
     }
 
     /// <summary>Interroge les classes natives des ports du profil et additionne leurs valeurs pour le motif de contrôle.</summary>
@@ -161,10 +161,11 @@ internal sealed partial class ExternalCore
     /// les commandes en instructions d’une machine réelle et ne modifie aucune association configurée.</remarks>
     private int ReadFrameInput()
     {
+        var configuration = _configuration!;
         var result = 0;
-        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(_configuration!.Model); port++)
+        for (var port = 0; port < ConfigurationFunctions.ControllerPortCount(configuration); port++)
         {
-            var peripheral = _configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.RetroPad;
+            var peripheral = configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.RetroPad;
             var device = _ports.TryGetValue(port, out var connected) ? connected : CommonControllerFunctions.ResolveControllerDevice(peripheral);
             short Read(uint index, uint id) => Emulator == Emulator.Internal ? ControllerInput((uint)port, device, index, id) : _inputCallback?.Invoke((uint)port, device, index, id) ?? 0;
             switch (device)

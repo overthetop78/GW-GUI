@@ -14633,3 +14633,27 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/Modules/ExampleModuleDiscoveryIntegrationTests.cs : vérifier temporairement la découverte du vrai Modules/example dans le build, ses deux machines et les trois émulateurs par les interfaces publiques, sans écrire sur les médias.
     - [x] Modifier src/GWGUI.Emulation.Example/GWGUI.Emulation.Example.csproj : reprendre la cible existante RemoveHostProvidedAssembliesFromCopyLocal pour exclure les DLL fournies par l’hôte, puis revalider les deux modes de build et le SDK unique.
     - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/Modules/ExampleModuleDiscoveryIntegrationTests.cs : retirer le contrôle temporaire après son exécution sur les builds sans modules supplémentaires et avec tous les modules ; vérifier la présence de leurs DLL et l’absence de BuiltIn ; recompiler uniquement le projet de tests pour retirer aussi la classe temporaire de ses sorties.
+
+- [x] Transmettre les catégories génériques déjà proposées par Example dans l’API publique des entrées.
+  - [x] Raccorder le tapis de danse et le stylet sans modifier les identités existantes.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationPeripheralCategory.cs : ajouter DanceMat et Pointer à la fin de l’énumération, pour permettre leur transmission par IEmulationInput.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : conserver ces deux catégories dans FromCommon et refuser les valeurs d’énumération inconnues, avant les commandes existantes du cœur.
+  - [x] Vérifier le passage par Common pour les catégories existantes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : compléter le contrôle existant des catégories avec la conversion API vers Common sur les deux profils et les trois adaptateurs, puis exécuter les contrôles concernés et le build Debug de tous les modules.
+
+- [x] Reprendre dans Example l’extension de ports de contrôleurs déjà utilisée par un adaptateur existant.
+  - [x] Représenter le réglage existant et partager le nombre effectif de ports.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Contracts/InputContracts.cs : reprendre ParallelJoystickAdapterEnabled avec la valeur initiale false et documenter l’activation de deux ports supplémentaires.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Constants/SettingsConstants.cs : reprendre la clé configuration.parallelJoystickAdapter pour ce réglage.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/ConfigurationFunctions.cs : résoudre les ports effectifs depuis la configuration, en conservant le nombre matériel initial lorsque l’extension est désactivée.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/SettingsFunctions.cs : décrire et appliquer le réglage d’extension dans le contrat existant, conserver sa valeur dans Input et utiliser les libellés communs déjà traduits.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : utiliser le nombre effectif de ports pour la description des entrées et la validation des changements de périphérique.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Dictionaries/ModelCatalog.cs : employer le même nombre effectif de ports dans la validation de compatibilité.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : annoncer le nombre effectif de ports par le contrat Common des trois adaptateurs.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.cs : dimensionner les retours de contrôleurs selon ce même nombre.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : appliquer ce nombre aux changements de périphériques, aux lectures d’entrées et à la remise à zéro des retours.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/ControllerFunctions.cs : préciser que le repli sans cœur sélectionné conserve le choix d’extension.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/SettingsFunctions.cs : déclarer l’extension comme option globale des contrôleurs dans le contrat de présentation existant.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Services/ExternalCore.AudioVideoInput.cs : conserver la configuration de frame dans une variable locale pour les lectures de ports, sans introduire de nouvel avertissement de nullabilité.
+  - [x] Vérifier les ports supplémentaires dans les deux profils et les trois simulations.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleAnalogInputTests.cs : compléter les vérifications en mémoire pour les ports supplémentaires, la conservation du réglage et les limites de ports, puis valider le build de tous les modules.

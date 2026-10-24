@@ -8,4 +8,5 @@ namespace GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 /// <param name="ReleaseMouseKey">Touche qui libère le pointeur capturé.</param>
 /// <param name="KeyboardBindings">Expressions configurables des actions de clavier.</param>
 /// <param name="MouseMappings">Expressions des boutons et molettes de souris, indexées par leur commande.</param>
-public sealed record InputConfiguration(IReadOnlyDictionary<string, EmulationKey>? KeyboardMappings = null, IReadOnlyList<ControllerBinding>? Controllers = null, string? MouseDeviceId = null, bool CaptureMouse = false, EmulationKey ReleaseMouseKey = EmulationKey.Escape, IReadOnlyDictionary<string, string>? KeyboardBindings = null, IReadOnlyDictionary<string, string>? MouseMappings = null);
+/// <param name="ParallelJoystickAdapterEnabled">Active deux ports supplémentaires ; false conserve les deux ports matériels de base.</param>
+public sealed record InputConfiguration(IReadOnlyDictionary<string, EmulationKey>? KeyboardMappings = null, IReadOnlyList<ControllerBinding>? Controllers = null, string? MouseDeviceId = null, bool CaptureMouse = false, EmulationKey ReleaseMouseKey = EmulationKey.Escape, IReadOnlyDictionary<string, string>? KeyboardBindings = null, IReadOnlyDictionary<string, string>? MouseMappings = null, bool ParallelJoystickAdapterEnabled = false);
