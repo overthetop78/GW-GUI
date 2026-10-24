@@ -52,7 +52,11 @@ public static class MediaConstants
     /// <summary>Images de cassette proposées par les lecteurs de démonstration.</summary>
     internal static IReadOnlyList<string> CassetteExtensions { get; } = Array.AsReadOnly<string>([".wav", ".tap", ".cas", ".cdt", ".tzx", ".uef", ".ddp"]);
     /// <summary>Images de disque dur pouvant être montées par les profils fictifs.</summary>
-    internal static IReadOnlyList<string> HardDiskExtensions { get; } = Array.AsReadOnly<string>([".img", ".ima", ".hdf", ".vhd", ".vhdx"]);
+    internal static IReadOnlyList<string> HardDiskExtensions { get; } = Array.AsReadOnly<string>([".img", ".ima", ".hdf", VhdExtension, VhdxExtension]);
+    /// <summary>Extension retenue par le module pour créer une image dans le conteneur VHD.</summary>
+    internal const string VhdExtension = ".vhd";
+    /// <summary>Extension retenue par le module pour créer une image dans le conteneur VHDX.</summary>
+    internal const string VhdxExtension = ".vhdx";
     /// <summary>Images de carte mémoire utilisées par la simulation, sans écriture dans le contenu utilisateur.</summary>
     internal static IReadOnlyList<string> MemoryCardExtensions { get; } = Array.AsReadOnly<string>([".sav", ".mcd", ".mem", ".bin"]);
 

@@ -12,7 +12,7 @@ internal static class StorageSettingsFunctions
     {
         MediaCategory.Floppy => new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, MediaConstants.FloppyExtensions),
         MediaCategory.Cassette => new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, MediaConstants.CassetteExtensions),
-        MediaCategory.HardDisk => new EmulationMediaDevice(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaConstants.HardDiskExtensions, IsRemovable: false),
+        MediaCategory.HardDisk => new EmulationMediaDevice(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaConstants.HardDiskExtensions, IsRemovable: false, HardDiskFormats: HardDiskFormats.For(model), ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive),
         MediaCategory.Cartridge => new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaConstants.CartridgeExtensions),
         MediaCategory.MemoryCard => new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, MediaConstants.MemoryCardExtensions),
         _ => throw new ArgumentOutOfRangeException(nameof(model))

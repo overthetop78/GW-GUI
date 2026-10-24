@@ -14237,3 +14237,10 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
   - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : fournir au service Common l’identité typée du profil dont il gère le dossier et la bibliothèque.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier en mémoire l’annulation des trois opérations des vingt-trois services et le refus des identités étrangères des six profils natifs, sans disque ni réseau ; exécuter les vérifications et le build Debug complet.
+
+- [x] Compléter les formats de création du disque dur dans le Common d’Example.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Constants/MediaConstants.cs : nommer les extensions VHD et VHDX déjà acceptées et réutiliser ces constantes dans la liste existante.
+  - [x] Créer src/GWGUI.Emulation.Example/Common/Machines/Common/Constants/StorageConstants.cs : reprendre et documenter les choix de taille, de secteurs et d’interface utilisés pour décrire les images de disque dur.
+  - [x] Créer src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/HardDiskFormats.cs : reprendre le mécanisme de description du registre existant pour les extensions acceptées par le profil A et les conteneurs bruts, VHD et VHDX ; commenter chaque élément.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : transmettre les formats de création du disque dur dans la description publique des lecteurs, pour les trois émulateurs fictifs.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier en mémoire les formats exposés, leurs extensions, conteneurs et limites pour les deux profils et les trois backends ; exécuter les tests utiles et le build Debug complet.

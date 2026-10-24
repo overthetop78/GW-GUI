@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Text.Json;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.HardDisks;
+using GWGUI.Emulation.HardDisks.Containers;
 using GWGUI.Emulation.Example.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Example.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Example.Common.Machines.Common.Enums;
@@ -25,6 +27,27 @@ public sealed class ExampleStorageSettingsTests
         {
             var original = new MachineConfiguration(profile.Model, core: core);
             var initial = manager.DescribeStorageSettings(original);
+            foreach (var device in initial.AvailableDevices)
+            {
+                if (device.MediaType != EmulationMediaType.HardDisk)
+                {
+                    Assert.Null(device.HardDiskFormats);
+                    continue;
+                }
+                Assert.Equal(EmulationStorageConfigurationKind.HardDiskDrive, device.ConfigurationKind);
+                var formats = Assert.IsAssignableFrom<IReadOnlyList<HardDiskImageFormat>>(device.HardDiskFormats);
+                Assert.NotEmpty(formats);
+                Assert.Equal(device.AcceptedExtensions, formats.Select(format => format.Extension));
+                Assert.Equal(formats.Count, formats.Select(format => format.Id).Distinct().Count());
+                foreach (var format in formats)
+                {
+                    Assert.InRange(format.DefaultBytes, format.MinimumBytes, format.MaximumBytes);
+                    Assert.Contains(512, format.LogicalSectorSizes);
+                    Assert.Equal(0, format.DefaultBytes % 512);
+                    Assert.True(format.Operations.HasFlag(DiskFormatOperations.Create));
+                    Assert.Equal(format.Extension switch { ".vhd" => DiskContainerKind.Vhd, ".vhdx" => DiskContainerKind.Vhdx, _ => DiskContainerKind.Raw }, format.Container);
+                }
+            }
             foreach (var selected in new[] { initial.ConfiguredSlots.Take(1).ToArray(), Array.Empty<EmulationMediaSlot>() })
             {
                 var requested = initial with { ConfiguredSlots = selected, MountedMedia = [], DeviceSettings = [] };
