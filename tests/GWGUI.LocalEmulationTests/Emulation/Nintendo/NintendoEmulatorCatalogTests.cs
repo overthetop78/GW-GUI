@@ -33,7 +33,7 @@ public sealed class NintendoEmulatorCatalogTests
     [InlineData("PokemonMini", "pokemini")]
     public void AdapterDiscoveryPreservesEveryExistingDefault(string machine, string emulator)
     {
-        Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+        Assert.Equal(emulator, EmulatorCatalog.DefaultEmulator(machine));
         Assert.Single(EmulatorCatalog.CreateAdapters(), adapter => adapter is GWGUI.Emulation.Nintendo.Common.Interfaces.IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machine));
     }
 
@@ -102,7 +102,7 @@ public sealed class NintendoEmulatorCatalogTests
     {
         Assert.NotNull(ModelCatalog.Get(machine));
         Assert.Equal(ids.Split(',').Order(), EmulatorCatalog.GetAll(machine).Select(item => item.Id).Order());
-        Assert.Contains(EmulatorCatalog.DefaultFor(machine), ids.Split(','));
+        Assert.Contains(EmulatorCatalog.DefaultEmulator(machine), ids.Split(','));
     }
 
     [Fact]

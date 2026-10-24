@@ -39,7 +39,7 @@ public sealed class SegaEmulatorCatalogTests
     [InlineData("DreamcastVmu", "vemulator")]
     public void AdapterDiscoveryPreservesEveryExistingDefault(string machine, string emulator)
     {
-        Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+        Assert.Equal(emulator, EmulatorCatalog.DefaultEmulator(machine));
         Assert.Single(EmulatorCatalog.CreateAdapters(), adapter => adapter is GWGUI.Emulation.Sega.Common.Interfaces.IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machine));
     }
 
@@ -189,7 +189,7 @@ public sealed class SegaEmulatorCatalogTests
     public void MachineOffersItsDeclaredCores(string machineId, params string[] expected)
     {
         Assert.Equal(expected.Order(StringComparer.Ordinal), EmulatorCatalog.GetAll(machineId).Select(item => item.Id).Order(StringComparer.Ordinal));
-        Assert.Contains(EmulatorCatalog.DefaultFor(machineId), expected);
+        Assert.Contains(EmulatorCatalog.DefaultEmulator(machineId), expected);
     }
 
     [Fact]
@@ -199,7 +199,7 @@ public sealed class SegaEmulatorCatalogTests
         Assert.Equal(16, adapters.Count);
         Assert.Equal(adapters.Count, adapters.Select(adapter => adapter.EmulatorId).Distinct().Count());
         Assert.Equal(19, ModelCatalog.All.Count);
-        Assert.All(ModelCatalog.All, model => Assert.Contains(EmulatorCatalog.GetAll(model.Id), core => core.Id == EmulatorCatalog.DefaultFor(model.Id)));
+        Assert.All(ModelCatalog.All, model => Assert.Contains(EmulatorCatalog.GetAll(model.Id), core => core.Id == EmulatorCatalog.DefaultEmulator(model.Id)));
     }
 
     [Theory]

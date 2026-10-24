@@ -8,7 +8,6 @@ public static class EmulatorCatalog
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
         .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
 
-    public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id ?? throw new NotSupportedException($"No Sony emulator adapter is installed for '{machineId}'.");
 
     public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }

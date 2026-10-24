@@ -35,11 +35,11 @@ internal sealed class Engine
         ArgumentNullException.ThrowIfNull(configuration);
         ArgumentNullException.ThrowIfNull(context);
         ConfigurationFunctions.Validate(configuration);
-        return _adapters.TryGetValue(EmulatorCatalog.GetDefinition(configuration.Core).Id, out var adapter) ? adapter.Create(configuration, context) : throw new ArgumentOutOfRangeException(nameof(configuration));
+        return _adapters.TryGetValue(EmulatorCatalog.Get(configuration.Core).Id, out var adapter) ? adapter.Create(configuration, context) : throw new ArgumentOutOfRangeException(nameof(configuration));
     }
 
-    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => _adapters[EmulatorCatalog.GetDefinition(configuration.Core).Id];
-    internal IEmulatorAdapter Adapter(Emulator emulator) => Adapter(EmulatorCatalog.GetDefinition(emulator).Id);
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => _adapters[EmulatorCatalog.Get(configuration.Core).Id];
+    internal IEmulatorAdapter Adapter(Emulator emulator) => Adapter(EmulatorCatalog.Get(emulator).Id);
 
     internal Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
 

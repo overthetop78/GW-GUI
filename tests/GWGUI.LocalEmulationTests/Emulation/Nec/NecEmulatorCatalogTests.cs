@@ -27,7 +27,7 @@ public sealed class NecEmulatorCatalogTests
     {
         Assert.NotNull(ModelCatalog.Get(machine));
         Assert.Equal(ids.Split(',').Order(), EmulatorCatalog.GetAll(machine).Select(item => item.Id).Order());
-        Assert.Contains(EmulatorCatalog.DefaultFor(machine), ids.Split(','));
+        Assert.Contains(EmulatorCatalog.DefaultEmulator(machine), ids.Split(','));
     }
 
     [Theory]
@@ -35,7 +35,7 @@ public sealed class NecEmulatorCatalogTests
     [InlineData("SuperGrafx", "beetle_sgx")]
     [InlineData("PcFx", "beetle_pcfx_fast")]
     [InlineData("LaserActive", "geargrafx")]
-    public void ExistingDefaultEmulatorsArePreserved(string machine, string emulator) => Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+    public void ExistingDefaultEmulatorsArePreserved(string machine, string emulator) => Assert.Equal(emulator, EmulatorCatalog.DefaultEmulator(machine));
 
     [Theory]
     [InlineData("beetle_pce", 42)]

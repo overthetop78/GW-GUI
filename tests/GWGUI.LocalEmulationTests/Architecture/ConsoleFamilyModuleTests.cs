@@ -180,7 +180,7 @@ public sealed class ConsoleFamilyModuleTests
             foreach (var machineId in definition.MachineIds)
             {
                 var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(machineId));
-                Assert.Equal(NintendoEmulatorCatalog.DefaultFor(machineId), configuration.EmulatorId);
+                Assert.Equal(NintendoEmulatorCatalog.DefaultEmulator(machineId), configuration.EmulatorId);
             }
         }
         finally

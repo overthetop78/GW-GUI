@@ -139,7 +139,7 @@ internal sealed class Engine
     }
 
 
-    public IEmulationConfiguration CreateConfiguration(string machineId) => InitializeOptions(SelectConfiguration(new MachineConfiguration(ModelCatalog.Get(machineId).Id, EmulatorCatalog.DefaultFor(machineId), Id: Guid.NewGuid())));
+    public IEmulationConfiguration CreateConfiguration(string machineId) => InitializeOptions(SelectConfiguration(new MachineConfiguration(ModelCatalog.Get(machineId).Id, EmulatorCatalog.DefaultEmulator(machineId), Id: Guid.NewGuid())));
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
@@ -249,7 +249,7 @@ internal sealed class Engine
     public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultEmulator(machineId));
         var adapter = this.Adapter(definition.Id);
         return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
@@ -257,7 +257,7 @@ internal sealed class Engine
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultEmulator(machineId));
         var adapter = this.Adapter(definition.Id);
         return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
@@ -265,7 +265,7 @@ internal sealed class Engine
     public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultEmulator(machineId));
         var adapter = this.Adapter(definition.Id);
         return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken).ConfigureAwait(false);
     }

@@ -330,7 +330,7 @@ internal sealed class Engine
             MountOrder: index)).ToArray()
     };
 
-    private static string DefaultEmulatorId(string machineId) => machineId == ModelConstants.Switch ? string.Empty : EmulatorCatalog.DefaultFor(machineId);
+    private static string DefaultEmulatorId(string machineId) => machineId == ModelConstants.Switch ? string.Empty : EmulatorCatalog.DefaultEmulator(machineId);
 
     public string GetFirmwareDirectory(string machineId)
     {

@@ -8,7 +8,7 @@ public static class EmulatorCatalog
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
         CommonCoreHostFunctions.Adapters.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly);
 
-    public static string DefaultFor(string machineId) => CreateAdapters()
+    public static string DefaultEmulator(string machineId) => CreateAdapters()
         .FirstOrDefault(adapter => adapter.Definition.MachineIds.Contains(machineId) && adapter.IsDefaultFor(machineId))?.EmulatorId
         ?? throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null);
 

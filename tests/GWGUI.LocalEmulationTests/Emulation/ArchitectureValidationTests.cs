@@ -5694,6 +5694,13 @@ public sealed class ArchitectureValidationTests
             Assert.DoesNotContain(assembly.GetTypes(), type => type.Name is "CoreReleaseErrors" or "EmulatorCatalogErrors");
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var catalogue = assembly.GetType(root + ".Common.Dictionaries.EmulatorCatalog", throwOnError: true)!;
+            var catalogueMethods = catalogue.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            Assert.DoesNotContain(catalogueMethods, method => method.Name is "GetDefinition" or "DefaultFor");
+            IEnumerable<MethodBase> discovery = catalogueMethods;
+            if (catalogue.TypeInitializer is { } initializer) discovery = discovery.Append(initializer);
+            Assert.Contains(discovery.Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls),
+                call => call.Method.DeclaringType == typeof(IEmulationAdapters) && call.Method.Name == "Create");
             var owner = assembly.GetType(root + ".Common.Exceptions.ErrorMessages");
             if (owner is null) continue;
             var published = owner.GetProperty("MissingPublishedDate", BindingFlags.Static | BindingFlags.NonPublic);

@@ -351,7 +351,7 @@ internal sealed class Engine
             MountOrder: item.Slot.Index)).ToArray()
     };
 
-    private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.DefaultFor(machineId);
+    private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.DefaultEmulator(machineId);
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
     /// <summary>Résout l’adaptateur sélectionné sans imposer un cœur aux configurations encore incomplètes.</summary>
