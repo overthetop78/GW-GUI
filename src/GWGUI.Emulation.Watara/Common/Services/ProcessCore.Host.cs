@@ -15,7 +15,7 @@ using GWGUI.Emulation.Functions;
 namespace GWGUI.Emulation.Watara.Common.Services;
 
 [SupportedOSPlatform(CoreHostConstants.Windows)]
-internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
+internal sealed partial class ProcessCore : IEmulatorCore
 {
     private Process StartHostProcess(string pipeName, string videoMapName)
     {

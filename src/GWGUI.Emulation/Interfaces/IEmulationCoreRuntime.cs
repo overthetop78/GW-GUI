@@ -5,8 +5,14 @@ namespace GWGUI.Emulation.Interfaces;
 
 /// <summary>Contrat de fonctionnement d’un cœur, réutilisable par tout module indépendant.</summary>
 /// <remarks>La machine possède le cœur : elle l’initialise, l’exécute et le libère sur son thread après arrêt de la boucle. Les sorties ne doivent plus être lues après sa destruction.</remarks>
-public interface IEmulationCoreRuntime<in TConfiguration, out TOption> : IDisposable
+public interface IEmulationCoreRuntime<in TConfiguration, out TOption> : IDisposable, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
 {
+    /// <summary>Demande de fermeture émise par le cœur et conservée jusqu’à l’arrêt de sa session.</summary>
+    /// <remarks>Le signal reste une donnée du runtime. La boucle Common l’examine pour terminer l’exécution ;
+    /// son propriétaire assure ensuite l’arrêt, la fermeture et la libération du cœur dans finally.
+    /// Lire ce signal ne transfère ni ressource ni responsabilité de destruction.</remarks>
+    bool ShutdownRequested { get; }
+
     /// <summary>Dernière image produite ; null tant qu’aucune image n’est disponible.</summary>
     VideoFrame? LatestVideoFrame { get; }
     /// <summary>Dernier bloc audio produit, indépendamment de sa consommation dans la file.</summary>

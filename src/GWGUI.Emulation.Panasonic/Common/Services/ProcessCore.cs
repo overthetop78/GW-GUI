@@ -17,7 +17,7 @@ using GWGUI.Emulation.Functions;
 namespace GWGUI.Emulation.Panasonic.Common.Services;
 
 [SupportedOSPlatform(CoreHostConstants.Windows)]
-internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
+internal sealed partial class ProcessCore : IEmulatorCore
 {
     /// <inheritdoc/>
     public void SoftReset() => Request(HostCommand.SoftReset);
@@ -139,7 +139,7 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
             writer.Write((int)peripheral);
         });
     public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
-    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
+    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
     public DiskStatus GetDiskStatus()
     {

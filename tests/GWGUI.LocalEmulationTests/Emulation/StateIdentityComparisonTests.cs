@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Functions;
@@ -82,6 +83,17 @@ public sealed class StateIdentityComparisonTests
 
     private sealed class IdentityCore : IEmulationCoreRuntime<object, object>
     {
+        public bool ShutdownRequested => false;
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
+        public int MinimumAudioLatencyMilliseconds => 0;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
+
         public List<string> Reads { get; } = [];
         public bool Disposed { get; private set; }
         public string CoreName { get { Reads.Add("name"); return "core"; } }

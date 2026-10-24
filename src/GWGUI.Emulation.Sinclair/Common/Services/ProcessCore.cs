@@ -136,7 +136,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             writer.Write((int)peripheral);
         });
     public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
-    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
+    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
     public DiskStatus GetDiskStatus()
     {

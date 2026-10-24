@@ -238,8 +238,10 @@ public sealed class CoreHostResponseTests
     private sealed record Configuration;
     private sealed record Option(int Code, [property: JsonPropertyName("profileDetail")] string Detail);
 
-    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+    private sealed class Core : IEmulationCoreRuntime<Configuration, Option>
     {
+        public bool ShutdownRequested => false;
+
         internal int Latency;
         public int MinimumAudioLatencyMilliseconds => Read("latency", Latency);
         public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }

@@ -11,7 +11,7 @@ using NativeFirmware = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.Firmw
 using NativeOptions = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
-internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
 {
     /// <inheritdoc/>
     /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>

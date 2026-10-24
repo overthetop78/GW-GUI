@@ -244,8 +244,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <param name="media">Description du média à insérer.</param>
     public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
     /// <summary>Demande l’éjection du média d’un emplacement.</summary>
-    /// <param name="slot">Emplacement transmis sous sa valeur de protocole.</param>
-    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
+    /// <param name="slot">Lecteur transmis avec sa catégorie et son indice complets.</param>
+    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
     /// <summary>Demande la sélection d’un disque dans le cœur.</summary>
     /// <param name="index">Index transmis sans modification.</param>
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));

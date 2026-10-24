@@ -2547,12 +2547,12 @@ public sealed class ArchitectureValidationTests
             var factory = Assert.Single(module.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var common = module.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
-            var feedback = module.GetType(root + ".Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
-            Assert.True(feedback.IsInterface);
-            Assert.False(feedback.IsVisible);
-            Assert.Empty(feedback.GetMethods());
-            Assert.Contains(contract, feedback.GetInterfaces());
-            Assert.Contains(feedback, common.GetInterfaces());
+            Assert.Null(module.GetType(root + ".Common.Interfaces.IEmulatorAudioBufferFeedback"));
+            var runtime = Assert.Single(common.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            Assert.Contains(contract, runtime.GetInterfaces());
+            Assert.Contains(typeof(IEmulationCoreRuntimeStatus), runtime.GetInterfaces());
+            Assert.Contains(contract, common.GetInterfaces());
+            Assert.Null(common.GetProperty("ShutdownRequested", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly));
             foreach (var core in module.GetTypes().Where(type => type.IsClass && !type.IsAbstract && common.IsAssignableFrom(type)))
             {
                 coreCount++;
@@ -3383,7 +3383,7 @@ public sealed class ArchitectureValidationTests
             Assert.Null(assembly.GetType(root + "EnvironmentCallbackHost"));
             var core = assembly.GetType(root + "ExternalCore", throwOnError: true)!;
             Assert.Equal(typeof(IEmulationEnvironmentCallbackHost), core.GetField("_environment", BindingFlags.NonPublic | BindingFlags.Instance)!.FieldType);
-            var feedback = assembly.GetType($"GWGUI.Emulation.{family}.Common.Interfaces.IEmulatorAudioBufferFeedback", throwOnError: true)!;
+            var feedback = typeof(IEmulationAudioBufferFeedback);
             Assert.True(feedback.IsAssignableFrom(core));
             var process = assembly.GetType($"GWGUI.Emulation.{family}.Common.Services.ProcessCore", throwOnError: true)!;
             Assert.True(feedback.IsAssignableFrom(process));
@@ -4012,7 +4012,8 @@ public sealed class ArchitectureValidationTests
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
             var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
-            var signal = contract.GetProperty("ShutdownRequested")!;
+            var runtime = Assert.Single(contract.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreRuntime<,>));
+            var signal = runtime.GetProperty("ShutdownRequested")!;
             Assert.NotNull(signal);
             Assert.Equal(typeof(bool), signal.PropertyType);
             Assert.True(signal.GetMethod!.IsAbstract);
@@ -4037,7 +4038,7 @@ public sealed class ArchitectureValidationTests
             foreach (var implementation in implementations)
             {
                 var core = RuntimeHelpers.GetUninitializedObject(implementation);
-                var map = implementation.GetInterfaceMap(contract);
+                var map = implementation.GetInterfaceMap(runtime);
                 var getter = map.TargetMethods[Array.IndexOf(map.InterfaceMethods, signal.GetMethod!)];
                 Assert.Equal(implementation.GetProperty(signal.Name)!.GetMethod, getter);
                 Assert.False((bool)signal.GetValue(core)!);
@@ -4445,7 +4446,8 @@ public sealed class ArchitectureValidationTests
                 if (core.Name == "ProcessCore")
                 {
                     processCount++;
-                    Assert.True(Calls(core).Count(call => call.Method.Name == "WriteMediaSlot" && call.Method.DeclaringType == typeof(IEmulationHostProtocol)) >= 2, root);
+                    var typedMedia = core.GetInterfaces().Any(type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreCommands<,>));
+                    Assert.True(Calls(core).Count(call => call.Method.Name == "WriteMediaSlot" && call.Method.DeclaringType == typeof(IEmulationHostProtocol)) >= (typedMedia ? 3 : 2), root);
                 }
             }
             var host = module.GetTypes().SingleOrDefault(type => type.Name == "CoreHost");

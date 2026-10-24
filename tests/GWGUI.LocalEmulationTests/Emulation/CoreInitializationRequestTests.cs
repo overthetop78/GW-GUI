@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation;
 using System.IO;
 using System.Text;
@@ -394,6 +395,17 @@ public sealed class CoreInitializationRequestTests
 
     private sealed class InitializationCore : IEmulationCoreRuntime<Configuration, string>
     {
+        public bool ShutdownRequested => false;
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
+        public int MinimumAudioLatencyMilliseconds => 0;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
+
         internal Action? OnDispose { get; init; }
         internal Action<Configuration, string, string?>? OnInitialize { get; set; }
         internal int DisposeCount { get; private set; }

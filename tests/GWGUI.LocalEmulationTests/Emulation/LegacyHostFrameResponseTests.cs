@@ -172,8 +172,10 @@ public sealed class LegacyHostFrameResponseTests
         }
         catch { stream.Dispose(); throw; }
     }
-    private sealed class Core : IEmulationCoreRuntime<object, string>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+    private sealed class Core : IEmulationCoreRuntime<object, string>
     {
+        public bool ShutdownRequested => false;
+
         public int MinimumAudioLatencyMilliseconds => 35;
         public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
         {

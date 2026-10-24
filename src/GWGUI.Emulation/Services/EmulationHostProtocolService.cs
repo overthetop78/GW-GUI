@@ -54,7 +54,7 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
     public void RunCoreFrame<TCore, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, TCore core,
         Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions,
-        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+        ref long lastVideoSequence, ref int lastDiagnosticCount) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
         => EmulationHostProtocolFunctions.RunCoreFrame<TCore, TConfiguration, TOption>(reader, writer, core, readInput, writeFrame, writeMediaStatus, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount);
 
     /// <inheritdoc/>
@@ -173,7 +173,7 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
         => EmulationHostProtocolFunctions.WriteCoreInitialization<TCore, TConfiguration, TOption>(writer, core, jsonOptions, ref lastDiagnosticCount, extensionSeparator, writeStatus);
 
     /// <inheritdoc/>
-    public void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+    public void WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>( BinaryWriter writer, TCore core, Action<BinaryWriter, VideoFrame?> writeFrame, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates, Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount, Action<BinaryWriter, TCore>? writeStateSupport = null, Action<BinaryWriter, TCore>? writeMediaStatus = null) where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
         => EmulationHostProtocolFunctions.WriteNativeCoreFrameResponse<TCore, TConfiguration, TOption>(writer, core, writeFrame, writeLedStates, jsonOptions, ref lastVideoSequence, ref lastDiagnosticCount, writeStateSupport, writeMediaStatus);
 
     /// <inheritdoc/>

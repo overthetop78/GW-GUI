@@ -11,7 +11,7 @@ using NativeFirmware = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.Firm
 using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;
-internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
 {
     /// <inheritdoc/>
     /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>

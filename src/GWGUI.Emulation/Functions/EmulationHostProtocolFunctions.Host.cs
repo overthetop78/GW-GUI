@@ -214,7 +214,7 @@ internal static partial class EmulationHostProtocolFunctions
         Action<BinaryWriter, TCore> writeMediaStatus,
         Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount)
-        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
     {
         core.SetInput(readInput(reader));
         core.SetAudioBufferStatus(ReadAudioBufferStatus(reader));
@@ -231,7 +231,7 @@ internal static partial class EmulationHostProtocolFunctions
         Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount,
         Action<BinaryWriter, TCore>? writeStateSupport = null,
         Action<BinaryWriter, TCore>? writeMediaStatus = null)
-        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>, IEmulationCoreRuntimeStatus, IEmulationAudioBufferFeedback
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
     {
         WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
         var bufferedAudioFrames = core.BufferedAudioFrames;
@@ -402,7 +402,7 @@ internal static partial class EmulationHostProtocolFunctions
                 ensureCore().InsertMedia(readMedia(reader));
                 break;
             case EmulationHostProtocolConstants.EjectMediaCommand:
-                ensureCore().EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
+                ensureCore().EjectMedia(ReadMediaSlot(reader));
                 break;
             case EmulationHostProtocolConstants.GetDiskStatusCommand:
                 writeDiskStatus(writer, ensureCore().GetDiskStatus());

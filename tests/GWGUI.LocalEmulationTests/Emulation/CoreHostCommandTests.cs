@@ -31,7 +31,7 @@ public sealed class CoreHostCommandTests
             switch (command)
             {
                 case 5: encoder.Write("disk.adf"); break;
-                case 6: encoder.Write(EmulationMediaSlot.MemoryCard0.ProtocolValue); break;
+                case 6: EmulationSdk.HostProtocol.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1)); break;
                 case 8: encoder.Write(3); encoder.Write(new byte[] { 4, 5, 6 }); break;
                 case 9: encoder.Write("mode"); encoder.Write("accurate"); break;
                 case 10: encoder.Write(4); break;
@@ -53,7 +53,7 @@ public sealed class CoreHostCommandTests
         switch (command)
         {
             case 5: Assert.Equal("disk.adf", core.Media); break;
-            case 6: Assert.Equal(EmulationMediaSlot.MemoryCard0, core.Slot); break;
+            case 6: Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.Slot); break;
             case 7: Assert.Equal(new byte[] { 3, 0, 0, 0, 7, 8, 9 }, response.ToArray()); break;
             case 8: Assert.Equal(new byte[] { 4, 5, 6 }, core.State); break;
             case 9: Assert.Equal(("mode", "accurate"), core.Option); break;

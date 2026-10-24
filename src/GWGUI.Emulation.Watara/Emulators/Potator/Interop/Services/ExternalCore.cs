@@ -11,7 +11,7 @@ using NativeMedia = GWGUI.Emulation.Watara.Emulators.Potator.Functions.MediaRunt
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 
-internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
 {
     /// <inheritdoc/>
     /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
