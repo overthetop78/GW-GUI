@@ -44,7 +44,7 @@ public sealed class NesMaxControllerTests
     [Fact]
     public void NesBindingsReachMesenNormalAndTurboButtonsWithoutChangingSnes()
     {
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
                 Mappings: new Dictionary<string, string>

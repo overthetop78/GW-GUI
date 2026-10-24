@@ -100,7 +100,7 @@ public sealed class WenquxingInputSettingsTests
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [nameof(EmulationKey.WenquxingDictionary)] = chord };
         var changed = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(initial, settings with { Keyboard = settings.Keyboard with { Values = values } }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
-        Assert.Equal("RightAlt+Mouse:Middle+Controller:A", restored.Input.Keyboard![nameof(EmulationKey.WenquxingDictionary)]);
+        Assert.Equal("RightAlt+Mouse:Middle+Controller:A", restored.Input.KeyboardBindings![nameof(EmulationKey.WenquxingDictionary)]);
         var physical = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.RightAlt, EmulationKey.Z },

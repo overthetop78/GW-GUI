@@ -33,7 +33,7 @@ public sealed class ThomsonInputSettingsTests
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [nameof(EmulationKey.ThomsonStop)] = chord };
         var changed = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(initial, settings with { Keyboard = settings.Keyboard with { Values = values } }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
-        Assert.Equal(chord, restored.Input.Keyboard![nameof(EmulationKey.ThomsonStop)]);
+        Assert.Equal(chord, restored.Input.KeyboardBindings![nameof(EmulationKey.ThomsonStop)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.RightAlt, EmulationKey.Z },
@@ -69,7 +69,7 @@ public sealed class ThomsonInputSettingsTests
     [InlineData("Keyboard:LeftControl")]
     public void SimpleBindingStillSubstitutesItsPhysicalKey(string source)
     {
-        var input = new InputConfiguration(Keyboard: new Dictionary<string, string> { [nameof(EmulationKey.ThomsonStop)] = source });
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.ThomsonStop)] = source });
         var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.LeftControl, EmulationKey.Z } };
         var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.Mo5, Emulator.Theodore);
         Assert.Contains(EmulationKey.ThomsonStop, mapped.Keys);

@@ -18,12 +18,12 @@ internal static class InputSettingsFunctions
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
         ConfigurationFunctions.Family(model) == MachineFamily.P2000
-            ? EmulationSdk.InputProcessing.ResolveBindings(P2000KeyboardDictionary.Definitions, input.Keyboard)
+            ? EmulationSdk.InputProcessing.ResolveBindings(P2000KeyboardDictionary.Definitions, input.KeyboardBindings)
             : new Dictionary<string, string>();
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.Keyboard ?? new Dictionary<string, string>(),
+        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.KeyboardBindings ?? new Dictionary<string, string>(),
             EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, CommonControllerFunctions.PortCount(configuration))
             .Select(port =>
@@ -70,8 +70,8 @@ internal static class InputSettingsFunctions
     }
     internal static void Validate(MachineConfiguration configuration)
     {
-        if (configuration.Family == MachineFamily.P2000) P2000KeyboardDictionary.Validate(configuration.Input.Keyboard);
-        else if (configuration.Input.Keyboard?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
+        if (configuration.Family == MachineFamily.P2000) P2000KeyboardDictionary.Validate(configuration.Input.KeyboardBindings);
+        else if (configuration.Input.KeyboardBindings?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Peripherals(configuration).Contains(binding.Peripheral)) throw new ArgumentException(nameof(configuration.Input));

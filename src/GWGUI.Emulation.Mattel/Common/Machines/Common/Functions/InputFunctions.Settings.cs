@@ -46,7 +46,7 @@ internal static class InputSettingsFunctions
     }
     internal static void Validate(MachineConfiguration configuration)
     {
-        if (configuration.Input.Keyboard?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
+        if (configuration.Input.KeyboardBindings?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Peripherals(configuration).Contains(binding.Peripheral)) throw new ArgumentException(nameof(configuration.Input));

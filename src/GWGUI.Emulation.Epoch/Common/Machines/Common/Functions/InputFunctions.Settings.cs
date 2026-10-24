@@ -19,7 +19,7 @@ internal static class InputSettingsFunctions
         {
             if (action.Key is not (EmulationKey.EpochPower or EmulationKey.EpochReset)) continue;
             var mapping = controller?.Mappings?.GetValueOrDefault(action.Id, action.DefaultBinding) ?? action.DefaultBinding;
-            if (input.Keyboard?.TryGetValue(action.Key.Value.ToString(), out var keyboardSource) == true)
+            if (input.KeyboardBindings?.TryGetValue(action.Key.Value.ToString(), out var keyboardSource) == true)
                 mapping = string.IsNullOrEmpty(keyboardSource) ? string.Empty : InputMappingConstants.KeyboardPrefix + keyboardSource;
             if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
                 result[action.Key.Value.ToString()] = mapping[InputMappingConstants.KeyboardPrefix.Length..];
@@ -112,17 +112,17 @@ internal static class InputSettingsFunctions
                 throw new ArgumentException(nameof(settings));
             return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
-        var result = configuration with { Input = new(configuration.Input.Keyboard, controllers) };
+        var result = configuration with { Input = new(configuration.Input.KeyboardBindings, controllers) };
         ConfigurationFunctions.Validate(result);
         return result;
     }
 
     internal static void Validate(MachineConfiguration configuration)
     {
-        if (configuration.Input.Keyboard is not null)
+        if (configuration.Input.KeyboardBindings is not null)
         {
             var allowed = KeyboardBindings(configuration with { Input = new InputConfiguration() }).Keys.ToHashSet(StringComparer.Ordinal);
-            if (configuration.Input.Keyboard.Any(pair => !allowed.Contains(pair.Key)))
+            if (configuration.Input.KeyboardBindings.Any(pair => !allowed.Contains(pair.Key)))
                 throw new ArgumentException(nameof(configuration.Input));
         }
         foreach (var controller in configuration.Input.Controllers ?? [])

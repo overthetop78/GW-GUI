@@ -21,7 +21,7 @@ internal static class KeyboardDictionary
         : [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz];
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), string.Empty, Defaults[key].ToString(), Labels[key])).ToArray();
     internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
-        => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions(model), input.Keyboard);
+        => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions(model), input.KeyboardBindings);
 
     internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationSdk.InputProcessing.MapKeyboard(snapshot, Bindings(input, model));
 }

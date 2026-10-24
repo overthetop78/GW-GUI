@@ -138,12 +138,12 @@ public sealed class SettingsPresentationTests
     public void Rpcs3ControllerCountPreservesHiddenAssignments()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3",
-            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, PeripheralCategory.Joystick,
+            Input: new InputConfiguration(Controllers: [new ControllerBinding(6, PeripheralCategory.Joystick,
                 Mappings: new Dictionary<string, string> { ["B"] = "Keyboard:A" })]));
         var one = InputSettingsFunctions.Describe(configuration);
         Assert.Single(one.ControllerPorts);
         var smaller = InputSettingsFunctions.Apply(configuration, one);
-        Assert.Equal("Keyboard:A", smaller.Input!.ControllerBindings!.Single(binding => binding.Port == 6).Mappings!["B"]);
+        Assert.Equal("Keyboard:A", smaller.Input!.Controllers!.Single(binding => binding.Port == 6).Mappings!["B"]);
         var expanded = smaller with { Options = new Dictionary<string, string> { ["input.controllerCount"] = "7" } };
         var seven = InputSettingsFunctions.Describe(expanded);
         Assert.Equal(7, seven.ControllerPorts.Count);
@@ -233,7 +233,7 @@ public sealed class SettingsPresentationTests
     public void SelectedPcee2GunConIsSentThroughTheNativeLightgunOption()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
-            Input: new InputConfiguration(ControllerBindings:
+            Input: new InputConfiguration(Controllers:
                 [new ControllerBinding(0, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.GunCon2),
                  new ControllerBinding(1, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.None)]));
         var native = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.Configure(configuration);

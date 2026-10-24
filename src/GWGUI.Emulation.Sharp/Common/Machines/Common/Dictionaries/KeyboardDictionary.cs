@@ -38,7 +38,7 @@ internal static class KeyboardDictionary
         InputMappingConstants.KeyboardResourcePrefix + key,
         Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();
     internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
-        => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions(model), input.Keyboard);
+        => EmulationSdk.InputProcessing.ResolveKeyboardBindings(Definitions(model), input.KeyboardBindings);
 
     internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationSdk.InputProcessing.MapKeyboard(snapshot, Bindings(input, model));
 }

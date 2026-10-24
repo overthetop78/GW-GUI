@@ -57,7 +57,7 @@ internal static class ConfigurationFunctions
             if (controller.Mappings?.Any(mapping => !ControllerActionConstants.All.Contains(mapping.Key)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }
-        if (configuration.Input.Keyboard is { Count: > 0 } keys
+        if (configuration.Input.KeyboardBindings is { Count: > 0 } keys
             && (configuration.Model != MachineModel.Adam
                 || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !CommonControllerFunctions.IsValidBinding(mapping.Value))))
             throw new ArgumentException(nameof(configuration.Input));

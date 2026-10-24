@@ -22,7 +22,7 @@ internal static class ControllerConfigurationFunctions
 
     internal static PeripheralCategory UsbType(MachineConfiguration configuration, int port)
     {
-        var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
+        var binding = configuration.Input?.Controllers?.FirstOrDefault(item => item.Port == port);
         var type = binding?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
         if (type != PeripheralCategory.Automatic) return type;
         var native = configuration.Options?.GetValueOrDefault(OptionConstants.LightgunKey);

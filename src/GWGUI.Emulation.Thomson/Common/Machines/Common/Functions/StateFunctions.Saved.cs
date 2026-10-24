@@ -56,13 +56,13 @@ internal static class SavedStateFunctions
 
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
-        EmulationSdk.StateFiles.OrderInputMappings(input.Keyboard).ToArray(),
+        EmulationSdk.StateFiles.OrderInputMappings(input.KeyboardBindings).ToArray(),
         (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,
             controller.Peripheral,
             controller.DeviceId,
             controller.DeadZonePercent,
             EmulationSdk.StateFiles.OrderInputMappings(controller.Mappings).ToArray())).ToArray(),
-        EmulationSdk.StateFiles.OrderInputMappings(input.Mouse).ToArray(),
+        EmulationSdk.StateFiles.OrderInputMappings(input.MouseMappings).ToArray(),
         input.MouseSpeedPercent
     );
 

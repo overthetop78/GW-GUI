@@ -480,7 +480,7 @@ public sealed class AmstradEmulatorAdapterTests
     public void EmptyControllerMappingsKeepTheVirtualControllerNeutral(PeripheralCategory controllerType)
     {
         const uint buttons = (1u << 4) | (1u << 0);
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new ControllerBinding(0, controllerType, Mappings:
                 new Dictionary<string, string>

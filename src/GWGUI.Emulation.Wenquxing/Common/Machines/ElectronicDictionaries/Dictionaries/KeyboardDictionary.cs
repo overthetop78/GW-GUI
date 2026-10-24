@@ -51,7 +51,7 @@ internal static class KeyboardDictionary
     internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
     {
         var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
-        foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
+        foreach (var pair in input.KeyboardBindings ?? new Dictionary<string, string>())
         {
             if (!bindings.ContainsKey(pair.Key) || pair.Value is null)
                 throw new ArgumentException(nameof(input));

@@ -26,7 +26,7 @@ public sealed class SharpInputSettingsTests
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [target.ToString()] = chord };
         var changed = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(initial, settings with { Keyboard = settings.Keyboard with { Values = values } }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
-        Assert.Equal(chord, restored.Input.Keyboard![target.ToString()]);
+        Assert.Equal(chord, restored.Input.KeyboardBindings![target.ToString()]);
         var physical = EmulationControllerState.Empty with { Buttons = 1u << 8 };
         var snapshot = EmulationInputSnapshot.Empty with
         {
@@ -59,7 +59,7 @@ public sealed class SharpInputSettingsTests
     public void SimpleKeyboardSourcesKeepTheExistingSubstitution(string source)
     {
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.LeftAlt, EmulationKey.A } };
-        var input = new InputConfiguration(Keyboard: new Dictionary<string, string> { [nameof(EmulationKey.SharpGraph)] = source });
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.SharpGraph)] = source });
         var mapped = NativeInputMappingFunctions.Apply(snapshot, input, MachineModel.X1, Emulator.X1);
         Assert.Contains(EmulationKey.SharpGraph, mapped.Keys);
         Assert.DoesNotContain(EmulationKey.LeftAlt, mapped.Keys);
@@ -84,6 +84,6 @@ public sealed class SharpInputSettingsTests
             Mouse = settings.Mouse! with { Values = new Dictionary<string, string> { ["Left"] = chord } }
         }));
         Assert.All(changed.Input.Controllers!, binding => Assert.Equal(chord, binding.Mappings!["Fire1"]));
-        Assert.Equal(chord, changed.Input.Mouse!["Left"]);
+        Assert.Equal(chord, changed.Input.MouseMappings!["Left"]);
     }
 }

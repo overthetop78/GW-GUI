@@ -14,7 +14,7 @@ internal static class InputSettingsFunctions
     };
 
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
-        model != MachineModel.Adam ? new Dictionary<string, string>() : KeyboardDefaults.ToDictionary(pair => pair.Key, pair => input.Keyboard?.GetValueOrDefault(pair.Key, pair.Value.ToString()) ?? pair.Value.ToString());
+        model != MachineModel.Adam ? new Dictionary<string, string>() : KeyboardDefaults.ToDictionary(pair => pair.Key, pair => input.KeyboardBindings?.GetValueOrDefault(pair.Key, pair.Value.ToString()) ?? pair.Value.ToString());
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral)
     {
@@ -131,7 +131,7 @@ internal static class InputSettingsFunctions
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
             KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
-            configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+            configuration.Input.KeyboardBindings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mapper = new Engine().Adapter(configuration.Core) as IEmulatorControllerAdapter;
         var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
@@ -174,7 +174,7 @@ internal static class InputSettingsFunctions
                 || !Peripherals(configuration).Contains(peripheral)) throw new ArgumentException(nameof(settings));
             return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
-        var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.Keyboard, controllers) };
+        var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.KeyboardBindings, controllers) };
         ConfigurationFunctions.Validate(result);
         return result;
     }

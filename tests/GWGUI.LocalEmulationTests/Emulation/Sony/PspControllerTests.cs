@@ -40,7 +40,7 @@ public sealed class PspControllerTests
             Keys = new HashSet<EmulationKey> { EmulationKey.A },
             Controllers = [source]
         };
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
                 Mappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })
@@ -64,7 +64,7 @@ public sealed class PspControllerTests
             Controls = new(new Dictionary<string, float> { ["Axis0"] = position })
         };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new(IntegratedPortIndex, PeripheralCategory.Joystick, "pad", new Dictionary<string, string>
             {
@@ -115,7 +115,7 @@ public sealed class PspControllerTests
             [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardJ,
             [InputSettingsFunctionsConstants.PspStickUp] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
+        var configuration = new InputConfiguration(Controllers: [new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -143,7 +143,7 @@ public sealed class PspControllerTests
             Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.B },
             Controllers = [source]
         };
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new ControllerBinding(IntegratedPortIndex, PeripheralCategory.Joystick,
                 Mappings: new Dictionary<string, string>

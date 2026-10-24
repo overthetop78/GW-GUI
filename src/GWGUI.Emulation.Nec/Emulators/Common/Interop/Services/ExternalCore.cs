@@ -165,7 +165,7 @@ internal sealed class ExternalCore : IEmulatorCore
             _host.ValidateConfiguredOptions();
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);
             for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, configuration.Input?.ControllerBindings?.Any(binding => binding.Port == port && ControllerCatalog.IsMouse(binding.Peripheral)) == true ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice);
+                setController((uint)port, configuration.Input?.Controllers?.Any(binding => binding.Port == port && ControllerCatalog.IsMouse(binding.Peripheral)) == true ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)

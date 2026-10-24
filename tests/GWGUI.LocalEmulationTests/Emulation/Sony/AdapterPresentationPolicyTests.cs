@@ -74,7 +74,7 @@ public sealed class AdapterPresentationPolicyTests
     public void GunCon2UsesExistingAdapterDefinitions()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
-            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(0, PeripheralCategory.GunCon2)]));
+            Input: new InputConfiguration(Controllers: [new ControllerBinding(0, PeripheralCategory.GunCon2)]));
         var expected = new Pcee2MachineFactory().GetControllerBindingDefinitions(configuration, PeripheralCategory.GunCon2, 0);
         var port = InputSettingsFunctions.Describe(configuration).ControllerPorts.Single(port => port.Number == 1);
         Assert.NotNull(expected);

@@ -22,7 +22,7 @@ internal static class NativeInputSnapshotFunctions
             foreach (var action in ControllerProtocolDictionary.Actions(model, core, port))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(action.Id, action.DefaultBinding) ?? action.DefaultBinding;
-                if (action.Key is EmulationKey key && input.Keyboard?.TryGetValue(key.ToString(), out var keyboardSource) == true)
+                if (action.Key is EmulationKey key && input.KeyboardBindings?.TryGetValue(key.ToString(), out var keyboardSource) == true)
                     mapping = string.IsNullOrEmpty(keyboardSource) ? string.Empty : InputMappingConstants.KeyboardPrefix + keyboardSource;
                 if (string.IsNullOrWhiteSpace(mapping)) continue;
                 var physical = CommonControllerFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);

@@ -64,7 +64,7 @@ public sealed class Nintendo64ControllerTests
             [EmulationControllerCommandIds.Start] = KeyboardJ,
             [EmulationControllerCommandIds.Up] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
+        var configuration = new InputConfiguration(Controllers: [new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick, Mappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -93,7 +93,7 @@ public sealed class Nintendo64ControllerTests
     {
         var source = EmulationControllerState.Empty with { DeviceId = "pad", Controls = new(new Dictionary<string, float> { ["Axis0"] = position }) };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new(FirstPortIndex, PeripheralCategory.Joystick, "pad", new Dictionary<string, string>
             {
@@ -119,7 +119,7 @@ public sealed class Nintendo64ControllerTests
             Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.B },
             Controllers = [source]
         };
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new ControllerBinding(FirstPortIndex, PeripheralCategory.Joystick,
                 Mappings: new Dictionary<string, string>

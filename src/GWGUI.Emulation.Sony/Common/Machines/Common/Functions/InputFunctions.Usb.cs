@@ -17,13 +17,13 @@ internal static partial class InputSettingsFunctions
     private static ControllerBinding UsbBinding(MachineConfiguration configuration, int index)
     {
         if (configuration.EmulatorId == "pcee2")
-            return configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index)
+            return configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == index)
                 ?? new ControllerBinding(index, CommonControllerFunctions.Selected(configuration, index));
         var bindings = configuration.Input?.UsbBindings;
         if (bindings is not null) return bindings.FirstOrDefault(binding => binding.Port == index) ?? new ControllerBinding(index, PeripheralCategory.None);
         // Older LRPS2 configurations stored USB modes in controller slots.
-        var legacy = configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index);
-        var combined = configuration.Input?.ControllerBindings?.Any(binding => binding.Peripheral == PeripheralCategory.KeyboardAndMouse) == true
+        var legacy = configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == index);
+        var combined = configuration.Input?.Controllers?.Any(binding => binding.Peripheral == PeripheralCategory.KeyboardAndMouse) == true
             || configuration.Controllers?.Contains(PeripheralCategory.KeyboardAndMouse) == true;
         var type = combined ? index == 0 ? PeripheralCategory.Keyboard : PeripheralCategory.Mouse
             : legacy?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(index) ?? PeripheralCategory.None;
@@ -47,7 +47,7 @@ internal static partial class InputSettingsFunctions
         var usb = ControllerCatalog.IsUsbPort(configuration, index);
         var synthetic = usb && configuration.EmulatorId != "pcee2";
         var current = synthetic ? UsbBinding(configuration, index - 8)
-            : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == index);
+            : configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == index);
         var type = synthetic ? current!.Peripheral
             : configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2
                 ? CommonControllerFunctions.Selected(configuration, index) : CommonControllerFunctions.Resolve(configuration, index);

@@ -18,7 +18,7 @@ internal static partial class InputSettingsFunctions
                 | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true,
             CompatibleVisualIds(mouseType), DefaultVisualId(mouseType),
             VisualCommandIds(mouseType)) : null;
-        var configured = input.ControllerBindings ?? [];
+        var configured = input.Controllers ?? [];
         var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
@@ -54,7 +54,7 @@ internal static partial class InputSettingsFunctions
                 KeyboardBindings = keyboard,
                 KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
-                ControllerBindings = controllers
+                Controllers = controllers
             }
         };
     }

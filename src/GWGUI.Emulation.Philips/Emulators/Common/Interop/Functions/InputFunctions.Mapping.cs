@@ -37,7 +37,7 @@ internal static class NativeInputMappingFunctions
             if (binding.Peripheral == PeripheralCategory.Mouse && port == ControllerConstants.FirstPort)
                 pointer = pointer with { Left = (buttons & 1) != 0, Right = (buttons & 2) != 0, Middle = (buttons & 4) != 0 };
         }
-        var keys = ConfigurationFunctions.Family(model) == MachineFamily.P2000 ? P2000KeyboardDictionary.Apply(snapshot, input.Keyboard) : new HashSet<EmulationKey>(snapshot.Keys);
+        var keys = ConfigurationFunctions.Family(model) == MachineFamily.P2000 ? P2000KeyboardDictionary.Apply(snapshot, input.KeyboardBindings) : new HashSet<EmulationKey>(snapshot.Keys);
         return snapshot with { Keys = keys, Pointer = pointer, Controllers = controllers };
     }
 }

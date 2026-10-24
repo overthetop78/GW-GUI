@@ -48,7 +48,7 @@ internal static partial class InputSettingsFunctions
                 port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings), DeadZonePercent: port.DeadZonePercent);
         }).ToArray();
         if (configuration.Model == ModelConstants.PlayStation3)
-            controllers = controllers.Concat((current.ControllerBindings ?? [])
+            controllers = controllers.Concat((current.Controllers ?? [])
                 .Where(binding => controllers.All(selected => selected.Port != binding.Port))).ToArray();
         return configuration with
         {
@@ -57,7 +57,7 @@ internal static partial class InputSettingsFunctions
                 KeyboardBindings = keyboard,
                 KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
-                ControllerBindings = controllers,
+                Controllers = controllers,
                 UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"
                     ? settings.ControllerPorts.Where(port => port.IsUsb).Select(port =>
                     {

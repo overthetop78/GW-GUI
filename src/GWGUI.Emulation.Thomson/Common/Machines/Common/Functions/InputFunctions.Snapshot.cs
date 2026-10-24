@@ -53,8 +53,8 @@ internal static class InputSnapshotFunctions
         }
 
         var physicalPointerSource = EmulationSdk.InputProcessing.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
-        var left = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
-        var right = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
+        var left = input.MouseMappings?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
+        var right = input.MouseMappings?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
         var pointer = snapshot.Pointer with
         {
             DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),

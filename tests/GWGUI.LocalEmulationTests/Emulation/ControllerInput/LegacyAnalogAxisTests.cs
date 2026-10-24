@@ -28,7 +28,7 @@ public sealed class LegacyAnalogAxisTests
     [InlineData(SegaEnums.PeripheralCategory.SegaSaturnArcadeRacer, "Saturn", 2)]
     public void SpecialControllerAxesArePairedUnassignedAndPersisted(SegaEnums.PeripheralCategory type, string model, int count)
     {
-        var input = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", new Dictionary<string, string>())]);
+        var input = new SegaInput.InputConfiguration(Controllers: [new(0, type, "pad", new Dictionary<string, string>())]);
         var configuration = new SegaInput.MachineConfiguration(model, string.Empty, Input: input);
         var settings = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSettingsFunctions.Describe(configuration);
         var port = settings.ControllerPorts[0];
@@ -42,7 +42,7 @@ public sealed class LegacyAnalogAxisTests
         var values = new Dictionary<string, string> { ["LeftStickRight"] = "Keyboard:A" };
         var changed = settings with { ControllerPorts = [port with { Bindings = port.Bindings with { Values = values } }] };
         var applied = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSettingsFunctions.Apply(configuration, changed);
-        Assert.Equal("Keyboard:A", applied.Input!.ControllerBindings![0].Mappings!["LeftStickRight"]);
+        Assert.Equal("Keyboard:A", applied.Input!.Controllers![0].Mappings!["LeftStickRight"]);
     }
 
     [Theory]
@@ -63,7 +63,7 @@ public sealed class LegacyAnalogAxisTests
         };
         physical = physical with { Controls = new(new Dictionary<string, float> { ["Axis0"] = .625f }) };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [physical] };
-        var input = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", mappings)]);
+        var input = new SegaInput.InputConfiguration(Controllers: [new(0, type, "pad", mappings)]);
         var mapped = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[0];
         Assert.Equal(8192, mapped.LeftX);
         Assert.Equal(0, mapped.LeftY);
@@ -96,7 +96,7 @@ public sealed class LegacyAnalogAxisTests
         var source = EmulationControllerState.Empty with { DeviceId = "pad", LeftTrigger = short.MaxValue, RightTrigger = 8192 };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
         var mappings = new Dictionary<string, string> { ["L2"] = "Controller:pad:RightTrigger" };
-        var configuration = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", mappings)]);
+        var configuration = new SegaInput.InputConfiguration(Controllers: [new(0, type, "pad", mappings)]);
         var mapped = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[0];
         Assert.Equal(8192, mapped.LeftTrigger);
         Assert.Equal(0, mapped.RightTrigger);
@@ -154,10 +154,10 @@ public sealed class LegacyAnalogAxisTests
         var mappings = new Dictionary<string, string> { ["Left"] = negative, ["Right"] = positive };
         var atari = new AtariInput.InputConfiguration(Controllers: [new(0, AtariEnums.PeripheralCategory.AnalogJoystick, "pad", mappings)]);
         var atariState = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, atari, AtariEnums.MachineModel.Atari5200).Controllers[0];
-        var commodore = new CommodoreInput.InputConfiguration(ControllerBindings: [new(0, CommodoreEnums.PeripheralCategory.AnalogJoystick, "pad", mappings)]);
+        var commodore = new CommodoreInput.InputConfiguration(Controllers: [new(0, CommodoreEnums.PeripheralCategory.AnalogJoystick, "pad", mappings)]);
         var commodoreState = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, commodore, false).Controllers[0];
         var segaMappings = new Dictionary<string, string> { ["LeftStickLeft"] = negative, ["LeftStickRight"] = positive };
-        var sega = new SegaInput.InputConfiguration(ControllerBindings: [new(0, SegaEnums.PeripheralCategory.SegaDreamcastController, "pad", segaMappings)]);
+        var sega = new SegaInput.InputConfiguration(Controllers: [new(0, SegaEnums.PeripheralCategory.SegaDreamcastController, "pad", segaMappings)]);
         var segaState = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, sega, false).Controllers[0];
         foreach (var state in new[] { atariState, commodoreState, segaState })
         {

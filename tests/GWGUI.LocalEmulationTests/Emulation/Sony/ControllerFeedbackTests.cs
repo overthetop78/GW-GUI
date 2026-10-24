@@ -143,7 +143,7 @@ public sealed class ControllerFeedbackTests
     {
         var outputs = assigned ? new Dictionary<string, EmulationControllerOutputBinding> { [EmulationControllerFeedbackCommands.Strong] = new("device", EmulationControllerMotor.LowFrequency) } : null;
         var configuration = new MachineConfiguration("PlayStation3", "rpcs3", AudioEnabled: false,
-            Input: new InputConfiguration(ControllerBindings: [new(0, PeripheralCategory.Joystick, VisualId: EmulationControllerVisualIds.SonyDualShock3, OutputBindings: outputs)]));
+            Input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Joystick, VisualId: EmulationControllerVisualIds.SonyDualShock3, OutputBindings: outputs)]));
         var core = new FeedbackCore();
         var machine = new Machine(Guid.NewGuid(), configuration, core, [], "unused-session");
         try

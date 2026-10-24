@@ -187,14 +187,14 @@ internal static class ControllerFunctions
         if (port < 0 || port >= PortCount(configuration)) throw new ArgumentOutOfRangeException(nameof(port));
         if (!InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), port).Contains(type)) throw new ArgumentOutOfRangeException(nameof(type), type, null);
         var input = configuration.Input ?? new InputConfiguration();
-        var bindings = input.ControllerBindings ?? [];
+        var bindings = input.Controllers ?? [];
         var binding = bindings.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, type);
         var controllers = configuration.Controllers is null ? null : Enumerable.Range(0, Math.Max(configuration.Controllers.Count, port + 1))
             .Select(index => index == port ? type : index < configuration.Controllers.Count ? configuration.Controllers[index] : bindings.FirstOrDefault(item => item.Port == index)?.Peripheral ?? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model))).ToArray();
         return configuration with
         {
             Controllers = controllers,
-            Input = input with { ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).OrderBy(item => item.Port).ToArray() }
+            Input = input with { Controllers = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).OrderBy(item => item.Port).ToArray() }
         };
     }
 }

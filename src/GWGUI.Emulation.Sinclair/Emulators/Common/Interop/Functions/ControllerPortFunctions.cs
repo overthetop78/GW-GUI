@@ -12,7 +12,7 @@ internal static class ControllerPortFunctions
         {
             var peripheral = controllers.FirstOrDefault(controller => controller.Port == port)?.Peripheral ?? PeripheralCategory.None;
             var device = Device(peripheral);
-            if (configuration.Core == Emulator.Fuse && device == InputConstants.NoDevice && !mouseConfigured && configuration.Input.Mouse?.Count > 0)
+            if (configuration.Core == Emulator.Fuse && device == InputConstants.NoDevice && !mouseConfigured && configuration.Input.MouseMappings?.Count > 0)
             {
                 device = InputConstants.KempstonMouse;
                 mouseConfigured = true;

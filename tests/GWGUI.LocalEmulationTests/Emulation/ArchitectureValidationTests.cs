@@ -16,6 +16,69 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Fact]
+    public void InputConfigurationsUseCommonCollectionNamesAndKeepStoredValues()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load)
+            .Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, assemblies.Length);
+        var counts = new Dictionary<string, int> { ["Controllers"] = 0, ["KeyboardBindings"] = 0, ["MouseMappings"] = 0 };
+        var preservedWireNames = 0;
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        foreach (var assembly in assemblies)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var root = factory.Namespace![..factory.Namespace!.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.InputConfiguration", true)!;
+            Assert.Null(configuration.GetProperty("ControllerBindings"));
+            Assert.Null(configuration.GetProperty("Keyboard"));
+            Assert.Null(configuration.GetProperty("Mouse"));
+            var values = new Dictionary<string, object>();
+            foreach (var name in counts.Keys.ToArray())
+            {
+                if (configuration.GetProperty(name) is not { } property) continue;
+                counts[name]++;
+                var wireName = property.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name;
+                if (wireName is not null) preservedWireNames++;
+                wireName ??= options.PropertyNamingPolicy!.ConvertName(name);
+                if (name == "Controllers")
+                {
+                    var binding = assembly.GetType(root + ".Common.Machines.Common.Contracts.ControllerBinding", true)!;
+                    Assert.Equal(typeof(IReadOnlyList<>).MakeGenericType(binding), property.PropertyType);
+                    var peripheralName = binding.GetProperty("Peripheral")!.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name ?? "peripheral";
+                    values[wireName] = new[] { new Dictionary<string, object> { ["port"] = 2, [peripheralName] = 0, ["deviceId"] = "physical-controller" } };
+                }
+                else
+                {
+                    Assert.Equal(typeof(IReadOnlyDictionary<string, string>), property.PropertyType);
+                    values[wireName] = new Dictionary<string, string> { ["action"] = "Keyboard:A" };
+                }
+            }
+            var restored = JsonSerializer.Deserialize(JsonSerializer.Serialize(values), configuration, options)!;
+            using var serialized = JsonDocument.Parse(JsonSerializer.Serialize(restored, configuration, options));
+            foreach (var name in counts.Keys)
+            {
+                if (configuration.GetProperty(name) is not { } property) continue;
+                Assert.NotNull(property.GetValue(restored));
+                var wireName = property.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name ?? options.PropertyNamingPolicy!.ConvertName(name);
+                var stored = serialized.RootElement.GetProperty(wireName);
+                if (name == "Controllers")
+                {
+                    Assert.Equal(2, stored[0].GetProperty("port").GetInt32());
+                    Assert.Equal("physical-controller", stored[0].GetProperty("deviceId").GetString());
+                }
+                else Assert.Equal("Keyboard:A", stored.GetProperty("action").GetString());
+                var commonWireName = options.PropertyNamingPolicy!.ConvertName(name);
+                if (wireName != commonWireName) Assert.False(serialized.RootElement.TryGetProperty(commonWireName, out _));
+            }
+        }
+        Assert.Equal(23, counts["Controllers"]);
+        Assert.Equal(20, counts["KeyboardBindings"]);
+        Assert.Equal(5, counts["MouseMappings"]);
+        Assert.Equal(19, preservedWireNames);
+    }
+
     [Theory]
     [InlineData("Amstrad")]
     [InlineData("Commodore")]

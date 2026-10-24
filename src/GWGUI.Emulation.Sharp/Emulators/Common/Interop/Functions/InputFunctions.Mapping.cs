@@ -58,8 +58,8 @@ internal static class NativeInputMappingFunctions
         if (core == Emulator.Px68k)
         {
             var physical = CommonControllerFunctions.ResolveController(null, snapshot.Controllers, ControllerConstants.FirstPort);
-            var left = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
-            var right = input.Mouse?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
+            var left = input.MouseMappings?.GetValueOrDefault(InputMappingConstants.MouseLeft, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft;
+            var right = input.MouseMappings?.GetValueOrDefault(InputMappingConstants.MouseRight, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight) ?? InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight;
             pointer = pointer with
             {
                 DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),

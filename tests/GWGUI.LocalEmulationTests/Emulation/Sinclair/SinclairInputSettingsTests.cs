@@ -24,7 +24,7 @@ public sealed class SinclairInputSettingsTests
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [nameof(EmulationKey.SinclairSymbolShift)] = chord };
         var changed = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(initial, settings with { Keyboard = settings.Keyboard with { Values = values } }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
-        Assert.Equal(chord, restored.Input.Keyboard![nameof(EmulationKey.SinclairSymbolShift)]);
+        Assert.Equal(chord, restored.Input.KeyboardBindings![nameof(EmulationKey.SinclairSymbolShift)]);
         var physical = EmulationControllerState.Empty with { Buttons = 1u << 8 };
         var snapshot = EmulationInputSnapshot.Empty with
         {
@@ -58,7 +58,7 @@ public sealed class SinclairInputSettingsTests
     public void SimpleSymbolShiftBindingStillSubstitutesItsPhysicalKey(string source)
     {
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.LeftControl, EmulationKey.A } };
-        var input = new InputConfiguration(Keyboard: new Dictionary<string, string> { [nameof(EmulationKey.SinclairSymbolShift)] = source });
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.SinclairSymbolShift)] = source });
         var mapped = NativeInputMappingFunctions.Apply(snapshot, input, MachineModel.Spectrum48K, Emulator.Fuse);
         Assert.Contains(EmulationKey.SinclairSymbolShift, mapped.Keys);
         Assert.DoesNotContain(EmulationKey.LeftControl, mapped.Keys);
@@ -92,7 +92,7 @@ public sealed class SinclairInputSettingsTests
         }));
         Assert.Equal(2, changed.Input.Controllers!.Count);
         Assert.All(changed.Input.Controllers, binding => Assert.Equal(chord, binding.Mappings!["Fire1"]));
-        Assert.Equal(chord, changed.Input.Mouse!["Left"]);
+        Assert.Equal(chord, changed.Input.MouseMappings!["Left"]);
     }
 
     [Fact]

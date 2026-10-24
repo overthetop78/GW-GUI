@@ -18,7 +18,7 @@ internal static class InputSnapshotFunctions
         {
             Keys = mappedKeys,
             Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys, physicalMouse, configuration.MouseButtonMappings),
-            Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse, configuration.ControllerBindings, controllerPortCount)
+            Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse, configuration.Controllers, controllerPortCount)
         };
     }
 

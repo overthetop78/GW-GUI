@@ -50,14 +50,14 @@ internal static class InputSettingsFunctions
                 throw new ArgumentException(nameof(settings));
             return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings);
         }).ToArray();
-        var result = configuration with { Input = new(configuration.Input.Keyboard, controllers) };
+        var result = configuration with { Input = new(configuration.Input.KeyboardBindings, controllers) };
         ConfigurationFunctions.Validate(result);
         return result;
     }
 
     internal static void Validate(MachineConfiguration configuration)
     {
-        if (configuration.Input.Keyboard?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
+        if (configuration.Input.KeyboardBindings?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
             var actions = InputSnapshotDictionary.Actions(configuration, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);

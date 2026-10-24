@@ -28,7 +28,7 @@ public sealed class PhilipsInputSettingsTests
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [target.ToString()] = binding };
         var changed = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(original, settings with { Keyboard = settings.Keyboard with { Values = values } }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
-        Assert.Equal(binding, restored.Input.Keyboard![target.ToString()]);
+        Assert.Equal(binding, restored.Input.KeyboardBindings![target.ToString()]);
         const uint physicalButtonA = 1u << 8;
         var controller = EmulationControllerState.Empty with { Buttons = physicalButtonA };
         var snapshot = EmulationInputSnapshot.Empty with
@@ -61,7 +61,7 @@ public sealed class PhilipsInputSettingsTests
     [InlineData("LeftShift+A", EmulationKey.LeftShift)]
     public void P2000KeepsSingleModifiersAndKeyboardChordsUsable(string source, EmulationKey modifier)
     {
-        var input = new InputConfiguration(Keyboard: new Dictionary<string, string> { [nameof(EmulationKey.PhilipsP2000Start)] = source });
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.PhilipsP2000Start)] = source });
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { modifier, EmulationKey.A } };
         var mapper = new M2000MachineFactory();
         Assert.Contains(EmulationKey.PhilipsP2000Start, mapper.MapInput(snapshot, new MachineConfiguration(MachineModel.P2000T, input: input)).Keys);

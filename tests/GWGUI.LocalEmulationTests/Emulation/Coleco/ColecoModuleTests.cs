@@ -275,7 +275,7 @@ public sealed class ColecoModuleTests
     [Fact]
     public void AdamSpecialKeysAreModifiableAndSurviveJson()
     {
-        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = "Z" }));
+        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(KeyboardBindings: new Dictionary<string,string> { ["Smart1"] = "Z" }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         Assert.Contains(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, restored).Keys);
@@ -313,7 +313,7 @@ public sealed class ColecoModuleTests
     [Fact]
     public void AdamSpecialKeyCanBeUnassigned()
     {
-        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = string.Empty }));
+        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(KeyboardBindings: new Dictionary<string,string> { ["Smart1"] = string.Empty }));
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.F1 } };
         Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, config).Keys);
     }

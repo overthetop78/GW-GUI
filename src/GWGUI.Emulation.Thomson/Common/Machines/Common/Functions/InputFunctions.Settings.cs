@@ -11,7 +11,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
-        var mouseValues = EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), configuration.Input.Mouse);
+        var mouseValues = EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), configuration.Input.MouseMappings);
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
         {
@@ -60,8 +60,8 @@ internal static class InputSettingsFunctions
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var input = configuration.Input with
         {
-            Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),
-            Mouse = settings.Mouse is null ? configuration.Input.Mouse : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),
+            KeyboardBindings = settings.Keyboard is null ? configuration.Input.KeyboardBindings : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),
+            MouseMappings = settings.Mouse is null ? configuration.Input.MouseMappings : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),
             Controllers = controllers
         };
         var result = configuration with
@@ -77,7 +77,7 @@ internal static class InputSettingsFunctions
         _ = KeyboardBindings(configuration.Input, configuration.Model);
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         mouseIds.Add(InputMappingConstants.MouseRight);
-        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, CommonControllerFunctions.IsValidBinding))
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.MouseMappings, mouseIds, CommonControllerFunctions.IsValidBinding))
             throw new ArgumentException(nameof(configuration.Input));
         var ids = ControllerCatalog.Definitions(PeripheralCategory.Joystick).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])

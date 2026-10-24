@@ -9,7 +9,7 @@ internal static class InputSettingsFunctions
     {
         if (settings.Keyboard is null || settings.Mouse is not null || settings.ControllerPorts.Count != CommonControllerFunctions.PortCount(configuration)) throw new ArgumentException(nameof(settings));
         var input = new InputConfiguration(new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal));
-        var result = configuration with { Input = input with { Keyboard = KeyboardDictionary.Bindings(input, configuration.Model) } };
+        var result = configuration with { Input = input with { KeyboardBindings = KeyboardDictionary.Bindings(input, configuration.Model) } };
         ConfigurationFunctions.Validate(result);
         return result;
     }

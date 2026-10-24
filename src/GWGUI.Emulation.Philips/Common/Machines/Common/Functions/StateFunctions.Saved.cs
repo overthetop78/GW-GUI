@@ -69,7 +69,7 @@ internal static class SavedStateFunctions
 
 
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
-        EmulationSdk.StateFiles.OrderInputMappings(input.Keyboard).ToArray(),
+        EmulationSdk.StateFiles.OrderInputMappings(input.KeyboardBindings).ToArray(),
         (input.Controllers ?? []).OrderBy(controller => controller.Port)
             .Select(controller => new StateControllerFingerprint(
                 controller.Port,

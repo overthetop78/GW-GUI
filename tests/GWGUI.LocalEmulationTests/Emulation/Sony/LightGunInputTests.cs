@@ -77,7 +77,7 @@ public sealed class LightGunInputTests
     [Fact]
     public void ExplicitMouseAndKeyboardBindingsReachTheNativeGunCommands()
     {
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new(0, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string>
             {
@@ -113,7 +113,7 @@ public sealed class LightGunInputTests
     [InlineData((uint)LightGunInput.Right, EmulationControllerCommandIds.Right)]
     public void EachPortKeepsItsOwnExplicitCommand(uint nativeId, string command)
     {
-        var configuration = new InputConfiguration(ControllerBindings:
+        var configuration = new InputConfiguration(Controllers:
         [
             new(0, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string> { [command] = "Keyboard:A" }),
             new(1, PeripheralCategory.GunCon, Mappings: new Dictionary<string, string> { [command] = "Keyboard:S" })

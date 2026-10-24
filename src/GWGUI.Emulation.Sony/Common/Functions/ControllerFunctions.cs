@@ -51,7 +51,7 @@ internal static class ControllerFunctions
 
     internal static PeripheralCategory Selected(MachineConfiguration configuration, int port)
     {
-        var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
+        var binding = configuration.Input?.Controllers?.FirstOrDefault(item => item.Port == port);
         var type = binding?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
         return type == PeripheralCategory.Automatic ? Supported(configuration, port).FirstOrDefault() : type;
     }
@@ -59,7 +59,7 @@ internal static class ControllerFunctions
     internal static PeripheralCategory Resolve(MachineConfiguration configuration, int port)
     {
         ValidatePort(configuration, port);
-        var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
+        var binding = configuration.Input?.Controllers?.FirstOrDefault(item => item.Port == port);
         var type = binding?.Peripheral ?? configuration.Controllers?.ElementAtOrDefault(port) ?? PeripheralCategory.Automatic;
         if (type == PeripheralCategory.Automatic || type == PeripheralCategory.None && !Supported(configuration, port).Contains(PeripheralCategory.None)) type = Supported(configuration, port).FirstOrDefault();
         Validate(configuration, port, type);
@@ -84,13 +84,13 @@ internal static class ControllerFunctions
     {
         Validate(configuration, port, type);
         var input = configuration.Input ?? new InputConfiguration();
-        var bindings = input.ControllerBindings ?? [];
+        var bindings = input.Controllers ?? [];
         var binding = bindings.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, type);
         return configuration with
         {
             Input = input with
             {
-                ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).ToArray()
+                Controllers = bindings.Where(item => item.Port != port).Append(binding with { Peripheral = type }).ToArray()
             }
         };
     }

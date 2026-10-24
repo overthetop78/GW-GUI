@@ -10,7 +10,7 @@ internal static partial class InputSettingsFunctions
         var input = configuration.Input ?? new InputConfiguration();
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
-        var configured = input.ControllerBindings ?? [];
+        var configured = input.Controllers ?? [];
         var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
@@ -44,7 +44,7 @@ internal static partial class InputSettingsFunctions
                 KeyboardBindings = keyboard,
                 KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
-                ControllerBindings = controllers
+                Controllers = controllers
             }
         };
     }

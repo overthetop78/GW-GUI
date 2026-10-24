@@ -1251,7 +1251,7 @@ public sealed class ConsoleFamilyModuleTests
             var megaDrive = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive"));
             var configured = megaDrive with
             {
-                Input = new InputConfiguration(ControllerBindings: [new ControllerBinding(0, PeripheralCategory.SegaMegaDriveThreeButton, VisualId: EmulationControllerVisualIds.MegaDrive6)])
+                Input = new InputConfiguration(Controllers: [new ControllerBinding(0, PeripheralCategory.SegaMegaDriveThreeButton, VisualId: EmulationControllerVisualIds.MegaDrive6)])
             };
             var described = module.DescribeInputSettings(configured);
             Assert.Equal(2, described.ControllerPorts.Count);
@@ -1319,7 +1319,7 @@ public sealed class ConsoleFamilyModuleTests
             var emulation = Assert.IsAssignableFrom<IEmulationModule>(module);
             var original = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive")) with
             {
-                Input = new InputConfiguration(ControllerBindings:
+                Input = new InputConfiguration(Controllers:
                 [
                     new ControllerBinding(0, PeripheralCategory.SegaMegaDriveSixButton,
                         DeviceId: "gameinput:pad-0",
@@ -1334,16 +1334,16 @@ public sealed class ConsoleFamilyModuleTests
 
             var described = module.DescribeInputSettings(original);
             var applied = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(original, described));
-            var appliedBinding = Assert.Single(applied.Input!.ControllerBindings!, binding => binding.Port == 0);
+            var appliedBinding = Assert.Single(applied.Input!.Controllers!, binding => binding.Port == 0);
             Assert.Equal(PeripheralCategory.SegaMegaDriveSixButton, appliedBinding.Peripheral);
             Assert.Equal("gameinput:pad-0", appliedBinding.DeviceId);
             Assert.Equal(EmulationControllerVisualIds.MegaDrive6, appliedBinding.VisualId);
-            Assert.Equal(original.Input!.ControllerBindings![0].Mappings, appliedBinding.Mappings);
+            Assert.Equal(original.Input!.Controllers![0].Mappings, appliedBinding.Mappings);
 
             await emulation.SaveConfigurationAsync(applied);
             var loaded = Assert.Single(await emulation.LoadConfigurationsAsync());
             var loadedConfiguration = Assert.IsType<MachineConfiguration>(loaded);
-            var loadedBinding = Assert.Single(loadedConfiguration.Input!.ControllerBindings!, binding => binding.Port == 0);
+            var loadedBinding = Assert.Single(loadedConfiguration.Input!.Controllers!, binding => binding.Port == 0);
             Assert.Equal(appliedBinding.Peripheral, loadedBinding.Peripheral);
             Assert.Equal(appliedBinding.DeviceId, loadedBinding.DeviceId);
             Assert.Equal(appliedBinding.VisualId, loadedBinding.VisualId);
@@ -1351,7 +1351,7 @@ public sealed class ConsoleFamilyModuleTests
 
             var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
             var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied, jsonOptions), jsonOptions);
-            var restoredBinding = Assert.Single(restored!.Input!.ControllerBindings!, binding => binding.Port == 0);
+            var restoredBinding = Assert.Single(restored!.Input!.Controllers!, binding => binding.Port == 0);
             Assert.Equal(appliedBinding.Peripheral, restoredBinding.Peripheral);
             Assert.Equal(appliedBinding.DeviceId, restoredBinding.DeviceId);
             Assert.Equal(appliedBinding.VisualId, restoredBinding.VisualId);

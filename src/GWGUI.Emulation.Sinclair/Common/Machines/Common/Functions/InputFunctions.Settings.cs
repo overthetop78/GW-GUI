@@ -19,7 +19,7 @@ internal static class InputSettingsFunctions
         new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),
         new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
     ];
-    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), input.Mouse);
+    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => EmulationSdk.InputProcessing.ResolveBindings(MouseDefinitions(), input.MouseMappings);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;
@@ -75,8 +75,8 @@ internal static class InputSettingsFunctions
             static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings));
         var input = configuration.Input with
         {
-            Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),
-            Mouse = settings.Mouse is null ? configuration.Input.Mouse : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),
+            KeyboardBindings = settings.Keyboard is null ? configuration.Input.KeyboardBindings : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),
+            MouseMappings = settings.Mouse is null ? configuration.Input.MouseMappings : new Dictionary<string, string>(settings.Mouse.Values, StringComparer.Ordinal),
             Controllers = controllers
         };
         var result = configuration with
@@ -93,7 +93,7 @@ internal static class InputSettingsFunctions
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)
             throw new ArgumentException(nameof(configuration.Input));
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.Mouse, mouseIds, CommonControllerFunctions.IsValidBinding) || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
+        if (EmulationSdk.InputProcessing.HasInvalidBindings(configuration.Input.MouseMappings, mouseIds, CommonControllerFunctions.IsValidBinding) || !SupportsMouse(configuration) && configuration.Input.MouseMappings?.Count > 0)
             throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {

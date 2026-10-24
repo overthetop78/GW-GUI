@@ -15,7 +15,7 @@ internal static partial class InputSettingsFunctions
         var mouse = model.MouseButtonCount == MachineSettingsConstants.NoDevices ? null : new EmulationInputBindingSet(MouseDefinitions(model),
             EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
-        var configured = input.ControllerBindings ?? [];
+        var configured = input.Controllers ?? [];
         var portCount = CommonControllerFunctions.PortCount(configuration);
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, portCount).Select(index =>
         {
@@ -46,7 +46,7 @@ internal static partial class InputSettingsFunctions
             KeyboardBindings = keyboard,
             KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
             MouseButtonMappings = mouse,
-            ControllerBindings = controllers
+            Controllers = controllers
         };
         return EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration with { Input = input });
     }
