@@ -22,10 +22,4 @@ internal static class AudioFunctions
     /// <param name="frameCount">Nombre de trames comprenant chacune gauche puis droite.</param>
     /// <returns>Nouveau tableau géré contenant la copie validée par le traitement commun.</returns>
     internal static short[] CopyBatch(nint data, nuint frameCount) => AudioFunctions.Processing.CopyBatch(data, frameCount);
-
-    /// <summary>Construit une frame PCM stéréo entrelacée à partir de ses deux échantillons.</summary>
-    /// <param name="left">Échantillon signé sur seize bits du canal gauche.</param>
-    /// <param name="right">Échantillon signé sur seize bits du canal droit.</param>
-    /// <returns>Nouveau tableau contenant gauche puis droite ; son propriétaire est l’appelant.</returns>
-    internal static short[] SingleFrame(short left, short right) => AudioFunctions.Processing.SingleFrame(left, right);
 }

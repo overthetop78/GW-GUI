@@ -2363,11 +2363,10 @@ public sealed class ArchitectureValidationTests
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var common = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
-            var create = Assert.Single(common.GetMethods(BindingFlags.NonPublic | BindingFlags.Static), method => method.Name == "CreateInputFrames");
-            Assert.Equal(typeof(IEmulationInputFrames), create.ReturnType);
-            Assert.Empty(create.GetParameters());
-            var first = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, null));
-            var second = Assert.IsAssignableFrom<IEmulationInputFrames>(create.Invoke(null, null));
+            var processing = Assert.IsAssignableFrom<IEmulationInputProcessing>(common.GetProperty("InputProcessing", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null));
+            Assert.Same(EmulationSdk.InputProcessing, processing);
+            var first = processing.CreateInputFrames();
+            var second = processing.CreateInputFrames();
             Assert.NotSame(first, second);
             var keys = new HashSet<EmulationKey> { EmulationKey.A };
             var input = EmulationInputSnapshot.Empty with { Keys = keys, Pointer = new(3, -4, 2, true, false, false) { HorizontalWheel = -2 } };
@@ -2434,11 +2433,11 @@ public sealed class ArchitectureValidationTests
                 Assert.Empty(value);
             }
             var controllers = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
-            var validateBinding = controllers.GetMethod("IsValidBinding", BindingFlags.NonPublic | BindingFlags.Static, [typeof(string)])!;
-            Assert.Equal(typeof(bool), validateBinding.ReturnType);
-            Assert.True((bool)validateBinding.Invoke(null, [null])!);
-            Assert.True((bool)validateBinding.Invoke(null, ["Keyboard:A"])!);
-            Assert.False((bool)validateBinding.Invoke(null, ["__invalid-input-binding__"])!);
+            var processing = Assert.IsAssignableFrom<IEmulationInputProcessing>(controllers.GetProperty("InputProcessing", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null));
+            Assert.Same(EmulationSdk.InputProcessing, processing);
+            Assert.True(processing.IsValidBinding(null));
+            Assert.True(processing.IsValidBinding("Keyboard:A"));
+            Assert.False(processing.IsValidBinding("__invalid-input-binding__"));
         }
     }
 
@@ -2457,10 +2456,10 @@ public sealed class ArchitectureValidationTests
             var factoryNamespace = factory.Namespace!;
             var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var common = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
-            var create = common.GetMethod("CreateInputAccumulator", BindingFlags.NonPublic | BindingFlags.Static)!;
-            Assert.Equal(typeof(IEmulationInputAccumulator), create.ReturnType);
-            var first = Assert.IsAssignableFrom<IEmulationInputAccumulator>(create.Invoke(null, null));
-            var second = Assert.IsAssignableFrom<IEmulationInputAccumulator>(create.Invoke(null, null));
+            var processing = Assert.IsAssignableFrom<IEmulationInputProcessing>(common.GetProperty("InputProcessing", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null));
+            Assert.Same(EmulationSdk.InputProcessing, processing);
+            var first = processing.CreateInputAccumulator();
+            var second = processing.CreateInputAccumulator();
             Assert.NotSame(first, second);
             var input = EmulationInputSnapshot.Empty with { Pointer = new(4, int.MaxValue, 2, true, false, false) { HorizontalWheel = int.MinValue } };
             first.Update(input);

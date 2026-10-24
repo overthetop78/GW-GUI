@@ -90,12 +90,6 @@ internal static class CoreHostFunctions
     /// directement par l’adaptateur. Capacités, encodages et mode chemin seul restent choisis par le module.</remarks>
     internal static IEmulationNativeResources NativeResources => EmulationSdk.NativeResources;
 
-    /// <summary>Crée le jeu tournant de tableaux vidéo de la session par le contrat public du SDK.</summary>
-    /// <param name="bufferCount">Nombre d’emplacements choisi par le module ; chaque emplacement peut retenir un tableau loué.</param>
-    /// <param name="pool">Pool emprunté, ou null pour le pool partagé ; le propriétaire du jeu ne détruit pas ce pool.</param>
-    /// <returns>Jeu possédé par l’appelant, à libérer après la dernière utilisation des images dans son finally.</returns>
-    internal static IEmulationVideoBufferSet CreateVideoBufferSet(int bufferCount, ArrayPool<byte>? pool = null) => EmulationSdk.CreateVideoBufferSet(bufferCount, pool);
-
     /// <summary>Crée le propriétaire des segments vidéo partagés par le contrat public du SDK.</summary>
     /// <param name="namePrefix">Préfixe de session transmis au lecteur distant.</param>
     /// <param name="capacity">Politique existante du module, qui calcule la capacité en octets d’un emplacement.</param>
