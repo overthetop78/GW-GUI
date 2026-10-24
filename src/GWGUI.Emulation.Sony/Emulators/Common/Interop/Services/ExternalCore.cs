@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using SemanticControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
@@ -75,8 +75,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond => _host?.FramesPerSecond ?? ExternalCoreConstants.FallbackFramesPerSecond;
-    public int SampleRate => _host?.SampleRate ?? ExternalCoreConstants.FallbackSampleRate;
+    public double FramesPerSecond => _host?.FramesPerSecond ?? VideoConstants.DefaultFramesPerSecond;
+    public int SampleRate => _host?.SampleRate ?? AudioConstants.DefaultSampleRate;
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
 

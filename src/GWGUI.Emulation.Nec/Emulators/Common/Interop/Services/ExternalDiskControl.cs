@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 

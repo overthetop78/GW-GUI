@@ -14,4 +14,5 @@ internal static class AudioConstants
     internal const float MaximumVolume = 1f;
     internal const float DefaultVolume = MaximumVolume;
     internal const int FirstSampleIndex = 0;
+    internal const int DefaultSampleRate = 44100;
 }

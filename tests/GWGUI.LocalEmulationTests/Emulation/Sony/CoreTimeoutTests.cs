@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Common.Enums;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;

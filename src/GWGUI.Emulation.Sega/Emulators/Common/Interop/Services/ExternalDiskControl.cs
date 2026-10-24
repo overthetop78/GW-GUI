@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sega.Common.Exceptions;
 
 namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 

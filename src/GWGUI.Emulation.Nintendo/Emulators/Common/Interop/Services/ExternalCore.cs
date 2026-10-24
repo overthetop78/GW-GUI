@@ -3,7 +3,7 @@ using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHo
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;

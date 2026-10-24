@@ -2,7 +2,7 @@ using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHo
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Interop;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 

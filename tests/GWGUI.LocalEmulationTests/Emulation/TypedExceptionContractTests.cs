@@ -6,7 +6,7 @@ public sealed class TypedExceptionContractTests
     {
         yield return [typeof(GWGUI.Emulation.Acorn.Common.Exceptions.EmulationException)];
         yield return [typeof(GWGUI.Emulation.Apple.Common.Exceptions.EmulationException)];
-        yield return [typeof(GWGUI.Emulation.Atari.Emulators.Common.Exceptions.EmulationException)];
+        yield return [typeof(GWGUI.Emulation.Atari.Common.Exceptions.EmulationException)];
         yield return [typeof(GWGUI.Emulation.Bandai.Common.Exceptions.EmulationException)];
         yield return [typeof(GWGUI.Emulation.Coleco.Common.Exceptions.EmulationException)];
         yield return [typeof(GWGUI.Emulation.Epoch.Common.Exceptions.EmulationException)];

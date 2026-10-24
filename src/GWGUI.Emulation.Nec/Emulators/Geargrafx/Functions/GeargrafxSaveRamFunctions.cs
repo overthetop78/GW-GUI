@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;

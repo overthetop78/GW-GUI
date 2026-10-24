@@ -43,7 +43,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (!allowUninitialized && !_initialized)
             throw new InvalidOperationException(CoreHostErrors.ProcessNotInitialized);
         EmulationSdk.HostProtocol.ExecuteRequest(_requestGate,
-            () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), ReadResponse,
+            () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), () => ReadResponse(command),
             writer =>
             {
                 CoreHostFunctions.WriteRequestHeader(writer, command);
@@ -60,7 +60,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     /// <summary>Attend synchroniquement les octets d’une réponse avec le délai et l’annulation de l’instance.</summary>
     /// <returns>Tableau de la réponse complète fourni au décodeur de protocole.</returns>
     /// <remarks>Le lecteur commun valide la longueur avant allocation et lecture du contenu.</remarks>
-    private byte[] ReadResponse() => EmulationSdk.HostProtocol.ReadResponseAsync(_pipe!, _responseTimeout,
+    private byte[] ReadResponse(HostCommand command) => EmulationSdk.HostProtocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(command, _responseTimeout),
         _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
         .GetAwaiter().GetResult();
 

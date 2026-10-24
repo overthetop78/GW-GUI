@@ -1,7 +1,7 @@
 using EmulatorCatalogFunctions = GWGUI.Emulation.Sony.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;

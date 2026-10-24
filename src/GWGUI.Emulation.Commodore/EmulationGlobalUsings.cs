@@ -1,3 +1,6 @@
+global using GWGUI.Emulation.Commodore.Common.Exceptions;
+global using GWGUI.Emulation.Commodore.Common.Enums;
+global using GWGUI.Emulation.Commodore.Common.Functions;
 global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHeader<string, string>;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
@@ -27,9 +30,7 @@ global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Enums;
 
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
-global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions;
 global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
-global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions;
 global using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Contracts;
 global using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants;
 global using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Functions;

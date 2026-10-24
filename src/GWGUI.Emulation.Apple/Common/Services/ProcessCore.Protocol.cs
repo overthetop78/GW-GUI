@@ -27,7 +27,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (!allowUninitialized && !_initialized)
             throw new InvalidOperationException(CoreHostErrors.ProcessNotInitialized);
         CommonCoreHostFunctions.Protocol.ExecuteRequest(_requestGate,
-            () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), ReadResponse,
+            () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), () => ReadResponse(command),
             writer =>
             {
                 CoreHostFunctions.WriteRequestHeader(writer, command);
@@ -41,7 +41,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             }, FailConnection);
     }
 
-    private byte[] ReadResponse() => CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, _responseTimeout,
+    private byte[] ReadResponse(HostCommand command) => CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(command, _responseTimeout),
         _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
         .GetAwaiter().GetResult();
 

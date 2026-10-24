@@ -2,7 +2,7 @@ using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.Controll
 using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Sony.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -122,8 +122,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal NativeLogFunctions.WindowsX64Callback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
-    internal int SampleRate { get; set; } = ExternalCoreConstants.FallbackSampleRate;
-    internal double FramesPerSecond { get; private set; } = ExternalCoreConstants.FallbackFramesPerSecond;
+    internal int SampleRate { get; set; } = AudioConstants.DefaultSampleRate;
+    internal double FramesPerSecond { get; private set; } = VideoConstants.DefaultFramesPerSecond;
     internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<IReadOnlyList<ControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<CoreOption> OptionCatalog { get; private set; } = [];

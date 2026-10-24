@@ -46,7 +46,7 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(new[]
         {
             "ApplyDeviceSettings", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "ApplyVideoSettings", "Create", "Definition", "DescribeDeviceSettings", "DescribeInput", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "EnsurePersistentStorage", "FindInstalledCorePathAsync",
-            "FindReleasesAsync", "GetAudioConfiguration", "GetAudioLatencyChoices", "GetControllerBindingDefinitions", "GetControllerOutputs", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetDefaultOptions", "GetFirmwareSlots", "GetInstallationAsync", "GetMachineSettingsBlocks", "GetMediaDependencies", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetMemoryKib", "GetOutputResolution", "GetPeripherals", "GetSettingsOptions", "GetStorageDeviceConfigurationFields", "GetUsbPeripherals", "HasFixedMemoryCardDirectories", "IdentifyFirmware", "InitializeOptions", "InstallAsync", "IsCpuClock", "IsDefaultFor", "IsDeferredOption", "IsFirmwareCompatible", "MapInput", "MemoryCardInsertedOptionKey", "NormalizeOptions", "PrepareFirmware", "RequiresExternalFirmware", "RequiresMediaRestart", "RequiresOptionRestart",
+            "FindReleasesAsync", "GetAudioConfiguration", "GetAudioLatencyChoices", "GetControllerBindingDefinitions", "GetControllerOutputs", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetDefaultOptions", "GetFirmwareSlots", "GetHostCommandTimeout", "GetInstallationAsync", "GetMachineSettingsBlocks", "GetMediaDependencies", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetMemoryKib", "GetOutputResolution", "GetPeripherals", "GetSettingsOptions", "GetStorageDeviceConfigurationFields", "GetUsbPeripherals", "HasFixedMemoryCardDirectories", "IdentifyFirmware", "InitializeOptions", "InstallAsync", "IsCpuClock", "IsDefaultFor", "IsDeferredOption", "IsFirmwareCompatible", "MapInput", "MemoryCardInsertedOptionKey", "NormalizeOptions", "NormalizeRuntimeOptions", "PrepareFirmware", "RequiresExternalFirmware", "RequiresMediaRestart", "RequiresOptionRestart",
             "ResolveConfiguredMedia", "ResolveContentExtensions", "ResolveInitialContentPaths", "ResolveModel", "ScanFirmwareAsync", "ScanFirmwareFileAsync", "SelectConfiguration", "SoftResetKeys", "SupportedContentExtensions", "SupportsInitialContent", "SupportsNoContent", "SupportsPointer", "SupportsPointerCapture", "SupportsVideoSettings", "TryHandleHostCommand", "ValidateConfiguration", "ValidateOptions", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey", "get_SoftResetKeys", "get_SupportedContentExtensions", "get_SupportsInitialContent", "get_SupportsNoContent", "get_SupportsVideoSettings"
         }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
@@ -224,15 +224,19 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonEnumFoldersAreBothEmpty()
+    public void FamilyProcessCommandsUseByteEnumsOutsideBackendImplementations()
     {
-        var root = RepositoryRoot();
-        var atari = CommonFileNames(root, "Atari", "Enums");
-        var amiga = CommonFileNames(root, "Commodore", "Enums");
-        Assert.Equal(atari, amiga);
-        Assert.Empty(atari);
+        foreach (var assembly in new[] { typeof(AtariEmulationModule).Assembly, typeof(CommodoreEmulationModule).Assembly })
+        {
+            var client = Assert.Single(assembly.GetTypes(), type => type.Name == "ProcessCore");
+            var command = client.GetMethod("RequestTimeoutFor", BindingFlags.NonPublic | BindingFlags.Instance)!.GetParameters()[0].ParameterType;
+            Assert.True(command.IsEnum);
+            Assert.Equal(typeof(byte), Enum.GetUnderlyingType(command));
+            Assert.DoesNotContain(".Emulators.", command.Namespace!, StringComparison.Ordinal);
+            Assert.Contains("Initialize", Enum.GetNames(command));
+            Assert.Contains("Dispose", Enum.GetNames(command));
+        }
     }
-
     [Fact]
     public void SharedCatalogAndReleaseErrorsAreOwnedByCommon()
     {

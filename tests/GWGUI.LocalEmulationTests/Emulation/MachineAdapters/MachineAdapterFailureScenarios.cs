@@ -1,9 +1,10 @@
+using EmulationException = GWGUI.Emulation.Atari.Common.Exceptions.EmulationException;
 using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
-using GWGUI.Emulation.Atari.Emulators.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;

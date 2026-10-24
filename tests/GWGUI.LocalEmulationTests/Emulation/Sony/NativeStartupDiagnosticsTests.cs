@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sony.Common.Services;
 using Pcee2Core = GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CoreConstants;
 
 namespace GWGUI.Tests.Emulation.Sony;

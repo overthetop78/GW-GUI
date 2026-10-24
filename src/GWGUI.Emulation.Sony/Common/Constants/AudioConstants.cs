@@ -15,4 +15,5 @@ internal static class AudioConstants
     internal const int FirstSampleIndex = 0;
     internal const int MinimumSampleValue = short.MinValue;
     internal const int MaximumSampleValue = short.MaxValue;
+    internal const int DefaultSampleRate = 44100;
 }

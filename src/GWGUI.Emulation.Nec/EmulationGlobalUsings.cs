@@ -1,3 +1,6 @@
+global using GWGUI.Emulation.Nec.Common.Exceptions;
+global using GWGUI.Emulation.Nec.Common.Enums;
+global using GWGUI.Emulation.Nec.Common.Functions;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;

@@ -25,8 +25,6 @@ internal static class ExternalCoreConstants
     internal const string RetroSetControllerPortDevice = "retro_set_controller_port_device";
     internal const string RetroLoadGame = "retro_load_game";
     internal const string RetroGetSystemAvInfo = "retro_get_system_av_info";
-    internal const double FallbackFramesPerSecond = 50d;
-    internal const int FallbackSampleRate = 44_100;
 }
 
 

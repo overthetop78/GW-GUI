@@ -77,10 +77,10 @@ internal sealed class ExternalCore : IEmulatorCore
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond => _host?.FramesPerSecond ?? ExternalHostCallbacksConstants.DefaultFrameRate;
-    public int SampleRate => _host?.SampleRate ?? ExternalHostCallbacksConstants.DefaultSampleRate;
+    public double FramesPerSecond => _host?.FramesPerSecond ?? VideoConstants.DefaultFramesPerSecond;
+    public int SampleRate => _host?.SampleRate ?? AudioConstants.DefaultSampleRate;
     public int DiskCount => _host?.DiskControl.ImageCount ?? BufferConstants.EmptyCollectionCount;
-    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? ExternalCoreConstants.NoSelectedDisk;
+    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? MediaConstants.NoSelectedDiskIndex;
     internal nuint GetMemorySize(uint id) => (_getMemorySize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
     internal nint GetMemoryData(uint id) => (_getMemoryData ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
 

@@ -88,7 +88,5 @@ internal static class ExternalHostCallbacksConstants
     internal const double MinimumSampleRate = 0d;
     internal const string UnsupportedEnvironmentCommandFormat = "Unsupported environment command: {0}";
     internal const string CoreMessageFormat = "[message{0}] {1}";
-    internal const int DefaultSampleRate = 44100;
-    internal const double DefaultFrameRate = 50;
     internal const int OptionsChangedState = 1;
 }

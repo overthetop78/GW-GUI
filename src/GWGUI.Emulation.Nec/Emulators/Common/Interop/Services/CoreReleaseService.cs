@@ -1,7 +1,7 @@
 using EmulatorCatalogFunctions = GWGUI.Emulation.Nec.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;

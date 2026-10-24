@@ -2,7 +2,7 @@ using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Nec.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nec.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;

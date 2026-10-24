@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sega.Common.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
 
 namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;

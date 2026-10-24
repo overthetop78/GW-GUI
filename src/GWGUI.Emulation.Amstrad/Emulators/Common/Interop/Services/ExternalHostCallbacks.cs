@@ -3,7 +3,7 @@ using AudioFunctions = GWGUI.Emulation.Amstrad.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Amstrad.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 

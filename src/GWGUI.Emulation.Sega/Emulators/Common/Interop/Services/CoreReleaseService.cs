@@ -1,7 +1,7 @@
 using EmulatorCatalogFunctions = GWGUI.Emulation.Sega.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sega.Common.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;

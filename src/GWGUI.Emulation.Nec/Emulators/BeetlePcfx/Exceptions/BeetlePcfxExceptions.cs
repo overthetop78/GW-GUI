@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Exceptions;
 

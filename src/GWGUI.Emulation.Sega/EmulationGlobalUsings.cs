@@ -1,3 +1,6 @@
+global using GWGUI.Emulation.Sega.Common.Exceptions;
+global using GWGUI.Emulation.Sega.Common.Enums;
+global using GWGUI.Emulation.Sega.Common.Functions;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Constants;

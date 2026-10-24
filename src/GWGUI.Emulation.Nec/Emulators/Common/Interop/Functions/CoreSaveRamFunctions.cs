@@ -1,7 +1,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 

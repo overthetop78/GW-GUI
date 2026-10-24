@@ -121,8 +121,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
-    internal int SampleRate { get; set; } = ExternalHostCallbacksConstants.DefaultSampleRate;
-    internal double FramesPerSecond { get; private set; } = ExternalHostCallbacksConstants.DefaultFrameRate;
+    internal int SampleRate { get; set; } = AudioConstants.DefaultSampleRate;
+    internal double FramesPerSecond { get; private set; } = VideoConstants.DefaultFramesPerSecond;
     internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<IReadOnlyList<ControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<CoreOption> OptionCatalog { get; private set; } = [];

@@ -1,7 +1,7 @@
 using EmulatorCatalogFunctions = GWGUI.Emulation.Nintendo.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;

@@ -13,7 +13,7 @@ using GWGUI.Emulation.Interfaces;
 using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
 using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
 using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
-using GenesisPlusGxProcessCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ProcessCore;
+using GenesisPlusGxProcessCore = GWGUI.Emulation.Sega.Common.Services.ProcessCore;
 using GenesisPlusGxConstants = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants.CoreConstants;
 using PicoDriveConstants = GWGUI.Emulation.Sega.Emulators.PicoDrive.Constants.CoreConstants;
 using System.Runtime.InteropServices;

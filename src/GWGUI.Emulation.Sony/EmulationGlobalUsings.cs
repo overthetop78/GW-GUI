@@ -1,3 +1,6 @@
+global using GWGUI.Emulation.Sony.Common.Exceptions;
+global using GWGUI.Emulation.Sony.Common.Enums;
+global using GWGUI.Emulation.Sony.Common.Functions;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;

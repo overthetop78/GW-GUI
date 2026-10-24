@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;

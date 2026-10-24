@@ -70,7 +70,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
         if (arguments is not [var command, var pipe, var video]
             || command != Core.HostCommand) return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipe, video, path => new ExternalCore(path, Core));
+        CoreHost.Run(pipe, video, (configuration, path) => new ExternalCore(path, Core));
         return true;
     }
 

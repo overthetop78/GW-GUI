@@ -4,7 +4,7 @@ using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;

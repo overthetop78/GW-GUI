@@ -5,4 +5,5 @@ public static class MediaConstants
     internal const char SupportedExtensionSeparator = '|';
     internal const char ExtensionPrefix = '.';
     public const int DefaultMountOrder = 0;
+    internal const int NoSelectedDiskIndex = -1;
 }

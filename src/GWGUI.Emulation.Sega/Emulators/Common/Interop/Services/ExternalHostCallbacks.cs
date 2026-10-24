@@ -2,7 +2,7 @@ using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Sega.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Sega.Common.Functions.ControllerFunctions;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sega.Common.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;

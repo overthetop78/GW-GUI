@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Amstrad.Common.Exceptions;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 

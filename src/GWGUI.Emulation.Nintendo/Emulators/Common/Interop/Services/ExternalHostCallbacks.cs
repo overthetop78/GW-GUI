@@ -2,7 +2,7 @@ using GWGUI.Emulation.Interfaces;
 using AudioFunctions = GWGUI.Emulation.Nintendo.Common.Functions.AudioFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 using CommonControllerFunctions = GWGUI.Emulation.Nintendo.Common.Functions.ControllerFunctions;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;

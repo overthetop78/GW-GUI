@@ -62,7 +62,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings
         exitCode = 0;
         if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName]) return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName);
+        CoreHost.Run(pipeName, videoMapName, static (configuration, corePath) => new ExternalCore(corePath));
         return true;
     }
 

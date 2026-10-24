@@ -4,7 +4,7 @@ using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Amstrad.Common.Exceptions;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 

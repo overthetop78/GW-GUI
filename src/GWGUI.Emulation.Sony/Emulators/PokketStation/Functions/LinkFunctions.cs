@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.PokketStation.Constants;
 using GWGUI.Emulation.Sony.Emulators.PokketStation.Enums;
 

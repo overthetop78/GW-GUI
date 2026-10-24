@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 

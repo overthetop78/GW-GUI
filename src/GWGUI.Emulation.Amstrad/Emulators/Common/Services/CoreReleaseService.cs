@@ -1,7 +1,7 @@
 using EmulatorCatalogFunctions = GWGUI.Emulation.Amstrad.Common.Functions.EmulatorCatalogFunctions;
 using CoreReleaseFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Amstrad.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 

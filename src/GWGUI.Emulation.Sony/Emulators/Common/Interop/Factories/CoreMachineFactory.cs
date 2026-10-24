@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Dictionaries;
 using CommonControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
 using CommonFirmwareInspection = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.FirmwareConfigurationFunctions;
 using CommonStorageSettingsFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.StorageSettingsFunctions;
@@ -116,7 +117,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
         exitCode = 0;
         if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName]) return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName);
+        CoreHost.Run(pipeName, videoMapName, static (configuration, corePath) => new ExternalCore(CoreCatalog.Get(configuration.EmulatorId), corePath));
         return true;
     }
 
@@ -177,4 +178,9 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
 
     private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings,
         CoreDefinition.Id, CoreDefinition.IsInstallationComplete, CoreDefinition.PrepareInstallation);
+    /// <inheritdoc/>
+    public IReadOnlyList<CoreOption> NormalizeRuntimeOptions(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) => CoreOptionMetadataFunctions.Merge(options, CoreDefinition.ResolveOptions?.Invoke(configuration) ?? CoreDefinition.Options, configuration.GraphicsApi);
+
+    /// <inheritdoc/>
+    public TimeSpan GetHostCommandTimeout(MachineConfiguration configuration, byte command, TimeSpan fallback) => CoreTimeoutFunctions.For(CoreDefinition, (HostCommand)command);
 }

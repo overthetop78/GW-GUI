@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
 using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sony.Common.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;

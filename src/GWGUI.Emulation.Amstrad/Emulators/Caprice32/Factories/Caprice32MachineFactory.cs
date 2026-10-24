@@ -53,7 +53,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorSetti
         if (arguments is not [EmulatorConstants.CoreHostCommand, var pipeName, var videoMapName])
             return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName, path => new ExternalCore(path, Core));
+        CoreHost.Run(pipeName, videoMapName, (configuration, path) => new ExternalCore(path, Core));
         return true;
     }
 

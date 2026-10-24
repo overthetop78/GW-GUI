@@ -4,7 +4,7 @@ using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;
+using GWGUI.Emulation.Sega.Common.Exceptions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;

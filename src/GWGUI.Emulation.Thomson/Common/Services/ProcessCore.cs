@@ -19,6 +19,26 @@ namespace GWGUI.Emulation.Thomson.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
+    /// <summary>Configuration empruntée pour résoudre les règles du transport de cette session.</summary>
+    private MachineConfiguration? _policyConfiguration;
+    /// <summary>Adaptation Common empruntée, résolue une seule fois après réception de la configuration.</summary>
+    private IEmulatorRuntimePolicy? _runtimePolicy;
+    /// <summary>Indique que la présence ou absence de politique a déjà été consultée.</summary>
+    private bool _runtimePolicyResolved;
+    /// <summary>Consulte la politique sans recréer le catalogue à chaque commande ni posséder de cœur supplémentaire.</summary>
+    private IEmulatorRuntimePolicy? RuntimePolicy
+    {
+        get
+        {
+            if (!_runtimePolicyResolved && _policyConfiguration is not null)
+            {
+                _runtimePolicy = new Engine().SelectedAdapter(_policyConfiguration) as IEmulatorRuntimePolicy;
+                _runtimePolicyResolved = true;
+            }
+            return _runtimePolicy;
+        }
+    }
+
     /// <inheritdoc/>
     public int DiskCount => GetDiskStatus().ImageCount;
     /// <inheritdoc/>
@@ -102,6 +122,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
+        _policyConfiguration = configuration;
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_initialized) throw new InvalidOperationException(CoreHostErrors.AlreadyInitialized);
         if (!File.Exists(_hostExecutablePath)) throw new FileNotFoundException(CoreHostErrors.ExecutableMissing, _hostExecutablePath);
@@ -120,6 +141,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
             Request(HostCommand.Initialize, writer => CommonCoreHostFunctions.Protocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
                 sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
+            Options = RuntimePolicy?.NormalizeRuntimeOptions(configuration, Options) ?? Options;
             _initialized = true;
         }
         finally
@@ -181,4 +203,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
         Request(HostCommand.HasUnsavedMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot), reader => hasChanges = reader.ReadBoolean());
         return hasChanges;
     }
+    /// <summary>Résout le délai de cette commande par le contrat runtime Common.</summary>
+    /// <param name="command">Commande dont le transport attend la réponse.</param>
+    /// <param name="fallback">Délai du transport utilisé lorsque le profil ne définit aucune adaptation.</param>
+    /// <returns>Délai de cette attente ; la consultation ne lance ni ne détruit de ressource.</returns>
+    private TimeSpan RequestTimeoutFor(HostCommand command, TimeSpan fallback) => _policyConfiguration is null ? fallback : RuntimePolicy?.GetHostCommandTimeout(_policyConfiguration, (byte)command, fallback) ?? fallback;
 }

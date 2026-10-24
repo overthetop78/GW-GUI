@@ -43,7 +43,6 @@ internal static class ExternalCoreConstants
     internal const string AnalogJoystick = "Analog Joystick";
     internal const string Joystick = "Joystick";
     internal const string Keyboard = "Keyboard";
-    internal const int NoSelectedDisk = -1;
     internal const int SingleMediaCount = 1;
     internal const uint NoControllerDevice = 0;
     internal const uint DefaultJoypadDevice = 1;

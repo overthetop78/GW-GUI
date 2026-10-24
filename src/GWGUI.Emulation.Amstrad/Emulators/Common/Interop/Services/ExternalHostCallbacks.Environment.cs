@@ -3,7 +3,7 @@ using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHos
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Amstrad.Common.Exceptions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;

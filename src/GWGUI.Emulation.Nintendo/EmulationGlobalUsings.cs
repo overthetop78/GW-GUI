@@ -1,3 +1,6 @@
+global using GWGUI.Emulation.Nintendo.Common.Exceptions;
+global using GWGUI.Emulation.Nintendo.Common.Enums;
+global using GWGUI.Emulation.Nintendo.Common.Functions;
 global using EmulatorManagementContext = GWGUI.Emulation.Contracts.EmulatorManagementContext;
 global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Constants;

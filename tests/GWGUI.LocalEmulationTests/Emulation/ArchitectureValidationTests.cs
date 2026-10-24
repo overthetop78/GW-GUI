@@ -15,6 +15,97 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void HostRuntimeHooksUseTheSameCommonPolicyInEveryClient()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var clients = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var policy = assembly.GetType(root + ".Common.Interfaces.IEmulatorRuntimePolicy", throwOnError: true)!;
+            var normalize = policy.GetMethod("NormalizeRuntimeOptions")!;
+            var timeout = policy.GetMethod("GetHostCommandTimeout")!;
+            Assert.False(normalize.IsAbstract);
+            Assert.False(timeout.IsAbstract);
+            Assert.NotNull(normalize.GetMethodBody());
+            Assert.NotNull(timeout.GetMethodBody());
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(normalize.GetParameters()[0].ParameterType));
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(timeout.GetParameters()[0].ParameterType));
+            Assert.Equal(typeof(byte), timeout.GetParameters()[1].ParameterType);
+            Assert.Equal(typeof(TimeSpan), timeout.GetParameters()[2].ParameterType);
+            Assert.Equal(typeof(TimeSpan), timeout.ReturnType);
+            var client = assembly.GetType(root + ".Common.Services.ProcessCore");
+            if (client is null)
+            {
+                Assert.EndsWith(".Microsoft", root, StringComparison.Ordinal);
+                continue;
+            }
+            Assert.Contains(GetCompiledCalls(client.GetMethod("Initialize")!), call => call.Method == normalize);
+            var resolveTimeout = client.GetMethod("RequestTimeoutFor", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.NotNull(resolveTimeout);
+            Assert.Equal(2, resolveTimeout.GetParameters().Length);
+            Assert.Contains(GetCompiledCalls(resolveTimeout), call => call.Method == timeout);
+            var transportCalls = client.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(transportCalls, call => call.Method == resolveTimeout);
+            // Les clients Common ne dépendent d’aucun type concret de backend pour leurs opérations.
+            foreach (var type in new[] { client, assembly.GetType(root + ".Common.Services.CoreHost", true)! })
+            foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly).Where(method => method.GetMethodBody() is not null))
+                Assert.DoesNotContain(GetCompiledCalls(method), call => call.Method.DeclaringType?.FullName?.StartsWith(root + ".Emulators.", StringComparison.Ordinal) == true);
+            clients++;
+        }
+        Assert.Equal(23, clients);
+    }
+    [Fact]
+    public void ProcessClientsAndHostsHaveOneCommonOwner()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var implemented = 0;
+        var moved = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var clients = assembly.GetTypes().Where(type => type.Name == "ProcessCore").ToArray();
+            var hosts = assembly.GetTypes().Where(type => type.Name == "CoreHost").ToArray();
+            if (root.EndsWith(".Microsoft", StringComparison.Ordinal))
+            {
+                Assert.Empty(clients);
+                Assert.Empty(hosts);
+                continue;
+            }
+            var client = Assert.Single(clients);
+            var host = Assert.Single(hosts);
+            Assert.Equal(root + ".Common.Services.ProcessCore", client.FullName);
+            Assert.Equal(root + ".Common.Services.CoreHost", host.FullName);
+            Assert.False(client.IsVisible);
+            Assert.False(host.IsVisible);
+            Assert.True(typeof(IDisposable).IsAssignableFrom(client));
+            Assert.Contains(client.GetInterfaces(), contract => contract.Name == "IEmulatorCore");
+            if (new[] { ".Amstrad", ".Commodore", ".Nec", ".Nintendo", ".Sega", ".Sony" }.Any(root.EndsWith))
+            {
+                var calls = assembly.GetTypes().Where(type => type != client && type != host)
+                    .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                    .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+                Assert.Contains(calls, call => call.Method is ConstructorInfo && call.Method.DeclaringType == client);
+                Assert.Contains(calls, call => call.Method.DeclaringType == host && call.Method.Name == "Run");
+                moved++;
+            }
+            implemented++;
+        }
+        Assert.Equal(23, implemented);
+        Assert.Equal(6, moved);
+    }
+    [Fact]
     public void EveryCommonUsesStateStoreForReadingAndPublishingSavedStates()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -2633,7 +2724,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(3, methods.Length);
+            Assert.Equal(5, methods.Length);
             var media = Assert.Single(methods, method => method.Name == "RequiresMediaRestart");
             var option = Assert.Single(methods, method => method.Name == "RequiresOptionRestart");
             var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
@@ -2641,7 +2732,8 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(new[] { "configuration", "slot", "path" }, media.GetParameters().Select(parameter => parameter.Name));
             Assert.Equal(new[] { configuration, typeof(string) }, option.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.Equal(new[] { "configuration", "key" }, option.GetParameters().Select(parameter => parameter.Name));
-            Assert.All(methods, method => Assert.True(method.IsAbstract));
+            Assert.All(methods.Where(method => method.Name is not ("NormalizeRuntimeOptions" or "GetHostCommandTimeout")), method => Assert.True(method.IsAbstract));
+            Assert.All(methods.Where(method => method.Name is "NormalizeRuntimeOptions" or "GetHostCommandTimeout"), method => Assert.False(method.IsAbstract));
             Assert.All(new[] { media, option }, method => Assert.Equal(typeof(bool), method.ReturnType));
             var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
             var constructor = Assert.Single(machine.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic));
@@ -2678,7 +2770,7 @@ public sealed class ArchitectureValidationTests
             var adapter = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.Contains(contract, adapter.GetInterfaces());
             var defaults = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic);
-            foreach (var method in methods)
+            foreach (var method in methods.Where(method => method.IsAbstract))
                 Assert.False(Assert.Single(defaults, candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal)).IsAbstract);
             var implementations = assembly.GetTypes().Where(type => type.IsClass && !type.IsAbstract && adapter.IsAssignableFrom(type)).ToArray();
             if (root == "GWGUI.Emulation.Microsoft") Assert.Empty(implementations);
@@ -2690,7 +2782,7 @@ public sealed class ArchitectureValidationTests
                 {
                     var method = mapping.InterfaceMethods[index];
                     var concrete = implementation.GetMethod(method.Name, BindingFlags.Public | BindingFlags.Instance);
-                    var fallback = Assert.Single(defaults, candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal));
+                    var fallback = method.IsAbstract ? Assert.Single(defaults, candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal)) : method;
                     Assert.Equal(concrete ?? fallback, mapping.TargetMethods[index]);
                 }
             }
@@ -4595,7 +4687,7 @@ public sealed class ArchitectureValidationTests
             Assert.Contains(processCalls, call => call.Method.Name == "ReadRuntimeStatus" && call.Method.DeclaringType == typeof(IEmulationHostProtocol));
         }
         Assert.Equal(46, cores);
-        var amstrad = Assembly.Load("gwgui.emulation.amstrad").GetType("GWGUI.Emulation.Amstrad.Emulators.Common.Services.ProcessCore", throwOnError: true)!;
+        var amstrad = Assembly.Load("gwgui.emulation.amstrad").GetType("GWGUI.Emulation.Amstrad.Common.Services.ProcessCore", throwOnError: true)!;
         foreach (var capture in new[] { false, true })
         {
             IDisposable? instance = null;

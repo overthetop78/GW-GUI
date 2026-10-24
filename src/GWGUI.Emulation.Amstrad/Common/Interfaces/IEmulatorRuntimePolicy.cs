@@ -27,4 +27,18 @@ internal interface IEmulatorRuntimePolicy
     /// <param name="key">Identifiant technique exact de l’option.</param>
     /// <returns>True si le backend impose un redémarrage ; les métadonnées générales des options restent appliquées séparément.</returns>
     bool RequiresOptionRestart(MachineConfiguration configuration, string key);
+    /// <summary>Projette les descriptions des options annoncées par le cœur sans changer leurs valeurs natives.</summary>
+    /// <param name="configuration">Configuration de session empruntée donnant le profil et les réglages de présentation.</param>
+    /// <param name="options">Options annoncées par le cœur, empruntées pendant la projection.</param>
+    /// <returns>Options à publier ; le comportement de base conserve la collection reçue.</returns>
+    /// <remarks>Le backend reprend ses métadonnées existantes par ce contrat. Cette opération ne crée
+    /// ni cœur, ni processus, ni ressource native et ne prend pas possession des données reçues.</remarks>
+    IReadOnlyList<CoreOption> NormalizeRuntimeOptions(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) => options;
+
+    /// <summary>Résout le délai applicable à une commande du protocole commun.</summary>
+    /// <param name="configuration">Configuration empruntée de la session concernée.</param>
+    /// <param name="command">Identifiant de commande du protocole commun.</param>
+    /// <param name="fallback">Délai déjà choisi par le transport, conservé par défaut.</param>
+    /// <returns>Délai applicable à cette attente, sans lancer ni interrompre de commande.</returns>
+    TimeSpan GetHostCommandTimeout(MachineConfiguration configuration, byte command, TimeSpan fallback) => fallback;
 }
