@@ -14299,3 +14299,58 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
   - [x] Vérifier les raccordements compilés de tous les modules.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : étendre le contrôle existant de StateStore aux signatures et appels de HashPath des vingt-quatre Common ; exécuter les vérifications utiles et le build Debug avec tous les modules.
+
+- [x] Terminer le raccordement Common des empreintes des octets de sauvegarde.
+  - [x] GWGUI.Emulation.Acorn : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Apple : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Atari : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Bandai : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Coleco : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Epoch : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Example : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Lifecycle.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Fairchild : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Mattel : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Panasonic : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Philips : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Sharp : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Sinclair : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Snk : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Thomson : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Watara : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] GWGUI.Emulation.Wenquxing : utiliser StateStore pour les octets et les chemins.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/StateStore.cs : déplacer le calcul HashBytes existant dans le propriétaire Common, par la même interface SDK, et commenter son contrat sans allocation ni fichier supplémentaire.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashBytes et retirer le relais local devenu inutile, en conservant les octets et leur ordre de calcul.
+  - [x] Contrôler les quatre opérations partagées.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les signatures, les appels compilés et le résultat en mémoire de HashBytes pour les vingt-quatre Common ; exécuter les vérifications de sauvegarde et le build Debug de tous les modules.

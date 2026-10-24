@@ -783,6 +783,14 @@ public sealed class ArchitectureValidationTests
             Assert.Contains(GetCompiledCalls(hashPath), call =>
                 call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "HashPath"
                 || call.Method.DeclaringType == typeof(IEmulationCoreDiagnostics) && call.Method.Name == "CalculateSha256");
+            var hashBytes = owner.GetMethod("HashBytes", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.NotNull(hashBytes);
+            Assert.Equal(typeof(string), hashBytes.ReturnType);
+            Assert.Equal(typeof(ReadOnlySpan<byte>), Assert.Single(hashBytes.GetParameters()).ParameterType);
+            Assert.Contains(GetCompiledCalls(hashBytes), call => call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "HashBytes");
+            var hash = hashBytes.CreateDelegate<Func<ReadOnlySpan<byte>, string>>();
+            Assert.Equal("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", hash([]));
+            Assert.Equal("BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD", hash("abc"u8));
             if (writeCalls.Any(call => call.Method.Name == "ValidatePayloadSize"))
             {
                 Assert.True(writeCalls.Single(call => call.Method.Name == "ValidatePayloadSize").Offset < writeCalls.Single(call => call.Method.Name == "WriteState").Offset);
@@ -800,6 +808,8 @@ public sealed class ArchitectureValidationTests
                 .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
             Assert.DoesNotContain(stateCalls, call => call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "HashPath");
+            Assert.DoesNotContain(stateCalls, call => call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "HashBytes");
+            Assert.Contains(stateCalls, call => call.Method == hashBytes);
             if (root != "GWGUI.Emulation.Microsoft") Assert.Contains(stateCalls, call => call.Method == hashPath);
         }
         Assert.Equal(15, payloadPolicies);

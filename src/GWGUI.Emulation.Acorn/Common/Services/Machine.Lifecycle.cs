@@ -157,7 +157,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         var header = new EmulationSavedStateHeader<MachineModel, Emulator>(
             EmulationSavedStateConstants.CurrentFormatVersion, _core.Emulator, _core.CoreName, _core.CoreVersion,
             _core.CoreSha256, configuration.Model, EmulationSdk.StateFiles.HashDocument(configuration),
-            StateContentHash(configuration), EmulationSdk.StateFiles.HashBytes(state));
+            StateContentHash(configuration), StateStore.HashBytes(state));
         StateStore.Write(path, header, state);
     }, cancellationToken);
 

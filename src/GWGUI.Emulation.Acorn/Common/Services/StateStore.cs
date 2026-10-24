@@ -26,4 +26,11 @@ internal static class StateStore
     /// et les fichiers utilisateur restent inchangés ; les dépendances de média sont résolues par l’adaptation appelante.</remarks>
     internal static string HashPath(string path) => EmulationSdk.StateFiles.HashPath(path, "*", '/', 64 * 1024,
         () => new FileNotFoundException(ErrorMessages.StateInvalid, path));
+
+    /// <summary>Calcule le SHA-256 des octets empruntés au cœur pour l’en-tête d’un état.</summary>
+    /// <param name="bytes">Octets exacts de l’état, valides pendant cet appel ; le service ne les conserve pas.</param>
+    /// <returns>Empreinte hexadécimale produite par le contrat commun de sauvegarde.</returns>
+    /// <remarks>Ce calcul reste en mémoire : il ne crée aucun fichier et ne transfère pas la propriété du tampon.
+    /// La même opération identifie aussi les descriptions de contenus déjà encodées en octets par l’appelant.</remarks>
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
 }

@@ -19,7 +19,7 @@ internal static class SavedStateFunctions
         configuration.Model,
         ConfigurationHash(configuration),
         ContentHash(configuration),
-        HashBytes(state));
+        StateStore.HashBytes(state));
 
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
@@ -38,7 +38,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationException Invalid(ErrorCode code, string message, Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
 
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
+
 
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -89,7 +89,7 @@ internal static class SavedStateFunctions
     {
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })
-            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulatorCatalogFunctions.Diagnostics.CalculateSha256))));
+            return StateStore.HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulatorCatalogFunctions.Diagnostics.CalculateSha256))));
         return StateStore.HashPath(path);
     }
 

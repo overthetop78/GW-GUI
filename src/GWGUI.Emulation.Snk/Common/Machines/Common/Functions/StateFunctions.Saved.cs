@@ -9,7 +9,7 @@ internal static class SavedStateFunctions
 {
     internal static SavedStateHeader CreateHeader(MachineConfiguration configuration,
         IEmulatorCore core,
-        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
+        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), StateStore.HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (!EmulationSdk.StateFiles.IsCompatible(header, configuration.Model, core.Emulator, core,
@@ -26,7 +26,7 @@ internal static class SavedStateFunctions
     }
 
     internal static EmulationException Invalid(ErrorCode code, string message, Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationSdk.StateFiles.HashBytes(bytes);
+
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
         var fingerprint = new StateConfigurationFingerprint(
