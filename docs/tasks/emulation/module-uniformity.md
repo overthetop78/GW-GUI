@@ -12637,3 +12637,17 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/ControllerPortFunctions.cs : utiliser nameof(PeripheralCategory.Automatic) pour la chaîne déjà définie par cet enum.
   - [x] Supprimer src/GWGUI.Emulation.Atari/Common/Constants/ControllerPortFunctionsConstants.cs : retirer la définition textuelle redondante du nom Automatic.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le propriétaire uniforme des messages et les appels compilés ; exécuter les vérifications et le build Debug complet.
+
+- [x] Faire porter les opérations de catalogue et de gestion des versions par Common.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Catalog.cs : reprendre les validations et les constructions des chemins de bibliothèque et de marqueur actif, avec les mêmes noms de fichiers et les mêmes exceptions.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs : sélectionner la description puis confier les chemins à EmulatorCatalogFunctions dans Common.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Catalog.cs : reprendre les validations et les constructions des chemins de bibliothèque et de marqueur actif, avec les mêmes noms de fichiers et les mêmes exceptions.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs : sélectionner la description puis confier les chemins à EmulatorCatalogFunctions dans Common.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Catalog.cs : reprendre les validations et les constructions des chemins de bibliothèque et de marqueur actif, avec les mêmes noms de fichiers et les mêmes exceptions.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs : sélectionner la description puis confier les chemins à EmulatorCatalogFunctions dans Common.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Catalog.cs : reprendre les validations et les constructions des chemins de bibliothèque et de marqueur actif, avec les mêmes noms de fichiers et les mêmes exceptions.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs : sélectionner la description puis confier les chemins à EmulatorCatalogFunctions dans Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Catalog.cs : porter les quatre opérations de version intégrée et documenter leur usage, leur annulation et leurs ressources empruntées.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : déléguer consultation, recherche, sélection et résolution du chemin de version au Common.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : importer explicitement le propriétaire Common EmulatorCatalogFunctions.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les appels de gestion vers Common et conserver les scénarios de validation des catalogues ; exécuter les vérifications et le build Debug complet.

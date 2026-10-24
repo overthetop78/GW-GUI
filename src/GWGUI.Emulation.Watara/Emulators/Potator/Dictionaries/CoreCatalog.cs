@@ -1,6 +1,5 @@
-using CoreReleaseFunctions = GWGUI.Emulation.Watara.Common.Functions.CoreReleaseFunctions;
+using EmulatorCatalogFunctions = GWGUI.Emulation.Watara.Common.Functions.EmulatorCatalogFunctions;
 using GWGUI.Emulation;
-using System.IO;
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
@@ -19,21 +18,9 @@ internal static class CoreCatalog
         EmulatorConstants.DescriptionResourceKey
     );
     internal static EmulatorCatalogEntry Get(Emulator emulator) => emulator == Emulator.Potator ? Entry : throw new ArgumentOutOfRangeException(nameof(emulator));
-    internal static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version)
-    {
-        Get(emulator);
-        ArgumentException.ThrowIfNullOrWhiteSpace(installationRoot);
-        ArgumentException.ThrowIfNullOrWhiteSpace(version);
-        if (version != Path.GetFileName(version) || version is "." or ".." || version.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
-            throw new ArgumentException(nameof(version));
-        return CoreReleaseFunctions.Releases.CreateInstallationPaths(Path.GetFullPath(installationRoot), Entry.Id,
-            version, Entry.DllName, EmulatorCatalogConstants.ManifestFileName);
-    }
+    internal static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) =>
+        EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);
 
-    internal static string GetActiveManifestPath(Emulator emulator, string installationRoot)
-    {
-        Get(emulator);
-        ArgumentException.ThrowIfNullOrWhiteSpace(installationRoot);
-        return Path.Combine(Path.GetFullPath(installationRoot), Entry.Id, EmulatorCatalogConstants.ActiveManifestFileName);
-    }
+    internal static string GetActiveManifestPath(Emulator emulator, string installationRoot) =>
+        EmulatorCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);
 }

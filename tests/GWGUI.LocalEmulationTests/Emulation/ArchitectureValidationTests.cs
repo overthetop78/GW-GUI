@@ -4532,4 +4532,49 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(16, releaseOwners);
         Assert.Equal(12, localizedServices);
     }
+    [Fact]
+    public async Task InstallationManagementIsRoutedThroughCommon()
+    {
+        foreach (var (family, emulator) in new[] { ("Panasonic", "Opera"), ("Thomson", "Theodore"), ("Watara", "Potator"), ("Wenquxing", "Wqxemu") })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = "GWGUI.Emulation." + family;
+            var common = assembly.GetType(root + ".Common.Functions.EmulatorCatalogFunctions", throwOnError: true)!;
+            var catalogue = assembly.GetType(root + ".Emulators." + emulator + ".Dictionaries.CoreCatalog", throwOnError: true)!;
+            foreach (var name in new[] { "GetInstallationPaths", "GetActiveManifestPath" })
+                Assert.Contains(GetCompiledCalls(catalogue.GetMethod(name, BindingFlags.Static | BindingFlags.NonPublic)!),
+                    call => call.Method.DeclaringType == common && call.Method.Name == name);
+        }
+        var example = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
+        var owner = example.GetType("GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions", throwOnError: true)!;
+        var factory = example.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Factories.MachineFactory", throwOnError: true)!;
+        foreach (var name in new[] { "GetInstallationAsync", "FindReleasesAsync", "InstallAsync", "FindInstalledCorePathAsync" })
+            Assert.Contains(GetCompiledCalls(factory.GetMethod(name)!), call => call.Method.DeclaringType == owner && call.Method.Name == name);
+        var catalogueType = example.GetType("GWGUI.Emulation.Example.Common.Dictionaries.EmulatorCatalog", throwOnError: true)!;
+        var definitions = Assert.IsAssignableFrom<IReadOnlyList<EmulationEmulatorDefinition>>(catalogueType.GetProperty("All", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null));
+        Assert.Equal(3, definitions.Count);
+        var progress = new InstallationProgress();
+        foreach (var definition in definitions)
+        {
+            var installation = await (ValueTask<EmulationEmulatorInstallation>)owner.GetMethod("GetInstallationAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, CancellationToken.None])!;
+            var release = Assert.Single(await (ValueTask<IReadOnlyList<EmulationEmulatorRelease>>)owner.GetMethod("FindReleasesAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, CancellationToken.None])!);
+            Assert.Equal(definition.Id, installation.EmulatorId);
+            Assert.Equal(installation.InstalledVersion, release.Version);
+            var path = await (ValueTask<string>)owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, release, progress, CancellationToken.None])!;
+            var installedPath = await (ValueTask<string?>)owner.GetMethod("FindInstalledCorePathAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [CancellationToken.None])!;
+            Assert.Equal(example.Location, path);
+            Assert.Equal(path, installedPath);
+            var wrongVersion = release with { Version = "invalid-version" };
+            var rejected = Assert.Throws<TargetInvocationException>(() => owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, wrongVersion, progress, CancellationToken.None]));
+            Assert.IsType<ArgumentOutOfRangeException>(rejected.InnerException);
+            var cancelled = Assert.Throws<TargetInvocationException>(() => owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, release, progress, new CancellationToken(canceled: true)]));
+            Assert.IsType<OperationCanceledException>(cancelled.InnerException);
+        }
+        Assert.Equal(new[] { 1d, 1d, 1d }, progress.Values);
+    }
+    private sealed class InstallationProgress : IProgress<double>
+    {
+        internal List<double> Values { get; } = [];
+        public void Report(double value) => Values.Add(value);
+    }
 }

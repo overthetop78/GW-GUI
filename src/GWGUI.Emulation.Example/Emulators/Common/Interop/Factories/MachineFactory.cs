@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions;
 using CommonMediaRuntimeFunctions = GWGUI.Emulation.Example.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using System.Globalization;
 using System.IO;
@@ -54,37 +55,23 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
 
     /// <summary>Décrit la version livrée avec l’assembly, disponible sans téléchargement.</summary>
     /// <inheritdoc/>
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, Engine.CoreVersion));
-    }
+    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        EmulatorCatalogFunctions.GetInstallationAsync(Definition, cancellationToken);
 
     /// <summary>Propose la version intégrée comme version requise de cette simulation.</summary>
     /// <inheritdoc/>
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult<IReadOnlyList<EmulationEmulatorRelease>>([new(EmulatorId, Definition.DisplayName + " " + Engine.CoreVersion, Engine.CoreVersion, IsRequired: true)]);
-    }
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        EmulatorCatalogFunctions.FindReleasesAsync(Definition, cancellationToken);
 
     /// <summary>Résout la version intégrée demandée ; aucune archive ni DLL n’est créée.</summary>
     /// <inheritdoc/>
-    public ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        if (release.Id != EmulatorId || release.Version != Engine.CoreVersion) throw new ArgumentOutOfRangeException(nameof(release));
-        progress?.Report(1);
-        return ValueTask.FromResult(Engine.CoreImplementationPath);
-    }
+    public ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken) =>
+        EmulatorCatalogFunctions.InstallAsync(Definition, release, progress, cancellationToken);
 
     /// <summary>Retourne l’assembly existant qui porte la simulation, sans charger de bibliothèque native.</summary>
     /// <inheritdoc/>
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult<string?>(Engine.CoreImplementationPath);
-    }
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        EmulatorCatalogFunctions.FindInstalledCorePathAsync(cancellationToken);
 
     /// <summary>Crée une session dont les ressources sont transférées à la machine uniquement après construction réussie.</summary>
     /// <inheritdoc/>
