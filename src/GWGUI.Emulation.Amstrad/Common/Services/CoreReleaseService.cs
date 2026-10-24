@@ -71,7 +71,7 @@ internal sealed class CoreReleaseService
                     if (release.IsZip)
                     {
                         CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _libraryFile, extracted,
-                            static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
+                            static _ => ErrorMessages.ArchiveMissingLibrary(), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },

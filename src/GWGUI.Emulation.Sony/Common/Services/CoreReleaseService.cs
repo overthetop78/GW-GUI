@@ -73,7 +73,7 @@ internal string? FindInstalledLibraryPath()
                     if (release.IsZip)
                     {
                         CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
-                            _ => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.ArchiveMissingLibrary), preserveLastWriteTime: true);
+                            _ => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.ArchiveMissingLibrary), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
@@ -99,7 +99,7 @@ internal string? FindInstalledLibraryPath()
 
     private static void VerifyWindowsX64Library(string path, string? emulatorId) =>
         EmulatorCatalogFunctions.Diagnostics.VerifyWindowsX64Library(path,
-            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreNotPe),
-            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreInvalidPe),
-            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreWrongArchitecture));
+            () => ErrorMessages.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreNotPe),
+            () => ErrorMessages.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreInvalidPe),
+            () => ErrorMessages.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreWrongArchitecture));
 }

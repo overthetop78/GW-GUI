@@ -17,16 +17,16 @@ internal sealed class ExternalDiskControl : IEmulationDiskControl, IEmulationDis
         _control = CommonCoreHostFunctions.NativeResources.CreateDiskControl(this);
     }
 
-    public string UnavailableMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlUnavailable);
-    public string IncompleteMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlIncomplete);
-    public string EjectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaEjectFailed);
-    public string SelectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSelectionFailed);
-    public string InsertFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaInsertFailed);
-    public string CreateSlotFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSlotCreationFailed);
-    public string ReplaceFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaRefused);
-    public string MediaMissingMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaNotFound);
-    public string RequestedSelectFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedDiskSelectionFailed);
-    public string RequestedInsertFailedMessage => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedMediaInsertFailed);
+    public string UnavailableMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlUnavailable);
+    public string IncompleteMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.DiskControlIncomplete);
+    public string EjectFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaEjectFailed);
+    public string SelectFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSelectionFailed);
+    public string InsertFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaInsertFailed);
+    public string CreateSlotFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaSlotCreationFailed);
+    public string ReplaceFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaRefused);
+    public string MediaMissingMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.MediaNotFound);
+    public string RequestedSelectFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedDiskSelectionFailed);
+    public string RequestedInsertFailedMessage => ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.RequestedMediaInsertFailed);
 
     /// <summary>État et opérations transmis au propriétaire SDK par son interface.</summary>
     public bool IsAvailable => _control.IsAvailable;

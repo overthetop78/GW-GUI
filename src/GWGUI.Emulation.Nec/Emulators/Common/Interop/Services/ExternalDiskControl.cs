@@ -16,7 +16,7 @@ internal sealed class ExternalDiskControl : IEmulationDiskControl, IEmulationDis
         _control = CommonCoreHostFunctions.NativeResources.CreateDiskControl(this);
     }
 
-    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorPrefix + "." + name, arguments);
+    private string Error(string name, params object[] arguments) => ExceptionText.Get(_errorPrefix + "." + name, arguments);
 
     public string UnavailableMessage => Error("DiskControlUnavailable");
     public string IncompleteMessage => Error("DiskControlIncomplete");

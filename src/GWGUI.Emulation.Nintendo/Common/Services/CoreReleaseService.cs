@@ -58,7 +58,7 @@ internal sealed class CoreReleaseService
                     if (release.IsZip)
                     {
                         CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
-                            static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
+                            static _ => ErrorMessages.ArchiveMissingLibrary(), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
@@ -83,5 +83,5 @@ internal sealed class CoreReleaseService
     internal static void VerifyWindowsX64Library(string path)
         =>
         EmulatorCatalogFunctions.Diagnostics.VerifyWindowsX64Library(path,
-            CoreExceptions.DownloadedCoreNotPe, CoreExceptions.DownloadedCoreInvalidPe, CoreExceptions.DownloadedCoreWrongArchitecture);
+            ErrorMessages.DownloadedCoreNotPe, ErrorMessages.DownloadedCoreInvalidPe, ErrorMessages.DownloadedCoreWrongArchitecture);
 }

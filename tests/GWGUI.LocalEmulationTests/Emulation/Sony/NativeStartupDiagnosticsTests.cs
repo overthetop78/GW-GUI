@@ -92,5 +92,5 @@ public sealed class NativeStartupDiagnosticsTests
     }
 
     private static IEmulationCoreDiagnosticMonitor CreateMonitor(IReadOnlyList<string>? signatures)
-        => CoreHostFunctions.Messages.CreateCoreDiagnosticMonitor(signatures, static diagnostic => new InvalidOperationException(CoreExceptions.ContentRefused(), new InvalidOperationException(diagnostic)));
+        => CoreHostFunctions.Messages.CreateCoreDiagnosticMonitor(signatures, static diagnostic => new InvalidOperationException(ErrorMessages.ContentRefused(), new InvalidOperationException(diagnostic)));
 }

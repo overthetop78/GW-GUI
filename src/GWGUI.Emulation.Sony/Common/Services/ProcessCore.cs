@@ -356,7 +356,7 @@ internal sealed class ProcessCore : IEmulatorCore
         finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
     }
 
-    private string Error(string key, params object[] arguments) => CoreExceptions.ForEmulator(_configuration?.EmulatorId, key, arguments);
+    private string Error(string key, params object[] arguments) => ErrorMessages.ForEmulator(_configuration?.EmulatorId, key, arguments);
 
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.HostResponseUnavailable));
 

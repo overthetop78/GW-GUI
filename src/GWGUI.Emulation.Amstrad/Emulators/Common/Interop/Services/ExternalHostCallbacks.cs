@@ -132,10 +132,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, CommonExceptions.UnknownCoreOption());
+            throw new ArgumentOutOfRangeException(nameof(key), key, ErrorMessages.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > BufferConstants.EmptyCollectionCount && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, CommonExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, ErrorMessages.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, ExternalCoreInteropConstants.OptionsUpdatedState);
         _updateOptionsDisplay?.Invoke();

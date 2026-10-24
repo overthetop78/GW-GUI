@@ -13,16 +13,16 @@ internal sealed class ExternalDiskControl : IEmulationDiskControl, IEmulationDis
         _control = CommonCoreHostFunctions.NativeResources.CreateDiskControl(this);
     }
 
-    public string UnavailableMessage => CoreExceptions.DiskControlUnavailable();
-    public string IncompleteMessage => CoreExceptions.DiskControlIncomplete();
-    public string EjectFailedMessage => CoreExceptions.MediaEjectFailed();
-    public string SelectFailedMessage => CoreExceptions.MediaSelectionFailed();
-    public string InsertFailedMessage => CoreExceptions.MediaInsertFailed();
-    public string CreateSlotFailedMessage => CoreExceptions.MediaSlotCreationFailed();
-    public string ReplaceFailedMessage => CoreExceptions.MediaRefused();
-    public string MediaMissingMessage => CoreExceptions.MediaNotFound();
-    public string RequestedSelectFailedMessage => CoreExceptions.RequestedDiskSelectionFailed();
-    public string RequestedInsertFailedMessage => CoreExceptions.RequestedMediaInsertFailed();
+    public string UnavailableMessage => ErrorMessages.DiskControlUnavailable();
+    public string IncompleteMessage => ErrorMessages.DiskControlIncomplete();
+    public string EjectFailedMessage => ErrorMessages.MediaEjectFailed();
+    public string SelectFailedMessage => ErrorMessages.MediaSelectionFailed();
+    public string InsertFailedMessage => ErrorMessages.MediaInsertFailed();
+    public string CreateSlotFailedMessage => ErrorMessages.MediaSlotCreationFailed();
+    public string ReplaceFailedMessage => ErrorMessages.MediaRefused();
+    public string MediaMissingMessage => ErrorMessages.MediaNotFound();
+    public string RequestedSelectFailedMessage => ErrorMessages.RequestedDiskSelectionFailed();
+    public string RequestedInsertFailedMessage => ErrorMessages.RequestedMediaInsertFailed();
 
     /// <summary>État et opérations transmis au propriétaire SDK par son interface.</summary>
     public bool IsAvailable => _control.IsAvailable;

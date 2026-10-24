@@ -4,6 +4,6 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 
 internal static class PpssppExceptions
 {
-    internal static string FullContentPathsRequired() => CoreExceptions.ForEmulator(null, "Emulation.Error.Ppsspp.FullContentPathsRequired");
-    internal static string SystemFilesMissing() => CoreExceptions.ForEmulator(null, "Emulation.Error.Ppsspp.SystemFilesMissing");
+    internal static string FullContentPathsRequired() => ErrorMessages.ForEmulator(null, "Emulation.Error.Ppsspp.FullContentPathsRequired");
+    internal static string SystemFilesMissing() => ErrorMessages.ForEmulator(null, "Emulation.Error.Ppsspp.SystemFilesMissing");
 }

@@ -60,7 +60,7 @@ internal sealed class CoreReleaseService
                     if (release.IsZip)
                     {
                         CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
-                            _ => CoreExceptions.Text(_errorResourcePrefix + ".ArchiveMissingLibrary"), preserveLastWriteTime: true);
+                            _ => ExceptionText.Get(_errorResourcePrefix + ".ArchiveMissingLibrary"), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
@@ -90,7 +90,7 @@ internal sealed class CoreReleaseService
 
     private static void VerifyWindowsX64Library(string path, string errorResourcePrefix)
         => EmulatorCatalogFunctions.Diagnostics.VerifyWindowsX64Library(path,
-            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreNotPe"),
-            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreInvalidPe"),
-            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreWrongArchitecture"));
+            () => ExceptionText.Get(errorResourcePrefix + ".DownloadedCoreNotPe"),
+            () => ExceptionText.Get(errorResourcePrefix + ".DownloadedCoreInvalidPe"),
+            () => ExceptionText.Get(errorResourcePrefix + ".DownloadedCoreWrongArchitecture"));
 }

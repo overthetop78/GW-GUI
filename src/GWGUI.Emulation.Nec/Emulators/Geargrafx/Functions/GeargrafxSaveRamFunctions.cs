@@ -17,7 +17,7 @@ internal static class GeargrafxSaveRamFunctions
         if (!File.Exists(path)) return;
         var bytes = File.ReadAllBytes(path);
         if (bytes.Length != size)
-            throw new InvalidDataException(CoreExceptions.InvalidSaveRamSize(path));
+            throw new InvalidDataException(ErrorMessages.InvalidSaveRamSize(path));
         Marshal.Copy(bytes, GeargrafxSaveRamConstants.FirstByteOffset, memory, size);
     }
 
@@ -50,7 +50,7 @@ internal static class GeargrafxSaveRamFunctions
             return IntPtr.Zero;
         }
         if (length > GeargrafxSaveRamConstants.MaximumSize)
-            throw new InvalidDataException(CoreExceptions.SaveRamTooLarge());
+            throw new InvalidDataException(ErrorMessages.SaveRamTooLarge());
         size = (int)length;
         return getData(GeargrafxSaveRamConstants.SaveRamType);
     }

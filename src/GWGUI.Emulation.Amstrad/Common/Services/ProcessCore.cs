@@ -120,9 +120,9 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         _policyConfiguration = configuration;
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_initialized) throw new InvalidOperationException(CommonExceptions.ProcessAlreadyInitialized());
+        if (_initialized) throw new InvalidOperationException(ErrorMessages.ProcessAlreadyInitialized());
         if (!File.Exists(_hostExecutablePath))
-            throw new FileNotFoundException(CommonExceptions.HostExecutableNotFound(), _hostExecutablePath);
+            throw new FileNotFoundException(ErrorMessages.HostExecutableNotFound(), _hostExecutablePath);
 
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -136,7 +136,7 @@ internal sealed class ProcessCore : IEmulatorCore
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             var startInfo = CommonCoreHostFunctions.Protocol.CreateHostStartInfo(_hostExecutablePath,
                 Path.GetDirectoryName(_hostExecutablePath)!, _hostCommand, pipeName, videoMapName);
-            _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(CommonExceptions.ProcessStartFailed()));
+            _process = CommonCoreHostFunctions.Protocol.StartHostProcess(startInfo, () => new InvalidOperationException(ErrorMessages.ProcessStartFailed()));
             _hostProcessId = _process.Id;
             _hostProcessFaulted = false;
             CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds));
@@ -179,7 +179,7 @@ internal sealed class ProcessCore : IEmulatorCore
         CommonCoreHostFunctions.WriteInput(_writer!, _input.Consume());
         CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(_writer!, OutputAudioStatus);
         CompleteRequest();
-        LatestVideoFrame = CommonCoreHostFunctions.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(CommonExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
+        LatestVideoFrame = CommonCoreHostFunctions.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(ErrorMessages.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CommonCoreHostFunctions.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -200,8 +200,8 @@ internal sealed class ProcessCore : IEmulatorCore
 
     public void HardReset()
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(CommonExceptions.ProcessNotInitialized());
-        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CommonExceptions.ProcessNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.ProcessNotInitialized());
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.ProcessNotInitialized());
         var saveDirectory = _saveDirectory;
         ReleaseHost();
         Initialize(configuration, sessionDirectory, saveDirectory);
@@ -335,9 +335,9 @@ internal sealed class ProcessCore : IEmulatorCore
     private void Begin(HostCommand command)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_connectionFailed) throw new InvalidOperationException(CommonExceptions.ProcessUnavailable());
+        if (_connectionFailed) throw new InvalidOperationException(ErrorMessages.ProcessUnavailable());
         if (command != HostCommand.Initialize && !_initialized)
-            throw new InvalidOperationException(CommonExceptions.ProcessNotInitialized());
+            throw new InvalidOperationException(ErrorMessages.ProcessNotInitialized());
         _pendingCommand = command;
         CommonCoreHostFunctions.WriteRequestHeader(_writer!, command);
     }
@@ -360,13 +360,13 @@ internal sealed class ProcessCore : IEmulatorCore
             _connectionFailed = true;
             _hostProcessFaulted = true;
             TerminateProcess();
-            throw new InvalidOperationException(timedOut ? CommonExceptions.ProcessTimeout() : CommonExceptions.ProcessCommunicationFailed(exit), error);
+            throw new InvalidOperationException(timedOut ? ErrorMessages.ProcessTimeout() : ErrorMessages.ProcessCommunicationFailed(exit), error);
         }
     }
 
     private Task<byte[]> ReadResponseAsync() =>
         CommonCoreHostFunctions.Protocol.ReadResponseAsync(_pipe!, RequestTimeoutFor(_pendingCommand, TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds)),
-            CancellationToken.None, length => CommonExceptions.InvalidResponseLength(length));
+            CancellationToken.None, length => ErrorMessages.InvalidResponseLength(length));
 
     private void TerminateProcess()
     {
@@ -383,7 +383,7 @@ internal sealed class ProcessCore : IEmulatorCore
         finally { CommonCoreHostFunctions.Protocol.DisposeTransportIgnoringErrors(process); }
     }
 
-    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(CommonExceptions.HostResponseUnavailable());
+    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(ErrorMessages.HostResponseUnavailable());
 
     /// <inheritdoc/>
     public int MinimumAudioLatencyMilliseconds { get; private set; }

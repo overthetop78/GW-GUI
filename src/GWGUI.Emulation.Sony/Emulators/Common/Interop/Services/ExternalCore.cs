@@ -373,7 +373,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         finally { Marshal.FreeHGlobal(game); }
     }
 
-    private string Error(string key, params object[] arguments) => CoreExceptions.ForEmulator(_definition.Id, key, arguments);
+    private string Error(string key, params object[] arguments) => ErrorMessages.ForEmulator(_definition.Id, key, arguments);
 
     private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotLoaded))).Resolve<T>(name);
 

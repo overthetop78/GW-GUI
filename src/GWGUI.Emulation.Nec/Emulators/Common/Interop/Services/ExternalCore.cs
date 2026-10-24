@@ -395,7 +395,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return path;
     }
 
-    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorResourcePrefix + "." + name, arguments);
+    private string Error(string name, params object[] arguments) => ExceptionText.Get(_errorResourcePrefix + "." + name, arguments);
 
     public void Dispose()
     {

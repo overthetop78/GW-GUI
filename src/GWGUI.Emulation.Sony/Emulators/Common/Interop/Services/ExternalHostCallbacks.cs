@@ -64,7 +64,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _legacyCallbacks = _pspCallbacks || emulatorId == Emulators.Pcsx2.Constants.Pcsx2Constants.Id;
         DiskControl = new ExternalDiskControl(emulatorId);
         _controllerPorts = controllerPorts;
-        DiagnosticMonitor = CommonCoreHostFunctions.Messages.CreateCoreDiagnosticMonitor(startupFailureDiagnostics, static diagnostic => new InvalidOperationException(CoreExceptions.ContentRefused(), new InvalidOperationException(diagnostic)));
+        DiagnosticMonitor = CommonCoreHostFunctions.Messages.CreateCoreDiagnosticMonitor(startupFailureDiagnostics, static diagnostic => new InvalidOperationException(ErrorMessages.ContentRefused(), new InvalidOperationException(diagnostic)));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -142,10 +142,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnknownCoreOption));
+            throw new ArgumentOutOfRangeException(nameof(key), key, ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnknownCoreOption));
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.InvalidOptionValue, value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.InvalidOptionValue, value, key));
         _options[key] = value;
         OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(OptionCatalog, _options);
         Interlocked.Exchange(ref _optionsUpdated, 1);

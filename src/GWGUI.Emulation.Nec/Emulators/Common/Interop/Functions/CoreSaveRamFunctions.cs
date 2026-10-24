@@ -15,7 +15,7 @@ internal static class CoreSaveRamFunctions
         if (!File.Exists(path)) return;
         var bytes = File.ReadAllBytes(path);
         if (bytes.Length != size)
-            throw new InvalidDataException(CoreExceptions.InvalidSaveRamSize(path));
+            throw new InvalidDataException(ErrorMessages.InvalidSaveRamSize(path));
         Marshal.Copy(bytes, CoreSaveRamConstants.FirstByteOffset, memory, size);
     }
 
@@ -48,7 +48,7 @@ internal static class CoreSaveRamFunctions
             return IntPtr.Zero;
         }
         if (length > CoreSaveRamConstants.MaximumSize)
-            throw new InvalidDataException(CoreExceptions.SaveRamTooLarge());
+            throw new InvalidDataException(ErrorMessages.SaveRamTooLarge());
         size = (int)length;
         return getData(CoreSaveRamConstants.SaveRamType);
     }

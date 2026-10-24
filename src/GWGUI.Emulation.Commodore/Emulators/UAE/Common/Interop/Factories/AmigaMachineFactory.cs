@@ -81,7 +81,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
             File.Copy(key, Path.Combine(systemDirectory, UaeFirmwareConstants.RomKey), true);
         foreach (var disk in ExternalCore.ResolveConfiguredMedia(configuration).Where(item => item.Category == MediaCategory.HardDrive && !Directory.Exists(item.Path)))
         {
-            var format = AmigaHardDiskFormats.All.FirstOrDefault(item => string.Equals(item.Extension, Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CoreExceptions.UnsupportedHardDiskExtension());
+            var format = AmigaHardDiskFormats.All.FirstOrDefault(item => string.Equals(item.Extension, Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(ErrorMessages.UnsupportedHardDiskExtension());
             GWGUI.Emulation.HardDisks.HardDiskImageValidation.ValidateExisting(disk.Path, format);
         }
     }

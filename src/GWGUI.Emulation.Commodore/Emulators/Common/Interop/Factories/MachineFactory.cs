@@ -51,7 +51,7 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
             EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
             EmulationMediaType.Cartridge => MediaCategory.Cartridge,
             EmulationMediaType.Cassette => MediaCategory.Cassette,
-            _ => throw new InvalidDataException(CoreExceptions.UnsupportedContentExtension(extension))
+            _ => throw new InvalidDataException(ErrorMessages.UnsupportedContentExtension(extension))
         };
     }
     public abstract IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);

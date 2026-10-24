@@ -14,6 +14,75 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+
+    [Fact]
+    public void CommonMessagesResolveCultureAndArgumentsThroughOneOwner()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load).ToArray();
+        var resolvers = 0;
+        foreach (var assembly in assemblies)
+        {
+            var factory = assembly.GetTypes().Single(type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.IndexOf(".Modules", StringComparison.Ordinal)];
+            var resolver = assembly.GetType(root + ".Common.Exceptions.ExceptionText");
+            if (resolver is null) continue;
+            resolvers++;
+            var get = resolver.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.Equal(new[] { typeof(string), typeof(object[]) }, get.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.NotNull(get.GetParameters()[1].GetCustomAttribute<ParamArrayAttribute>());
+            Assert.Contains(GetCompiledCalls(get), call => call.Method.DeclaringType == typeof(IEmulationModuleLocalization) && call.Method.Name == "TryGetString");
+            Assert.Equal("unknown {0}", get.Invoke(null, ["unknown {0}", Array.Empty<object>()]));
+        }
+        Assert.Equal(19, resolvers);
+
+        var oldCulture = System.Globalization.CultureInfo.CurrentCulture;
+        var oldUiCulture = System.Globalization.CultureInfo.CurrentUICulture;
+        try
+        {
+            System.Globalization.CultureInfo.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en");
+            foreach (var family in new[] { "Amstrad", "Commodore", "Nec", "Nintendo", "Sega", "Sony" })
+            {
+                var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+                var root = "GWGUI.Emulation." + family;
+                var owner = assembly.GetType(root + ".Common.Exceptions.ErrorMessages", true)!;
+                var resolver = assembly.GetType(root + ".Common.Exceptions.ExceptionText", true)!;
+                var get = resolver.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!;
+                Assert.Null(assembly.GetType(root + ".Common.Exceptions.CoreExceptions"));
+                Assert.Null(assembly.GetType(root + ".Common.Exceptions.CommonExceptions"));
+                Assert.DoesNotContain(owner.GetFields(BindingFlags.NonPublic | BindingFlags.Static), field => typeof(IEmulationModuleLocalization).IsAssignableFrom(field.FieldType));
+                Assert.All(owner.GetMethods(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly), method =>
+                    Assert.Contains(GetCompiledCalls(method), call => call.Method == get));
+                Assert.Equal("unknown 1,5", get.Invoke(null, ["unknown {0}", new object[] { 1.5m }]));
+                var methodName = family == "Nec" ? "SaveRamTooLarge" : "ContentRefused";
+                var key = "Emulation.Error." + (family switch { "Amstrad" => "Common.", "Commodore" => "PUAE.", _ => "Core." }) + methodName;
+                string? expected = null;
+                foreach (var suffix in new[] { ".en-US.resources", ".00-Base.resources" })
+                {
+                    foreach (var name in assembly.GetManifestResourceNames().Where(name => name.StartsWith(root + ".Resources.", StringComparison.Ordinal) && name.EndsWith(suffix, StringComparison.Ordinal)))
+                    {
+                        using var stream = assembly.GetManifestResourceStream(name)!;
+                        using var reader = new System.Resources.ResourceReader(stream);
+                        foreach (System.Collections.DictionaryEntry entry in reader)
+                            if (Equals(entry.Key, key)) expected = Assert.IsType<string>(entry.Value);
+                    }
+                    if (expected is not null) break;
+                }
+                Assert.NotNull(expected);
+                Assert.Equal(expected,
+                    owner.GetMethod(methodName, BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, null));
+            }
+        }
+        finally
+        {
+            System.Globalization.CultureInfo.CurrentCulture = oldCulture;
+            System.Globalization.CultureInfo.CurrentUICulture = oldUiCulture;
+        }
+    }
+
+
     [Fact]
     public void OfficialReleaseManifestsAndPreparationUseCommonContracts()
     {

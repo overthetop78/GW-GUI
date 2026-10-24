@@ -50,7 +50,7 @@ internal sealed partial class ExternalCore
         var size = _getMemorySize?.Invoke(id) ?? ExternalCoreInteropConstants.EmptyNativeSize;
         if (size == ExternalCoreInteropConstants.EmptyNativeSize) return default;
         if (size > SaveMemoryConstants.MaximumManagedBufferSize)
-            throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));
+            throw new InvalidOperationException(ErrorMessages.InvalidStateSize(size));
         var pointer = _getMemoryData?.Invoke(id) ?? nint.Zero;
         return pointer == nint.Zero ? default : (pointer, checked((int)size));
     }
@@ -65,7 +65,7 @@ internal sealed partial class ExternalCore
             if (memory.Pointer == nint.Zero) continue;
             var bytes = File.ReadAllBytes(region.Path);
             if (bytes.Length != memory.Size)
-                throw new InvalidDataException(CoreExceptions.InvalidStateSize((nuint)bytes.Length));
+                throw new InvalidDataException(ErrorMessages.InvalidStateSize((nuint)bytes.Length));
             Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, memory.Pointer, bytes.Length);
         }
     }

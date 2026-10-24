@@ -79,7 +79,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private readonly string _videoMapPrefix;
     private readonly string _displayName;
     private readonly string _errorPrefix;
-    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorPrefix + "." + name, arguments);
+    private string Error(string name, params object[] arguments) => ExceptionText.Get(_errorPrefix + "." + name, arguments);
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private NamedPipeServerStream? _pipe;
     private BinaryReader? _responseReader;

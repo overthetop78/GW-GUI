@@ -49,7 +49,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; }
     private readonly string _errorPrefix;
-    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorPrefix + "." + name, arguments);
+    private string Error(string name, params object[] arguments) => ExceptionText.Get(_errorPrefix + "." + name, arguments);
 
     internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options,
         string errorPrefix = "Emulation.Error.Core")

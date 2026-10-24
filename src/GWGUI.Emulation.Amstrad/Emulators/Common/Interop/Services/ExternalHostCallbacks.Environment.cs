@@ -68,7 +68,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
     {
         _pixelFormat = CommonCoreHostFunctions.EnvironmentProcessing.ReadLegacyPixelFormat(data,
-            static value => new NotSupportedException(CommonExceptions.UnsupportedPixelFormat(value)));
+            static value => new NotSupportedException(ErrorMessages.UnsupportedPixelFormat(value)));
         return true;
     }
 
@@ -212,7 +212,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
         CommonCoreHostFunctions.OptionProcessing.ValidateConfiguredValues(
             _configuredOptionKeys, _options, OptionCatalog,
             static option => option.Key, static option => option.Values, static value => value.Value,
-            static (key, value) => throw new InvalidDataException(CommonExceptions.InvalidOptionValue(value, key)));
+            static (key, value) => throw new InvalidDataException(ErrorMessages.InvalidOptionValue(value, key)));
 
     private bool CaptureMessage(nint data, bool extended)
     {
