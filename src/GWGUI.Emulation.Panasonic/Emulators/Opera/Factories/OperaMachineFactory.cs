@@ -7,7 +7,7 @@ using System.IO;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
-using GWGUI.Emulation.Panasonic.Emulators.Opera.Services;
+using GWGUI.Emulation.Panasonic.Common.Services;
 using NativeFirmware = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.FirmwareRuntimeFunctions;
 using NativeOptions = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.RuntimeOptionFunctions;
 using NativeMedia = GWGUI.Emulation.Panasonic.Emulators.Opera.Functions.MediaRuntimeFunctions;
@@ -65,13 +65,13 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorSettings,
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
         return new(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetAvailableAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
@@ -80,11 +80,11 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorSettings,
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Opera);
         var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
-        return (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false)).LibraryPath;
+        return (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false)).LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => NativeMedia.Resolve(configuration);
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices;
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;

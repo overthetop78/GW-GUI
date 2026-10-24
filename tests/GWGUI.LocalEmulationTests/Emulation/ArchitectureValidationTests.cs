@@ -15,6 +15,53 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void CatalogReleaseWorkflowsBelongToCommonAndReceiveTheirCatalogResolver()
+    {
+        var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load).ToArray();
+        var services = 0;
+        var providers = 0;
+        foreach (var assembly in assemblies)
+        {
+            var moduleFactory = assembly.GetTypes().Single(type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = moduleFactory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var service = assembly.GetType(root + ".Common.Services.CoreReleaseService");
+            if (service is null || service.IsAbstract) continue;
+            services++;
+            Assert.Single(assembly.GetTypes(), type => type.Name == "CoreReleaseService");
+            var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
+            Assert.Equal(3, constructor.GetParameters().Length);
+            var resolver = constructor.GetParameters()[2].ParameterType;
+            Assert.True(resolver.IsGenericType, assembly.GetName().Name + ": " + resolver.FullName);
+            Assert.Equal(typeof(Func<,>), resolver.GetGenericTypeDefinition());
+            Assert.True(resolver.GetGenericArguments()[1].IsGenericType, assembly.GetName().Name + ": " + resolver.GetGenericArguments()[1].FullName);
+            Assert.Equal(typeof(EmulationCoreCatalogEntry<,>), resolver.GetGenericArguments()[1].GetGenericTypeDefinition());
+            Assert.Equal(resolver, service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)!.FieldType);
+            var related = new[] { service }.Concat(service.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
+            var calls = related.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            foreach (var name in new[] { "QueryReleaseAsync", "InstallLibraryAsync", "GetActiveInstallationAsync" })
+                Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == name);
+            var factoryTypes = assembly.GetTypes().Where(type => type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true && type.Name.EndsWith("MachineFactory", StringComparison.Ordinal)).ToArray();
+            var factoryCalls = factoryTypes.Concat(factoryTypes.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(factoryCalls, call => call.Method == constructor);
+            foreach (var provider in assembly.GetTypes().Where(type => type.Name == "CoreProvider"))
+            {
+                providers++;
+                Assert.Equal(service.Namespace, provider.Namespace);
+                Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == resolver);
+            }
+            foreach (var contract in assembly.GetTypes().Where(type => type.Name == "ICoreReleaseService"))
+                Assert.EndsWith(".Common.Interfaces", contract.Namespace);
+        }
+        Assert.Equal(16, services);
+        Assert.Equal(12, providers);
+    }
+
+    [Fact]
     public void DiagnosticEnrichmentKeepsTheCompleteContractAndDoesNotRepeatItsBlock()
     {
         var initial = new HostError<EmulationMessageCategory, EmulationMessageCode>("custom-error", "localized-failure", EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, new Dictionary<string, string> { ["slot"] = "cartridge:0" }, true);
@@ -5069,7 +5116,7 @@ public sealed class ArchitectureValidationTests
                     call => call.Method.DeclaringType == common && call.Method.Name == name);
         }
         var example = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
-        var owner = example.GetType("GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions", throwOnError: true)!;
+        var owner = example.GetType("GWGUI.Emulation.Example.Common.Services.CoreReleaseService", throwOnError: true)!;
         var factory = example.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Factories.MachineFactory", throwOnError: true)!;
         foreach (var name in new[] { "GetInstallationAsync", "FindReleasesAsync", "InstallAsync", "FindInstalledCorePathAsync" })
             Assert.Contains(GetCompiledCalls(factory.GetMethod(name)!), call => call.Method.DeclaringType == owner && call.Method.Name == name);

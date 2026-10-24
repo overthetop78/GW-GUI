@@ -5,7 +5,7 @@ using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Dictionaries;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Services;
+using GWGUI.Emulation.Thomson.Common.Services;
 using NativeMedia = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.MediaRuntimeFunctions;
 using NativeOptions = GWGUI.Emulation.Thomson.Emulators.Theodore.Functions.RuntimeOptionFunctions;
 
@@ -58,13 +58,13 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false);
         return new EmulationEmulatorInstallation(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetAvailableAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
@@ -73,12 +73,12 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Theodore);
         var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => GWGUI.Emulation.Thomson.Emulators.Theodore.Constants.MediaRuntimeConstants.CartridgeExtensions;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);

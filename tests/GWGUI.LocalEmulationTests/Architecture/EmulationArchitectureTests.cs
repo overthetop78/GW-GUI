@@ -123,13 +123,21 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonConstantsDoNotOwnCoreReleaseMetadata()
+    public void FamilyCommonReleaseConventionsKeepConcreteCoreMetadataInAdapters()
     {
         var root = RepositoryRoot();
-        foreach (var family in new[] { "Atari", "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
+        foreach (var project in Directory.EnumerateDirectories(Path.Combine(root, "src"), "GWGUI.Emulation.*"))
         {
-            var common = Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common");
-            Assert.DoesNotContain(Directory.EnumerateFiles(common, "*.cs", SearchOption.AllDirectories), file => Path.GetFileName(file) is "CoreReleaseConstants.cs" or "CoreDefinitionConstants.cs");
+            var common = Path.Combine(project, "Common");
+            if (!Directory.Exists(common)) continue;
+            Assert.DoesNotContain(Directory.EnumerateFiles(common, "*.cs", SearchOption.AllDirectories), file => Path.GetFileName(file) == "CoreDefinitionConstants.cs");
+            foreach (var file in Directory.EnumerateFiles(common, "CoreReleaseConstants.cs", SearchOption.AllDirectories))
+            foreach (Match literal in Regex.Matches(File.ReadAllText(file), "\"([^\"\\r\\n]*)\""))
+            {
+                var value = literal.Groups[1].Value;
+                Assert.False(value.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || value.StartsWith("https://", StringComparison.OrdinalIgnoreCase), file + " owns a concrete source URL.");
+                Assert.False(Regex.IsMatch(value, @"[A-Za-z0-9_-]+\.(dll|so|dylib)$", RegexOptions.IgnoreCase), file + " owns a concrete library name.");
+            }
         }
     }
 

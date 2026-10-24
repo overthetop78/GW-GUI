@@ -49,7 +49,6 @@ global using GWGUI.Emulation.Atari.Emulators.Common.Contracts;
 global using GWGUI.Emulation.Atari.Common.Enums;
 global using GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 global using GWGUI.Emulation.Atari.Emulators.Common.Functions;
-global using GWGUI.Emulation.Atari.Emulators.Common.Interfaces;
 
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Contracts;

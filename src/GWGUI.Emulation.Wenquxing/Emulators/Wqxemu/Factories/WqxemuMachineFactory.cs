@@ -7,7 +7,7 @@ using System.IO;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Dictionaries;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Services;
+using GWGUI.Emulation.Wenquxing.Common.Services;
 using NativeFirmware = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.FirmwareRuntimeFunctions;
 using NativeOptions = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions.RuntimeOptionFunctions;
 
@@ -61,13 +61,13 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false);
         return new EmulationEmulatorInstallation(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetAvailableAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
@@ -76,12 +76,12 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Wqxemu);
         var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => [];
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);

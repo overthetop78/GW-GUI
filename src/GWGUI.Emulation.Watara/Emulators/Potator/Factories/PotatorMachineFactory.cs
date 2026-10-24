@@ -5,7 +5,7 @@ using System.IO;
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
 using GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
 using GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
-using GWGUI.Emulation.Watara.Emulators.Potator.Services;
+using GWGUI.Emulation.Watara.Common.Services;
 using NativeMedia = GWGUI.Emulation.Watara.Emulators.Potator.Functions.MediaRuntimeFunctions;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Factories;
@@ -49,13 +49,13 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
 
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false);
         return new EmulationEmulatorInstallation(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetAvailableAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
@@ -64,12 +64,12 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Potator);
         var forwarded = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
