@@ -1,6 +1,6 @@
-namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Sinclair.Common.Services;
 
-internal static class StateFileFunctions
+internal static class StateStore
 {
     internal static void Write(string path, SavedStateHeader header, ReadOnlySpan<byte> state)
     {
@@ -11,7 +11,7 @@ internal static class StateFileFunctions
     internal static StateFile Read(string path)
     {
         var result = EmulationSdk.StateFiles.ReadState<MachineModel, Emulator>(path,
-            static () => SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid));
+            static () => SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid));
         SavedStateFunctions.ValidatePayloadSize(result.State.Length);
         return new StateFile(result.Header, result.State);
     }

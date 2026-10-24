@@ -152,13 +152,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (!SupportsSaveStates) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateUnavailable);
             var state = _core.SaveState();
             var header = SavedStateFunctions.CreateHeader(CurrentConfiguration(), _core, state);
-            StateFileFunctions.Write(path, header, state);
+            StateStore.Write(path, header, state);
         }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) => QueueCommand(() =>
         {
             if (!SupportsSaveStates) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateUnavailable);
-            var saved = StateFileFunctions.Read(path);
+            var saved = StateStore.Read(path);
             SavedStateFunctions.Validate(saved.Header, CurrentConfiguration(), _core);
             _core.LoadState(saved.State);
         }, cancellationToken);

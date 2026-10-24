@@ -158,15 +158,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             EmulationSavedStateConstants.CurrentFormatVersion, _core.Emulator, _core.CoreName, _core.CoreVersion,
             _core.CoreSha256, configuration.Model, EmulationSdk.StateFiles.HashDocument(configuration),
             StateContentHash(configuration), EmulationSdk.StateFiles.HashBytes(state));
-        EmulationSdk.StateFiles.WriteState(path, header, state);
+        StateStore.Write(path, header, state);
     }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) => QueueCommand(() =>
     {
         if (!_core.SupportsSaveStates)
             throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
-        var saved = EmulationSdk.StateFiles.ReadState<MachineModel, Emulator>(path,
-            static () => new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateInvalid));
+        var saved = StateStore.Read(path);
         var configuration = StateConfiguration();
         if (!EmulationSdk.StateFiles.IsCompatible(saved.Header, configuration.Model, _core.Emulator, _core,
                 () => EmulationSdk.StateFiles.HashDocument(configuration), () => StateContentHash(configuration)))

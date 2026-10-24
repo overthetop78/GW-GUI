@@ -15,6 +15,47 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void EveryCommonUsesStateStoreForReadingAndPublishingSavedStates()
+    {
+        var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
+            .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
+            .Select(Assembly.Load).Append(typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly).Distinct().ToArray();
+        Assert.Equal(24, modules.Length);
+        var payloadPolicies = 0;
+        foreach (var assembly in modules)
+        {
+            var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var owner = assembly.GetType(root + ".Common.Services.StateStore", throwOnError: true)!;
+            Assert.True(owner.IsAbstract && owner.IsSealed && !owner.IsVisible);
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Functions.StateFileFunctions"));
+            var write = owner.GetMethod("Write", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var read = owner.GetMethod("Read", BindingFlags.Static | BindingFlags.NonPublic)!;
+            Assert.NotNull(write);
+            Assert.NotNull(read);
+            Assert.Equal(new[] { typeof(string), write.GetParameters()[1].ParameterType, typeof(ReadOnlySpan<byte>) }, write.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(typeof(string), Assert.Single(read.GetParameters()).ParameterType);
+            var writeCalls = GetCompiledCalls(write);
+            var readCalls = GetCompiledCalls(read);
+            Assert.Contains(writeCalls, call => call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "WriteState");
+            Assert.Contains(readCalls, call => call.Method.DeclaringType == typeof(IEmulationStateFiles) && call.Method.Name == "ReadState");
+            if (writeCalls.Any(call => call.Method.Name == "ValidatePayloadSize"))
+            {
+                Assert.True(writeCalls.Single(call => call.Method.Name == "ValidatePayloadSize").Offset < writeCalls.Single(call => call.Method.Name == "WriteState").Offset);
+                Assert.True(readCalls.Single(call => call.Method.Name == "ReadState").Offset < readCalls.Single(call => call.Method.Name == "ValidatePayloadSize").Offset);
+                payloadPolicies++;
+            }
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var calls = machine.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+                .Concat(machine.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic).SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method == write);
+            Assert.Contains(calls, call => call.Method == read);
+        }
+        Assert.Equal(15, payloadPolicies);
+    }
+    [Fact]
     public async Task EveryCommonUsesItsControllerContractForPortCounts()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
@@ -4593,7 +4634,8 @@ public sealed class ArchitectureValidationTests
         foreach (var module in modules)
         {
             var factory = Assert.Single(module.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
-            var root = factory.Namespace![..factory.Namespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
+            var factoryNamespace = factory.Namespace!;
+            var root = factoryNamespace[..factoryNamespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var contract = module.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
             Assert.Contains(state, contract.GetInterfaces());
             var commandsContract = Assert.Single(contract.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreCommands<,>));

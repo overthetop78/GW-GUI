@@ -155,7 +155,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
             var state = _core.SaveState();
             var header = SavedStateFunctions.CreateHeader(CurrentConfiguration(), _core, state);
-            StateFileFunctions.Write(path, header, state);
+            StateStore.Write(path, header, state);
         }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
@@ -163,7 +163,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             if (!_core.SupportsSaveStates)
                 throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
-            var saved = StateFileFunctions.Read(path);
+            var saved = StateStore.Read(path);
             SavedStateFunctions.Validate(saved.Header, CurrentConfiguration(), _core);
             _core.LoadState(saved.State);
         }, cancellationToken);

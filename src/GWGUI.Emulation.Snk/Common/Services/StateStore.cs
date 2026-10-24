@@ -1,6 +1,6 @@
-namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Snk.Common.Services;
 
-internal static class StateFileFunctions
+internal static class StateStore
 {
     internal static void Write(string path, SavedStateHeader header, ReadOnlySpan<byte> state)
     {
