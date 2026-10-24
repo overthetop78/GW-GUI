@@ -78,7 +78,7 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get)).FindInstalledPathAsync(Emulator.Theodore, cancellationToken).ConfigureAwait(false);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => GWGUI.Emulation.Thomson.Emulators.Theodore.Constants.MediaRuntimeConstants.CartridgeExtensions;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);

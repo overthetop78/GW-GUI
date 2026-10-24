@@ -53,25 +53,43 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         return true;
     }
 
+    /// <summary>Fournit le contrat Common des versions avec le catalogue existant du module.</summary>
+    /// <remarks>Chaque service est léger et sans ressource possédée ; il reçoit les descriptions par une fonction,
+    /// sans connaître cette classe de backend. Les appels ci-dessous passent par cette interface.</remarks>
+    private static ICoreReleaseService Releases => new CoreReleaseService(EmulatorCatalog.Get);
+
     /// <summary>Décrit la version livrée avec l’assembly, disponible sans téléchargement.</summary>
     /// <inheritdoc/>
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
-        CoreReleaseService.GetInstallationAsync(Definition, cancellationToken);
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    {
+        var installation = await Releases.GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation is null ? null : Engine.CoreVersion);
+    }
 
     /// <summary>Propose la version intégrée comme version requise de cette simulation.</summary>
     /// <inheritdoc/>
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
-        CoreReleaseService.FindReleasesAsync(Definition, cancellationToken);
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    {
+        var releases = await Releases.GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return releases.Select(release => new EmulationEmulatorRelease(release.Id, Definition.DisplayName + " " + release.DeclaredVersion, release.DeclaredVersion, IsRequired: true)).ToArray();
+    }
 
     /// <summary>Résout la version intégrée demandée ; aucune archive ni DLL n’est créée.</summary>
     /// <inheritdoc/>
-    public ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken) =>
-        CoreReleaseService.InstallAsync(Definition, release, progress, cancellationToken);
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
+    {
+        var available = await Releases.GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var selected = available.Single() with { Id = release.Id, DeclaredVersion = release.Version };
+        var installation = await Releases.InstallAsync(selected, cancellationToken: cancellationToken).ConfigureAwait(false);
+        // La simulation termine immédiatement : conserver la notification synchrone du contrat public.
+        progress?.Report(1);
+        return installation.LibraryPath;
+    }
 
     /// <summary>Retourne l’assembly existant qui porte la simulation, sans charger de bibliothèque native.</summary>
     /// <inheritdoc/>
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
-        CoreReleaseService.FindInstalledCorePathAsync(cancellationToken);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(Releases).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Crée une session dont les ressources sont transférées à la machine uniquement après construction réussie.</summary>
     /// <inheritdoc/>

@@ -168,6 +168,7 @@ public sealed class ArchitectureValidationTests
         var services = 0;
         var catalogs = 0;
         var official = 0;
+        var preinstalled = 0;
         var providers = 0;
         foreach (var assembly in assemblies)
         {
@@ -180,6 +181,7 @@ public sealed class ArchitectureValidationTests
             Assert.Single(assembly.GetTypes(), type => type.Name == "CoreReleaseService");
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
             var resolver = service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
+            var definitionResolver = service.GetField("_getDefinition", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
             if (resolver is not null)
             {
                 catalogs++;
@@ -187,6 +189,16 @@ public sealed class ArchitectureValidationTests
                 Assert.Equal(resolver, constructor.GetParameters()[2].ParameterType);
                 Assert.Equal(typeof(Func<,>), resolver.GetGenericTypeDefinition());
                 Assert.Equal(typeof(EmulationCoreCatalogEntry<,>), resolver.GetGenericArguments()[1].GetGenericTypeDefinition());
+            }
+            else if (definitionResolver is not null)
+            {
+                preinstalled++;
+                Assert.Equal(typeof(Func<,>), definitionResolver.GetGenericTypeDefinition());
+                Assert.Equal(typeof(EmulationEmulatorDefinition), definitionResolver.GetGenericArguments()[1]);
+                Assert.Equal(definitionResolver, Assert.Single(constructor.GetParameters()).ParameterType);
+                var contract = assembly.GetType(root + ".Common.Interfaces.ICoreReleaseService", true)!;
+                Assert.Contains(contract, service.GetInterfaces());
+                Assert.Equal(new[] { "GetActiveInstallationAsync", "GetAvailableAsync", "InstallAsync" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
             }
             else
             {
@@ -197,8 +209,11 @@ public sealed class ArchitectureValidationTests
             var related = new[] { service }.Concat(service.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
             var calls = related.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
-            foreach (var name in new[] { "QueryReleaseAsync", "InstallLibraryAsync", resolver is not null ? "GetActiveInstallationAsync" : "ReadInstalledVersion" })
-                Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == name);
+            if (definitionResolver is null)
+                foreach (var name in new[] { "QueryReleaseAsync", "InstallLibraryAsync", resolver is not null ? "GetActiveInstallationAsync" : "ReadInstalledVersion" })
+                    Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == name);
+            else
+                Assert.DoesNotContain(calls, call => call.Method.DeclaringType == typeof(System.Net.Http.HttpClient));
             var factoryTypes = assembly.GetTypes().Where(type => type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true && type.Name.EndsWith("MachineFactory", StringComparison.Ordinal)).ToArray();
             var factoryCalls = factoryTypes.Concat(factoryTypes.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
                 .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
@@ -208,18 +223,25 @@ public sealed class ArchitectureValidationTests
             {
                 providers++;
                 Assert.Equal(service.Namespace, provider.Namespace);
-                if (resolver is not null)
-                    Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == resolver);
+                if (resolver is not null || definitionResolver is not null)
+                {
+                    var contract = assembly.GetType(root + ".Common.Interfaces.ICoreReleaseService", true)!;
+                    Assert.Contains(contract, service.GetInterfaces());
+                    Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == contract);
+                    var state = provider.GetMethod("FindInstalledPathAsync")!.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+                    Assert.Contains(GetCompiledCalls(state.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!), call => call.Method.DeclaringType == contract && call.Method.Name == "GetActiveInstallationAsync");
+                }
                 else
                     Assert.Contains(GetCompiledCalls(provider.GetMethod("FindInstalledPathAsync")!), call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnostics) && call.Method.Name == "FindInstalledLibraryPath");
             }
             foreach (var contract in assembly.GetTypes().Where(type => type.Name == "ICoreReleaseService"))
                 Assert.EndsWith(".Common.Interfaces", contract.Namespace);
         }
-        Assert.Equal(22, services);
+        Assert.Equal(23, services);
         Assert.Equal(16, catalogs);
         Assert.Equal(6, official);
-        Assert.Equal(14, providers);
+        Assert.Equal(1, preinstalled);
+        Assert.Equal(19, providers);
     }
 
     [Fact]
@@ -5283,33 +5305,70 @@ public sealed class ArchitectureValidationTests
         var example = typeof(GWGUI.Emulation.Example.Modules.ExampleModuleFactory).Assembly;
         var owner = example.GetType("GWGUI.Emulation.Example.Common.Services.CoreReleaseService", throwOnError: true)!;
         var factory = example.GetType("GWGUI.Emulation.Example.Emulators.Common.Interop.Factories.MachineFactory", throwOnError: true)!;
-        foreach (var name in new[] { "GetInstallationAsync", "FindReleasesAsync", "InstallAsync", "FindInstalledCorePathAsync" })
-            Assert.Contains(GetCompiledCalls(factory.GetMethod(name)!), call => call.Method.DeclaringType == owner && call.Method.Name == name);
+        var contract = example.GetType("GWGUI.Emulation.Example.Common.Interfaces.ICoreReleaseService", true)!;
+        var provider = example.GetType("GWGUI.Emulation.Example.Common.Services.CoreProvider", true)!;
+        Assert.Contains(contract, owner.GetInterfaces());
+        foreach (var (name, target, operation) in new[] {
+            ("GetInstallationAsync", contract, "GetActiveInstallationAsync"), ("FindReleasesAsync", contract, "GetAvailableAsync"),
+            ("InstallAsync", contract, "InstallAsync"), ("FindInstalledCorePathAsync", provider, "FindInstalledPathAsync") })
+        {
+            var state = factory.GetMethod(name)!.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+            Assert.Contains(GetCompiledCalls(state.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!), call => call.Method.DeclaringType == target && call.Method.Name == operation);
+        }
+        var providerState = provider.GetMethod("FindInstalledPathAsync")!.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+        Assert.Contains(GetCompiledCalls(providerState.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!), call => call.Method.DeclaringType == contract && call.Method.Name == "GetActiveInstallationAsync");
         var catalogueType = example.GetType("GWGUI.Emulation.Example.Common.Dictionaries.EmulatorCatalog", throwOnError: true)!;
         var definitions = Assert.IsAssignableFrom<IReadOnlyList<EmulationEmulatorDefinition>>(catalogueType.GetProperty("All", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null));
         Assert.Equal(3, definitions.Count);
+        var adapters = ((System.Collections.IEnumerable)catalogueType.GetMethod("CreateAdapters", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, null)!).Cast<object>().ToArray();
+        Assert.Equal(3, adapters.Length);
+        var constructor = Assert.Single(owner.GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+        var service = constructor.Invoke([catalogueType.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!.CreateDelegate(constructor.GetParameters()[0].ParameterType)]);
+        using var client = new System.Net.Http.HttpClient();
+        var context = new EmulatorManagementContext(client, ".");
         var progress = new InstallationProgress();
-        foreach (var definition in definitions)
+        async ValueTask<T> Invoke<T>(object adapter, string name, params object?[] arguments) => await (ValueTask<T>)factory.GetMethod(name)!.Invoke(adapter, arguments)!;
+        foreach (var adapter in adapters)
         {
-            var installation = await (ValueTask<EmulationEmulatorInstallation>)owner.GetMethod("GetInstallationAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, CancellationToken.None])!;
-            var release = Assert.Single(await (ValueTask<IReadOnlyList<EmulationEmulatorRelease>>)owner.GetMethod("FindReleasesAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, CancellationToken.None])!);
+            var definition = Assert.IsType<EmulationEmulatorDefinition>(factory.GetProperty("Definition")!.GetValue(adapter));
+            Assert.Contains(definitions, item => item.Id == definition.Id);
+            var installation = await Invoke<EmulationEmulatorInstallation>(adapter, "GetInstallationAsync", context, CancellationToken.None);
+            var release = Assert.Single(await Invoke<IReadOnlyList<EmulationEmulatorRelease>>(adapter, "FindReleasesAsync", context, CancellationToken.None));
             Assert.Equal(definition.Id, installation.EmulatorId);
             Assert.Equal(installation.InstalledVersion, release.Version);
-            var path = await (ValueTask<string>)owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, release, progress, CancellationToken.None])!;
-            var installedPath = await (ValueTask<string?>)owner.GetMethod("FindInstalledCorePathAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [CancellationToken.None])!;
+            Assert.Equal(definition.DisplayName + " " + release.Version, release.DisplayName);
+            Assert.True(release.IsRequired);
+            var path = await Invoke<string>(adapter, "InstallAsync", context, release, progress, CancellationToken.None);
+            var installedPath = await Invoke<string?>(adapter, "FindInstalledCorePathAsync", context, CancellationToken.None);
             Assert.Equal(example.Location, path);
             Assert.Equal(path, installedPath);
+            var emulator = factory.GetProperty("Emulator")!.GetValue(adapter);
+            var available = (Task)contract.GetMethod("GetAvailableAsync")!.Invoke(service, [emulator, CancellationToken.None])!;
+            await available;
+            var typedRelease = Assert.Single(((System.Collections.IEnumerable)available.GetType().GetProperty("Result")!.GetValue(available)!).Cast<object>());
+            var typedInstallation = await (Task<EmulationCoreInstallationPaths>)contract.GetMethod("InstallAsync")!.Invoke(service, [typedRelease, progress, CancellationToken.None])!;
+            Assert.Equal(path, typedInstallation.LibraryPath);
+            Assert.Equal(Path.GetDirectoryName(path), typedInstallation.VersionDirectory);
+            Assert.Empty(typedInstallation.ManifestPath); // Le profil intégré ne fabrique pas un manifeste d'archive.
             var wrongVersion = release with { Version = "invalid-version" };
-            var rejected = Assert.Throws<TargetInvocationException>(() => owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, wrongVersion, progress, CancellationToken.None]));
-            Assert.IsType<ArgumentOutOfRangeException>(rejected.InnerException);
-            var cancelled = Assert.Throws<TargetInvocationException>(() => owner.GetMethod("InstallAsync", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [definition, release, progress, new CancellationToken(canceled: true)]));
-            Assert.IsType<OperationCanceledException>(cancelled.InnerException);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await Invoke<string>(adapter, "InstallAsync", context, wrongVersion, progress, CancellationToken.None));
+            var wrongIdentity = release with { Id = "unknown-release" };
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await Invoke<string>(adapter, "InstallAsync", context, wrongIdentity, progress, CancellationToken.None));
+            var cancelled = new CancellationToken(canceled: true);
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await Invoke<string>(adapter, "InstallAsync", context, release, progress, cancelled));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await Invoke<string?>(adapter, "FindInstalledCorePathAsync", context, cancelled));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await Invoke<EmulationEmulatorInstallation>(adapter, "GetInstallationAsync", context, cancelled));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await Invoke<IReadOnlyList<EmulationEmulatorRelease>>(adapter, "FindReleasesAsync", context, cancelled));
         }
         Assert.Equal(new[] { 1d, 1d, 1d }, progress.Values);
+        Assert.Equal(3, progress.TypedValues.Count);
+        Assert.All(progress.TypedValues, value => Assert.Equal(1d, value.Fraction));
     }
-    private sealed class InstallationProgress : IProgress<double>
+    private sealed class InstallationProgress : IProgress<double>, IProgress<EmulationCoreInstallProgress>
     {
         internal List<double> Values { get; } = [];
+        internal List<EmulationCoreInstallProgress> TypedValues { get; } = [];
         public void Report(double value) => Values.Add(value);
+        void IProgress<EmulationCoreInstallProgress>.Report(EmulationCoreInstallProgress value) => TypedValues.Add(value);
     }
 }

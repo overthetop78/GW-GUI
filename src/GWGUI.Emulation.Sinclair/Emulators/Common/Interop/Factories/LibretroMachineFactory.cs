@@ -67,7 +67,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
         return installation.LibraryPath;
     }
 
-    public override async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreCatalog.Get) .FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+    public override async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get)) .FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     protected override IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context)
     {

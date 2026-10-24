@@ -86,7 +86,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get)).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
 

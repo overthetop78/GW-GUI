@@ -31,3 +31,8 @@ global using FirmwareDetectionStatus = GWGUI.Emulation.Enums.EmulationFirmwareDe
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationOptionValue;
 global using FrameSkipRatio = GWGUI.Emulation.Enums.EmulationFrameSkipRatio;
+
+// Le service de versions et le fournisseur utilisent les mêmes données SDK que les catalogues des autres modules.
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Example.Common.Machines.Common.Enums.Emulator>;
+global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;

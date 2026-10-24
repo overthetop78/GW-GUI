@@ -84,7 +84,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorSettings,
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+        CancellationToken cancellationToken) => await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get)).FindInstalledPathAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => NativeMedia.Resolve(configuration);
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices;
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
