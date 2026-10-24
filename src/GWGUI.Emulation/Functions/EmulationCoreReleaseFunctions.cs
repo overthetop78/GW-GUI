@@ -195,7 +195,7 @@ internal sealed class EmulationCoreReleaseFunctions : IEmulationCoreReleases
             .ConfigureAwait(false);
         if (marker is null) return null;
         var paths = pathsForVersion(marker.ReleaseVersion);
-        return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
+        return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths with { InstalledVersion = marker.ReleaseVersion } : null;
     }
 
     /// <summary>Écrit le manifeste temporaire puis remplace sa destination avec le propriétaire d’écriture commun.</summary>

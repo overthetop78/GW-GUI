@@ -51,7 +51,7 @@ internal sealed class CoreReleaseService : ICoreReleaseService
                 var activeManifestPath = EmulatorCatalogFunctions.GetActiveManifestPath(entry, _installationRoot);
                 await CoreReleaseFunctions.Releases.WriteJsonAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
             }, archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
-            return paths;
+            return paths with { InstalledVersion = release.DeclaredVersion };
         }
         finally
         {

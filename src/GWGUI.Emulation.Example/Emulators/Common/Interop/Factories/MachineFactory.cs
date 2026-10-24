@@ -64,7 +64,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await Releases.GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
-        return new EmulationEmulatorInstallation(Definition, installation is null ? null : Engine.CoreVersion);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     /// <summary>Propose la version intégrée comme version requise de cette simulation.</summary>

@@ -47,7 +47,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     public override async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync( EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get) .GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
-        var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
+        var version = installation?.InstalledVersion;
         return new EmulationEmulatorInstallation(Definition, version);
     }
 

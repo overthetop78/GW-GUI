@@ -101,11 +101,10 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        var version = new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -123,7 +122,8 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile).FindInstalledPathAsync(cancellationToken).ConfigureAwait(false);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease), CoreReleaseService.VerifyWindowsX64Library).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(ExternalCore.ResolveConfiguredMedia(configuration));
 

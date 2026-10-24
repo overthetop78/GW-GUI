@@ -123,10 +123,10 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, ReleaseService(context).GetInstalledVersion()));
+        var installation = await ReleaseService(context).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -144,11 +144,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
         return installation.LibraryPath;
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());
-    }
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(ReleaseService(context), path => CoreReleaseService.VerifyWindowsX64Library(path, CoreDefinition.Id)).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 

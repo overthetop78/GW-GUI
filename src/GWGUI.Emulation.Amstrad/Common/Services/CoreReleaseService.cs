@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Amstrad.Common.Services;
 
-internal sealed class CoreReleaseService
+internal sealed class CoreReleaseService : ICoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _directory;
@@ -31,13 +31,16 @@ internal sealed class CoreReleaseService
         _directory = Path.GetFullPath(directory);
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
+    private string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
 
-    public string? GetInstalledVersion()
+    /// <summary>Résout les chemins et la version de l'installation présente sans charger le cœur.</summary>
+    public Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        if (!File.Exists(RequiredLibraryPath)) return null;
+        cancellationToken.ThrowIfCancellationRequested();
+        if (!File.Exists(RequiredLibraryPath)) return Task.FromResult<CoreInstallationPaths?>(null);
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        return CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        return Task.FromResult<CoreInstallationPaths?>(new(_directory, RequiredLibraryPath, manifestPath) { InstalledVersion = version });
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
@@ -85,7 +88,7 @@ internal sealed class CoreReleaseService
                 sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _architecture, cancellationToken),
                 () => Task.CompletedTask,
                 archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
-            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson));
+            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson)) { InstalledVersion = release.DeclaredVersion };
         }
         finally
         {

@@ -77,10 +77,10 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
 
     private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation);
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, Releases(context).GetInstalledVersion()));
+        var installation = await Releases(context).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -98,7 +98,8 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
         return installation.LibraryPath;
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.VerifyInstallation).FindInstalledPathAsync(cancellationToken));
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(Releases(context), Core.VerifyInstallation).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     internal static void Validate(MachineConfiguration configuration)
     {

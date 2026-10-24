@@ -62,7 +62,7 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreCatalog.Get).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false);
-        return new EmulationEmulatorInstallation(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)

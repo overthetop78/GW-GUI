@@ -1,22 +1,39 @@
-using System.IO;
+using EmulatorCatalogFunctions = GWGUI.Emulation.Amstrad.Common.Functions.EmulatorCatalogFunctions;
+
 namespace GWGUI.Emulation.Amstrad.Common.Services;
-/// <summary>Résout une bibliothèque installée après contrôle de son profil, sans la charger.</summary>
+
+/// <summary>Résout la bibliothèque active par le contrat Common d'installation des cœurs.</summary>
+/// <remarks>Le service détermine le stockage et la version ; le contrôle facultatif valide le format de la bibliothèque.
+/// Le fournisseur ne charge ni ne démarre de cœur. Le service et le callback sont empruntés à leur propriétaire.</remarks>
 internal sealed class CoreProvider
 {
-    private readonly string _installationDirectory;
-    private readonly string _libraryFile;
+    /// <summary>Service emprunté qui conserve les règles de recherche, de stockage et d'annulation.</summary>
+    private readonly ICoreReleaseService _releases;
+
+    /// <summary>Contrôle emprunté du format de bibliothèque ; null convient aux profils qui n'en demandent aucun.</summary>
     private readonly Action<string>? _verifyInstallation;
-    internal CoreProvider(HttpClient client, string installationDirectory, string libraryFile, Action<string>? verifyInstallation)
+
+    /// <summary>Construit le fournisseur avec le service et le contrôle choisis par le module.</summary>
+    /// <param name="releases">Contrat d'installation dont le fournisseur ne possède pas les ressources.</param>
+    /// <param name="verifyInstallation">Contrôle du fichier avant utilisation, ou null pour vérifier seulement sa présence.</param>
+    /// <remarks>Un backend natif peut fournir son contrôle PE et d'architecture. Un cœur intégré conserve null.
+    /// Le callback ne transfère aucune propriété de bibliothèque et n'est appelé qu'après résolution de l'installation.</remarks>
+    public CoreProvider(ICoreReleaseService releases, Action<string>? verifyInstallation = null)
     {
-        ArgumentNullException.ThrowIfNull(client);
-        _installationDirectory = installationDirectory;
-        _libraryFile = libraryFile;
+        ArgumentNullException.ThrowIfNull(releases);
+        _releases = releases;
         _verifyInstallation = verifyInstallation;
     }
-    public Task<string?> FindInstalledPathAsync(CancellationToken cancellationToken = default)
+
+    /// <summary>Retourne la bibliothèque présente et validée de l'installation active du cœur demandé.</summary>
+    /// <param name="core">Identité typée transmise au service d'installation.</param>
+    /// <param name="cancellationToken">Annulation de la résolution avant toute validation du fichier.</param>
+    /// <returns>Chemin de bibliothèque, ou null si l'installation est absente ou le contrôle refuse le fichier.</returns>
+    /// <remarks>Le diagnostic commun traduit les erreurs d'entrée-sortie et de format du contrôle en absence de bibliothèque.
+    /// Les autres erreurs conservent leur propagation. Aucun flux, cœur ou processus n'est conservé par ce fournisseur.</remarks>
+    public async Task<string?> FindInstalledPathAsync(Emulator core, CancellationToken cancellationToken = default)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        var libraryPath = Path.Combine(Path.GetFullPath(_installationDirectory), _libraryFile);
-        return Task.FromResult(EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(libraryPath, _verifyInstallation));
+        var installation = await _releases.GetActiveInstallationAsync(core, cancellationToken).ConfigureAwait(false);
+        return installation is null ? null : EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(installation.LibraryPath, _verifyInstallation);
     }
 }

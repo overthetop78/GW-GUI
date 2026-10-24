@@ -58,12 +58,10 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorSetti
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation);
-        var version = service.GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -81,7 +79,8 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorSetti
         return installation.LibraryPath;
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.VerifyInstallation).FindInstalledPathAsync(cancellationToken));
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation), Core.VerifyInstallation).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 

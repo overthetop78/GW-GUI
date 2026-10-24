@@ -232,6 +232,12 @@ public sealed class ArchitectureValidationTests
             Assert.True(emulatorType.IsEnum);
             Assert.Equal(root + ".Common.Machines.Common.Enums.Emulator", emulatorType.FullName);
             Assert.Equal(emulatorType, service.GetMethod("GetAvailableAsync")!.GetParameters()[0].ParameterType);
+            Assert.Equal(emulatorType, service.GetMethod("GetActiveInstallationAsync")!.GetParameters()[0].ParameterType);
+            var releaseContract = assembly.GetType(root + ".Common.Interfaces.ICoreReleaseService", true)!;
+            Assert.Contains(releaseContract, service.GetInterfaces());
+            var operationNames = new[] { "GetActiveInstallationAsync", "GetAvailableAsync", "InstallAsync" };
+            Assert.Equal(operationNames, releaseContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            Assert.Equal(operationNames, service.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Select(method => method.Name).Order(StringComparer.Ordinal));
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
             var resolver = service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
             var definitionResolver = service.GetField("_getDefinition", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
@@ -249,9 +255,6 @@ public sealed class ArchitectureValidationTests
                 Assert.Equal(typeof(Func<,>), definitionResolver.GetGenericTypeDefinition());
                 Assert.Equal(typeof(EmulationEmulatorDefinition), definitionResolver.GetGenericArguments()[1]);
                 Assert.Equal(definitionResolver, Assert.Single(constructor.GetParameters()).ParameterType);
-                var contract = assembly.GetType(root + ".Common.Interfaces.ICoreReleaseService", true)!;
-                Assert.Contains(contract, service.GetInterfaces());
-                Assert.Equal(new[] { "GetActiveInstallationAsync", "GetAvailableAsync", "InstallAsync" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
             }
             else
             {
@@ -282,16 +285,15 @@ public sealed class ArchitectureValidationTests
             {
                 providers++;
                 Assert.Equal(service.Namespace, provider.Namespace);
-                if (resolver is not null || definitionResolver is not null)
-                {
-                    var contract = assembly.GetType(root + ".Common.Interfaces.ICoreReleaseService", true)!;
-                    Assert.Contains(contract, service.GetInterfaces());
-                    Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == contract);
-                    var state = provider.GetMethod("FindInstalledPathAsync")!.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
-                    Assert.Contains(GetCompiledCalls(state.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!), call => call.Method.DeclaringType == contract && call.Method.Name == "GetActiveInstallationAsync");
-                }
-                else
-                    Assert.Contains(GetCompiledCalls(provider.GetMethod("FindInstalledPathAsync")!), call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnostics) && call.Method.Name == "FindInstalledLibraryPath");
+                Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == releaseContract);
+                Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.Name == "_verifyInstallation" && field.FieldType == typeof(Action<string>));
+                var parameters = Assert.Single(provider.GetConstructors()).GetParameters();
+                Assert.Equal(new[] { releaseContract, typeof(Action<string>) }, parameters.Select(parameter => parameter.ParameterType));
+                Assert.True(parameters[1].IsOptional);
+                var state = provider.GetMethod("FindInstalledPathAsync")!.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+                var providerCalls = GetCompiledCalls(state.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!);
+                Assert.Contains(providerCalls, call => call.Method.DeclaringType == releaseContract && call.Method.Name == "GetActiveInstallationAsync");
+                Assert.Contains(providerCalls, call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnostics) && call.Method.Name == "FindInstalledLibraryPath");
             }
             foreach (var contract in assembly.GetTypes().Where(type => type.Name == "ICoreReleaseService"))
                 Assert.EndsWith(".Common.Interfaces", contract.Namespace);
@@ -300,7 +302,7 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(16, catalogs);
         Assert.Equal(6, official);
         Assert.Equal(1, preinstalled);
-        Assert.Equal(19, providers);
+        Assert.Equal(23, providers);
     }
 
     [Fact]
@@ -5414,6 +5416,7 @@ public sealed class ArchitectureValidationTests
             Assert.Null(typedRelease.GetType().GetProperty("ExpectedArchiveSize")!.GetValue(typedRelease));
             var typedInstallation = await (Task<EmulationCoreInstallationPaths>)contract.GetMethod("InstallAsync")!.Invoke(service, [typedRelease, progress, CancellationToken.None])!;
             Assert.Equal(path, typedInstallation.LibraryPath);
+            Assert.Equal(release.Version, typedInstallation.InstalledVersion);
             Assert.Equal(Path.GetDirectoryName(path), typedInstallation.VersionDirectory);
             Assert.Empty(typedInstallation.ManifestPath); // Le profil intégré ne fabrique pas un manifeste d'archive.
             var wrongVersion = release with { Version = "invalid-version" };

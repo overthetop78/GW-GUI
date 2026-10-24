@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Sony.Common.Services;
 
 
-internal sealed class CoreReleaseService
+internal sealed class CoreReleaseService : ICoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _directory;
@@ -30,13 +30,16 @@ internal sealed class CoreReleaseService
         _prepareInstallation = prepareInstallation;
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
+    private string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
 
-    public string? GetInstalledVersion()
+    /// <summary>Résout les chemins et la version de l'installation présente sans charger le cœur.</summary>
+    public Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
-        if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return null;
+        cancellationToken.ThrowIfCancellationRequested();
+        if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return Task.FromResult<CoreInstallationPaths?>(null);
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        return CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        return Task.FromResult<CoreInstallationPaths?>(new(_directory, RequiredLibraryPath, manifestPath) { InstalledVersion = version });
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
@@ -45,12 +48,7 @@ internal sealed class CoreReleaseService
         [CoreReleaseFunctions.Releases.ReadOfficialRelease(emulator, _settings, response)], cancellationToken).ConfigureAwait(false);
     }
 
-internal string? FindInstalledLibraryPath()
-    {
-        return EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(RequiredLibraryPath,
-            path => VerifyWindowsX64Library(path, _emulatorId),
-            _isInstallationComplete is { } complete ? () => complete(_directory) : null);
-    }
+
 
 
     public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
@@ -88,7 +86,7 @@ internal string? FindInstalledLibraryPath()
                 archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize)),
                 prepareReplacement: _prepareInstallation is { } prepare
                     ? () => prepare(_httpClient, _directory, cancellationToken) : null).ConfigureAwait(false);
-            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson));
+            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson)) { InstalledVersion = release.DeclaredVersion };
         }
         finally
         {
@@ -97,7 +95,7 @@ internal string? FindInstalledLibraryPath()
         }
     }
 
-    private static void VerifyWindowsX64Library(string path, string? emulatorId) =>
+    internal static void VerifyWindowsX64Library(string path, string? emulatorId) =>
         EmulatorCatalogFunctions.Diagnostics.VerifyWindowsX64Library(path,
             () => ErrorMessages.ForEmulator(emulatorId, CoreErrorResourceKeys.DownloadedCoreNotPe),
             () => ErrorMessages.ForEmulator(emulatorId, CoreErrorResourceKeys.DownloadedCoreInvalidPe),

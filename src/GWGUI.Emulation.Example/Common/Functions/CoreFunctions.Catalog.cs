@@ -15,7 +15,8 @@ internal static class EmulatorCatalogFunctions
     /// <returns>Dossier existant du module et chemin de son assembly ; ManifestPath est vide pour ce profil préinstallé.</returns>
     /// <remarks>Les trois simulations partagent le même fichier. Aucun dossier de version ni manifeste d'une
     /// bibliothèque téléchargée n'est créé : le build est propriétaire de cet assembly et de sa version.
+    /// InstalledVersion provient de la version du cœur intégré, et non du nom du dossier où l'application est lancée.
     /// Les services de versions et CoreProvider utilisent ce même résultat sans charger le cœur.</remarks>
-    internal static CoreInstallationPaths GetInstallationPaths() => new(Path.GetDirectoryName(Engine.CoreImplementationPath)!, Engine.CoreImplementationPath, string.Empty);
+    internal static CoreInstallationPaths GetInstallationPaths() => new(Path.GetDirectoryName(Engine.CoreImplementationPath)!, Engine.CoreImplementationPath, string.Empty) { InstalledVersion = Engine.CoreVersion };
 
 }

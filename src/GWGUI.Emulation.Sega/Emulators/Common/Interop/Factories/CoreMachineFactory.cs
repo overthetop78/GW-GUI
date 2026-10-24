@@ -68,10 +68,10 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, ReleaseService(context).GetInstalledVersion()));
+        var installation = await ReleaseService(context).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -89,19 +89,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings
         return installation.LibraryPath;
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var path = ReleaseService(context).RequiredLibraryPath;
-        if (!File.Exists(path)) return ValueTask.FromResult<string?>(null);
-        try
-        {
-            CoreReleaseService.VerifyWindowsX64Library(path);
-            return ValueTask.FromResult<string?>(path);
-        }
-        catch (IOException) { return ValueTask.FromResult<string?>(null); }
-        catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }
-    }
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(ReleaseService(context), CoreReleaseService.VerifyWindowsX64Library).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 
