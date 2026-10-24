@@ -9,5 +9,4 @@ internal static class CoreReleaseConstants
     internal const string Download = ".download";
     internal const string Extract = ".extract";
     internal const string X64 = "x64";
-    internal const double CompletedProgress = 1d;
 }

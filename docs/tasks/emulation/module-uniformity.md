@@ -13927,3 +13927,29 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Example/Resources/zh-Hans/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
   - [x] Modifier src/GWGUI.Emulation.Example/Resources/zh-Hant/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le résolveur unique des vingt-trois catalogues, les ressources embarquées d'Example et des quatre familles dans toutes les cultures, les paramètres de texte et la façade de localisation ; exécuter les tests et le build Debug complet.
+
+- [x] Uniformiser les résultats d'installation des cœurs dans Common.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs : déclarer les alias CoreInstallProgress et CoreInstallationPaths vers les contrats SDK existants.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreReleaseService.cs : retourner les chemins d'installation et la progression typée, en conservant téléchargement, contrôle, préparation, manifeste et nettoyage.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs : adapter la progression par le service Common existant et retourner LibraryPath à l'API de gestion.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CoreReleaseConstants.cs : supprimer la constante de progression finale remplacée par les compteurs d'octets.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/CoreReleaseConstants.cs : supprimer la constante de progression finale remplacée par les compteurs d'octets.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreReleaseConstants.cs : supprimer la constante de progression finale remplacée par les compteurs d'octets.
+  - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : relayer la progression du service Common par le même adaptateur que les autres modules, avec documentation du relais.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les résultats et progressions typés des vingt-trois services de versions ; exécuter les vérifications ciblées et le build Debug avec tous les modules.

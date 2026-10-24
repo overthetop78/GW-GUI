@@ -118,7 +118,9 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        return installation.LibraryPath;
     }
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile).FindInstalledPathAsync(cancellationToken).ConfigureAwait(false);

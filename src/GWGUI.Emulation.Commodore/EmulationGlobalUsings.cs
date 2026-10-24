@@ -50,3 +50,6 @@ global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCa
 global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
 
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;
+
+global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;

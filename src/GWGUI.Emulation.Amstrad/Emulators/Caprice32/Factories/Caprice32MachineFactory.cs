@@ -75,7 +75,9 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorSetti
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        return installation.LibraryPath;
     }
 
     public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.VerifyInstallation).FindInstalledPathAsync(cancellationToken));

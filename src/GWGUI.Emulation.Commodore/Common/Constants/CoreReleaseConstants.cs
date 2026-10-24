@@ -14,5 +14,4 @@ internal static class CoreReleaseConstants
     internal const string X64 = "x64";
     internal const string OfficialReleaseIdPrefix = "official-";
     internal const string PublishedDisplayFormat = "{0:dd/MM/yyyy HH:mm} · Libretro";
-    internal const double CompletedDownloadProgress = 1d;
 }

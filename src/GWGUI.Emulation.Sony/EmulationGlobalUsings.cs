@@ -35,3 +35,6 @@ global using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreatio
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
 
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;
+
+global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;

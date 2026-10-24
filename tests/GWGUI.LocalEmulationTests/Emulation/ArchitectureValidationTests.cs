@@ -223,6 +223,9 @@ public sealed class ArchitectureValidationTests
             if (service is null || service.IsAbstract) continue;
             services++;
             Assert.Single(assembly.GetTypes(), type => type.Name == "CoreReleaseService");
+            var install = service.GetMethod("InstallAsync", BindingFlags.Public | BindingFlags.Instance)!;
+            Assert.Equal(typeof(Task<EmulationCoreInstallationPaths>), install.ReturnType);
+            Assert.Equal(typeof(IProgress<EmulationCoreInstallProgress>), install.GetParameters()[1].ParameterType);
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
             var resolver = service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
             var definitionResolver = service.GetField("_getDefinition", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
@@ -263,6 +266,7 @@ public sealed class ArchitectureValidationTests
                 .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
             Assert.Contains(factoryCalls, call => call.Method == constructor);
+            Assert.Contains(factoryCalls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == "CreateInstallProgress");
             foreach (var provider in assembly.GetTypes().Where(type => type.Name == "CoreProvider"))
             {
                 providers++;
@@ -5382,7 +5386,9 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(installation.InstalledVersion, release.Version);
             Assert.Equal(definition.DisplayName + " " + release.Version, release.DisplayName);
             Assert.True(release.IsRequired);
+            progress.Reported = new(TaskCreationOptions.RunContinuationsAsynchronously);
             var path = await Invoke<string>(adapter, "InstallAsync", context, release, progress, CancellationToken.None);
+            Assert.Equal(1d, await progress.Reported.Task.WaitAsync(TimeSpan.FromSeconds(5)));
             var installedPath = await Invoke<string?>(adapter, "FindInstalledCorePathAsync", context, CancellationToken.None);
             Assert.Equal(example.Location, path);
             Assert.Equal(path, installedPath);
@@ -5412,7 +5418,12 @@ public sealed class ArchitectureValidationTests
     {
         internal List<double> Values { get; } = [];
         internal List<EmulationCoreInstallProgress> TypedValues { get; } = [];
-        public void Report(double value) => Values.Add(value);
+        internal TaskCompletionSource<double> Reported { get; set; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        public void Report(double value)
+        {
+            Values.Add(value);
+            Reported.TrySetResult(value);
+        }
         void IProgress<EmulationCoreInstallProgress>.Report(EmulationCoreInstallProgress value) => TypedValues.Add(value);
     }
 }

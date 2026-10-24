@@ -38,3 +38,6 @@ global using SavedStateHeader = GWGUI.Emulation.Contracts.EmulationSavedStateHea
 global using ScannedFirmware = GWGUI.Emulation.Contracts.EmulationFirmwareObservation<object>;
 
 global using HostError = GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Enums.EmulationMessageCategory, GWGUI.Emulation.Enums.EmulationMessageCode>;
+
+global using CoreInstallProgress = GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+global using CoreInstallationPaths = GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;

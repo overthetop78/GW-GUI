@@ -53,7 +53,7 @@ internal string? FindInstalledLibraryPath()
     }
 
 
-    public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);
@@ -66,7 +66,7 @@ internal string? FindInstalledLibraryPath()
                 () => CoreReleaseFunctions.Releases.DownloadAsync(_httpClient, release.DownloadUri, download,
                     (written, total) =>
                     {
-                        if (total > 0) progress?.Report(written / (double)total.Value);
+                        progress?.Report(new CoreInstallProgress(written, total));
                     }, cancellationToken),
                 () =>
                 {
@@ -85,10 +85,10 @@ internal string? FindInstalledLibraryPath()
                 () => File.Move(extracted, destination, true),
                 sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
-                archiveSize => progress?.Report(CoreReleaseConstants.CompletedProgress),
+                archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize)),
                 prepareReplacement: _prepareInstallation is { } prepare
                     ? () => prepare(_httpClient, _directory, cancellationToken) : null).ConfigureAwait(false);
-            return destination;
+            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson));
         }
         finally
         {

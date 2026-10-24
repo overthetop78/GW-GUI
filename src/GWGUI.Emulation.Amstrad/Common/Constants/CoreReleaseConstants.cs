@@ -11,6 +11,5 @@ internal static class CoreReleaseConstants
     internal const string Download = ".download";
     internal const string Extract = ".extract";
     internal const string OfficialReleaseIdPrefix = "official-";
-    internal const double CompletedDownloadProgress = 1d;
     internal const string ReleaseDisplayDateFormat = "dd/MM/yyyy HH:mm";
 }

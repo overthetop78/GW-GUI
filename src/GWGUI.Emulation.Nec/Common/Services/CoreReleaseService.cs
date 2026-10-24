@@ -40,7 +40,7 @@ internal sealed class CoreReleaseService
     }
 
 
-    public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);
@@ -53,7 +53,7 @@ internal sealed class CoreReleaseService
                 () => CoreReleaseFunctions.Releases.DownloadAsync(_httpClient, release.DownloadUri, download,
                     (written, total) =>
                     {
-                        if (total > 0) progress?.Report(written / (double)total.Value);
+                        progress?.Report(new CoreInstallProgress(written, total));
                     }, cancellationToken),
                 () =>
                 {
@@ -72,8 +72,8 @@ internal sealed class CoreReleaseService
                 () => File.Move(extracted, destination, true),
                 sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
-                archiveSize => progress?.Report(1)).ConfigureAwait(false);
-            return destination;
+                archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
+            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson));
         }
         finally
         {

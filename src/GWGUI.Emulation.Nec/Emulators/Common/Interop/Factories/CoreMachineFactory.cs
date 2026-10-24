@@ -94,7 +94,9 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorSettings
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
-        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await ReleaseService(context).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        return installation.LibraryPath;
     }
 
     public virtual ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)

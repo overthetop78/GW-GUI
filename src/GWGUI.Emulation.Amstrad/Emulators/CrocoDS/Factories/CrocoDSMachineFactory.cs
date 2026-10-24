@@ -92,7 +92,9 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
-        return await Releases(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await Releases(context).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        return installation.LibraryPath;
     }
 
     public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.VerifyInstallation).FindInstalledPathAsync(cancellationToken));

@@ -1,4 +1,5 @@
 using CoreReleaseService = GWGUI.Emulation.Example.Common.Services.CoreReleaseService;
+using CoreReleaseFunctions = GWGUI.Emulation.Example.Common.Functions.CoreReleaseFunctions;
 using CommonMediaRuntimeFunctions = GWGUI.Emulation.Example.Common.Machines.Common.Functions.MediaRuntimeFunctions;
 using System.Globalization;
 using System.IO;
@@ -80,9 +81,10 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     {
         var available = await Releases.GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var selected = available.Single() with { Id = release.Id, DeclaredVersion = release.Version };
-        var installation = await Releases.InstallAsync(selected, cancellationToken: cancellationToken).ConfigureAwait(false);
-        // La simulation termine immédiatement : conserver la notification synchrone du contrat public.
-        progress?.Report(1);
+        // Common produit les compteurs typés ; le relais commun présente leur fraction au contrat public.
+        // La notification suit le contexte de progression de l'appelant, même pour une installation intégrée immédiate.
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await Releases.InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
