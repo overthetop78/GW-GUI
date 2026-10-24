@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Det konfigurerade mediet hittades inte.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Maskinen stöder inte det valda mediet.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Den nödvändiga emuleringskärnan hittades inte.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Den valda emuleringskärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>En firmware är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>En nödvändig firmware saknas.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Vägen till emuleringsvärdprogrammet är inte tillgänglig.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Kommunikation med emuleringsvärden misslyckades.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Ett alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Det sparade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Det räddade tillståndet är ogiltigt.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Ett oväntat emuleringsfel inträffade.</value></data>
+</root>

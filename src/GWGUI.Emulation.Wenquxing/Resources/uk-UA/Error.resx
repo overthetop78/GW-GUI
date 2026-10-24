@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>У емуляційному господарстві вже ініціалізовано.</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>Не вдалося емуляційне спілкування.</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>Не знайдено настрочене середовище.</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>Заняття емуляцій не може обмінюватися цим середовищем.</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>Відсутня емуляційна хостова частина.</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>У встановленій бібліотеці не можна замінити: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>Завантажувальний ядро не Windows x64.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>Конфігурація емульсії недійсна.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>Недійсна емульсія тривалість відгуку: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>Схадіння емульсії не в обов'язковому стані.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>Припинено емуляційне сеанс.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>Завантажувальний архів не містить {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>Офіційна відповідь не визначає дату його публікації.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>Не ініціалізовано емуляційне хост.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> Код виходу: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>Процес емульсії не ініціюється.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>Не вдалося розпочати процес емульсії.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>Процес емульсії не доступний.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>Протоколи {0} не відповідає {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>Відмінено запит про емуляцію.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>Відповідність емуляційного хосту відповідав.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>Відповідність емуляційного хосту не надається.</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>Загальний відеотранспорт не доступний.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>Вказаний стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>Забраний стан недійсний.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>емулятор не підтримує збережені стани.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>Невідомий емуляційний гурт: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>Пристрій контролера не підтримується.</value></data>
+</root>

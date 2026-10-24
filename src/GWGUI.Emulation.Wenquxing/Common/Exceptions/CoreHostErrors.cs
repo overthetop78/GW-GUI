@@ -2,20 +2,20 @@ namespace GWGUI.Emulation.Wenquxing.Common.Exceptions;
 
 internal static class CoreHostErrors
 {
-    internal static string InvalidConfiguration => "The emulation configuration is invalid.";
-    internal static string NotInitialized => "The emulation host is not initialized.";
-    internal static string AlreadyInitialized => "The emulation host is already initialized.";
-    internal static string ExecutableMissing => "The emulation host executable is missing.";
-    internal static string ProcessStartFailed => "The emulation host process could not start.";
-    internal static string ProcessUnavailable => "The emulation host process is unavailable.";
-    internal static string ProcessNotInitialized => "The emulation host process is not initialized.";
-    internal static string SharedVideoUnavailable => "The shared video transport is unavailable.";
-    internal static string ResponseUnavailable => "The emulation host response is unavailable.";
-    internal static string ResponseTimeout => "The emulation host response timed out.";
-    internal static string RequestCancelled => "The emulation host request was cancelled.";
-    internal static string CommunicationFailed => "The emulation host communication failed.";
-    internal static string ProtocolVersionMismatchFormat => "Protocol version {0} does not match {1}.";
-    internal static string UnknownCommandFormat => "Unknown emulation host command: {0}.";
-    internal static string InvalidResponseLengthFormat => "Invalid emulation host response length: {0}.";
-    internal static string ProcessExitSuffixFormat => " Exit code: {0}.";
+    internal static string InvalidConfiguration => ExceptionText.Get(CoreErrorResourceKeys.InvalidConfiguration);
+    internal static string NotInitialized => ExceptionText.Get(CoreErrorResourceKeys.NotInitialized);
+    internal static string AlreadyInitialized => ExceptionText.Get(CoreErrorResourceKeys.AlreadyInitialized);
+    internal static string ExecutableMissing => ExceptionText.Get(CoreErrorResourceKeys.ExecutableMissing);
+    internal static string ProcessStartFailed => ExceptionText.Get(CoreErrorResourceKeys.ProcessStartFailed);
+    internal static string ProcessUnavailable => ExceptionText.Get(CoreErrorResourceKeys.ProcessUnavailable);
+    internal static string ProcessNotInitialized => ExceptionText.Get(CoreErrorResourceKeys.ProcessNotInitialized);
+    internal static string SharedVideoUnavailable => ExceptionText.Get(CoreErrorResourceKeys.SharedVideoUnavailable);
+    internal static string ResponseUnavailable => ExceptionText.Get(CoreErrorResourceKeys.ResponseUnavailable);
+    internal static string ResponseTimeout => ExceptionText.Get(CoreErrorResourceKeys.ResponseTimeout);
+    internal static string RequestCancelled => ExceptionText.Get(CoreErrorResourceKeys.RequestCancelled);
+    internal static string CommunicationFailed => ExceptionText.Get(CoreErrorResourceKeys.CommunicationFailed);
+    internal static string ProtocolVersionMismatchFormat => ExceptionText.Get(CoreErrorResourceKeys.ProtocolVersionMismatchFormat);
+    internal static string UnknownCommandFormat => ExceptionText.Get(CoreErrorResourceKeys.UnknownCommandFormat);
+    internal static string InvalidResponseLengthFormat => ExceptionText.Get(CoreErrorResourceKeys.InvalidResponseLengthFormat);
+    internal static string ProcessExitSuffixFormat => ExceptionText.Get(CoreErrorResourceKeys.ProcessExitSuffixFormat);
 }

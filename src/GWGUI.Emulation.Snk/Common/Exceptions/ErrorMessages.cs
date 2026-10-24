@@ -1,5 +1,3 @@
-using GWGUI.Emulation.Interfaces;
-using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Snk.Common.Exceptions;
 
 internal static class ErrorMessages
@@ -12,7 +10,6 @@ internal static class ErrorMessages
     internal static string EmptyVersion => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
     internal static string DuplicateCore => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
 
-    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization( typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Snk.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -56,21 +53,17 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible => Text("Emulation.Snk.Error.StateIncompatible");
-    internal static string MachineInvalidState => Text("Emulation.Snk.Error.Unexpected");
-    internal static string MachineStopped => Text("Emulation.Snk.Error.Unexpected");
+    internal static string StateIncompatible => ExceptionText.Get(CoreErrorResourceKeys.StateIncompatible);
+    internal static string MachineInvalidState => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
+    internal static string MachineStopped => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
 
-    private static string FirmwareMissing() => Text("Emulation.Snk.Error.FirmwareMissing");
-    private static string FirmwareInvalid() => Text("Emulation.Snk.Error.FirmwareInvalid");
-    private static string ContentNotFound() => Text("Emulation.Snk.Error.ContentNotFound");
-    private static string ContentUnsupported() => Text("Emulation.Snk.Error.ContentUnsupported");
-    private static string OptionInvalid() => Text("Emulation.Snk.Error.OptionInvalid");
-    private static string CoreNotFound() => Text("Emulation.Snk.Error.CoreNotFound");
-    private static string CoreRejected() => Text("Emulation.Snk.Error.CoreRejected");
-    private static string StateInvalidText() => Text("Emulation.Snk.Error.StateInvalid");
+    private static string FirmwareMissing() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareMissing);
+    private static string FirmwareInvalid() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareInvalid);
+    private static string ContentNotFound() => ExceptionText.Get(CoreErrorResourceKeys.ContentNotFound);
+    private static string ContentUnsupported() => ExceptionText.Get(CoreErrorResourceKeys.ContentUnsupported);
+    private static string OptionInvalid() => ExceptionText.Get(CoreErrorResourceKeys.OptionInvalid);
+    private static string CoreNotFound() => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    private static string CoreRejected() => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    private static string StateInvalidText() => ExceptionText.Get(CoreErrorResourceKeys.StateInvalid);
 
-    private static string Text(string resourceKey)
-    {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
-    }
 }

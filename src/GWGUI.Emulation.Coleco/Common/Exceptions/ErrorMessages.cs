@@ -1,5 +1,3 @@
-using GWGUI.Emulation.Interfaces;
-using CommonCoreHostFunctions = GWGUI.Emulation.Coleco.Common.Functions.CoreHostFunctions;
 namespace GWGUI.Emulation.Coleco.Common.Exceptions;
 
 internal static class ErrorMessages
@@ -13,7 +11,6 @@ internal static class ErrorMessages
     internal static string DuplicateCore => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
     internal static string MissingModel => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
 
-    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Coleco.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -57,21 +54,17 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible => Text("Emulation.Coleco.Error.StateIncompatible");
-    internal static string MachineInvalidState => Text("Emulation.Coleco.Error.Unexpected");
-    internal static string MachineStopped => Text("Emulation.Coleco.Error.Unexpected");
+    internal static string StateIncompatible => ExceptionText.Get(CoreErrorResourceKeys.StateIncompatible);
+    internal static string MachineInvalidState => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
+    internal static string MachineStopped => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
 
-    private static string FirmwareMissing() => Text("Emulation.Coleco.Error.FirmwareMissing");
-    private static string FirmwareInvalid() => Text("Emulation.Coleco.Error.FirmwareInvalid");
-    private static string ContentNotFound() => Text("Emulation.Coleco.Error.ContentNotFound");
-    private static string ContentUnsupported() => Text("Emulation.Coleco.Error.ContentUnsupported");
-    private static string OptionInvalid() => Text("Emulation.Coleco.Error.OptionInvalid");
-    private static string CoreNotFound() => Text("Emulation.Coleco.Error.CoreNotFound");
-    private static string CoreRejected() => Text("Emulation.Coleco.Error.CoreRejected");
-    private static string StateInvalidText() => Text("Emulation.Coleco.Error.StateInvalid");
+    private static string FirmwareMissing() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareMissing);
+    private static string FirmwareInvalid() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareInvalid);
+    private static string ContentNotFound() => ExceptionText.Get(CoreErrorResourceKeys.ContentNotFound);
+    private static string ContentUnsupported() => ExceptionText.Get(CoreErrorResourceKeys.ContentUnsupported);
+    private static string OptionInvalid() => ExceptionText.Get(CoreErrorResourceKeys.OptionInvalid);
+    private static string CoreNotFound() => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    private static string CoreRejected() => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    private static string StateInvalidText() => ExceptionText.Get(CoreErrorResourceKeys.StateInvalid);
 
-    private static string Text(string resourceKey)
-    {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
-    }
 }

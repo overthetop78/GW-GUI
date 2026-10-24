@@ -2,17 +2,17 @@ namespace GWGUI.Emulation.Wenquxing.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    internal const string InvalidArchitecture = "The downloaded core is not Windows x64.";
-    internal const string MissingPublishedDate = "The official response does not identify its publication date.";
-    internal const string MissingExpectedLibraryFormat = "The downloaded archive does not contain {0}.";
-    internal const string InstalledLibraryLockedFormat = "The installed library cannot be replaced: {0}.";
+    internal static string InvalidArchitecture => ExceptionText.Get(CoreErrorResourceKeys.InvalidArchitecture);
+    internal static string MissingPublishedDate => ExceptionText.Get(CoreErrorResourceKeys.MissingPublishedDate);
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get(CoreErrorResourceKeys.MissingExpectedLibraryFormat);
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get(CoreErrorResourceKeys.InstalledLibraryLockedFormat);
 
-    internal const string MachineInvalidState = "The emulation session is not in the required state.";
-    internal const string MachineStopped = "The emulation session has stopped.";
-    internal const string UnsupportedControllerDevice = "The controller device is not supported.";
-    internal const string DynamicMediaUnsupported = "The emulation session cannot exchange this medium.";
-    internal const string StateInvalid = "The saved state is invalid.";
-    internal const string StateUnavailable = "The emulator does not support saved states.";
-    internal const string StateIncompatible = "The saved state is incompatible with the current machine.";
-    internal const string ContentFileMissing = "The configured medium could not be found.";
+    internal static string MachineInvalidState => ExceptionText.Get(CoreErrorResourceKeys.MachineInvalidState);
+    internal static string MachineStopped => ExceptionText.Get(CoreErrorResourceKeys.MachineStopped);
+    internal static string UnsupportedControllerDevice => ExceptionText.Get(CoreErrorResourceKeys.UnsupportedControllerDevice);
+    internal static string DynamicMediaUnsupported => ExceptionText.Get(CoreErrorResourceKeys.DynamicMediaUnsupported);
+    internal static string StateInvalid => ExceptionText.Get(CoreErrorResourceKeys.StateInvalid);
+    internal static string StateUnavailable => ExceptionText.Get(CoreErrorResourceKeys.StateUnavailable);
+    internal static string StateIncompatible => ExceptionText.Get(CoreErrorResourceKeys.StateIncompatible);
+    internal static string ContentFileMissing => ExceptionText.Get(CoreErrorResourceKeys.ContentFileMissing);
 }

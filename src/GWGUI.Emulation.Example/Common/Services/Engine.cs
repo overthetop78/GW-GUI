@@ -1,5 +1,6 @@
 using GWGUI.Emulation.Example.Modules;
 using EmulatorCatalogFunctions = GWGUI.Emulation.Example.Common.Functions.EmulatorCatalogFunctions;
+using CommonCoreHostFunctions = GWGUI.Emulation.Example.Common.Functions.CoreHostFunctions;
 using System.Globalization;
 using System.IO;
 using GWGUI.Emulation;
@@ -65,9 +66,18 @@ internal sealed class Engine
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     /// <summary>Onglets disponibles, dont la visibilité détaillée dépend ensuite des capacités déclarées.</summary>
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
-    /// <summary>Résout uniquement les noms techniques invariants ; les textes communs restent localisés par l’hôte.</summary>
+    /// <summary>Catalogue emprunté au service public du SDK pour les textes embarqués du module.</summary>
+    /// <remarks>La culture est fournie à chaque recherche ; le catalogue ne crée ni session ni cœur.</remarks>
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(Engine).Assembly, EmulationModuleConstants.LocalizationResourceName);
+
+    /// <summary>Résout les textes dans la culture demandée, puis les noms techniques invariants de l'exemple.</summary>
+    /// <param name="key">Clé fournie par l'hôte pour un diagnostic ou un nom déclaré par le module.</param>
+    /// <param name="culture">Culture demandée explicitement par l'hôte, indépendante du thread appelant.</param>
+    /// <param name="value">Texte trouvé ; chaîne vide lorsque le module ne possède pas cette clé.</param>
+    /// <returns>True si un catalogue ou un nom invariant connaît la clé ; false laisse l'hôte poursuivre son repli.</returns>
     public bool TryGetString(string key, CultureInfo culture, out string value)
     {
+        if (Localization.TryGetString(key, culture, out value)) return true;
         value = key == DisplayResourceKey ? "Example" : HardwareModelCatalog.All.FirstOrDefault(model => model.DisplayNameResourceKey == key)?.Model.ToString() ?? string.Empty;
         return value.Length != 0;
     }

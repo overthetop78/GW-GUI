@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Watara.Error.AlreadyInitialized"><value>Der Emulations-Host ist bereits initialisiert.</value></data>
+  <data name="Emulation.Watara.Error.CommunicationFailed"><value>Die Emulations-Host-Kommunikation ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Watara.Error.ContentFileMissing"><value>Das konfigurierte Medium konnte nicht gefunden werden.</value></data>
+  <data name="Emulation.Watara.Error.DynamicMediaUnsupported"><value>Die Emulationssitzung kann dieses Medium nicht austauschen.</value></data>
+  <data name="Emulation.Watara.Error.ExecutableMissing"><value>Die ausführbare Emulations-Host-Datei fehlt.</value></data>
+  <data name="Emulation.Watara.Error.InstalledLibraryLockedFormat"><value>Die installierte Bibliothek kann nicht ersetzt werden: {0}.</value></data>
+  <data name="Emulation.Watara.Error.InvalidArchitecture"><value>Der heruntergeladene Kern ist nicht Windows x64.</value></data>
+  <data name="Emulation.Watara.Error.InvalidConfiguration"><value>Die Emulationskonfiguration ist ungültig.</value></data>
+  <data name="Emulation.Watara.Error.InvalidResponseLengthFormat"><value>Dauer der Antwort auf ungültige Emulations-Hosts: {0}.</value></data>
+  <data name="Emulation.Watara.Error.MachineInvalidState"><value>Die Emulationssitzung befindet sich nicht im erforderlichen Zustand.</value></data>
+  <data name="Emulation.Watara.Error.MachineStopped"><value>Die Emulationssitzung wurde gestoppt.</value></data>
+  <data name="Emulation.Watara.Error.MissingExpectedLibraryFormat"><value>Das heruntergeladene Archiv enthält nicht {0}.</value></data>
+  <data name="Emulation.Watara.Error.MissingPublishedDate"><value>Die offizielle Antwort identifiziert nicht das Veröffentlichungsdatum.</value></data>
+  <data name="Emulation.Watara.Error.NotInitialized"><value>Der Emulations-Host wird nicht initialisiert.</value></data>
+  <data name="Emulation.Watara.Error.ProcessExitSuffixFormat"><value> Ausfahrtscode: {0}.</value></data>
+  <data name="Emulation.Watara.Error.ProcessNotInitialized"><value>Der Emulations-Host-Prozess wird nicht initialisiert.</value></data>
+  <data name="Emulation.Watara.Error.ProcessStartFailed"><value>Der Emulations-Host-Prozess konnte nicht starten.</value></data>
+  <data name="Emulation.Watara.Error.ProcessUnavailable"><value>Der Emulations-Host-Prozess ist nicht verfügbar.</value></data>
+  <data name="Emulation.Watara.Error.ProtocolVersionMismatchFormat"><value>Protokollversion {0} nicht übereinstimmen {1}.</value></data>
+  <data name="Emulation.Watara.Error.RequestCancelled"><value>Die Emulations-Host-Anfrage wurde abgebrochen.</value></data>
+  <data name="Emulation.Watara.Error.ResponseTimeout"><value>Die Emulations-Host-Reaktion wurde zeitversetzt.</value></data>
+  <data name="Emulation.Watara.Error.ResponseUnavailable"><value>Die Emulations-Host-Antwort ist nicht verfügbar.</value></data>
+  <data name="Emulation.Watara.Error.SharedVideoUnavailable"><value>Der gemeinsame Videotransport ist nicht verfügbar.</value></data>
+  <data name="Emulation.Watara.Error.StateIncompatible"><value>Der gespeicherte Zustand ist mit der aktuellen Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Watara.Error.StateInvalid"><value>Der gespeicherte Zustand ist ungültig.</value></data>
+  <data name="Emulation.Watara.Error.StateUnavailable"><value>Der Emulator unterstützt keine gespeicherten Zustände.</value></data>
+  <data name="Emulation.Watara.Error.UnknownCommandFormat"><value>Unbekannter Emulations-Host-Befehl: {0}.</value></data>
+  <data name="Emulation.Watara.Error.UnsupportedControllerDevice"><value>Die Steuerungseinrichtung wird nicht unterstützt.</value></data>
+</root>

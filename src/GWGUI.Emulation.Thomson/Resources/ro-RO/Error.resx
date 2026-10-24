@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>Gazda de emulare este deja iniţializată.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>Comunicarea gazdei de emulare a eşuat.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>Mediul configurat nu a putut fi găsit.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>Sesiunea de emulare nu poate schimba acest mediu.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>Gazda de emulare lipseşte.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>Biblioteca instalată nu poate fi înlocuită: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>Miezul descărcat nu este Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>Configuraţia de emulare nu este validă.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>Durata de răspuns a gazdei de emulare nevalidă: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>Sesiunea de emulare nu este în starea necesară.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>Sesiunea de emulare s-a oprit.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>Arhiva descărcată nu conține {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>Răspunsul oficial nu identifică data publicării.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>Gazda de emulare nu este iniţializată.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> Codul de ieșire: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>Procesul gazdei de emulare nu este iniţializat.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>Procesul gazdei de emulare nu a putut începe.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>Procesul gazdei de emulare nu este disponibil.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Versiunea protocolului {0} nu se potriveşte {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>Cererea gazdei de emulare a fost anulată.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>Răspunsul gazdei de emulare a expirat.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>Răspunsul gazdei de emulare nu este disponibil.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>Transportul video partajat nu este disponibil.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>Starea salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>Starea salvată este invalidă.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>Emulatorul nu susţine statele salvate.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>Comandă gazdă de emulație necunoscută: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>Dispozitivul de control nu este suportat.</value></data>
+</root>

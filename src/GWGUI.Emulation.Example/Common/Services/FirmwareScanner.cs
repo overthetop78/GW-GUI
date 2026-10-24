@@ -8,7 +8,9 @@ namespace GWGUI.Emulation.Example.Common.Services;
 /// porte sur une empreinte commune, indépendamment du nom ou de l’emplacement du fichier.</remarks>
 internal sealed class FirmwareScanner(string firmwareRoot)
 {
-    // Un chemin absolu stabilise la recherche même si le répertoire courant du processus change.
+    /// <summary>Racine absolue qui stabilise les recherches lorsque le répertoire courant du processus change.</summary>
+    /// <remarks>Le scanner conserve uniquement ce chemin. Il ne possède pas le dossier ni les fichiers utilisateur ;
+    /// chaque inspection ouvre et referme ses propres flux avant de retourner ses observations.</remarks>
     private readonly string _firmwareRoot = Path.GetFullPath(firmwareRoot);
 
     /// <summary>Inspecte les candidats puis complète leur indicateur de doublon.</summary>

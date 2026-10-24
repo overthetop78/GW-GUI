@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Det konfigurerte mediet ble ikke funnet.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Den nødvendige emuleringskjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Den valgte emuleringskjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>En fastvare er ugyldig eller ikke kompatibel.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>En nødvendig fastvare mangler.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Stien til emuleringsvertprogrammet er utilgjengelig.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Kommunikasjon med emuleringsverten mislyktes.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Et alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Den lagrede staten er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Den lagrede staten er ugyldig.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>En uventet emuleringsfeil oppstod.</value></data>
+</root>

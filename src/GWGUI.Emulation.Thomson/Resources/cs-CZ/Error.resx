@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>Hostitel emulace je již inicializován.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>Komunikace s hostitelem emulace selhala.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>Nakonfigurované médium nebylo možné nalézt.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>Emulace nemůže toto médium vyměnit.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>Emulační hostitel, který je spuštěn, chybí.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>Nainstalovanou knihovnu nelze nahradit: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>Stažené jádro není Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>Konfigurace emulace je neplatná.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>Délka odezvy neplatné emulace hostitele: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>Emulace není v požadovaném stavu.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>Emulace skončila.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>Stáhnutý archiv neobsahuje {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>V úřední odpovědi není uvedeno datum zveřejnění.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>Emulační hostitel není inicializován.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> Kód výstupu: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>Proces emulace hostitele není inicializován.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>Proces emulace hostitele nemohl začít.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>Proces emulace hostitelů není k dispozici.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Znění protokolu {0} neodpovídá {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>Žádost o hostitele emulace byla zrušena.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>Reakce hostitele emulace byla načasována.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>Reakce hostitele emulace není k dispozici.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>Sdílená video doprava není k dispozici.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>Uložený stav je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>Uložený stav je neplatný.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>Emulátor nepodporuje uložené stavy.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>Neznámý příkaz hostitele emulace: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>Regulátor není podporován.</value></data>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Il mezzo configurato non è stato trovato.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>La macchina non supporta il mezzo selezionato.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Il nucleo di emulazione richiesto non è stato trovato.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Il nucleo di emulazione selezionato non poteva essere caricato.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Dettagli: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Un firmware non è valido o incompatibile.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Manca un firmware richiesto.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Il percorso per il programma host di emulazione non è disponibile.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>La comunicazione con l'host di emulazione è fallita.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Un'opzione ha un valore non valido.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Lo stato salvato è incompatibile con la macchina corrente.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Lo stato salvato non è valido.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Si è verificato un errore di emulazione inaspettato.</value></data>
+</root>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>에뮬레이션 호스트는 이미 초기화됩니다.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>에뮬레이션 호스트 통신 실패.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>구성 된 중간 찾을 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>이 매체를 교환할 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>emulation host executable은 누락됩니다.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>설치 라이브러리는 대체 할 수 없습니다. {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>다운로드 된 코어는 Windows x64가 아닙니다.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>에뮬레이션 구성은 유효하지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>잘못된 에뮬레이션 호스트 응답 길이: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>에뮬레이션 세션은 필수 상태에 있지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>에뮬레이션 세션이 중지되었습니다.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>다운로드 아카이브는 포함되지 않습니다. {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>공식 응답은 출판일을 식별하지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>에뮬레이션 호스트는 초기화되지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> 출구 부호: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>에뮬레이션 호스트 프로세스는 초기화되지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>에뮬레이션 호스트 프로세스가 시작할 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>에뮬레이션 호스트 프로세스는 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Protocol 버전 {0} 일치하지 않음 {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>정정 호스트 요청이 취소되었습니다.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>에뮬레이션 호스트 응답은 밖으로 시간.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>에뮬레이션 호스트 응답은 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>공유 동영상 전송은 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>저장된 국가는 현재 기계와 호환이 됩니다.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>저장된 상태는 유효하지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>에뮬레이터는 저장된 상태를 지원하지 않습니다.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>알려진 에뮬레이션 호스트 명령: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>컨트롤러 장치가 지원되지 않습니다.</value></data>
+</root>

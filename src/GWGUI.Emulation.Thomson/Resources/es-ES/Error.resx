@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>El host de emulación ya está inicializado.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>La comunicación de host emulación falló.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>No se pudo encontrar el medio configurado.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>La sesión de emulación no puede cambiar este medio.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>El ejecutable de la EMPA está desaparecido.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>La biblioteca instalada no puede ser reemplazada: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>El núcleo descargado no es Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>La configuración de emulación es inválida.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>Longitud de respuesta de host de emulación inválida: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>La sesión de emulación no está en el estado requerido.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>La sesión de emulación se ha detenido.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>El archivo descargado no contiene {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>La respuesta oficial no identifica su fecha de publicación.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>El host de emulación no se inicializa.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> Código de salida: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>El proceso de emulación de host no se inicializa.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>El proceso de emulación de host no pudo comenzar.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>El proceso de emulación de host no está disponible.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Versión del Protocolo {0} no coincide {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>La solicitud de emulación de host fue cancelada.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>La respuesta de la emulación de hosts se dio a conocer.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>La respuesta de los huéspedes de emulación no está disponible.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>El transporte de vídeo compartido no está disponible.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>El estado salvado es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>El estado salvado es inválido.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>El emulador no apoya estados salvados.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>Comando de host de emulación desconocido: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>El dispositivo controlador no está soportado.</value></data>
+</root>

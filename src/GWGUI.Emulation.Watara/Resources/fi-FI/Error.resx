@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Watara.Error.AlreadyInitialized"><value>Emulointi-isäntä on jo alustettu.</value></data>
+  <data name="Emulation.Watara.Error.CommunicationFailed"><value>Emulointi isännän kommunikaatio epäonnistui.</value></data>
+  <data name="Emulation.Watara.Error.ContentFileMissing"><value>Määriteltyä välinettä ei löytynyt.</value></data>
+  <data name="Emulation.Watara.Error.DynamicMediaUnsupported"><value>Emulointiistunto ei voi vaihtaa tätä välinettä.</value></data>
+  <data name="Emulation.Watara.Error.ExecutableMissing"><value>Emulointi-isäntä puuttuu.</value></data>
+  <data name="Emulation.Watara.Error.InstalledLibraryLockedFormat"><value>Asennettua kirjastoa ei voida korvata: {0}.</value></data>
+  <data name="Emulation.Watara.Error.InvalidArchitecture"><value>Ladattu ydin ei ole Windows x64.</value></data>
+  <data name="Emulation.Watara.Error.InvalidConfiguration"><value>Emulointiasetukset ovat virheellisiä.</value></data>
+  <data name="Emulation.Watara.Error.InvalidResponseLengthFormat"><value>Virheellinen emulointiisännän vastepituus: {0}.</value></data>
+  <data name="Emulation.Watara.Error.MachineInvalidState"><value>Emulointia ei ole vaadittu.</value></data>
+  <data name="Emulation.Watara.Error.MachineStopped"><value>Emulointi on loppunut.</value></data>
+  <data name="Emulation.Watara.Error.MissingExpectedLibraryFormat"><value>Ladattu arkisto ei sisällä {0}.</value></data>
+  <data name="Emulation.Watara.Error.MissingPublishedDate"><value>Virallisessa vastauksessa ei mainita sen julkaisupäivää.</value></data>
+  <data name="Emulation.Watara.Error.NotInitialized"><value>Emulointi isäntä ei ole alustettu.</value></data>
+  <data name="Emulation.Watara.Error.ProcessExitSuffixFormat"><value> Poistumiskoodi: {0}.</value></data>
+  <data name="Emulation.Watara.Error.ProcessNotInitialized"><value>Emulointia ei ole alustettu.</value></data>
+  <data name="Emulation.Watara.Error.ProcessStartFailed"><value>Emulointia ei voitu aloittaa.</value></data>
+  <data name="Emulation.Watara.Error.ProcessUnavailable"><value>Emulointia ei voi suorittaa.</value></data>
+  <data name="Emulation.Watara.Error.ProtocolVersionMismatchFormat"><value>Pöytäkirjan versio {0} ei täsmää {1}.</value></data>
+  <data name="Emulation.Watara.Error.RequestCancelled"><value>Emulointia koskeva pyyntö peruttiin.</value></data>
+  <data name="Emulation.Watara.Error.ResponseTimeout"><value>Emulointiisäntä reagoi aikakatkaisi.</value></data>
+  <data name="Emulation.Watara.Error.ResponseUnavailable"><value>Emulointiisäntä ei ole käytettävissä.</value></data>
+  <data name="Emulation.Watara.Error.SharedVideoUnavailable"><value>Jaettu videoliikenne ei ole käytettävissä.</value></data>
+  <data name="Emulation.Watara.Error.StateIncompatible"><value>Tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Watara.Error.StateInvalid"><value>Tallennettu tila on virheellinen.</value></data>
+  <data name="Emulation.Watara.Error.StateUnavailable"><value>Emulaattori ei tue pelastettuja valtioita.</value></data>
+  <data name="Emulation.Watara.Error.UnknownCommandFormat"><value>Tuntematon emulointi- isäntäkomento: {0}.</value></data>
+  <data name="Emulation.Watara.Error.UnsupportedControllerDevice"><value>Ohjauslaitetta ei tueta.</value></data>
+</root>

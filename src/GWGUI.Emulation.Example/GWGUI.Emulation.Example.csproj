@@ -11,4 +11,13 @@
     <!-- Seule l’API publique du SDK est disponible : aucune autorisation InternalsVisibleTo. -->
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Les textes appartiennent au module, comme pour un module indépendant. WithCulture=false
+         conserve tous les catalogues dans cet assembly. Le nom logique indique le catalogue
+         et sa culture au résolveur public du SDK ; aucun nom de module n'est inscrit dans le SDK. -->
+    <EmbeddedResource Update="Resources\*\*.resx">
+      <WithCulture>false</WithCulture>
+      <LogicalName>GWGUI.Emulation.Example.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

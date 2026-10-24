@@ -84,13 +84,48 @@ public sealed class ArchitectureValidationTests
             Assert.Null(assembly.GetType(root + ".Common.Constants.CommonExceptionsConstants"));
             Assert.Null(assembly.GetType(root + ".Common.Constants.CoreExceptionsResourceConstants"));
             Assert.Null(assembly.GetType(root + ".Emulators.Common.Interop.Constants.CoreErrorResourceKeys"));
+            var messages = assembly.GetType(root + ".Common.Exceptions.ErrorMessages", true)!;
+            Assert.DoesNotContain(messages.GetFields(BindingFlags.NonPublic | BindingFlags.Static), field => typeof(IEmulationModuleLocalization).IsAssignableFrom(field.FieldType));
             var get = resolver.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!;
             Assert.Equal(new[] { typeof(string), typeof(object[]) }, get.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.NotNull(get.GetParameters()[1].GetCustomAttribute<ParamArrayAttribute>());
             Assert.Contains(GetCompiledCalls(get), call => call.Method.DeclaringType == typeof(IEmulationModuleLocalization) && call.Method.Name == "TryGetString");
             Assert.Equal("unknown {0}", get.Invoke(null, ["unknown {0}", Array.Empty<object>()]));
         }
-        Assert.Equal(19, resolvers);
+        Assert.Equal(23, resolvers);
+        foreach (var family in new[] { "Example", "Panasonic", "Thomson", "Watara", "Wenquxing" })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = "GWGUI.Emulation." + family;
+            var localization = EmulationSdk.Messages.CreateLocalization(assembly, root + ".Resources.Emulation");
+            var key = "Emulation." + family + ".Error.StateInvalid";
+            Assert.True(localization.TryGetString(key, System.Globalization.CultureInfo.InvariantCulture, out var value));
+            Assert.Equal("The saved state is invalid.", value);
+            Assert.True(localization.TryGetString(key, System.Globalization.CultureInfo.GetCultureInfo("en-US"), out var english));
+            Assert.Equal(value, english);
+            var keys = assembly.GetType(root + ".Common.Constants.CoreErrorResourceKeys", true)!.GetFields(BindingFlags.NonPublic | BindingFlags.Static).Select(field => (string)field.GetRawConstantValue()!).ToHashSet(StringComparer.Ordinal);
+            var catalogs = assembly.GetManifestResourceNames().Where(name => name.StartsWith(root + ".Resources.Error.", StringComparison.Ordinal)).ToArray();
+            Assert.Equal(30, catalogs.Length);
+            foreach (var catalog in catalogs)
+            {
+                using var stream = assembly.GetManifestResourceStream(catalog)!;
+                using var reader = new System.Resources.ResourceReader(stream);
+                var entries = reader.Cast<System.Collections.DictionaryEntry>().ToDictionary(entry => (string)entry.Key, entry => Assert.IsType<string>(entry.Value));
+                Assert.True(keys.SetEquals(entries.Keys), catalog);
+                foreach (var entry in entries)
+                {
+                    Assert.False(string.IsNullOrWhiteSpace(entry.Value));
+                    Assert.True(localization.TryGetString(entry.Key, System.Globalization.CultureInfo.GetCultureInfo("en-US"), out var source));
+                    Assert.Equal(System.Text.RegularExpressions.Regex.Matches(source!, @"\{[^{}]+\}").Select(match => match.Value).Order(), System.Text.RegularExpressions.Regex.Matches(entry.Value, @"\{[^{}]+\}").Select(match => match.Value).Order());
+                }
+            }
+            if (family != "Example") continue;
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", true)!;
+            var engine = Activator.CreateInstance(engineType, nonPublic: true)!;
+            object?[] arguments = [key, System.Globalization.CultureInfo.InvariantCulture, null];
+            Assert.True((bool)engineType.GetMethod("TryGetString")!.Invoke(engine, arguments)!);
+            Assert.Equal(value, arguments[2]);
+        }
 
         var oldCulture = System.Globalization.CultureInfo.CurrentCulture;
         var oldUiCulture = System.Globalization.CultureInfo.CurrentUICulture;
@@ -5296,7 +5331,7 @@ public sealed class ArchitectureValidationTests
             localizedServices++;
         }
         Assert.Equal(16, releaseOwners);
-        Assert.Equal(12, localizedServices);
+        Assert.Equal(16, localizedServices);
     }
     [Fact]
     public async Task InstallationManagementIsRoutedThroughCommon()

@@ -17,4 +17,20 @@ internal static class CoreErrorResourceKeys
     internal const string HostExecutableMissing = "Emulation.Philips.Error.HostExecutableMissing";
     /// <summary>Clé de la ressource HostProtocolFailure ; sa valeur est résolue par le catalogue de localisation.</summary>
     internal const string HostProtocolFailure = "Emulation.Philips.Error.HostProtocolFailure";
+    /// <summary>Clé du diagnostic StateIncompatible dans le catalogue du module.</summary>
+    internal const string StateIncompatible = "Emulation.Philips.Error.StateIncompatible";
+    /// <summary>Clé du diagnostic Unexpected dans le catalogue du module.</summary>
+    internal const string Unexpected = "Emulation.Philips.Error.Unexpected";
+    /// <summary>Clé du diagnostic FirmwareMissing dans le catalogue du module.</summary>
+    internal const string FirmwareMissing = "Emulation.Philips.Error.FirmwareMissing";
+    /// <summary>Clé du diagnostic FirmwareInvalid dans le catalogue du module.</summary>
+    internal const string FirmwareInvalid = "Emulation.Philips.Error.FirmwareInvalid";
+    /// <summary>Clé du diagnostic ContentNotFound dans le catalogue du module.</summary>
+    internal const string ContentNotFound = "Emulation.Philips.Error.ContentNotFound";
+    /// <summary>Clé du diagnostic ContentUnsupported dans le catalogue du module.</summary>
+    internal const string ContentUnsupported = "Emulation.Philips.Error.ContentUnsupported";
+    /// <summary>Clé du diagnostic OptionInvalid dans le catalogue du module.</summary>
+    internal const string OptionInvalid = "Emulation.Philips.Error.OptionInvalid";
+    /// <summary>Clé du diagnostic StateInvalid dans le catalogue du module.</summary>
+    internal const string StateInvalid = "Emulation.Philips.Error.StateInvalid";
 }

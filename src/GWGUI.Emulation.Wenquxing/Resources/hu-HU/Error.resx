@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>Az emulációs gazdatest már inicializálódott.</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>Az emulációs host kommunikáció nem sikerült.</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>A beállított adathordozó nem található.</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>Az emulációs ülés nem cserélheti ezt a médiumot.</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>Az emulációs host program hiányzik.</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>A telepített könyvtár nem helyettesíthető: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>A letöltött mag nem Windows x64.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>Az emuláció konfigurációja érvénytelen.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>Érvénytelen emulációs host válaszhossz: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>Az emulációs ülés nem a kívánt állapotban van.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>Az emulációs folyamat leállt.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>A letöltött archívum nem tartalmaz {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>A hivatalos válasz nem határozza meg a közzétételi dátumot.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>Az emulációs gazdatest nem inicializálódott.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> Kilépési kód: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>Az emulációs gazdatest folyamat nem inicializálódott.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>Az emuláció gazdatest folyamata nem indult el.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>Az emulációs host folyamat nem elérhető.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>Protokollverzió {0} nem egyezik {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>Az emulációs host kérést törölték.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>Az emulációs host válasz időzített.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>Az emuláció gazdatest válasza nem elérhető.</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>A megosztott videószállítás nem elérhető.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>A mentett állapot összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>A megmentett állam érvénytelen.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>Az emulátor nem támogatja a megmentett államokat.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>Ismeretlen emuláció parancs: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>A vezérlő eszköz nincs támogatva.</value></data>
+</root>

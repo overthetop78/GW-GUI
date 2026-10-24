@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Mediul configurat nu a fost găsit.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Aparatul nu suportă mediul selectat.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Miezul necesar de emulare nu a fost găsit.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Miezul de emulare selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Un firmware este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Lipseşte un firmware necesar.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Calea către programul gazdei de emulare nu este disponibilă.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Comunicarea cu gazda de emulare a eşuat.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>O opțiune are o valoare invalidă.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Starea salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Starea salvată este invalidă.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>A apărut o eroare de emulare neaşteptată.</value></data>
+</root>

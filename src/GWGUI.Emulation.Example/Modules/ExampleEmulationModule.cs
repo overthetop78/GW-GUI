@@ -24,7 +24,7 @@ public sealed class ExampleEmulationModule : IEmulationModule, IEmulationEmulato
     public EmulationSettingsVisibility DefaultVisibility => _engine.DefaultVisibility;
     /// <summary>Transmet la commande au Common, qui indique si ce backend la reconnaît.</summary>
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
-    /// <summary>Résout le nom invariant du mock ; les libellés communs sont fournis par l’application.</summary>
+    /// <summary>Résout les textes du module par Common et conserve les noms techniques invariants.</summary>
     public bool TryGetString(string key, CultureInfo culture, out string value) => _engine.TryGetString(key, culture, out value);
     /// <summary>Demande au Common la description des réglages du modèle sélectionné.</summary>
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null) => _engine.Describe(machineId, configuration);

@@ -17,4 +17,20 @@ internal static class CoreErrorResourceKeys
     internal const string HostExecutableMissing = "Emulation.Atari.Error.HostExecutableMissing";
     /// <summary>Clé de la ressource HostProtocolFailure ; sa valeur est résolue par le catalogue de localisation.</summary>
     internal const string HostProtocolFailure = "Emulation.Atari.Error.HostProtocolFailure";
+    /// <summary>Clé du diagnostic StateIncompatible dans le catalogue du module.</summary>
+    internal const string StateIncompatible = "Emulation.Atari.Error.StateIncompatible";
+    /// <summary>Clé du diagnostic Unexpected dans le catalogue du module.</summary>
+    internal const string Unexpected = "Emulation.Atari.Error.Unexpected";
+    /// <summary>Clé du diagnostic FirmwareMissing dans le catalogue du module.</summary>
+    internal const string FirmwareMissing = "Emulation.Atari.Error.FirmwareMissing";
+    /// <summary>Clé du diagnostic FirmwareInvalid dans le catalogue du module.</summary>
+    internal const string FirmwareInvalid = "Emulation.Atari.Error.FirmwareInvalid";
+    /// <summary>Clé du diagnostic ContentNotFound dans le catalogue du module.</summary>
+    internal const string ContentNotFound = "Emulation.Atari.Error.ContentNotFound";
+    /// <summary>Clé du diagnostic ContentUnsupported dans le catalogue du module.</summary>
+    internal const string ContentUnsupported = "Emulation.Atari.Error.ContentUnsupported";
+    /// <summary>Clé du diagnostic OptionInvalid dans le catalogue du module.</summary>
+    internal const string OptionInvalid = "Emulation.Atari.Error.OptionInvalid";
+    /// <summary>Clé du diagnostic StateInvalid dans le catalogue du module.</summary>
+    internal const string StateInvalid = "Emulation.Atari.Error.StateInvalid";
 }

@@ -13661,3 +13661,269 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs : utiliser les clés Common sous leur nom unique, avec les mêmes ressources, arguments et cultures de diagnostic.
   - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs : utiliser les clés Common sous leur nom unique, avec les mêmes ressources, arguments et cultures de diagnostic.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le propriétaire CoreErrorResourceKeys des dix-neuf catalogues de diagnostics, l'absence des anciens propriétaires et des clés dupliquées, puis exécuter les tests et le build Debug de tous les modules.
+
+
+- [x] Terminer le parcours commun de localisation des diagnostics.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Philips/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Constants/CoreErrorResourceKeys.cs : reprendre les clés déjà employées par les derniers appels au résolveur local, avec leurs valeurs inchangées.
+  - [x] Modifier src/GWGUI.Emulation.Snk/Common/Exceptions/ErrorMessages.cs : supprimer le second catalogue et le résolveur Text au profit d'ExceptionText, en conservant les clés et le repli de culture.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Common/Constants/CoreErrorResourceKeys.cs : définir les clés des vingt-huit diagnostics existants sous le même propriétaire Common.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Common/Exceptions/ExceptionText.cs : reprendre le résolveur Common existant avec son contrat public de localisation, ses cultures et ses paramètres.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Exceptions/CoreHostErrors.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Exceptions/ErrorMessages.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Common/Constants/CoreErrorResourceKeys.cs : définir les clés des vingt-huit diagnostics existants sous le même propriétaire Common.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Common/Exceptions/ExceptionText.cs : reprendre le résolveur Common existant avec son contrat public de localisation, ses cultures et ses paramètres.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Exceptions/CoreHostErrors.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Exceptions/ErrorMessages.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Créer src/GWGUI.Emulation.Watara/Common/Constants/CoreErrorResourceKeys.cs : définir les clés des vingt-huit diagnostics existants sous le même propriétaire Common.
+  - [x] Créer src/GWGUI.Emulation.Watara/Common/Exceptions/ExceptionText.cs : reprendre le résolveur Common existant avec son contrat public de localisation, ses cultures et ses paramètres.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Exceptions/CoreHostErrors.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Common/Exceptions/ErrorMessages.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Common/Constants/CoreErrorResourceKeys.cs : définir les clés des vingt-huit diagnostics existants sous le même propriétaire Common.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Common/Exceptions/ExceptionText.cs : reprendre le résolveur Common existant avec son contrat public de localisation, ses cultures et ses paramètres.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Exceptions/CoreHostErrors.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Exceptions/ErrorMessages.cs : résoudre les mêmes messages par les clés Common dans la culture courante au lieu de conserver des textes anglais dans le code.
+  - [x] Modifier src/GWGUI.Emulation.Example/GWGUI.Emulation.Example.csproj : embarquer les catalogues Error.resx avec la convention de ressources des autres modules.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : exposer les textes localisés par le contrat existant en conservant les noms techniques invariants.
+  - [x] Modifier src/GWGUI.Emulation.Example/Modules/ExampleEmulationModule.cs : documenter le raccordement du contrat de localisation à Common et aux noms invariants.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/00-Base/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/en-US/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/ar-SA/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/cs-CZ/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/da-DK/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/de-DE/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/el-GR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/es-ES/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/fi-FI/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/fr-FR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/he-IL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/hu-HU/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/id-ID/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/it-IT/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/ja-JP/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/ko-KR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/nb-NO/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/nl-NL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/pl-PL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/pt-BR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/pt-PT/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/ro-RO/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/ru-RU/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/sv-SE/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/th-TH/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/tr-TR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/uk-UA/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/vi-VN/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/zh-Hans/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Panasonic/Resources/zh-Hant/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/00-Base/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/en-US/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/ar-SA/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/cs-CZ/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/da-DK/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/de-DE/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/el-GR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/es-ES/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/fi-FI/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/fr-FR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/he-IL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/hu-HU/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/id-ID/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/it-IT/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/ja-JP/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/ko-KR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/nb-NO/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/nl-NL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/pl-PL/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/pt-BR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/pt-PT/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/ro-RO/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/ru-RU/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/sv-SE/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/th-TH/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/tr-TR/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/uk-UA/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/vi-VN/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/zh-Hans/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Créer src/GWGUI.Emulation.Example/Resources/zh-Hant/Error.resx : préparer le catalogue XML vide exigé par l'outil Argos existant.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/00-Base/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/en-US/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/00-Base/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/en-US/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/00-Base/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/en-US/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/00-Base/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/en-US/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/00-Base/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/en-US/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les vingt-trois résolveurs uniques et les diagnostics de base réellement résolus dans Example et les quatre familles.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Exceptions/ExceptionText.cs : documenter le cache de localisation, les deux cultures utilisées et le comportement des paramètres ; retirer l'import d'implémentation SDK inutilisé.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CassetteInputController.cs : documenter les champs synchronisés, la file d'impulsions et le compteur de frames sous forme C#Doc exploitable par l'exemple.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/FirmwareScanner.cs : documenter la racine absolue et la propriété des fichiers inspectés dans le champ du scanner.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/en-US/Error.resx : recopier les données de 00-Base et conserver uniquement les textes à traduire, les valeurs invariantes restant dans la base commune.
+  - [x] Modifier src/GWGUI.Emulation.Thomson/Resources/en-US/Error.resx : recopier les données de 00-Base et conserver uniquement les textes à traduire, les valeurs invariantes restant dans la base commune.
+  - [x] Modifier src/GWGUI.Emulation.Watara/Resources/en-US/Error.resx : recopier les données de 00-Base et conserver uniquement les textes à traduire, les valeurs invariantes restant dans la base commune.
+  - [x] Modifier src/GWGUI.Emulation.Wenquxing/Resources/en-US/Error.resx : recopier les données de 00-Base et conserver uniquement les textes à traduire, les valeurs invariantes restant dans la base commune.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/en-US/Error.resx : recopier les données de 00-Base et conserver uniquement les textes à traduire, les valeurs invariantes restant dans la base commune.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/ar-SA/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/cs-CZ/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/da-DK/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/de-DE/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/el-GR/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/es-ES/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/fi-FI/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/fr-FR/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/he-IL/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/hu-HU/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/id-ID/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/it-IT/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/ja-JP/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/ko-KR/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/nb-NO/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/nl-NL/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/pl-PL/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/pt-BR/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/pt-PT/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/ro-RO/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/ru-RU/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/sv-SE/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/th-TH/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/tr-TR/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/uk-UA/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/vi-VN/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/zh-Hans/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Modifier src/GWGUI.Emulation.Panasonic/Resources/zh-Hant/Error.resx : enregistrer les vingt-huit diagnostics existants, avec leurs traductions Argos et leurs paramètres conservés.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/ar-SA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/cs-CZ/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/da-DK/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/de-DE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/el-GR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/es-ES/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/fi-FI/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/fr-FR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/he-IL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/hu-HU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/id-ID/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/it-IT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/ja-JP/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/ko-KR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/nb-NO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/nl-NL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/pl-PL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/pt-BR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/pt-PT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/ro-RO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/ru-RU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/sv-SE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/th-TH/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/tr-TR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/uk-UA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/vi-VN/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/zh-Hans/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Thomson/Resources/zh-Hant/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/ar-SA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/cs-CZ/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/da-DK/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/de-DE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/el-GR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/es-ES/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/fi-FI/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/fr-FR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/he-IL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/hu-HU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/id-ID/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/it-IT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/ja-JP/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/ko-KR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/nb-NO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/nl-NL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/pl-PL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/pt-BR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/pt-PT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/ro-RO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/ru-RU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/sv-SE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/th-TH/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/tr-TR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/uk-UA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/vi-VN/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/zh-Hans/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Watara/Resources/zh-Hant/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/ar-SA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/cs-CZ/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/da-DK/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/de-DE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/el-GR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/es-ES/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/fi-FI/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/fr-FR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/he-IL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/hu-HU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/id-ID/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/it-IT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/ja-JP/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/ko-KR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/nb-NO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/nl-NL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/pl-PL/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/pt-BR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/pt-PT/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/ro-RO/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/ru-RU/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/sv-SE/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/th-TH/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/tr-TR/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/uk-UA/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/vi-VN/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/zh-Hans/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Créer src/GWGUI.Emulation.Wenquxing/Resources/zh-Hant/Error.resx : réutiliser les traductions des mêmes diagnostics de Panasonic sous les clés du module, sans nouvelle traduction des valeurs identiques.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/ar-SA/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/cs-CZ/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/da-DK/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/de-DE/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/el-GR/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/es-ES/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/fi-FI/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/fr-FR/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/he-IL/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/hu-HU/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/id-ID/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/it-IT/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/ja-JP/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/ko-KR/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/nb-NO/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/nl-NL/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/pl-PL/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/pt-BR/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/pt-PT/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/ro-RO/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/ru-RU/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/sv-SE/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/th-TH/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/tr-TR/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/uk-UA/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/vi-VN/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/zh-Hans/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier src/GWGUI.Emulation.Example/Resources/zh-Hant/Error.resx : fournir les treize diagnostics génériques d'Example, leurs traductions Argos et les paramètres des modèles de texte.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le résolveur unique des vingt-trois catalogues, les ressources embarquées d'Example et des quatre familles dans toutes les cultures, les paramètres de texte et la façade de localisation ; exécuter les tests et le build Debug complet.

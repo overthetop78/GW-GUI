@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Не знайдено настрочене середовище.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Машина не підтримує вибране середовище.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Не знайдено обов’язкове емульсійне ядро.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Вибране емульсійне ядро не можна завантажити.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Прошивка недійсна або несумісна.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Необхідна прошивка відсутні.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Шлях до емульсії хост-програми є недоступним.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Зв'язок з емуляційним хостом не вдалося.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Варіант має недійсне значення.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Вказаний стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Забраний стан недійсний.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Несподівана помилка емульсії сталася.</value></data>
+</root>

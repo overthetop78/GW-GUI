@@ -17,4 +17,20 @@ internal static class CoreErrorResourceKeys
     internal const string HostExecutableMissing = "Emulation.Bandai.Error.HostExecutableMissing";
     /// <summary>Clé de la ressource HostProtocolFailure ; sa valeur est résolue par le catalogue de localisation.</summary>
     internal const string HostProtocolFailure = "Emulation.Bandai.Error.HostProtocolFailure";
+    /// <summary>Clé du diagnostic StateIncompatible dans le catalogue du module.</summary>
+    internal const string StateIncompatible = "Emulation.Bandai.Error.StateIncompatible";
+    /// <summary>Clé du diagnostic Unexpected dans le catalogue du module.</summary>
+    internal const string Unexpected = "Emulation.Bandai.Error.Unexpected";
+    /// <summary>Clé du diagnostic FirmwareMissing dans le catalogue du module.</summary>
+    internal const string FirmwareMissing = "Emulation.Bandai.Error.FirmwareMissing";
+    /// <summary>Clé du diagnostic FirmwareInvalid dans le catalogue du module.</summary>
+    internal const string FirmwareInvalid = "Emulation.Bandai.Error.FirmwareInvalid";
+    /// <summary>Clé du diagnostic ContentNotFound dans le catalogue du module.</summary>
+    internal const string ContentNotFound = "Emulation.Bandai.Error.ContentNotFound";
+    /// <summary>Clé du diagnostic ContentUnsupported dans le catalogue du module.</summary>
+    internal const string ContentUnsupported = "Emulation.Bandai.Error.ContentUnsupported";
+    /// <summary>Clé du diagnostic OptionInvalid dans le catalogue du module.</summary>
+    internal const string OptionInvalid = "Emulation.Bandai.Error.OptionInvalid";
+    /// <summary>Clé du diagnostic StateInvalid dans le catalogue du module.</summary>
+    internal const string StateInvalid = "Emulation.Bandai.Error.StateInvalid";
 }

@@ -17,4 +17,20 @@ internal static class CoreErrorResourceKeys
     internal const string HostExecutableMissing = "Emulation.Coleco.Error.HostExecutableMissing";
     /// <summary>Clé de la ressource HostProtocolFailure ; sa valeur est résolue par le catalogue de localisation.</summary>
     internal const string HostProtocolFailure = "Emulation.Coleco.Error.HostProtocolFailure";
+    /// <summary>Clé du diagnostic StateIncompatible dans le catalogue du module.</summary>
+    internal const string StateIncompatible = "Emulation.Coleco.Error.StateIncompatible";
+    /// <summary>Clé du diagnostic Unexpected dans le catalogue du module.</summary>
+    internal const string Unexpected = "Emulation.Coleco.Error.Unexpected";
+    /// <summary>Clé du diagnostic FirmwareMissing dans le catalogue du module.</summary>
+    internal const string FirmwareMissing = "Emulation.Coleco.Error.FirmwareMissing";
+    /// <summary>Clé du diagnostic FirmwareInvalid dans le catalogue du module.</summary>
+    internal const string FirmwareInvalid = "Emulation.Coleco.Error.FirmwareInvalid";
+    /// <summary>Clé du diagnostic ContentNotFound dans le catalogue du module.</summary>
+    internal const string ContentNotFound = "Emulation.Coleco.Error.ContentNotFound";
+    /// <summary>Clé du diagnostic ContentUnsupported dans le catalogue du module.</summary>
+    internal const string ContentUnsupported = "Emulation.Coleco.Error.ContentUnsupported";
+    /// <summary>Clé du diagnostic OptionInvalid dans le catalogue du module.</summary>
+    internal const string OptionInvalid = "Emulation.Coleco.Error.OptionInvalid";
+    /// <summary>Clé du diagnostic StateInvalid dans le catalogue du module.</summary>
+    internal const string StateInvalid = "Emulation.Coleco.Error.StateInvalid";
 }

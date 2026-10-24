@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound" xml:space="preserve"><value>The configured medium was not found.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported" xml:space="preserve"><value>The machine does not support the selected medium.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound" xml:space="preserve"><value>The required emulation core was not found.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected" xml:space="preserve"><value>The selected emulation core could not be loaded.</value></data>
+  <data name="Emulation.Example.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid" xml:space="preserve"><value>A firmware is invalid or incompatible.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing" xml:space="preserve"><value>A required firmware is missing.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing" xml:space="preserve"><value>The path to the emulation host program is unavailable.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure" xml:space="preserve"><value>Communication with the emulation host failed.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid" xml:space="preserve"><value>An option has an invalid value.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible" xml:space="preserve"><value>The saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid" xml:space="preserve"><value>The saved state is invalid.</value></data>
+  <data name="Emulation.Example.Error.Unexpected" xml:space="preserve"><value>An unexpected emulation error occurred.</value></data>
+</root>

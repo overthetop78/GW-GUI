@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>Emuleringsværten er allerede initialiseret.</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>Emuleringsværtskommunikationen mislykkedes.</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>Det konfigurerede medie kunne ikke findes.</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>Emuleringssessionen kan ikke bytte dette medium.</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>Emuleringsværtens eksekverbare er væk.</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>Det installerede bibliotek kan ikke udskiftes: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>Den downloadede kerne er ikke Windows x64.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>Emulationskonfigurationen er ugyldig.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>Ugyldig emuleringsværtssvarlængde: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>Emuleringssessionen er ikke i den krævede tilstand.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>Emuleringssessionen er stoppet.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>Det downloadede arkiv indeholder ikke {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>Det officielle svar angiver ikke datoen for offentliggørelsen.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>Emuleringsværten er ikke initialiseret.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> Udgangskode: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>Emuleringsværtsprocessen er ikke initialiseret.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>Emuleringsværtsprocessen kunne ikke starte.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>Emuleringsværtsprocessen er ikke tilgængelig.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>Protokol {0} matcher ikke {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>Emuleringsværtens anmodning blev annulleret.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>Emuleringsværtens respons timet ud.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>Emuleringsværtens respons er ikke tilgængelig.</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>Den delte video transport er ikke tilgængelig.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>Den gemte tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>Den gemte tilstand er ugyldig.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>emulatoren understøtter ikke gemte tilstande.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>Ukendt emuleringsværtskommando: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>controlleren er ikke understøttet.</value></data>
+</root>

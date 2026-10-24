@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Watara.Error.AlreadyInitialized"><value>L'host di emulazione è già inizializzato.</value></data>
+  <data name="Emulation.Watara.Error.CommunicationFailed"><value>La comunicazione dell'ospite di emulazione non è riuscita.</value></data>
+  <data name="Emulation.Watara.Error.ContentFileMissing"><value>Il mezzo configurato non poteva essere trovato.</value></data>
+  <data name="Emulation.Watara.Error.DynamicMediaUnsupported"><value>La sessione di emulazione non può scambiare questo mezzo.</value></data>
+  <data name="Emulation.Watara.Error.ExecutableMissing"><value>L'eseguibile dell'ostia emulazione e' scomparsa.</value></data>
+  <data name="Emulation.Watara.Error.InstalledLibraryLockedFormat"><value>La libreria installata non può essere sostituita: {0}.</value></data>
+  <data name="Emulation.Watara.Error.InvalidArchitecture"><value>Il nucleo scaricato non è Windows x64.</value></data>
+  <data name="Emulation.Watara.Error.InvalidConfiguration"><value>La configurazione dell'emulazione non è valida.</value></data>
+  <data name="Emulation.Watara.Error.InvalidResponseLengthFormat"><value>Lunghezza di risposta dell'ospite di emulazione non valida: {0}.</value></data>
+  <data name="Emulation.Watara.Error.MachineInvalidState"><value>La sessione di emulazione non è nello stato richiesto.</value></data>
+  <data name="Emulation.Watara.Error.MachineStopped"><value>La sessione di emulazione si è fermata.</value></data>
+  <data name="Emulation.Watara.Error.MissingExpectedLibraryFormat"><value>L'archivio scaricato non contiene {0}.</value></data>
+  <data name="Emulation.Watara.Error.MissingPublishedDate"><value>La risposta ufficiale non identifica la data di pubblicazione.</value></data>
+  <data name="Emulation.Watara.Error.NotInitialized"><value>L'host di emulazione non è inizializzato.</value></data>
+  <data name="Emulation.Watara.Error.ProcessExitSuffixFormat"><value> Codice di uscita: {0}.</value></data>
+  <data name="Emulation.Watara.Error.ProcessNotInitialized"><value>Il processo di emulazione non è inizializzato.</value></data>
+  <data name="Emulation.Watara.Error.ProcessStartFailed"><value>Il processo di emulazione host non potrebbe iniziare.</value></data>
+  <data name="Emulation.Watara.Error.ProcessUnavailable"><value>Il processo di emulazione host non è disponibile.</value></data>
+  <data name="Emulation.Watara.Error.ProtocolVersionMismatchFormat"><value>Versione del protocollo {0} non corrisponde {1}.</value></data>
+  <data name="Emulation.Watara.Error.RequestCancelled"><value>La richiesta di emulazione è stata annullata.</value></data>
+  <data name="Emulation.Watara.Error.ResponseTimeout"><value>La risposta dell'ospite di emulazione è stata scaduta.</value></data>
+  <data name="Emulation.Watara.Error.ResponseUnavailable"><value>La risposta dell'ospite di emulazione non è disponibile.</value></data>
+  <data name="Emulation.Watara.Error.SharedVideoUnavailable"><value>Il trasporto video condiviso non è disponibile.</value></data>
+  <data name="Emulation.Watara.Error.StateIncompatible"><value>Lo stato salvato è incompatibile con la macchina corrente.</value></data>
+  <data name="Emulation.Watara.Error.StateInvalid"><value>Lo stato salvato non è valido.</value></data>
+  <data name="Emulation.Watara.Error.StateUnavailable"><value>L'emulatore non supporta gli stati salvati.</value></data>
+  <data name="Emulation.Watara.Error.UnknownCommandFormat"><value>Comando host emulazione sconosciuto: {0}.</value></data>
+  <data name="Emulation.Watara.Error.UnsupportedControllerDevice"><value>Il dispositivo del controller non è supportato.</value></data>
+</root>

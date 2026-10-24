@@ -11,13 +11,17 @@ internal sealed class CassetteInputController
     internal const int AutomaticReturnDelayFrames = 75;
     /// <summary>Commandes de transport prises en charge par ce contrôleur de démarrage.</summary>
     internal static IReadOnlySet<EmulationCassetteCommand> AvailableCommands { get; } = new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play };
-    // Le verrou protège la file, l’instantané courant et le compteur de retour automatique.
+    /// <summary>Verrou protégeant la file, l'instantané physique et le compteur de retour automatique.</summary>
+    /// <remarks>Les producteurs d'entrées et la boucle de frames peuvent appeler le contrôleur depuis des threads distincts.</remarks>
     private readonly object _gate = new();
-    // Chaque élément de la file représente une touche à appuyer pendant une seule frame.
+    /// <summary>Impulsions à consommer dans leur ordre d'arrivée, à raison d'une touche ajoutée par frame.</summary>
+    /// <remarks>La file possède ses éléments ; elle n'acquiert aucune ressource de cassette ni aucun flux de média.</remarks>
     private readonly Queue<EmulationKey> _pulses = new();
-    // Les entrées physiques sont conservées pour retrouver leur état après l’impulsion ajoutée.
+    /// <summary>Instantané physique emprunté qui reste la référence après chaque impulsion synthétique.</summary>
+    /// <remarks>NextFrame copie les touches uniquement pour ajouter une impulsion ; il ne modifie pas cet instantané.</remarks>
     private EmulationInputSnapshot _physicalInput = EmulationInputSnapshot.Empty;
-    // Compteur de frames restant avant Retour ; moins un signifie que le déclenchement est désactivé.
+    /// <summary>Nombre de frames physiques à laisser passer avant l'impulsion Retour automatique.</summary>
+    /// <remarks>Zéro déclenche l'impulsion au prochain appel ; moins un désactive ce déclenchement après émission.</remarks>
     private int _automaticReturnFrames;
 
     /// <summary>Prépare le délai de retour selon les règles de démarrage de la configuration.</summary>

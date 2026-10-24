@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>مضيف العزلة قد تمّ بالفعل</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>لقد فشل الاتصال المضيف</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>لم يكن بالإمكان العثور على الوسيط المُشكل.</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>لا يمكن أن تتبادل جلسة الاختبار هذه الوسيطة.</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>مضيف العزلة قابل للتنفيذ مفقود</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>ولا يمكن استبدال المكتبة المثبتة: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>اللب المُحمّل ليس (ويندوز) ×64</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>تشكيلة العزل غير صحيحة</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>طول استجابة الجهات المضيفة غير المؤمنة: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>ولا توجد جلسة الاختراع في الدولة المطلوبة.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>لقد توقفت جلسة الاختبار</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>لا تحتوي المحفوظات المحملة على {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>ولا يحدد الرد الرسمي تاريخ نشره.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>مضيف العزلة غير مبدئي</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> رمز الخروج: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>عملية المقاولة غير مبدئية.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>عملية مضيف الاختراع لم تستطع البدء</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>عملية المقاولة غير متاحة.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>صيغة البروتوكول {0} لا يتطابق {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>ألغي طلب مضيف الضم</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>رد مضيف الاختراع قد حان الوقت</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>ولا يمكن توفير رد مضيف الاختراع.</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>ولا يمكن توفير النقل المرئي المشترك.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>الدولة المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>الولاية المنقذة باطلة</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>الناظم لا يدعم الولايات المنقذة</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>قيادة مضيفة غير معروفة: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>جهاز التحكم غير مدعم</value></data>
+</root>
