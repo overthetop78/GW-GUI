@@ -11,10 +11,6 @@ internal static class MachineConstants
     internal const int DiagnosticTailCount = 100;
     /// <summary>Nombre d’éléments d’une collection vide lors du contrôle des diagnostics.</summary>
     internal const int EmptyCount = 0;
-    /// <summary>Absence de temps restant avant la prochaine échéance.</summary>
-    internal const long NoRemainingTicks = 0;
-    /// <summary>Fréquence indiquant l’absence d’un format audio exploitable.</summary>
-    internal const int InvalidSampleRate = 0;
     /// <summary>Préfixe des threads de session, complété par le cœur et l’identité de l’instance.</summary>
     internal const string ThreadNamePrefix = "gwgui Example";
     /// <summary>Clé technique du contexte d’exception contenant les diagnostics du cœur.</summary>

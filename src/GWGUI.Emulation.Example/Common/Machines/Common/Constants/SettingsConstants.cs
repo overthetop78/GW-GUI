@@ -23,14 +23,6 @@ internal static class SettingsConstants
     internal const string AudioOutput = "gwgui_example_audio_output";
     /// <summary>Clé de latence demandée à la sortie audio, en millisecondes.</summary>
     internal const string AudioLatency = "gwgui_example_audio_latency";
-    /// <summary>Identité du champ de répertoire partagé.</summary>
-    internal const string SharedFolder = "example_shared_folder";
-    /// <summary>Identité du répertoire initial de disquettes.</summary>
-    internal const string FloppyFolder = "example_floppy_folder";
-    /// <summary>Identité du répertoire des sauvegardes d’état.</summary>
-    internal const string StateFolder = "example_state_folder";
-    /// <summary>Identité du répertoire des captures d’image.</summary>
-    internal const string CaptureFolder = "example_capture_folder";
     /// <summary>Valeur qui laisse l’hôte choisir sa sortie audio par défaut.</summary>
     internal const string DefaultOutput = "default";
 }

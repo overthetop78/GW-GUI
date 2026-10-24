@@ -12,8 +12,6 @@ internal static class ErrorContextConstants
     internal const string Version = "version";
     /// <summary>Valeur attendue par un contrôle de compatibilité.</summary>
     internal const string Expected = "expected";
-    /// <summary>Valeur effectivement observée par le contrôle.</summary>
-    internal const string Actual = "actual";
     /// <summary>Extension du fichier refusé ou analysé.</summary>
     internal const string Extension = "extension";
     /// <summary>Extensions admises pour le contenu ou le lecteur concerné.</summary>
