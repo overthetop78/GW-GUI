@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using AudioFunctions = GWGUI.Emulation.Amstrad.Common.Functions.AudioFunctions;
 using GWGUI.Emulation;
@@ -26,6 +27,20 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 throw CommonCoreHostFunctions.Messages.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
         }, cancellationToken);
+    }
+    /// <summary>Exécute le changement de périphérique sur le thread propriétaire du cœur.</summary>
+    /// <param name="port">Indice du port déjà converti depuis le contrat public.</param>
+    /// <param name="type">Type interne accepté par le modèle et son adaptation.</param>
+    /// <remarks>La configuration est publiée uniquement après la réussite du cœur. Une erreur conserve
+    /// les anciennes associations et suit la traduction des erreurs déjà utilisée par les commandes.</remarks>
+    private void SetControllerPortDevice(int port, PeripheralCategory type)
+    {
+        QueueCommand(() =>
+        {
+            var updated = CommonControllerFunctions.WithControllerType(Configuration, port, type);
+            _core.SetControllerPortDevice(port, type);
+            Configuration = updated;
+        }, CancellationToken.None).AsTask().GetAwaiter().GetResult();
     }
     private void Run(CancellationToken cancellationToken)
     {

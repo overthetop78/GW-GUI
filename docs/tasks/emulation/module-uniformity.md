@@ -12651,3 +12651,22 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : déléguer consultation, recherche, sélection et résolution du chemin de version au Common.
   - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : importer explicitement le propriétaire Common EmulatorCatalogFunctions.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les appels de gestion vers Common et conserver les scénarios de validation des catalogues ; exécuter les vérifications et le build Debug complet.
+
+- [x] Raccorder le changement de périphérique public aux commandes déjà disponibles dans les cinq Common natifs.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/ControllerFunctions.cs : convertir les catégories publiques selon les choix existants et remplacer le type du seul port demandé en conservant ses associations et les autres ports.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs : transmettre le changement par la file du cœur et publier la configuration seulement après sa réussite.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : raccorder IEmulationInput au traitement Common et rendre la configuration de session modifiable par ce traitement.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/ControllerFunctions.cs : convertir les catégories publiques selon les choix existants et remplacer le type du seul port demandé en conservant ses associations et les autres ports.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs : transmettre le changement par la file du cœur et publier la configuration seulement après sa réussite.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : raccorder IEmulationInput au traitement Common et rendre la configuration de session modifiable par ce traitement.
+  - [x] Modifier src/GWGUI.Emulation.NEC/Common/Functions/ControllerFunctions.cs : convertir les catégories publiques selon les choix existants et remplacer le type du seul port demandé en conservant ses associations et les autres ports.
+  - [x] Modifier src/GWGUI.Emulation.NEC/Common/Services/Machine.Commands.cs : transmettre le changement par la file du cœur et publier la configuration seulement après sa réussite.
+  - [x] Modifier src/GWGUI.Emulation.NEC/Common/Services/Machine.cs : raccorder IEmulationInput au traitement Common et rendre la configuration de session modifiable par ce traitement.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/ControllerFunctions.cs : convertir les catégories publiques selon les choix existants et remplacer le type du seul port demandé en conservant ses associations et les autres ports.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs : transmettre le changement par la file du cœur et publier la configuration seulement après sa réussite.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : raccorder IEmulationInput au traitement Common et rendre la configuration de session modifiable par ce traitement.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/ControllerFunctions.cs : convertir les catégories publiques selon les choix existants et remplacer le type du seul port demandé en conservant ses associations et les autres ports.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs : transmettre le changement par la file du cœur et publier la configuration seulement après sa réussite.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : raccorder IEmulationInput au traitement Common et rendre la configuration de session modifiable par ce traitement.
+  - [x] Modifier src/GWGUI.Emulation.NEC/Common/Functions/ControllerFunctions.cs : accepter une souris publique uniquement si le catalogue du port propose réellement une souris.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler les cinq raccordements compilés, les conversions, la conservation des associations et le rejet des ports et catégories incompatibles ; exécuter les vérifications et le build Debug complet.

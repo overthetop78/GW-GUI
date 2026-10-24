@@ -230,6 +230,104 @@ public sealed class ArchitectureValidationTests
         finally { ((IDisposable)core).Dispose(); }
     }
 
+    [Theory]
+    [InlineData("Amstrad")]
+    [InlineData("Commodore")]
+    [InlineData("Nec")]
+    [InlineData("Nintendo")]
+    [InlineData("Sega")]
+    public void NativeCommonControllerChangesPreserveBindingsAndWaitForCoreAcceptance(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family;
+        var engineType = assembly.GetType(root + ".Common.Services.Engine", true)!;
+        var engine = Activator.CreateInstance(engineType)!;
+        var models = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+        var functions = assembly.GetType(root + ".Common.Functions.ControllerFunctions", true)!;
+        var conversion = functions.GetMethod("FromCommon", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var update = functions.GetMethod("WithControllerType", BindingFlags.Static | BindingFlags.NonPublic)!;
+        var checkedModels = 0;
+        foreach (var model in models)
+        {
+            var original = engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [model.Id])!;
+            var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [original])!;
+            foreach (var port in settings.ControllerPorts.Where(port => !port.IsUsb))
+            {
+                var index = port.Number - 1;
+                var automatic = conversion.Invoke(null, [EmulationPeripheralCategory.Automatic, original, index]);
+                Assert.Contains(port.ControllerChoices, choice => choice.Id == automatic!.ToString() && choice.IsSupportedByEmulator);
+                if (family == "Nec")
+                {
+                    var mice = port.ControllerChoices.Where(choice => choice.IsSupportedByEmulator && choice.Id is "PcEngineMouse" or "PcFxMouse").ToArray();
+                    if (mice.Length == 0)
+                        Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => conversion.Invoke(null, [EmulationPeripheralCategory.Mouse, original, index])).InnerException);
+                    else
+                        Assert.Contains(mice, choice => choice.Id == conversion.Invoke(null, [EmulationPeripheralCategory.Mouse, original, index])!.ToString());
+                }
+                var none = conversion.Invoke(null, [EmulationPeripheralCategory.None, original, index]);
+                Assert.Equal("None", none!.ToString());
+                Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => conversion.Invoke(null, [(EmulationPeripheralCategory)int.MaxValue, original, index])).InnerException);
+                Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => conversion.Invoke(null, [EmulationPeripheralCategory.Automatic, original, -1])).InnerException);
+                Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => conversion.Invoke(null, [EmulationPeripheralCategory.Automatic, original, settings.ControllerPorts.Count])).InnerException);
+                checkedModels++;
+            }
+        }
+        Assert.True(checkedModels > 0);
+
+        var configuration = models.Select(model => engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [model.Id])!)
+            .First(value => ((EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [value])!).ControllerPorts.Any(port => !port.IsUsb && port.SelectedControllerId != "None"));
+        var description = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
+        var first = description.ControllerPorts.First(port => !port.IsUsb && port.SelectedControllerId != "None") with
+        {
+            PhysicalDeviceId = "physical-device",
+            OutputBindings = new Dictionary<string, EmulationControllerOutputBinding> { [EmulationControllerFeedbackCommands.Strong] = new("motor-device", EmulationControllerMotor.LowFrequency) }
+        };
+        var applied = engineType.GetMethod("ApplyInputSettings")!.Invoke(engine, [configuration, description with { ControllerPorts = description.ControllerPorts.Select(port => port.Number == first.Number ? first : port).ToArray() }])!;
+        var categoryType = update.GetParameters()[2].ParameterType;
+        // La liste explicite et les associations doivent rester cohérentes après redémarrage.
+        var explicitControllers = Array.CreateInstance(categoryType, description.ControllerPorts.Count);
+        for (var i = 0; i < explicitControllers.Length; i++) explicitControllers.SetValue(conversion.Invoke(null, [EmulationPeripheralCategory.Automatic, applied, i]), i);
+        applied.GetType().GetProperty("Controllers")!.SetValue(applied, explicitControllers);
+        var machineType = assembly.GetType(root + ".Common.Services.Machine", true)!;
+        var coreType = assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", true)!;
+        var map = machineType.GetInterfaceMap(typeof(IEmulationInput));
+        var publicSetter = map.TargetMethods[Array.FindIndex(map.InterfaceMethods, method => method.Name == nameof(IEmulationInput.SetControllerPortDevice))];
+        Assert.Contains(GetCompiledCalls(publicSetter), call => call.Method == conversion);
+        var setter = machineType.GetMethod("SetControllerPortDevice", BindingFlags.Instance | BindingFlags.NonPublic)!;
+        Assert.Contains(GetCompiledCalls(publicSetter), call => call.Method == setter);
+        var callback = (MethodInfo)Assert.Single(GetCompiledCalls(setter), call => call.Method.Name.Contains("<SetControllerPortDevice>", StringComparison.Ordinal)).Method;
+        Assert.Contains(GetCompiledCalls(callback), call => call.Method.Name == nameof(IEmulationInput.SetControllerPortDevice) && call.Method.DeclaringType!.IsInterface);
+        var core = DispatchProxy.Create(coreType, typeof(FeedbackCoreProxy));
+        try
+        {
+            const BindingFlags fields = BindingFlags.Instance | BindingFlags.NonPublic;
+            var owner = RuntimeHelpers.GetUninitializedObject(machineType);
+            var configurationField = machineType.GetField("<Configuration>k__BackingField", fields)!;
+            configurationField.SetValue(owner, applied);
+            machineType.GetField("_core", fields)!.SetValue(owner, core);
+            var closure = RuntimeHelpers.GetUninitializedObject(callback.DeclaringType!);
+            callback.DeclaringType!.GetField("<>4__this")!.SetValue(closure, owner);
+            callback.DeclaringType.GetField("port")!.SetValue(closure, first.Number - 1);
+            callback.DeclaringType.GetField("type")!.SetValue(closure, Enum.Parse(categoryType, "None"));
+            callback.Invoke(closure, []);
+            var session = configurationField.GetValue(owner)!;
+            Assert.NotSame(applied, session);
+            var updated = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [session])!;
+            var changed = Assert.Single(updated.ControllerPorts, port => port.Number == first.Number);
+            Assert.Equal("None", changed.SelectedControllerId);
+            Assert.Equal(first.PhysicalDeviceId, changed.PhysicalDeviceId);
+            Assert.Equal(first.Bindings.Values, changed.Bindings.Values);
+            Assert.Equal(first.OutputBindings, changed.OutputBindings);
+            Assert.Equal("None", ((System.Collections.IEnumerable)session.GetType().GetProperty("Controllers")!.GetValue(session)!).Cast<object>().ElementAt(first.Number - 1).ToString());
+            Assert.Equal(description.ControllerPorts.Where(port => port.Number != first.Number).Select(port => port.SelectedControllerId), updated.ControllerPorts.Where(port => port.Number != first.Number).Select(port => port.SelectedControllerId));
+            var refused = new InvalidOperationException("refused");
+            ((FeedbackCoreProxy)core).ControllerChangeError = refused;
+            Assert.Same(refused, Assert.Throws<TargetInvocationException>(() => callback.Invoke(closure, [])).InnerException);
+            Assert.Same(session, configurationField.GetValue(owner));
+            Assert.NotEqual("None", ((EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [applied])!).ControllerPorts.First(port => port.Number == first.Number).SelectedControllerId);
+        }
+        finally { ((IDisposable)core).Dispose(); }
+    }
     [Fact]
     public async Task CommonMachinesProjectConfiguredEffectsFromTheirCoreInMemory()
     {

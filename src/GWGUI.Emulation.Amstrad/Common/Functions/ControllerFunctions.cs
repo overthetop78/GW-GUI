@@ -146,4 +146,50 @@ internal static class ControllerFunctions
     /// <summary>Fournit la table clavier native par le contrat commun des entrées.</summary>
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();
 
+    /// <summary>Convertit la catégorie publique vers un choix réellement accepté sur le port du modèle courant.</summary>
+    /// <param name="peripheral">Catégorie demandée par le contrat public des entrées.</param>
+    /// <param name="configuration">Configuration empruntée pour consulter le modèle et les choix de son adaptation.</param>
+    /// <param name="port">Indice matériel du port, à partir de zéro.</param>
+    /// <returns>Type interne existant ; Automatic reprend le périphérique par défaut du modèle.</returns>
+    /// <remarks>Les descriptions restent dans leur catalogue existant. Une catégorie incompatible est rejetée
+    /// avant tout appel au cœur ; cette conversion ne crée aucun périphérique ni ressource native.</remarks>
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
+    {
+        if (port < 0 || port >= PortCount(configuration)) throw new ArgumentOutOfRangeException(nameof(port));
+        var model = ModelCatalog.Get(configuration.Model);
+        var supported = InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), port);
+        var selected = peripheral switch
+        {
+            EmulationPeripheralCategory.Automatic => ControllerCatalog.Default(model),
+            EmulationPeripheralCategory.RetroPad => PeripheralCategory.Gamepad,
+            EmulationPeripheralCategory.Joystick => Enum.TryParse<PeripheralCategory>(peripheral.ToString(), out var named) && supported.Contains(named) ? named : ControllerCatalog.Default(model),
+            _ => Enum.TryParse<PeripheralCategory>(peripheral.ToString(), out var named) && Enum.IsDefined(named) ? named : PeripheralCategory.Automatic
+        };
+        if (!Enum.IsDefined(peripheral) || !supported.Contains(selected)) throw new ArgumentOutOfRangeException(nameof(peripheral), peripheral, null);
+        return selected;
+    }
+
+    /// <summary>Remplace le type du port demandé en conservant ses associations et les autres réglages de session.</summary>
+    /// <param name="configuration">Configuration source, laissée immuable.</param>
+    /// <param name="port">Indice du port à modifier.</param>
+    /// <param name="type">Choix interne accepté par la description du port.</param>
+    /// <returns>Nouvelle configuration à publier après la réussite de la commande native.</returns>
+    /// <remarks>Le périphérique physique, les boutons, les visuels et les sorties du port sont conservés.
+    /// Lorsque la liste explicite des contrôleurs est présente, sa sélection est actualisée également :
+    /// elle ne doit pas rétablir un ancien type lors du prochain démarrage du cœur.</remarks>
+    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration, int port, PeripheralCategory type)
+    {
+        if (port < 0 || port >= PortCount(configuration)) throw new ArgumentOutOfRangeException(nameof(port));
+        if (!InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), port).Contains(type)) throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        var input = configuration.Input ?? new InputConfiguration();
+        var bindings = input.ControllerBindings ?? [];
+        var binding = bindings.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, type);
+        var controllers = configuration.Controllers is null ? null : Enumerable.Range(0, Math.Max(configuration.Controllers.Count, port + 1))
+            .Select(index => index == port ? type : index < configuration.Controllers.Count ? configuration.Controllers[index] : bindings.FirstOrDefault(item => item.Port == index)?.Type ?? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model))).ToArray();
+        return configuration with
+        {
+            Controllers = controllers,
+            Input = input with { ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Type = type }).OrderBy(item => item.Port).ToArray() }
+        };
+    }
 }

@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 using System.IO;
@@ -80,7 +81,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     public Guid Id { get; }
-    public MachineConfiguration Configuration { get; }
+    public MachineConfiguration Configuration { get; private set; }
     public IEmulationLifecycle Lifecycle => this;
     public IEmulationInput Input => this;
     public IEmulationMedia Media => this;
@@ -152,7 +153,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     bool IEmulationSavedStates.IsSupported => true;
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => throw new NotSupportedException();
+    /// <inheritdoc/>
+    /// <remarks>La conversion et la validation passent par Common ; la commande rejoint le thread du cœur.</remarks>
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, Configuration, port));
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => SwitchControllerPointerAsync(cancellationToken);
     /// <inheritdoc/>
     public HostProcessState HostProcessState => _core.HostProcessState;
