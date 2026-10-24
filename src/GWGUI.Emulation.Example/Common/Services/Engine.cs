@@ -31,7 +31,7 @@ internal sealed class Engine
     /// <summary>Chemin de l’assembly qui contient les trois simulations, sans bibliothèque externe à créer.</summary>
     internal static string CoreImplementationPath => typeof(Engine).Assembly.Location;
     /// <summary>Version d’implémentation commune aux trois cœurs livrés dans ce même assembly.</summary>
-    internal static string CoreVersion => typeof(Engine).Assembly.GetName().Version!.ToString(3);
+    internal static string CoreVersion => typeof(Engine).Assembly.GetName().Version!.ToString(CoreReleaseConstants.VersionComponentCount);
     /// <summary>Empreinte calculée une seule fois par l’interface publique d’inspection des cœurs.</summary>
     private static readonly Lazy<string> ImplementationHash = new(() => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(CoreImplementationPath));
     /// <summary>Identité binaire conservée dans les en-têtes d’état, complétée par le modèle et l’émulateur.</summary>

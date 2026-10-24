@@ -14173,3 +14173,34 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs : consommer la version installée renvoyée par Common au lieu de la déduire du nom du dossier.
   - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : consommer la version installée renvoyée par le service Common, comme les autres adaptateurs.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les vingt-trois contrats et fournisseurs Common, le relais de validation et les versions installées ; exécuter les tests et le build Debug avec tous les modules.
+
+- [x] Uniformiser les fichiers et noms des conventions de publication et de catalogue.
+  - [x] Créer src/GWGUI.Emulation.Example/Common/Constants/CoreReleaseConstants.cs : documenter le nombre de composantes réellement utilisé pour présenter la version intégrée du cœur.
+  - [x] Créer src/GWGUI.Emulation.Example/Common/Constants/EmulatorCatalogConstants.cs : documenter le choix de manifeste du profil intégré sous le nom commun ManifestFileName.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Amstrad/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Commodore/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Nec/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Nintendo/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Sega/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Constants/CoreReleaseConstants.cs : employer les noms communs des extensions temporaires et des identifiants de publication ; réserver les données de manifeste au catalogue.
+  - [x] Créer src/GWGUI.Emulation.Sony/Common/Constants/EmulatorCatalogConstants.cs : reprendre les conventions de manifeste et, lorsqu’elle est utilisée, l’architecture du catalogue sous les noms communs.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreReleaseService.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Release.cs : utiliser les noms communs des conventions de publication et de catalogue sans changer les valeurs produites.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : utiliser le choix de format de version défini dans CoreReleaseConstants.
+  - [x] Modifier src/GWGUI.Emulation.Example/Common/Functions/CoreFunctions.Catalog.cs : utiliser le choix de manifeste défini dans EmulatorCatalogConstants.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier les noms et le placement communs des conventions ainsi que les choix utilisés par Example ; exécuter les tests et le build Debug avec tous les modules.

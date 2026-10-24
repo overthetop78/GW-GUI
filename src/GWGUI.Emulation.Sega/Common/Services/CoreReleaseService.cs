@@ -29,8 +29,8 @@ internal sealed class CoreReleaseService : ICoreReleaseService
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!File.Exists(RequiredLibraryPath)) return Task.FromResult<CoreInstallationPaths?>(null);
-        var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
-        var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, CoreReleaseConstants.Version, CoreReleaseConstants.Unknown);
+        var manifestPath = Path.Combine(_directory, EmulatorCatalogConstants.ManifestFileName);
+        var version = CoreReleaseFunctions.Releases.ReadInstalledVersion(manifestPath, EmulatorCatalogConstants.VersionPropertyName, CoreReleaseConstants.UnknownVersion);
         return Task.FromResult<CoreInstallationPaths?>(new(_directory, RequiredLibraryPath, manifestPath) { InstalledVersion = version });
     }
 
@@ -46,8 +46,8 @@ internal sealed class CoreReleaseService : ICoreReleaseService
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);
         var destination = RequiredLibraryPath;
-        var download = destination + CoreReleaseConstants.Download;
-        var extracted = destination + CoreReleaseConstants.Extract;
+        var download = destination + CoreReleaseConstants.TemporaryDownloadExtension;
+        var extracted = destination + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
             await CoreReleaseFunctions.Releases.InstallLibraryAsync(
@@ -74,7 +74,7 @@ internal sealed class CoreReleaseService : ICoreReleaseService
                 sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
                 archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
-            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, CoreReleaseConstants.CoreJson)) { InstalledVersion = release.DeclaredVersion };
+            return new CoreInstallationPaths(_directory, destination, Path.Combine(_directory, EmulatorCatalogConstants.ManifestFileName)) { InstalledVersion = release.DeclaredVersion };
         }
         finally
         {

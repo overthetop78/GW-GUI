@@ -223,6 +223,11 @@ public sealed class ArchitectureValidationTests
             if (service is null || service.IsAbstract) continue;
             services++;
             Assert.Single(assembly.GetTypes(), type => type.Name == "CoreReleaseService");
+            var releaseConstants = assembly.GetType(root + ".Common.Constants.CoreReleaseConstants", true)!;
+            var catalogConstants = assembly.GetType(root + ".Common.Constants.EmulatorCatalogConstants", true)!;
+            Assert.NotNull(catalogConstants.GetField("ManifestFileName", BindingFlags.NonPublic | BindingFlags.Static));
+            foreach (var name in new[] { "CoreJson", "Version", "X64", "Download", "Extract", "OfficialReleaseIdPrefix", "ReleaseIdentifierDateFormat", "YyyyMMddHHmm" })
+                Assert.Null(releaseConstants.GetField(name, BindingFlags.NonPublic | BindingFlags.Static));
             var install = service.GetMethod("InstallAsync", BindingFlags.Public | BindingFlags.Instance)!;
             Assert.Equal(typeof(Task<EmulationCoreInstallationPaths>), install.ReturnType);
             Assert.Equal(typeof(IProgress<EmulationCoreInstallProgress>), install.GetParameters()[1].ParameterType);
@@ -259,6 +264,7 @@ public sealed class ArchitectureValidationTests
             else
             {
                 official++;
+                Assert.NotNull(catalogConstants.GetField("VersionPropertyName", BindingFlags.NonPublic | BindingFlags.Static));
                 foreach (var parameter in constructor.GetParameters())
                     Assert.DoesNotContain(".Emulators.", parameter.ParameterType.FullName!);
             }

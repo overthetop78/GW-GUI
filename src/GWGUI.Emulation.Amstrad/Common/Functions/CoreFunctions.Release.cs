@@ -16,6 +16,6 @@ internal static class CoreReleaseFunctions
     internal static async Task WriteManifestAsync(string version, string source, string libraryPath, string sha256, string architecture, CancellationToken cancellationToken)
     {
         var manifest = new { version, source, librarySize = new FileInfo(libraryPath).Length, librarySha256 = sha256, architecture, installedUtc = DateTimeOffset.UtcNow };
-        await CoreReleaseFunctions.Releases.WriteJsonAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), manifest, new JsonSerializerOptions { WriteIndented = true }, cancellationToken).ConfigureAwait(false);
+        await CoreReleaseFunctions.Releases.WriteJsonAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, EmulatorCatalogConstants.ManifestFileName), manifest, new JsonSerializerOptions { WriteIndented = true }, cancellationToken).ConfigureAwait(false);
     }
 }
