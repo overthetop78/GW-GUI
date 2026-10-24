@@ -105,6 +105,9 @@ internal sealed class EmulationInputProcessingService : IEmulationInputProcessin
     public EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) => EmulationInputMappingFunctions.ApplyDeadZones(controller, percent);
 
     /// <inheritdoc/>
+    public float ApplyDeadZone(float value, int percent) => EmulationInputMappingFunctions.ApplyDeadZone(value, percent);
+
+    /// <inheritdoc/>
     public bool IsValidBinding(string? binding) => EmulationKeyboardBindingFunctions.IsValid(binding);
 
     /// <inheritdoc/>
@@ -179,10 +182,10 @@ internal sealed class EmulationInputProcessingService : IEmulationInputProcessin
     public bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value) => EmulationInputMappingFunctions.IsControllerSourcePressed(source, controller, value);
 
     /// <inheritdoc/>
-    public short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => EmulationInputMappingFunctions.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse);
+    public short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0) => EmulationInputMappingFunctions.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse, deadZone);
 
     /// <inheritdoc/>
-    public short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => EmulationInputMappingFunctions.MapControllerPressure(mappings, command, controller, physical, keys, mouse);
+    public short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0) => EmulationInputMappingFunctions.MapControllerPressure(mappings, command, controller, physical, keys, mouse, deadZone);
 
     /// <inheritdoc/>
     public float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => EmulationInputMappingFunctions.InputSourcePressure(source, controller, physical, keys, mouse);

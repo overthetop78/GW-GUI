@@ -70,7 +70,7 @@ internal static partial class InputSettingsFunctions
             new EmulationInputBindingSet(definitions,
                 current?.Mappings ?? new Dictionary<string, string>(),
                 EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-            VisualId: current?.VisualId)
+            DeadZonePercent: current?.DeadZonePercent ?? 0, VisualId: current?.VisualId)
         {
             IsUsb = usb,
             DisplayName = usb ? "USB " + (synthetic ? index - 7 : index + 1) : adapter?.GetControllerPortDisplayName(configuration, index),

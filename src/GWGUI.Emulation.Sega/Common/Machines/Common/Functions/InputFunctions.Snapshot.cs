@@ -49,6 +49,7 @@ internal static class InputSnapshotFunctions
         for (var port = 0; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding is { DeadZonePercent: < 0 or > 100 }) throw new ArgumentOutOfRangeException(nameof(bindings), nameof(ControllerBinding.DeadZonePercent));
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.Mappings is not { Count: > 0 }
                 || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
@@ -72,16 +73,16 @@ internal static class InputSnapshotFunctions
             var vertical = analog && binding.Peripheral is not PeripheralCategory.SegaPaddleControl and not PeripheralCategory.SegaSaturnArcadeRacer;
             var throttle = binding.Peripheral is PeripheralCategory.SegaSaturnMissionStick or PeripheralCategory.SegaXe1Ap
                 or PeripheralCategory.SegaDreamcastFishingController or PeripheralCategory.SegaDreamcastMaracas;
-            result[port] = source with
+            result[port] = EmulationSdk.InputProcessing.ApplyDeadZones(source, binding.DeadZonePercent) with
             {
                 Buttons = buttons,
-                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
-                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
-                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse) : (short)0,
-                LeftY = vertical ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse) : (short)0,
+                LeftTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                RightTrigger = EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse, binding.DeadZonePercent) : (short)0,
+                LeftY = vertical ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse, binding.DeadZonePercent) : (short)0,
                 RightX = throttle && binding.Peripheral != PeripheralCategory.SegaSaturnMissionStick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse) : (short)0,
-                RightY = throttle ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickDown, EmulationControllerCommandIds.RightStickUp, source, physical, keys, physicalMouse) : (short)0
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse, binding.DeadZonePercent) : (short)0,
+                RightY = throttle ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.RightStickDown, EmulationControllerCommandIds.RightStickUp, source, physical, keys, physicalMouse, binding.DeadZonePercent) : (short)0
             };
         }
         return result;

@@ -137,6 +137,12 @@ public interface IEmulationInputProcessing
     /// <returns>Nouvel état avec les composantes proches du repos neutralisées.</returns>
     EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent);
 
+    /// <summary>Neutralise une magnitude proche du repos selon le seuil utilisé par les associations analogiques.</summary>
+    /// <param name="value">Magnitude positive d’une commande, normalement comprise entre zéro et un.</param>
+    /// <param name="percent">Seuil de repos exprimé en pourcentage de la course, de zéro à cent.</param>
+    /// <returns>Zéro sous le seuil inclus ; sinon la magnitude bornée entre zéro et un, sans rééchelonnement.</returns>
+    float ApplyDeadZone(float value, int percent);
+
     /// <summary>Contrôle la syntaxe d’une association avec les règles communes du clavier et des sources préfixées.</summary>
     /// <param name="binding">Expression de source ; une valeur vide décrit une action non associée.</param>
     /// <returns>True lorsque l’expression est admise par le traitement commun.</returns>
@@ -264,11 +270,26 @@ public interface IEmulationInputProcessing
 
     /// <summary>Calcule un axe signé à partir de ses commandes opposées et des sources physiques.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
-    short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse);
+    /// <param name="mappings">Associations des commandes logiques à leurs sources physiques.</param>
+    /// <param name="positiveCommand">Commande correspondant au sens positif.</param>
+    /// <param name="negativeCommand">Commande correspondant au sens négatif.</param>
+    /// <param name="controller">État physique utilisé en l'absence d'identifiant de source explicite.</param>
+    /// <param name="physical">États physiques disponibles pour résoudre les sources nommées.</param>
+    /// <param name="keys">Touches actuellement enfoncées.</param>
+    /// <param name="mouse">État des commandes de souris.</param>
+    /// <param name="deadZone">Zone morte des sources analogiques, en pourcentage ; zéro conserve la projection initiale.</param>
+    short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0);
 
     /// <summary>Calcule une pression encodée à partir de l’association de la commande.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>
-    short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse);
+    /// <param name="mappings">Associations des commandes logiques à leurs sources physiques.</param>
+    /// <param name="command">Commande dont la pression doit être projetée.</param>
+    /// <param name="controller">État physique utilisé en l'absence d'identifiant de source explicite.</param>
+    /// <param name="physical">États physiques disponibles pour résoudre les sources nommées.</param>
+    /// <param name="keys">Touches actuellement enfoncées.</param>
+    /// <param name="mouse">État des commandes de souris.</param>
+    /// <param name="deadZone">Zone morte des sources analogiques, en pourcentage ; les sources de clavier et de souris restent numériques.</param>
+    short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0);
 
     /// <summary>Évalue la pression d’une expression de clavier, souris ou contrôleur.</summary>
     /// <remarks>Les données reçues sont empruntées pendant le calcul. Cette opération ne possède aucun périphérique physique.</remarks>

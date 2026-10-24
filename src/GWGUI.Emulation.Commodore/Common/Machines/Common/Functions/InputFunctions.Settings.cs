@@ -26,20 +26,21 @@ internal static partial class InputSettingsFunctions
             return new EmulationControllerPort(number,
                 choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), DeadZonePercent: current?.DeadZonePercent ?? 0, VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
+        if (settings.ControllerPorts.Any(port => port.DeadZonePercent is < 0 or > 100)) throw new ArgumentOutOfRangeException(nameof(settings), nameof(EmulationControllerPort.DeadZonePercent));
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None)
             ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
-            port.VisualId, OutputBindings: port.OutputBindings)).ToArray();
+            port.VisualId, OutputBindings: port.OutputBindings, DeadZonePercent: port.DeadZonePercent)).ToArray();
         var input = current with
         {
             KeyboardBindings = keyboard,

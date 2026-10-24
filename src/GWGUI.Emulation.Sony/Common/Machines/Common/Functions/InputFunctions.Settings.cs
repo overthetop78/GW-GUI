@@ -31,6 +31,7 @@ internal static partial class InputSettingsFunctions
     {
         if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
             return configuration;
+        if (settings.ControllerPorts.Any(port => port.DeadZonePercent is < 0 or > 100)) throw new ArgumentOutOfRangeException(nameof(settings), nameof(EmulationControllerPort.DeadZonePercent));
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(current.KeyboardMappings);
         var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
@@ -44,7 +45,7 @@ internal static partial class InputSettingsFunctions
                 throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
             return new ControllerBinding(index, type, port.PhysicalDeviceId,
                 EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
-                port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
+                port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings), DeadZonePercent: port.DeadZonePercent);
         }).ToArray();
         if (configuration.Model == ModelConstants.PlayStation3)
             controllers = controllers.Concat((current.ControllerBindings ?? [])
@@ -65,7 +66,7 @@ internal static partial class InputSettingsFunctions
                             throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
                         return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
                             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
-                            port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
+                            port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings), DeadZonePercent: port.DeadZonePercent);
                     }).ToArray() : current.UsbBindings
             }
         };

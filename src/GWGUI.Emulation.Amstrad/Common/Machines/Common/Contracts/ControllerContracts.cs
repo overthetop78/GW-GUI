@@ -9,7 +9,8 @@ namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts;
 /// <param name="Mappings">Expressions de sources indexées par commande du périphérique émulé.</param>
 /// <param name="VisualId">Identité de présentation transmise à l’hôte propriétaire des visuels.</param>
 /// <param name="OutputBindings">Associations des effets du cœur aux sorties physiques de l’hôte.</param>
+/// <param name="DeadZonePercent">Zone morte analogique, de zéro à cent pour cent ; zéro conserve la réponse initiale des configurations sans ce réglage.</param>
 /// <remarks>Les membres portent les mêmes noms que ceux des autres Common. Les noms JSON restent ceux
 /// du document de configuration du module ; la sérialisation ne crée ni contrat ni lecteur supplémentaire.</remarks>
-public sealed record ControllerBinding(int Port, [property: JsonPropertyName("type")] PeripheralCategory Peripheral, string? DeviceId = null, [property: JsonPropertyName("buttonMappings")] IReadOnlyDictionary<string, string>? Mappings = null, string? VisualId = null, IReadOnlyDictionary<string, EmulationControllerOutputBinding>? OutputBindings = null);
+public sealed record ControllerBinding(int Port, [property: JsonPropertyName("type")] PeripheralCategory Peripheral, string? DeviceId = null, [property: JsonPropertyName("buttonMappings")] IReadOnlyDictionary<string, string>? Mappings = null, string? VisualId = null, IReadOnlyDictionary<string, EmulationControllerOutputBinding>? OutputBindings = null, int DeadZonePercent = 0);
 

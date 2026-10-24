@@ -49,6 +49,7 @@ internal static class InputSnapshotFunctions
         for (var port = 0; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding is { DeadZonePercent: < 0 or > 100 }) throw new ArgumentOutOfRangeException(nameof(bindings), nameof(ControllerBinding.DeadZonePercent));
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.Mappings is not { Count: > 0 }
                 || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
@@ -69,35 +70,35 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            result[port] = source with
+            result[port] = EmulationSdk.InputProcessing.ApplyDeadZones(source, binding.DeadZonePercent) with
             {
                 Buttons = buttons,
                 LeftTrigger = (short)Math.Max(
-                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse),
-                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse) / 2f)),
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse, binding.DeadZonePercent) / 2f)),
                 RightTrigger = (short)Math.Max(
-                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse),
-                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse) / 2f)),
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse, binding.DeadZonePercent) / 2f)),
                 LeftX = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeStickRight,
                     InputSettingsFunctionsConstants.GameCubeStickLeft,
-                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse),
-                    source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
                 LeftY = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeStickDown,
                     InputSettingsFunctionsConstants.GameCubeStickUp,
-                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse),
-                    source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
                 RightX = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeCRight,
                     InputSettingsFunctionsConstants.GameCubeCLeft,
-                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse),
-                    source, physical, keys, physicalMouse),
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
                 RightY = MappedAxis(binding.Mappings,
                     InputSettingsFunctionsConstants.GameCubeCDown,
                     InputSettingsFunctionsConstants.GameCubeCUp,
-                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse),
-                    source, physical, keys, physicalMouse)
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent)
             };
         }
         return result;
@@ -107,13 +108,13 @@ internal static class InputSnapshotFunctions
         string positiveCommand, string negativeCommand, short fallbackValue,
         EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
         IReadOnlySet<EmulationKey> keys,
-        IReadOnlyDictionary<string, bool> mouse)
+        IReadOnlyDictionary<string, bool> mouse, int deadZone = 0)
     {
         var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource) && !string.IsNullOrWhiteSpace(positiveSource);
         var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource) && !string.IsNullOrWhiteSpace(negativeSource);
         if (!hasPositive && !hasNegative) return fallbackValue;
 
-        return EmulationSdk.InputProcessing.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse);
+        return EmulationSdk.InputProcessing.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse, deadZone);
     }
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => EmulationSdk.InputProcessing.PhysicalMouse(pointer);

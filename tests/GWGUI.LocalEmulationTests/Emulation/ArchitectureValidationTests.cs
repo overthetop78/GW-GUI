@@ -16,6 +16,90 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class ArchitectureValidationTests
 {
+    [Theory]
+    [InlineData("Amstrad")]
+    [InlineData("Commodore")]
+    [InlineData("Microsoft")]
+    [InlineData("Nec")]
+    [InlineData("Nintendo")]
+    [InlineData("Sega")]
+    [InlineData("Sony")]
+    public void NativeCommonPreservesAndAppliesControllerDeadZone(string family)
+    {
+        var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+        var root = "GWGUI.Emulation." + family + ".Common";
+        var engineType = assembly.GetType(root + ".Services.Engine", true)!;
+        var engine = Activator.CreateInstance(engineType)!;
+        var models = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+        var describe = engineType.GetMethod("DescribeInputSettings")!;
+        var apply = engineType.GetMethod("ApplyInputSettings")!;
+        var configurations = models.Select(model => engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [model.Id])!)
+            .Where(value => ((EmulationInputSettings)describe.Invoke(engine, [value])!).ControllerPorts.Count > 0).ToArray();
+        Assert.NotEmpty(configurations);
+        foreach (var configuration in configurations)
+        {
+            var settings = (EmulationInputSettings)describe.Invoke(engine, [configuration])!;
+            foreach (var percent in new[] { 0, 37, 100 })
+            {
+                var changed = settings with { ControllerPorts = settings.ControllerPorts.Select(port => port with { DeadZonePercent = percent }).ToArray() };
+                var applied = apply.Invoke(engine, [configuration, changed])!;
+                Assert.All(((EmulationInputSettings)describe.Invoke(engine, [applied])!).ControllerPorts, port => Assert.Equal(percent, port.DeadZonePercent));
+            }
+            foreach (var percent in new[] { -1, 101 })
+            {
+                var invalid = settings with { ControllerPorts = settings.ControllerPorts.Select(port => port with { DeadZonePercent = percent }).ToArray() };
+                Assert.IsType<ArgumentOutOfRangeException>(Assert.Throws<TargetInvocationException>(() => apply.Invoke(engine, [configuration, invalid])).InnerException);
+            }
+        }
+
+        // Les données et la projection restent en mémoire : aucun moteur, fichier ou périphérique n'est ouvert.
+        var bindingType = assembly.GetType(root + ".Machines.Common.Contracts.ControllerBinding", true)!;
+        var peripheral = bindingType.GetProperty("Peripheral")!.PropertyType;
+        var category = family switch { "Commodore" => "AnalogJoystick", "Sega" => "SegaDreamcastController", _ => Enum.GetNames(peripheral).Contains("Gamepad") ? "Gamepad" : "Joystick" };
+        var mappings = new Dictionary<string, string>();
+        foreach (var command in new[] { "Right", "LeftStickRight", "GameCubeStickRight", "N64StickRight" }) mappings[command] = "Controller:pad:Axis0Positive";
+        mappings["A"] = "Keyboard:A";
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var map = assembly.GetType(root + ".Machines.Common.Functions.InputSnapshotFunctions", true)!.GetMethod("MapControllers", BindingFlags.Static | BindingFlags.NonPublic)!;
+        foreach (var percent in new[] { 0, 15, 50, 100 })
+        {
+            var document = JsonSerializer.Serialize(new { port = 0, type = Convert.ToInt32(Enum.Parse(peripheral, category)), deviceId = "pad", buttonMappings = mappings, deadZonePercent = percent });
+            var binding = JsonSerializer.Deserialize(document, bindingType, options)!;
+            using var saved = JsonDocument.Parse(JsonSerializer.Serialize(binding, bindingType, options));
+            Assert.Equal(percent, saved.RootElement.GetProperty("deadZonePercent").GetInt32());
+            var bindings = Array.CreateInstance(bindingType, 1);
+            bindings.SetValue(binding, 0);
+            IReadOnlyList<EmulationControllerState> physical = [EmulationControllerState.Empty with { DeviceId = "pad", LeftX = 8192, Controls = new(new Dictionary<string, float> { ["Axis0"] = .625f }) }];
+            var arguments = new List<object?> { physical, new HashSet<EmulationKey> { EmulationKey.A }, new Dictionary<string, bool>(), bindings };
+            if (family == "Nintendo") arguments.Add(false);
+            if (family == "Sony") arguments.Add(1);
+            var result = (IReadOnlyList<EmulationControllerState>)map.Invoke(null, arguments.ToArray())!;
+            Assert.Equal(percent >= 50 ? 0 : 8192, result[0].LeftX);
+            Assert.NotEqual(0u, result[0].Buttons);
+        }
+        var absent = JsonSerializer.Deserialize("{\"port\":0,\"type\":0}", bindingType, options)!;
+        Assert.Equal(0, bindingType.GetProperty("DeadZonePercent")!.GetValue(absent));
+    }
+
+    [Fact]
+    public void SharedAnalogDeadZonePreservesDigitalSourcesAndCoversSignedBounds()
+    {
+        var input = EmulationSdk.InputProcessing;
+        var state = new EmulationControllerState(1, short.MinValue, short.MaxValue, -8192, 8192, 8192, short.MaxValue);
+        Assert.Equal(state, input.ApplyDeadZones(state, 0));
+        var filtered = input.ApplyDeadZones(state, 100);
+        Assert.Equal(EmulationControllerState.Empty with { Buttons = 1 }, filtered);
+        var mappings = new Dictionary<string, string> { ["Positive"] = "Controller:pad:Axis0Positive", ["Pressure"] = "Controller:pad:LeftTrigger", ["Digital"] = "Keyboard:A" };
+        IReadOnlyList<EmulationControllerState> physical = [state with { DeviceId = "pad", Controls = new(new Dictionary<string, float> { ["Axis0"] = .625f }) }];
+        var keys = new HashSet<EmulationKey> { EmulationKey.A };
+        var mouse = new Dictionary<string, bool>();
+        Assert.Equal(8192, input.MapControllerAxis(mappings, "Positive", "Negative", physical[0], physical, keys, mouse, 15));
+        Assert.Equal(0, input.MapControllerAxis(mappings, "Positive", "Negative", physical[0], physical, keys, mouse, 50));
+        Assert.Equal(8192, input.MapControllerPressure(mappings, "Pressure", physical[0], physical, keys, mouse, 15));
+        Assert.Equal(0, input.MapControllerPressure(mappings, "Pressure", physical[0], physical, keys, mouse, 50));
+        Assert.Equal(short.MaxValue, input.MapControllerPressure(mappings, "Digital", physical[0], physical, keys, mouse, 100));
+    }
+
     [Fact]
     public void ControllerBindingsUseCommonMemberNamesAndPreserveTheirConfigurationFields()
     {

@@ -50,6 +50,7 @@ internal static class InputSnapshotFunctions
         for (var port = ControllerPortConstants.MinimumControllerPort; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding is { DeadZonePercent: < 0 or > 100 }) throw new ArgumentOutOfRangeException(nameof(bindings), nameof(ControllerBinding.DeadZonePercent));
             var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.Mappings is not { Count: > BufferConstants.EmptyCollectionCount })
             {
@@ -66,13 +67,13 @@ internal static class InputSnapshotFunctions
                 if (target >= InputSnapshotFunctionsConstants.MinimumButtonIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= InputSnapshotFunctionsConstants.SingleButtonMask << target;
             }
-            result[port] = source with
+            result[port] = EmulationSdk.InputProcessing.ApplyDeadZones(source, binding.DeadZonePercent) with
             {
                 Buttons = buttons,
                 LeftX = binding.Peripheral == PeripheralCategory.AnalogJoystick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse, binding.DeadZonePercent) : source.LeftX,
                 LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick
-                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
+                    ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse, binding.DeadZonePercent) : source.LeftY
             };
         }
         return result;

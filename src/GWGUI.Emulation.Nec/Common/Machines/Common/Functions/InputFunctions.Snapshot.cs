@@ -49,6 +49,7 @@ internal static class InputSnapshotFunctions
         for (var port = 0; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding is { DeadZonePercent: < 0 or > 100 }) throw new ArgumentOutOfRangeException(nameof(bindings), nameof(ControllerBinding.DeadZonePercent));
             if (binding?.Peripheral == PeripheralCategory.None || binding is null
                 && port > InputSettingsFunctionsConstants.FirstPortIndex)
             {
@@ -72,7 +73,7 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            result[port] = source with { Buttons = buttons };
+            result[port] = EmulationSdk.InputProcessing.ApplyDeadZones(source, binding.DeadZonePercent) with { Buttons = buttons };
         }
         return result;
     }

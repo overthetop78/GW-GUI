@@ -306,8 +306,11 @@ internal static class EmulationInputMappingFunctions
     internal static short ApplyDeadZone(short value, int percent)
     {
         var threshold = short.MaxValue * percent / 100;
-        return Math.Abs((int)value) <= threshold ? (short)0 : value;
+        return percent >= 100 || Math.Abs((int)value) <= threshold ? (short)0 : value;
     }
+
+    /// <summary>Seuil de magnitude partagé par les associations et les projections analogiques.</summary>
+    internal static float ApplyDeadZone(float value, int percent) => value <= percent / 100f ? 0f : Math.Clamp(value, 0f, 1f);
 
     internal static EmulationControllerState ApplyDeadZones(EmulationControllerState controller, int percent) =>
         controller with
@@ -400,30 +403,31 @@ internal static class EmulationInputMappingFunctions
     private static string SourceControlName(string source) => source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
 
     internal static short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand,
-        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
+        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0)
     {
-        var positive = mappings.TryGetValue(positiveCommand, out var positiveSource) ? SourcePressure(positiveSource, controller, physical, keys, mouse) : 0f;
-        var negative = mappings.TryGetValue(negativeCommand, out var negativeSource) ? SourcePressure(negativeSource, controller, physical, keys, mouse) : 0f;
+        var positive = mappings.TryGetValue(positiveCommand, out var positiveSource) ? SourcePressure(positiveSource, controller, physical, keys, mouse, deadZone) : 0f;
+        var negative = mappings.TryGetValue(negativeCommand, out var negativeSource) ? SourcePressure(negativeSource, controller, physical, keys, mouse, deadZone) : 0f;
         var value = positive - negative;
         return (short)Math.Round(value >= 0f ? value * short.MaxValue : -value * short.MinValue);
     }
 
     internal static short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller,
-        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) =>
-        mappings.TryGetValue(command, out var source) ? (short)Math.Round(SourcePressure(source, controller, physical, keys, mouse) * short.MaxValue) : (short)0;
+        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0) =>
+        mappings.TryGetValue(command, out var source) ? (short)Math.Round(SourcePressure(source, controller, physical, keys, mouse, deadZone) * short.MaxValue) : (short)0;
 
     private static float SourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
-        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
+        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse, int deadZone = 0)
     {
         if (string.IsNullOrWhiteSpace(source)) return 0f;
         if (source.Contains('+') && !source.EndsWith('+')) return source.Split('+', StringSplitOptions.TrimEntries).Min(part => SourcePressure(
-            part.Contains(':') ? part : EmulationInputMappingConstants.KeyboardPrefix + part, controller, physical, keys, mouse));
+            part.Contains(':') ? part : EmulationInputMappingConstants.KeyboardPrefix + part, controller, physical, keys, mouse, deadZone));
         if (source.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return EmulationKeyboardBindingFunctions.IsPressed(source, keys) ? 1f : 0f;
         if (source.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
             return mouse.GetValueOrDefault(source[EmulationInputMappingConstants.MousePrefix.Length..]) ? 1f : 0f;
         var selected = ResolveSourceController(source, physical, controller);
-        return ControllerSourcePressure(source, selected);
+        var value = ControllerSourcePressure(source, selected);
+        return deadZone > 0 ? ApplyDeadZone(value, deadZone) : value;
     }
 
     internal static float InputSourcePressure(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot) => SourcePressure(
@@ -510,11 +514,11 @@ internal static class EmulationInputMappingFunctions
         if (mapping.Contains('+') && !mapping.EndsWith('+'))
         {
             var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
-            return combined <= deadZone / 100f ? 0f : Math.Clamp(combined, 0f, 1f);
+            return ApplyDeadZone(combined, deadZone);
         }
         if (!mapping.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return IsMappedInputPressed(mapping, controller, snapshot) ? 1f : 0f;
         var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
-        return value <= deadZone / 100f ? 0f : Math.Clamp(value, 0f, 1f);
+        return ApplyDeadZone(value, deadZone);
     }
 }

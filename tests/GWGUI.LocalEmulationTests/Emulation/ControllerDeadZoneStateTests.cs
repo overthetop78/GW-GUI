@@ -38,9 +38,9 @@ public sealed class ControllerDeadZoneStateTests
     }
 
     [Theory]
-    [InlineData(100, short.MinValue)]
+    [InlineData(100, (short)0)]
     [InlineData(101, (short)0)]
-    public void SignedExtremesKeepTheExistingScalarBehavior(int percent, short expectedNegative)
+    public void FullDeadZoneNeutralizesBothSignedExtremes(int percent, short expectedNegative)
     {
         var source = new EmulationControllerState(3, short.MinValue, short.MaxValue,
             short.MinValue, short.MaxValue, short.MinValue, short.MaxValue);
