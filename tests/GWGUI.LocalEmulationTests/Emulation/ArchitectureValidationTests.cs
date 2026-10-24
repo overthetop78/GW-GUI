@@ -15,11 +15,44 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
-    public void CatalogReleaseWorkflowsBelongToCommonAndReceiveTheirCatalogResolver()
+    public void OfficialReleaseManifestsAndPreparationUseCommonContracts()
+    {
+        foreach (var family in new[] { "Amstrad", "Commodore", "Nec", "Nintendo", "Sega", "Sony" })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = "GWGUI.Emulation." + family;
+            var service = assembly.GetType(root + ".Common.Services.CoreReleaseService", true)!;
+            var functions = assembly.GetType(root + ".Common.Functions.CoreReleaseFunctions", true)!;
+            var manifest = functions.GetMethod("WriteManifestAsync", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var manifestState = manifest.GetCustomAttribute<AsyncStateMachineAttribute>()!.StateMachineType;
+            Assert.Contains(GetCompiledCalls(manifestState.GetMethod("MoveNext", BindingFlags.Instance | BindingFlags.NonPublic)!), call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == "WriteJsonAsync");
+            var related = new[] { service }.Concat(service.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
+            var calls = related.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(calls, call => call.Method == manifest);
+            Assert.DoesNotContain(assembly.GetTypes(), type => type.Name is "ExternalCoreInstaller" or "CoreManifestFunctions");
+            if (family != "Sony") continue;
+            using var client = new System.Net.Http.HttpClient();
+            var settings = new EmulationCoreReleaseSettings(new Uri("https://example.invalid/core"), "core.bin", "core.bin", "custom-core");
+            Func<string, bool> complete = static _ => true;
+            Func<System.Net.Http.HttpClient, string, CancellationToken, Task> prepare = static (_, _, _) => Task.CompletedTask;
+            var constructor = Assert.Single(service.GetConstructors(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance));
+            var instance = constructor.Invoke([client, ".", settings, "custom-emulator", complete, prepare]);
+            Assert.Same(complete, service.GetField("_isInstallationComplete", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(instance));
+            Assert.Same(prepare, service.GetField("_prepareInstallation", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(instance));
+            Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == "InstallLibraryAsync" && call.Method.GetParameters().Last().Name == "prepareReplacement");
+            Assert.Contains(calls, call => call.Method.Name == "Invoke" && call.Method.DeclaringType == prepare.GetType());
+        }
+    }
+
+    [Fact]
+    public void ReleaseWorkflowsBelongToCommonAndReceiveBackendData()
     {
         var assemblies = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal)).Select(Assembly.Load).ToArray();
         var services = 0;
+        var catalogs = 0;
+        var official = 0;
         var providers = 0;
         foreach (var assembly in assemblies)
         {
@@ -31,17 +64,25 @@ public sealed class ArchitectureValidationTests
             services++;
             Assert.Single(assembly.GetTypes(), type => type.Name == "CoreReleaseService");
             var constructor = Assert.Single(service.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
-            Assert.Equal(3, constructor.GetParameters().Length);
-            var resolver = constructor.GetParameters()[2].ParameterType;
-            Assert.True(resolver.IsGenericType, assembly.GetName().Name + ": " + resolver.FullName);
-            Assert.Equal(typeof(Func<,>), resolver.GetGenericTypeDefinition());
-            Assert.True(resolver.GetGenericArguments()[1].IsGenericType, assembly.GetName().Name + ": " + resolver.GetGenericArguments()[1].FullName);
-            Assert.Equal(typeof(EmulationCoreCatalogEntry<,>), resolver.GetGenericArguments()[1].GetGenericTypeDefinition());
-            Assert.Equal(resolver, service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)!.FieldType);
+            var resolver = service.GetField("_getEntry", BindingFlags.NonPublic | BindingFlags.Instance)?.FieldType;
+            if (resolver is not null)
+            {
+                catalogs++;
+                Assert.Equal(3, constructor.GetParameters().Length);
+                Assert.Equal(resolver, constructor.GetParameters()[2].ParameterType);
+                Assert.Equal(typeof(Func<,>), resolver.GetGenericTypeDefinition());
+                Assert.Equal(typeof(EmulationCoreCatalogEntry<,>), resolver.GetGenericArguments()[1].GetGenericTypeDefinition());
+            }
+            else
+            {
+                official++;
+                foreach (var parameter in constructor.GetParameters())
+                    Assert.DoesNotContain(".Emulators.", parameter.ParameterType.FullName!);
+            }
             var related = new[] { service }.Concat(service.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic));
             var calls = related.SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
-            foreach (var name in new[] { "QueryReleaseAsync", "InstallLibraryAsync", "GetActiveInstallationAsync" })
+            foreach (var name in new[] { "QueryReleaseAsync", "InstallLibraryAsync", resolver is not null ? "GetActiveInstallationAsync" : "ReadInstalledVersion" })
                 Assert.Contains(calls, call => call.Method.DeclaringType == typeof(IEmulationCoreReleases) && call.Method.Name == name);
             var factoryTypes = assembly.GetTypes().Where(type => type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true && type.Name.EndsWith("MachineFactory", StringComparison.Ordinal)).ToArray();
             var factoryCalls = factoryTypes.Concat(factoryTypes.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
@@ -52,13 +93,18 @@ public sealed class ArchitectureValidationTests
             {
                 providers++;
                 Assert.Equal(service.Namespace, provider.Namespace);
-                Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == resolver);
+                if (resolver is not null)
+                    Assert.Contains(provider.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), field => field.FieldType == resolver);
+                else
+                    Assert.Contains(GetCompiledCalls(provider.GetMethod("FindInstalledPathAsync")!), call => call.Method.DeclaringType == typeof(IEmulationCoreDiagnostics) && call.Method.Name == "FindInstalledLibraryPath");
             }
             foreach (var contract in assembly.GetTypes().Where(type => type.Name == "ICoreReleaseService"))
                 Assert.EndsWith(".Common.Interfaces", contract.Namespace);
         }
-        Assert.Equal(16, services);
-        Assert.Equal(12, providers);
+        Assert.Equal(22, services);
+        Assert.Equal(16, catalogs);
+        Assert.Equal(6, official);
+        Assert.Equal(14, providers);
     }
 
     [Fact]
@@ -4251,7 +4297,11 @@ public sealed class ArchitectureValidationTests
             Assert.Equal("Releases", gateway.Name);
             Assert.Equal(typeof(IEmulationCoreReleases), gateway.PropertyType);
             Assert.Same(EmulationSdk.CoreReleases, gateway.GetValue(null));
-            Assert.Equal("get_Releases", Assert.Single(common.GetMethods(flags)).Name);
+            foreach (var method in common.GetMethods(flags))
+            {
+                Assert.True(method.IsAssembly);
+                Assert.Contains(method.Name, new[] { "get_Releases", "WriteManifestAsync" });
+            }
         }
     }
 

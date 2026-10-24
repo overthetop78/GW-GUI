@@ -2,7 +2,6 @@ using CoreAudioBufferStatusCallback = GWGUI.Emulation.Interop.ExternalCoreApi.Au
 using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 using GWGUI.Emulation.Amstrad.Common.Exceptions;
 
 using System.Runtime.InteropServices;

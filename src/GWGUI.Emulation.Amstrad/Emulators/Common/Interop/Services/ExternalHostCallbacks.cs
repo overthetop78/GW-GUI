@@ -5,7 +5,6 @@ using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.Contr
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Common.Exceptions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 using System.IO;
 using System.Diagnostics;

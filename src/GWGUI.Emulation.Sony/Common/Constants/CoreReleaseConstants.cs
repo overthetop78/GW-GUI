@@ -1,9 +1,5 @@
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 
-namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
+namespace GWGUI.Emulation.Sony.Common.Constants;
 
 internal static class CoreReleaseConstants
 {
@@ -13,4 +9,5 @@ internal static class CoreReleaseConstants
     internal const string Download = ".download";
     internal const string Extract = ".extract";
     internal const string X64 = "x64";
+    internal const double CompletedProgress = 1d;
 }

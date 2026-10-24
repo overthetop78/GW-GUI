@@ -1,5 +1,5 @@
 
-namespace GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
+namespace GWGUI.Emulation.Amstrad.Common.Constants;
 
 internal static class CoreReleaseConstants
 {
@@ -11,7 +11,6 @@ internal static class CoreReleaseConstants
     internal const string Download = ".download";
     internal const string Extract = ".extract";
     internal const string OfficialReleaseIdPrefix = "official-";
-    internal const int DownloadBufferSize = 81920;
     internal const double CompletedDownloadProgress = 1d;
     internal const string ReleaseDisplayDateFormat = "dd/MM/yyyy HH:mm";
 }

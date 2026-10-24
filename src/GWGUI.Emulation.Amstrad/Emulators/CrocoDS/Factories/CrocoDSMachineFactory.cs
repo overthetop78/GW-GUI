@@ -74,7 +74,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
         return true;
     }
 
-    private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Core);
+    private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.DownloadUri, Core.LatestReleaseDisplayName, Core.ReleaseProviderSuffix, Core.Architecture, Core.VerifyInstallation);
 
     public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
@@ -95,7 +95,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
         return await Releases(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core).FindInstalledPathAsync(cancellationToken));
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core.LibraryFile, Core.VerifyInstallation).FindInstalledPathAsync(cancellationToken));
 
     internal static void Validate(MachineConfiguration configuration)
     {

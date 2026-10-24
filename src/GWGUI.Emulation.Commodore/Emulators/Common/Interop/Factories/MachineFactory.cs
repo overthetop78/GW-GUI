@@ -104,13 +104,13 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
     public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var version = new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition).GetInstalledVersion();
+        var version = new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetInstalledVersion();
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
@@ -118,10 +118,10 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release);
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreDefinition).FindInstalledPathAsync(cancellationToken).ConfigureAwait(false);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory, CoreDefinition.LibraryFile).FindInstalledPathAsync(cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(ExternalCore.ResolveConfiguredMedia(configuration));
 

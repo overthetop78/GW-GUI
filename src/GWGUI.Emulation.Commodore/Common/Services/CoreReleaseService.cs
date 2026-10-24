@@ -1,32 +1,32 @@
-using EmulatorCatalogFunctions = GWGUI.Emulation.Sega.Common.Functions.EmulatorCatalogFunctions;
-using CoreReleaseFunctions = GWGUI.Emulation.Sega.Common.Functions.CoreReleaseFunctions;
+using EmulatorCatalogFunctions = GWGUI.Emulation.Commodore.Common.Functions.EmulatorCatalogFunctions;
+using CoreReleaseFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Sega.Common.Exceptions;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 using System.IO;
+
 using System.Text.Json;
 
-
-namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
+namespace GWGUI.Emulation.Commodore.Common.Services;
 
 
 internal sealed class CoreReleaseService
 {
+    private readonly string _libraryFile;
+    private readonly string? _downloadUrl;
+    private readonly CoreRelease? _requiredRelease;
+    public Uri? LatestOfficialUri => _downloadUrl is { } url ? new(url) : null;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
-    private readonly CoreReleaseSettings _settings;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings)
+    internal CoreReleaseService(HttpClient httpClient, string directory, string libraryFile, string? downloadUrl, CoreRelease? requiredRelease)
     {
+        _libraryFile = libraryFile;
+        _downloadUrl = downloadUrl;
+        _requiredRelease = requiredRelease;
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
-        _settings = settings;
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
+    public string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
 
     public string? GetInstalledVersion()
     {
@@ -37,21 +37,27 @@ internal sealed class CoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _settings.OfficialArchiveUri, response =>
-        [CoreReleaseFunctions.Releases.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
+        var releases = new List<CoreRelease>();
+        if (_requiredRelease is { } required)
+            releases.Add(required);
+        if (LatestOfficialUri is not { } latestUri)
+            return releases;
+        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, latestUri, response =>
+        {
+            var published = response.Content.Headers.LastModified ?? response.Headers.Date;
+            var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
+            releases.Add(new CoreRelease(string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix), published is null ? CoreReleaseConstants.LibretroLatest : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime), latestUri, published, false, true));
+            return releases;
+        }, cancellationToken).ConfigureAwait(false);
     }
 
-    public bool IsInstalled(CoreRelease release)
-    {
-        return EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(RequiredLibraryPath, VerifyWindowsX64Library) is not null;
-    }
-
-    public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
     public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);
+
+
         var destination = RequiredLibraryPath;
         var download = destination + CoreReleaseConstants.Download;
         var extracted = destination + CoreReleaseConstants.Extract;
@@ -67,7 +73,7 @@ internal sealed class CoreReleaseService
                 {
                     if (release.IsZip)
                     {
-                        CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
+                        CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _libraryFile, extracted,
                             static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
@@ -78,9 +84,9 @@ internal sealed class CoreReleaseService
                     return EmulatorCatalogFunctions.Diagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
-                sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
+                sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
-                archiveSize => progress?.Report(1)).ConfigureAwait(false);
+                archiveSize => progress?.Report(CoreReleaseConstants.CompletedDownloadProgress)).ConfigureAwait(false);
             return destination;
         }
         finally

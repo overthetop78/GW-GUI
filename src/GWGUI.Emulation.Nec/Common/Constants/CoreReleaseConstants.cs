@@ -1,9 +1,5 @@
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
-namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
+namespace GWGUI.Emulation.Nec.Common.Constants;
 
 internal static class CoreReleaseConstants
 {

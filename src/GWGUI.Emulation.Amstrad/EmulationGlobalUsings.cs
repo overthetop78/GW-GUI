@@ -25,10 +25,8 @@ global using GWGUI.Emulation.Amstrad.Common.Services;
 global using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 global using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 global using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;
-global using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 global using GWGUI.Emulation.Amstrad.Common.Constants;
 global using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;
-global using GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
 
 global using InputAccumulator = GWGUI.Emulation.Interfaces.IEmulationInputAccumulator;
 

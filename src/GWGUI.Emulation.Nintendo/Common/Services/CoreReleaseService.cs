@@ -2,15 +2,11 @@ using EmulatorCatalogFunctions = GWGUI.Emulation.Nintendo.Common.Functions.Emula
 using CoreReleaseFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nintendo.Common.Exceptions;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 using System.IO;
 using System.Text.Json;
 
 
-namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
+namespace GWGUI.Emulation.Nintendo.Common.Services;
 
 
 internal sealed class CoreReleaseService
@@ -41,12 +37,6 @@ internal sealed class CoreReleaseService
         [CoreReleaseFunctions.Releases.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
     }
 
-    public bool IsInstalled(CoreRelease release)
-    {
-        return EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(RequiredLibraryPath, VerifyWindowsX64Library) is not null;
-    }
-
-    public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
     public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
@@ -78,7 +68,7 @@ internal sealed class CoreReleaseService
                     return EmulatorCatalogFunctions.Diagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
-                sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
+                sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
                 archiveSize => progress?.Report(1)).ConfigureAwait(false);
             return destination;

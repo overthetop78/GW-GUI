@@ -2,15 +2,11 @@ using EmulatorCatalogFunctions = GWGUI.Emulation.Sony.Common.Functions.EmulatorC
 using CoreReleaseFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Sony.Common.Exceptions;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
-using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 using System.IO;
 using System.Text.Json;
 
 
-namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
+namespace GWGUI.Emulation.Sony.Common.Services;
 
 
 internal sealed class CoreReleaseService
@@ -49,16 +45,13 @@ internal sealed class CoreReleaseService
         [CoreReleaseFunctions.Releases.ReadOfficialRelease(_settings, response)], cancellationToken).ConfigureAwait(false);
     }
 
-    public bool IsInstalled(CoreRelease release) => FindInstalledLibraryPath() is not null;
-
-    internal string? FindInstalledLibraryPath()
+internal string? FindInstalledLibraryPath()
     {
         return EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(RequiredLibraryPath,
             path => VerifyWindowsX64Library(path, _emulatorId),
             _isInstallationComplete is { } complete ? () => complete(_directory) : null);
     }
 
-    public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
     public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
@@ -90,7 +83,7 @@ internal sealed class CoreReleaseService
                     return EmulatorCatalogFunctions.Diagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
-                sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
+                sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
                 archiveSize => progress?.Report(CoreReleaseConstants.CompletedProgress),
                 prepareReplacement: _prepareInstallation is { } prepare

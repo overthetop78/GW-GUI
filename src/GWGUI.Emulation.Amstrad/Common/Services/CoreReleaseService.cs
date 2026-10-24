@@ -2,28 +2,36 @@ using EmulatorCatalogFunctions = GWGUI.Emulation.Amstrad.Common.Functions.Emulat
 using CoreReleaseFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreReleaseFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amstrad.Common.Exceptions;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 using System.IO;
 using System.Text.Json;
 
-namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
+namespace GWGUI.Emulation.Amstrad.Common.Services;
 
 internal sealed class CoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _directory;
-    private readonly CoreDefinition _definition;
+    private readonly string _libraryFile;
+    private readonly Uri _downloadUri;
+    private readonly string _latestReleaseDisplayName;
+    private readonly string _releaseProviderSuffix;
+    private readonly string _architecture;
+    private readonly Action<string>? _verifyInstallation;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, CoreDefinition definition)
+    internal CoreReleaseService(HttpClient httpClient, string directory, string libraryFile, Uri downloadUri, string latestReleaseDisplayName, string releaseProviderSuffix, string architecture, Action<string>? verifyInstallation)
     {
-        _definition = definition;
+        _libraryFile = libraryFile;
+        _downloadUri = downloadUri;
+        _latestReleaseDisplayName = latestReleaseDisplayName;
+        _releaseProviderSuffix = releaseProviderSuffix;
+        _architecture = architecture;
+        _verifyInstallation = verifyInstallation;
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, _definition.LibraryFile);
+    public string RequiredLibraryPath => Path.Combine(_directory, _libraryFile);
 
     public string? GetInstalledVersion()
     {
@@ -34,20 +42,14 @@ internal sealed class CoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _definition.DownloadUri, response =>
+        return await CoreReleaseFunctions.Releases.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _downloadUri, response =>
         {
             var published = response.Content.Headers.LastModified ?? response.Headers.Date;
             var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.ReleaseIdentifierDateFormat) ?? CoreReleaseConstants.Latest;
-            return[new CoreRelease($"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}", published is null ? _definition.LatestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_definition.ReleaseProviderSuffix}", _definition.DownloadUri, published, true, true)];
+            return[new CoreRelease($"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}", published is null ? _latestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_releaseProviderSuffix}", _downloadUri, published, true, true)];
         }, cancellationToken).ConfigureAwait(false);
     }
 
-    public bool IsInstalled(CoreRelease release)
-    {
-        return EmulatorCatalogFunctions.Diagnostics.FindInstalledLibraryPath(RequiredLibraryPath, _definition.VerifyInstallation) is not null;
-    }
-
-    public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
     public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
@@ -68,18 +70,18 @@ internal sealed class CoreReleaseService
                 {
                     if (release.IsZip)
                     {
-                        CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
+                        CoreReleaseFunctions.Releases.ExtractExpectedLibrary(download, _libraryFile, extracted,
                             static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
                 archiveSize =>
                 {
-                    _definition.VerifyInstallation?.Invoke(extracted);
+                    _verifyInstallation?.Invoke(extracted);
                     return EmulatorCatalogFunctions.Diagnostics.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
-                sha256 => ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _definition.Architecture, cancellationToken),
+                sha256 => CoreReleaseFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _architecture, cancellationToken),
                 () => Task.CompletedTask,
                 archiveSize => progress?.Report(CoreReleaseConstants.CompletedDownloadProgress)).ConfigureAwait(false);
             return destination;

@@ -2,7 +2,6 @@ using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHos
 using AudioFunctions = GWGUI.Emulation.Amstrad.Common.Functions.AudioFunctions;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
-using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
