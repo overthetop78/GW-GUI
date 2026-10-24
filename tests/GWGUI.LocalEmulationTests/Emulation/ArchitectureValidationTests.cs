@@ -75,6 +75,15 @@ public sealed class ArchitectureValidationTests
             var resolver = assembly.GetType(root + ".Common.Exceptions.ExceptionText");
             if (resolver is null) continue;
             resolvers++;
+            var keys = assembly.GetType(root + ".Common.Constants.CoreErrorResourceKeys", true)!;
+            Assert.False(keys.IsPublic);
+            var fields = keys.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.NotEmpty(fields);
+            Assert.All(fields, field => Assert.True(field.IsLiteral && field.FieldType == typeof(string)));
+            Assert.Equal(fields.Length, fields.Select(field => (string)field.GetRawConstantValue()!).Distinct(StringComparer.Ordinal).Count());
+            Assert.Null(assembly.GetType(root + ".Common.Constants.CommonExceptionsConstants"));
+            Assert.Null(assembly.GetType(root + ".Common.Constants.CoreExceptionsResourceConstants"));
+            Assert.Null(assembly.GetType(root + ".Emulators.Common.Interop.Constants.CoreErrorResourceKeys"));
             var get = resolver.GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)!;
             Assert.Equal(new[] { typeof(string), typeof(object[]) }, get.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.NotNull(get.GetParameters()[1].GetCustomAttribute<ParamArrayAttribute>());

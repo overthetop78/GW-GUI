@@ -33,7 +33,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public long AudioUnderrunCount => _host?.AudioUnderrunCount ?? 0;
 
     /// <inheritdoc/>
-    public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.GetStatus();
+    public DiskStatus GetDiskStatus() => (_host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized))).DiskControl.GetStatus();
 
     private readonly string _corePath;
     private readonly CoreDefinition _definition;
@@ -99,7 +99,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         var contentPlan = _definition.CreateContentLoadPlan?.Invoke(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path))
-                throw new FileNotFoundException(Error(CoreExceptionsResourceConstants.MediaNotFound), item.Path);
+                throw new FileNotFoundException(Error(CoreErrorResourceKeys.MediaNotFound), item.Path);
 
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var stream = File.OpenRead(sourceCorePath))
@@ -137,11 +137,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(isolatedCorePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
-                throw new NotSupportedException(Error(CoreExceptionsResourceConstants.UnsupportedApiVersion, apiVersion));
+                throw new NotSupportedException(Error(CoreErrorResourceKeys.UnsupportedApiVersion, apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
             if (!CoreIdentityFunctions.Accepts(_definition, libraryName))
-                throw new InvalidDataException(Error(CoreExceptionsResourceConstants.LibraryIdentityMismatch, libraryName ?? string.Empty));
+                throw new InvalidDataException(Error(CoreErrorResourceKeys.LibraryIdentityMismatch, libraryName ?? string.Empty));
             if (!info.NeedFullPath && _definition.FullContentPathsRequired is { } fullPathError)
                 throw new InvalidDataException(fullPathError());
             CoreName = libraryName!;
@@ -178,12 +178,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
             else if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.StartWithoutMediaUnsupported));
+                    throw new InvalidOperationException(Error(CoreErrorResourceKeys.StartWithoutMediaUnsupported));
                 _gameLoaded = loadGame(0);
             }
             else _gameLoaded = LoadGame(loadGame, contentPath, info.NeedFullPath);
             _host.DiagnosticMonitor.ThrowIfFailed();
-            if (!_gameLoaded) throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.ContentRefused));
+            if (!_gameLoaded) throw new InvalidOperationException(Error(CoreErrorResourceKeys.ContentRefused));
             _host.ValidateConfiguredOptions();
             ApplyConfiguredControllers(requireAdvertised: true);
             RestoreSaveMemory();
@@ -216,27 +216,27 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public void RunFrame()
     {
         _host?.NotifyAudioBufferStatus();
-        (_run ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized)))();
+        (_run ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized)))();
         _host?.DiagnosticMonitor.ThrowIfFailed();
     }
     public void HardReset()
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
-        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
+        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
         var saveDirectory = _saveDirectory;
         Dispose();
         Initialize(configuration, sessionDirectory, saveDirectory);
     }
-    public void SoftReset() => (_reset ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized)))();
+    public void SoftReset() => (_reset ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized)))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
     }
     public void SetControllerPortDevice(int port, PeripheralCategory type)
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
-        var host = _host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
-        var setter = _setControllerPortDevice ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
+        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
+        var host = _host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
+        var setter = _setControllerPortDevice ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
         SemanticControllerFunctions.Validate(configuration, port, type);
         var route = _controllerPorts?.Single(item => item.ConfigurationPort == port);
         if (_gameLoaded && route is { CanChangeWhileRunning: false } && SemanticControllerFunctions.Resolve(configuration, port) != type)
@@ -254,7 +254,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     private void ApplyConfiguredControllers(bool requireAdvertised)
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized));
+        var configuration = _configuration ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized));
         for (var port = SemanticPortConstants.MinimumControllerPort;
             port < SemanticControllerFunctions.PortCount(configuration); port++)
         {
@@ -271,9 +271,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 _host!.SetControllerType(port, PeripheralCategory.None);
             }
     }
-    private void InsertMediaPath(string path) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Insert(path);
-    private void EjectMediaPath() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Eject();
-    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Select(index);
+    private void InsertMediaPath(string path) => (_host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized))).DiskControl.Insert(path);
+    private void EjectMediaPath() => (_host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized))).DiskControl.Eject();
+    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized))).DiskControl.Select(index);
 
     /// <inheritdoc/>
     public void InsertMedia(MediaConfiguration media)
@@ -292,15 +292,15 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public byte[] SaveState()
     {
-        var size = (_getSerializedSize ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized)))();
+        var size = (_getSerializedSize ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized)))();
         if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)
-            throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.InvalidStateSize, size));
+            throw new InvalidOperationException(Error(CoreErrorResourceKeys.InvalidStateSize, size));
         var state = new byte[(int)size];
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!_serialize!(buffer, size))
-                throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.StateSaveFailed));
+                throw new InvalidOperationException(Error(CoreErrorResourceKeys.StateSaveFailed));
             Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);
         }
         finally { Marshal.FreeHGlobal(buffer); }
@@ -309,19 +309,19 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void LoadState(ReadOnlySpan<byte> state)
     {
-        if (state.IsEmpty) throw new ArgumentException(Error(CoreExceptionsResourceConstants.StateEmpty), nameof(state));
+        if (state.IsEmpty) throw new ArgumentException(Error(CoreErrorResourceKeys.StateEmpty), nameof(state));
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
             Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!_unserialize!(buffer, (nuint)bytes.Length))
-                throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.StateRestoreFailed));
+                throw new InvalidOperationException(Error(CoreErrorResourceKeys.StateRestoreFailed));
         }
         finally { Marshal.FreeHGlobal(buffer); }
     }
 
-    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).SetOption(key, value);
+    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotInitialized))).SetOption(key, value);
 
     public void Stop()
     {
@@ -352,7 +352,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         if (path is null) return;
         var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);
         if (!SupportedContentExtensions.Contains(extension))
-            throw new InvalidDataException(Error(CoreExceptionsResourceConstants.UnsupportedContentExtension, extension));
+            throw new InvalidDataException(Error(CoreErrorResourceKeys.UnsupportedContentExtension, extension));
     }
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
@@ -375,13 +375,13 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     private string Error(string key, params object[] arguments) => ErrorMessages.ForEmulator(_definition.Id, key, arguments);
 
-    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotLoaded))).Resolve<T>(name);
+    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(Error(CoreErrorResourceKeys.CoreNotLoaded))).Resolve<T>(name);
 
     private string ResolveCorePath(string path)
     {
         if (!Path.IsPathFullyQualified(path))
-            throw new ArgumentException(Error(CoreExceptionsResourceConstants.CorePathNotAbsolute), nameof(path));
-        if (!File.Exists(path)) throw new FileNotFoundException(Error(CoreExceptionsResourceConstants.CoreNotFound), path);
+            throw new ArgumentException(Error(CoreErrorResourceKeys.CorePathNotAbsolute), nameof(path));
+        if (!File.Exists(path)) throw new FileNotFoundException(Error(CoreErrorResourceKeys.CoreNotFound), path);
         return path;
     }
 

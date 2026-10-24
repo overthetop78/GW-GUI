@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Sony.Common.Exceptions;
 /// paramètres ; les textes sont résolus au moment de chaque demande dans la culture d'interface courante.</remarks>
 internal static class CoreHostErrors
 {
-    internal static string InvalidConfiguration => ExceptionText.Get(CoreExceptionsResourceConstants.HostConfigurationInvalid);
-    internal static string NotInitialized => ExceptionText.Get(CoreExceptionsResourceConstants.HostNotInitialized);
-    internal static string UnknownCommandFormat => ExceptionText.Get(CoreExceptionsResourceConstants.UnknownHostCommand);
+    internal static string InvalidConfiguration => ExceptionText.Get(CoreErrorResourceKeys.HostConfigurationInvalid);
+    internal static string NotInitialized => ExceptionText.Get(CoreErrorResourceKeys.HostNotInitialized);
+    internal static string UnknownCommandFormat => ExceptionText.Get(CoreErrorResourceKeys.UnknownHostCommand);
 }

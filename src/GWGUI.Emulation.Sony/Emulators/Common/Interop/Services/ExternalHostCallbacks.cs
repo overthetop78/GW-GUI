@@ -142,10 +142,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnknownCoreOption));
+            throw new ArgumentOutOfRangeException(nameof(key), key, ErrorMessages.ForEmulator(_emulatorId, CoreErrorResourceKeys.UnknownCoreOption));
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, ErrorMessages.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.InvalidOptionValue, value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, ErrorMessages.ForEmulator(_emulatorId, CoreErrorResourceKeys.InvalidOptionValue, value, key));
         _options[key] = value;
         OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(OptionCatalog, _options);
         Interlocked.Exchange(ref _optionsUpdated, 1);

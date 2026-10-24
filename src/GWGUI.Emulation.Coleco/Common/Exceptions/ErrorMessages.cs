@@ -4,14 +4,14 @@ namespace GWGUI.Emulation.Coleco.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Coleco.Error.CoreRejected");
-    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Coleco.Error.CoreRejected");
-    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Coleco.Error.CoreRejected");
-    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Coleco.Error.CoreRejected");
-    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Coleco.Error.CoreNotFound");
-    internal static string EmptyVersion => ExceptionText.Get("Emulation.Coleco.Error.CoreNotFound");
-    internal static string DuplicateCore => ExceptionText.Get("Emulation.Coleco.Error.CoreRejected");
-    internal static string MissingModel => ExceptionText.Get("Emulation.Coleco.Error.CoreNotFound");
+    internal static string InvalidArchitecture => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string MissingPublishedDate => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string EmptyInstallationRoot => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    internal static string EmptyVersion => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    internal static string DuplicateCore => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string MissingModel => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
 
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Coleco.Resources.Emulation");
 

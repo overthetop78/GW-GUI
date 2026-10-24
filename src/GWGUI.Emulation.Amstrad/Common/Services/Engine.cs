@@ -52,7 +52,7 @@ internal sealed class Engine
         return false;
     }
 
-    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(AmstradEmulationModule).Assembly, CoreErrorResourceKeys.ResourceName);
     private readonly string _firmwareDirectory = null !;
     private readonly ConfigurationStore _store = null !;
     private readonly HttpClient _httpClient = null !;

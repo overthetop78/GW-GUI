@@ -4,13 +4,13 @@ namespace GWGUI.Emulation.Snk.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    internal static string InvalidArchitecture => ExceptionText.Get("Emulation.Snk.Error.CoreRejected");
-    internal static string MissingPublishedDate => ExceptionText.Get("Emulation.Snk.Error.CoreRejected");
-    internal static string MissingExpectedLibraryFormat => ExceptionText.Get("Emulation.Snk.Error.CoreRejected");
-    internal static string InstalledLibraryLockedFormat => ExceptionText.Get("Emulation.Snk.Error.CoreRejected");
-    internal static string EmptyInstallationRoot => ExceptionText.Get("Emulation.Snk.Error.CoreNotFound");
-    internal static string EmptyVersion => ExceptionText.Get("Emulation.Snk.Error.CoreNotFound");
-    internal static string DuplicateCore => ExceptionText.Get("Emulation.Snk.Error.CoreRejected");
+    internal static string InvalidArchitecture => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string MissingPublishedDate => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string MissingExpectedLibraryFormat => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string InstalledLibraryLockedFormat => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
+    internal static string EmptyInstallationRoot => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    internal static string EmptyVersion => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
+    internal static string DuplicateCore => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
 
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization( typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Snk.Resources.Emulation");
 

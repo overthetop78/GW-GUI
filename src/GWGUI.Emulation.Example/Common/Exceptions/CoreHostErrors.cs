@@ -13,7 +13,7 @@ internal static class CoreHostErrors
     /// <summary>Message employé lorsqu’une seconde initialisation est refusée.</summary>
     internal static string AlreadyInitialized => HostFailure();
     /// <summary>Message spécifique à l’absence de l’exécutable utilisé pour lancer l’hôte.</summary>
-    internal static string ExecutableMissing => ExceptionText.Get("Emulation.Example.Error.HostExecutableMissing");
+    internal static string ExecutableMissing => ExceptionText.Get(CoreErrorResourceKeys.HostExecutableMissing);
     /// <summary>Message employé lorsque le processus d’hôte ne peut pas démarrer.</summary>
     internal static string ProcessStartFailed => HostFailure();
     /// <summary>Message employé lorsque le processus ou son transport n’est plus disponible.</summary>
@@ -37,9 +37,9 @@ internal static class CoreHostErrors
     /// <summary>Texte utilisé pour signaler une taille de réponse invalide.</summary>
     internal static string InvalidResponseLengthFormat => HostFailure();
     /// <summary>Texte de détail ajouté au diagnostic pour restituer la fin du processus.</summary>
-    internal static string ProcessExitSuffixFormat => ExceptionText.Get("Emulation.Example.Error.Details");
+    internal static string ProcessExitSuffixFormat => ExceptionText.Get(CoreErrorResourceKeys.Details);
 
     /// <summary>Résout le diagnostic général de protocole dans la culture d’interface courante.</summary>
     /// <returns>Texte traduit, ou clé de ressource lorsque le catalogue ne fournit aucune valeur.</returns>
-    private static string HostFailure() => ExceptionText.Get("Emulation.Example.Error.HostProtocolFailure");
+    private static string HostFailure() => ExceptionText.Get(CoreErrorResourceKeys.HostProtocolFailure);
 }

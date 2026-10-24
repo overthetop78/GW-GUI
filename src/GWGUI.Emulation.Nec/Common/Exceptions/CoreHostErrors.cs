@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Nec.Common.Exceptions;
 /// paramètres ; les textes sont résolus au moment de chaque demande dans la culture d'interface courante.</remarks>
 internal static class CoreHostErrors
 {
-    internal static string InvalidConfiguration => ExceptionText.Get("Emulation.Error.Core.HostConfigurationInvalid");
-    internal static string NotInitialized => ExceptionText.Get("Emulation.Error.Core.HostNotInitialized");
-    internal static string UnknownCommandFormat => ExceptionText.Get("Emulation.Error.Core.UnknownHostCommand");
+    internal static string InvalidConfiguration => ExceptionText.Get(CoreErrorResourceKeys.HostConfigurationInvalid);
+    internal static string NotInitialized => ExceptionText.Get(CoreErrorResourceKeys.HostNotInitialized);
+    internal static string UnknownCommandFormat => ExceptionText.Get(CoreErrorResourceKeys.UnknownHostCommand);
 }

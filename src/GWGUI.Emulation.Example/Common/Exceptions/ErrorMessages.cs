@@ -101,28 +101,28 @@ internal static class ErrorMessages
     /// <summary>Message associé à un échec de restauration d’une sauvegarde d’état.</summary>
     internal static string StateLoadFailed => StateInvalidText();
     /// <summary>Message associé à une identité de sauvegarde incompatible avec la machine courante.</summary>
-    internal static string StateIncompatible => ExceptionText.Get("Emulation.Example.Error.StateIncompatible");
+    internal static string StateIncompatible => ExceptionText.Get(CoreErrorResourceKeys.StateIncompatible);
     /// <summary>Message associé à une commande incompatible avec l’état courant de la machine.</summary>
-    internal static string MachineInvalidState => ExceptionText.Get("Emulation.Example.Error.Unexpected");
+    internal static string MachineInvalidState => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
     /// <summary>Message associé à une commande qui ne peut plus être exécutée après l’arrêt de la session.</summary>
-    internal static string MachineStopped => ExceptionText.Get("Emulation.Example.Error.Unexpected");
+    internal static string MachineStopped => ExceptionText.Get(CoreErrorResourceKeys.Unexpected);
 
     /// <summary>Résout le message de catégorie indiquant l’absence d’un firmware.</summary>
-    private static string FirmwareMissing() => ExceptionText.Get("Emulation.Example.Error.FirmwareMissing");
+    private static string FirmwareMissing() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareMissing);
     /// <summary>Résout le message de catégorie indiquant un firmware invalide.</summary>
-    private static string FirmwareInvalid() => ExceptionText.Get("Emulation.Example.Error.FirmwareInvalid");
+    private static string FirmwareInvalid() => ExceptionText.Get(CoreErrorResourceKeys.FirmwareInvalid);
     /// <summary>Résout le message de catégorie indiquant un contenu introuvable.</summary>
-    private static string ContentNotFound() => ExceptionText.Get("Emulation.Example.Error.ContentNotFound");
+    private static string ContentNotFound() => ExceptionText.Get(CoreErrorResourceKeys.ContentNotFound);
     /// <summary>Résout le message de catégorie indiquant un contenu non pris en charge.</summary>
-    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Example.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get(CoreErrorResourceKeys.ContentUnsupported);
     /// <summary>Résout le message de catégorie indiquant un réglage invalide.</summary>
-    private static string OptionInvalid() => ExceptionText.Get("Emulation.Example.Error.OptionInvalid");
+    private static string OptionInvalid() => ExceptionText.Get(CoreErrorResourceKeys.OptionInvalid);
     /// <summary>Résout le message de catégorie indiquant un cœur introuvable.</summary>
-    private static string CoreNotFound() => ExceptionText.Get("Emulation.Example.Error.CoreNotFound");
+    private static string CoreNotFound() => ExceptionText.Get(CoreErrorResourceKeys.CoreNotFound);
     /// <summary>Résout le message de catégorie indiquant un cœur refusé.</summary>
-    private static string CoreRejected() => ExceptionText.Get("Emulation.Example.Error.CoreRejected");
+    private static string CoreRejected() => ExceptionText.Get(CoreErrorResourceKeys.CoreRejected);
     /// <summary>Résout le message de catégorie indiquant un état invalide.</summary>
-    private static string StateInvalidText() => ExceptionText.Get("Emulation.Example.Error.StateInvalid");
+    private static string StateInvalidText() => ExceptionText.Get(CoreErrorResourceKeys.StateInvalid);
 
 }
 

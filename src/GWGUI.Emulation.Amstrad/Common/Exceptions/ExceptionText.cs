@@ -10,7 +10,7 @@ namespace GWGUI.Emulation.Amstrad.Common.Exceptions;
 /// conserve la culture courante pour les valeurs et renvoie la clé si aucune traduction n'existe.</remarks>
 internal static class ExceptionText
 {
-    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ExceptionText).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(ExceptionText).Assembly, CoreErrorResourceKeys.ResourceName);
 
     /// <summary>Résout une clé puis remplace ses paramètres éventuels dans la culture courante.</summary>
     /// <param name="resourceKey">Clé exacte du texte dans les ressources du module.</param>
