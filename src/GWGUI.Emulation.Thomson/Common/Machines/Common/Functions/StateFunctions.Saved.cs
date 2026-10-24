@@ -49,8 +49,8 @@ internal static class SavedStateFunctions
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
         IReadOnlyList<string> initialPaths = configuration.InitialContent is null ? [] : new Engine().SelectedAdapter(configuration)?.ResolveInitialContentPaths(configuration) ?? [configuration.InitialContent];
-        var entries = configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path))).Concat(initialPaths.Select((path,
-            index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), HashPath(path)))).ToArray();
+        var entries = configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", StateStore.HashPath(media.Path))).Concat(initialPaths.Select((path,
+            index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), StateStore.HashPath(path)))).ToArray();
         return entries;
     }
 
@@ -65,8 +65,7 @@ internal static class SavedStateFunctions
         EmulationSdk.StateFiles.OrderInputMappings(input.Mouse).ToArray(),
         input.MouseSpeedPercent
     );
-    private static string HashPath(string path) =>
-        EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+
 
 
 }

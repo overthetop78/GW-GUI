@@ -14244,3 +14244,58 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Créer src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/HardDiskFormats.cs : reprendre le mécanisme de description du registre existant pour les extensions acceptées par le profil A et les conteneurs bruts, VHD et VHDX ; commenter chaque élément.
   - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/StorageFunctions.Settings.cs : transmettre les formats de création du disque dur dans la description publique des lecteurs, pour les trois émulateurs fictifs.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : vérifier en mémoire les formats exposés, leurs extensions, conteneurs et limites pour les deux profils et les trois backends ; exécuter les tests utiles et le build Debug complet.
+
+- [x] Uniformiser le propriétaire Common des empreintes de fichiers des sauvegardes d’état.
+  - [x] GWGUI.Emulation.Acorn : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Apple : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Atari : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Bandai : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Coleco : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Epoch : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Example : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Machine.Lifecycle.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Fairchild : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Mattel : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Panasonic : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Philips : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Sharp : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Sinclair : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Snk : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Thomson : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Watara : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] GWGUI.Emulation.Wenquxing : confier les empreintes à StateStore.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Services/StateStore.cs : déplacer le calcul existant sous HashPath, avec les mêmes paramètres et erreurs ; documenter son rôle et ses ressources.
+    - [x] Modifier src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs : appeler StateStore.HashPath et retirer le calcul déplacé ; conserver la résolution des dépendances de média et les empreintes obtenues.
+  - [x] Vérifier les raccordements compilés de tous les modules.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : étendre le contrôle existant de StateStore aux signatures et appels de HashPath des vingt-quatre Common ; exécuter les vérifications utiles et le build Debug avec tous les modules.

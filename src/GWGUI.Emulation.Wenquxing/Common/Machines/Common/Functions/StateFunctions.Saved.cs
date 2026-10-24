@@ -46,9 +46,9 @@ internal static class SavedStateFunctions
     }
 
     internal static string ContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(ContentEntries(configuration));
-    private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration) => configuration.Firmware.Images.OrderBy(image => image.Key).Select(image => new StateContentEntry(image.Key.ToString(), "firmware", HashFile(image.Value))).ToArray();
+    private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration) => configuration.Firmware.Images.OrderBy(image => image.Key).Select(image => new StateContentEntry(image.Key.ToString(), "firmware", StateStore.HashPath(image.Value))).ToArray();
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
     private static StateInputFingerprint InputFingerprint(InputConfiguration input, MachineModel model) => new(KeyboardDictionary.Bindings(input, model).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray());
 
-    private static string HashFile(string path) => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(path);
+
 }

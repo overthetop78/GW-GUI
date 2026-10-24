@@ -182,14 +182,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     private static string StateContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(
         configuration.Firmwares.OrderBy(firmware => firmware.Category)
-            .Select(firmware => new EmulationStateContentEntry("firmware", firmware.Category.ToString(), HashStatePath(firmware.Path)))
+            .Select(firmware => new EmulationStateContentEntry("firmware", firmware.Category.ToString(), StateStore.HashPath(firmware.Path)))
             .Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(media => media.Slot)
                 .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new EmulationStateContentEntry("media", media.Category + ":" + media.Slot,
-                    HashStatePath(media.Path)))).ToArray());
+                    StateStore.HashPath(media.Path)))).ToArray());
 
-    private static string HashStatePath(string path) => EmulationSdk.StateFiles.HashPath(path, "*", '/', 64 * 1024,
-        () => new FileNotFoundException(ErrorMessages.StateInvalid, path));
+
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 

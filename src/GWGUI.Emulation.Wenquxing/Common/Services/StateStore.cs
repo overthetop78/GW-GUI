@@ -1,3 +1,5 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Wenquxing.Common.Functions.EmulatorCatalogFunctions;
+using System.IO;
 namespace GWGUI.Emulation.Wenquxing.Common.Services;
 
 internal static class StateStore
@@ -15,4 +17,11 @@ internal static class StateStore
         SavedStateFunctions.ValidatePayloadSize(result.State.Length);
         return new StateFile(result.Header, result.State);
     }
+
+    /// <summary>Calcule l’empreinte du contenu emprunté pour identifier les fichiers d’une sauvegarde d’état.</summary>
+    /// <param name="path">Chemin du contenu à lire, dont la propriété reste à l’appelant.</param>
+    /// <returns>Empreinte obtenue avec les conventions de lecture du module.</returns>
+    /// <remarks>Le lecteur commun libère les flux ouverts, y compris en cas d’erreur. La configuration
+    /// et les fichiers utilisateur restent inchangés ; les dépendances de média sont résolues par l’adaptation appelante.</remarks>
+    internal static string HashPath(string path) => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(path);
 }

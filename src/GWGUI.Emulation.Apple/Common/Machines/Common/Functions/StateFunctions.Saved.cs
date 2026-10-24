@@ -90,7 +90,7 @@ internal static class SavedStateFunctions
         var dependencies = adapter?.GetMediaDependencies(path);
         if (dependencies is { Count: > 0 })
             return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(EmulatorCatalogFunctions.Diagnostics.CalculateSha256))));
-        return EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+        return StateStore.HashPath(path);
     }
 
 

@@ -53,15 +53,14 @@ internal static class SavedStateFunctions
         HashFile(image.Value))).Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(MediaOrder).ThenBy(media => media.Path,
             StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory,
             $"{media.Category}:{media.Slot}",
-            HashPath(media.Path)))).ToArray();
+            StateStore.HashPath(media.Path)))).ToArray();
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new((input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,
         controller.Peripheral,
         controller.DeviceId,
         controller.DeadZonePercent,
         EmulationSdk.StateFiles.OrderInputMappings(controller.Mappings).ToArray())).ToArray());
-    private static string HashPath(string path) =>
-        EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+
 
 
     private static string HashFile(string path) => EmulatorCatalogFunctions.Diagnostics.CalculateSha256(path);

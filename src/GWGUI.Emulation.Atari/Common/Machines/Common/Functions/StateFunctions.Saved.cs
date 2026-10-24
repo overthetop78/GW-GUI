@@ -57,9 +57,9 @@ internal static class SavedStateFunctions
 
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path)))
+        var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), StateStore.HashPath(firmware.Path)))
             .Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
-                .Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}:{media.MountOrder}", HashPath(media.Path))))
+                .Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}:{media.MountOrder}", StateStore.HashPath(media.Path))))
             .ToArray();
         return entries;
     }
@@ -81,8 +81,7 @@ internal static class SavedStateFunctions
         input.CaptureMouse,
         input.ReleaseMouseKey.ToString());
 
-    private static string HashPath(string path) =>
-        EmulationSdk.StateFiles.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
+
 
 
 }

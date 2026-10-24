@@ -337,18 +337,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// <returns>Empreinte du document de contenus ordonné par catégorie de firmware, puis slot et chemin de média.</returns>
     private static string StateContentHash(MachineConfiguration configuration) => EmulationSdk.StateFiles.HashDocument(
         configuration.Firmwares.OrderBy(firmware => firmware.FieldId, StringComparer.Ordinal).ThenBy(firmware => firmware.Category)
-            .Select(firmware => new EmulationStateContentEntry("firmware", firmware.FieldId ?? firmware.Category.ToString(), HashStatePath(firmware.Path)))
+            .Select(firmware => new EmulationStateContentEntry("firmware", firmware.FieldId ?? firmware.Category.ToString(), StateStore.HashPath(firmware.Path)))
             .Concat(configuration.Media.Where(media => media.IsInserted).OrderBy(media => media.Slot)
                 .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new EmulationStateContentEntry("media", media.Category + ":" + media.Slot,
-                    HashStatePath(media.Path)))).ToArray());
+                    StateStore.HashPath(media.Path)))).ToArray());
 
-    /// <summary>Calcule l’empreinte d’un fichier ou d’une arborescence de contenu avec le lecteur commun.</summary>
-    /// <param name="path">Chemin du contenu à identifier.</param>
-    /// <returns>Empreinte utilisant tous les fichiers, le séparateur canonique et le tampon de transfert du module.</returns>
-    /// <exception cref="FileNotFoundException">Le contenu attendu n’est pas disponible.</exception>
-    private static string HashStatePath(string path) => EmulationSdk.StateFiles.HashPath(path, "*", ConfigurationStoreConstants.StoredDirectorySeparator, BufferConstants.FileTransferBufferSize,
-        () => new FileNotFoundException(ErrorMessages.StateInvalid, path));
+
 
     /// <summary>Transmet une nouvelle valeur d’option au cœur sur son thread.</summary>
     /// <param name="key">Identifiant exact de l’option.</param>
